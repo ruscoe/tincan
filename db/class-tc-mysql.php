@@ -14,27 +14,27 @@ class TCMySQL implements TCDB {
   /**
    * @since 0.01
    */
-  $connection;
+  private $connection;
 
   /**
    * @since 0.01
    */
-  $db_host;
+  private $db_host;
 
   /**
    * @since 0.01
    */
-  $db_user;
+  private $db_user;
 
   /**
    * @since 0.01
    */
-  $db_pass;
+  private $db_pass;
 
   /**
    * @since 0.01
    */
-  $db_name;
+  private $db_name;
 
   /**
    * @since 0.01
@@ -52,14 +52,14 @@ class TCMySQL implements TCDB {
   /**
    * @since 0.01
    */
-  protected function open_connection() {
+  function open_connection() {
 
   }
 
   /**
    * @since 0.01
    */
-  protected function close_connection() {
+  function close_connection() {
 
   }
 

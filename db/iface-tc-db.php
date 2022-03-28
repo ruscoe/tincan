@@ -14,11 +14,11 @@ interface TCDB {
   /**
    * @since 0.01
    */
-  protected function open_connection();
+  function open_connection();
 
   /**
    * @since 0.01
    */
-  protected function close_connection();
+  function close_connection();
 
 }
