@@ -1,6 +1,6 @@
 <?php
 
-require TC_BASE_PATH . '/core/objects/tc-board.php';
-require TC_BASE_PATH . '/core/objects/tc-post.php';
-require TC_BASE_PATH . '/core/objects/tc-thread.php';
-require TC_BASE_PATH . '/core/objects/tc-user.php';
+require TC_BASE_PATH . '/core/objects/class-tc-board.php';
+require TC_BASE_PATH . '/core/objects/class-tc-post.php';
+require TC_BASE_PATH . '/core/objects/class-tc-thread.php';
+require TC_BASE_PATH . '/core/objects/class-tc-user.php';
