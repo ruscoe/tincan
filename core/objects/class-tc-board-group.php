@@ -6,7 +6,17 @@
  * @since 0.01
  */
 
-class TCUser extends TCObject {
+class TCBoardGroup extends TCObject {
+
+  /**
+   * @since 0.01
+   */
+  public $board_group_id;
+
+  /**
+   * @since 0.01
+   */
+  public $board_group_name;
 
   /**
    * TODO
@@ -14,7 +24,7 @@ class TCUser extends TCObject {
    * @since 0.01
    */
   public function get_db_table() {
-    return 'tc_users';
+    return 'tc_board_groups';
   }
 
   /**
@@ -24,7 +34,8 @@ class TCUser extends TCObject {
    */
   public function get_db_fields() {
     return array(
-      'user_id'
+      'board_group_id',
+      'board_group_name'
     );
   }
 
