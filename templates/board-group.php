@@ -2,7 +2,7 @@
   $board_group = $data['board_group'];
   $boards = $data['boards'];
 ?>
-sdfsdf
+
 <div id="board-group-<?=$board_group->board_group_id?>" class="board-group">
   <h2><a href="#"><?=$board_group->board_group_name?></a></h2>
   <ul>
