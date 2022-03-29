@@ -1,6 +1,6 @@
 <?php
 
-$thread_id = filter_input(INPUT_GET, 'thread', FILTER_VALIDATE_INT);
+$thread_id = filter_input(INPUT_GET, 'thread', FILTER_SANITIZE_NUMBER_INT);
 
 $db = new TCData();
 
