@@ -24,6 +24,11 @@ class TCThread extends TCObject {
   public $thread_title;
 
   /**
+   * @since 0.01
+   */
+  public $last_post_time;
+
+  /**
    * TODO
    *
    * @since 0.01
@@ -49,7 +54,8 @@ class TCThread extends TCObject {
   public function get_db_fields() {
     return array(
       'board_id',
-      'thread_title'
+      'thread_title',
+      'last_post_time'
     );
   }
 
