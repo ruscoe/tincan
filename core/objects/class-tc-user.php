@@ -48,7 +48,6 @@ class TCUser extends TCObject {
    */
   public function get_db_fields() {
     return array(
-      'user_id',
       'username',
       'email'
     );

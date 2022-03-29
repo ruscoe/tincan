@@ -13,6 +13,9 @@ abstract class TCObject {
    */
   function __construct($object = NULL) {
     if (!empty($object)) {
+      $primary_key = $this->get_primary_key();
+      $this->$primary_key = (!empty($object->$primary_key)) ? $object->$primary_key : NULL;
+
       $this->populate_from_db($object);
     }
   }

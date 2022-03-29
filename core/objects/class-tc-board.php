@@ -48,7 +48,6 @@ class TCBoard extends TCObject {
    */
   public function get_db_fields() {
     return array(
-      'board_id',
       'board_name',
       'board_group_id'
     );

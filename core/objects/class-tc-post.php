@@ -48,7 +48,6 @@ class TCPost extends TCObject {
    */
   public function get_db_fields() {
     return array(
-      'post_id',
       'user_id',
       'thread_id'
     );

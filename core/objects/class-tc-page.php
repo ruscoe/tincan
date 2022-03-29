@@ -48,7 +48,6 @@ class TCPage extends TCObject {
    */
   public function get_db_fields() {
     return array(
-      'page_id',
       'page_title',
       'template'
     );

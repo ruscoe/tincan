@@ -48,7 +48,6 @@ class TCThread extends TCObject {
    */
   public function get_db_fields() {
     return array(
-      'thread_id',
       'board_id',
       'thread_title'
     );
