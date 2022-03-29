@@ -18,15 +18,21 @@ $board = $db->load_object(new TCBoard(), $board_id);
 
 <?php
 
+// Get threads in this board; order by thread with most recent post.
 $conditions = array(
   array(
     'field' => 'board_id',
-    'value' => $board_id
+    'value' => $board->board_id
   )
 );
 
-// TODO: Sort by thread with most recent post.
-$threads = $db->load_objects(new TCThread(), array(), $conditions);
+$order = array(
+  'field' => 'last_post_time',
+  'direction' => 'DESC'
+);
+
+// TODO: Sorting and pagination.
+$threads = $db->load_objects(new TCThread(), array(), $conditions, $order);
 
 foreach ($threads as $thread) {
   TCTemplate::render('thread-preview', array('thread' => $thread));
