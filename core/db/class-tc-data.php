@@ -32,6 +32,13 @@ class TCData {
   /**
    * @since 0.01
    */
+  function run_query($query) {
+    return $this->database->query($query);
+  }
+
+  /**
+   * @since 0.01
+   */
   function load_object($class, $id) {
     $db_table = $class->get_db_table();
     $primary_key = $class->get_primary_key();
@@ -96,18 +103,30 @@ class TCData {
   /**
    * @since 0.01
    */
-  function load_objects($class, $ids = array(), $conditions = array()) {
+  function load_objects($class, $ids = array(), $conditions = array(), $order = array(), $offset = 0, $limit = 0) {
     $db_table = $class->get_db_table();
+    $primary_key = $class->get_primary_key();
 
-    // TODO: Use optional object IDs.
     $query = "SELECT * FROM `{$db_table}`";
 
-    if (!empty($conditions)) {
+    if (!empty($ids)) {
+      $ids_in = implode(',', $ids);
+      $query .= " WHERE `{$primary_key}` IN ({$ids_in})";
+    }
+    else if (!empty($conditions)) {
       $query .= " WHERE";
       foreach ($conditions as $condition) {
         // TODO: Allow conditions other than equals.
         $query .= " `{$condition['field']}` = '{$condition['value']}'";
       }
+    }
+
+    if (!empty($order)) {
+      $query .= " ORDER BY {$order['field']} {$order['direction']}";
+    }
+
+    if ($limit > 0) {
+      $query .=  " {$offset}, {$limit}";
     }
 
     $this->database->open_connection();
