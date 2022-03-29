@@ -9,6 +9,30 @@
 class TCPost extends TCObject {
 
   /**
+   * @since 0.01
+   */
+  public $post_id;
+
+  /**
+   * @since 0.01
+   */
+  public $user_id;
+
+  /**
+   * @since 0.01
+   */
+  public $thread_id;
+
+  /**
+   * TODO
+   *
+   * @since 0.01
+   */
+  public function get_primary_key() {
+    return 'post_id';
+  }
+
+  /**
    * TODO
    *
    * @since 0.01
@@ -24,7 +48,9 @@ class TCPost extends TCObject {
    */
   public function get_db_fields() {
     return array(
-      'post_id'
+      'post_id',
+      'user_id',
+      'thread_id'
     );
   }
 

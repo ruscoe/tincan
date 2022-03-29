@@ -9,6 +9,30 @@
 class TCThread extends TCObject {
 
   /**
+   * @since 0.01
+   */
+  public $thread_id;
+
+  /**
+   * @since 0.01
+   */
+  public $board_id;
+
+  /**
+   * @since 0.01
+   */
+  public $thread_title;
+
+  /**
+   * TODO
+   *
+   * @since 0.01
+   */
+  public function get_primary_key() {
+    return 'thread_id';
+  }
+
+  /**
    * TODO
    *
    * @since 0.01
@@ -24,7 +48,9 @@ class TCThread extends TCObject {
    */
   public function get_db_fields() {
     return array(
-      'thread_id'
+      'thread_id',
+      'board_id',
+      'thread_title'
     );
   }
 

@@ -55,6 +55,13 @@ abstract class TCObject {
    *
    * @since 0.01
    */
+  abstract public function get_primary_key();
+
+  /**
+   * TODO
+   *
+   * @since 0.01
+   */
   abstract public function get_db_table();
 
   /**

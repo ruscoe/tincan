@@ -28,6 +28,15 @@ class TCBoard extends TCObject {
    *
    * @since 0.01
    */
+  public function get_primary_key() {
+    return 'board_id';
+  }
+
+  /**
+   * TODO
+   *
+   * @since 0.01
+   */
   public function get_db_table() {
     return 'tc_boards';
   }
