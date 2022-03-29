@@ -10,6 +10,12 @@ $board = $db->load_object(new TCBoard(), $board_id);
 
 <h1><?=$board->board_name?></h1>
 
+<div id="board-navigation">
+  <ul>
+    <li><a href="/?page=8&board=<?=$board->board_id?>">New thread</a></li>
+  </ul>
+</div>
+
 <?php
 
 $conditions = array(

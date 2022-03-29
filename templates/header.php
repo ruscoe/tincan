@@ -10,7 +10,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/?page=6">Create Account</a></li>
           <li><a href="/?page=7">Log In</a></li>
-          <li><a href="/?page=8">New Thread</a></li>
+          <li><a href="/?page=7">Log Out</a></li>
         </ul>
       </div>
     </div>
