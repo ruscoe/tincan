@@ -53,4 +53,9 @@ abstract class TCDB {
    */
   abstract function query($query);
 
+  /**
+   * @since 0.01
+   */
+  abstract function get_last_insert_id();
+
 }

@@ -61,6 +61,8 @@ class TCData {
     $primary_key = $object->get_primary_key();
     $db_fields = $object->get_db_fields();
 
+    $this->database->open_connection();
+
     if (empty($object->$primary_key)) {
       // New object to create.
       $sql_field_names = '';
@@ -75,13 +77,20 @@ class TCData {
       $sql_field_values = substr($sql_field_values, 0, -1);
 
       $query = "INSERT INTO `{$db_table}` ({$sql_field_names}) VALUES ({$sql_field_values})";
+
+      $result = $this->database->query($query);
+      $insert_id = $this->database->get_last_insert_id();
+
+      $object->$primary_key = $insert_id;
     }
     else {
       // TODO: Existing object to update.
       //$query = "UPDATE `{$db_table}` WHERE `{$primary_key}` = '{$object->$primary_key}'";
     }
 
-    $result = $this->database->query($query);
+    $this->database->close_connection();
+
+    return $object;
   }
 
   /**

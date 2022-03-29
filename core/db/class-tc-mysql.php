@@ -45,4 +45,11 @@ class TCMySQL extends TCDB {
     return $this->connection->query($query);
   }
 
+  /**
+   * @since 0.01
+   */
+  function get_last_insert_id() {
+    return $this->connection->insert_id;
+  }
+
 }
