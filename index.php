@@ -7,6 +7,7 @@ require 'includes/include-objects.php';
 require 'includes/include-template.php';
 
 $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
+$page = NULL;
 
 // Get page template if available, otherwise default to front page.
 if (!empty($page_id)) {
