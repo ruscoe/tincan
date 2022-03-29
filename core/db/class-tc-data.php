@@ -32,6 +32,32 @@ class TCData {
   /**
    * @since 0.01
    */
+  function load_object($class, $id) {
+    $db_table = $class->get_db_table();
+    $primary_key = $class->get_primary_key();
+
+    $query = "SELECT * FROM `{$db_table}` WHERE `{$primary_key}` = {$id}";
+
+    $this->database->open_connection();
+
+    $result = $this->database->query($query);
+
+    $row = $result->fetch_object();
+
+    //var_dump($row);
+
+    $this->database->close_connection();
+
+    if (!empty($row)) {
+      return new $class($row);
+    }
+
+    return NULL;
+  }
+
+  /**
+   * @since 0.01
+   */
   function load_objects($class, $ids = array(), $conditions = array()) {
     $db_table = $class->get_db_table();
 
