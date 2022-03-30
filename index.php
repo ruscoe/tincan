@@ -2,9 +2,9 @@
 
 require 'tc-config.php';
 
-require 'includes/include-db.php';
-require 'includes/include-objects.php';
-require 'includes/include-template.php';
+require TC_BASE_PATH . '/includes/include-db.php';
+require TC_BASE_PATH . '/includes/include-objects.php';
+require TC_BASE_PATH . '/includes/include-template.php';
 
 $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
 $page = NULL;
