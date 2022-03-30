@@ -18,6 +18,8 @@ $board = $db->load_object(new TCBoard(), $board_id);
 
 <?php
 
+$settings = $db->load_settings();
+
 // Get threads in this board; order by thread with most recent post.
 $conditions = array(
   array(
@@ -35,5 +37,9 @@ $order = array(
 $threads = $db->load_objects(new TCThread(), array(), $conditions, $order);
 
 foreach ($threads as $thread) {
-  TCTemplate::render('thread-preview', array('thread' => $thread));
+  $data = array(
+    'thread' => $thread,
+    'last_post_date' => date($settings['date_format'], $thread->last_post_time)
+  );
+  TCTemplate::render('thread-preview', $data);
 }
