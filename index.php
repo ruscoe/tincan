@@ -5,6 +5,10 @@ require 'tc-config.php';
 require TC_BASE_PATH . '/includes/include-db.php';
 require TC_BASE_PATH . '/includes/include-objects.php';
 require TC_BASE_PATH . '/includes/include-template.php';
+require TC_BASE_PATH . '/includes/include-user.php';
+
+$session = new TCUserSession();
+$session->start_session();
 
 $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
 $page = NULL;
