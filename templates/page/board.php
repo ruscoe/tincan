@@ -39,6 +39,7 @@ $threads = $db->load_objects(new TCThread(), array(), $conditions, $order);
 foreach ($threads as $thread) {
   $data = array(
     'thread' => $thread,
+    'url' => '/?page=' . $settings['page_thread'] . '&amp;thread=' . $thread->thread_id,
     'last_post_date' => date($settings['date_format'], $thread->last_post_time)
   );
   TCTemplate::render('thread-preview', $data);
