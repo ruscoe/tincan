@@ -39,6 +39,30 @@ class TCData {
   /**
    * @since 0.01
    */
+  function load_settings() {
+    $setting = new TCSetting();
+    $db_table = $setting->get_db_table();
+
+    $settings = array();
+
+    $this->database->open_connection();
+
+    $query = "SELECT `setting_name`, `value` FROM `{$db_table}`";
+
+    $result = $this->database->query($query);
+
+    while($object = $result->fetch_object()) {
+      $settings[$object->setting_name] = $object->value;
+    }
+
+    $this->database->close_connection();
+
+    return $settings;
+  }
+
+  /**
+   * @since 0.01
+   */
   function load_object($class, $id) {
     $db_table = $class->get_db_table();
     $primary_key = $class->get_primary_key();
