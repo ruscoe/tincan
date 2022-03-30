@@ -11,7 +11,7 @@ $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
 $page = NULL;
 
 $db = new TCData();
-
+var_dump($page_id);
 // Get page template if available, otherwise default to dashboard.
 if (!empty($page_id)) {
   $page = $db->load_object(new TCPage(), $page_id);
