@@ -11,7 +11,7 @@ $session = new TCUserSession();
 $session->start_session();
 
 $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
-$page = NULL;
+$page = null;
 
 // Get page template if available, otherwise default to front page.
 if (!empty($page_id)) {
@@ -24,8 +24,8 @@ else {
   $page_template = 'front';
 }
 
-TCTemplate::render('header', NULL);
+TCTemplate::render('header', null);
 
 TCTemplate::render('page/' . $page_template, array('page' => $page));
 
-TCTemplate::render('footer', NULL);
+TCTemplate::render('footer', null);

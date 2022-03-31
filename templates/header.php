@@ -1,3 +1,7 @@
+<?php
+  $settings = $data['settings'];
+?>
+
 <html>
   <head>
     <title>Tin Can Forum</title>
@@ -8,9 +12,9 @@
       <div id="main-navigation">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/?page=6">Create Account</a></li>
-          <li><a href="/?page=7">Log In</a></li>
-          <li><a href="/?page=7">Log Out</a></li>
+          <li><a href="/?page=<?=$settings['page_create_account']?>">Create Account</a></li>
+          <li><a href="/?page=<?=$settings['page_login']?>">Log In</a></li>
+          <li><a href="/?page=">Log Out</a></li>
         </ul>
       </div>
     </div>

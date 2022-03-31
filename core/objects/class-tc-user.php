@@ -24,6 +24,29 @@ class TCUser extends TCObject {
   public $email;
 
   /**
+   * @since 0.01
+   */
+  public $password;
+
+  /**
+   * TODO
+   *
+   * @since 0.01
+   */
+  public function get_password_hash($password) {
+    return password_hash($password, PASSWORD_DEFAULT);
+  }
+
+  /**
+   * TODO
+   *
+   * @since 0.01
+   */
+  public function verify_password_hash($password, $hash) {
+    return password_verify($password, $hash);
+  }
+
+  /**
    * TODO
    *
    * @since 0.01
@@ -49,7 +72,8 @@ class TCUser extends TCObject {
   public function get_db_fields() {
     return array(
       'username',
-      'email'
+      'email',
+      'password'
     );
   }
 

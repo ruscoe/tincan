@@ -81,7 +81,7 @@ class TCData {
       return new $class($row);
     }
 
-    return NULL;
+    return null;
   }
 
   /**

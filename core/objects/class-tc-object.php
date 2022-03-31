@@ -11,10 +11,10 @@ abstract class TCObject {
   /**
    * @since 0.01
    */
-  function __construct($object = NULL) {
+  function __construct($object = null) {
     if (!empty($object)) {
       $primary_key = $this->get_primary_key();
-      $this->$primary_key = (!empty($object->$primary_key)) ? $object->$primary_key : NULL;
+      $this->$primary_key = (!empty($object->$primary_key)) ? $object->$primary_key : null;
 
       $this->populate_from_db($object);
     }

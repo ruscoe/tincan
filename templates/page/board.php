@@ -12,7 +12,7 @@ $board = $db->load_object(new TCBoard(), $board_id);
 
 <div id="board-navigation">
   <ul>
-    <li><a href="/?page=8&board=<?=$board->board_id?>">New thread</a></li>
+    <li><a href="/?page=<?=$settings['page_new_thread']?>&board=<?=$board->board_id?>">New thread</a></li>
   </ul>
 </div>
 

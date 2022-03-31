@@ -1,6 +1,6 @@
 <?php
 /**
- * User sesson management.
+ * User session management.
  *
  * @package Tin Can
  * @since 0.01
@@ -12,6 +12,10 @@ class TCUserSession {
    * @since 0.01
    */
   public $user_id;
+
+  public function get_user_id() {
+    return $this->user_id;
+  }
 
   public function start_session() {
     session_start();

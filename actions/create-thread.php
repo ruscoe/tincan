@@ -47,5 +47,5 @@ else {
   exit($response->get_output());
 }
 
-$response->success = TRUE;
+$response->success = true;
 exit($response->get_output());
