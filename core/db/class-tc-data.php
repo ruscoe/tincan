@@ -116,7 +116,17 @@ class TCData {
     }
     else {
       // TODO: Existing object to update.
-      //$query = "UPDATE `{$db_table}` WHERE `{$primary_key}` = '{$object->$primary_key}'";
+      $sql_fields = array();
+
+      foreach ($db_fields as $field) {
+        $sql_fields[] = "`{$field}` = '{$object->$field}'";
+      }
+
+      $query = "UPDATE `{$db_table}` SET";
+      $query .= implode(',', $sql_fields);
+      $query .= " WHERE `{$primary_key}` = '{$object->$primary_key}'";
+
+      $this->database->query($query);
     }
 
     $this->database->close_connection();
