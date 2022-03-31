@@ -21,6 +21,16 @@ class TCSetting extends TCObject {
   /**
    * @since 0.01
    */
+  public $type;
+
+  /**
+   * @since 0.01
+   */
+  public $title;
+
+  /**
+   * @since 0.01
+   */
   public $value;
 
   /**
@@ -54,6 +64,8 @@ class TCSetting extends TCObject {
   public function get_db_fields() {
     return array(
       'setting_name',
+      'type',
+      'title',
       'value',
       'required'
     );

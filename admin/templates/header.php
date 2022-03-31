@@ -18,6 +18,7 @@
       <div id="main-navigation">
         <ul>
           <li><a href="/admin">Dashboard</a></li>
+          <li><a href="/admin?page=<?=$settings['page_forum_settings']?>">Settings</a></li>
           <li><a href="/admin?page=<?=$settings['page_admin_board_groups']?>">Board groups</a></li>
           <li><a href="/admin?page=<?=$settings['page_admin_boards']?>">Boards</a></li>
           <li><a href="/admin?page=<?=$settings['page_admin_threads']?>">Threads</a></li>
