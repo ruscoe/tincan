@@ -33,7 +33,13 @@ class TCData {
    * @since 0.01
    */
   function run_query($query) {
-    return $this->database->query($query);
+    $this->database->open_connection();
+
+    $result = $this->database->query($query);
+
+    $this->database->close_connection();
+
+    return $result;
   }
 
   /**
@@ -115,7 +121,7 @@ class TCData {
       $object->$primary_key = $insert_id;
     }
     else {
-      // TODO: Existing object to update.
+      // Existing object to update.
       $sql_fields = array();
 
       foreach ($db_fields as $field) {
