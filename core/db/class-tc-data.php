@@ -116,6 +116,10 @@ class TCData {
       $query = "INSERT INTO `{$db_table}` ({$sql_field_names}) VALUES ({$sql_field_values})";
 
       $result = $this->database->query($query);
+      if (!$result) {
+        throw new Exception($this->database->get_last_error());
+      }
+
       $insert_id = $this->database->get_last_insert_id();
 
       $object->$primary_key = $insert_id;
@@ -132,7 +136,11 @@ class TCData {
       $query .= implode(',', $sql_fields);
       $query .= " WHERE `{$primary_key}` = '{$object->$primary_key}'";
 
-      $this->database->query($query);
+      if (!$this->database->query($query)) {
+        if (!$result) {
+          throw new Exception($this->database->get_last_error());
+        }
+      }
     }
 
     $this->database->close_connection();

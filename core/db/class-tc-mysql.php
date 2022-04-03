@@ -52,4 +52,11 @@ class TCMySQL extends TCDB {
     return $this->connection->insert_id;
   }
 
+  /**
+   * @since 0.01
+   */
+  function get_last_error() {
+    return $this->connection->error;
+  }
+
 }

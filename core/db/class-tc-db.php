@@ -58,4 +58,9 @@ abstract class TCDB {
    */
   abstract function get_last_insert_id();
 
+  /**
+   * @since 0.01
+   */
+  abstract function get_last_error();
+
 }
