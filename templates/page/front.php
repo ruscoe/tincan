@@ -2,6 +2,8 @@
 
 $db = new TCData();
 
+$settings = $db->load_settings();
+
 $board_groups = $db->load_objects(new TCBoardGroup());
 
 foreach ($board_groups as $group) {
@@ -15,6 +17,7 @@ foreach ($board_groups as $group) {
   $boards = $db->load_objects(new TCBoard(), array(), $board_conditions);
 
   $data = array(
+    'settings' => $settings,
     'board_group' => $group,
     'boards' => $boards
   );
