@@ -24,6 +24,21 @@ class TCPost extends TCObject {
   public $thread_id;
 
   /**
+   * @since 0.01
+   */
+  public $content;
+
+  /**
+   * @since 0.01
+   */
+  public $created_time;
+
+  /**
+   * @since 0.01
+   */
+  public $updated_time;
+
+  /**
    * TODO
    *
    * @since 0.01
@@ -49,7 +64,10 @@ class TCPost extends TCObject {
   public function get_db_fields() {
     return array(
       'user_id',
-      'thread_id'
+      'thread_id',
+      'content',
+      'created_time',
+      'updated_time'
     );
   }
 

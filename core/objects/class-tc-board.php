@@ -24,6 +24,16 @@ class TCBoard extends TCObject {
   public $board_group_id;
 
   /**
+   * @since 0.01
+   */
+  public $created_time;
+
+  /**
+   * @since 0.01
+   */
+  public $updated_time;
+
+  /**
    * TODO
    *
    * @since 0.01
@@ -49,7 +59,9 @@ class TCBoard extends TCObject {
   public function get_db_fields() {
     return array(
       'board_name',
-      'board_group_id'
+      'board_group_id',
+      'created_time',
+      'updated_time'
     );
   }
 

@@ -29,6 +29,16 @@ class TCUser extends TCObject {
   public $password;
 
   /**
+   * @since 0.01
+   */
+  public $created_time;
+
+  /**
+   * @since 0.01
+   */
+  public $updated_time;
+
+  /**
    * TODO
    *
    * @since 0.01
@@ -73,7 +83,9 @@ class TCUser extends TCObject {
     return array(
       'username',
       'email',
-      'password'
+      'password',
+      'created_time',
+      'updated_time'
     );
   }
 

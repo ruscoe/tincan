@@ -26,7 +26,12 @@ class TCThread extends TCObject {
   /**
    * @since 0.01
    */
-  public $last_post_time;
+  public $created_time;
+
+  /**
+   * @since 0.01
+   */
+  public $updated_time;
 
   /**
    * TODO
@@ -55,7 +60,8 @@ class TCThread extends TCObject {
     return array(
       'board_id',
       'thread_title',
-      'last_post_time'
+      'created_time',
+      'updated_time'
     );
   }
 
