@@ -1,5 +1,6 @@
 <?php
 $page = $data['page'];
+$settings = $data['settings'];
 ?>
 
 <h1><?=$page->page_title?></h1>
@@ -19,8 +20,12 @@ $threads = $db->load_objects(new TCThread(), array(), $conditions, $order);
 <?php
 foreach ($threads as $thread) {
   $data = array(
-    'title' => $thread->thread_title
+    'title' => $thread->thread_title,
+    'object_id' => $thread->thread_id,
+    'view_page_id' => $settings['page_thread'],
+    'edit_page_id' => $settings['admin_page_edit_thread']
   );
+
   TCAdminTemplate::render('table-row', $data);
 }
 ?>

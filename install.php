@@ -62,7 +62,12 @@ $pages = array(
   array('page_title' => 'Admin Posts',            'template' => 'posts'),
   array('page_title' => 'Admin Pages',            'template' => 'pages'),
   array('page_title' => 'Admin Users',            'template' => 'users'),
-  array('page_title' => 'Admin Edit Board Group', 'template' => 'edit-board-group')
+  array('page_title' => 'Admin Edit Board Group', 'template' => 'edit-board-group'),
+  array('page_title' => 'Admin Edit Board',       'template' => 'edit-board'),
+  array('page_title' => 'Admin Edit Page',        'template' => 'edit-page'),
+  array('page_title' => 'Admin Edit Post',        'template' => 'edit-post'),
+  array('page_title' => 'Admin Edit Thread',      'template' => 'edit-thread'),
+  array('page_title' => 'Admin Edit User',        'template' => 'edit-user')
 );
 
 foreach ($pages as $page) {

@@ -21,7 +21,7 @@ $board_groups = $db->load_objects(new TCBoardGroup(), array(), $conditions, $ord
 foreach ($board_groups as $board_group) {
   $data = array(
     'title' => $board_group->board_group_name,
-    'board_group_id' => $board_group->board_group_id,
+    'object_id' => $board_group->board_group_id,
     'view_page_id' => $settings['page_board_group'],
     'edit_page_id' => $settings['admin_page_edit_board_group']
   );
