@@ -37,24 +37,6 @@ abstract class TCObject {
   }
 
   /**
-   * TODO: Remove.
-   *
-   * @since 0.01
-   */
-  public function load() {
-
-  }
-
-  /**
-   * TODO: Remove.
-   *
-   * @since 0.01
-   */
-  public function save() {
-
-  }
-
-  /**
    * TODO
    *
    * @since 0.01
