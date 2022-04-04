@@ -32,6 +32,6 @@ $user = (!empty($user_id)) ? $db->load_object(new TCUser(), $user_id) : null;
 
 TCAdminTemplate::render('header', array('settings' => $settings, 'user' => $user));
 
-TCAdminTemplate::render('page/' . $page_template, array('page' => $page));
+TCAdminTemplate::render('page/' . $page_template, array('page' => $page, 'settings' => $settings));
 
 TCAdminTemplate::render('footer', null);

@@ -1,5 +1,6 @@
 <?php
 $page = $data['page'];
+$settings = $data['settings'];
 ?>
 
 <h1><?=$page->page_title?></h1>
@@ -19,8 +20,12 @@ $board_groups = $db->load_objects(new TCBoardGroup(), array(), $conditions, $ord
 <?php
 foreach ($board_groups as $board_group) {
   $data = array(
-    'title' => $board_group->board_group_name
+    'title' => $board_group->board_group_name,
+    'board_group_id' => $board_group->board_group_id,
+    'view_page_id' => $settings['page_board_group'],
+    'edit_page_id' => $settings['admin_page_edit_board_group']
   );
+
   TCAdminTemplate::render('table-row', $data);
 }
 ?>

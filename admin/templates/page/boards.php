@@ -1,5 +1,6 @@
 <?php
 $page = $data['page'];
+$settings = $data['settings'];
 ?>
 
 <h1><?=$page->page_title?></h1>
@@ -21,6 +22,7 @@ foreach ($boards as $board) {
   $data = array(
     'title' => $board->board_name
   );
+
   TCAdminTemplate::render('table-row', $data);
 }
 ?>

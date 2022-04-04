@@ -23,6 +23,13 @@ abstract class TCObject {
   /**
    * @since 0.01
    */
+  public function __get($name) {
+    return $this->$name;
+  }
+
+  /**
+   * @since 0.01
+   */
   public function __set($name, $value) {
     if ($this->validate_field_value($name, $value)) {
       $this->$name = $value;

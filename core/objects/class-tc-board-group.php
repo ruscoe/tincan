@@ -16,7 +16,7 @@ class TCBoardGroup extends TCObject {
   /**
    * @since 0.01
    */
-  public $board_group_name;
+  protected $board_group_name;
 
   /**
    * @since 0.01
@@ -27,6 +27,19 @@ class TCBoardGroup extends TCObject {
    * @since 0.01
    */
   public $updated_time;
+
+  /**
+   * TODO
+   *
+   * @since 0.01
+   */
+  public function validate_field_value($field_name, $value) {
+    if (!parent::validate_field_value($field_name, $value)) {
+      return false;
+    }
+
+    return true;
+  }
 
   /**
    * TODO
