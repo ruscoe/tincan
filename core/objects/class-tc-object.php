@@ -21,7 +21,16 @@ abstract class TCObject {
   }
 
   /**
-   * TODO
+   * @since 0.01
+   */
+  public function __set($name, $value) {
+    if ($this->validate_field_value($name, $value)) {
+      $this->$name = $value;
+    }
+  }
+
+  /**
+   * TODO: Remove.
    *
    * @since 0.01
    */
@@ -30,7 +39,7 @@ abstract class TCObject {
   }
 
   /**
-   * TODO
+   * TODO: Remove.
    *
    * @since 0.01
    */
@@ -47,10 +56,19 @@ abstract class TCObject {
     $db_fields = $this->get_db_fields();
 
     foreach ($db_fields as $field) {
-      if (isset($object->$field)) {
+      if ($this->validate_field_value($field, $object->$field)) {
         $this->$field = $object->$field;
       }
     }
+  }
+
+  /**
+   * TODO: Override for object-specific validation.
+   *
+   * @since 0.01
+   */
+  public function validate_field_value($field_name, $value) {
+    return (!empty($value));
   }
 
   /**
