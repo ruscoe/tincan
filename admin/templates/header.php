@@ -18,14 +18,14 @@
       <div id="main-navigation">
         <ul>
           <li><a href="/admin">Dashboard</a></li>
-          <li><a href="/admin?page=<?=$settings['page_forum_settings']?>">Settings</a></li>
-          <li><a href="/admin?page=<?=$settings['page_admin_board_groups']?>">Board groups</a></li>
-          <li><a href="/admin?page=<?=$settings['page_admin_boards']?>">Boards</a></li>
-          <li><a href="/admin?page=<?=$settings['page_admin_threads']?>">Threads</a></li>
-          <li><a href="/admin?page=<?=$settings['page_admin_posts']?>">Posts</a></li>
-          <li><a href="/admin?page=<?=$settings['page_admin_pages']?>">Pages</a></li>
-          <li><a href="/admin?page=<?=$settings['page_admin_users']?>">Users</a></li>
-          <li><a href="/admin?page=<?=$settings['page_admin_log_out']?>">Log out</a></li>
+          <li><a href="/admin?page=<?=$settings['admin_page_forum_settings']?>">Settings</a></li>
+          <li><a href="/admin?page=<?=$settings['admin_page_board_groups']?>">Board groups</a></li>
+          <li><a href="/admin?page=<?=$settings['admin_page_boards']?>">Boards</a></li>
+          <li><a href="/admin?page=<?=$settings['admin_page_threads']?>">Threads</a></li>
+          <li><a href="/admin?page=<?=$settings['admin_page_posts']?>">Posts</a></li>
+          <li><a href="/admin?page=<?=$settings['admin_page_pages']?>">Pages</a></li>
+          <li><a href="/admin?page=<?=$settings['admin_page_users']?>">Users</a></li>
+          <li><a href="/admin?page=<?=$settings['admin_page_log_out']?>">Log out</a></li>
         </ul>
       </div>
     </div>
