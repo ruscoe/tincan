@@ -3,5 +3,5 @@
 ?>
 
 <div id="post-<?=$post->post_id?>" class="post">
-  <p>Text goes here.</p>
+  <p><?=$post->content?></p>
 </div>
