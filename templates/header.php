@@ -1,5 +1,6 @@
 <?php
   $settings = $data['settings'];
+  $user = $data['user'];
 ?>
 
 <html>
@@ -12,9 +13,12 @@
       <div id="main-navigation">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/?page=<?=$settings['page_create_account']?>">Create Account</a></li>
-          <li><a href="/?page=<?=$settings['page_login']?>">Log In</a></li>
-          <li><a href="/?page=">Log Out</a></li>
+          <?php if (empty($user)) { ?>
+            <li><a href="/?page=<?=$settings['page_create_account']?>">Create Account</a></li>
+            <li><a href="/?page=<?=$settings['page_log_in']?>">Log In</a></li>
+          <?php } else { ?>
+            <li><a href="/?page=<?=$settings['page_log_out']?>">Log Out</a></li>
+          <?php } ?>
         </ul>
       </div>
     </div>

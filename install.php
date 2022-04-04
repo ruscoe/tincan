@@ -44,22 +44,24 @@ foreach ($settings as $setting) {
 // === Create pages ===
 
 $pages = array(
-  array('page_title' => 'Front Page', 'template' => 'front'),
-  array('page_title' => 'Board Group', 'template' => 'board-group'),
-  array('page_title' => 'Board', 'template' => 'board'),
-  array('page_title' => 'Thread', 'template' => 'thread'),
-  array('page_title' => 'User', 'template' => 'user'),
-  array('page_title' => 'Create Account', 'template' => 'create-account'),
-  array('page_title' => 'Log In', 'template' => 'login'),
-  array('page_title' => 'New Thread', 'template' => 'new-thread'),
+  array('page_title' => 'Front Page',         'template' => 'front'),
+  array('page_title' => 'Board Group',        'template' => 'board-group'),
+  array('page_title' => 'Board',              'template' => 'board'),
+  array('page_title' => 'Thread',             'template' => 'thread'),
+  array('page_title' => 'User',               'template' => 'user'),
+  array('page_title' => 'Create Account',     'template' => 'create-account'),
+  array('page_title' => 'Log In',             'template' => 'log-in'),
+  array('page_title' => 'Log Out',            'template' => 'log-out'),
+  array('page_title' => 'New Thread',         'template' => 'new-thread'),
   array('page_title' => 'Admin Board Groups', 'template' => 'board-groups'),
-  array('page_title' => 'Admin Boards', 'template' => 'boards'),
-  array('page_title' => 'Admin Threads', 'template' => 'threads'),
-  array('page_title' => 'Admin Posts', 'template' => 'posts'),
-  array('page_title' => 'Admin Pages', 'template' => 'pages'),
-  array('page_title' => 'Admin Users', 'template' => 'users'),
-  array('page_title' => 'Admin Login', 'template' => 'admin-login'),
-  array('page_title' => 'Forum Settings', 'template' => 'forum-settings')
+  array('page_title' => 'Admin Boards',       'template' => 'boards'),
+  array('page_title' => 'Admin Threads',      'template' => 'threads'),
+  array('page_title' => 'Admin Posts',        'template' => 'posts'),
+  array('page_title' => 'Admin Pages',        'template' => 'pages'),
+  array('page_title' => 'Admin Users',        'template' => 'users'),
+  array('page_title' => 'Admin Log In',       'template' => 'admin-log-in'),
+  array('page_title' => 'Admin Log Out',      'template' => 'admin-log-out'),
+  array('page_title' => 'Forum Settings',     'template' => 'forum-settings')
 );
 
 foreach ($pages as $page) {

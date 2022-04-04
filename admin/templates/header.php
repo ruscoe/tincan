@@ -25,7 +25,7 @@
           <li><a href="/admin?page=<?=$settings['page_admin_posts']?>">Posts</a></li>
           <li><a href="/admin?page=<?=$settings['page_admin_pages']?>">Pages</a></li>
           <li><a href="/admin?page=<?=$settings['page_admin_users']?>">Users</a></li>
-          <li><a href="/admin?page=">Log out</a></li>
+          <li><a href="/admin?page=<?=$settings['page_admin_log_out']?>">Log out</a></li>
         </ul>
       </div>
     </div>

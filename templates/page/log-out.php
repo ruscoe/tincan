@@ -1,0 +1,3 @@
+<?php
+  $page = $data['page'];
+?>
