@@ -24,6 +24,11 @@ class TCBoard extends TCObject {
   protected $board_group_id;
 
   /**
+   * @since 0.02
+   */
+  protected $description;
+
+  /**
    * @since 0.01
    */
   protected $created_time;
@@ -60,6 +65,7 @@ class TCBoard extends TCObject {
     return array(
       'board_name',
       'board_group_id',
+      'description',
       'created_time',
       'updated_time'
     );

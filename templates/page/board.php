@@ -43,5 +43,6 @@ foreach ($threads as $thread) {
     'url' => '/?page=' . $settings['page_thread'] . '&amp;thread=' . $thread->thread_id,
     'last_post_date' => date($settings['date_format'], $thread->updated_time)
   );
+
   TCTemplate::render('thread-preview', $data);
 }
