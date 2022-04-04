@@ -5,7 +5,6 @@ $thread_id = filter_input(INPUT_GET, 'thread', FILTER_SANITIZE_NUMBER_INT);
 $db = new TCData();
 
 $thread = $db->load_object(new TCThread(), $thread_id);
-
 ?>
 
 <h1><?=$thread->thread_title?></h1>
@@ -23,5 +22,7 @@ $conditions = array(
 $posts = $db->load_objects(new TCPost(), array(), $conditions);
 
 foreach ($posts as $post) {
-  TCTemplate::render('post', array('post' => $post));
+  $user = $db->load_object(new TCUser(), $post->user_id);
+
+  TCTemplate::render('post', array('post' => $post, 'user' => $user, 'settings' => $data['settings']));
 }
