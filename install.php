@@ -59,8 +59,8 @@ $pages = array(
   array('page_title' => 'Admin Posts',        'template' => 'posts'),
   array('page_title' => 'Admin Pages',        'template' => 'pages'),
   array('page_title' => 'Admin Users',        'template' => 'users'),
-  array('page_title' => 'Admin Log In',       'template' => 'admin-log-in'),
-  array('page_title' => 'Admin Log Out',      'template' => 'admin-log-out'),
+  array('page_title' => 'Admin Log In',       'template' => 'log-in'),
+  array('page_title' => 'Admin Log Out',      'template' => 'log-out'),
   array('page_title' => 'Forum Settings',     'template' => 'forum-settings')
 );
 
