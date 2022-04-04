@@ -16,22 +16,22 @@ class TCBoard extends TCObject {
   /**
    * @since 0.01
    */
-  public $board_name;
+  protected $board_name;
 
   /**
    * @since 0.01
    */
-  public $board_group_id;
+  protected $board_group_id;
 
   /**
    * @since 0.01
    */
-  public $created_time;
+  protected $created_time;
 
   /**
    * @since 0.01
    */
-  public $updated_time;
+  protected $updated_time;
 
   /**
    * TODO

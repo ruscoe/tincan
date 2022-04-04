@@ -21,12 +21,12 @@ class TCBoardGroup extends TCObject {
   /**
    * @since 0.01
    */
-  public $created_time;
+  protected $created_time;
 
   /**
    * @since 0.01
    */
-  public $updated_time;
+  protected $updated_time;
 
   /**
    * TODO

@@ -16,27 +16,27 @@ class TCPost extends TCObject {
   /**
    * @since 0.01
    */
-  public $user_id;
+  protected $user_id;
 
   /**
    * @since 0.01
    */
-  public $thread_id;
+  protected $thread_id;
 
   /**
    * @since 0.01
    */
-  public $content;
+  protected $content;
 
   /**
    * @since 0.01
    */
-  public $created_time;
+  protected $created_time;
 
   /**
    * @since 0.01
    */
-  public $updated_time;
+  protected $updated_time;
 
   /**
    * TODO

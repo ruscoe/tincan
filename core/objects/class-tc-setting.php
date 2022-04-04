@@ -16,27 +16,27 @@ class TCSetting extends TCObject {
   /**
    * @since 0.01
    */
-  public $setting_name;
+  protected $setting_name;
 
   /**
    * @since 0.01
    */
-  public $type;
+  protected $type;
 
   /**
    * @since 0.01
    */
-  public $title;
+  protected $title;
 
   /**
    * @since 0.01
    */
-  public $value;
+  protected $value;
 
   /**
    * @since 0.01
    */
-  public $required;
+  protected $required;
 
   /**
    * TODO

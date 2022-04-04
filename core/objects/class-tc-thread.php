@@ -16,22 +16,22 @@ class TCThread extends TCObject {
   /**
    * @since 0.01
    */
-  public $board_id;
+  protected $board_id;
 
   /**
    * @since 0.01
    */
-  public $thread_title;
+  protected $thread_title;
 
   /**
    * @since 0.01
    */
-  public $created_time;
+  protected $created_time;
 
   /**
    * @since 0.01
    */
-  public $updated_time;
+  protected $updated_time;
 
   /**
    * TODO

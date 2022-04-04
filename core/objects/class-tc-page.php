@@ -16,22 +16,22 @@ class TCPage extends TCObject {
   /**
    * @since 0.01
    */
-  public $page_title;
+  protected $page_title;
 
   /**
    * @since 0.01
    */
-  public $template;
+  protected $template;
 
   /**
    * @since 0.01
    */
-  public $created_time;
+  protected $created_time;
 
   /**
    * @since 0.01
    */
-  public $updated_time;
+  protected $updated_time;
 
   /**
    * TODO

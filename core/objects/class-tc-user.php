@@ -16,27 +16,27 @@ class TCUser extends TCObject {
   /**
    * @since 0.01
    */
-  public $username;
+  protected $username;
 
   /**
    * @since 0.01
    */
-  public $email;
+  protected $email;
 
   /**
    * @since 0.01
    */
-  public $password;
+  protected $password;
 
   /**
    * @since 0.01
    */
-  public $created_time;
+  protected $created_time;
 
   /**
    * @since 0.01
    */
-  public $updated_time;
+  protected $updated_time;
 
   /**
    * TODO
