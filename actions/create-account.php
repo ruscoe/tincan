@@ -37,5 +37,8 @@ if (empty($saved_user)) {
 $session = new TCUserSession();
 $session->create_session($user);
 
-$response->success = true;
-exit($response->get_output());
+// $response->success = true;
+// exit($response->get_output());
+
+header('Location: /');
+exit;

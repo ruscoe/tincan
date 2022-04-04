@@ -14,6 +14,9 @@ $session = new TCUserSession();
 $session->start_session();
 $session->destroy_session();
 
-$response = new TCJSONResponse();
-$response->success = true;
-exit($response->get_output());
+// $response = new TCJSONResponse();
+// $response->success = true;
+// exit($response->get_output());
+
+header('Location: /');
+exit;

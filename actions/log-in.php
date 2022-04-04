@@ -41,5 +41,7 @@ if (empty($user) || !$user->verify_password_hash($password, $user->password)) {
 $session = new TCUserSession();
 $session->create_session($user);
 
-$response->success = true;
-exit($response->get_output());
+// $response->success = true;
+// exit($response->get_output());
+header('Location: /');
+exit;
