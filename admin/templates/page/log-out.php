@@ -1,3 +1,5 @@
 <?php
-  $page = $data['page'];
+  //$page = $data['page'];
+
+  header('Location: /actions/log-out.php');
 ?>
