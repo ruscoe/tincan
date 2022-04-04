@@ -1,4 +1,5 @@
 <?php
+$settings = $data['settings'];
 
 $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
 

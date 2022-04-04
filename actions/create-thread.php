@@ -29,6 +29,8 @@ if (!$db->load_object(new TCBoard(), $board_id)) {
 $thread = new TCThread();
 $thread->board_id = $board_id;
 $thread->thread_title = $thread_title;
+$thread->created_time = time();
+$thread->updated_time = time();
 
 $new_thread = $db->save_object($thread);
 
@@ -37,6 +39,8 @@ if (!empty($new_thread)) {
   $post = new TCPost();
   $post->user_id = 1;
   $post->thread_id = $new_thread->thread_id;
+  $post->created_time = time();
+  $post->updated_time = time();
 
   $new_post = $db->save_object($post);
 

@@ -32,6 +32,6 @@ else {
 
 TCTemplate::render('header', array('settings' => $settings, 'user' => $user));
 
-TCTemplate::render('page/' . $page_template, array('page' => $page));
+TCTemplate::render('page/' . $page_template, array('page' => $page, 'settings' => $settings));
 
 TCTemplate::render('footer', null);
