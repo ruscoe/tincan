@@ -39,6 +39,7 @@ $threads = $db->load_objects(new TCThread(), array(), $conditions, $order);
 
 foreach ($threads as $thread) {
   $data = array(
+    'user' => $db->load_object(new TCUser(), $thread->updated_by_user),
     'thread' => $thread,
     'url' => '/?page=' . $settings['page_thread'] . '&amp;thread=' . $thread->thread_id,
     'last_post_date' => date($settings['date_format'], $thread->updated_time)

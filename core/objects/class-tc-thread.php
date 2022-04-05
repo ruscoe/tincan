@@ -24,6 +24,16 @@ class TCThread extends TCObject {
   protected $thread_title;
 
   /**
+   * @since 0.02
+   */
+  protected $created_by_user;
+
+  /**
+   * @since 0.02
+   */
+  protected $updated_by_user;
+
+  /**
    * @since 0.01
    */
   protected $created_time;
@@ -60,6 +70,8 @@ class TCThread extends TCObject {
     return array(
       'board_id',
       'thread_title',
+      'created_by_user',
+      'updated_by_user',
       'created_time',
       'updated_time'
     );

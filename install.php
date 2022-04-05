@@ -193,6 +193,8 @@ foreach ($new_board_ids as $board_id) {
 $new_thread_ids = array();
 
 foreach ($threads as $thread) {
+  $thread['created_by_user'] = 1;
+  $thread['updated_by_user'] = 1;
   $thread['created_time'] = time();
   $thread['updated_time'] = time();
   $new_thread = $db->save_object(new TCThread((object) $thread));

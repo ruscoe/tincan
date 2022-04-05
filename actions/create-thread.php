@@ -16,7 +16,8 @@ $response = new TCJSONResponse();
 
 $db = new TCData();
 
-// TODO: Validate user.
+// TODO: Replace with current user.
+$user = $db->load_object(new TCUser(), 1);
 
 // Validate the board this thread is intended for.
 if (!$db->load_object(new TCBoard(), $board_id)) {
@@ -29,6 +30,8 @@ if (!$db->load_object(new TCBoard(), $board_id)) {
 $thread = new TCThread();
 $thread->board_id = $board_id;
 $thread->thread_title = $thread_title;
+$thread->created_by_user = $user->user_id;
+$thread->updated_by_user = $user->user_id;
 $thread->created_time = time();
 $thread->updated_time = time();
 
@@ -37,7 +40,7 @@ $new_thread = $db->save_object($thread);
 if (!empty($new_thread)) {
   // Create the thread's initial post.
   $post = new TCPost();
-  $post->user_id = 1;
+  $post->user_id = $user->user_id;
   $post->thread_id = $new_thread->thread_id;
   $post->created_time = time();
   $post->updated_time = time();
