@@ -65,6 +65,13 @@ $settings = array(
     'title' => 'Date format',
     'value' => 'Y-m-d H:i:s',
     'required' => 1
+  ),
+  array(
+    'setting_name' => 'posts_per_page',
+    'type' => 'text',
+    'title' => 'Posts per page',
+    'value' => 10,
+    'required' => 1
   )
 );
 
