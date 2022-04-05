@@ -174,7 +174,7 @@ class TCData {
     }
 
     if ($limit > 0) {
-      $query .=  " {$offset}, {$limit}";
+      $query .=  " LIMIT {$offset}, {$limit}";
     }
 
     $this->database->open_connection();
