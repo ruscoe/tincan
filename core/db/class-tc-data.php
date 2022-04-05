@@ -191,4 +191,32 @@ class TCData {
     return $objects;
   }
 
+  /**
+   * @since 0.02
+   */
+  function count_objects($class, $conditions = array()) {
+    $db_table = $class->get_db_table();
+    $primary_key = $class->get_primary_key();
+
+    $query = "SELECT COUNT(*) `count` FROM `{$db_table}`";
+
+    if (!empty($conditions)) {
+      $query .= " WHERE";
+      foreach ($conditions as $condition) {
+        // TODO: Allow conditions other than equals.
+        $query .= " `{$condition['field']}` = '{$condition['value']}'";
+      }
+    }
+
+    $this->database->open_connection();
+
+    $result = $this->database->query($query);
+
+    $row = $result->fetch_object();
+
+    $this->database->close_connection();
+
+    return (!empty($row)) ? $row->count : 0;
+  }
+
 }
