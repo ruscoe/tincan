@@ -151,7 +151,7 @@ foreach ($users as $user) {
 
 $board_groups_to_create = 4;
 
-for ($i = 0; $i <= $board_groups_to_create; $i++) {
+for ($i = 0; $i < $board_groups_to_create; $i++) {
   $board_groups[] = array('board_group_name' => get_random_lipsum_short());
 }
 
@@ -170,7 +170,7 @@ foreach ($board_groups as $board_group) {
 $board_groups_to_create = 4;
 
 foreach ($new_board_group_ids as $board_group_id) {
-  for ($i = 0; $i <= $board_groups_to_create; $i++) {
+  for ($i = 0; $i < $board_groups_to_create; $i++) {
     $boards[] = array('board_group_id' => $board_group_id, 'board_name' => get_random_lipsum_short(), 'description' => get_random_lipsum_short());
   }
 }
@@ -192,7 +192,7 @@ $threads_to_create = 12;
 $threads = array();
 
 foreach ($new_board_ids as $board_id) {
-  for ($i = 0; $i <= $threads_to_create; $i++) {
+  for ($i = 0; $i < $threads_to_create; $i++) {
     $threads[] = array('board_id' => $board_id, 'thread_title' => get_random_lipsum_short());
   }
 }
@@ -216,7 +216,7 @@ $posts_to_create = 24;
 $posts = array();
 
 foreach ($new_thread_ids as $thread_id) {
-  for ($i = 0; $i <= $posts_to_create; $i++) {
+  for ($i = 0; $i < $posts_to_create; $i++) {
     $posts[] = array('user_id' => 1, 'thread_id' => $thread_id, 'content' => get_random_lipsum_long());
   }
 }
