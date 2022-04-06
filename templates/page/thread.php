@@ -55,3 +55,5 @@ $page_params = array(
 );
 
 TCTemplate::render('pagination', array('page_params' => $page_params, 'start_at' => $start_at, 'total_pages' => $total_pages, 'settings' => $data['settings']));
+
+TCTemplate::render('post-reply', array('thread' => $thread, 'user' => $user));
