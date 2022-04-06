@@ -1,6 +1,14 @@
 # Tin Can Forum
 
-Tin Can is a lightweight web forum written in PHP.
+Tin Can is a lightweight web forum written in PHP. Named after the
+[tin can telephone](https://en.wikipedia.org/wiki/Tin_can_telephone),
+this software is designed around functionality and simplicity.
+
+## Goals
+
+* Completely free and open
+* No bloat
+* Functional if JavaScript and / or style sheets are disabled
 
 ## Requirements
 
