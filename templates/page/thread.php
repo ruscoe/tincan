@@ -30,7 +30,9 @@ $order = array(
 // TODO: Set bounds for offset so nothing crazy happens.
 //   Calculate maximum page number from posts.
 //   Avoid negative numbers.
-$offset = ($start_at > 1) ? $start_at : 0;
+// $start_at is the page number. Records start at 0, so page 1 is technically 0.
+// Subtract 1 from $start_at
+$offset = ($start_at > 1) ? ($start_at - 1) : 0;
 $offset *= $settings['posts_per_page'];
 $limit = $settings['posts_per_page'];
 

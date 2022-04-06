@@ -72,6 +72,13 @@ $settings = array(
     'title' => 'Posts per page',
     'value' => 10,
     'required' => 1
+  ),
+  array(
+    'setting_name' => 'threads_per_page',
+    'type' => 'text',
+    'title' => 'Threads per page',
+    'value' => 10,
+    'required' => 1
   )
 );
 
