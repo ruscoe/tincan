@@ -8,6 +8,9 @@
 
 abstract class TCObject {
 
+  const ERR_NOT_FOUND = 'noobj';
+  const ERR_NOT_SAVED = 'nosave';
+
   /**
    * @since 0.01
    */

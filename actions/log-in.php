@@ -11,10 +11,11 @@ require 'class-tc-json-response.php';
 
 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-
-$response = new TCJSONResponse();
+$ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
+
+$settings = $db->load_settings();
 
 // Find user with matching username.
 $conditions = array(
@@ -26,22 +27,46 @@ $conditions = array(
 
 $user = null;
 
+$errors = array();
+
 $user_results = $db->load_objects(new TCUser(), array(), $conditions);
 if (!empty($user_results)) {
   $user = reset($user_results);
 }
 
-// Verify user exists and entered password correctly.
-if (empty($user) || !$user->verify_password_hash($password, $user->password)) {
-  $response->message = 'Unable to log in at this time.';
-  exit($response->get_output());
+if (empty($user)) {
+  $errors['username'] = TCUser::ERR_NOT_FOUND;
 }
 
-// Successfully logged in. Create the user's session.
-$session = new TCUserSession();
-$session->create_session($user);
+if (empty($errors) && !$user->verify_password_hash($password, $user->password)) {
+  $errors['password'] = TCUser::ERR_PASSWORD;
+}
 
-// $response->success = true;
-// exit($response->get_output());
-header('Location: /');
-exit;
+if (empty($errors)) {
+  // Successfully logged in. Create the user's session.
+  $session = new TCUserSession();
+  $session->create_session($user);
+}
+
+if (!empty($ajax)) {
+  $response = new TCJSONResponse();
+
+  $response->success = (empty($errors));
+  $response->errors = $errors;
+
+  exit($response->get_output());
+}
+else {
+  $destination = '/';
+
+  if (!empty($errors)) {
+    $destination .= '?page=' . $settings['page_log_in'];
+    // TODO: Create a utility class for this.
+    foreach ($errors as $name => $value) {
+      $destination .= "&{$name}={$value}";
+    }
+  }
+
+  header('Location: ' . $destination);
+  exit;
+}

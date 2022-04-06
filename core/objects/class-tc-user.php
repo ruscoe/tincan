@@ -8,6 +8,9 @@
 
 class TCUser extends TCObject {
 
+  const ERR_USER = 'nouser';
+  const ERR_PASSWORD = 'nopass';
+
   /**
    * @since 0.01
    */

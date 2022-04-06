@@ -18,6 +18,11 @@ class TCJSONResponse {
    */
   public $message;
 
+  /**
+   * @since 0.02
+   */
+  public $errors;
+
   public function get_output() {
     return json_encode($this);
   }
