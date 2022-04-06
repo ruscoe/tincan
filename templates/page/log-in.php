@@ -21,8 +21,12 @@
 ?>
 
 <form action="/actions/log-in.php" method="POST">
+  <label for="username">Username</label>
   <input type="text" name="username" />
+
+  <label for="password">Password</label>
   <input type="password" name="password" />
+
   <input type="hidden" name="ajax" value="" />
-  <input type="submit" name="submit_thread" value="Log in" />
+  <input type="submit" name="log_in" value="Log in" />
 </form>

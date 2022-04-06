@@ -10,6 +10,7 @@ class TCUser extends TCObject {
 
   const ERR_USER = 'nouser';
   const ERR_PASSWORD = 'nopass';
+  const ERR_ALREADY_EXISTS = 'exists';
 
   /**
    * @since 0.01

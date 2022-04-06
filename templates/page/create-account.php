@@ -30,5 +30,6 @@
   <label for="password">Password</label>
   <input type="password" name="password" />
 
+  <input type="hidden" name="ajax" value="" />
   <input type="submit" name="submit_thread" value="Create account" />
 </form>

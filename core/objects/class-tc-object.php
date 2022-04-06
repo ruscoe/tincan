@@ -10,6 +10,7 @@ abstract class TCObject {
 
   const ERR_NOT_FOUND = 'noobj';
   const ERR_NOT_SAVED = 'nosave';
+  const ERR_EMPTY_FIELD = 'empty';
 
   /**
    * @since 0.01

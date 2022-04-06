@@ -9,36 +9,67 @@ require TC_BASE_PATH . '/includes/include-user.php';
 
 require 'class-tc-json-response.php';
 
-$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
-$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+$ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
-$response = new TCJSONResponse();
+$field_names = array('username', 'email', 'password');
 
-$db = new TCData();
+$filtered_fields = array();
+$errors = array();
 
-$user = new TCUser();
+foreach ($field_names as $name) {
+  if (isset($_POST[$name]) && !empty($_POST[$name])) {
+    $filtered_fields[$name] = filter_input(INPUT_POST, $name, FILTER_SANITIZE_STRING);
+  }
+  else {
+    $errors[$name] = filter_input(INPUT_POST, $name, FILTER_SANITIZE_STRING);
+  }
+}
 
-$user->username = $username;
-$user->email = $email;
-$user->password = $user->get_password_hash($password);
-$user->created_time = time();
-$user->updated_time = time();
+$saved_user = null;
 
-$saved_user = $db->save_object($user);
+if (empty($errors)) {
+  $db = new TCData();
+  $user = new TCUser();
+
+  $user->username = $filtered_fields['username'];
+  $user->email = $filtered_fields['email'];
+  $user->password = $user->get_password_hash($filtered_fields['password'];);
+  $user->created_time = time();
+  $user->updated_time = time();
+
+  $saved_user = $db->save_object($user);
+}
 
 // Verify user has been created.
 if (empty($saved_user)) {
-  $response->message = 'Unable to create your account at this time.';
-  exit($response->get_output());
+  $errors['username'] = TCObject::ERR_NOT_SAVED;
 }
 
-// Successfully created account. Create the user's session.
-$session = new TCUserSession();
-$session->create_session($user);
+if (empty($errors)) {
+  // Successfully created account. Create the user's session.
+  $session = new TCUserSession();
+  $session->create_session($user);
+}
 
-// $response->success = true;
-// exit($response->get_output());
+if (!empty($ajax)) {
+  $response = new TCJSONResponse();
 
-header('Location: /');
-exit;
+  $response->success = (empty($errors));
+  $response->errors = $errors;
+
+  exit($response->get_output());
+}
+else {
+  $destination = '/';
+
+  if (!empty($errors)) {
+    $destination .= '?page=' . $settings['page_create_account'];
+    // TODO: Create a utility class for this.
+    foreach ($errors as $name => $value) {
+      $destination .= "&{$name}={$value}";
+    }
+  }
+
+  header('Location: ' . $destination);
+  exit;
+}

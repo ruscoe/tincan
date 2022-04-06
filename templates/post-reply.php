@@ -20,7 +20,10 @@
 ?>
 
 <form action="/actions/create-post.php" method="POST">
+  <label for="thread_title">Reply Content</label>
   <textarea name="post_content" rows="20" cols="30"></textarea>
+
   <input type="hidden" name="thread_id" value="<?=$thread->thread_id?>" />
+  <input type="hidden" name="ajax" value="" />
   <input type="submit" name="submit_post" value="Submit reply" />
 </form>
