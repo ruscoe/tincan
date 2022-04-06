@@ -1,6 +1,16 @@
 <?php
   $page = $data['page'];
 
+  $field_names = array('thread_title', 'thread_post');
+
+  $errors = array();
+
+  foreach ($field_names as $name) {
+    if (isset($_GET[$name])) {
+      $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
+    }
+  }
+
   $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
 
   $db = new TCData();
@@ -9,6 +19,12 @@
 ?>
 
 <h1><?=$page->page_title?></h1>
+
+<?php
+  if (!empty($errors)) {
+    TCTemplate::render('form-errors', array('errors' => array_values($errors)));
+  }
+?>
 
 <form action="/actions/create-thread.php" method="POST">
   <input type="text" name="thread_title" />
