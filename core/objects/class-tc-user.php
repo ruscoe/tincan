@@ -10,9 +10,13 @@ use \TCRole;
 
 class TCUser extends TCObject {
 
+  const ACT_CREATE_POST = 'create-post';
+  const ACT_CREATE_THREAD = 'create-thread';
+
   const ERR_USER = 'nouser';
   const ERR_PASSWORD = 'nopass';
   const ERR_ALREADY_EXISTS = 'exists';
+  const ERR_NOT_AUTHORIZED = 'auth';
 
   /**
    * @since 0.01
@@ -53,6 +57,25 @@ class TCUser extends TCObject {
    * @since 0.02
    */
   protected TCRole $role;
+
+  /**
+   * TODO
+   *
+   * @since 0.02
+   */
+  public function can_perform_action($action) {
+    if (!empty($this->role)) {
+      $allowed_actions = explode(',', $this->role->allowed_actions);
+
+      foreach ($allowed_actions as $allowed_action) {
+        if ($action == $allowed_action) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
 
   /**
    * TODO
