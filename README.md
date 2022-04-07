@@ -12,7 +12,7 @@ this software is designed around functionality and simplicity.
 
 ## Requirements
 
-* PHP
+* PHP 7.4.0 or above
 * MySQL
 
 ## Configuration
