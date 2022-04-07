@@ -44,7 +44,7 @@ $total_pages = ($total <= $settings['posts_per_page']) ? 1 : ceil($total / $sett
 $posts = $db->load_objects(new TCPost(), array(), $conditions, $order, $offset, $limit);
 
 foreach ($posts as $post) {
-  $user = $db->load_object(new TCUser(), $post->user_id);
+  $user = $db->load_user($thread->updated_by_user);
 
   TCTemplate::render('post', array('post' => $post, 'user' => $user, 'settings' => $data['settings']));
 }

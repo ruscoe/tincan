@@ -29,11 +29,15 @@ $saved_user = null;
 
 if (empty($errors)) {
   $db = new TCData();
+
+  $settings = $db->load_settings();
+
   $user = new TCUser();
 
   $user->username = $filtered_fields['username'];
   $user->email = $filtered_fields['email'];
-  $user->password = $user->get_password_hash($filtered_fields['password'];);
+  $user->password = $user->get_password_hash($filtered_fields['password']);
+  $user->role = $settings['default_user_role'];
   $user->created_time = time();
   $user->updated_time = time();
 

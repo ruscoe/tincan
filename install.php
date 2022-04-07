@@ -37,7 +37,6 @@ function get_random_lipsum_long() {
   return $lipsum[$index];
 }
 
-
 $db = new TCData();
 
 // === Truncate tables ===
@@ -47,6 +46,7 @@ $tables = array(
   'tc_boards',
   'tc_pages',
   'tc_posts',
+  'tc_roles',
   'tc_settings',
   'tc_threads',
   'tc_users'
@@ -79,11 +79,30 @@ $settings = array(
     'title' => 'Threads per page',
     'value' => 10,
     'required' => 1
+  ),
+  array(
+    'setting_name' => 'default_user_role',
+    'type' => 'text',
+    'title' => 'Default user role',
+    'value' => 'user',
+    'required' => 1
   )
 );
 
 foreach ($settings as $setting) {
   $db->save_object(new TCSetting((object) $setting));
+}
+
+// === Create user roles ===
+
+$roles = array(
+  array('role_name' => 'User',          'allowed_actions' => TCRole::ACT_CREATE_POST . ',' . TCRole::ACT_CREATE_THREAD),
+  array('role_name' => 'Moderator',     'allowed_actions' => TCRole::ACT_CREATE_POST . ',' . TCRole::ACT_CREATE_THREAD),
+  array('role_name' => 'Administrator', 'allowed_actions' => TCRole::ACT_CREATE_POST . ',' . TCRole::ACT_CREATE_THREAD)
+);
+
+foreach ($roles as $role) {
+  $db->save_object(new TCRole((object) $role));
 }
 
 // === Create pages ===
@@ -142,9 +161,22 @@ $user = new TCUser();
 
 $users = array(
   array(
+    'username' => 'user',
+    'email' => 'user+test@example.org',
+    'password' => $user->get_password_hash('user'),
+    'role_id' => 1 // Default user role.
+  ),
+  array(
+    'username' => 'mod',
+    'email' => 'mod+test@example.org',
+    'password' => $user->get_password_hash('mod'),
+    'role_id' => 2 // Moderator user role.
+  ),
+  array(
     'username' => 'admin',
-    'email' => 'test@example.org',
-    'password' => $user->get_password_hash('admin')
+    'email' => 'admin+test@example.org',
+    'password' => $user->get_password_hash('admin'),
+    'role_id' => 3 // Administrator user role.
   )
 );
 

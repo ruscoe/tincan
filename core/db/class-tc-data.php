@@ -67,6 +67,20 @@ class TCData {
   }
 
   /**
+   * @since 0.02
+   */
+  function load_user($user_id) {
+    $user = $this->load_object(new TCUser(), $user_id);
+
+    if (!empty($user)) {
+      $user->role = $this->load_object(new TCRole(), $user->role_id);
+      return $user;
+    }
+
+    return null;
+  }
+
+  /**
    * @since 0.01
    */
   function load_object($class, $id) {

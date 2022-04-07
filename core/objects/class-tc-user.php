@@ -6,6 +6,8 @@
  * @since 0.01
  */
 
+use \TCRole;
+
 class TCUser extends TCObject {
 
   const ERR_USER = 'nouser';
@@ -33,6 +35,11 @@ class TCUser extends TCObject {
   protected $password;
 
   /**
+   * @since 0.02
+   */
+  protected $role_id;
+
+  /**
    * @since 0.01
    */
   protected $created_time;
@@ -41,6 +48,11 @@ class TCUser extends TCObject {
    * @since 0.01
    */
   protected $updated_time;
+
+  /**
+   * @since 0.02
+   */
+  protected TCRole $role;
 
   /**
    * TODO
@@ -88,6 +100,7 @@ class TCUser extends TCObject {
       'username',
       'email',
       'password',
+      'role_id',
       'created_time',
       'updated_time'
     );
