@@ -7,6 +7,13 @@ $page = $data['page'];
 $settings = $data['settings'];
 
 $db = new TCData();
+$settings = $db->load_settings();
+
+// Get logged in user.
+$session = new TCUserSession();
+$session->start_session();
+$user_id = $session->get_user_id();
+$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 $thread = $db->load_object(new TCThread(), $thread_id);
 ?>
@@ -44,9 +51,9 @@ $total_pages = ($total <= $settings['posts_per_page']) ? 1 : ceil($total / $sett
 $posts = $db->load_objects(new TCPost(), array(), $conditions, $order, $offset, $limit);
 
 foreach ($posts as $post) {
-  $user = $db->load_user($thread->updated_by_user);
+  $post_author = $db->load_user($thread->updated_by_user);
 
-  TCTemplate::render('post', array('post' => $post, 'user' => $user, 'settings' => $data['settings']));
+  TCTemplate::render('post', array('post' => $post, 'user' => $post_author, 'settings' => $data['settings']));
 }
 
 $page_params = array(
@@ -56,4 +63,7 @@ $page_params = array(
 
 TCTemplate::render('pagination', array('page_params' => $page_params, 'start_at' => $start_at, 'total_pages' => $total_pages, 'settings' => $data['settings']));
 
-TCTemplate::render('post-reply', array('thread' => $thread, 'user' => $user));
+// Display reply form if user has permission to reply to this thread.
+if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_POST)) {
+  TCTemplate::render('post-reply', array('thread' => $thread, 'user' => $user));
+}
