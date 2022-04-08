@@ -57,10 +57,9 @@ if (!empty($ajax)) {
   exit($response->get_output());
 }
 else {
-  $destination = '/';
+  $destination = '/index.php?page=' . $settings['page_log_in'];
 
   if (!empty($errors)) {
-    $destination .= '?page=' . $settings['page_log_in'];
     // TODO: Create a utility class for this.
     foreach ($errors as $name => $value) {
       $destination .= "&{$name}={$value}";

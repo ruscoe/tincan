@@ -18,5 +18,5 @@ $session->destroy_session();
 // $response->success = true;
 // exit($response->get_output());
 
-header('Location: /');
+header('Location: /index.php');
 exit;

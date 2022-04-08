@@ -21,7 +21,7 @@ foreach ($field_names as $name) {
     $filtered_fields[$name] = filter_input(INPUT_POST, $name, FILTER_SANITIZE_STRING);
   }
   else {
-    $errors[$name] = filter_input(INPUT_POST, $name, FILTER_SANITIZE_STRING);
+    $errors[$name] = TCObject::ERR_EMPTY_FIELD;
   }
 }
 
@@ -64,10 +64,9 @@ if (!empty($ajax)) {
   exit($response->get_output());
 }
 else {
-  $destination = '/';
+  $destination = '/index.php?page=' . $settings['page_create_account'];
 
   if (!empty($errors)) {
-    $destination .= '?page=' . $settings['page_create_account'];
     // TODO: Create a utility class for this.
     foreach ($errors as $name => $value) {
       $destination .= "&{$name}={$value}";

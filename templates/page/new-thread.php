@@ -30,8 +30,8 @@
   <label for="thread_title">Thread Title</label>
   <input type="text" name="thread_title" />
 
-  <label for="thread_post">Thread Content</label>
-  <textarea name="thread_post" rows="20" cols="30"></textarea>
+  <label for="post_content">Thread Content</label>
+  <textarea name="post_content" rows="20" cols="30"></textarea>
 
   <input type="hidden" name="board_id" value="<?=$board->board_id?>" />
   <input type="hidden" name="ajax" value="" />
