@@ -93,6 +93,10 @@ class TCData {
 
     $result = $this->database->query($query);
 
+    if (empty($result)) {
+      return null;
+    }
+
     $row = $result->fetch_object();
 
     $this->database->close_connection();
