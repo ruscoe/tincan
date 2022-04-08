@@ -5,6 +5,9 @@
 
   $errors = array();
 
+  // If there are any URL parameters matching field names then the user has
+  // been returned to this form due to a submission error.
+  // Collect errors here.
   foreach ($field_names as $name) {
     if (isset($_GET[$name])) {
       $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
