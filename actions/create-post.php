@@ -28,7 +28,7 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_POST)) {
 
 // Check this post can be created in the given thread.
 if (empty($errors)) {
-  $thread = $db->load_object(new TCBoard(), $thread_id);
+  $thread = $db->load_object(new TCThread(), $thread_id);
 
   // TODO: Thread validation.
   if (empty($thread)) {
@@ -40,6 +40,7 @@ if (empty($errors)) {
 
 if (empty($errors)) {
   $post = new TCPost();
+  $post->user_id = $user->user_id;
   $post->thread_id = $thread->thread_id;
   $post->content = $post_content;
   $post->created_time = time();
