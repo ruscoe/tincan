@@ -1,5 +1,6 @@
 <?php
   $page = $data['page'];
+  $settings = $data['settings'];
 
   $field_names = array('thread_title', 'thread_post');
 
@@ -17,7 +18,6 @@
   $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
 
   $db = new TCData();
-  $settings = $db->load_settings();
 
   // Get logged in user.
   $session = new TCUserSession();

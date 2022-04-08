@@ -7,21 +7,33 @@ $settings = $data['settings'];
 
 $db = new TCData();
 
+// Get logged in user.
+$session = new TCUserSession();
+$session->start_session();
+$user_id = $session->get_user_id();
+$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+
 $board = $db->load_object(new TCBoard(), $board_id);
 ?>
 
 <h1><?=$board->board_name?></h1>
 
-<div id="board-navigation">
-  <ul>
-    <li><a href="/?page=<?=$settings['page_new_thread']?>&board=<?=$board->board_id?>">New thread</a></li>
-  </ul>
-</div>
+<?php
+  // Show new thread link if user has permission to create a new thread.
+  if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
+?>
+
+  <div id="board-navigation">
+    <ul>
+      <li><a href="/?page=<?=$settings['page_new_thread']?>&board=<?=$board->board_id?>">New thread</a></li>
+    </ul>
+  </div>
 
 <?php
+  }
+?>
 
-$settings = $db->load_settings();
-
+<?php
 // Get threads in this board; order by thread with most recent post.
 $conditions = array(
   array(

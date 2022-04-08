@@ -7,7 +7,6 @@ $page = $data['page'];
 $settings = $data['settings'];
 
 $db = new TCData();
-$settings = $db->load_settings();
 
 // Get logged in user.
 $session = new TCUserSession();
