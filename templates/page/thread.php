@@ -34,20 +34,11 @@ $order = array(
 );
 
 // TODO: Set bounds for offset so nothing crazy happens.
-//   Calculate maximum page number from posts.
-//   Avoid negative numbers.
-// $start_at is the page number. Records start at 0, so page 1 is technically 0.
-// Subtract 1 from $start_at
-$offset = ($start_at > 1) ? ($start_at - 1) : 0;
-$offset *= $settings['posts_per_page'];
-$limit = $settings['posts_per_page'];
-
 $total = $db->count_objects(new TCPost(), $conditions);
-// Calculate total pages, rounding up to ensure we can reach all posts.
-// TODO: This may need to be refined; ok for now.
-$total_pages = ($total <= $settings['posts_per_page']) ? 1 : ceil($total / $settings['posts_per_page']);
+$total_pages = TCPagination::calculate_total_pages($total, $settings['posts_per_page']);
+$offset = TCPagination::calculate_page_offset($start_at, $settings['posts_per_page']);
 
-$posts = $db->load_objects(new TCPost(), array(), $conditions, $order, $offset, $limit);
+$posts = $db->load_objects(new TCPost(), array(), $conditions, $order, $offset, $settings['posts_per_page']);
 
 foreach ($posts as $post) {
   $post_author = $db->load_user($thread->updated_by_user);

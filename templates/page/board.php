@@ -48,21 +48,11 @@ $order = array(
 );
 
 // TODO: Set bounds for offset so nothing crazy happens.
-//   Calculate maximum page number from posts.
-//   Avoid negative numbers.
-// $start_at is the page number. Records start at 0, so page 1 is technically 0.
-// Subtract 1 from $start_at
-$offset = ($start_at > 1) ? ($start_at - 1) : 0;
-// TODO: Some code duplication in thread.php. Solve this somehow.
-$offset *= $settings['threads_per_page'];
-$limit = $settings['threads_per_page'];
-
 $total = $db->count_objects(new TCThread(), $conditions);
-// Calculate total pages, rounding up to ensure we can reach all posts.
-// TODO: This may need to be refined; ok for now.
-$total_pages = ($total <= $settings['threads_per_page']) ? 1 : ceil($total / $settings['threads_per_page']);
+$total_pages = TCPagination::calculate_total_pages($total, $settings['threads_per_page']);
+$offset = TCPagination::calculate_page_offset($start_at, $settings['threads_per_page']);
 
-$threads = $db->load_objects(new TCThread(), array(), $conditions, $order, $offset, $limit);
+$threads = $db->load_objects(new TCThread(), array(), $conditions, $order, $offset, $settings['threads_per_page']);
 
 foreach ($threads as $thread) {
   $template_data = array(
