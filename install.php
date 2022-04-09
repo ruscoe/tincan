@@ -96,9 +96,9 @@ foreach ($settings as $setting) {
 // === Create user roles ===
 
 $roles = array(
-  array('role_name' => 'User',          'allowed_actions' => TCRole::ACT_CREATE_POST . ',' . TCRole::ACT_CREATE_THREAD),
-  array('role_name' => 'Moderator',     'allowed_actions' => TCRole::ACT_CREATE_POST . ',' . TCRole::ACT_CREATE_THREAD),
-  array('role_name' => 'Administrator', 'allowed_actions' => TCRole::ACT_CREATE_POST . ',' . TCRole::ACT_CREATE_THREAD)
+  array('role_name' => 'User',          'allowed_actions' => TCUser::ACT_CREATE_POST . ',' . TCUser::ACT_CREATE_THREAD),
+  array('role_name' => 'Moderator',     'allowed_actions' => TCUser::ACT_CREATE_POST . ',' . TCUser::ACT_CREATE_THREAD),
+  array('role_name' => 'Administrator', 'allowed_actions' => TCUser::ACT_CREATE_POST . ',' . TCUser::ACT_CREATE_THREAD . ',' . TCUser::ACT_ACCESS_ADMIN)
 );
 
 foreach ($roles as $role) {

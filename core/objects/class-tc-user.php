@@ -12,6 +12,7 @@ class TCUser extends TCObject {
 
   const ACT_CREATE_POST = 'create-post';
   const ACT_CREATE_THREAD = 'create-thread';
+  const ACT_ACCESS_ADMIN = 'access-admin';
 
   const ERR_USER = 'nouser';
   const ERR_PASSWORD = 'nopass';

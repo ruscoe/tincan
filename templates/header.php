@@ -19,6 +19,9 @@
           <?php } else { ?>
             <li><a href="/?page=<?=$settings['page_log_out']?>">Log Out</a></li>
           <?php } ?>
+          <?php if (!empty($user) && $user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
+            <li><a href="/admin">Admin</a></li>
+          <?php } ?>
         </ul>
       </div>
     </div>

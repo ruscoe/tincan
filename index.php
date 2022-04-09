@@ -15,7 +15,7 @@ $settings = $db->load_settings();
 $session = new TCUserSession();
 $session->start_session();
 $user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_object(new TCUser(), $user_id) : null;
+$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
 $page = null;
