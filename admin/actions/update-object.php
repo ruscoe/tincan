@@ -11,44 +11,54 @@ require TC_BASE_PATH . '/actions/class-tc-json-response.php';
 
 $object_type = filter_input(INPUT_POST, 'object_type', FILTER_SANITIZE_STRING);
 $object_id = filter_input(INPUT_POST, 'object_id', FILTER_SANITIZE_NUMBER_INT);
+$saved = filter_input(INPUT_POST, 'saved', FILTER_SANITIZE_STRING);
+
+$db = new TCData();
+$settings = $db->load_settings();
 
 $object = null;
+$page = null;
 
 switch ($object_type) {
   case 'board_group':
     $object = new TCBoardGroup();
+    $page = $settings['admin_page_edit_board_group'];
     break;
   case 'board':
     $object = new TCBoard();
+    $page = $settings['admin_page_edit_board'];
     break;
   case 'page':
     $object = new TCPage();
+    $page = $settings['admin_page_edit_page'];
     break;
   case 'post':
     $object = new TCPost();
+    $page = $settings['admin_page_edit_post'];
     break;
   case 'thread':
     $object = new TCThread();
+    $page = $settings['admin_page_edit_thread'];
     break;
   case 'user':
     $object = new TCUser();
+    $page = $settings['admin_page_edit_user'];
     break;
 }
 
 $db = new TCData();
 
-$response = new TCJSONResponse();
+$error = false;
+$saved = false;
 
 if (empty($object)) {
-  $response->message = 'Unable to edit object at this time.';
-  exit($response->get_output());
+  $error = true;
 }
 
 $loaded_object = $db->load_object($object, $object_id);
 
-if (empty($loaded_object)) {
-  $response->message = 'Unable to edit object at this time.';
-  exit($response->get_output());
+if (!$error && empty($loaded_object)) {
+  $error = true;
 }
 
 // Update object fields.
@@ -64,6 +74,7 @@ $loaded_object->updated_time = time();
 
 $updated_object = $db->save_object($loaded_object);
 
-$response->success = (!empty($updated_object));
+$destination = '/admin/index.php?page=' . $page . '&object=' . $object_id . '&saved=' . (!$error);
 
-exit($response->get_output());
+header('Location: ' . $destination);
+exit;
