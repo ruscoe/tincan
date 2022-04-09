@@ -6,25 +6,25 @@
  * @since 0.01
  */
 
-class TCJSONResponse {
-
+class TCJSONResponse
+{
   /**
    * @since 0.01
    */
-  public $success;
+    public $success;
 
-  /**
-   * @since 0.01
-   */
-  public $message;
+    /**
+     * @since 0.01
+     */
+    public $message;
 
-  /**
-   * @since 0.02
-   */
-  public $errors;
+    /**
+     * @since 0.02
+     */
+    public $errors;
 
-  public function get_output() {
-    return json_encode($this);
-  }
-
+    public function get_output()
+    {
+        return json_encode($this);
+    }
 }

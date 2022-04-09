@@ -52,22 +52,22 @@ $error = false;
 $saved = false;
 
 if (empty($object)) {
-  $error = true;
+    $error = true;
 }
 
 $loaded_object = $db->load_object($object, $object_id);
 
 if (!$error && empty($loaded_object)) {
-  $error = true;
+    $error = true;
 }
 
 // Update object fields.
 $db_fields = $loaded_object->get_db_fields();
 
 foreach ($db_fields as $field) {
-  if (isset($_POST[$field])) {
-    $loaded_object->$field = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
-  }
+    if (isset($_POST[$field])) {
+        $loaded_object->$field = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
+    }
 }
 
 $loaded_object->updated_time = time();

@@ -23,56 +23,56 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check user has permission to create a new post.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_POST)) {
-  $errors['user'] = TCUser::ERR_NOT_AUTHORIZED;
+    $errors['user'] = TCUser::ERR_NOT_AUTHORIZED;
 }
 
 // Check this post can be created in the given thread.
 if (empty($errors)) {
-  $thread = $db->load_object(new TCThread(), $thread_id);
+    $thread = $db->load_object(new TCThread(), $thread_id);
 
-  // TODO: Thread validation.
-  if (empty($thread)) {
-    $errors['thread'] = TCObject::ERR_NOT_SAVED;
-  }
+    // TODO: Thread validation.
+    if (empty($thread)) {
+        $errors['thread'] = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 // TODO: Validate post content.
 
 if (empty($errors)) {
-  $post = new TCPost();
-  $post->user_id = $user->user_id;
-  $post->thread_id = $thread->thread_id;
-  $post->content = $post_content;
-  $post->created_time = time();
-  $post->updated_time = time();
+    $post = new TCPost();
+    $post->user_id = $user->user_id;
+    $post->thread_id = $thread->thread_id;
+    $post->content = $post_content;
+    $post->created_time = time();
+    $post->updated_time = time();
 
-  $new_post = $db->save_object($post);
+    $new_post = $db->save_object($post);
 
-  if (empty($new_post)) {
-    $errors['post'] = TCObject::ERR_NOT_SAVED;
-  }
+    if (empty($new_post)) {
+        $errors['post'] = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 if (!empty($ajax)) {
-  $response = new TCJSONResponse();
+    $response = new TCJSONResponse();
 
-  $response->success = (empty($errors));
-  $response->errors = $errors;
+    $response->success = (empty($errors));
+    $response->errors = $errors;
 
-  exit($response->get_output());
+    exit($response->get_output());
 } else {
-  $settings = $db->load_settings();
+    $settings = $db->load_settings();
 
-  $destination = '/index.php?page=' . $settings['page_thread']
+    $destination = '/index.php?page=' . $settings['page_thread']
     . '&thread=' . $thread_id;
 
-  if (!empty($errors)) {
-    // TODO: Create a utility class for this.
-    foreach ($errors as $name => $value) {
-      $destination .= "&{$name}={$value}";
+    if (!empty($errors)) {
+        // TODO: Create a utility class for this.
+        foreach ($errors as $name => $value) {
+            $destination .= "&{$name}={$value}";
+        }
     }
-  }
 
-  header('Location: ' . $destination);
-  exit;
+    header('Location: ' . $destination);
+    exit;
 }

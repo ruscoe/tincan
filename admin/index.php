@@ -14,12 +14,11 @@ $db = new TCData();
 
 // Get page template if available, otherwise default to dashboard.
 if (!empty($page_id)) {
-  $page = $db->load_object(new TCPage(), $page_id);
+    $page = $db->load_object(new TCPage(), $page_id);
 
-  $page_template = (!empty($page)) ? $page->template : '404';
-}
-else {
-  $page_template = 'dashboard';
+    $page_template = (!empty($page)) ? $page->template : '404';
+} else {
+    $page_template = 'dashboard';
 }
 
 $settings = $db->load_settings();

@@ -21,7 +21,7 @@ $board = $db->load_object(new TCBoard(), $board_id);
 <?php
   // Show new thread link if user has permission to create a new thread.
   if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
-?>
+      ?>
 
   <div id="board-navigation">
     <ul>
@@ -55,14 +55,14 @@ $offset = TCPagination::calculate_page_offset($start_at, $settings['threads_per_
 $threads = $db->load_objects(new TCThread(), array(), $conditions, $order, $offset, $settings['threads_per_page']);
 
 foreach ($threads as $thread) {
-  $template_data = array(
+    $template_data = array(
     'user' => $db->load_user($thread->updated_by_user),
     'thread' => $thread,
     'url' => '/?page=' . $settings['page_thread'] . '&amp;thread=' . $thread->thread_id,
     'last_post_date' => date($settings['date_format'], $thread->updated_time)
   );
 
-  TCTemplate::render('thread-preview', $template_data);
+    TCTemplate::render('thread-preview', $template_data);
 }
 
 $page_params = array(

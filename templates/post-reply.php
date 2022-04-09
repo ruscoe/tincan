@@ -7,15 +7,15 @@
   $errors = array();
 
   foreach ($field_names as $name) {
-    if (isset($_GET[$name])) {
-      $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
-    }
+      if (isset($_GET[$name])) {
+          $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
+      }
   }
 ?>
 
 <?php
   if (!empty($errors)) {
-    TCTemplate::render('form-errors', array('errors' => array_values($errors)));
+      TCTemplate::render('form-errors', array('errors' => array_values($errors)));
   }
 ?>
 

@@ -31,10 +31,10 @@ $order = array(
 $boards = $db->load_objects(new TCBoard(), array(), $conditions, $order);
 
 foreach ($boards as $board) {
-  $data = array(
+    $data = array(
     'board' => $board,
     'url' => '/?page=' . $settings['page_board'] . '&amp;board=' . $board->board_id
   );
 
-  TCTemplate::render('board-preview', $data);
+    TCTemplate::render('board-preview', $data);
 }

@@ -19,7 +19,7 @@ $pages = $db->load_objects(new TCPage());
   <?php
 
   foreach ($settings as $setting) {
-    switch ($setting->type) {
+      switch ($setting->type) {
       case 'page':
         TCAdminTemplate::render('table-row-settings-page', array('setting' => $setting, 'pages' => $pages));
       break;

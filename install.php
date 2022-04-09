@@ -7,8 +7,9 @@ require TC_BASE_PATH . '/includes/include-objects.php';
 require TC_BASE_PATH . '/includes/include-template.php';
 require TC_BASE_PATH . '/includes/include-user.php';
 
-function get_random_lipsum_short() {
-  $lipsum = array(
+function get_random_lipsum_short()
+{
+    $lipsum = array(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     'Nullam euismod faucibus ipsum, a porttitor odio eleifend eget.',
     'Donec et placerat nunc, quis tempus ipsum.',
@@ -17,13 +18,14 @@ function get_random_lipsum_short() {
     'Aenean at dui vel dui aliquam venenatis et vitae turpis.'
   );
 
-  $index = rand(0, (count($lipsum) - 1));
+    $index = rand(0, (count($lipsum) - 1));
 
-  return $lipsum[$index];
+    return $lipsum[$index];
 }
 
-function get_random_lipsum_long() {
-  $lipsum = array(
+function get_random_lipsum_long()
+{
+    $lipsum = array(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie nisi vel mi eleifend tincidunt. Ut dictum ornare quam ut imperdiet. Mauris justo ante, ullamcorper sed libero ac, tincidunt pellentesque sapien. Fusce ut vulputate libero, id mollis felis. Nullam euismod faucibus ipsum, a porttitor odio eleifend eget. Etiam sed lectus eu magna vestibulum finibus a et nunc. Fusce sit amet metus varius, malesuada mauris non, gravida urna.',
     'Nullam ut libero tellus. Quisque vel elementum metus, a pretium dolor. Nullam quis auctor enim. Nunc sagittis tincidunt sagittis. Nulla arcu urna, volutpat ut urna quis, suscipit auctor elit. Donec et placerat nunc, quis tempus ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mollis dolor ac mi egestas, sit amet porta sem consequat. Etiam molestie purus felis, a convallis sem consequat eu. Duis facilisis pellentesque.',
     'Vivamus tempor euismod aliquam. Fusce tempus ultrices vestibulum. Praesent a sagittis justo. Sed ut molestie eros. Curabitur varius dolor non augue lobortis, id ullamcorper elit faucibus. Fusce pulvinar dictum diam id placerat. Vestibulum mattis enim ac tortor tincidunt, quis vulputate diam vehicula. Mauris euismod dui at elit congue pulvinar.',
@@ -32,9 +34,9 @@ function get_random_lipsum_long() {
     'Phasellus suscipit sagittis lorem, nec tristique libero porta id. Vestibulum dictum libero eget augue blandit ultrices. Vestibulum a massa nulla. Suspendisse bibendum ante ac diam dictum, at laoreet est lobortis. Mauris facilisis lacinia purus, nec pharetra nisi ullamcorper vulputate.'
   );
 
-  $index = rand(0, (count($lipsum) - 1));
+    $index = rand(0, (count($lipsum) - 1));
 
-  return $lipsum[$index];
+    return $lipsum[$index];
 }
 
 $db = new TCData();
@@ -53,7 +55,7 @@ $tables = array(
 );
 
 foreach ($tables as $table) {
-  $db->run_query("TRUNCATE {$table}");
+    $db->run_query("TRUNCATE {$table}");
 }
 
 // === Create settings ===
@@ -90,7 +92,7 @@ $settings = array(
 );
 
 foreach ($settings as $setting) {
-  $db->save_object(new TCSetting((object) $setting));
+    $db->save_object(new TCSetting((object) $setting));
 }
 
 // === Create user roles ===
@@ -102,7 +104,7 @@ $roles = array(
 );
 
 foreach ($roles as $role) {
-  $db->save_object(new TCRole((object) $role));
+    $db->save_object(new TCRole((object) $role));
 }
 
 // === Create pages ===
@@ -135,16 +137,16 @@ $pages = array(
 );
 
 foreach ($pages as $page) {
-  $page['created_time'] = time();
-  $page['updated_time'] = time();
-  $saved_page = $db->save_object(new TCPage((object) $page));
+    $page['created_time'] = time();
+    $page['updated_time'] = time();
+    $saved_page = $db->save_object(new TCPage((object) $page));
 
-  // Each page has a matching setting to identify its purpose.
-  $setting_prefix = (substr($saved_page->page_title, 0, 5) == 'Admin') ? 'admin_' : '';
+    // Each page has a matching setting to identify its purpose.
+    $setting_prefix = (substr($saved_page->page_title, 0, 5) == 'Admin') ? 'admin_' : '';
 
-  $setting_name = $setting_prefix . 'page_' . str_replace('-', '_', $saved_page->template);
+    $setting_name = $setting_prefix . 'page_' . str_replace('-', '_', $saved_page->template);
 
-  $setting = array(
+    $setting = array(
     'setting_name' => $setting_name,
     'type' => 'page',
     'title' => $saved_page->page_title,
@@ -152,7 +154,7 @@ foreach ($pages as $page) {
     'required' => 1
   );
 
-  $db->save_object(new TCSetting((object) $setting));
+    $db->save_object(new TCSetting((object) $setting));
 }
 
 // === Create users ===
@@ -181,9 +183,9 @@ $users = array(
 );
 
 foreach ($users as $user) {
-  $user['created_time'] = time();
-  $user['updated_time'] = time();
-  $db->save_object(new TCUser((object) $user));
+    $user['created_time'] = time();
+    $user['updated_time'] = time();
+    $db->save_object(new TCUser((object) $user));
 }
 
 // === Create board groups ===
@@ -191,17 +193,17 @@ foreach ($users as $user) {
 $board_groups_to_create = 4;
 
 for ($i = 0; $i < $board_groups_to_create; $i++) {
-  $board_groups[] = array('board_group_name' => get_random_lipsum_short());
+    $board_groups[] = array('board_group_name' => get_random_lipsum_short());
 }
 
 $new_board_group_ids = array();
 
 foreach ($board_groups as $board_group) {
-  $board_group['created_time'] = time();
-  $board_group['updated_time'] = time();
-  $new_board_group = $db->save_object(new TCBoardGroup((object) $board_group));
+    $board_group['created_time'] = time();
+    $board_group['updated_time'] = time();
+    $new_board_group = $db->save_object(new TCBoardGroup((object) $board_group));
 
-  $new_board_group_ids[] = $new_board_group->board_group_id;
+    $new_board_group_ids[] = $new_board_group->board_group_id;
 }
 
 // === Create boards ===
@@ -209,19 +211,19 @@ foreach ($board_groups as $board_group) {
 $board_groups_to_create = 4;
 
 foreach ($new_board_group_ids as $board_group_id) {
-  for ($i = 0; $i < $board_groups_to_create; $i++) {
-    $boards[] = array('board_group_id' => $board_group_id, 'board_name' => get_random_lipsum_short(), 'description' => get_random_lipsum_short());
-  }
+    for ($i = 0; $i < $board_groups_to_create; $i++) {
+        $boards[] = array('board_group_id' => $board_group_id, 'board_name' => get_random_lipsum_short(), 'description' => get_random_lipsum_short());
+    }
 }
 
 $new_board_ids = array();
 
 foreach ($boards as $board) {
-  $board['created_time'] = time();
-  $board['updated_time'] = time();
-  $new_board = $db->save_object(new TCBoard((object) $board));
+    $board['created_time'] = time();
+    $board['updated_time'] = time();
+    $new_board = $db->save_object(new TCBoard((object) $board));
 
-  $new_board_ids[] = $new_board->board_id;
+    $new_board_ids[] = $new_board->board_id;
 }
 
 // === Create threads ===
@@ -231,21 +233,21 @@ $threads_to_create = 12;
 $threads = array();
 
 foreach ($new_board_ids as $board_id) {
-  for ($i = 0; $i < $threads_to_create; $i++) {
-    $threads[] = array('board_id' => $board_id, 'thread_title' => get_random_lipsum_short());
-  }
+    for ($i = 0; $i < $threads_to_create; $i++) {
+        $threads[] = array('board_id' => $board_id, 'thread_title' => get_random_lipsum_short());
+    }
 }
 
 $new_thread_ids = array();
 
 foreach ($threads as $thread) {
-  $thread['created_by_user'] = 1;
-  $thread['updated_by_user'] = 1;
-  $thread['created_time'] = time();
-  $thread['updated_time'] = time();
-  $new_thread = $db->save_object(new TCThread((object) $thread));
+    $thread['created_by_user'] = 1;
+    $thread['updated_by_user'] = 1;
+    $thread['created_time'] = time();
+    $thread['updated_time'] = time();
+    $new_thread = $db->save_object(new TCThread((object) $thread));
 
-  $new_thread_ids[] = $new_thread->thread_id;
+    $new_thread_ids[] = $new_thread->thread_id;
 }
 
 // === Create posts ===
@@ -255,13 +257,13 @@ $posts_to_create = 24;
 $posts = array();
 
 foreach ($new_thread_ids as $thread_id) {
-  for ($i = 0; $i < $posts_to_create; $i++) {
-    $posts[] = array('user_id' => 1, 'thread_id' => $thread_id, 'content' => get_random_lipsum_long());
-  }
+    for ($i = 0; $i < $posts_to_create; $i++) {
+        $posts[] = array('user_id' => 1, 'thread_id' => $thread_id, 'content' => get_random_lipsum_long());
+    }
 }
 
 foreach ($posts as $post) {
-  $post['created_time'] = time();
-  $post['updated_time'] = time();
-  $db->save_object(new TCPost((object) $post));
+    $post['created_time'] = time();
+    $post['updated_time'] = time();
+    $db->save_object(new TCPost((object) $post));
 }

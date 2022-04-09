@@ -6,7 +6,7 @@ $total_pages = $data['total_pages'];
 $base_url = '?';
 
 foreach ($page_params as $name => $value) {
-  $base_url .= $name . '=' . $value . '&';
+    $base_url .= $name . '=' . $value . '&';
 }
 ?>
 
@@ -14,7 +14,7 @@ foreach ($page_params as $name => $value) {
   <ul>
     <?php
     for ($i = 1; $i <= $total_pages; $i++) {
-      echo "<li><a href=\"{$base_url}start_at={$i}\">{$i}</a></li>";
+        echo "<li><a href=\"{$base_url}start_at={$i}\">{$i}</a></li>";
     }
     ?>
   </ul>

@@ -10,9 +10,9 @@
   // been returned to this form due to a submission error.
   // Collect errors here.
   foreach ($field_names as $name) {
-    if (isset($_GET[$name])) {
-      $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
-    }
+      if (isset($_GET[$name])) {
+          $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
+      }
   }
 
   $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
@@ -27,7 +27,7 @@
 
   // Check user has permission to create a new thread.
   if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
-?>
+      ?>
 
   <div>
     Please <a href="/?page=<?=$settings['page_log_in']?>">log in</a>
@@ -36,16 +36,14 @@
 
 <?php
   } else {
-    $board = $db->load_object(new TCBoard(), $board_id);
-?>
+      $board = $db->load_object(new TCBoard(), $board_id); ?>
 
   <h1><?=$page->page_title?></h1>
 
   <?php
     if (!empty($errors)) {
-      TCTemplate::render('form-errors', array('errors' => array_values($errors)));
-    }
-  ?>
+        TCTemplate::render('form-errors', array('errors' => array_values($errors)));
+    } ?>
 
   <form action="/actions/create-thread.php" method="POST">
     <label for="thread_title">Thread Title</label>

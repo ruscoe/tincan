@@ -6,83 +6,87 @@
  * @since 0.01
  */
 
-abstract class TCObject {
+abstract class TCObject
+{
+    public const ERR_NOT_FOUND = 'noobj';
+    public const ERR_NOT_SAVED = 'nosave';
+    public const ERR_EMPTY_FIELD = 'empty';
 
-  const ERR_NOT_FOUND = 'noobj';
-  const ERR_NOT_SAVED = 'nosave';
-  const ERR_EMPTY_FIELD = 'empty';
+    /**
+     * @since 0.01
+     */
+    public function __construct($object = null)
+    {
+        if (!empty($object)) {
+            $primary_key = $this->get_primary_key();
+            $this->$primary_key = (!empty($object->$primary_key)) ? $object->$primary_key : null;
 
-  /**
-   * @since 0.01
-   */
-  function __construct($object = null) {
-    if (!empty($object)) {
-      $primary_key = $this->get_primary_key();
-      $this->$primary_key = (!empty($object->$primary_key)) ? $object->$primary_key : null;
-
-      $this->populate_from_db($object);
+            $this->populate_from_db($object);
+        }
     }
-  }
 
-  /**
-   * @since 0.01
-   */
-  public function __get($name) {
-    return $this->$name;
-  }
-
-  /**
-   * @since 0.01
-   */
-  public function __set($name, $value) {
-    if ($this->validate_field_value($name, $value)) {
-      $this->$name = $value;
+    /**
+     * @since 0.01
+     */
+    public function __get($name)
+    {
+        return $this->$name;
     }
-  }
 
-  /**
-   * TODO
-   *
-   * @since 0.01
-   */
-  public function populate_from_db($object) {
-    $db_fields = $this->get_db_fields();
-
-    foreach ($db_fields as $field) {
-      if ($this->validate_field_value($field, $object->$field)) {
-        $this->$field = $object->$field;
-      }
+    /**
+     * @since 0.01
+     */
+    public function __set($name, $value)
+    {
+        if ($this->validate_field_value($name, $value)) {
+            $this->$name = $value;
+        }
     }
-  }
 
-  /**
-   * TODO: Override for object-specific validation.
-   *
-   * @since 0.01
-   */
-  public function validate_field_value($field_name, $value) {
-    return (!empty($value));
-  }
+    /**
+     * TODO
+     *
+     * @since 0.01
+     */
+    public function populate_from_db($object)
+    {
+        $db_fields = $this->get_db_fields();
 
-  /**
-   * TODO
-   *
-   * @since 0.01
-   */
-  abstract public function get_primary_key();
+        foreach ($db_fields as $field) {
+            if ($this->validate_field_value($field, $object->$field)) {
+                $this->$field = $object->$field;
+            }
+        }
+    }
 
-  /**
-   * TODO
-   *
-   * @since 0.01
-   */
-  abstract public function get_db_table();
+    /**
+     * TODO: Override for object-specific validation.
+     *
+     * @since 0.01
+     */
+    public function validate_field_value($field_name, $value)
+    {
+        return (!empty($value));
+    }
 
-  /**
-   * TODO
-   *
-   * @since 0.01
-   */
-  abstract public function get_db_fields();
+    /**
+     * TODO
+     *
+     * @since 0.01
+     */
+    abstract public function get_primary_key();
 
+    /**
+     * TODO
+     *
+     * @since 0.01
+     */
+    abstract public function get_db_table();
+
+    /**
+     * TODO
+     *
+     * @since 0.01
+     */
+    abstract public function get_db_fields();
 }

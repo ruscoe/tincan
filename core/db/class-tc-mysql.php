@@ -9,54 +9,56 @@
  /**
   * @since 0.01
   */
-class TCMySQL extends TCDB {
-
+class TCMySQL extends TCDB
+{
   /**
    * @since 0.01
    */
-  private $connection;
+    private $connection;
 
-  /**
-   * @since 0.01
-   */
-  function open_connection() {
-    try {
-      $this->connection = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
+    /**
+     * @since 0.01
+     */
+    public function open_connection()
+    {
+        try {
+            $this->connection = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
+        } catch (mysqli_sql_exception $e) {
+            // TODO: Handle exception.
+            die($e->message);
+        }
+
+        return $this->connection;
     }
-    catch (mysqli_sql_exception $e) {
-      // TODO: Handle exception.
-      die($e->message);
+
+    /**
+     * @since 0.01
+     */
+    public function close_connection()
+    {
     }
 
-    return $this->connection;
-  }
+    /**
+     * @since 0.01
+     */
+    public function query($query)
+    {
+        return $this->connection->query($query);
+    }
 
-  /**
-   * @since 0.01
-   */
-  function close_connection() {
+    /**
+     * @since 0.01
+     */
+    public function get_last_insert_id()
+    {
+        return $this->connection->insert_id;
+    }
 
-  }
-
-  /**
-   * @since 0.01
-   */
-  function query($query) {
-    return $this->connection->query($query);
-  }
-
-  /**
-   * @since 0.01
-   */
-  function get_last_insert_id() {
-    return $this->connection->insert_id;
-  }
-
-  /**
-   * @since 0.01
-   */
-  function get_last_error() {
-    return $this->connection->error;
-  }
-
+    /**
+     * @since 0.01
+     */
+    public function get_last_error()
+    {
+        return $this->connection->error;
+    }
 }

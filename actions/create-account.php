@@ -17,62 +17,60 @@ $filtered_fields = array();
 $errors = array();
 
 foreach ($field_names as $name) {
-  if (isset($_POST[$name]) && !empty($_POST[$name])) {
-    $filtered_fields[$name] = filter_input(INPUT_POST, $name, FILTER_SANITIZE_STRING);
-  }
-  else {
-    $errors[$name] = TCObject::ERR_EMPTY_FIELD;
-  }
+    if (isset($_POST[$name]) && !empty($_POST[$name])) {
+        $filtered_fields[$name] = filter_input(INPUT_POST, $name, FILTER_SANITIZE_STRING);
+    } else {
+        $errors[$name] = TCObject::ERR_EMPTY_FIELD;
+    }
 }
 
 $saved_user = null;
 
 if (empty($errors)) {
-  $db = new TCData();
+    $db = new TCData();
 
-  $settings = $db->load_settings();
+    $settings = $db->load_settings();
 
-  $user = new TCUser();
+    $user = new TCUser();
 
-  $user->username = $filtered_fields['username'];
-  $user->email = $filtered_fields['email'];
-  $user->password = $user->get_password_hash($filtered_fields['password']);
-  $user->role = $settings['default_user_role'];
-  $user->created_time = time();
-  $user->updated_time = time();
+    $user->username = $filtered_fields['username'];
+    $user->email = $filtered_fields['email'];
+    $user->password = $user->get_password_hash($filtered_fields['password']);
+    $user->role = $settings['default_user_role'];
+    $user->created_time = time();
+    $user->updated_time = time();
 
-  $saved_user = $db->save_object($user);
+    $saved_user = $db->save_object($user);
 }
 
 // Verify user has been created.
 if (empty($saved_user)) {
-  $errors['username'] = TCObject::ERR_NOT_SAVED;
+    $errors['username'] = TCObject::ERR_NOT_SAVED;
 }
 
 if (empty($errors)) {
-  // Successfully created account. Create the user's session.
-  $session = new TCUserSession();
-  $session->create_session($user);
+    // Successfully created account. Create the user's session.
+    $session = new TCUserSession();
+    $session->create_session($user);
 }
 
 if (!empty($ajax)) {
-  $response = new TCJSONResponse();
+    $response = new TCJSONResponse();
 
-  $response->success = (empty($errors));
-  $response->errors = $errors;
+    $response->success = (empty($errors));
+    $response->errors = $errors;
 
-  exit($response->get_output());
-}
-else {
-  $destination = '/index.php?page=' . $settings['page_create_account'];
+    exit($response->get_output());
+} else {
+    $destination = '/index.php?page=' . $settings['page_create_account'];
 
-  if (!empty($errors)) {
-    // TODO: Create a utility class for this.
-    foreach ($errors as $name => $value) {
-      $destination .= "&{$name}={$value}";
+    if (!empty($errors)) {
+        // TODO: Create a utility class for this.
+        foreach ($errors as $name => $value) {
+            $destination .= "&{$name}={$value}";
+        }
     }
-  }
 
-  header('Location: ' . $destination);
-  exit;
+    header('Location: ' . $destination);
+    exit;
 }

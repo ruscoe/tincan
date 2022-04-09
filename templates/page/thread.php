@@ -41,9 +41,9 @@ $offset = TCPagination::calculate_page_offset($start_at, $settings['posts_per_pa
 $posts = $db->load_objects(new TCPost(), array(), $conditions, $order, $offset, $settings['posts_per_page']);
 
 foreach ($posts as $post) {
-  $post_author = $db->load_user($thread->updated_by_user);
+    $post_author = $db->load_user($thread->updated_by_user);
 
-  TCTemplate::render('post', array('post' => $post, 'user' => $post_author, 'settings' => $data['settings']));
+    TCTemplate::render('post', array('post' => $post, 'user' => $post_author, 'settings' => $data['settings']));
 }
 
 $page_params = array(
@@ -55,5 +55,5 @@ TCTemplate::render('pagination', array('page_params' => $page_params, 'start_at'
 
 // Display reply form if user has permission to reply to this thread.
 if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_POST)) {
-  TCTemplate::render('post-reply', array('thread' => $thread, 'user' => $user));
+    TCTemplate::render('post-reply', array('thread' => $thread, 'user' => $user));
 }

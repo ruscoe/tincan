@@ -19,14 +19,14 @@ $board_groups = $db->load_objects(new TCBoardGroup(), array(), $conditions, $ord
 <table>
 <?php
 foreach ($board_groups as $board_group) {
-  $data = array(
+    $data = array(
     'title' => $board_group->board_group_name,
     'object_id' => $board_group->board_group_id,
     'view_page_id' => $settings['page_board_group'],
     'edit_page_id' => $settings['admin_page_edit_board_group']
   );
 
-  TCAdminTemplate::render('table-row', $data);
+    TCAdminTemplate::render('table-row', $data);
 }
 ?>
 </table>

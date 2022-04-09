@@ -9,8 +9,8 @@
     <select name="<?=$setting->setting_name?>">
       <?php
         foreach ($pages as $page) {
-          $selected = ($page->page_id == $setting->value) ? ' selected' : '';
-          echo "<option value=\"{$page->page_id}\"{$selected}>{$page->page_title}</option>\n";
+            $selected = ($page->page_id == $setting->value) ? ' selected' : '';
+            echo "<option value=\"{$page->page_id}\"{$selected}>{$page->page_title}</option>\n";
         }
       ?>
     </select>

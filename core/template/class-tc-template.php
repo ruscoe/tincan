@@ -6,16 +6,13 @@
  * @since 0.01
  */
 
-class TCTemplate {
-
-  static function render($template_name, $data) {
-
-    try {
-      include TC_BASE_PATH . '/templates/' . $template_name . '.php';
+class TCTemplate
+{
+    public static function render($template_name, $data)
+    {
+        try {
+            include TC_BASE_PATH . '/templates/' . $template_name . '.php';
+        } catch (Exception $e) {
+        }
     }
-    catch (Exception $e) {
-
-    }
-  }
-
 }

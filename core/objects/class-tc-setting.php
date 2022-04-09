@@ -6,69 +6,71 @@
  * @since 0.01
  */
 
-class TCSetting extends TCObject {
-
+class TCSetting extends TCObject
+{
   /**
    * @since 0.01
    */
-  public $setting_id;
+    public $setting_id;
 
-  /**
-   * @since 0.01
-   */
-  protected $setting_name;
+    /**
+     * @since 0.01
+     */
+    protected $setting_name;
 
-  /**
-   * @since 0.01
-   */
-  protected $type;
+    /**
+     * @since 0.01
+     */
+    protected $type;
 
-  /**
-   * @since 0.01
-   */
-  protected $title;
+    /**
+     * @since 0.01
+     */
+    protected $title;
 
-  /**
-   * @since 0.01
-   */
-  protected $value;
+    /**
+     * @since 0.01
+     */
+    protected $value;
 
-  /**
-   * @since 0.01
-   */
-  protected $required;
+    /**
+     * @since 0.01
+     */
+    protected $required;
 
-  /**
-   * TODO
-   *
-   * @since 0.01
-   */
-  public function get_primary_key() {
-    return 'setting_id';
-  }
+    /**
+     * TODO
+     *
+     * @since 0.01
+     */
+    public function get_primary_key()
+    {
+        return 'setting_id';
+    }
 
-  /**
-   * TODO
-   *
-   * @since 0.01
-   */
-  public function get_db_table() {
-    return 'tc_settings';
-  }
+    /**
+     * TODO
+     *
+     * @since 0.01
+     */
+    public function get_db_table()
+    {
+        return 'tc_settings';
+    }
 
-  /**
-   * TODO
-   *
-   * @since 0.01
-   */
-  public function get_db_fields() {
-    return array(
+    /**
+     * TODO
+     *
+     * @since 0.01
+     */
+    public function get_db_fields()
+    {
+        return array(
       'setting_name',
       'type',
       'title',
       'value',
       'required'
     );
-  }
-
+    }
 }

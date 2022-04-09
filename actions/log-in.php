@@ -31,41 +31,40 @@ $errors = array();
 
 $user_results = $db->load_objects(new TCUser(), array(), $conditions);
 if (!empty($user_results)) {
-  $user = reset($user_results);
+    $user = reset($user_results);
 }
 
 if (empty($user)) {
-  $errors['username'] = TCUser::ERR_NOT_FOUND;
+    $errors['username'] = TCUser::ERR_NOT_FOUND;
 }
 
 if (empty($errors) && !$user->verify_password_hash($password, $user->password)) {
-  $errors['password'] = TCUser::ERR_PASSWORD;
+    $errors['password'] = TCUser::ERR_PASSWORD;
 }
 
 if (empty($errors)) {
-  // Successfully logged in. Create the user's session.
-  $session = new TCUserSession();
-  $session->create_session($user);
+    // Successfully logged in. Create the user's session.
+    $session = new TCUserSession();
+    $session->create_session($user);
 }
 
 if (!empty($ajax)) {
-  $response = new TCJSONResponse();
+    $response = new TCJSONResponse();
 
-  $response->success = (empty($errors));
-  $response->errors = $errors;
+    $response->success = (empty($errors));
+    $response->errors = $errors;
 
-  exit($response->get_output());
-}
-else {
-  $destination = '/index.php?page=' . $settings['page_log_in'];
+    exit($response->get_output());
+} else {
+    $destination = '/index.php?page=' . $settings['page_log_in'];
 
-  if (!empty($errors)) {
-    // TODO: Create a utility class for this.
-    foreach ($errors as $name => $value) {
-      $destination .= "&{$name}={$value}";
+    if (!empty($errors)) {
+        // TODO: Create a utility class for this.
+        foreach ($errors as $name => $value) {
+            $destination .= "&{$name}={$value}";
+        }
     }
-  }
 
-  header('Location: ' . $destination);
-  exit;
+    header('Location: ' . $destination);
+    exit;
 }

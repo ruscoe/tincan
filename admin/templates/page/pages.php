@@ -19,13 +19,13 @@ $pages = $db->load_objects(new TCPage(), array(), $conditions, $order);
 <table>
 <?php
 foreach ($pages as $page) {
-  $data = array(
+    $data = array(
     'title' => $page->page_title,
     'object_id' => $page->page_id,
     'view_page_id' => '',
     'edit_page_id' => $settings['admin_page_edit_page']
   );
-  TCAdminTemplate::render('table-row', $data);
+    TCAdminTemplate::render('table-row', $data);
 }
 ?>
 </table>
