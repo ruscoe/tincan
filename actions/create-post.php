@@ -37,6 +37,7 @@ if (empty($errors)) {
 }
 
 // TODO: Validate post content.
+$new_post = null;
 
 if (empty($errors)) {
     $post = new TCPost();
@@ -63,8 +64,19 @@ if (!empty($ajax)) {
 } else {
     $settings = $db->load_settings();
 
+    // Calculate the total pages in this thread so the user can be sent
+    // directly to their new post.
+    $conditions = array(
+      array('field' => 'thread_id', 'value' => $thread_id)
+    );
+
+    $total_posts = $db->count_objects(new TCPost(), $conditions);
+    $total_pages = TCPagination::calculate_total_pages($total_posts, $settings['posts_per_page']);
+
     $destination = '/index.php?page=' . $settings['page_thread']
-    . '&thread=' . $thread_id;
+    . '&thread=' . $thread_id
+    . '&start_at=' . $total_pages
+    . '#post-' . $new_post->post_id;
 
     if (!empty($errors)) {
         // TODO: Create a utility class for this.
