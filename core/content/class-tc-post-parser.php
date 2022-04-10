@@ -9,10 +9,6 @@
 
 class TCPostParser
 {
-    public const TAG_HEADER_1 = 'H1';
-    public const TAG_HEADER_2 = 'H2';
-    public const TAG_HEADER_3 = 'H3';
-
     /**
      * Converts post content from text to HTML.
      *
@@ -80,7 +76,10 @@ class TCPostParser
         $replacements = array(
           'H1' => 'h1',
           'H2' => 'h2',
-          'H3' => 'h3'
+          'H3' => 'h3',
+          'B' => 'b',
+          'I' => 'i',
+          'U' => 'u'
         );
 
         return $replacements;
