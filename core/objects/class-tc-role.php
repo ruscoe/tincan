@@ -8,9 +8,9 @@
 
 class TCRole extends TCObject
 {
-  /**
-   * @since 0.02
-   */
+    /**
+     * @since 0.02
+     */
     public $role_id;
 
     /**
