@@ -27,3 +27,7 @@
   <input type="hidden" name="ajax" value="" />
   <input type="submit" name="submit_post" value="Submit reply" />
 </form>
+
+<?php
+  TCTemplate::render('tc-code', array());
+?>
