@@ -88,6 +88,20 @@ $settings = array(
     'title' => 'Default user role',
     'value' => 'user',
     'required' => 1
+  ),
+  array(
+    'setting_name' => 'enable_js',
+    'type' => 'bool',
+    'title' => 'Enable JavaScript',
+    'value' => 1,
+    'required' => 1
+  ),
+  array(
+    'setting_name' => 'enable_css',
+    'type' => 'bool',
+    'title' => 'Enable CSS',
+    'value' => 1,
+    'required' => 1
   )
 );
 

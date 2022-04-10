@@ -23,6 +23,9 @@ $pages = $db->load_objects(new TCPage());
       case 'page':
         TCAdminTemplate::render('table-row-settings-page', array('setting' => $setting, 'pages' => $pages));
       break;
+      case 'bool':
+        TCAdminTemplate::render('table-row-settings-bool', array('setting' => $setting));
+      break;
       default:
         TCAdminTemplate::render('table-row-settings-text', array('setting' => $setting));
     }
