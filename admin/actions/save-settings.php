@@ -17,9 +17,9 @@ $conditions = array(array('field' => 'type', 'value' => 'bool'));
 $bool_settings = $db->load_objects(new TCSetting(), array(), $conditions);
 
 foreach ($bool_settings as $setting) {
-  if (!isset($submitted_fields[$setting->setting_name])) {
-    $submitted_fields[$setting->setting_name] = null;
-  }
+    if (!isset($submitted_fields[$setting->setting_name])) {
+        $submitted_fields[$setting->setting_name] = null;
+    }
 }
 
 foreach ($submitted_fields as $field_name => $field_value) {
