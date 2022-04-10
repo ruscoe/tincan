@@ -1,0 +1,54 @@
+/* Colors */
+/* Fonts */
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
+}
+/* Breakpoints */
+/* Containers */
+/* line 42, ../sass/style.scss */
+body {
+  background-color: #d9d9d9;
+  margin: 0;
+  padding: 0;
+}
+
+/* Text */
+/* line 50, ../sass/style.scss */
+h1, h2, h3, p, li, th, td {
+  color: #6b6666;
+  font-family: "OpenSans-Regular", serif;
+}
+
+/* line 55, ../sass/style.scss */
+h1, h2, h3 {
+  clear: both;
+}
+
+/* line 59, ../sass/style.scss */
+h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* line 64, ../sass/style.scss */
+h2 {
+  font-size: 1.5rem;
+}
+
+/* Links */
+/* line 70, ../sass/style.scss */
+a:link {
+  color: #738201;
+  text-decoration: underline;
+}
+
+/* line 75, ../sass/style.scss */
+a:visited {
+  color: #738201;
+}
+
+/* line 79, ../sass/style.scss */
+a:hover {
+  color: #d76a3a;
+}

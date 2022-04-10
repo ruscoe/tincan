@@ -1,0 +1,81 @@
+// Tin Can theme style sheet.
+// @author Dan Ruscoe
+// @email danruscoe@protonmail.com
+
+/* Colors */
+
+$page: #D9D9D9;
+$header: #6B6666;
+$text: #6B6666;
+$linkText: #738201;
+$linkTextHover: #D76A3A;
+
+/* Fonts */
+
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+$openSansRegular: 'OpenSans-Regular';
+
+/* Breakpoints */
+
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) { @content; }
+}
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) { @content; }
+}
+@mixin for-desktop-up {
+  @media (min-width: 1200px) { @content; }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) { @content; }
+}
+
+/* Containers */
+
+body {
+  background-color: $page;
+  margin: 0;
+  padding: 0;
+}
+
+/* Text */
+
+h1, h2, h3, p, li, th, td {
+  color: $text;
+  font-family: $openSansRegular, serif;
+}
+
+h1, h2, h3 {
+  clear: both;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+/* Links */
+
+a:link {
+  color: $linkText;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: $linkText;
+}
+
+a:hover {
+  color: $linkTextHover;
+}
