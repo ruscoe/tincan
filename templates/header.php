@@ -10,7 +10,7 @@
       include TC_BASE_PATH . "/themes/{$settings['theme']}/header-include.php";
     } ?>
   </head>
-  <body>
+  <body class="tincan <?=$data['page_template']?>">
     <div id="header">
       <h1><?=$settings['forum_name']?></h1>
       <div id="main-navigation">
@@ -28,3 +28,5 @@
         </ul>
       </div>
     </div>
+    <!-- Start content -->
+    <div id="content">

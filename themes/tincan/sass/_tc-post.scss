@@ -1,0 +1,19 @@
+// Tin Can theme post style sheet.
+// @author Dan Ruscoe
+// @email danruscoe@protonmail.com
+
+body.tincan {
+
+  .post {
+    display: flex;
+
+    .post-user, .post-content {
+      flex: 1 auto;
+    }
+
+    .post-content {
+      flex: 1 100%;
+    }
+  }
+
+}

@@ -30,7 +30,7 @@ if (!empty($page_id)) {
     $page_template = 'front';
 }
 
-TCTemplate::render('header', array('settings' => $settings, 'user' => $user));
+TCTemplate::render('header', array('page_template' => $page_template, 'settings' => $settings, 'user' => $user));
 
 TCTemplate::render('page/' . $page_template, array('page' => $page, 'settings' => $settings));
 

@@ -1,0 +1,39 @@
+// Tin Can theme board group style sheet.
+// @author Dan Ruscoe
+// @email danruscoe@protonmail.com
+
+body.tincan {
+
+  .board-group {
+
+    h2 {
+      background-color: $sectionHeader;
+      margin: 0;
+
+      a {
+        color: $sectionHeaderText;
+        display: block;
+        font-size: 1rem;
+        margin: 0 0.5rem 0 0.5rem;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        text-decoration: none;
+      }
+    }
+
+    ul {
+      margin: 0;
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        background-color: $section;
+        border-bottom: 2px solid $sectionBorder;
+        padding: 1rem;
+
+        h3, p {
+          margin: 0 0.5rem 0 0.5rem;
+        }
+      }
+    }
+  }
+}

@@ -6,49 +6,105 @@
 }
 /* Breakpoints */
 /* Containers */
-/* line 42, ../sass/style.scss */
+/* line 47, ../sass/style.scss */
 body {
-  background-color: #d9d9d9;
+  background-color: white;
   margin: 0;
   padding: 0;
 }
 
+/* line 53, ../sass/style.scss */
+#content {
+  margin: 0 2rem 0 2rem;
+}
+
 /* Text */
-/* line 50, ../sass/style.scss */
+/* line 59, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
   font-family: "OpenSans-Regular", serif;
 }
 
-/* line 55, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 h1, h2, h3 {
   clear: both;
+  color: #6b6666;
 }
 
-/* line 59, ../sass/style.scss */
+/* line 69, ../sass/style.scss */
 h1 {
   font-size: 2rem;
   text-align: center;
 }
 
-/* line 64, ../sass/style.scss */
+/* line 74, ../sass/style.scss */
 h2 {
   font-size: 1.5rem;
 }
 
 /* Links */
-/* line 70, ../sass/style.scss */
+/* line 80, ../sass/style.scss */
 a:link {
   color: #738201;
   text-decoration: underline;
 }
 
-/* line 75, ../sass/style.scss */
+/* line 85, ../sass/style.scss */
 a:visited {
   color: #738201;
 }
 
-/* line 79, ../sass/style.scss */
+/* line 89, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
+}
+
+/* Includes */
+/* line 9, ../sass/_tc-board-group.scss */
+body.tincan .board-group h2 {
+  background-color: #295c7a;
+  margin: 0;
+}
+/* line 13, ../sass/_tc-board-group.scss */
+body.tincan .board-group h2 a {
+  color: white;
+  display: block;
+  font-size: 1rem;
+  margin: 0 0.5rem 0 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  text-decoration: none;
+}
+/* line 23, ../sass/_tc-board-group.scss */
+body.tincan .board-group ul {
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+}
+/* line 28, ../sass/_tc-board-group.scss */
+body.tincan .board-group ul li {
+  background-color: #f1f1f1;
+  border-bottom: 2px solid #dddddd;
+  padding: 1rem;
+}
+/* line 33, ../sass/_tc-board-group.scss */
+body.tincan .board-group ul li h3, body.tincan .board-group ul li p {
+  margin: 0 0.5rem 0 0.5rem;
+}
+
+/* line 7, ../sass/_tc-footer.scss */
+body.tincan #footer {
+  text-align: center;
+}
+
+/* line 7, ../sass/_tc-post.scss */
+body.tincan .post {
+  display: flex;
+}
+/* line 10, ../sass/_tc-post.scss */
+body.tincan .post .post-user, body.tincan .post .post-content {
+  flex: 1 auto;
+}
+/* line 14, ../sass/_tc-post.scss */
+body.tincan .post .post-content {
+  flex: 1 100%;
 }

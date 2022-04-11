@@ -4,9 +4,14 @@
 
 /* Colors */
 
-$page: #D9D9D9;
-$header: #6B6666;
+$page: #FFFFFF;
+$section: #F1F1F1;
+$sectionHeader: #295C7A;
+$sectionHeaderText: #FFFFFF;
+$sectionBorder: #DDDDDD;
+
 $text: #6B6666;
+$headerText: #6B6666;
 $linkText: #738201;
 $linkTextHover: #D76A3A;
 
@@ -45,6 +50,10 @@ body {
   padding: 0;
 }
 
+#content {
+  margin: 0 2rem 0 2rem;
+}
+
 /* Text */
 
 h1, h2, h3, p, li, th, td {
@@ -54,6 +63,7 @@ h1, h2, h3, p, li, th, td {
 
 h1, h2, h3 {
   clear: both;
+  color: $headerText;
 }
 
 h1 {
@@ -79,3 +89,11 @@ a:visited {
 a:hover {
   color: $linkTextHover;
 }
+
+/* Includes */
+
+@import '_tc-board-group';
+@import '_tc-board';
+@import '_tc-footer';
+@import '_tc-post';
+@import '_tc-thread';
