@@ -75,13 +75,13 @@ class TCPostParser
     private function get_tag_replacements()
     {
         $replacements = array(
-          "=" => 'h1',
-          "==" => 'h2',
-          "===" => 'h3',
-          "====" => 'h4',
           "=====" => 'h5',
-          "*" => 'i',
+          "====" => 'h4',
+          "===" => 'h3',
+          "==" => 'h2',
+          "=" => 'h1',
           "**" => 'b',
+          "*" => 'i',
           "__" => 'u'
         );
 
