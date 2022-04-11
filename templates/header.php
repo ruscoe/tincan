@@ -5,14 +5,14 @@
 
 <html>
   <head>
-    <title>Tin Can Forum</title>
+    <title><?=$settings['forum_name']?></title>
     <?php if (!empty($settings['theme'])) {
       include TC_BASE_PATH . "/themes/{$settings['theme']}/header-include.php";
     } ?>
   </head>
   <body>
     <div id="header">
-      <h1>Tin Can Forum</h1>
+      <h1><?=$settings['forum_name']?></h1>
       <div id="main-navigation">
         <ul>
           <li><a href="/">Home</a></li>

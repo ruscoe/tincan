@@ -62,6 +62,13 @@ foreach ($tables as $table) {
 
 $settings = array(
   array(
+    'setting_name' => 'forum_name',
+    'type' => 'text',
+    'title' => 'Forum name',
+    'value' => 'Tin Can Forum',
+    'required' => 1
+  ),
+  array(
     'setting_name' => 'date_format',
     'type' => 'text',
     'title' => 'Date format',
@@ -93,14 +100,14 @@ $settings = array(
     'setting_name' => 'enable_js',
     'type' => 'bool',
     'title' => 'Enable JavaScript',
-    'value' => 1,
+    'value' => 'true',
     'required' => 1
   ),
   array(
     'setting_name' => 'enable_css',
     'type' => 'bool',
     'title' => 'Enable CSS',
-    'value' => 1,
+    'value' => 'true',
     'required' => 1
   ),
   array(
