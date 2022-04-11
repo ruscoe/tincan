@@ -6,6 +6,9 @@
 <html>
   <head>
     <title>Tin Can Forum</title>
+    <?php if (!empty($settings['theme'])) {
+      include TC_BASE_PATH . "/themes/{$settings['theme']}/header-include.php";
+    } ?>
   </head>
   <body>
     <div id="header">

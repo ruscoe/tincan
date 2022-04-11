@@ -102,6 +102,13 @@ $settings = array(
     'title' => 'Enable CSS',
     'value' => 1,
     'required' => 1
+  ),
+  array(
+    'setting_name' => 'theme',
+    'type' => 'text',
+    'title' => 'Theme',
+    'value' => 'tincan',
+    'required' => 1
   )
 );
 
