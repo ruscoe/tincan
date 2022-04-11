@@ -56,7 +56,8 @@ class TCPostParser
         $replacements = $this->get_tag_replacements();
 
         foreach ($replacements as $tag => $html) {
-            $replaced_content = preg_replace("/\[{$tag}\](.*)\[\/{$tag}\]/", "<{$html}>$1</{$html}>", $parsed_content);
+            $tag = preg_quote($tag);
+            $replaced_content = preg_replace("/{$tag}(.*){$tag}/", "<{$html}>$1</{$html}>", $parsed_content);
 
             if (!empty($replaced_content)) {
                 $parsed_content = $replaced_content;
@@ -74,12 +75,14 @@ class TCPostParser
     private function get_tag_replacements()
     {
         $replacements = array(
-          'H1' => 'h1',
-          'H2' => 'h2',
-          'H3' => 'h3',
-          'B' => 'b',
-          'I' => 'i',
-          'U' => 'u'
+          "=" => 'h1',
+          "==" => 'h2',
+          "===" => 'h3',
+          "====" => 'h4',
+          "=====" => 'h5',
+          "*" => 'i',
+          "**" => 'b',
+          "__" => 'u'
         );
 
         return $replacements;
