@@ -14,5 +14,5 @@
   <div class="post-content">
     <span class="date"><?=date($settings['date_format'], $post->created_time)?></span>
     <div><?=$parser->get_html($post->content)?></div>
-  </p>
+  </div>
 </div>
