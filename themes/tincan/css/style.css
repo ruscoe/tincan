@@ -6,55 +6,59 @@
 }
 /* Breakpoints */
 /* Containers */
-/* line 47, ../sass/style.scss */
+/* line 48, ../sass/style.scss */
 body {
   background-color: white;
   margin: 0;
   padding: 0;
 }
 
-/* line 53, ../sass/style.scss */
+/* line 54, ../sass/style.scss */
+#header, #content {
+  font-family: "OpenSans-Regular", serif;
+}
+
+/* line 58, ../sass/style.scss */
 #content {
   margin: 0 2rem 0 2rem;
 }
 
 /* Text */
-/* line 59, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
-  font-family: "OpenSans-Regular", serif;
 }
 
-/* line 64, ../sass/style.scss */
+/* line 68, ../sass/style.scss */
 h1, h2, h3 {
   clear: both;
   color: #6b6666;
 }
 
-/* line 69, ../sass/style.scss */
+/* line 73, ../sass/style.scss */
 h1 {
   font-size: 2rem;
   text-align: center;
 }
 
-/* line 74, ../sass/style.scss */
+/* line 78, ../sass/style.scss */
 h2 {
   font-size: 1.5rem;
 }
 
 /* Links */
-/* line 80, ../sass/style.scss */
+/* line 84, ../sass/style.scss */
 a:link {
-  color: #738201;
+  color: #123266;
   text-decoration: underline;
 }
 
-/* line 85, ../sass/style.scss */
+/* line 89, ../sass/style.scss */
 a:visited {
-  color: #738201;
+  color: #123266;
 }
 
-/* line 89, ../sass/style.scss */
+/* line 93, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
 }
@@ -96,15 +100,62 @@ body.tincan #footer {
   text-align: center;
 }
 
-/* line 7, ../sass/_tc-post.scss */
+/* Colors */
+/* line 12, ../sass/_tc-post.scss */
 body.tincan .post {
+  background-color: #f1f1f1;
+  border-bottom: 2px solid #dddddd;
   display: flex;
 }
-/* line 10, ../sass/_tc-post.scss */
+/* line 17, ../sass/_tc-post.scss */
 body.tincan .post .post-user, body.tincan .post .post-content {
   flex: 1 auto;
 }
-/* line 14, ../sass/_tc-post.scss */
+/* line 21, ../sass/_tc-post.scss */
+body.tincan .post .post-user {
+  background-color: #748499;
+  color: white;
+  padding: 1rem 0 1rem 0;
+  text-align: center;
+}
+/* line 27, ../sass/_tc-post.scss */
+body.tincan .post .post-user h3.username {
+  font-size: 1.25rem;
+  color: white;
+  margin: 0;
+}
+/* line 33, ../sass/_tc-post.scss */
+body.tincan .post .post-user .profile-image {
+  padding: 1rem;
+}
+/* line 36, ../sass/_tc-post.scss */
+body.tincan .post .post-user .profile-image img {
+  height: 120px;
+  margin: 0 1rem 0 1rem;
+  width: 120px;
+}
+/* line 44, ../sass/_tc-post.scss */
 body.tincan .post .post-content {
   flex: 1 100%;
+}
+/* line 48, ../sass/_tc-post.scss */
+body.tincan .post .date {
+  padding: 0.5rem 1rem 0 1rem;
+}
+/* line 52, ../sass/_tc-post.scss */
+body.tincan .post .content {
+  padding: 1rem;
+}
+/* line 57, ../sass/_tc-post.scss */
+body.tincan .post:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+/* line 7, ../sass/_tc-thread.scss */
+body.tincan.thread h1.thread-header {
+  background-color: #295c7a;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  text-align: left;
 }

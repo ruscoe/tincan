@@ -17,7 +17,7 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 $thread = $db->load_object(new TCThread(), $thread_id);
 ?>
 
-<h1><?=$thread->thread_title?></h1>
+<h1 class="thread-header"><?=$thread->thread_title?></h1>
 
 <?php
 

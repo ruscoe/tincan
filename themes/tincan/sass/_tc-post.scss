@@ -2,18 +2,60 @@
 // @author Dan Ruscoe
 // @email danruscoe@protonmail.com
 
+/* Colors */
+
+$postUser: #748499;
+$postUserText: #FFFFFF;
+
 body.tincan {
 
   .post {
+    background-color: $section;
+    border-bottom: 2px solid $sectionBorder;
     display: flex;
 
     .post-user, .post-content {
       flex: 1 auto;
     }
 
+    .post-user {
+      background-color: $postUser;
+      color: $postUserText;
+      padding: 1rem 0 1rem 0;
+      text-align: center;
+
+      h3.username {
+        font-size: 1.25rem;
+        color: $postUserText;
+        margin: 0;
+      }
+
+      .profile-image {
+        padding: 1rem;
+
+        img {
+          height: 120px;
+          margin: 0 1rem 0 1rem;
+          width: 120px;
+        }
+      }
+    }
+
     .post-content {
       flex: 1 100%;
     }
+
+    .date {
+      padding: 0.5rem 1rem 0 1rem;
+    }
+
+    .content {
+      padding: 1rem;
+    }
+  }
+
+  .post:nth-child(even) {
+    background-color: $sectionAlt;
   }
 
 }

@@ -1,3 +1,15 @@
 // Tin Can theme thread style sheet.
 // @author Dan Ruscoe
 // @email danruscoe@protonmail.com
+
+body.tincan.thread {
+
+  h1.thread-header {
+    background-color: $sectionHeader;
+    color: $sectionHeaderText;
+    font-size: 2rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    text-align: left;
+  }
+
+}
