@@ -72,7 +72,14 @@ $settings = array(
     'setting_name' => 'date_format',
     'type' => 'text',
     'title' => 'Date format',
-    'value' => 'Y-m-d H:i:s',
+    'value' => 'F jS Y',
+    'required' => 1
+  ),
+  array(
+    'setting_name' => 'date_time_format',
+    'type' => 'text',
+    'title' => 'Date & time format',
+    'value' => 'F jS Y H:i',
     'required' => 1
   ),
   array(
