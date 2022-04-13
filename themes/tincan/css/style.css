@@ -25,17 +25,17 @@ body {
 
 /* Navigation */
 /* line 64, ../sass/style.scss */
-ul.navigation {
+ul.navigation, ul.pagination {
   flex-direction: column;
   list-style: none;
 }
 /* line 70, ../sass/style.scss */
-ul.navigation li a {
+ul.navigation li a, ul.pagination li a {
   padding: 1rem;
 }
 @media (min-width: 600px) {
   /* line 64, ../sass/style.scss */
-  ul.navigation {
+  ul.navigation, ul.pagination {
     display: flex;
     flex-direction: row;
     flex-flow: row wrap;
@@ -43,42 +43,49 @@ ul.navigation li a {
   }
 }
 
+@media (min-width: 600px) {
+  /* line 83, ../sass/style.scss */
+  ul.pagination {
+    justify-content: center;
+  }
+}
+
 /* Text */
-/* line 85, ../sass/style.scss */
+/* line 92, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
 }
 
-/* line 89, ../sass/style.scss */
+/* line 96, ../sass/style.scss */
 h1, h2, h3 {
   clear: both;
   color: #6b6666;
 }
 
-/* line 94, ../sass/style.scss */
+/* line 101, ../sass/style.scss */
 h1 {
   font-size: 2rem;
   text-align: center;
 }
 
-/* line 99, ../sass/style.scss */
+/* line 106, ../sass/style.scss */
 h2 {
   font-size: 1.5rem;
 }
 
 /* Links */
-/* line 105, ../sass/style.scss */
+/* line 112, ../sass/style.scss */
 a:link {
   color: #123266;
   text-decoration: underline;
 }
 
-/* line 110, ../sass/style.scss */
+/* line 117, ../sass/style.scss */
 a:visited {
   color: #123266;
 }
 
-/* line 114, ../sass/style.scss */
+/* line 121, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
 }

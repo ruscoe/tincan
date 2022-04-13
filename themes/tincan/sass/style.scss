@@ -61,7 +61,7 @@ body {
 
 /* Navigation */
 
-ul.navigation {
+ul.navigation, ul.pagination {
   flex-direction: column;
   list-style: none;
 
@@ -77,6 +77,13 @@ ul.navigation {
     flex-direction: row;
     flex-flow: row wrap;
     justify-content: flex-start;
+  }
+}
+
+ul.pagination {
+
+  @include for-tablet-portrait-up {
+    justify-content: center;
   }
 }
 

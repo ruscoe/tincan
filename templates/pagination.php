@@ -10,12 +10,18 @@ foreach ($page_params as $name => $value) {
 }
 ?>
 
-<div class="pagination">
-  <ul>
-    <?php
-    for ($i = 1; $i <= $total_pages; $i++) {
-        echo "<li><a href=\"{$base_url}start_at={$i}\">{$i}</a></li>";
-    }
-    ?>
-  </ul>
-</div>
+<ul class="pagination">
+  <?php
+  if ($start_at > 1) {
+    echo "<li><a href=\"{$base_url}start_at=" . ($start_at - 1) . "\">Prev</a></li>";
+  }
+  // TODO: Show selection of first / last page numbers with ellipses in the middle.
+  // Avoid massive list of pages.
+  for ($i = 1; $i <= $total_pages; $i++) {
+    echo "<li><a href=\"{$base_url}start_at={$i}\">{$i}</a></li>";
+  }
+  if ($start_at < $total_pages) {
+    echo "<li><a href=\"{$base_url}start_at=" . ($start_at + 1) . "\">Next</a></li>";
+  }
+  ?>
+</ul>
