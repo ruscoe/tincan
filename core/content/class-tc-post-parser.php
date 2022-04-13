@@ -2,7 +2,7 @@
 /**
  * Post content parser.
  *
- * @package Tin Can
+ * @package Tin Can Forum
  * @since 0.03
  * @author Dan Ruscoe danruscoe@protonmail.com
  */

@@ -1,4 +1,12 @@
 <?php
+/**
+ * Create account page template.
+ *
+ * @package Tin Can Forum
+ * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
+
   $page = $data['page'];
 
   $field_names = array('username', 'email', 'password');

@@ -2,7 +2,7 @@
 /**
  * Pagination functionality.
  *
- * @package Tin Can
+ * @package Tin Can Forum
  * @since 0.02
  * @author Dan Ruscoe danruscoe@protonmail.com
  */

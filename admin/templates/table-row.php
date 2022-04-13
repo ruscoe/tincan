@@ -1,3 +1,12 @@
+<?php
+/**
+ * Template used to display a generic table row.
+ *
+ * @package Tin Can Forum
+ * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
+?>
 
 <tr>
   <td><a href="<?=$data['url']?>"><?=$data['title']?></a></td>

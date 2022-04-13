@@ -1,4 +1,12 @@
 <?php
+/**
+ * Pagination template.
+ *
+ * @package Tin Can Forum
+ * @since 0.03
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
+
 $start_at = $data['start_at'];
 $page_params = $data['page_params'];
 $total_pages = $data['total_pages'];

@@ -1,9 +1,10 @@
 <?php
 /**
- * TODO
+ * Represents a forum user.
  *
- * @package Tin Can
+ * @package Tin Can Forum
  * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
 use TCRole;
@@ -40,6 +41,8 @@ class TCUser extends TCObject
     protected $password;
 
     /**
+     * Reference to TCRole::$role_id
+     *
      * @since 0.02
      */
     protected $role_id;
@@ -60,9 +63,13 @@ class TCUser extends TCObject
     protected TCRole $role;
 
     /**
-     * TODO
+     * Determines whether this user can perform an action based on their role.
      *
      * @since 0.02
+     *
+     * @param string $action one of the ACT_* constants in this class
+     *
+     * @return bool true if the user may perform the action
      */
     public function can_perform_action($action)
     {
@@ -80,9 +87,12 @@ class TCUser extends TCObject
     }
 
     /**
-     * TODO
+     * Converts a password to a hash for security.
      *
      * @since 0.01
+     *
+     * @param string $password to password to hash
+     * @return string the password hash
      */
     public function get_password_hash($password)
     {
@@ -90,9 +100,14 @@ class TCUser extends TCObject
     }
 
     /**
-     * TODO
+     * Validates a password against a password hash.
      *
      * @since 0.01
+     *
+     * @param string $password the password to test
+     * @param string $hash the password hash to test against
+     *
+     * @return bool true if the password and hash match
      */
     public function verify_password_hash($password, $hash)
     {
@@ -100,7 +115,7 @@ class TCUser extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_primary_key()
      *
      * @since 0.01
      */
@@ -110,7 +125,7 @@ class TCUser extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_table()
      *
      * @since 0.01
      */
@@ -120,19 +135,19 @@ class TCUser extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_fields()
      *
      * @since 0.01
      */
     public function get_db_fields()
     {
         return array(
-      'username',
-      'email',
-      'password',
-      'role_id',
-      'created_time',
-      'updated_time'
-    );
+          'username',
+          'email',
+          'password',
+          'role_id',
+          'created_time',
+          'updated_time'
+        );
     }
 }

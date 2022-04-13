@@ -1,4 +1,12 @@
 <?php
+/**
+ * Page template for admin user list.
+ *
+ * @package Tin Can Forum
+ * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
+
 $page = $data['page'];
 $settings = $data['settings'];
 ?>

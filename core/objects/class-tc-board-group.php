@@ -1,16 +1,19 @@
 <?php
 /**
- * TODO
+ * Represents a group of forum boards.
  *
- * @package Tin Can
+ * Referenced in TCBoard::$board_group_id
+ *
+ * @package Tin Can Forum
  * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
 class TCBoardGroup extends TCObject
 {
-  /**
-   * @since 0.01
-   */
+    /**
+     * @since 0.01
+     */
     public $board_group_id;
 
     /**
@@ -29,7 +32,7 @@ class TCBoardGroup extends TCObject
     protected $updated_time;
 
     /**
-     * TODO
+     * @see TCObject::validate_field_value()
      *
      * @since 0.01
      */
@@ -43,7 +46,7 @@ class TCBoardGroup extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_primary_key()
      *
      * @since 0.01
      */
@@ -53,7 +56,7 @@ class TCBoardGroup extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_table()
      *
      * @since 0.01
      */
@@ -63,16 +66,16 @@ class TCBoardGroup extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_fields()
      *
      * @since 0.01
      */
     public function get_db_fields()
     {
         return array(
-      'board_group_name',
-      'created_time',
-      'updated_time'
-    );
+          'board_group_name',
+          'created_time',
+          'updated_time'
+        );
     }
 }

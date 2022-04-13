@@ -1,4 +1,12 @@
 <?php
+/**
+ * Form errors template.
+ *
+ * @package Tin Can Forum
+ * @since 0.02
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
+
 $errors = $data['errors'];
 ?>
 

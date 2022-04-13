@@ -1,4 +1,11 @@
 <?php
+/**
+ * Thread page template.
+ *
+ * @package Tin Can Forum
+ * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
 
 $thread_id = filter_input(INPUT_GET, 'thread', FILTER_SANITIZE_NUMBER_INT);
 $start_at = filter_input(INPUT_GET, 'start_at', FILTER_SANITIZE_NUMBER_INT);

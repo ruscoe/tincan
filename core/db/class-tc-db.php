@@ -2,8 +2,9 @@
 /**
  * Base class for Tin Can database services.
  *
- * @package Tin Can
+ * @package Tin Can Forum
  * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
  /**

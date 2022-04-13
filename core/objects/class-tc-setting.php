@@ -1,16 +1,17 @@
 <?php
 /**
- * TODO
+ * Represents a forum setting.
  *
- * @package Tin Can
+ * @package Tin Can Forum
  * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
 class TCSetting extends TCObject
 {
-  /**
-   * @since 0.01
-   */
+   /**
+    * @since 0.01
+    */
     public $setting_id;
 
     /**
@@ -39,7 +40,7 @@ class TCSetting extends TCObject
     protected $required;
 
     /**
-     * TODO
+     * @see TCObject::get_primary_key()
      *
      * @since 0.01
      */
@@ -49,7 +50,7 @@ class TCSetting extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_table()
      *
      * @since 0.01
      */
@@ -59,18 +60,18 @@ class TCSetting extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_fields()
      *
      * @since 0.01
      */
     public function get_db_fields()
     {
         return array(
-      'setting_name',
-      'type',
-      'title',
-      'value',
-      'required'
-    );
+          'setting_name',
+          'type',
+          'title',
+          'value',
+          'required'
+        );
     }
 }

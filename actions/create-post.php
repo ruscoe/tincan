@@ -1,4 +1,11 @@
 <?php
+/**
+ * Tin Can create post handler.
+ *
+ * @package Tin Can Forum
+ * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
 
 require '../tc-config.php';
 

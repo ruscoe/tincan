@@ -1,24 +1,29 @@
 <?php
 /**
- * TODO
+ * Represents a forum post.
  *
- * @package Tin Can
+ * @package Tin Can Forum
  * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
 class TCPost extends TCObject
 {
-  /**
-   * @since 0.01
-   */
+    /**
+     * @since 0.01
+     */
     public $post_id;
 
     /**
+     * Reference to TCUser::$user_id
+     *
      * @since 0.01
      */
     protected $user_id;
 
     /**
+     * Reference to TCThread::$thread_id
+     *
      * @since 0.01
      */
     protected $thread_id;
@@ -39,7 +44,7 @@ class TCPost extends TCObject
     protected $updated_time;
 
     /**
-     * TODO
+     * @see TCObject::get_primary_key()
      *
      * @since 0.01
      */
@@ -49,7 +54,7 @@ class TCPost extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_table()
      *
      * @since 0.01
      */
@@ -59,18 +64,18 @@ class TCPost extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_fields()
      *
      * @since 0.01
      */
     public function get_db_fields()
     {
         return array(
-      'user_id',
-      'thread_id',
-      'content',
-      'created_time',
-      'updated_time'
-    );
+          'user_id',
+          'thread_id',
+          'content',
+          'created_time',
+          'updated_time'
+        );
     }
 }

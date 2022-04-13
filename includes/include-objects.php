@@ -1,4 +1,11 @@
 <?php
+/**
+ * Includes object related files.
+ *
+ * @package Tin Can Forum
+ * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
 
 require TC_BASE_PATH . '/core/objects/class-tc-object.php';
 

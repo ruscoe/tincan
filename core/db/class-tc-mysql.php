@@ -2,8 +2,9 @@
 /**
  * Tin Can MySQL database service.
  *
- * @package Tin Can
+ * @package Tin Can Forum
  * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
  /**

@@ -1,16 +1,17 @@
 <?php
 /**
- * TODO
+ * Represents a forum page.
  *
- * @package Tin Can
+ * @package Tin Can Forum
  * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
 class TCPage extends TCObject
 {
-  /**
-   * @since 0.01
-   */
+    /**
+     * @since 0.01
+     */
     public $page_id;
 
     /**
@@ -34,7 +35,7 @@ class TCPage extends TCObject
     protected $updated_time;
 
     /**
-     * TODO
+     * @see TCObject::get_primary_key()
      *
      * @since 0.01
      */
@@ -44,7 +45,7 @@ class TCPage extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_table()
      *
      * @since 0.01
      */
@@ -54,17 +55,17 @@ class TCPage extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_fields()
      *
      * @since 0.01
      */
     public function get_db_fields()
     {
         return array(
-      'page_title',
-      'template',
-      'created_time',
-      'updated_time'
-    );
+          'page_title',
+          'template',
+          'created_time',
+          'updated_time'
+        );
     }
 }

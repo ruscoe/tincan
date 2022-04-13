@@ -1,9 +1,10 @@
 <?php
 /**
- * TODO
+ * Base object for database records.
  *
- * @package Tin Can
+ * @package Tin Can Forum
  * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
 abstract class TCObject
@@ -44,9 +45,11 @@ abstract class TCObject
     }
 
     /**
-     * TODO
+     * Populates this object's properties from a generic object.
      *
      * @since 0.01
+     *
+     * @param object $object an object with properties matching this object
      */
     public function populate_from_db($object)
     {
@@ -60,9 +63,12 @@ abstract class TCObject
     }
 
     /**
-     * TODO: Override for object-specific validation.
+     * Determines if a value can be a assigned to a field.
+     * Override for object-specific validation.
      *
      * @since 0.01
+     *
+     * @return bool true if the field value is valid
      */
     public function validate_field_value($field_name, $value)
     {
@@ -70,23 +76,29 @@ abstract class TCObject
     }
 
     /**
-     * TODO
+     * Gets the name of this objects primary key used by the database.
      *
      * @since 0.01
+     *
+     * @return string the primary key name
      */
     abstract public function get_primary_key();
 
     /**
-     * TODO
+     * Gets the name of the database table used to store this object.
      *
      * @since 0.01
+     *
+     * @return string the database table name
      */
     abstract public function get_db_table();
 
     /**
-     * TODO
+     * Gets the names of the database fields that can be read and written.
      *
      * @since 0.01
+     *
+     * @return array the database table fields
      */
     abstract public function get_db_fields();
 }

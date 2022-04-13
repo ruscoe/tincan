@@ -1,9 +1,10 @@
 <?php
 /**
- * TODO
+ * Represents a user role.
  *
- * @package Tin Can
+ * @package Tin Can Forum
  * @since 0.02
+ * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
 class TCRole extends TCObject
@@ -24,7 +25,7 @@ class TCRole extends TCObject
     protected $allowed_actions;
 
     /**
-     * TODO
+     * @see TCObject::get_primary_key()
      *
      * @since 0.02
      */
@@ -34,7 +35,7 @@ class TCRole extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_table()
      *
      * @since 0.02
      */
@@ -44,15 +45,15 @@ class TCRole extends TCObject
     }
 
     /**
-     * TODO
+     * @see TCObject::get_db_fields()
      *
      * @since 0.02
      */
     public function get_db_fields()
     {
         return array(
-      'role_name',
-      'allowed_actions'
-    );
+          'role_name',
+          'allowed_actions'
+        );
     }
 }

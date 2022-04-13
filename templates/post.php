@@ -1,4 +1,12 @@
 <?php
+/**
+ * Post template.
+ *
+ * @package Tin Can Forum
+ * @since 0.01
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
+
   $post = $data['post'];
   $user = $data['user'];
   $settings = $data['settings'];
