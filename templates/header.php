@@ -14,7 +14,7 @@
     <div id="header">
       <h1><?=$settings['forum_name']?></h1>
       <div id="main-navigation">
-        <ul>
+        <ul class="navigation">
           <li><a href="/">Home</a></li>
           <?php if (empty($user)) { ?>
             <li><a href="/?page=<?=$settings['page_create_account']?>">Create Account</a></li>

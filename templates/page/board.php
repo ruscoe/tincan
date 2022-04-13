@@ -24,7 +24,7 @@ $board = $db->load_object(new TCBoard(), $board_id);
       ?>
 
   <div id="board-navigation">
-    <ul>
+    <ul class="navigation">
       <li><a href="/?page=<?=$settings['page_new_thread']?>&board=<?=$board->board_id?>">New thread</a></li>
     </ul>
   </div>
@@ -59,7 +59,7 @@ foreach ($threads as $thread) {
     'user' => $db->load_user($thread->updated_by_user),
     'thread' => $thread,
     'url' => '/?page=' . $settings['page_thread'] . '&amp;thread=' . $thread->thread_id,
-    'last_post_date' => date($settings['date_format'], $thread->updated_time)
+    'last_post_date' => date($settings['date_time_format'], $thread->updated_time)
   );
 
     TCTemplate::render('thread-preview', $template_data);

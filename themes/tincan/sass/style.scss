@@ -59,6 +59,27 @@ body {
   margin: 0 2rem 0 2rem;
 }
 
+/* Navigation */
+
+ul.navigation {
+  flex-direction: column;
+  list-style: none;
+
+  li {
+
+    a {
+      padding: 1rem;
+    }
+  }
+
+  @include for-tablet-portrait-up {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+}
+
 /* Text */
 
 h1, h2, h3, p, li, th, td {

@@ -23,42 +23,62 @@ body {
   margin: 0 2rem 0 2rem;
 }
 
-/* Text */
+/* Navigation */
 /* line 64, ../sass/style.scss */
+ul.navigation {
+  flex-direction: column;
+  list-style: none;
+}
+/* line 70, ../sass/style.scss */
+ul.navigation li a {
+  padding: 1rem;
+}
+@media (min-width: 600px) {
+  /* line 64, ../sass/style.scss */
+  ul.navigation {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+}
+
+/* Text */
+/* line 85, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
 }
 
-/* line 68, ../sass/style.scss */
+/* line 89, ../sass/style.scss */
 h1, h2, h3 {
   clear: both;
   color: #6b6666;
 }
 
-/* line 73, ../sass/style.scss */
+/* line 94, ../sass/style.scss */
 h1 {
   font-size: 2rem;
   text-align: center;
 }
 
-/* line 78, ../sass/style.scss */
+/* line 99, ../sass/style.scss */
 h2 {
   font-size: 1.5rem;
 }
 
 /* Links */
-/* line 84, ../sass/style.scss */
+/* line 105, ../sass/style.scss */
 a:link {
   color: #123266;
   text-decoration: underline;
 }
 
-/* line 89, ../sass/style.scss */
+/* line 110, ../sass/style.scss */
 a:visited {
   color: #123266;
 }
 
-/* line 93, ../sass/style.scss */
+/* line 114, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
 }
@@ -81,7 +101,7 @@ body.tincan .board-group h2 a {
 /* line 23, ../sass/_tc-board-group.scss */
 body.tincan .board-group ul {
   margin: 0;
-  list-style-type: none;
+  list-style: none;
   padding: 0;
 }
 /* line 28, ../sass/_tc-board-group.scss */
