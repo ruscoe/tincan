@@ -9,9 +9,9 @@
 
 class TCUserSession
 {
-  /**
-   * @since 0.01
-   */
+    /**
+     * @since 0.01
+     */
     public $user_id;
 
     public function get_user_id()

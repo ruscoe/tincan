@@ -12,9 +12,9 @@
   */
 abstract class TCDB
 {
-  /**
-  * @since 0.01
-  */
+    /**
+    * @since 0.01
+    */
     protected $db_host;
 
     /**

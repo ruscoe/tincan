@@ -12,9 +12,9 @@
   */
 class TCData
 {
-  /**
-   * @since 0.01
-   */
+    /**
+     * @since 0.01
+     */
     private $database;
 
     /**

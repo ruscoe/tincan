@@ -14,7 +14,7 @@ class TCTemplate
         try {
             include TC_BASE_PATH . '/templates/' . $template_name . '.php';
         } catch (Exception $e) {
-          // TODO: Handle this exception.
+            // TODO: Handle this exception.
         }
     }
 }

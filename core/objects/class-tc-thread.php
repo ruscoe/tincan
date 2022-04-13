@@ -9,9 +9,9 @@
 
 class TCThread extends TCObject
 {
-   /**
-    * @since 0.01
-    */
+    /**
+     * @since 0.01
+     */
     public $thread_id;
 
     /**

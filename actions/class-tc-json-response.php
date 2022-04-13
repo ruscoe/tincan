@@ -9,9 +9,9 @@
 
 class TCJSONResponse
 {
-  /**
-   * @since 0.01
-   */
+    /**
+     * @since 0.01
+     */
     public $success;
 
     /**

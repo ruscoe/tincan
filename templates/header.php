@@ -15,8 +15,8 @@
   <head>
     <title><?=$settings['forum_name']?></title>
     <?php if (!empty($settings['theme'])) {
-      include TC_BASE_PATH . "/themes/{$settings['theme']}/header-include.php";
-    } ?>
+    include TC_BASE_PATH . "/themes/{$settings['theme']}/header-include.php";
+} ?>
   </head>
   <body class="tincan <?=$data['page_template']?>">
     <div id="header">

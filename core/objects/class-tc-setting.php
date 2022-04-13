@@ -9,9 +9,9 @@
 
 class TCSetting extends TCObject
 {
-   /**
-    * @since 0.01
-    */
+    /**
+     * @since 0.01
+     */
     public $setting_id;
 
     /**

@@ -9,18 +9,18 @@
 
 class TCPagination
 {
-  /**
-   * Calculates total pages.
-   *
-   * Rounds up to ensure partial pages are included.
-   *
-   * @since 0.02
-   *
-   * @param int $count the total number of items to be shown
-   * @param int $per_page the number of items to show per page
-   *
-   * @return int number of pages required to show all items
-   */
+    /**
+     * Calculates total pages.
+     *
+     * Rounds up to ensure partial pages are included.
+     *
+     * @since 0.02
+     *
+     * @param int $count the total number of items to be shown
+     * @param int $per_page the number of items to show per page
+     *
+     * @return int number of pages required to show all items
+     */
     public static function calculate_total_pages($count, $per_page)
     {
         return ($count <= $per_page) ? 1 : ceil($count / $per_page);
