@@ -11,6 +11,10 @@ $sectionHeader: #295C7A;
 $sectionHeaderText: #FFFFFF;
 $sectionBorder: #DDDDDD;
 
+$formFieldLabel: #295C7A;
+$formFieldLabelText: #FFFFFF;
+$formField: #F1F1F1;
+
 $text: #6B6666;
 $headerText: #6B6666;
 $linkText: #123266;
@@ -51,7 +55,7 @@ body {
   padding: 0;
 }
 
-#header, #content {
+#header, #content, #footer {
   font-family: $openSansRegular, serif;
 }
 
@@ -127,5 +131,6 @@ a:hover {
 @import '_tc-board-group';
 @import '_tc-board';
 @import '_tc-footer';
+@import '_tc-forms';
 @import '_tc-post';
 @import '_tc-thread';

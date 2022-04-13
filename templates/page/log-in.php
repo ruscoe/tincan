@@ -23,13 +23,24 @@
   }
 ?>
 
-<form action="/actions/log-in.php" method="POST">
-  <label for="username">Username</label>
-  <input type="text" name="username" />
+<form id="log-in" action="/actions/log-in.php" method="POST">
+  <div class="fieldset">
+    <label for="username">Username</label>
+    <div class="field">
+      <input class="text-input" type="text" name="username" />
+    </div>
+  </div>
 
-  <label for="password">Password</label>
-  <input type="password" name="password" />
+  <div class="fieldset">
+    <label for="password">Password</label>
+    <div class="field">
+      <input class="text-input" type="password" name="password" />
+    </div>
+  </div>
 
   <input type="hidden" name="ajax" value="" />
-  <input type="submit" name="log_in" value="Log in" />
+
+  <div class="fieldset button">
+    <input type="submit" name="log_in" value="Log in" />
+  </div>
 </form>

@@ -20,16 +20,31 @@
   }
 ?>
 
-<form action="/actions/create-account.php" method="POST">
-  <label for="username">Username</label>
-  <input type="text" name="username" />
+<form id="create-account" action="/actions/create-account.php" method="POST">
+  <div class="fieldset">
+    <label for="username">Username</label>
+    <div class="field">
+      <input class="text-input" type="text" name="username" />
+    </div>
+  </div>
 
-  <label for="email">Email address</label>
-  <input type="text" name="email" />
+  <div class="fieldset">
+    <label for="email">Email address</label>
+    <div class="field">
+      <input class="text-input" type="text" name="email" />
+    </div>
+  </div>
 
-  <label for="password">Password</label>
-  <input type="password" name="password" />
+  <div class="fieldset">
+    <label for="password">Password</label>
+    <div class="field">
+      <input class="text-input" type="password" name="password" />
+    </div>
+  </div>
 
   <input type="hidden" name="ajax" value="" />
-  <input type="submit" name="submit_thread" value="Create account" />
+
+  <div class="fieldset button">
+    <input type="submit" name="submit_thread" value="Create account" />
+  </div>
 </form>

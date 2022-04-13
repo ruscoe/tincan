@@ -1,0 +1,44 @@
+// Tin Can theme forms style sheet.
+// @author Dan Ruscoe
+// @email danruscoe@protonmail.com
+
+/* Colors */
+
+$formField: #F1F1F1;
+$formFieldLabel: #295C7A;
+$formFieldLabelText: #FFFFFF;
+
+body.tincan {
+
+  form#create-account, form#log-in {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 0 auto;
+    width: 400px;
+
+    .fieldset {
+      display: flex;
+      flex: 1;
+      margin: 0.5rem 0 0.5rem 0;
+    }
+
+    .field {
+      background-color: $formField;
+      flex: 1.5;
+      padding: 0.25rem;
+    }
+
+    label {
+      background-color: $formFieldLabel;
+      color: $formFieldLabelText;
+      display: block;
+      flex: 1;
+      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    }
+
+    input.text-input {
+      width: 100%;
+    }
+  }
+
+}
