@@ -54,50 +54,62 @@ ul.navigation li a, ul.pagination li a {
 /* line 96, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
+  text-align: left;
 }
 
-/* line 100, ../sass/style.scss */
-h1, h2, h3 {
-  clear: both;
-  color: #6b6666;
-}
-
-/* line 105, ../sass/style.scss */
-h1 {
+/* line 101, ../sass/style.scss */
+h1.section-header {
+  background-color: #295c7a;
+  color: white;
   font-size: 2rem;
-  text-align: center;
+  padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-/* line 110, ../sass/style.scss */
-h2 {
+/* line 108, ../sass/style.scss */
+h2.section-subheader, h3.section-subheader {
   font-size: 1.5rem;
 }
 
 /* Links */
-/* line 116, ../sass/style.scss */
+/* line 114, ../sass/style.scss */
 a:link {
   color: #123266;
   text-decoration: underline;
 }
 
-/* line 121, ../sass/style.scss */
+/* line 119, ../sass/style.scss */
 a:visited {
   color: #123266;
 }
 
-/* line 125, ../sass/style.scss */
+/* line 123, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
 }
 
 /* Includes */
 /* line 9, ../sass/_tc-board-group.scss */
-body.tincan .board-group h2 {
+body.tincan.board-group #content .board-preview {
+  background-color: #f1f1f1;
+  border-bottom: 2px solid #dddddd;
+  padding: 0.5rem 0 0.5rem 0;
+}
+/* line 14, ../sass/_tc-board-group.scss */
+body.tincan.board-group #content .board-preview h2, body.tincan.board-group #content .board-preview p {
+  margin: 0 1rem 0 1rem;
+}
+/* line 18, ../sass/_tc-board-group.scss */
+body.tincan.board-group #content .board-preview h2 {
+  font-size: 1.25rem;
+}
+
+/* line 29, ../sass/_tc-board-group.scss */
+body.tincan.front .board-group h2 {
   background-color: #295c7a;
   margin: 0;
 }
-/* line 13, ../sass/_tc-board-group.scss */
-body.tincan .board-group h2 a {
+/* line 33, ../sass/_tc-board-group.scss */
+body.tincan.front .board-group h2 a {
   color: white;
   display: block;
   font-size: 1rem;
@@ -105,21 +117,28 @@ body.tincan .board-group h2 a {
   padding: 0.5rem 1rem 0.5rem 1rem;
   text-decoration: none;
 }
-/* line 23, ../sass/_tc-board-group.scss */
-body.tincan .board-group ul {
+/* line 43, ../sass/_tc-board-group.scss */
+body.tincan.front .board-group ul {
   margin: 0;
   list-style: none;
   padding: 0;
 }
-/* line 28, ../sass/_tc-board-group.scss */
-body.tincan .board-group ul li {
+/* line 48, ../sass/_tc-board-group.scss */
+body.tincan.front .board-group ul li {
   background-color: #f1f1f1;
   border-bottom: 2px solid #dddddd;
   padding: 1rem;
 }
-/* line 33, ../sass/_tc-board-group.scss */
-body.tincan .board-group ul li h3, body.tincan .board-group ul li p {
+/* line 53, ../sass/_tc-board-group.scss */
+body.tincan.front .board-group ul li h3, body.tincan.front .board-group ul li p {
   margin: 0 0.5rem 0 0.5rem;
+}
+
+/* line 9, ../sass/_tc-board.scss */
+body.tincan.board #content .thread-preview {
+  background-color: #f1f1f1;
+  border-bottom: 2px solid #dddddd;
+  padding: 1rem;
 }
 
 /* line 7, ../sass/_tc-footer.scss */
@@ -209,13 +228,4 @@ body.tincan .post .content {
 /* line 57, ../sass/_tc-post.scss */
 body.tincan .post:nth-child(even) {
   background-color: #eeeeee;
-}
-
-/* line 7, ../sass/_tc-thread.scss */
-body.tincan.thread h1.thread-header {
-  background-color: #295c7a;
-  color: white;
-  font-size: 2rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  text-align: left;
 }

@@ -10,4 +10,4 @@
   $page = $data['page'];
 ?>
 
-<h1><?=$page->page_title?></h1>
+<h1 class="section-header"><?=$page->page_title?></h1>

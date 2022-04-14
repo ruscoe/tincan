@@ -24,7 +24,7 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 $board = $db->load_object(new TCBoard(), $board_id);
 ?>
 
-<h1><?=$board->board_name?></h1>
+<h1 class="section-header"><?=$board->board_name?></h1>
 
 <?php
   // Show new thread link if user has permission to create a new thread.

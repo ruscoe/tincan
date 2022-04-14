@@ -1,3 +1,15 @@
 // Tin Can theme board style sheet.
 // @author Dan Ruscoe
 // @email danruscoe@protonmail.com
+
+body.tincan.board {
+
+  #content {
+
+    .thread-preview {
+      background-color: $section;
+      border-bottom: 2px solid $sectionBorder;
+      padding: 1rem;
+    }
+  }
+}

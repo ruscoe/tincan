@@ -15,7 +15,7 @@ $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
 
 ?>
 
-<h1><?=$board_group->board_group_name?></h1>
+<h1 class="section-header"><?=$board_group->board_group_name?></h1>
 
 <?php
 
@@ -39,9 +39,9 @@ $boards = $db->load_objects(new TCBoard(), array(), $conditions, $order);
 
 foreach ($boards as $board) {
     $data = array(
-    'board' => $board,
-    'url' => '/?page=' . $settings['page_board'] . '&amp;board=' . $board->board_id
-  );
+      'board' => $board,
+      'url' => '/?page=' . $settings['page_board'] . '&amp;board=' . $board->board_id
+    );
 
     TCTemplate::render('board-preview', $data);
 }

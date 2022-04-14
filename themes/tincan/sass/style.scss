@@ -95,19 +95,17 @@ ul.pagination {
 
 h1, h2, h3, p, li, th, td {
   color: $text;
+  text-align: left;
 }
 
-h1, h2, h3 {
-  clear: both;
-  color: $headerText;
-}
-
-h1 {
+h1.section-header {
+  background-color: $sectionHeader;
+  color: $sectionHeaderText;
   font-size: 2rem;
-  text-align: center;
+  padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-h2 {
+h2.section-subheader, h3.section-subheader {
   font-size: 1.5rem;
 }
 
