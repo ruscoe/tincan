@@ -17,32 +17,28 @@ require 'class-tc-json-response.php';
 
 $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
-$field_names = ['username', 'email', 'password'];
+$username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
+$email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING));
+// Don't trim password. Spaces are permitted anywhere in the password.
+$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
-$filtered_fields = [];
-$errors = [];
-
-foreach ($field_names as $name) {
-  if (isset($_POST[$name]) && !empty($_POST[$name])) {
-    $filtered_fields[$name] = filter_input(INPUT_POST, $name, FILTER_SANITIZE_STRING);
-  } else {
-    $errors[$name] = TCObject::ERR_EMPTY_FIELD;
-  }
-}
+// TODO: Validate username.
+// TODO: Validate email.
+// TODO: Validate password.
 
 $saved_user = null;
 
-if (empty($errors)) {
+if (empty($error)) {
   $db = new TCData();
 
   $settings = $db->load_settings();
 
   $user = new TCUser();
 
-  $user->username = $filtered_fields['username'];
-  $user->email = $filtered_fields['email'];
-  $user->password = $user->get_password_hash($filtered_fields['password']);
-  $user->role = $settings['default_user_role'];
+  $user->username = $username;
+  $user->email = $email;
+  $user->password = $user->get_password_hash($password);
+  $user->role_id = $settings['default_user_role'];
   $user->created_time = time();
   $user->updated_time = time();
 
@@ -51,10 +47,10 @@ if (empty($errors)) {
 
 // Verify user has been created.
 if (empty($saved_user)) {
-  $errors['username'] = TCObject::ERR_NOT_SAVED;
+  $error = TCObject::ERR_NOT_SAVED;
 }
 
-if (empty($errors)) {
+if (empty($error)) {
   // Successfully created account. Create the user's session.
   $session = new TCUserSession();
   $session->create_session($user);
@@ -63,18 +59,15 @@ if (empty($errors)) {
 if (!empty($ajax)) {
   $response = new TCJSONResponse();
 
-  $response->success = (empty($errors));
-  $response->errors = $errors;
+  $response->success = (empty($error));
+  $response->errors = [$error];
 
   exit($response->get_output());
 } else {
   $destination = '/index.php?page='.$settings['page_create_account'];
 
-  if (!empty($errors)) {
-    // TODO: Create a utility class for this.
-    foreach ($errors as $name => $value) {
-      $destination .= "&{$name}={$value}";
-    }
+  if (!empty($error)) {
+    $destination .= '&error=' . $error;
   }
 
   header('Location: '.$destination);

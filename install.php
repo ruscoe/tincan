@@ -139,10 +139,11 @@ function tc_create_settings()
         'required' => 1,
       ],
       [
+        // TODO: Create a select box setting type so role can be chosen by name.
         'setting_name' => 'default_user_role',
         'type' => 'text',
         'title' => 'Default user role',
-        'value' => 'user',
+        'value' => '1',
         'required' => 1,
       ],
       [
