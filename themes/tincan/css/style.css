@@ -42,18 +42,18 @@ body {
 }
 
 /* line 85, ../sass/style.scss */
-ul.navigation, ul.pagination {
+ul.navigation, ul.pagination, ul.post-controls {
   flex-direction: column;
   list-style: none;
   padding: 0;
 }
 /* line 92, ../sass/style.scss */
-ul.navigation li a, ul.pagination li a {
+ul.navigation li a, ul.pagination li a, ul.post-controls li a {
   padding: 1rem;
 }
 @media (min-width: 600px) {
   /* line 85, ../sass/style.scss */
-  ul.navigation, ul.pagination {
+  ul.navigation, ul.pagination, ul.post-controls {
     display: flex;
     flex-direction: row;
     flex-flow: row nowrap;
