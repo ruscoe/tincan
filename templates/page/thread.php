@@ -42,9 +42,9 @@ $offset = TCPagination::calculate_page_offset($start_at, $settings['posts_per_pa
 $posts = $db->load_objects(new TCPost(), [], $conditions, $order, $offset, $settings['posts_per_page']);
 
 foreach ($posts as $post) {
-  $post_author = $db->load_user($thread->updated_by_user);
+  $author = $db->load_user($thread->updated_by_user);
 
-  TCTemplate::render('post', ['post' => $post, 'user' => $post_author, 'settings' => $data['settings']]);
+  TCTemplate::render('post', ['post' => $post, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
 }
 
 $page_params = [

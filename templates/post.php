@@ -7,6 +7,7 @@
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
   $post = $data['post'];
+  $author = $data['author'];
   $user = $data['user'];
   $settings = $data['settings'];
 
@@ -15,14 +16,23 @@
 
 <div id="post-<?php echo $post->post_id; ?>" class="post">
   <div class="post-user">
-    <h3 class="username"><?php echo $user->username; ?></h3>
+    <h3 class="username"><?php echo $author->username; ?></h3>
     <div class="profile-image">
       <img src="/assets/images/default-profile.png" />
     </div>
-    <div class="joined">Joined: <?php echo date($settings['date_format'], $user->created_time); ?></div>
+    <div class="joined">Joined: <?php echo date($settings['date_format'], $author->created_time); ?></div>
   </div>
   <div class="post-content">
     <div class="date"><?php echo date($settings['date_time_format'], $post->created_time); ?></div>
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
+    <div class="post-controls">
+      <ul>
+        <?php if ($user->can_edit_post($post)) { ?>
+          <li><a href="#">Edit</a></li>
+        <?php } if ($user->can_delete_post($post)) { ?>
+          <li><a href="#">Delete</a></li>
+        <?php } ?>
+      </ul>
+    </div>
   </div>
 </div>

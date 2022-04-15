@@ -13,6 +13,10 @@ class TCUser extends TCObject
 {
   public const ACT_CREATE_POST = 'create-post';
   public const ACT_CREATE_THREAD = 'create-thread';
+  public const ACT_EDIT_ANY_POST = 'edit-any-post';
+  public const ACT_EDIT_ANY_THREAD = 'edit-any-thread';
+  public const ACT_DELETE_ANY_POST = 'delete-any-post';
+  public const ACT_DELETE_ANY_THREAD = 'delete-any-thread';
   public const ACT_ACCESS_ADMIN = 'access-admin';
 
   public const ERR_USER = 'nouser';
@@ -81,6 +85,62 @@ class TCUser extends TCObject
           return true;
         }
       }
+    }
+
+    return false;
+  }
+
+  // TODO
+  public function can_edit_thread(TCThread $thread) {
+
+  }
+
+  // TODO
+  public function can_delete_thread(TCThread $thread) {
+
+  }
+
+  /**
+   * Determines whether this user can edit a post.
+   *
+   * @since 0.04
+   *
+   * @param TCPost $post the post to check
+   *
+   * @return bool true if the user may edit the post
+   */
+  public function can_edit_post(TCPost $post) {
+    // Check for roles that can edit any post.
+    if ($this->can_perform_action($this->ACT_EDIT_ANY_POST)) {
+      return true;
+    }
+
+    // User can edit their own posts.
+    if ($post->user_id == $this->user_id) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Determines whether this user can delete a post.
+   *
+   * @since 0.04
+   *
+   * @param TCPost $post the post to check
+   *
+   * @return bool true if the user may delete the post
+   */
+  public function can_delete_post(TCPost $post) {
+    // Check for roles that can edit any post.
+    if ($this->can_perform_action($this->ACT_DELETE_ANY_POST)) {
+      return true;
+    }
+
+    // User can delete their own posts.
+    if ($post->user_id == $this->user_id) {
+      return true;
     }
 
     return false;
