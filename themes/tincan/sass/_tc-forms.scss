@@ -57,4 +57,19 @@ body.tincan {
     }
   }
 
+  .message-box {
+    background-color: $section;
+    border: 2px solid $sectionBorder;
+    margin: 0 auto 0 auto;
+    max-width: 400px;
+    margin-top: 3rem;
+
+    ul.errors {
+
+      li {
+        color: $errorText;
+      }
+    }
+  }
+
 }

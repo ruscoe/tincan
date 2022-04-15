@@ -31,24 +31,20 @@ $conditions = [
   ],
 ];
 
-$user = null;
+$error = null;
 
-$errors = [];
+$user = null;
 
 $user_results = $db->load_objects(new TCUser(), [], $conditions);
 if (!empty($user_results)) {
   $user = reset($user_results);
 }
 
-if (empty($user)) {
-  $errors['username'] = TCUser::ERR_NOT_FOUND;
+if (empty($user) || !$user->verify_password_hash($password, $user->password)) {
+  $error = TCUser::ERR_NOT_FOUND;
 }
 
-if (empty($errors) && !$user->verify_password_hash($password, $user->password)) {
-  $errors['password'] = TCUser::ERR_PASSWORD;
-}
-
-if (empty($errors)) {
+if (empty($error)) {
   // Successfully logged in. Create the user's session.
   $session = new TCUserSession();
   $session->create_session($user);
@@ -57,18 +53,15 @@ if (empty($errors)) {
 if (!empty($ajax)) {
   $response = new TCJSONResponse();
 
-  $response->success = (empty($errors));
-  $response->errors = $errors;
+  $response->success = (empty($error));
+  $response->error = $error;
 
   exit($response->get_output());
 } else {
   $destination = '/index.php?page='.$settings['page_log_in'];
 
-  if (!empty($errors)) {
-    // TODO: Create a utility class for this.
-    foreach ($errors as $name => $value) {
-      $destination .= "&{$name}={$value}";
-    }
+  if (!empty($error)) {
+    $destination .= '&error=' . $error;
   }
 
   header('Location: '.$destination);
