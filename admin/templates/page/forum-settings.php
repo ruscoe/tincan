@@ -2,15 +2,14 @@
 /**
  * Page template for forum settings.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
 $page = $data['page'];
 ?>
 
-<h1><?=$page->page_title?></h1>
+<h1><?php echo $page->page_title; ?></h1>
 
 <?php
 
@@ -26,15 +25,15 @@ $pages = $db->load_objects(new TCPage());
   <?php
 
   foreach ($settings as $setting) {
-      switch ($setting->type) {
+    switch ($setting->type) {
       case 'page':
-        TCAdminTemplate::render('table-row-settings-page', array('setting' => $setting, 'pages' => $pages));
+        TCAdminTemplate::render('table-row-settings-page', ['setting' => $setting, 'pages' => $pages]);
       break;
       case 'bool':
-        TCAdminTemplate::render('table-row-settings-bool', array('setting' => $setting));
+        TCAdminTemplate::render('table-row-settings-bool', ['setting' => $setting]);
       break;
       default:
-        TCAdminTemplate::render('table-row-settings-text', array('setting' => $setting));
+        TCAdminTemplate::render('table-row-settings-text', ['setting' => $setting]);
     }
   }
   ?>

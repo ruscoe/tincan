@@ -2,19 +2,18 @@
 /**
  * Tin Can update object handler.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
 require '../../tc-config.php';
 
-require TC_BASE_PATH . '/includes/include-db.php';
-require TC_BASE_PATH . '/includes/include-objects.php';
-require TC_BASE_PATH . '/includes/include-template.php';
-require TC_BASE_PATH . '/includes/include-user.php';
+require TC_BASE_PATH.'/includes/include-db.php';
+require TC_BASE_PATH.'/includes/include-objects.php';
+require TC_BASE_PATH.'/includes/include-template.php';
+require TC_BASE_PATH.'/includes/include-user.php';
 
-require TC_BASE_PATH . '/actions/class-tc-json-response.php';
+require TC_BASE_PATH.'/actions/class-tc-json-response.php';
 
 $object_type = filter_input(INPUT_POST, 'object_type', FILTER_SANITIZE_STRING);
 $object_id = filter_input(INPUT_POST, 'object_id', FILTER_SANITIZE_NUMBER_INT);
@@ -59,29 +58,29 @@ $error = false;
 $saved = false;
 
 if (empty($object)) {
-    $error = true;
+  $error = true;
 }
 
 $loaded_object = $db->load_object($object, $object_id);
 
 if (!$error && empty($loaded_object)) {
-    $error = true;
+  $error = true;
 }
 
 // Update object fields.
 $db_fields = $loaded_object->get_db_fields();
 
 foreach ($db_fields as $field) {
-    if (isset($_POST[$field])) {
-        $loaded_object->$field = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
-    }
+  if (isset($_POST[$field])) {
+    $loaded_object->$field = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
+  }
 }
 
 $loaded_object->updated_time = time();
 
 $updated_object = $db->save_object($loaded_object);
 
-$destination = '/admin/index.php?page=' . $page . '&object=' . $object_id . '&saved=' . (!$error);
+$destination = '/admin/index.php?page='.$page.'&object='.$object_id.'&saved='.(!$error);
 
-header('Location: ' . $destination);
+header('Location: '.$destination);
 exit;

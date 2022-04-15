@@ -2,15 +2,14 @@
 /**
  * Template used to display a settings table row for text settings.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
   $setting = $data['setting'];
 ?>
 
 <tr>
-  <td><?=$setting->title?></td>
-  <td><input type="text" name="<?=$setting->setting_name?>" value="<?=$setting->value?>" /></td>
+  <td><?php echo $setting->title; ?></td>
+  <td><input type="text" name="<?php echo $setting->setting_name; ?>" value="<?php echo $setting->value; ?>" /></td>
 </tr>

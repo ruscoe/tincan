@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Page template for admin dashboard.
  *
  * @package Tin Can Forum

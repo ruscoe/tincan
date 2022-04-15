@@ -2,8 +2,8 @@
 /**
  * Tin Can Code helper template.
  *
- * @package Tin Can Forum
  * @since 0.03
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 ?>

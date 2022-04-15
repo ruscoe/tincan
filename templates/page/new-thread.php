@@ -2,25 +2,24 @@
 /**
  * New thread page template.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
   $page = $data['page'];
   $settings = $data['settings'];
 
-  $field_names = array('thread_title', 'thread_post');
+  $field_names = ['thread_title', 'thread_post'];
 
-  $errors = array();
+  $errors = [];
 
   // If there are any URL parameters matching field names then the user has
   // been returned to this form due to a submission error.
   // Collect errors here.
   foreach ($field_names as $name) {
-      if (isset($_GET[$name])) {
-          $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
-      }
+    if (isset($_GET[$name])) {
+      $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
+    }
   }
 
   $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
@@ -35,22 +34,22 @@
 
   // Check user has permission to create a new thread.
   if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
-      ?>
+    ?>
 
   <div>
-    Please <a href="/?page=<?=$settings['page_log_in']?>">log in</a>
-    or <a href="/?page=<?=$settings['page_create_account']?>">create an account</a> if you'd like to do that!
+    Please <a href="/?page=<?php echo $settings['page_log_in']; ?>">log in</a>
+    or <a href="/?page=<?php echo $settings['page_create_account']; ?>">create an account</a> if you'd like to do that!
   </div>
 
 <?php
   } else {
-      $board = $db->load_object(new TCBoard(), $board_id); ?>
+    $board = $db->load_object(new TCBoard(), $board_id); ?>
 
-  <h1 class="section-header"><?=$page->page_title?></h1>
+  <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
   <?php
     if (!empty($errors)) {
-        TCTemplate::render('form-errors', array('errors' => array_values($errors)));
+      TCTemplate::render('form-errors', ['errors' => array_values($errors)]);
     } ?>
 
   <form id="create-thread" action="/actions/create-thread.php" method="POST">
@@ -68,7 +67,7 @@
       </div>
     </div>
 
-    <input type="hidden" name="board_id" value="<?=$board->board_id?>" />
+    <input type="hidden" name="board_id" value="<?php echo $board->board_id; ?>" />
     <input type="hidden" name="ajax" value="" />
 
     <div class="fieldset button">

@@ -2,39 +2,38 @@
 /**
  * Page template for admin board list.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
 $page = $data['page'];
 $settings = $data['settings'];
 ?>
 
-<h1><?=$page->page_title?></h1>
+<h1><?php echo $page->page_title; ?></h1>
 
 <?php
 
 $db = new TCData();
 
 // TODO: Sorting and pagination.
-$conditions = array();
-$order = array();
+$conditions = [];
+$order = [];
 
-$boards = $db->load_objects(new TCBoard(), array(), $conditions, $order);
+$boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
 ?>
 
 <table>
 <?php
 foreach ($boards as $board) {
-    $data = array(
+  $data = [
     'title' => $board->board_name,
     'object_id' => $board->board_id,
     'view_page_id' => $settings['page_board'],
-    'edit_page_id' => $settings['admin_page_edit_board']
-  );
+    'edit_page_id' => $settings['admin_page_edit_board'],
+  ];
 
-    TCAdminTemplate::render('table-row', $data);
+  TCAdminTemplate::render('table-row', $data);
 }
 ?>
 </table>

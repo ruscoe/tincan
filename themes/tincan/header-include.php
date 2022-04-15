@@ -2,12 +2,12 @@
 /**
  * Renders the contents of the page <header> tag.
  *
- * @package Tin Can Forum
  * @since 0.03
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 ?>
 
-<?php if ($settings['enable_css'] == 'true') { ?>
+<?php if ('true' == $settings['enable_css']) { ?>
   <link href="/themes/tincan/css/style.css" rel="stylesheet">
 <?php } ?>

@@ -2,15 +2,14 @@
 /**
  * Board preview template.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
   $board = $data['board'];
 ?>
 
-<div id="board-<?=$board->board_id?>" class="board-preview">
-  <h2 class="section-subheader"><a href="<?=$data['url']?>"><?=$board->board_name?></a></h2>
-  <p><?=$board->description?></p>
+<div id="board-<?php echo $board->board_id; ?>" class="board-preview">
+  <h2 class="section-subheader"><a href="<?php echo $data['url']; ?>"><?php echo $board->board_name; ?></a></h2>
+  <p><?php echo $board->description; ?></p>
 </div>

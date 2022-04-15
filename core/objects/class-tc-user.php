@@ -2,8 +2,8 @@
 /**
  * Represents a forum user.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
@@ -11,143 +11,141 @@ use TCRole;
 
 class TCUser extends TCObject
 {
-    public const ACT_CREATE_POST = 'create-post';
-    public const ACT_CREATE_THREAD = 'create-thread';
-    public const ACT_ACCESS_ADMIN = 'access-admin';
+  public const ACT_CREATE_POST = 'create-post';
+  public const ACT_CREATE_THREAD = 'create-thread';
+  public const ACT_ACCESS_ADMIN = 'access-admin';
 
-    public const ERR_USER = 'nouser';
-    public const ERR_PASSWORD = 'nopass';
-    public const ERR_ALREADY_EXISTS = 'exists';
-    public const ERR_NOT_AUTHORIZED = 'auth';
+  public const ERR_USER = 'nouser';
+  public const ERR_PASSWORD = 'nopass';
+  public const ERR_ALREADY_EXISTS = 'exists';
+  public const ERR_NOT_AUTHORIZED = 'auth';
 
-    /**
-     * @since 0.01
-     */
-    public $user_id;
+  /**
+   * @since 0.01
+   */
+  public $user_id;
 
-    /**
-     * @since 0.01
-     */
-    protected $username;
+  /**
+   * @since 0.01
+   */
+  protected $username;
 
-    /**
-     * @since 0.01
-     */
-    protected $email;
+  /**
+   * @since 0.01
+   */
+  protected $email;
 
-    /**
-     * @since 0.01
-     */
-    protected $password;
+  /**
+   * @since 0.01
+   */
+  protected $password;
 
-    /**
-     * Reference to TCRole::$role_id
-     *
-     * @since 0.02
-     */
-    protected $role_id;
+  /**
+   * Reference to TCRole::$role_id.
+   *
+   * @since 0.02
+   */
+  protected $role_id;
 
-    /**
-     * @since 0.01
-     */
-    protected $created_time;
+  /**
+   * @since 0.01
+   */
+  protected $created_time;
 
-    /**
-     * @since 0.01
-     */
-    protected $updated_time;
+  /**
+   * @since 0.01
+   */
+  protected $updated_time;
 
-    /**
-     * @since 0.02
-     */
-    protected TCRole $role;
+  /**
+   * @since 0.02
+   */
+  protected TCRole $role;
 
-    /**
-     * Determines whether this user can perform an action based on their role.
-     *
-     * @since 0.02
-     *
-     * @param string $action one of the ACT_* constants in this class
-     *
-     * @return bool true if the user may perform the action
-     */
-    public function can_perform_action($action)
-    {
-        if (!empty($this->role)) {
-            $allowed_actions = explode(',', $this->role->allowed_actions);
+  /**
+   * Determines whether this user can perform an action based on their role.
+   *
+   * @since 0.02
+   *
+   * @param string $action one of the ACT_* constants in this class
+   *
+   * @return bool true if the user may perform the action
+   */
+  public function can_perform_action($action)
+  {
+    if (!empty($this->role)) {
+      $allowed_actions = explode(',', $this->role->allowed_actions);
 
-            foreach ($allowed_actions as $allowed_action) {
-                if ($action == $allowed_action) {
-                    return true;
-                }
-            }
+      foreach ($allowed_actions as $allowed_action) {
+        if ($action == $allowed_action) {
+          return true;
         }
-
-        return false;
+      }
     }
 
-    /**
-     * Converts a password to a hash for security.
-     *
-     * @since 0.01
-     *
-     * @param string $password to password to hash
-     * @return string the password hash
-     */
-    public function get_password_hash($password)
-    {
-        return password_hash($password, PASSWORD_DEFAULT);
-    }
+    return false;
+  }
 
-    /**
-     * Validates a password against a password hash.
-     *
-     * @since 0.01
-     *
-     * @param string $password the password to test
-     * @param string $hash the password hash to test against
-     *
-     * @return bool true if the password and hash match
-     */
-    public function verify_password_hash($password, $hash)
-    {
-        return password_verify($password, $hash);
-    }
+  /**
+   * Converts a password to a hash for security.
+   *
+   * @since 0.01
+   *
+   * @param string $password to password to hash
+   *
+   * @return string the password hash
+   */
+  public function get_password_hash($password)
+  {
+    return password_hash($password, PASSWORD_DEFAULT);
+  }
 
-    /**
-     * @see TCObject::get_primary_key()
-     *
-     * @since 0.01
-     */
-    public function get_primary_key()
-    {
-        return 'user_id';
-    }
+  /**
+   * Validates a password against a password hash.
+   *
+   * @since 0.01
+   *
+   * @param string $password the password to test
+   * @param string $hash     the password hash to test against
+   *
+   * @return bool true if the password and hash match
+   */
+  public function verify_password_hash($password, $hash)
+  {
+    return password_verify($password, $hash);
+  }
 
-    /**
-     * @see TCObject::get_db_table()
-     *
-     * @since 0.01
-     */
-    public function get_db_table()
-    {
-        return 'tc_users';
-    }
+  /**
+   * @see TCObject::get_primary_key()
+   * @since 0.01
+   */
+  public function get_primary_key()
+  {
+    return 'user_id';
+  }
 
-    /**
-     * @see TCObject::get_db_fields()
-     *
-     * @since 0.01
-     */
-    public function get_db_fields()
-    {
-        return array(
+  /**
+   * @see TCObject::get_db_table()
+   * @since 0.01
+   */
+  public function get_db_table()
+  {
+    return 'tc_users';
+  }
+
+  /**
+   * @see TCObject::get_db_fields()
+   * @since 0.01
+   */
+  public function get_db_fields()
+  {
+    return [
           'username',
           'email',
           'password',
           'role_id',
           'created_time',
-          'updated_time'
-        );
-    }
+          'updated_time',
+        ];
+  }
 }

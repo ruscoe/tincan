@@ -2,18 +2,17 @@
 /**
  * Forum entry point.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
 require 'tc-config.php';
 
-require TC_BASE_PATH . '/includes/include-db.php';
-require TC_BASE_PATH . '/includes/include-objects.php';
-require TC_BASE_PATH . '/includes/include-content.php';
-require TC_BASE_PATH . '/includes/include-template.php';
-require TC_BASE_PATH . '/includes/include-user.php';
+require TC_BASE_PATH.'/includes/include-db.php';
+require TC_BASE_PATH.'/includes/include-objects.php';
+require TC_BASE_PATH.'/includes/include-content.php';
+require TC_BASE_PATH.'/includes/include-template.php';
+require TC_BASE_PATH.'/includes/include-user.php';
 
 $db = new TCData();
 
@@ -30,15 +29,15 @@ $page = null;
 
 // Get page template if available, otherwise default to front page.
 if (!empty($page_id)) {
-    $page = $db->load_object(new TCPage(), $page_id);
+  $page = $db->load_object(new TCPage(), $page_id);
 
-    $page_template = (!empty($page)) ? $page->template : '404';
+  $page_template = (!empty($page)) ? $page->template : '404';
 } else {
-    $page_template = 'front';
+  $page_template = 'front';
 }
 
-TCTemplate::render('header', array('page_template' => $page_template, 'settings' => $settings, 'user' => $user));
+TCTemplate::render('header', ['page_template' => $page_template, 'settings' => $settings, 'user' => $user]);
 
-TCTemplate::render('page/' . $page_template, array('page' => $page, 'settings' => $settings));
+TCTemplate::render('page/'.$page_template, ['page' => $page, 'settings' => $settings]);
 
 TCTemplate::render('footer', null);

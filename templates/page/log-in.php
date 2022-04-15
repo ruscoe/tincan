@@ -2,32 +2,31 @@
 /**
  * Log in page template.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
   $page = $data['page'];
 
-  $field_names = array('username', 'password');
+  $field_names = ['username', 'password'];
 
-  $errors = array();
+  $errors = [];
 
   // If there are any URL parameters matching field names then the user has
   // been returned to this form due to a submission error.
   // Collect errors here.
   foreach ($field_names as $name) {
-      if (isset($_GET[$name])) {
-          $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
-      }
+    if (isset($_GET[$name])) {
+      $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
+    }
   }
 ?>
 
-<h1 class="section-header"><?=$page->page_title?></h1>
+<h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
 <?php
   if (!empty($errors)) {
-      TCTemplate::render('form-errors', array('errors' => array_values($errors)));
+    TCTemplate::render('form-errors', ['errors' => array_values($errors)]);
   }
 ?>
 

@@ -2,17 +2,16 @@
 /**
  * Tin Can log out handler.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
 require '../tc-config.php';
 
-require TC_BASE_PATH . '/includes/include-db.php';
-require TC_BASE_PATH . '/includes/include-objects.php';
-require TC_BASE_PATH . '/includes/include-template.php';
-require TC_BASE_PATH . '/includes/include-user.php';
+require TC_BASE_PATH.'/includes/include-db.php';
+require TC_BASE_PATH.'/includes/include-objects.php';
+require TC_BASE_PATH.'/includes/include-template.php';
+require TC_BASE_PATH.'/includes/include-user.php';
 
 require 'class-tc-json-response.php';
 

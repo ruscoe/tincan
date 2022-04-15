@@ -2,15 +2,14 @@
 /**
  * Tin Can save settings handler.
  *
- * @package Tin Can Forum
  * @since 0.01
+ *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
 require '../../tc-config.php';
 
-require TC_BASE_PATH . '/includes/include-db.php';
-require TC_BASE_PATH . '/includes/include-objects.php';
+require TC_BASE_PATH.'/includes/include-db.php';
+require TC_BASE_PATH.'/includes/include-objects.php';
 
 $submitted_fields = $_POST;
 
@@ -20,40 +19,40 @@ $db = new TCData();
 // An unchecked box results in no value for that field. This means we don't
 // know the setting has changed.
 // To work around this, empty values for missing boolean settings are set here.
-$conditions = array(array('field' => 'type', 'value' => 'bool'));
-$bool_settings = $db->load_objects(new TCSetting(), array(), $conditions);
+$conditions = [['field' => 'type', 'value' => 'bool']];
+$bool_settings = $db->load_objects(new TCSetting(), [], $conditions);
 
 foreach ($bool_settings as $setting) {
-    if (!isset($submitted_fields[$setting->setting_name])) {
-        $submitted_fields[$setting->setting_name] = null;
-    }
+  if (!isset($submitted_fields[$setting->setting_name])) {
+    $submitted_fields[$setting->setting_name] = null;
+  }
 }
 
 foreach ($submitted_fields as $field_name => $field_value) {
-    $conditions = array(
-      array(
+  $conditions = [
+      [
         'field' => 'setting_name',
-        'value' => $field_name
-      )
-    );
+        'value' => $field_name,
+      ],
+    ];
 
-    $setting = null;
+  $setting = null;
 
-    $setting_results = $db->load_objects(new TCSetting(), array(), $conditions);
-    if (!empty($setting_results)) {
-        $setting = reset($setting_results);
-    }
+  $setting_results = $db->load_objects(new TCSetting(), [], $conditions);
+  if (!empty($setting_results)) {
+    $setting = reset($setting_results);
+  }
 
-    if (!empty($setting)) {
-        switch ($setting->type) {
+  if (!empty($setting)) {
+    switch ($setting->type) {
         case 'bool':
         $checked = filter_var($field_value, FILTER_SANITIZE_STRING);
-        $setting->value = ($checked === 'on') ? 'true' : 'false';
+        $setting->value = ('on' === $checked) ? 'true' : 'false';
         $db->save_object($setting);
         break;
         default:
         $setting->value = filter_var($field_value, FILTER_SANITIZE_STRING);
         $db->save_object($setting);
       }
-    }
+  }
 }
