@@ -244,4 +244,23 @@ class TCData
 
     return (!empty($row)) ? $row->count : 0;
   }
+
+  /**
+   * @since 0.04
+   */
+  public function delete_object($class, $id)
+  {
+    $db_table = $class->get_db_table();
+    $primary_key = $class->get_primary_key();
+
+    $query = "DELETE FROM `{$db_table}` WHERE `{$primary_key}` = {$id}";
+
+    $this->database->open_connection();
+
+    $result = $this->database->query($query);
+
+    $this->database->close_connection();
+
+    return $result;
+  }
 }

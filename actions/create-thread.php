@@ -10,6 +10,7 @@ require '../tc-config.php';
 
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
+require TC_BASE_PATH.'/includes/include-content.php';
 require TC_BASE_PATH.'/includes/include-template.php';
 require TC_BASE_PATH.'/includes/include-user.php';
 
@@ -35,17 +36,34 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
 
 // Check this thread can be created in the given board.
 if (empty($errors)) {
-  $board = $db->load_object(new TCBoard(), $board_id);
+  $board = (!empty($board_id)) ? $db->load_object(new TCBoard(), $board_id) : null;
 
   if (empty($board)) {
+    // Board doesn't exist.
     $errors['board'] = TCObject::ERR_NOT_SAVED;
   }
+}
+
+$settings = $db->load_settings();
+
+// Validate thread title.
+$thread_title = trim($thread_title);
+
+if (empty($thread_title) || (strlen($thread_title) < $settings['min_thread_title'])) {
+  $errors['thread'] = TCObject::ERR_NOT_SAVED;
+}
+
+// Validate post content.
+$post_sanitizer = new TCPostSanitizer();
+$post_content = $post_sanitizer->sanitize_post($post_content);
+
+if (empty($post_content)) {
+  $errors['post'] = TCObject::ERR_NOT_SAVED;
 }
 
 $new_thread = null;
 
 if (empty($errors)) {
-  // TODO: Thread validation.
   $thread = new TCThread();
   $thread->board_id = $board_id;
   $thread->thread_title = $thread_title;
@@ -58,7 +76,6 @@ if (empty($errors)) {
 
   if (!empty($new_thread)) {
     // Create the thread's initial post.
-    // TODO: Validate post content.
     $post = new TCPost();
     $post->user_id = $user->user_id;
     $post->thread_id = $new_thread->thread_id;
@@ -68,7 +85,11 @@ if (empty($errors)) {
 
     $new_post = $db->save_object($post);
 
-    // TODO: Delete thread and exit with error if post cannot be created.
+    // Delete thread and exit with error if post cannot be created.
+    if (empty($new_post)) {
+      $errors['thread'] = TCObject::ERR_NOT_SAVED;
+      $db->delete_object($thread, $thread->thread_id);
+    }
   }
 }
 
@@ -80,8 +101,6 @@ if (!empty($ajax)) {
 
   exit($response->get_output());
 } else {
-  $settings = $db->load_settings();
-
   $destination = '/index.php';
 
   if (empty($errors)) {

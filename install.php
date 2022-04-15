@@ -118,6 +118,13 @@ function tc_create_settings()
         'required' => 1,
       ],
       [
+        'setting_name' => 'min_thread_title',
+        'type' => 'text',
+        'title' => 'Minimum thread title length',
+        'value' => '8',
+        'required' => 1,
+      ],
+      [
         'setting_name' => 'posts_per_page',
         'type' => 'text',
         'title' => 'Posts per page',
