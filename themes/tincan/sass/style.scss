@@ -59,15 +59,33 @@ body {
   font-family: $openSansRegular, serif;
 }
 
+#header {
+
+  h1 {
+    padding-top: 3rem;
+    text-align: center;
+  }
+}
+
 #content {
   margin: 0 2rem 0 2rem;
+  padding-top: 1rem;
+}
+
+#footer {
+  padding: 3rem 0 3rem 0;
 }
 
 /* Navigation */
 
+#main-navigation {
+  margin-left: 1rem;
+}
+
 ul.navigation, ul.pagination {
   flex-direction: column;
   list-style: none;
+  padding: 0;
 
   li {
 
@@ -79,7 +97,7 @@ ul.navigation, ul.pagination {
   @include for-tablet-portrait-up {
     display: flex;
     flex-direction: row;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: flex-start;
   }
 }
@@ -102,11 +120,13 @@ h1.section-header {
   background-color: $sectionHeader;
   color: $sectionHeaderText;
   font-size: 2rem;
+  margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
 h2.section-subheader, h3.section-subheader {
   font-size: 1.5rem;
+  margin: 0 0.5rem 0 0.5rem;
 }
 
 /* Links */

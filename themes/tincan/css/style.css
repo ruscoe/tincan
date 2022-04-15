@@ -18,71 +18,91 @@ body {
   font-family: "OpenSans-Regular", serif;
 }
 
-/* line 62, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
+#header h1 {
+  padding-top: 3rem;
+  text-align: center;
+}
+
+/* line 70, ../sass/style.scss */
 #content {
   margin: 0 2rem 0 2rem;
+  padding-top: 1rem;
+}
+
+/* line 75, ../sass/style.scss */
+#footer {
+  padding: 3rem 0 3rem 0;
 }
 
 /* Navigation */
-/* line 68, ../sass/style.scss */
+/* line 81, ../sass/style.scss */
+#main-navigation {
+  margin-left: 1rem;
+}
+
+/* line 85, ../sass/style.scss */
 ul.navigation, ul.pagination {
   flex-direction: column;
   list-style: none;
+  padding: 0;
 }
-/* line 74, ../sass/style.scss */
+/* line 92, ../sass/style.scss */
 ul.navigation li a, ul.pagination li a {
   padding: 1rem;
 }
 @media (min-width: 600px) {
-  /* line 68, ../sass/style.scss */
+  /* line 85, ../sass/style.scss */
   ul.navigation, ul.pagination {
     display: flex;
     flex-direction: row;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: flex-start;
   }
 }
 
 @media (min-width: 600px) {
-  /* line 87, ../sass/style.scss */
+  /* line 105, ../sass/style.scss */
   ul.pagination {
     justify-content: center;
   }
 }
 
 /* Text */
-/* line 96, ../sass/style.scss */
+/* line 114, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
   text-align: left;
 }
 
-/* line 101, ../sass/style.scss */
+/* line 119, ../sass/style.scss */
 h1.section-header {
   background-color: #295c7a;
   color: white;
   font-size: 2rem;
+  margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-/* line 108, ../sass/style.scss */
+/* line 127, ../sass/style.scss */
 h2.section-subheader, h3.section-subheader {
   font-size: 1.5rem;
+  margin: 0 0.5rem 0 0.5rem;
 }
 
 /* Links */
-/* line 114, ../sass/style.scss */
+/* line 134, ../sass/style.scss */
 a:link {
   color: #123266;
   text-decoration: underline;
 }
 
-/* line 119, ../sass/style.scss */
+/* line 139, ../sass/style.scss */
 a:visited {
   color: #123266;
 }
 
-/* line 123, ../sass/style.scss */
+/* line 143, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
 }
@@ -140,6 +160,10 @@ body.tincan.board #content .thread-preview {
   border-bottom: 2px solid #dddddd;
   padding: 1rem;
 }
+/* line 14, ../sass/_tc-board.scss */
+body.tincan.board #content .thread-preview h2, body.tincan.board #content .thread-preview span.thread-meta {
+  margin: 0 0.5rem 0 0.5rem;
+}
 
 /* line 7, ../sass/_tc-footer.scss */
 body.tincan #footer {
@@ -152,21 +176,27 @@ body.tincan form#create-account, body.tincan form#log-in {
   display: flex;
   flex-direction: column;
   margin: 0 auto 0 auto;
+  padding-top: 3rem;
   width: 400px;
 }
-/* line 19, ../sass/_tc-forms.scss */
+/* line 20, ../sass/_tc-forms.scss */
 body.tincan form#create-account .fieldset, body.tincan form#log-in .fieldset {
   display: flex;
   flex: 1;
   margin: 0.5rem 0 0.5rem 0;
 }
-/* line 25, ../sass/_tc-forms.scss */
+/* line 26, ../sass/_tc-forms.scss */
+body.tincan form#create-account .fieldset.button, body.tincan form#log-in .fieldset.button {
+  padding-top: 1rem;
+  justify-content: flex-end;
+}
+/* line 31, ../sass/_tc-forms.scss */
 body.tincan form#create-account .field, body.tincan form#log-in .field {
   background-color: #f1f1f1;
   flex: 1.5;
   padding: 0.25rem;
 }
-/* line 31, ../sass/_tc-forms.scss */
+/* line 37, ../sass/_tc-forms.scss */
 body.tincan form#create-account label, body.tincan form#log-in label {
   background-color: #295c7a;
   color: white;
@@ -174,7 +204,7 @@ body.tincan form#create-account label, body.tincan form#log-in label {
   flex: 1;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
-/* line 39, ../sass/_tc-forms.scss */
+/* line 45, ../sass/_tc-forms.scss */
 body.tincan form#create-account input.text-input, body.tincan form#log-in input.text-input {
   width: 100%;
 }
@@ -202,30 +232,31 @@ body.tincan .post .post-user h3.username {
   font-size: 1.25rem;
   color: white;
   margin: 0;
+  text-align: center;
 }
-/* line 33, ../sass/_tc-post.scss */
+/* line 34, ../sass/_tc-post.scss */
 body.tincan .post .post-user .profile-image {
   padding: 1rem;
 }
-/* line 36, ../sass/_tc-post.scss */
+/* line 37, ../sass/_tc-post.scss */
 body.tincan .post .post-user .profile-image img {
   height: 120px;
   margin: 0 1rem 0 1rem;
   width: 120px;
 }
-/* line 44, ../sass/_tc-post.scss */
+/* line 45, ../sass/_tc-post.scss */
 body.tincan .post .post-content {
   flex: 1 100%;
 }
-/* line 48, ../sass/_tc-post.scss */
+/* line 49, ../sass/_tc-post.scss */
 body.tincan .post .date {
   padding: 0.5rem 1rem 0 1rem;
 }
-/* line 52, ../sass/_tc-post.scss */
+/* line 53, ../sass/_tc-post.scss */
 body.tincan .post .content {
   padding: 1rem;
 }
-/* line 57, ../sass/_tc-post.scss */
+/* line 58, ../sass/_tc-post.scss */
 body.tincan .post:nth-child(even) {
   background-color: #eeeeee;
 }

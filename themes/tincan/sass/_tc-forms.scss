@@ -14,12 +14,18 @@ body.tincan {
     display: flex;
     flex-direction: column;
     margin: 0 auto 0 auto;
+    padding-top: 3rem;
     width: 400px;
 
     .fieldset {
       display: flex;
       flex: 1;
       margin: 0.5rem 0 0.5rem 0;
+    }
+
+    .fieldset.button {
+      padding-top: 1rem;
+      justify-content: flex-end;
     }
 
     .field {
