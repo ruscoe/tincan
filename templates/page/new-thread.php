@@ -46,23 +46,34 @@
   } else {
       $board = $db->load_object(new TCBoard(), $board_id); ?>
 
-  <h1><?=$page->page_title?></h1>
+  <h1 class="section-header"><?=$page->page_title?></h1>
 
   <?php
     if (!empty($errors)) {
         TCTemplate::render('form-errors', array('errors' => array_values($errors)));
     } ?>
 
-  <form action="/actions/create-thread.php" method="POST">
-    <label for="thread_title">Thread Title</label>
-    <input type="text" name="thread_title" />
+  <form id="create-thread" action="/actions/create-thread.php" method="POST">
+    <div class="fieldset">
+      <label for="thread_title">Thread Title</label>
+      <div class="field">
+        <input class="text-input" type="text" name="thread_title" />
+      </div>
+    </div>
 
-    <label for="post_content">Thread Content</label>
-    <textarea name="post_content" rows="20" cols="30"></textarea>
+    <div class="fieldset">
+      <label for="post_content">Thread Content</label>
+      <div class="field">
+        <textarea name="post_content" rows="10" cols="50"></textarea>
+      </div>
+    </div>
 
     <input type="hidden" name="board_id" value="<?=$board->board_id?>" />
     <input type="hidden" name="ajax" value="" />
-    <input type="submit" name="submit_thread" value="Submit thread" />
+
+    <div class="fieldset button">
+      <input type="submit" name="submit_thread" value="Submit thread" />
+    </div>
   </form>
 
 <?php

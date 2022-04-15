@@ -11,11 +11,21 @@ $formFieldLabelText: #FFFFFF;
 body.tincan {
 
   form#create-account, form#log-in {
+    width: 400px;
+  }
+
+  form#create-thread, form#post-reply {
+
+    textarea {
+      width: 100%;
+    }
+  }
+
+  form#create-account, form#log-in, form#create-thread, form#post-reply {
     display: flex;
     flex-direction: column;
     margin: 0 auto 0 auto;
     padding-top: 3rem;
-    width: 400px;
 
     .fieldset {
       display: flex;

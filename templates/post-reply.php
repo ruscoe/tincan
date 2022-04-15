@@ -27,13 +27,18 @@
   }
 ?>
 
-<form action="/actions/create-post.php" method="POST">
-  <label for="thread_title">Reply Content</label>
-  <textarea name="post_content" rows="20" cols="30"></textarea>
+<form id="post-reply" action="/actions/create-post.php" method="POST">
+  <div class="fieldset">
+    <label for="thread_title">Reply Content</label>
+    <textarea name="post_content" rows="20" cols="30"></textarea>
+  </div>
 
   <input type="hidden" name="thread_id" value="<?=$thread->thread_id?>" />
   <input type="hidden" name="ajax" value="" />
-  <input type="submit" name="submit_post" value="Submit reply" />
+
+  <div class="fieldset button">
+    <input type="submit" name="submit_post" value="Submit reply" />
+  </div>
 </form>
 
 <?php
