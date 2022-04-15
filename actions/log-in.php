@@ -54,7 +54,7 @@ if (!empty($ajax)) {
   $response = new TCJSONResponse();
 
   $response->success = (empty($error));
-  $response->error = $error;
+  $response->errors = [$error];
 
   exit($response->get_output());
 } else {
