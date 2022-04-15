@@ -10,6 +10,7 @@ require '../tc-config.php';
 
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
+require TC_BASE_PATH.'/includes/include-content.php';
 require TC_BASE_PATH.'/includes/include-template.php';
 require TC_BASE_PATH.'/includes/include-user.php';
 
@@ -36,13 +37,20 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_POST)) {
 if (empty($errors)) {
   $thread = $db->load_object(new TCThread(), $thread_id);
 
-  // TODO: Thread validation.
+  // Validate thread.
   if (empty($thread)) {
     $errors['thread'] = TCObject::ERR_NOT_SAVED;
   }
 }
 
-// TODO: Validate post content.
+// Validate post content.
+$post_sanitizer = new TCPostSanitizer();
+$post_content = $post_sanitizer->sanitize_post($post_content);
+
+if (empty($post_content)) {
+  $errors['post'] = TCObject::ERR_NOT_SAVED;
+}
+
 $new_post = null;
 
 if (empty($errors)) {
