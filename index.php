@@ -38,6 +38,6 @@ if (!empty($page_id)) {
 
 TCTemplate::render('header', ['page_template' => $page_template, 'settings' => $settings, 'user' => $user]);
 
-TCTemplate::render('page/'.$page_template, ['page' => $page, 'settings' => $settings]);
+TCTemplate::render('page/'.$page_template, ['page' => $page, 'settings' => $settings, 'user' => $user]);
 
 TCTemplate::render('footer', null);

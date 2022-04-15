@@ -8,6 +8,7 @@
  */
   $page = $data['page'];
   $settings = $data['settings'];
+  $user = $data['user'];
 
   $field_names = ['thread_title', 'thread_post'];
 
@@ -25,12 +26,6 @@
   $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
 
   $db = new TCData();
-
-  // Get logged in user.
-  $session = new TCUserSession();
-  $session->start_session();
-  $user_id = $session->get_user_id();
-  $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
   // Check user has permission to create a new thread.
   if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {

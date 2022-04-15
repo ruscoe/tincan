@@ -11,14 +11,9 @@ $start_at = filter_input(INPUT_GET, 'start_at', FILTER_SANITIZE_NUMBER_INT);
 
 $page = $data['page'];
 $settings = $data['settings'];
+$user = $data['user'];
 
 $db = new TCData();
-
-// Get logged in user.
-$session = new TCUserSession();
-$session->start_session();
-$user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 $thread = $db->load_object(new TCThread(), $thread_id);
 ?>
