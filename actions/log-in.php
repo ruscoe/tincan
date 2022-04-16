@@ -61,7 +61,7 @@ if (!empty($ajax)) {
   $destination = '/index.php?page='.$settings['page_log_in'];
 
   if (!empty($error)) {
-    $destination .= '&error=' . $error;
+    $destination .= '&error='.$error;
   }
 
   header('Location: '.$destination);

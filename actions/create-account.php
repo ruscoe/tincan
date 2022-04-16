@@ -41,6 +41,23 @@ if (empty($error) && !$user->validate_password($password)) {
   $error = TCUser::ERR_PASSWORD;
 }
 
+// Check for existing username / email.
+if (empty($error)) {
+  $existing_user = $db->load_objects($user, [], [['field' => 'username', 'value' => $username]]);
+
+  if (!empty($existing_user)) {
+    $error = TCUser::ERR_USERNAME_EXISTS;
+  }
+}
+
+if (empty($error)) {
+  $existing_user = $db->load_objects($user, [], [['field' => 'email', 'value' => $email]]);
+
+  if (!empty($existing_user)) {
+    $error = TCUser::ERR_EMAIL_EXISTS;
+  }
+}
+
 $saved_user = null;
 
 if (empty($error)) {
@@ -52,11 +69,11 @@ if (empty($error)) {
   $user->updated_time = time();
 
   $saved_user = $db->save_object($user);
-}
 
-// Verify user has been created.
-if (empty($saved_user)) {
-  $error = TCObject::ERR_NOT_SAVED;
+  // Verify user has been created.
+  if (empty($saved_user)) {
+    $error = TCObject::ERR_NOT_SAVED;
+  }
 }
 
 if (empty($error)) {
@@ -76,7 +93,7 @@ if (!empty($ajax)) {
   $destination = '/index.php?page='.$settings['page_create_account'];
 
   if (!empty($error)) {
-    $destination .= '&error=' . $error;
+    $destination .= '&error='.$error;
   }
 
   header('Location: '.$destination);

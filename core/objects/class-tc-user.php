@@ -22,7 +22,8 @@ class TCUser extends TCObject
   public const ERR_USER = 'user';
   public const ERR_EMAIL = 'email';
   public const ERR_PASSWORD = 'pass';
-  public const ERR_ALREADY_EXISTS = 'exists';
+  public const ERR_USERNAME_EXISTS = 'username-exists';
+  public const ERR_EMAIL_EXISTS = 'email-exists';
   public const ERR_NOT_AUTHORIZED = 'auth';
 
   public const MIN_PASSWORD_LENGTH = 8;
@@ -95,13 +96,13 @@ class TCUser extends TCObject
   }
 
   // TODO
-  public function can_edit_thread(TCThread $thread) {
-
+  public function can_edit_thread(TCThread $thread)
+  {
   }
 
   // TODO
-  public function can_delete_thread(TCThread $thread) {
-
+  public function can_delete_thread(TCThread $thread)
+  {
   }
 
   /**
@@ -113,9 +114,10 @@ class TCUser extends TCObject
    *
    * @return bool true if the user may edit the post
    */
-  public function can_edit_post(TCPost $post) {
+  public function can_edit_post(TCPost $post)
+  {
     // Check for roles that can edit any post.
-    if ($this->can_perform_action($this->ACT_EDIT_ANY_POST)) {
+    if ($this->can_perform_action(self::ACT_EDIT_ANY_POST)) {
       return true;
     }
 
@@ -136,9 +138,10 @@ class TCUser extends TCObject
    *
    * @return bool true if the user may delete the post
    */
-  public function can_delete_post(TCPost $post) {
+  public function can_delete_post(TCPost $post)
+  {
     // Check for roles that can edit any post.
-    if ($this->can_perform_action($this->ACT_DELETE_ANY_POST)) {
+    if ($this->can_perform_action(self::ACT_DELETE_ANY_POST)) {
       return true;
     }
 
@@ -180,12 +183,13 @@ class TCUser extends TCObject
   }
 
   /**
-   * TODO:
+   * TODO:.
    *
    * @since 0.04
    */
-  public function validate_username($username) {
-    if (strlen($username) < $this->MIN_USERNAME_LENGTH) {
+  public function validate_username($username)
+  {
+    if (strlen($username) < self::MIN_USERNAME_LENGTH) {
       return false;
     }
 
@@ -193,11 +197,12 @@ class TCUser extends TCObject
   }
 
   /**
-   * TODO:
+   * TODO:.
    *
    * @since 0.04
    */
-  public function validate_email($email) {
+  public function validate_email($email)
+  {
     if (empty($email)) {
       return false;
     }
@@ -206,12 +211,13 @@ class TCUser extends TCObject
   }
 
   /**
-   * TODO:
+   * TODO:.
    *
    * @since 0.04
    */
-  public function validate_password($password) {
-    if (strlen($password) < $this->MIN_PASSWORD_LENGTH) {
+  public function validate_password($password)
+  {
+    if (strlen($password) < self::MIN_PASSWORD_LENGTH) {
       return false;
     }
 

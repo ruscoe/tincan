@@ -207,8 +207,11 @@ class TCData
     $result = $this->database->query($query);
 
     $objects = [];
-    while ($object = $result->fetch_object()) {
-      $objects[] = new $class($object);
+
+    if ($result) {
+      while ($object = $result->fetch_object()) {
+        $objects[] = new $class($object);
+      }
     }
 
     $this->database->close_connection();

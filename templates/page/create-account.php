@@ -15,7 +15,7 @@
 
 <?php
   if (!empty($error)) {
-    TCTemplate::render('form-errors', ['errors' => [$error]]);
+    TCTemplate::render('form-errors', ['errors' => [$error], 'page' => $page]);
   }
 ?>
 
