@@ -24,11 +24,11 @@ $page = $data['page'];
 
       if ('create-account' == $page->template) {
         if (TCUser::ERR_USER == $error_code) {
-          $error_text = 'Please choose a username longer than '.TCUser::MIN_USERNAME_LENGTH.' characters.';
+          $error_text = 'Please choose a username at least '.TCUser::MIN_USERNAME_LENGTH.' characters long.';
         } elseif (TCUser::ERR_EMAIL == $error_code) {
           $error_text = 'Please check your email address has been entered correctly.';
         } elseif (TCUser::ERR_PASSWORD == $error_code) {
-          $error_text = 'Please choose a password longer than '.TCUser::MIN_PASSWORD_LENGTH.' characters.';
+          $error_text = 'Please choose a password at least '.TCUser::MIN_PASSWORD_LENGTH.' characters long.';
         } elseif (TCUser::ERR_USERNAME_EXISTS == $error_code) {
           $error_text = 'The username you entered has been taken. Please choose another.';
         } elseif (TCUser::ERR_EMAIL_EXISTS == $error_code) {
