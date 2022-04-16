@@ -22,19 +22,28 @@ $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING));
 // Don't trim password. Spaces are permitted anywhere in the password.
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
-// TODO: Validate username.
-// TODO: Validate email.
-// TODO: Validate password.
+$db = new TCData();
+
+$settings = $db->load_settings();
+
+$user = new TCUser();
+
+// Validate username.
+if (!$user->validate_username($username)) {
+  $error = TCUser::ERR_USER;
+}
+// Validate email.
+if (empty($error) && !$user->validate_email($email)) {
+  $error = TCUser::ERR_EMAIL;
+}
+// Validate password.
+if (empty($error) && !$user->validate_password($password)) {
+  $error = TCUser::ERR_PASSWORD;
+}
 
 $saved_user = null;
 
 if (empty($error)) {
-  $db = new TCData();
-
-  $settings = $db->load_settings();
-
-  $user = new TCUser();
-
   $user->username = $username;
   $user->email = $email;
   $user->password = $user->get_password_hash($password);

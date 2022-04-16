@@ -19,10 +19,14 @@ class TCUser extends TCObject
   public const ACT_DELETE_ANY_THREAD = 'delete-any-thread';
   public const ACT_ACCESS_ADMIN = 'access-admin';
 
-  public const ERR_USER = 'nouser';
-  public const ERR_PASSWORD = 'nopass';
+  public const ERR_USER = 'user';
+  public const ERR_EMAIL = 'email';
+  public const ERR_PASSWORD = 'pass';
   public const ERR_ALREADY_EXISTS = 'exists';
   public const ERR_NOT_AUTHORIZED = 'auth';
+
+  public const MIN_PASSWORD_LENGTH = 8;
+  public const MIN_USERNAME_LENGTH = 3;
 
   /**
    * @since 0.01
@@ -173,6 +177,45 @@ class TCUser extends TCObject
   public function verify_password_hash($password, $hash)
   {
     return password_verify($password, $hash);
+  }
+
+  /**
+   * TODO:
+   *
+   * @since 0.04
+   */
+  public function validate_username($username) {
+    if (strlen($username) < $this->MIN_USERNAME_LENGTH) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * TODO:
+   *
+   * @since 0.04
+   */
+  public function validate_email($email) {
+    if (empty($email)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * TODO:
+   *
+   * @since 0.04
+   */
+  public function validate_password($password) {
+    if (strlen($password) < $this->MIN_PASSWORD_LENGTH) {
+      return false;
+    }
+
+    return true;
   }
 
   /**

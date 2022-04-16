@@ -63,8 +63,12 @@ body.tincan {
     margin: 0 auto 0 auto;
     max-width: 400px;
     margin-top: 3rem;
+    padding: 1rem 0 1rem 0;
 
     ul.errors {
+      list-style: none;
+      margin: 0 1rem 0 1rem;
+      padding: 0;
 
       li {
         color: $errorText;

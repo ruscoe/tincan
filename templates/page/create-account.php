@@ -6,24 +6,16 @@
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-  $page = $data['page'];
+ $page = $data['page'];
 
-  $field_names = ['username', 'email', 'password'];
-
-  $errors = [];
-
-  foreach ($field_names as $name) {
-    if (isset($_GET[$name])) {
-      $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
-    }
-  }
+ $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
 <?php
-  if (!empty($errors)) {
-    TCTemplate::render('form-errors', ['errors' => array_values($errors)]);
+  if (!empty($error)) {
+    TCTemplate::render('form-errors', ['errors' => [$error]]);
   }
 ?>
 
