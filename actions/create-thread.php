@@ -75,11 +75,13 @@ if (empty($errors)) {
   $new_thread = $db->save_object($thread);
 
   if (!empty($new_thread)) {
+    $sanitizer = new TCPostSanitizer();
+
     // Create the thread's initial post.
     $post = new TCPost();
     $post->user_id = $user->user_id;
     $post->thread_id = $new_thread->thread_id;
-    $post->content = $post_content;
+    $post->content = $sanitizer->sanitize_post($post_content);
     $post->created_time = time();
     $post->updated_time = time();
 

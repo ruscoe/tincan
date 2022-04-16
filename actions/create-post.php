@@ -51,13 +51,15 @@ if (empty($post_content)) {
   $errors['post'] = TCObject::ERR_NOT_SAVED;
 }
 
+$sanitizer = new TCPostSanitizer();
+
 $new_post = null;
 
 if (empty($errors)) {
   $post = new TCPost();
   $post->user_id = $user->user_id;
   $post->thread_id = $thread->thread_id;
-  $post->content = $post_content;
+  $post->content = $sanitizer->sanitize_post($post_content);
   $post->created_time = time();
   $post->updated_time = time();
 
