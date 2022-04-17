@@ -30,8 +30,10 @@ $template_page_map = [
 ];
 
 if (!empty($chain)) {
-  echo '<ul class="breadcrumbs">';
-
+?>
+  <ul class="breadcrumbs">
+    <li class="home"><a href="/">Home</a></li>
+<?php
   $chain_length = count($chain);
 
   $object = null;
@@ -45,10 +47,10 @@ if (!empty($chain)) {
     if (!empty($page_url)) {
       $page_url .= $object->get_primary_key_value();
 
-      echo '<li><a href="' . $page_url . '">' . $object->get_name() . '</a></li>';
+      echo '<li class="subpage"><a href="' . $page_url . '">' . $object->get_name() . '</a></li>';
     }
   }
-
-  echo '</ul>';
-
+?>
+  </ul>
+<?php
 }

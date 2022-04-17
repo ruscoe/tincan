@@ -83,7 +83,7 @@ body {
   margin-left: 1rem;
 }
 
-ul.navigation, ul.pagination, ul.post-controls {
+ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
   flex-direction: column;
   list-style: none;
   padding: 0;
@@ -107,6 +107,17 @@ ul.pagination {
 
   @include for-tablet-portrait-up {
     justify-content: center;
+  }
+}
+
+ul.breadcrumbs {
+
+  li.home::before {
+    content: '\2616';
+  }
+
+  li.subpage::before {
+    content: '\21D2';
   }
 }
 
