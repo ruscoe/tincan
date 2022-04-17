@@ -178,10 +178,34 @@ function tc_create_roles()
 {
   global $db;
 
+  $user_allowed_actions = [
+    TCUser::ACT_CREATE_POST,
+    TCUser::ACT_CREATE_THREAD
+  ];
+
+  $mod_allowed_actions = [
+    TCUser::ACT_CREATE_POST,
+    TCUser::ACT_CREATE_THREAD,
+    TCUser::ACT_EDIT_ANY_POST,
+    TCUser::ACT_EDIT_ANY_THREAD,
+    TCUser::ACT_DELETE_ANY_POST,
+    TCUser::ACT_DELETE_ANY_THREAD
+  ];
+
+  $admin_allowed_actions = [
+    TCUser::ACT_CREATE_POST,
+    TCUser::ACT_CREATE_THREAD,
+    TCUser::ACT_EDIT_ANY_POST,
+    TCUser::ACT_EDIT_ANY_THREAD,
+    TCUser::ACT_DELETE_ANY_POST,
+    TCUser::ACT_DELETE_ANY_THREAD,
+    TCUser::ACT_ACCESS_ADMIN
+  ];
+
   $roles = [
-    ['role_name' => 'User',          'allowed_actions' => TCUser::ACT_CREATE_POST.','.TCUser::ACT_CREATE_THREAD],
-    ['role_name' => 'Moderator',     'allowed_actions' => TCUser::ACT_CREATE_POST.','.TCUser::ACT_CREATE_THREAD],
-    ['role_name' => 'Administrator', 'allowed_actions' => TCUser::ACT_CREATE_POST.','.TCUser::ACT_CREATE_THREAD.','.TCUser::ACT_ACCESS_ADMIN],
+    ['role_name' => 'User',          'allowed_actions' => implode(',', $user_allowed_actions)],
+    ['role_name' => 'Moderator',     'allowed_actions' => implode(',', $mod_allowed_actions)],
+    ['role_name' => 'Administrator', 'allowed_actions' => implode(',', $admin_allowed_actions)],
   ];
 
   foreach ($roles as $role) {
@@ -203,6 +227,10 @@ function tc_create_pages()
       ['page_title' => 'Log In',                 'template' => 'log-in'],
       ['page_title' => 'Log Out',                'template' => 'log-out'],
       ['page_title' => 'New Thread',             'template' => 'new-thread'],
+      ['page_title' => 'Edit Post',              'template' => 'edit-post'],
+      ['page_title' => 'Delete Post',            'template' => 'delete-post'],
+      ['page_title' => 'Edit Thread',            'template' => 'edit-thread'],
+      ['page_title' => 'Delete Thread',          'template' => 'delete-thread'],
       ['page_title' => 'Admin Forum Settings',   'template' => 'forum-settings'],
       ['page_title' => 'Admin Log In',           'template' => 'log-in'],
       ['page_title' => 'Admin Log Out',          'template' => 'log-out'],
