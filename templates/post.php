@@ -26,9 +26,9 @@
     <div class="date"><?php echo date($settings['date_time_format'], $post->created_time); ?></div>
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
     <ul class="post-controls">
-      <?php if ($user->can_edit_post($post)) { ?>
+      <?php if (!empty($user) && $user->can_edit_post($post)) { ?>
         <li><a href="#">Edit</a></li>
-      <?php } if ($user->can_delete_post($post)) { ?>
+      <?php } if (!empty($user) && $user->can_delete_post($post)) { ?>
         <li><a href="#">Delete</a></li>
       <?php } ?>
     </ul>
