@@ -75,13 +75,45 @@ abstract class TCObject
   }
 
   /**
-   * Gets the name of this objects primary key used by the database.
+   * Gets the name of this object.
+   * Override for object-specific values.
+   *
+   * @since 0.04
+   *
+   * @return string
+   */
+  public function get_name() {
+    return '';
+  }
+
+  /**
+   * Gets the parent object if this object references one.
+   *
+   * @since 0.04
+   *
+   * @return TCObject the parent object with primary key populated
+   */
+  public function get_parent() {
+    return null;
+  }
+
+  /**
+   * Gets the name of this object's primary key used by the database.
    *
    * @since 0.01
    *
    * @return string the primary key name
    */
   abstract public function get_primary_key();
+
+  /**
+   * Gets the value of this object's primary key used by the database.
+   *
+   * @since 0.04
+   *
+   * @return string the primary key value
+   */
+  abstract public function get_primary_key_value();
 
   /**
    * Gets the name of the database table used to store this object.

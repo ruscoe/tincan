@@ -41,12 +41,46 @@ class TCBoard extends TCObject
   protected $updated_time;
 
   /**
+   * @see TCObject::get_name()
+   * @since 0.04
+   *
+   * @return string the board name
+   */
+  public function get_name() {
+    return $this->board_name;
+  }
+
+  /**
+   * @see TCObject::get_parent()
+   * @since 0.04
+   */
+  public function get_parent() {
+    $parent = null;
+
+    if (!empty($this->board_group_id)) {
+      $parent = new TCBoardGroup();
+      $parent->board_group_id = $this->board_group_id;
+    }
+
+    return $parent;
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.01
    */
   public function get_primary_key()
   {
     return 'board_id';
+  }
+
+  /**
+   * @see TCObject::get_primary_key_value()
+   * @since 0.04
+   */
+  public function get_primary_key_value()
+  {
+    return $this->board_id;
   }
 
   /**

@@ -16,6 +16,8 @@ $user = $data['user'];
 $db = new TCData();
 
 $board = $db->load_object(new TCBoard(), $board_id);
+
+TCTemplate::render('breadcrumbs', ['object' => $board, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $board->board_name; ?></h1>

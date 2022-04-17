@@ -33,6 +33,15 @@ class TCRole extends TCObject
   }
 
   /**
+   * @see TCObject::get_primary_key_value()
+   * @since 0.04
+   */
+  public function get_primary_key_value()
+  {
+    return $this->role_id;
+  }
+
+  /**
    * @see TCObject::get_db_table()
    * @since 0.02
    */

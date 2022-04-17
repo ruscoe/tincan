@@ -43,12 +43,36 @@ class TCPost extends TCObject
   protected $updated_time;
 
   /**
+   * @see TCObject::get_parent()
+   * @since 0.04
+   */
+  public function get_parent() {
+    $parent = null;
+
+    if (!empty($this->thread_id)) {
+      $parent = new TCThread();
+      $parent->thread_id = $this->thread_id;
+    }
+
+    return $parent;
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.01
    */
   public function get_primary_key()
   {
     return 'post_id';
+  }
+
+  /**
+   * @see TCObject::get_primary_key_value()
+   * @since 0.04
+   */
+  public function get_primary_key_value()
+  {
+    return $this->post_id;
   }
 
   /**

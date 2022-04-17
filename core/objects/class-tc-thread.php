@@ -50,12 +50,36 @@ class TCThread extends TCObject
   protected $updated_time;
 
   /**
+   * @see TCObject::get_parent()
+   * @since 0.04
+   */
+  public function get_parent() {
+    $parent = null;
+
+    if (!empty($this->board_id)) {
+      $parent = new TCBoard();
+      $parent->board_id = $this->board_id;
+    }
+
+    return $parent;
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.01
    */
   public function get_primary_key()
   {
     return 'thread_id';
+  }
+
+  /**
+   * @see TCObject::get_primary_key_value()
+   * @since 0.04
+   */
+  public function get_primary_key_value()
+  {
+    return $this->thread_id;
   }
 
   /**

@@ -16,6 +16,8 @@ $user = $data['user'];
 $db = new TCData();
 
 $thread = $db->load_object(new TCThread(), $thread_id);
+
+TCTemplate::render('breadcrumbs', ['object' => $thread, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $thread->thread_title; ?></h1>

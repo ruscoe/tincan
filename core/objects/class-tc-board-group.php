@@ -44,12 +44,31 @@ class TCBoardGroup extends TCObject
   }
 
   /**
+   * @see TCObject::get_name()
+   * @since 0.04
+   *
+   * @return string the board group name
+   */
+  public function get_name() {
+    return $this->board_group_name;
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.01
    */
   public function get_primary_key()
   {
     return 'board_group_id';
+  }
+
+  /**
+   * @see TCObject::get_primary_key_value()
+   * @since 0.04
+   */
+  public function get_primary_key_value()
+  {
+    return $this->board_group_id;
   }
 
   /**
