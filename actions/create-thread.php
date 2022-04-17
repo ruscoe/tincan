@@ -29,18 +29,20 @@ $session->start_session();
 $user_id = $session->get_user_id();
 $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
+$error = null;
+
 // Check user has permission to create a new thread.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
-  $errors['user'] = TCUser::ERR_NOT_AUTHORIZED;
+  $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
 // Check this thread can be created in the given board.
-if (empty($errors)) {
+if (empty($error)) {
   $board = (!empty($board_id)) ? $db->load_object(new TCBoard(), $board_id) : null;
 
   if (empty($board)) {
     // Board doesn't exist.
-    $errors['board'] = TCObject::ERR_NOT_SAVED;
+    $error = TCObject::ERR_NOT_SAVED;
   }
 }
 
@@ -50,7 +52,7 @@ $settings = $db->load_settings();
 $thread_title = trim($thread_title);
 
 if (empty($thread_title) || (strlen($thread_title) < $settings['min_thread_title'])) {
-  $errors['thread'] = TCObject::ERR_NOT_SAVED;
+  $error = TCObject::ERR_NOT_SAVED;
 }
 
 // Validate post content.
@@ -58,12 +60,12 @@ $post_sanitizer = new TCPostSanitizer();
 $post_content = $post_sanitizer->sanitize_post($post_content);
 
 if (empty($post_content)) {
-  $errors['post'] = TCObject::ERR_NOT_SAVED;
+  $error = TCObject::ERR_NOT_SAVED;
 }
 
 $new_thread = null;
 
-if (empty($errors)) {
+if (empty($error)) {
   $thread = new TCThread();
   $thread->board_id = $board_id;
   $thread->thread_title = $thread_title;
@@ -89,7 +91,7 @@ if (empty($errors)) {
 
     // Delete thread and exit with error if post cannot be created.
     if (empty($new_post)) {
-      $errors['thread'] = TCObject::ERR_NOT_SAVED;
+      $error = TCObject::ERR_NOT_SAVED;
       $db->delete_object($thread, $thread->thread_id);
     }
   }
@@ -98,23 +100,20 @@ if (empty($errors)) {
 if (!empty($ajax)) {
   $response = new TCJSONResponse();
 
-  $response->success = (empty($errors));
-  $response->errors = $errors;
+  $response->success = (empty($error));
+  $response->errors = [$error];
 
   exit($response->get_output());
 } else {
   $destination = '/index.php';
 
-  if (empty($errors)) {
+  if (empty($error)) {
     // Send user to their new thread.
     $destination .= '?page='.$settings['page_thread'].'&thread='.$new_thread->thread_id;
   } else {
     // Send user back to the new thread page with an error.
-    $destination .= '?page='.$settings['page_new_thread'].'&board='.$board_id;
-    // TODO: Create a utility class for this.
-    foreach ($errors as $name => $value) {
-      $destination .= "&{$name}={$value}";
-    }
+    $destination .= '?page='.$settings['page_new_thread'].'&board='.$board_id
+    .'&error='.$error;
   }
 
   header('Location: '.$destination);

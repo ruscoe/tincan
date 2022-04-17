@@ -30,16 +30,16 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check user has permission to create a new post.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_POST)) {
-  $errors['user'] = TCUser::ERR_NOT_AUTHORIZED;
+  $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
 // Check this post can be created in the given thread.
-if (empty($errors)) {
+if (empty($error)) {
   $thread = $db->load_object(new TCThread(), $thread_id);
 
   // Validate thread.
   if (empty($thread)) {
-    $errors['thread'] = TCObject::ERR_NOT_SAVED;
+    $error = TCObject::ERR_NOT_SAVED;
   }
 }
 
@@ -48,14 +48,14 @@ $post_sanitizer = new TCPostSanitizer();
 $post_content = $post_sanitizer->sanitize_post($post_content);
 
 if (empty($post_content)) {
-  $errors['post'] = TCObject::ERR_NOT_SAVED;
+  $error = TCObject::ERR_NOT_SAVED;
 }
 
 $sanitizer = new TCPostSanitizer();
 
 $new_post = null;
 
-if (empty($errors)) {
+if (empty($error)) {
   $post = new TCPost();
   $post->user_id = $user->user_id;
   $post->thread_id = $thread->thread_id;
@@ -66,15 +66,15 @@ if (empty($errors)) {
   $new_post = $db->save_object($post);
 
   if (empty($new_post)) {
-    $errors['post'] = TCObject::ERR_NOT_SAVED;
+    $error = TCObject::ERR_NOT_SAVED;
   }
 }
 
 if (!empty($ajax)) {
   $response = new TCJSONResponse();
 
-  $response->success = (empty($errors));
-  $response->errors = $errors;
+  $response->success = (empty($error));
+  $response->errors = [$error];
 
   exit($response->get_output());
 } else {
@@ -89,16 +89,17 @@ if (!empty($ajax)) {
   $total_posts = $db->count_objects(new TCPost(), $conditions);
   $total_pages = TCPagination::calculate_total_pages($total_posts, $settings['posts_per_page']);
 
-  $destination = '/index.php?page='.$settings['page_thread']
-    .'&thread='.$thread_id
-    .'&start_at='.$total_pages
-    .'#post-'.$new_post->post_id;
+  $destination = '/index.php?page='.$settings['page_thread'].'&thread='.$thread_id;
 
-  if (!empty($errors)) {
-    // TODO: Create a utility class for this.
-    foreach ($errors as $name => $value) {
-      $destination .= "&{$name}={$value}";
-    }
+  if (empty($error)) {
+    // Send user to their new post.
+    $destination = '&start_at='.$total_pages.'#post-'.$new_post->post_id;
+  }
+  else
+  {
+    // Send user back to the new post page with an error.
+    $destination .= '&error='.$error;
+    // TODO: Add an anchor link to the form.
   }
 
   header('Location: '.$destination);

@@ -10,20 +10,8 @@
   $settings = $data['settings'];
   $user = $data['user'];
 
-  $field_names = ['thread_title', 'thread_post'];
-
-  $errors = [];
-
-  // If there are any URL parameters matching field names then the user has
-  // been returned to this form due to a submission error.
-  // Collect errors here.
-  foreach ($field_names as $name) {
-    if (isset($_GET[$name])) {
-      $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
-    }
-  }
-
   $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
+  $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
   $db = new TCData();
 
@@ -43,8 +31,8 @@
   <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
   <?php
-    if (!empty($errors)) {
-      TCTemplate::render('form-errors', ['errors' => array_values($errors)]);
+    if (!empty($error)) {
+      TCTemplate::render('form-errors', ['errors' => [$error], 'page' => $page]);
     } ?>
 
   <form id="create-thread" action="/actions/create-thread.php" method="POST">

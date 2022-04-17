@@ -8,21 +8,14 @@
  */
   $thread = $data['thread'];
   $user = $data['user'];
+  $page = $data['page'];
 
-  $field_names = ['post_content'];
-
-  $errors = [];
-
-  foreach ($field_names as $name) {
-    if (isset($_GET[$name])) {
-      $errors[$name] = filter_input(INPUT_GET, $name, FILTER_SANITIZE_STRING);
-    }
-  }
+  $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
 <?php
-  if (!empty($errors)) {
-    TCTemplate::render('form-errors', ['errors' => array_values($errors)]);
+  if (!empty($error)) {
+    TCTemplate::render('form-errors', ['errors' => [$error], 'page' => $page]);
   }
 ?>
 
