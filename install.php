@@ -231,6 +231,8 @@ function tc_create_pages()
       ['page_title' => 'Delete Post',            'template' => 'delete-post'],
       ['page_title' => 'Edit Thread',            'template' => 'edit-thread'],
       ['page_title' => 'Delete Thread',          'template' => 'delete-thread'],
+      ['page_title' => 'Post Deleted',           'template' => 'post-deleted'],
+      ['page_title' => 'Thread Deleted',         'template' => 'thread-deleted'],
       ['page_title' => 'Admin Forum Settings',   'template' => 'forum-settings'],
       ['page_title' => 'Admin Log In',           'template' => 'log-in'],
       ['page_title' => 'Admin Log Out',          'template' => 'log-out'],
