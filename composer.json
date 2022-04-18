@@ -1,0 +1,15 @@
+{
+  "name": "ruscoe/tincan-forum",
+  "description": "Tin Can is a lightweight web forum written in PHP.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dan Ruscoe",
+      "email": "danruscoe@protonmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+
+  }
+}
