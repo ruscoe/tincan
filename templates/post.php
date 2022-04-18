@@ -27,9 +27,9 @@
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
     <ul class="post-controls">
       <?php if (!empty($user) && $user->can_edit_post($post)) { ?>
-        <li><a href="#">Edit</a></li>
+        <li><a href="/?page=<?=$settings['page_edit_post']?>&post=<?=$post->post_id?>">Edit</a></li>
       <?php } if (!empty($user) && $user->can_delete_post($post)) { ?>
-        <li><a href="#">Delete</a></li>
+        <li><a href="/?page=<?=$settings['page_delete_post']?>&post=<?=$post->post_id?>">Delete</a></li>
       <?php } ?>
     </ul>
   </div>
