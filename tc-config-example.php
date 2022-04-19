@@ -3,6 +3,7 @@
 define('TC_VERSION', '0.05');
 
 define('TC_BASE_PATH', '/var/www/YOUR_SITE');
+define('TC_UPLOADS_PATH', '/var/www/YOUR_SITE/uploads');
 
 define('TC_DB_CLASS', 'TinCan\TCMySQL');
 define('TC_DB_HOST', 'http://localhost');
