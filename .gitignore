@@ -2,3 +2,4 @@ tc-config.php
 phpunit.xml
 tools
 .php-cs*
+.phpunit*
