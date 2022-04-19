@@ -1,8 +1,10 @@
 <?php
 
-require TC_BASE_PATH.'/includes/include-objects.php';
+require_once TC_BASE_PATH.'/includes/include-objects.php';
 
 use PHPUnit\Framework\TestCase;
+use TinCan\TCPost;
+use TinCan\TCRole;
 use TinCan\TCUser;
 
 class UserTest extends TestCase
@@ -47,5 +49,83 @@ class UserTest extends TestCase
     $this->assertFalse(empty($password_hash));
 
     $this->assertTrue($user->verify_password_hash($password, $password_hash));
+  }
+
+  public function testAdministratorRole()
+  {
+    $role = new TCRole();
+    $role->role_name = 'Administrator';
+    $role->allowed_actions = 'create-post,create-thread,edit-any-post,edit-any-thread,delete-any-post,delete-any-thread,access-admin';
+
+    $user = new TCUser();
+    $user->role = $role;
+
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_CREATE_POST));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_CREATE_THREAD));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_EDIT_ANY_POST));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_EDIT_ANY_THREAD));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_DELETE_ANY_POST));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_DELETE_ANY_THREAD));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_ACCESS_ADMIN));
+  }
+
+  public function testModRole()
+  {
+    $role = new TCRole();
+    $role->role_name = 'Moderator';
+    $role->allowed_actions = 'create-post,create-thread,edit-any-post,edit-any-thread,delete-any-post,delete-any-thread';
+
+    $user = new TCUser();
+    $user->role = $role;
+
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_CREATE_POST));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_CREATE_THREAD));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_EDIT_ANY_POST));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_EDIT_ANY_THREAD));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_DELETE_ANY_POST));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_DELETE_ANY_THREAD));
+    $this->assertFalse($user->can_perform_action(TCUser::ACT_ACCESS_ADMIN));
+  }
+
+  public function testUserRole()
+  {
+    $role = new TCRole();
+    $role->role_name = 'User';
+    $role->allowed_actions = 'create-post,create-thread';
+
+    $user = new TCUser();
+    $user->role = $role;
+
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_CREATE_POST));
+    $this->assertTrue($user->can_perform_action(TCUser::ACT_CREATE_THREAD));
+    $this->assertFalse($user->can_perform_action(TCUser::ACT_EDIT_ANY_POST));
+    $this->assertFalse($user->can_perform_action(TCUser::ACT_EDIT_ANY_THREAD));
+    $this->assertFalse($user->can_perform_action(TCUser::ACT_DELETE_ANY_POST));
+    $this->assertFalse($user->can_perform_action(TCUser::ACT_DELETE_ANY_THREAD));
+    $this->assertFalse($user->can_perform_action(TCUser::ACT_ACCESS_ADMIN));
+  }
+
+  public function testUserCanEditOwnPost()
+  {
+    $post = new TCPost();
+    $post->post_id = 99;
+    $post->user_id = 1;
+
+    $user = new TCUser();
+    $user->user_id = 1;
+
+    $this->assertTrue($user->can_edit_post($post));
+  }
+
+  public function testUserCanEditOtherUserPost()
+  {
+    $post = new TCPost();
+    $post->post_id = 99;
+    $post->user_id = 2;
+
+    $user = new TCUser();
+    $user->user_id = 1;
+
+    $this->assertFalse($user->can_edit_post($post));
   }
 }
