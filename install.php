@@ -8,7 +8,7 @@ use TinCan\TCPost;
 use TinCan\TCRole;
 use TinCan\TCSetting;
 use TinCan\TCThread;
-use TinCan\User;
+use TinCan\TCUser;
 
 /**
  * Installs Tin Can Forum with optional test data.
@@ -324,7 +324,7 @@ function tc_create_board_groups()
   $board_groups_to_create = 4;
 
   for ($i = 0; $i < $board_groups_to_create; ++$i) {
-    $board_groups[] = ['board_group_name' => tc_get_random_lipsum_short()];
+    $board_groups[] = ['board_group_name' => 'Board Group '.($i+1)];
   }
 
   $new_board_group_ids = [];
@@ -348,7 +348,7 @@ function tc_create_boards($new_board_group_ids)
 
   foreach ($new_board_group_ids as $board_group_id) {
     for ($i = 0; $i < $board_groups_to_create; ++$i) {
-      $boards[] = ['board_group_id' => $board_group_id, 'board_name' => tc_get_random_lipsum_short(), 'description' => tc_get_random_lipsum_short()];
+      $boards[] = ['board_group_id' => $board_group_id, 'board_name' => 'Board '.($i+1), 'description' => tc_get_random_lipsum_short()];
     }
   }
 
@@ -375,7 +375,7 @@ function tc_create_threads($new_board_ids)
 
   foreach ($new_board_ids as $board_id) {
     for ($i = 0; $i < $threads_to_create; ++$i) {
-      $threads[] = ['board_id' => $board_id, 'thread_title' => tc_get_random_lipsum_short()];
+      $threads[] = ['board_id' => $board_id, 'thread_title' => tc_get_random_thread_title()];
     }
   }
 
@@ -413,6 +413,22 @@ function tc_create_posts($new_thread_ids)
     $post['updated_time'] = time();
     $db->save_object(new TCPost((object) $post));
   }
+}
+
+function tc_get_random_thread_title()
+{
+  $titles = [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      'Nullam euismod faucibus ipsum, a porttitor odio eleifend eget.',
+      'Donec et placerat nunc, quis tempus ipsum.',
+      'Cras suscipit eros quis mauris cursus, vitae commodo lacus feugiat.',
+      'Duis sed ipsum quis libero aliquam vestibulum et in quam.',
+      'Aenean at dui vel dui aliquam venenatis et vitae turpis.',
+    ];
+
+  $index = rand(0, (count($titles) - 1));
+
+  return $titles[$index];
 }
 
 function tc_get_random_lipsum_short()
