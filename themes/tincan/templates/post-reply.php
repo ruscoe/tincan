@@ -2,13 +2,13 @@
 
 use TinCan\TCTemplate;
 
-/**
- * Post reply template.
- *
- * @since 0.01
- *
- * @author Dan Ruscoe danruscoe@protonmail.com
- */
+  /**
+   * Post reply template.
+   *
+   * @since 0.01
+   *
+   * @author Dan Ruscoe danruscoe@protonmail.com
+   */
   $thread = $data['thread'];
   $user = $data['user'];
   $page = $data['page'];

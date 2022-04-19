@@ -17,9 +17,9 @@ $db = new TCData();
 $chain = [];
 
 // Follow the chain of parent objects until no more exist.
-while ($object->get_parent() !== null) {
+while (null !== $object->get_parent()) {
   $parent = $object->get_parent();
-  if ($parent !== null) {
+  if (null !== $parent) {
     $object = $db->load_object($parent, $parent->get_primary_key_value());
     $chain[] = $object;
   }
@@ -28,12 +28,12 @@ while ($object->get_parent() !== null) {
 // Map object primary keys to the pages the objects appear on.
 // This is used to create the breadcrumb links.
 $template_page_map = [
-  'board_id' => ('/?page=' . $settings['page_board'] . '&board='),
-  'board_group_id' => ('/?page=' . $settings['page_board_group'] . '&board_group=')
+  'board_id' => ('/?page='.$settings['page_board'].'&board='),
+  'board_group_id' => ('/?page='.$settings['page_board_group'].'&board_group='),
 ];
 
 if (!empty($chain)) {
-?>
+  ?>
   <ul class="breadcrumbs">
     <li class="home"><a href="/">Home</a></li>
 <?php
@@ -41,7 +41,7 @@ if (!empty($chain)) {
 
   $object = null;
 
-  for ($i = $chain_length; $i > 0; $i--) {
+  for ($i = $chain_length; $i > 0; --$i) {
     $object = $chain[$i - 1];
     $object_id = $parent->get_primary_key_value();
     $primary_key = $object->get_primary_key();
@@ -50,10 +50,9 @@ if (!empty($chain)) {
     if (!empty($page_url)) {
       $page_url .= $object->get_primary_key_value();
 
-      echo '<li class="subpage"><a href="' . $page_url . '">' . $object->get_name() . '</a></li>';
+      echo '<li class="subpage"><a href="'.$page_url.'">'.$object->get_name().'</a></li>';
     }
-  }
-?>
+  } ?>
   </ul>
 <?php
 }

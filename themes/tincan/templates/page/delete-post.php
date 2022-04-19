@@ -28,7 +28,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'setti
 
 <?php
 if (!empty($user) && $user->can_edit_post($post)) {
-?>
+  ?>
 
 <div class="confirmation-box">
 
@@ -36,7 +36,7 @@ if (!empty($user) && $user->can_edit_post($post)) {
 
   <form id="delete-post" action="/actions/delete-post.php" method="POST">
     <div class="fieldset button">
-      <input type="hidden" name="post_id" value="<?=$post->post_id?>" />
+      <input type="hidden" name="post_id" value="<?php echo $post->post_id; ?>" />
       <input type="submit" name="delete_post" value="Delete post" />
       <input type="submit" name="cancel" value="Cancel" />
     </div>

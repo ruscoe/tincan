@@ -14,4 +14,4 @@ $settings = $data['settings'];
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
-<p>Post deleted. <a href="/?page=<?=$settings['page_thread']?>&thread=<?=$thread_id?>">Return to thread</a>.</p>
+<p>Post deleted. <a href="/?page=<?php echo $settings['page_thread']; ?>&thread=<?php echo $thread_id; ?>">Return to thread</a>.</p>

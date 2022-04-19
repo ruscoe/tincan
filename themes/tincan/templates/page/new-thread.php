@@ -5,13 +5,13 @@ use TinCan\TCData;
 use TinCan\TCTemplate;
 use TinCan\TCUser;
 
-/**
- * New thread page template.
- *
- * @since 0.01
- *
- * @author Dan Ruscoe danruscoe@protonmail.com
- */
+  /**
+   * New thread page template.
+   *
+   * @since 0.01
+   *
+   * @author Dan Ruscoe danruscoe@protonmail.com
+   */
   $page = $data['page'];
   $settings = $data['settings'];
   $user = $data['user'];

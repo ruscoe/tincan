@@ -39,16 +39,14 @@ $page = $data['page'];
         } elseif (TCUser::ERR_EMAIL_EXISTS == $error_code) {
           $error_text = 'The email address you entered is already in use. You may already have an account.';
         }
-      }
-      elseif ('thread' == $page->template) {
+      } elseif ('thread' == $page->template) {
         // User is posting a reply to a thread.
         if (TCUser::ERR_NOT_AUTHORIZED == $error_code) {
           $error_text = 'Your account isn\'t able to post in this thread.';
         } elseif (TCObject::ERR_NOT_SAVED == $error_code) {
           $error_text = 'Couldn\'t reply to this thread right now. Please try again later.';
         }
-      }
-      elseif ('new-thread' == $page->template) {
+      } elseif ('new-thread' == $page->template) {
         // User is posting a reply to a thread.
         if (TCUser::ERR_NOT_AUTHORIZED == $error_code) {
           $error_text = 'Your account isn\'t able to create a new thread.';

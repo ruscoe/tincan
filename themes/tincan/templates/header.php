@@ -2,13 +2,13 @@
 
 use TinCan\TCUser;
 
-/**
- * Header template.
- *
- * @since 0.01
- *
- * @author Dan Ruscoe danruscoe@protonmail.com
- */
+  /**
+   * Header template.
+   *
+   * @since 0.01
+   *
+   * @author Dan Ruscoe danruscoe@protonmail.com
+   */
   $settings = $data['settings'];
   $user = $data['user'];
 ?>

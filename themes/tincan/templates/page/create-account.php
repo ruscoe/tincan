@@ -2,13 +2,13 @@
 
 use TinCan\TCTemplate;
 
-/**
- * Create account page template.
- *
- * @since 0.01
- *
- * @author Dan Ruscoe danruscoe@protonmail.com
- */
+ /**
+  * Create account page template.
+  *
+  * @since 0.01
+  *
+  * @author Dan Ruscoe danruscoe@protonmail.com
+  */
  $page = $data['page'];
 
  $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);

@@ -28,7 +28,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'setti
 
 <?php
 if (!empty($user) && $user->can_edit_post($post)) {
-?>
+  ?>
 
 <form id="update-post" action="/actions/update-post.php" method="POST">
   <div class="fieldset">

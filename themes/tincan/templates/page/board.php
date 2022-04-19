@@ -3,9 +3,9 @@
 use TinCan\TCBoard;
 use TinCan\TCData;
 use TinCan\TCPagination;
-use TinCan\TCUser;
 use TinCan\TCTemplate;
 use TinCan\TCThread;
+use TinCan\TCUser;
 
 /**
  * Board page template.
