@@ -40,6 +40,11 @@ class UserTest extends TestCase
 
   public function testPassword()
   {
+    // TODO: Test password length.
+  }
+
+  public function testPasswordHash()
+  {
     $user = new TCUser();
 
     $password = 'hK7Ek$DCKddq&SM$';
