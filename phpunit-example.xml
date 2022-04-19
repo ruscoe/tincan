@@ -11,7 +11,7 @@
   stopOnFailure               = "false">
 
   <php>
-    <const name="TC_BASE_PATH" value="/var/www/tincan.local/html"/>
+    <const name="TC_BASE_PATH" value="/var/www/YOUR_SITE"/>
   </php>
 
   <testsuites>
