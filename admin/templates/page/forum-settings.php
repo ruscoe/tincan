@@ -1,4 +1,10 @@
 <?php
+
+use TinCan\Admin\TCAdminTemplate;
+use TinCan\TCData;
+use TinCan\TCSetting;
+use TinCan\TCPage;
+
 /**
  * Page template for forum settings.
  *

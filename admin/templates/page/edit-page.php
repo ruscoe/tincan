@@ -1,4 +1,8 @@
 <?php
+
+use TinCan\TCData;
+use TinCan\TCPage;
+
 /**
  * Page template for page editing.
  *

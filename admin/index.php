@@ -1,4 +1,11 @@
 <?php
+
+use TinCan\Admin\TCAdminTemplate;
+use TinCan\TCData;
+use TinCan\TCPage;
+use TinCan\TCUser;
+use TinCan\TCUserSession;
+
 /**
  * Admin section entry point.
  *

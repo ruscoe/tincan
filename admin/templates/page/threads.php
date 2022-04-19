@@ -1,4 +1,9 @@
 <?php
+
+use TinCan\Admin\TCAdminTemplate;
+use TinCan\TCData;
+use TinCan\TCThread;
+
 /**
  * Page template for admin thread list.
  *

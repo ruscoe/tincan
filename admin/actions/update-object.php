@@ -1,4 +1,13 @@
 <?php
+
+use TinCan\TCBoard;
+use TinCan\TCBoardGroup;
+use TinCan\TCData;
+use TinCan\TCPage;
+use TinCan\TCPost;
+use TinCan\TCThread;
+use TinCan\TCUser;
+
 /**
  * Tin Can update object handler.
  *

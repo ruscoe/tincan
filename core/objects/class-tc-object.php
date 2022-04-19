@@ -1,4 +1,7 @@
 <?php
+
+namespace TinCan;
+
 /**
  * Base object for database records.
  *

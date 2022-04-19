@@ -1,4 +1,9 @@
 <?php
+
+use TinCan\Admin\TCAdminTemplate;
+use TinCan\TCData;
+use TinCan\TCPost;
+
 /**
  * Page template for admin post list.
  *

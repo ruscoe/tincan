@@ -1,4 +1,12 @@
 <?php
+
+use TinCan\TCData;
+use TinCan\TCJSONResponse;
+use TinCan\TCObject;
+use TinCan\TCThread;
+use TinCan\TCUser;
+use TinCan\TCUserSession;
+
 /**
  * Tin Can create thread handler.
  *

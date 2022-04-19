@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCUser;
+
 /**
  * Header template.
  *

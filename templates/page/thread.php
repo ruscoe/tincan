@@ -1,4 +1,11 @@
 <?php
+
+use TinCan\TCData;
+use TinCan\TCPagination;
+use TinCan\TCPost;
+use TinCan\TCTemplate;
+use TinCan\TCThread;
+
 /**
  * Thread page template.
  *

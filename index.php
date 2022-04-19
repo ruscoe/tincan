@@ -1,4 +1,11 @@
 <?php
+
+use TinCan\TCData;
+use TinCan\TCPage;
+use TinCan\TCUserPage;
+use TinCan\TCUserSession;
+use TinCan\TCTemplate;
+
 /**
  * Forum entry point.
  *

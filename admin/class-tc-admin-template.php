@@ -1,4 +1,7 @@
 <?php
+
+namespace TinCan\Admin;
+
 /**
  * Template parser.
  *

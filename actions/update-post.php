@@ -1,4 +1,13 @@
 <?php
+
+use TinCan\TCData;
+use TinCan\TCJSONResponse;
+use TinCan\TCObject;
+use TinCan\TCPost;
+use TinCan\TCPostSanitizer;
+use TinCan\TCUser;
+use TinCan\TCUserSession;
+
 /**
  * Tin Can update post handler.
  *

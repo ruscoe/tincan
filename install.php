@@ -1,4 +1,15 @@
 <?php
+
+use TinCan\TCBoard;
+use TinCan\TCBoardGroup;
+use TinCan\TCData;
+use TinCan\TCPage;
+use TinCan\TCPost;
+use TinCan\TCRole;
+use TinCan\TCSetting;
+use TinCan\TCThread;
+use TinCan\User;
+
 /**
  * Installs Tin Can Forum with optional test data.
  *

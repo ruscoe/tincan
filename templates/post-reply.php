@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCTemplate;
+
 /**
  * Post reply template.
  *

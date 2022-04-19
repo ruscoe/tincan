@@ -1,4 +1,7 @@
 <?php
+
+namespace TinCan;
+
 /**
  * Pagination functionality.
  *

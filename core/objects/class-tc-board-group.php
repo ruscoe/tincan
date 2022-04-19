@@ -1,4 +1,7 @@
 <?php
+
+namespace TinCan;
+
 /**
  * Represents a group of forum boards.
  *

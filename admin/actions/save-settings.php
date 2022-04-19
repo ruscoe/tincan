@@ -1,4 +1,8 @@
 <?php
+
+use TinCan\TCData;
+use TinCan\TCSetting;
+
 /**
  * Tin Can save settings handler.
  *

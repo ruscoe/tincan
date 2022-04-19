@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCPostParser;
+
 /**
  * Post template.
  *

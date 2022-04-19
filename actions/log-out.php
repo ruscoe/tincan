@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCUserSession;
+
 /**
  * Tin Can log out handler.
  *

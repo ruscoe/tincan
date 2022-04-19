@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCData;
+
 /**
  * Breadcrumb template.
  *

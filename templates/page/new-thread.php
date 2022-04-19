@@ -1,4 +1,10 @@
 <?php
+
+use TinCan\TCBoard;
+use TinCan\TCData;
+use TinCan\TCTemplate;
+use TinCan\TCUser;
+
 /**
  * New thread page template.
  *

@@ -1,4 +1,7 @@
 <?php
+
+namespace TinCan;
+
 /**
  * Post content sanitizer.
  *

@@ -1,4 +1,7 @@
 <?php
+
+namespace TinCan;
+
 /**
  * Tin Can MySQL database service.
  *
@@ -23,7 +26,7 @@ class TCMySQL extends TCDB
   public function open_connection()
   {
     try {
-      $this->connection = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
+      $this->connection = new \mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
     } catch (mysqli_sql_exception $e) {
       // TODO: Handle exception.
       exit($e->message);

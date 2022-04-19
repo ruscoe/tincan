@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCTemplate;
+
 /**
  * Log in page template.
  *

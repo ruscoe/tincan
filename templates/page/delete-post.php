@@ -1,4 +1,9 @@
 <?php
+
+use TinCan\TCData;
+use TinCan\TCPost;
+use TinCan\TCTemplate;
+
 /**
  * Delete Post page template.
  *

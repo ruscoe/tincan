@@ -4,7 +4,7 @@ define('TC_VERSION', '0.05');
 
 define('TC_BASE_PATH', '/var/www/YOUR_SITE');
 
-define('TC_DB_CLASS', 'TCMySQL');
+define('TC_DB_CLASS', 'TinCan\TCMySQL');
 define('TC_DB_HOST', 'http://localhost');
 define('TC_DB_USER', 'root');
 define('TC_DB_PASS', 'root');

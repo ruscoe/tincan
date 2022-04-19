@@ -1,4 +1,9 @@
 <?php
+
+use TinCan\Admin\TCAdminTemplate;
+use TinCan\TCBoardGroup;
+use TinCan\TCData;
+
 /**
  * Page template for admin board group editing.
  *

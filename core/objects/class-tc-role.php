@@ -1,4 +1,7 @@
 <?php
+
+namespace TinCan;
+
 /**
  * Represents a user role.
  *

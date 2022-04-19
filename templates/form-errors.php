@@ -1,4 +1,8 @@
 <?php
+
+use TinCan\TCObject;
+use TinCan\TCUser;
+
 /**
  * Form errors template.
  *

@@ -1,4 +1,8 @@
 <?php
+
+use TinCan\TCBoard;
+use TinCan\TCData;
+
 /**
  * Page template for admin board editing.
  *

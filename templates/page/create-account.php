@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCTemplate;
+
 /**
  * Create account page template.
  *

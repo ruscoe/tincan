@@ -1,4 +1,7 @@
 <?php
+
+namespace TinCan\Admin;
+
 /**
  * Tin Can JSON response.
  *

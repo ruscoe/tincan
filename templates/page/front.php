@@ -1,4 +1,10 @@
 <?php
+
+use TinCan\TCBoard;
+use TinCan\TCBoardGroup;
+use TinCan\TCData;
+use TinCan\TCTemplate;
+
 /**
  * Front page template.
  *

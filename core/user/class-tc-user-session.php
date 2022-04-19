@@ -1,4 +1,9 @@
 <?php
+
+namespace TinCan;
+
+use TinCan\TCUser;
+
 /**
  * User session management.
  *

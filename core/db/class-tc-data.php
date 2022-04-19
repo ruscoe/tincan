@@ -1,4 +1,13 @@
 <?php
+
+namespace TinCan;
+
+use TinCan\TCMySQL;
+use TinCan\TCUser;
+use TinCan\TCRole;
+use TinCan\TCSetting;
+use TinCan\TCObject;
+
 /**
  * Tin Can database layer.
  *

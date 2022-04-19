@@ -1,4 +1,7 @@
 <?php
+
+namespace TinCan;
+
 /**
  * Represents a forum user.
  *
@@ -7,7 +10,9 @@
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
-use TCRole;
+use TinCan\TCPost;
+use TinCan\TCRole;
+use TinCan\TCThread;
 
 class TCUser extends TCObject
 {
