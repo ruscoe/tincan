@@ -18,7 +18,7 @@ use TinCan\TCTemplate;
 
 <?php
   if (!empty($error)) {
-    TCTemplate::render('form-errors', ['errors' => [$error], 'page' => $page]);
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
   }
 ?>
 
@@ -37,5 +37,5 @@ use TinCan\TCTemplate;
 </form>
 
 <?php
-  TCTemplate::render('tc-code', []);
+  TCTemplate::render('tc-code', $settings['theme'], []);
 ?>

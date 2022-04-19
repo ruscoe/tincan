@@ -38,7 +38,7 @@ use TinCan\TCUser;
 
   <?php
     if (!empty($error)) {
-      TCTemplate::render('form-errors', ['errors' => [$error], 'page' => $page]);
+      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
     } ?>
 
   <form id="create-thread" action="/actions/create-thread.php" method="POST">

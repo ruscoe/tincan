@@ -11,10 +11,10 @@ namespace TinCan;
  */
 class TCTemplate
 {
-  public static function render($template_name, $data)
+  public static function render($template_name, $theme, $data)
   {
     try {
-      include TC_BASE_PATH.'/templates/'.$template_name.'.php';
+      include TC_BASE_PATH.'/themes/'.$theme.'/templates/'.$template_name.'.php';
     } catch (Exception $e) {
       // TODO: Handle this exception.
     }

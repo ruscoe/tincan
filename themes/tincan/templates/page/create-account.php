@@ -3,30 +3,37 @@
 use TinCan\TCTemplate;
 
 /**
- * Log in page template.
+ * Create account page template.
  *
  * @since 0.01
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-  $page = $data['page'];
+ $page = $data['page'];
 
-  $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
+ $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
 <?php
   if (!empty($error)) {
-    TCTemplate::render('form-errors', ['errors' => [$error], 'page' => $page]);
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
   }
 ?>
 
-<form id="log-in" action="/actions/log-in.php" method="POST">
+<form id="create-account" action="/actions/create-account.php" method="POST">
   <div class="fieldset">
     <label for="username">Username</label>
     <div class="field">
       <input class="text-input" type="text" name="username" />
+    </div>
+  </div>
+
+  <div class="fieldset">
+    <label for="email">Email address</label>
+    <div class="field">
+      <input class="text-input" type="text" name="email" />
     </div>
   </div>
 
@@ -40,6 +47,6 @@ use TinCan\TCTemplate;
   <input type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
-    <input type="submit" name="log_in" value="Log in" />
+    <input type="submit" name="submit_thread" value="Create account" />
   </div>
 </form>

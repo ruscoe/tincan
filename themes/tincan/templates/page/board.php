@@ -25,7 +25,7 @@ $db = new TCData();
 
 $board = $db->load_object(new TCBoard(), $board_id);
 
-TCTemplate::render('breadcrumbs', ['object' => $board, 'settings' => $settings]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $board->board_name; ?></h1>
@@ -74,7 +74,7 @@ foreach ($threads as $thread) {
     'last_post_date' => date($settings['date_time_format'], $thread->updated_time),
   ];
 
-  TCTemplate::render('thread-preview', $template_data);
+  TCTemplate::render('thread-preview', $settings['theme'], $template_data);
 }
 
 $page_params = [
@@ -82,4 +82,4 @@ $page_params = [
   'board' => $board->board_id,
 ];
 
-TCTemplate::render('pagination', ['page_params' => $page_params, 'start_at' => $start_at, 'total_pages' => $total_pages, 'settings' => $data['settings']]);
+TCTemplate::render('pagination', $settings['theme'], ['page_params' => $page_params, 'start_at' => $start_at, 'total_pages' => $total_pages, 'settings' => $data['settings']]);

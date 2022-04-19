@@ -34,5 +34,5 @@ foreach ($board_groups as $group) {
     'boards' => $boards,
   ];
 
-  TCTemplate::render('board-group', $data);
+  TCTemplate::render('board-group', $settings['theme'], $data);
 }

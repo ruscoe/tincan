@@ -21,7 +21,7 @@ $db = new TCData();
 
 $post = $db->load_object(new TCPost(), $post_id);
 
-TCTemplate::render('breadcrumbs', ['object' => $post, 'settings' => $settings]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>

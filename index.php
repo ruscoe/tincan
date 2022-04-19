@@ -43,8 +43,8 @@ if (!empty($page_id)) {
   $page_template = 'front';
 }
 
-TCTemplate::render('header', ['page_template' => $page_template, 'settings' => $settings, 'user' => $user]);
+TCTemplate::render('header', $settings['theme'], ['page_template' => $page_template, 'settings' => $settings, 'user' => $user]);
 
-TCTemplate::render('page/'.$page_template, ['page' => $page, 'settings' => $settings, 'user' => $user]);
+TCTemplate::render('page/'.$page_template, $settings['theme'], ['page' => $page, 'settings' => $settings, 'user' => $user]);
 
-TCTemplate::render('footer', null);
+TCTemplate::render('footer', $settings['theme'], null);

@@ -24,7 +24,7 @@ $db = new TCData();
 
 $thread = $db->load_object(new TCThread(), $thread_id);
 
-TCTemplate::render('breadcrumbs', ['object' => $thread, 'settings' => $settings]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $thread, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $thread->thread_title; ?></h1>
@@ -53,7 +53,7 @@ $posts = $db->load_objects(new TCPost(), [], $conditions, $order, $offset, $sett
 foreach ($posts as $post) {
   $author = $db->load_user($thread->updated_by_user);
 
-  TCTemplate::render('post', ['post' => $post, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
+  TCTemplate::render('post', $settings['theme'], ['post' => $post, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
 }
 
 $page_params = [
@@ -61,9 +61,9 @@ $page_params = [
   'thread' => $thread->thread_id,
 ];
 
-TCTemplate::render('pagination', ['page_params' => $page_params, 'start_at' => $start_at, 'total_pages' => $total_pages, 'settings' => $data['settings']]);
+TCTemplate::render('pagination', $settings['theme'], ['page_params' => $page_params, 'start_at' => $start_at, 'total_pages' => $total_pages, 'settings' => $data['settings']]);
 
 // Display reply form if user has permission to reply to this thread.
 if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_POST)) {
-  TCTemplate::render('post-reply', ['thread' => $thread, 'user' => $user, 'page' => $page]);
+  TCTemplate::render('post-reply', $settings['theme'], ['thread' => $thread, 'user' => $user, 'page' => $page]);
 }

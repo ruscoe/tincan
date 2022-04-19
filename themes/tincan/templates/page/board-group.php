@@ -48,5 +48,5 @@ foreach ($boards as $board) {
       'url' => '/?page='.$settings['page_board'].'&amp;board='.$board->board_id,
     ];
 
-  TCTemplate::render('board-preview', $data);
+  TCTemplate::render('board-preview', $settings['theme'], $data);
 }
