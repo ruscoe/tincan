@@ -3,7 +3,10 @@
 use TinCan\TCData;
 use TinCan\TCJSONResponse;
 use TinCan\TCObject;
+use TinCan\TCPagination;
 use TinCan\TCPost;
+use TinCan\TCPostSanitizer;
+use TinCan\TCThread;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
@@ -101,7 +104,7 @@ if (!empty($ajax)) {
 
   if (empty($error)) {
     // Send user to their new post.
-    $destination = '&start_at='.$total_pages.'#post-'.$new_post->post_id;
+    $destination .= '&start_at='.$total_pages.'#post-'.$new_post->post_id;
   }
   else
   {

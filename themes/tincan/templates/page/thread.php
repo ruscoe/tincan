@@ -5,6 +5,7 @@ use TinCan\TCPagination;
 use TinCan\TCPost;
 use TinCan\TCTemplate;
 use TinCan\TCThread;
+use TinCan\TCUser;
 
 /**
  * Thread page template.
