@@ -61,10 +61,17 @@ body {
 }
 
 #header {
+  position: relative;
 
   h1 {
     padding-top: 3rem;
     text-align: center;
+  }
+
+  .user {
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
   }
 }
 

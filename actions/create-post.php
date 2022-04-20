@@ -105,9 +105,7 @@ if (!empty($ajax)) {
   if (empty($error)) {
     // Send user to their new post.
     $destination .= '&start_at='.$total_pages.'#post-'.$new_post->post_id;
-  }
-  else
-  {
+  } else {
     // Send user back to the new post page with an error.
     $destination .= '&error='.$error;
     // TODO: Add an anchor link to the form.

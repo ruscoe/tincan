@@ -24,16 +24,16 @@ use TinCan\TCTemplate;
 
   // TODO: Error handling for missing user (404).
 
-  $avatar_image = (!empty($avatar)) ? '/uploads/avatars/' . $profile_user->avatar : '/assets/images/default-profile.png';
+  $avatar_image = (!empty($avatar)) ? '/uploads/avatars/'.$profile_user->avatar : '/assets/images/default-profile.png';
 
   TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $profile_user->username; ?></h1>
   <div class="profile-image">
-    <img src="<?=$avatar_image?>" />
+    <img src="<?php echo $avatar_image; ?>" />
     <?php if ($user->can_edit_user($profile_user)) { ?>
-      <div><a href="/?page=<?=$settings['page_user_avatar']?>">Change avatar</a></div>
+      <div><a href="/?page=<?php echo $settings['page_user_avatar']; ?>">Change avatar</a></div>
     <?php } ?>
   </div>
   <div class="joined">Joined: <?php echo date($settings['date_format'], $profile_user->created_time); ?></div>

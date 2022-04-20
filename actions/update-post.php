@@ -85,9 +85,7 @@ if (!empty($ajax)) {
     // Send user to their updated post.
     $destination = '/?page='.$settings['page_thread'].'&thread='.$post->thread_id
     .'&start_at='.$page.'#post-'.$post->post_id;
-  }
-  else
-  {
+  } else {
     // Send user back to the new post page with an error.
     $destination .= '/?page='.$settings['page_edit_post'].'&post='.$post->post_id.'&error='.$error;
   }

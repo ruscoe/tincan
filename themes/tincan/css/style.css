@@ -18,41 +18,51 @@ body {
   font-family: "OpenSans-Regular", serif;
 }
 
-/* line 65, ../sass/style.scss */
+/* line 63, ../sass/style.scss */
+#header {
+  position: relative;
+}
+/* line 66, ../sass/style.scss */
 #header h1 {
   padding-top: 3rem;
   text-align: center;
 }
-
 /* line 71, ../sass/style.scss */
+#header .user {
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+}
+
+/* line 78, ../sass/style.scss */
 #content {
   margin: 0 2rem 0 2rem;
   padding-top: 1rem;
 }
 
-/* line 76, ../sass/style.scss */
+/* line 83, ../sass/style.scss */
 #footer {
   padding: 3rem 0 3rem 0;
 }
 
 /* Navigation */
-/* line 82, ../sass/style.scss */
+/* line 89, ../sass/style.scss */
 #main-navigation {
   margin-left: 1rem;
 }
 
-/* line 86, ../sass/style.scss */
+/* line 93, ../sass/style.scss */
 ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
   flex-direction: column;
   list-style: none;
   padding: 0;
 }
-/* line 93, ../sass/style.scss */
+/* line 100, ../sass/style.scss */
 ul.navigation li a, ul.pagination li a, ul.post-controls li a, ul.breadcrumbs li a {
   padding: 1rem;
 }
 @media (min-width: 600px) {
-  /* line 86, ../sass/style.scss */
+  /* line 93, ../sass/style.scss */
   ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
     display: flex;
     flex-direction: row;
@@ -62,29 +72,29 @@ ul.navigation li a, ul.pagination li a, ul.post-controls li a, ul.breadcrumbs li
 }
 
 @media (min-width: 600px) {
-  /* line 106, ../sass/style.scss */
+  /* line 113, ../sass/style.scss */
   ul.pagination {
     justify-content: center;
   }
 }
 
-/* line 115, ../sass/style.scss */
+/* line 122, ../sass/style.scss */
 ul.breadcrumbs li.home::before {
   content: '\2616';
 }
-/* line 119, ../sass/style.scss */
+/* line 126, ../sass/style.scss */
 ul.breadcrumbs li.subpage::before {
   content: '\21D2';
 }
 
 /* Text */
-/* line 126, ../sass/style.scss */
+/* line 133, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
   text-align: left;
 }
 
-/* line 131, ../sass/style.scss */
+/* line 138, ../sass/style.scss */
 h1.section-header {
   background-color: #295c7a;
   color: white;
@@ -93,25 +103,25 @@ h1.section-header {
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-/* line 139, ../sass/style.scss */
+/* line 146, ../sass/style.scss */
 h2.section-subheader, h3.section-subheader {
   font-size: 1.5rem;
   margin: 0 0.5rem 0 0.5rem;
 }
 
 /* Links */
-/* line 146, ../sass/style.scss */
+/* line 153, ../sass/style.scss */
 a:link {
   color: #123266;
   text-decoration: underline;
 }
 
-/* line 151, ../sass/style.scss */
+/* line 158, ../sass/style.scss */
 a:visited {
   color: #123266;
 }
 
-/* line 155, ../sass/style.scss */
+/* line 162, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
 }

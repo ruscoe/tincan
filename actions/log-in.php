@@ -2,7 +2,6 @@
 
 use TinCan\TCData;
 use TinCan\TCJSONResponse;
-use TinCan\TCObject;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
@@ -65,7 +64,7 @@ if (!empty($ajax)) {
 
   exit($response->get_output());
 } else {
-  $destination = '/index.php?page='.$settings['page_log_in'];
+  $destination = '/index.php';
 
   if (!empty($error)) {
     $destination .= '&error='.$error;

@@ -52,7 +52,8 @@ class TCBoardGroup extends TCObject
    *
    * @return string the board group name
    */
-  public function get_name() {
+  public function get_name()
+  {
     return $this->board_group_name;
   }
 

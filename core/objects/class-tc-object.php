@@ -85,7 +85,8 @@ abstract class TCObject
    *
    * @return string
    */
-  public function get_name() {
+  public function get_name()
+  {
     return '';
   }
 
@@ -96,7 +97,8 @@ abstract class TCObject
    *
    * @return TCObject the parent object with primary key populated
    */
-  public function get_parent() {
+  public function get_parent()
+  {
     return null;
   }
 

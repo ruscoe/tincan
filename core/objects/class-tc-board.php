@@ -49,7 +49,8 @@ class TCBoard extends TCObject
    *
    * @return string the board name
    */
-  public function get_name() {
+  public function get_name()
+  {
     return $this->board_name;
   }
 
@@ -57,7 +58,8 @@ class TCBoard extends TCObject
    * @see TCObject::get_parent()
    * @since 0.04
    */
-  public function get_parent() {
+  public function get_parent()
+  {
     $parent = null;
 
     if (!empty($this->board_group_id)) {

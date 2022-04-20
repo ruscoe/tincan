@@ -3,8 +3,6 @@
 use TinCan\TCData;
 use TinCan\TCJSONResponse;
 use TinCan\TCObject;
-use TinCan\TCPost;
-use TinCan\TCPostSanitizer;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
@@ -43,7 +41,7 @@ if (empty($user)) {
   $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
-if (empty($error) && (empty($file) || $file['error'] !== UPLOAD_ERR_OK)) {
+if (empty($error) && (empty($file) || UPLOAD_ERR_OK !== $file['error'])) {
   // TODO: File-specific error message.
   $error = TCUser::ERR_NOT_AUTHORIZED;
 }
@@ -60,9 +58,9 @@ $settings = $db->load_settings();
 // The directory containing the avatar file is named for the last digit of
 // the user's ID. This just allows us to split up files and avoid massive
 // directories.
-$target_file = substr($user->user_id, -1) . '/' . $user->user_id . '.jpg';
+$target_file = substr($user->user_id, -1).'/'.$user->user_id.'.jpg';
 
-if (!move_uploaded_file($file['tmp_name'], TC_UPLOADS_PATH . '/avatars/' . $target_file)) {
+if (!move_uploaded_file($file['tmp_name'], TC_UPLOADS_PATH.'/avatars/'.$target_file)) {
   // TODO: File save error.
 }
 
@@ -87,9 +85,7 @@ if (!empty($ajax)) {
   if (empty($error)) {
     // Send user to their updated page.
     $destination = '/?page='.$settings['page_user'].'&user='.$user->user_id;
-  }
-  else
-  {
+  } else {
     // Send user back to their page with an error.
     $destination .= '/?page='.$settings['page_user'].'&user='.$user->user_id.'&error='.$error;
   }

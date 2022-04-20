@@ -56,7 +56,8 @@ class TCThread extends TCObject
    * @see TCObject::get_parent()
    * @since 0.04
    */
-  public function get_parent() {
+  public function get_parent()
+  {
     $parent = null;
 
     if (!empty($this->board_id)) {

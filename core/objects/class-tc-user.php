@@ -2,17 +2,13 @@
 
 namespace TinCan;
 
-/**
+/*
  * Represents a forum user.
  *
  * @since 0.01
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
-use TinCan\TCPost;
-use TinCan\TCRole;
-use TinCan\TCThread;
 
 class TCUser extends TCObject
 {

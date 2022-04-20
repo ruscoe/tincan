@@ -73,9 +73,7 @@ if (!empty($ajax)) {
   if (empty($error)) {
     // Send user to the confirmation page.
     $destination = '/?page='.$settings['page_post_deleted'].'&thread='.$post->thread_id;
-  }
-  else
-  {
+  } else {
     // Send user back to the delete post page with an error.
     $destination .= '/?page='.$settings['page_delete_post'].'&post='.$post->post_id.'&error='.$error;
   }

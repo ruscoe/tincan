@@ -1,6 +1,5 @@
 <?php
 
-use TinCan\Admin\TCAdminTemplate;
 use TinCan\TCBoardGroup;
 use TinCan\TCData;
 

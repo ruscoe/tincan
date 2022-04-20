@@ -23,6 +23,9 @@ use TinCan\TCUser;
   <body class="tincan <?php echo $data['page_template']; ?>">
     <div id="header">
       <h1><?php echo $settings['forum_name']; ?></h1>
+      <?php if (!empty($user)) { ?>
+        <div class="user">Logged in as <a href="/?page=<?php echo $settings['page_user']; ?>&user=<?php echo $user->user_id; ?>"><?php echo $user->username; ?></a></div>
+      <?php } ?>
       <div id="main-navigation">
         <ul class="navigation">
           <li><a href="/">Home</a></li>

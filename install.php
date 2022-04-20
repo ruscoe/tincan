@@ -191,7 +191,7 @@ function tc_create_roles()
 
   $user_allowed_actions = [
     TCUser::ACT_CREATE_POST,
-    TCUser::ACT_CREATE_THREAD
+    TCUser::ACT_CREATE_THREAD,
   ];
 
   $mod_allowed_actions = [
@@ -200,7 +200,7 @@ function tc_create_roles()
     TCUser::ACT_EDIT_ANY_POST,
     TCUser::ACT_EDIT_ANY_THREAD,
     TCUser::ACT_DELETE_ANY_POST,
-    TCUser::ACT_DELETE_ANY_THREAD
+    TCUser::ACT_DELETE_ANY_THREAD,
   ];
 
   $admin_allowed_actions = [
@@ -211,7 +211,7 @@ function tc_create_roles()
     TCUser::ACT_DELETE_ANY_POST,
     TCUser::ACT_DELETE_ANY_THREAD,
     TCUser::ACT_EDIT_ANY_USER,
-    TCUser::ACT_ACCESS_ADMIN
+    TCUser::ACT_ACCESS_ADMIN,
   ];
 
   $roles = [
@@ -326,7 +326,7 @@ function tc_create_board_groups()
   $board_groups_to_create = 4;
 
   for ($i = 0; $i < $board_groups_to_create; ++$i) {
-    $board_groups[] = ['board_group_name' => 'Board Group '.($i+1)];
+    $board_groups[] = ['board_group_name' => 'Board Group '.($i + 1)];
   }
 
   $new_board_group_ids = [];
@@ -350,7 +350,7 @@ function tc_create_boards($new_board_group_ids)
 
   foreach ($new_board_group_ids as $board_group_id) {
     for ($i = 0; $i < $board_groups_to_create; ++$i) {
-      $boards[] = ['board_group_id' => $board_group_id, 'board_name' => 'Board '.($i+1), 'description' => tc_get_random_lipsum_short()];
+      $boards[] = ['board_group_id' => $board_group_id, 'board_name' => 'Board '.($i + 1), 'description' => tc_get_random_lipsum_short()];
     }
   }
 

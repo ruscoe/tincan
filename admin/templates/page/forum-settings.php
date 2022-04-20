@@ -2,8 +2,8 @@
 
 use TinCan\Admin\TCAdminTemplate;
 use TinCan\TCData;
-use TinCan\TCSetting;
 use TinCan\TCPage;
+use TinCan\TCSetting;
 
 /**
  * Page template for forum settings.

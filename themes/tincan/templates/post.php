@@ -2,7 +2,6 @@
 
 use TinCan\TCData;
 use TinCan\TCPostParser;
-use TinCan\TCUser;
 
   /**
    * Post template.
@@ -18,7 +17,7 @@ use TinCan\TCUser;
 
   $avatar = $author->avatar;
 
-  $avatar_image = (!empty($avatar)) ? '/uploads/avatars/' . $author->avatar : '/assets/images/default-profile.png';
+  $avatar_image = (!empty($avatar)) ? '/uploads/avatars/'.$author->avatar : '/assets/images/default-profile.png';
 
   $user_page_url = "/?page={$settings['page_user']}&user={$author->user_id}";
 
@@ -29,7 +28,7 @@ use TinCan\TCUser;
   <div class="post-user">
     <h3 class="username"><a href="<?php echo $user_page_url; ?>"><?php echo $author->username; ?></a></h3>
     <div class="profile-image">
-      <a href="<?php echo $user_page_url; ?>"><img src="<?=$avatar_image?>" /></a>
+      <a href="<?php echo $user_page_url; ?>"><img src="<?php echo $avatar_image; ?>" /></a>
     </div>
     <div class="joined">Joined: <?php echo date($settings['date_format'], $author->created_time); ?></div>
   </div>
@@ -39,12 +38,12 @@ use TinCan\TCUser;
       echo date($settings['date_time_format'], $post->created_time);
 
       if ($post->updated_time != $post->created_time) {
-        echo ' (updated ' . date($settings['date_time_format'], $post->updated_time);
+        echo ' (updated '.date($settings['date_time_format'], $post->updated_time);
 
         if ($post->updated_by != $post->user_id) {
           $db = new TCData();
           $updated_by = $db->load_user($post->updated_by);
-          echo ' by ' . $updated_by->username;
+          echo ' by '.$updated_by->username;
         }
 
         echo ')';
