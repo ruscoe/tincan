@@ -24,7 +24,10 @@ use TinCan\TCUser;
     <div id="header">
       <h1><?php echo $settings['forum_name']; ?></h1>
       <?php if (!empty($user)) { ?>
-        <div class="user">Logged in as <a href="/?page=<?php echo $settings['page_user']; ?>&user=<?php echo $user->user_id; ?>"><?php echo $user->username; ?></a></div>
+        <div class="user">
+          Logged in as <a href="/?page=<?php echo $settings['page_user']; ?>&user=<?php echo $user->user_id; ?>"><?php echo $user->username; ?></a>
+          <a href="/?page=<?php echo $settings['page_log_out']; ?>">Log Out</a>
+        </div>
       <?php } ?>
       <div id="main-navigation">
         <ul class="navigation">
@@ -32,8 +35,6 @@ use TinCan\TCUser;
           <?php if (empty($user)) { ?>
             <li><a href="/?page=<?php echo $settings['page_create_account']; ?>">Create Account</a></li>
             <li><a href="/?page=<?php echo $settings['page_log_in']; ?>">Log In</a></li>
-          <?php } else { ?>
-            <li><a href="/?page=<?php echo $settings['page_log_out']; ?>">Log Out</a></li>
           <?php } ?>
           <?php if (!empty($user) && $user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
             <li><a href="/admin">Admin</a></li>
