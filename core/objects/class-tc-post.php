@@ -46,6 +46,13 @@ class TCPost extends TCObject
   protected $updated_time;
 
   /**
+   * Reference to TCUser::$user_id.
+   *
+   * @since 0.05
+   */
+  protected $updated_by;
+
+  /**
    * @see TCObject::get_parent()
    * @since 0.04
    */
@@ -99,6 +106,7 @@ class TCPost extends TCObject
           'content',
           'created_time',
           'updated_time',
+          'updated_by',
         ];
   }
 }
