@@ -65,7 +65,7 @@ if (1 == $run_install) {
 
 <?php } ?>
 
-<form action="/install.php" method="post">
+<form action="/install.php" method="POST">
   <input type="checkbox" name="create_test_data" />
   <label for="create_test_data">Generate test data</label>
   <input type="hidden" name="run_install" value="1" />
@@ -210,6 +210,7 @@ function tc_create_roles()
     TCUser::ACT_EDIT_ANY_THREAD,
     TCUser::ACT_DELETE_ANY_POST,
     TCUser::ACT_DELETE_ANY_THREAD,
+    TCUser::ACT_EDIT_ANY_USER,
     TCUser::ACT_ACCESS_ADMIN
   ];
 
@@ -234,6 +235,7 @@ function tc_create_pages()
       ['page_title' => 'Board',                  'template' => 'board'],
       ['page_title' => 'Thread',                 'template' => 'thread'],
       ['page_title' => 'User',                   'template' => 'user'],
+      ['page_title' => 'User Avatar',            'template' => 'user-avatar'],
       ['page_title' => 'Create Account',         'template' => 'create-account'],
       ['page_title' => 'Log In',                 'template' => 'log-in'],
       ['page_title' => 'Log Out',                'template' => 'log-out'],

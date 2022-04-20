@@ -22,6 +22,7 @@ class TCUser extends TCObject
   public const ACT_EDIT_ANY_THREAD = 'edit-any-thread';
   public const ACT_DELETE_ANY_POST = 'delete-any-post';
   public const ACT_DELETE_ANY_THREAD = 'delete-any-thread';
+  public const ACT_EDIT_ANY_USER = 'edit-any-user';
   public const ACT_ACCESS_ADMIN = 'access-admin';
 
   public const ERR_USER = 'user';
@@ -62,6 +63,11 @@ class TCUser extends TCObject
   protected $role_id;
 
   /**
+   * @since 0.05
+   */
+  protected $avatar;
+
+  /**
    * @since 0.01
    */
   protected $created_time;
@@ -100,12 +106,52 @@ class TCUser extends TCObject
     return false;
   }
 
-  // TODO
+  /**
+   * Determines whether this user can edit a user.
+   *
+   * @since 0.05
+   *
+   * @param TCPost $user the user to check
+   *
+   * @return bool true if the user may edit the user
+   */
+  public function can_edit_user(TCUser $user)
+  {
+    // Check for roles that can edit any post.
+    if ($this->can_perform_action(self::ACT_EDIT_ANY_USER)) {
+      return true;
+    }
+
+    // User can edit themselves.
+    if ($user->user_id == $this->user_id) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Determines whether this user can edit a thread.
+   *
+   * @since 0.05
+   *
+   * @param TCPost $thread the thread to check
+   *
+   * @return bool true if the user may edit the thread
+   */
   public function can_edit_thread(TCThread $thread)
   {
   }
 
-  // TODO
+  /**
+   * Determines whether this user can delete a thread.
+   *
+   * @since 0.05
+   *
+   * @param TCPost $thread the thread to check
+   *
+   * @return bool true if the user may delete the thread
+   */
   public function can_delete_thread(TCThread $thread)
   {
   }
@@ -267,6 +313,7 @@ class TCUser extends TCObject
           'email',
           'password',
           'role_id',
+          'avatar',
           'created_time',
           'updated_time',
         ];
