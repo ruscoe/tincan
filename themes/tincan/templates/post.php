@@ -14,16 +14,20 @@ use TinCan\TCPostParser;
   $user = $data['user'];
   $settings = $data['settings'];
 
-  $parser = new TCPostParser();
+  $avatar = $author->avatar;
+
+  $avatar_image = (!empty($avatar)) ? '/uploads/avatars/' . $author->avatar : '/assets/images/default-profile.png';
 
   $user_page_url = "/?page={$settings['page_user']}&user={$author->user_id}";
+
+  $parser = new TCPostParser();
 ?>
 
 <div id="post-<?php echo $post->post_id; ?>" class="post">
   <div class="post-user">
     <h3 class="username"><a href="<?php echo $user_page_url; ?>"><?php echo $author->username; ?></a></h3>
     <div class="profile-image">
-      <a href="<?php echo $user_page_url; ?>"><img src="/assets/images/default-profile.png" /></a>
+      <a href="<?php echo $user_page_url; ?>"><img src="<?=$avatar_image?>" /></a>
     </div>
     <div class="joined">Joined: <?php echo date($settings['date_format'], $author->created_time); ?></div>
   </div>

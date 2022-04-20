@@ -52,7 +52,7 @@ $offset = TCPagination::calculate_page_offset($start_at, $settings['posts_per_pa
 $posts = $db->load_objects(new TCPost(), [], $conditions, $order, $offset, $settings['posts_per_page']);
 
 foreach ($posts as $post) {
-  $author = $db->load_user($thread->updated_by_user);
+  $author = $db->load_user($post->user_id);
 
   TCTemplate::render('post', $settings['theme'], ['post' => $post, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
 }
