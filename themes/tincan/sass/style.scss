@@ -68,7 +68,7 @@ body {
     text-align: center;
   }
 
-  .user {
+  ul.navigation {
     position: absolute;
     right: 2rem;
     top: 1rem;
@@ -86,10 +86,6 @@ body {
 
 /* Navigation */
 
-#main-navigation {
-  margin-left: 1rem;
-}
-
 ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
   flex-direction: column;
   list-style: none;
@@ -97,9 +93,7 @@ ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
 
   li {
 
-    a {
-      padding: 1rem;
-    }
+    padding: 0 0.5rem 0 0.5rem;
   }
 
   @include for-tablet-portrait-up {
@@ -118,6 +112,13 @@ ul.pagination {
 }
 
 ul.breadcrumbs {
+
+  li {
+
+    a {
+      padding-left: 1rem;
+    }
+  }
 
   li.home::before {
     content: '\2616';
