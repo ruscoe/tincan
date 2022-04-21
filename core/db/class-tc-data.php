@@ -146,7 +146,7 @@ class TCData
 
       $result = $this->database->query($query);
       if (!$result) {
-        throw new Exception($this->database->get_last_error());
+        throw new \Exception($this->database->get_last_error());
       }
 
       $insert_id = $this->database->get_last_insert_id();

@@ -1,8 +1,11 @@
 <?php
 
+use TinCan\TCBoard;
 use TinCan\TCData;
 use TinCan\TCJSONResponse;
 use TinCan\TCObject;
+use TinCan\TCPost;
+use TinCan\TCPostSanitizer;
 use TinCan\TCThread;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
@@ -94,6 +97,7 @@ if (empty($error)) {
     $post->content = $sanitizer->sanitize_post($post_content);
     $post->created_time = time();
     $post->updated_time = time();
+    $post->updated_by_user = $user->user_id;
 
     $new_post = $db->save_object($post);
 

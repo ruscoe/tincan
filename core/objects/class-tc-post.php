@@ -50,7 +50,7 @@ class TCPost extends TCObject
    *
    * @since 0.05
    */
-  protected $updated_by;
+  protected $updated_by_user;
 
   /**
    * @see TCObject::get_parent()
@@ -107,7 +107,7 @@ class TCPost extends TCObject
           'content',
           'created_time',
           'updated_time',
-          'updated_by',
+          'updated_by_user',
         ];
   }
 }
