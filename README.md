@@ -20,6 +20,7 @@ this software is designed around functionality and simplicity.
 Copy tc-config-example.php to tc-config.php and change these values to suit your environment.
 
 * `TC_BASE_PATH` = `/var/www/YOUR_SITE`
+* `TC_UPLOADS_PATH` = `/var/www/YOUR_SITE/uploads`
 * `TC_DB_HOST` = `http://localhost`
 * `TC_DB_USER` = `root`
 * `TC_DB_PASS` = `root`
