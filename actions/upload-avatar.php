@@ -8,7 +8,6 @@ use TinCan\TCUser;
 use TinCan\TCUserSession;
 
 $file = $_FILES['avatar_image'];
-//var_dump($file);
 
 /**
  * Tin Can update post handler.
@@ -49,9 +48,11 @@ if (empty($error) && (empty($file) || UPLOAD_ERR_OK !== $file['error'])) {
 $image_data = getimagesize($file['tmp_name']);
 
 $image = new TCImage();
+$image->width = $image_data[0];
+$image->height = $image_data[1];
 $image->file_type = $image_data[2];
 $image->mime_type = $image_data['mime'];
-$image->size = $file['size'];
+$image->file_size = $file['size'];
 
 // Check for valid file type.
 if (empty($error) && !$image->is_valid_type()) {
@@ -75,7 +76,7 @@ if (empty($error) && !move_uploaded_file($file['tmp_name'], $target_full_path)) 
 }
 
 // TODO: Resize and crop file to a square.
-$scaled_image = $image->scale_to_square($target_full_path, 512);
+$scaled_image = $image->scale_to_square($target_full_path, 256);
 
 if (empty($error) && !imagejpeg($scaled_image, $target_full_path)) {
   $error = TCImage::ERR_FILE_GENERAL;

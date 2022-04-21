@@ -2,7 +2,6 @@
 
 namespace TinCan;
 
-
 /**
  * Tin Can database layer.
  *

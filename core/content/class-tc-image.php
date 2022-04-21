@@ -21,7 +21,7 @@ class TCImage
   /**
    * @since 0.05
    */
-  protected $name;
+  protected $file_name;
 
   /**
    * @since 0.05
@@ -36,28 +36,61 @@ class TCImage
   /**
    * @since 0.05
    */
-  protected $size;
+  protected $file_size;
 
   /**
-   * TODO
+   * @since 0.05
+   */
+  protected $width;
+
+  /**
+   * @since 0.05
+   */
+  protected $height;
+
+  /**
+   * TODO.
    *
    * @since 0.05
    */
-  public function scale_to_square($source_image, $size) {
+  public function scale_to_square($source_image, $size)
+  {
     if (empty($size)) {
       return null;
     }
 
     $image = null;
 
-    if ($this->file_type == IMAGETYPE_JPEG) {
+    if (IMAGETYPE_JPEG == $this->file_type) {
       $image = imagecreatefromjpeg($source_image);
-    }
-    else if ($this->file_type == IMAGETYPE_PNG) {
+    } elseif (IMAGETYPE_PNG == $this->file_type) {
       $image = imagecreatefrompng($source_image);
     }
 
-    $scaled_image = imagescale($image, $size, $size, IMG_BICUBIC);
+    // Image needs to be a square, so crop to the size of the shortest side.
+    $crop_size = ($this->width > $this->height) ? $this->height : $this->width;
+
+    $center_x = (($this->width / 2) - ($crop_size / 2));
+    $center_y = (($this->height / 2) - ($crop_size / 2));
+
+    if ($center_x < 0) {
+      $center_x = 0;
+    }
+
+    if ($center_y < 0) {
+      $center_y = 0;
+    }
+
+    $crop_options = [
+      'x' => $center_x,
+      'y' => $center_y,
+     'width' => $crop_size,
+     'height' => $crop_size,
+    ];
+
+    $cropped_image = imagecrop($image, $crop_options);
+
+    $scaled_image = imagescale($cropped_image, $size, $size, IMG_BICUBIC);
 
     return $scaled_image;
   }
@@ -91,7 +124,7 @@ class TCImage
    */
   public function is_valid_size()
   {
-    return $this->size <= self::MAX_FILE_SIZE;
+    return $this->file_size <= self::MAX_FILE_SIZE;
   }
 
   /**
