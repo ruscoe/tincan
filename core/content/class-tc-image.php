@@ -39,6 +39,30 @@ class TCImage
   protected $size;
 
   /**
+   * TODO
+   *
+   * @since 0.05
+   */
+  public function scale_to_square($source_image, $size) {
+    if (empty($size)) {
+      return null;
+    }
+
+    $image = null;
+
+    if ($this->file_type == IMAGETYPE_JPEG) {
+      $image = imagecreatefromjpeg($source_image);
+    }
+    else if ($this->file_type == IMAGETYPE_PNG) {
+      $image = imagecreatefrompng($source_image);
+    }
+
+    $scaled_image = imagescale($image, $size, $size, IMG_BICUBIC);
+
+    return $scaled_image;
+  }
+
+  /**
    * Determines if this image is a valid format.
    *
    * @since 0.05

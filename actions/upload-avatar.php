@@ -8,7 +8,7 @@ use TinCan\TCUser;
 use TinCan\TCUserSession;
 
 $file = $_FILES['avatar_image'];
-var_dump($file);
+//var_dump($file);
 
 /**
  * Tin Can update post handler.
@@ -63,18 +63,22 @@ if (empty($error) && !$image->is_valid_size()) {
   $error = TCImage::ERR_FILE_SIZE;
 }
 
-// TODO: Resize file.
-
-$settings = $db->load_settings();
-
 // Avatar filename is the user's ID followed by the file extension.
 // The directory containing the avatar file is named for the last digit of
 // the user's ID. This just allows us to split up files and avoid massive
 // directories.
 $target_file = substr($user->user_id, -1).'/'.$user->user_id.'.jpg';
+$target_full_path = TC_UPLOADS_PATH.'/avatars/'.$target_file;
 
-if (empty($error) && !move_uploaded_file($file['tmp_name'], TC_UPLOADS_PATH.'/avatars/'.$target_file)) {
-  TCImage::ERR_FILE_GENERAL;
+if (empty($error) && !move_uploaded_file($file['tmp_name'], $target_full_path)) {
+  $error = TCImage::ERR_FILE_GENERAL;
+}
+
+// TODO: Resize and crop file to a square.
+$scaled_image = $image->scale_to_square($target_full_path, 512);
+
+if (empty($error) && !imagejpeg($scaled_image, $target_full_path)) {
+  $error = TCImage::ERR_FILE_GENERAL;
 }
 
 if (empty($error)) {
@@ -93,6 +97,8 @@ if (!empty($ajax)) {
 
   exit($response->get_output());
 } else {
+  $settings = $db->load_settings();
+
   $destination = '';
 
   if (empty($error)) {
