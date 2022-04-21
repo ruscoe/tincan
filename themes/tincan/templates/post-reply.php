@@ -12,6 +12,7 @@ use TinCan\TCTemplate;
   $thread = $data['thread'];
   $user = $data['user'];
   $page = $data['page'];
+  $settings = $data['settings'];
 
   $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>

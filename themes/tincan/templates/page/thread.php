@@ -66,5 +66,5 @@ TCTemplate::render('pagination', $settings['theme'], ['page_params' => $page_par
 
 // Display reply form if user has permission to reply to this thread.
 if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_POST)) {
-  TCTemplate::render('post-reply', $settings['theme'], ['thread' => $thread, 'user' => $user, 'page' => $page]);
+  TCTemplate::render('post-reply', $settings['theme'], ['thread' => $thread, 'user' => $user, 'page' => $page, 'settings' => $settings]);
 }
