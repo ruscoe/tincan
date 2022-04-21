@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCData;
+use TinCan\TCImage;
 use TinCan\TCJSONResponse;
 use TinCan\TCObject;
 use TinCan\TCUser;
@@ -42,15 +43,27 @@ if (empty($user)) {
 }
 
 if (empty($error) && (empty($file) || UPLOAD_ERR_OK !== $file['error'])) {
-  // TODO: File-specific error message.
-  $error = TCUser::ERR_NOT_AUTHORIZED;
+  $error = TCImage::ERR_FILE_GENERAL;
 }
 
-// TODO: Check file size.
-// TODO: Check file MIME type.
+$image_data = getimagesize($file['tmp_name']);
+
+$image = new TCImage();
+$image->file_type = $image_data[2];
+$image->mime_type = $image_data['mime'];
+$image->size = $file['size'];
+
+// Check for valid file type.
+if (empty($error) && !$image->is_valid_type()) {
+  $error = TCImage::ERR_FILE_TYPE;
+}
+
+// Check file size.
+if (empty($error) && !$image->is_valid_size()) {
+  $error = TCImage::ERR_FILE_SIZE;
+}
+
 // TODO: Resize file.
-// TODO: Convert file to jpg.
-// TODO: Move file to final destination.
 
 $settings = $db->load_settings();
 
@@ -60,8 +73,8 @@ $settings = $db->load_settings();
 // directories.
 $target_file = substr($user->user_id, -1).'/'.$user->user_id.'.jpg';
 
-if (!move_uploaded_file($file['tmp_name'], TC_UPLOADS_PATH.'/avatars/'.$target_file)) {
-  // TODO: File save error.
+if (empty($error) && !move_uploaded_file($file['tmp_name'], TC_UPLOADS_PATH.'/avatars/'.$target_file)) {
+  TCImage::ERR_FILE_GENERAL;
 }
 
 if (empty($error)) {
