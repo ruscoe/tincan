@@ -32,6 +32,7 @@
           <li><a href="/admin?page=<?php echo $settings['admin_page_posts']; ?>">Posts</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_pages']; ?>">Pages</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_users']; ?>">Users</a></li>
+          <li><a href="/admin?page=<?php echo $settings['admin_page_phpinfo']; ?>">PHP Info</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_log_out']; ?>">Log out</a></li>
         </ul>
       </div>

@@ -255,6 +255,7 @@ function tc_create_pages()
       ['page_title' => 'Admin Posts',            'template' => 'posts'],
       ['page_title' => 'Admin Pages',            'template' => 'pages'],
       ['page_title' => 'Admin Users',            'template' => 'users'],
+      ['page_title' => 'Admin PHP Information',  'template' => 'phpinfo'],
       ['page_title' => 'Admin Edit Board Group', 'template' => 'edit-board-group'],
       ['page_title' => 'Admin Edit Board',       'template' => 'edit-board'],
       ['page_title' => 'Admin Edit Page',        'template' => 'edit-page'],
@@ -413,6 +414,7 @@ function tc_create_posts($new_thread_ids)
   foreach ($posts as $post) {
     $post['created_time'] = time();
     $post['updated_time'] = time();
+    $post['updated_by_user'] = 1;
     $db->save_object(new TCPost((object) $post));
   }
 }
