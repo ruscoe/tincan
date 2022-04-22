@@ -10,7 +10,10 @@ use TinCan\TCTemplate;
   * @author Dan Ruscoe danruscoe@protonmail.com
   */
  $page = $data['page'];
+ $settings = $data['settings'];
 
+ $username = filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING);
+ $email = filter_input(INPUT_GET, 'email', FILTER_SANITIZE_STRING);
  $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
@@ -26,14 +29,14 @@ use TinCan\TCTemplate;
   <div class="fieldset">
     <label for="username">Username</label>
     <div class="field">
-      <input class="text-input" type="text" name="username" />
+      <input class="text-input" type="text" name="username" value="<?=$username?>" />
     </div>
   </div>
 
   <div class="fieldset">
     <label for="email">Email address</label>
     <div class="field">
-      <input class="text-input" type="text" name="email" />
+      <input class="text-input" type="text" name="email" value="<?=$email?>" />
     </div>
   </div>
 

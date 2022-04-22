@@ -66,8 +66,12 @@ if (!empty($ajax)) {
 } else {
   $destination = '/index.php';
 
-  if (!empty($error)) {
-    $destination .= '&error='.$error;
+  if (empty($error)) {
+    // Send user to the forum homepage.
+    $destination .= '?';
+  } else {
+    // Send user back to the log in page with an error.
+    $destination .= '?page='.$settings['page_log_in'].'&error='.$error;
   }
 
   header('Location: '.$destination);

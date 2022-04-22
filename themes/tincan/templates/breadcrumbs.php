@@ -17,11 +17,13 @@ $db = new TCData();
 $chain = [];
 
 // Follow the chain of parent objects until no more exist.
-while (null !== $object->get_parent()) {
-  $parent = $object->get_parent();
-  if (null !== $parent) {
-    $object = $db->load_object($parent, $parent->get_primary_key_value());
-    $chain[] = $object;
+if (!empty($object)) {
+  while (null !== $object->get_parent()) {
+    $parent = $object->get_parent();
+    if (null !== $parent) {
+      $object = $db->load_object($parent, $parent->get_primary_key_value());
+      $chain[] = $object;
+    }
   }
 }
 

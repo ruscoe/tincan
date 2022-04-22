@@ -10,6 +10,7 @@ use TinCan\TCTemplate;
    * @author Dan Ruscoe danruscoe@protonmail.com
    */
   $page = $data['page'];
+  $settings = $data['settings'];
 
   $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 

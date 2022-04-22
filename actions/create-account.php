@@ -97,10 +97,15 @@ if (!empty($ajax)) {
 
   exit($response->get_output());
 } else {
-  $destination = '/index.php?page='.$settings['page_create_account'];
+  $destination = '/index.php';
 
-  if (!empty($error)) {
-    $destination .= '&error='.$error;
+  if (empty($error)) {
+    // Send user to the forum homepage.
+    $destination .= '?';
+  } else {
+    // Send user back to the create account page with an error.
+    $destination .= '?page='.$settings['page_create_account']
+    .'&username='.$username.'&email='.$email;
   }
 
   header('Location: '.$destination);
