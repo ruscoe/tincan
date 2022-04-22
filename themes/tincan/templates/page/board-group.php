@@ -5,6 +5,8 @@ use TinCan\TCBoardGroup;
 use TinCan\TCData;
 use TinCan\TCTemplate;
 
+$settings = $data['settings'];
+
 /**
  * Board group page template.
  *
@@ -18,6 +20,7 @@ $db = new TCData();
 
 $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
 
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board_group, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $board_group->board_group_name; ?></h1>

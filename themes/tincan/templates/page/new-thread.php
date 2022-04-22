@@ -3,6 +3,7 @@
 use TinCan\TCBoard;
 use TinCan\TCData;
 use TinCan\TCTemplate;
+use TinCan\TCThread;
 use TinCan\TCUser;
 
   /**
@@ -32,7 +33,10 @@ use TinCan\TCUser;
 
 <?php
   } else {
-    $board = $db->load_object(new TCBoard(), $board_id); ?>
+    $board = $db->load_object(new TCBoard(), $board_id);
+
+    TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => new TCThread((object) ['board_id' => $board->board_id]), 'settings' => $settings]);
+?>
 
   <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
