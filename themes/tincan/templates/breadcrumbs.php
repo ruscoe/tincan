@@ -31,12 +31,13 @@ $template_page_map = [
   'board_id' => ('/?page='.$settings['page_board'].'&board='),
   'board_group_id' => ('/?page='.$settings['page_board_group'].'&board_group='),
 ];
+?>
 
-if (!empty($chain)) {
-  ?>
-  <ul class="breadcrumbs">
-    <li class="home"><a href="/">Home</a></li>
+<ul class="breadcrumbs">
+  <li class="home"><a href="/">Home</a></li>
+
 <?php
+if (!empty($chain)) {
   $chain_length = count($chain);
 
   $object = null;
@@ -52,7 +53,10 @@ if (!empty($chain)) {
 
       echo '<li class="subpage"><a href="'.$page_url.'">'.$object->get_name().'</a></li>';
     }
-  } ?>
-  </ul>
-<?php
+  }
 }
+?>
+
+</ul>
+
+<?php
