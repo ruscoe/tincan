@@ -74,7 +74,8 @@ abstract class TCObject
    */
   public function validate_field_value($field_name, $value)
   {
-    return !empty($value);
+    // Empty values are invalid unless they are an integer.
+    return (($value === 0) || !empty($value));
   }
 
   /**
