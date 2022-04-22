@@ -80,6 +80,7 @@ if (empty($error)) {
   $thread = new TCThread();
   $thread->board_id = $board_id;
   $thread->thread_title = $thread_title;
+  $thread->first_post_id = 0;
   $thread->created_by_user = $user->user_id;
   $thread->updated_by_user = $user->user_id;
   $thread->created_time = time();
@@ -101,8 +102,13 @@ if (empty($error)) {
 
     $new_post = $db->save_object($post);
 
-    // Delete thread and exit with error if post cannot be created.
-    if (empty($new_post)) {
+    if (!empty($new_post)) {
+      // Assign first post ID for this thread.
+      $new_thread->first_post_id = $new_post->post_id;
+      $db->save_object($new_thread);
+    }
+    else {
+      // Delete thread and exit with error if post cannot be created.
       $error = TCObject::ERR_NOT_SAVED;
       $db->delete_object($thread, $thread->thread_id);
     }

@@ -29,6 +29,13 @@ class TCThread extends TCObject
   protected $thread_title;
 
   /**
+   * Reference to TCPost::$post_id.
+   *
+   * @since 0.06
+   */
+  protected $first_post_id;
+
+  /**
    * Reference to TCUser::$user_id.
    *
    * @since 0.02
@@ -104,6 +111,7 @@ class TCThread extends TCObject
     return [
           'board_id',
           'thread_title',
+          'first_post_id',
           'created_by_user',
           'updated_by_user',
           'created_time',
