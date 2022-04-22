@@ -10,6 +10,7 @@ use TinCan\TCPostParser;
    *
    * @author Dan Ruscoe danruscoe@protonmail.com
    */
+  $thread = $data['thread'];
   $post = $data['post'];
   $author = $data['author'];
   $user = $data['user'];
@@ -54,7 +55,7 @@ use TinCan\TCPostParser;
     <ul class="post-controls">
       <?php if (!empty($user) && $user->can_edit_post($post)) { ?>
         <li><a href="/?page=<?php echo $settings['page_edit_post']; ?>&post=<?php echo $post->post_id; ?>">Edit</a></li>
-      <?php } if (!empty($user) && $user->can_delete_post($post)) { ?>
+      <?php } if (!empty($user) && $thread->post_can_be_deleted($post) && $user->can_delete_post($post)) { ?>
         <li><a href="/?page=<?php echo $settings['page_delete_post']; ?>&post=<?php echo $post->post_id; ?>">Delete</a></li>
       <?php } ?>
     </ul>

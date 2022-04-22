@@ -73,6 +73,7 @@ if (empty($error)) {
   $post->content = $sanitizer->sanitize_post($post_content);
   $post->created_time = time();
   $post->updated_time = time();
+  $post->updated_by_user = $user->user_id;
 
   $new_post = $db->save_object($post);
 
