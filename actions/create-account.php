@@ -105,7 +105,7 @@ if (!empty($ajax)) {
   } else {
     // Send user back to the create account page with an error.
     $destination .= '?page='.$settings['page_create_account']
-    .'&username='.$username.'&email='.$email;
+    .'&username='.$username.'&email='.$email.'&error='.$error;
   }
 
   header('Location: '.$destination);
