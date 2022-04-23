@@ -56,7 +56,7 @@ abstract class TCDB
   /**
    * @since 0.01
    */
-  abstract public function query($query);
+  abstract public function query($query, $params = []);
 
   /**
    * @since 0.01

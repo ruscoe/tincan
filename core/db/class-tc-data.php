@@ -94,14 +94,18 @@ class TCData
    */
   public function load_object($class, $id)
   {
+    if (empty($class) || empty($id)) {
+      return null;
+    }
+
     $db_table = $class->get_db_table();
     $primary_key = $class->get_primary_key();
 
-    $query = "SELECT * FROM `{$db_table}` WHERE `{$primary_key}` = {$id}";
+    $query = "SELECT * FROM `{$db_table}` WHERE `{$primary_key}` = ?";
 
     $this->database->open_connection();
 
-    $result = $this->database->query($query);
+    $result = $this->database->query($query, [$id]);
 
     if (empty($result)) {
       return null;

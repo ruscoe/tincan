@@ -45,9 +45,27 @@ class TCMySQL extends TCDB
   /**
    * @since 0.01
    */
-  public function query($query)
+  public function query($query, $params = [])
   {
-    return $this->connection->query($query);
+    $prepared = $this->connection->prepare($query);
+
+    foreach ($params as $param) {
+      if (is_int($param)) {
+        $prepared->bind_param('i', $param);
+      }
+      else {
+        $prepared->bind_param('s', $param);
+      }
+    }
+
+    $prepared->execute();
+
+    $result = $prepared->get_result();
+
+    $prepared->free_result();
+    $prepared->close();
+
+    return $result;
   }
 
   /**
