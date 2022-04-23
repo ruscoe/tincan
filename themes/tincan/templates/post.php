@@ -41,9 +41,9 @@ use TinCan\TCPostParser;
       if ($post->updated_time != $post->created_time) {
         echo ' (updated '.date($settings['date_time_format'], $post->updated_time);
 
-        if ($post->updated_by != $post->user_id) {
+        if ($post->updated_by_user != $post->user_id) {
           $db = new TCData();
-          $updated_by = $db->load_user($post->updated_by);
+          $updated_by = $db->load_user($post->updated_by_user);
           echo ' by '.$updated_by->username;
         }
 

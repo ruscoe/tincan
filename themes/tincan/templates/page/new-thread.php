@@ -35,7 +35,7 @@ use TinCan\TCUser;
   } else {
     $board = $db->load_object(new TCBoard(), $board_id);
 
-    TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => new TCThread((object) ['board_id' => $board->board_id]), 'settings' => $settings]);
+    TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
 ?>
 
   <h1 class="section-header"><?php echo $page->page_title; ?></h1>
