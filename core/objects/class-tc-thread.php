@@ -2,8 +2,6 @@
 
 namespace TinCan;
 
-use TinCan\TCPost;
-
 /**
  * Represents a forum thread.
  *
@@ -68,12 +66,13 @@ class TCThread extends TCObject
    *
    * @param TCPost $post the post to check
    *
-   * @return bool true if the post may be deleted.
+   * @return bool true if the post may be deleted
    */
-  public function post_can_be_deleted(TCPost $post) {
+  public function post_can_be_deleted(TCPost $post)
+  {
     // The first post in a thread cannot be deleted.
     // The thread must be deleted by an Administrator.
-    return ($post->post_id != $this->first_post_id);
+    return $post->post_id != $this->first_post_id;
   }
 
   /**

@@ -4,12 +4,12 @@ use TinCan\TCData;
 use TinCan\TCTemplate;
 
 /**
-* User page template.
-*
-* @since 0.01
-*
-* @author Dan Ruscoe danruscoe@protonmail.com
-*/
+ * User page template.
+ *
+ * @since 0.01
+ *
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
 $page = $data['page'];
 $settings = $data['settings'];
 $user = $data['user'];

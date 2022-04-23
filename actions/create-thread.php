@@ -106,8 +106,7 @@ if (empty($error)) {
       // Assign first post ID for this thread.
       $new_thread->first_post_id = $new_post->post_id;
       $db->save_object($new_thread);
-    }
-    else {
+    } else {
       // Delete thread and exit with error if post cannot be created.
       $error = TCObject::ERR_NOT_SAVED;
       $db->delete_object($thread, $thread->thread_id);

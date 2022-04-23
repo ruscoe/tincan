@@ -29,14 +29,14 @@ use TinCan\TCTemplate;
   <div class="fieldset">
     <label for="username">Username</label>
     <div class="field">
-      <input class="text-input" type="text" name="username" value="<?=$username?>" />
+      <input class="text-input" type="text" name="username" value="<?php echo $username; ?>" />
     </div>
   </div>
 
   <div class="fieldset">
     <label for="email">Email address</label>
     <div class="field">
-      <input class="text-input" type="text" name="email" value="<?=$email?>" />
+      <input class="text-input" type="text" name="email" value="<?php echo $email; ?>" />
     </div>
   </div>
 
