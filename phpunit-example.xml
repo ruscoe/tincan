@@ -12,6 +12,11 @@
 
   <php>
     <const name="TC_BASE_PATH" value="/var/www/YOUR_SITE"/>
+    <const name="TC_DB_CLASS" value="TinCan\TCMySQL"/>
+    <const name="TC_DB_HOST" value="http://localhost"/>
+    <const name="TC_DB_USER" value="root"/>
+    <const name="TC_DB_PASS" value="root"/>
+    <const name="TC_DB_NAME" value="tincan"/>
   </php>
 
   <testsuites>
