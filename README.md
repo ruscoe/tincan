@@ -12,6 +12,7 @@ this software is designed around functionality and simplicity.
 
 ## Requirements
 
+* Composer (if you want to run unit tests)
 * PHP 7.4.0 or above
 * MySQL
 
@@ -25,6 +26,11 @@ Copy tc-config-example.php to tc-config.php and change these values to suit your
 * `TC_DB_USER` = `root`
 * `TC_DB_PASS` = `root`
 * `TC_DB_NAME` = `tincan`
+
+## Running Tests
+
+Copy phpunit-example.xml to phpunit.xml and change the `const` values to match
+those in the Configuration section.
 
 ## License
 
