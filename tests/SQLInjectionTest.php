@@ -5,9 +5,6 @@ require_once TC_BASE_PATH.'/includes/include-objects.php';
 
 use PHPUnit\Framework\TestCase;
 use TinCan\TCData;
-use TinCan\TCPost;
-use TinCan\TCRole;
-use TinCan\TCUser;
 
 class SQLInjectionTest extends TestCase
 {

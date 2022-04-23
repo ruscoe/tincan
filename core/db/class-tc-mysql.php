@@ -52,20 +52,28 @@ class TCMySQL extends TCDB
     foreach ($params as $param) {
       if (is_int($param)) {
         $prepared->bind_param('i', $param);
-      }
-      else {
+      } else {
         $prepared->bind_param('s', $param);
       }
     }
 
-    $prepared->execute();
+    if (false !== $prepared->execute()) {
+      $result = $prepared->get_result();
 
-    $result = $prepared->get_result();
+      if (!empty($result)) {
+        $prepared->free_result();
+        $prepared->close();
 
-    $prepared->free_result();
-    $prepared->close();
+        return $result;
+      } else {
+        // If $result is empty but the query executed, then it was a query
+        // that does not return a result (i.e. DELETE).
+        // Check for affected rows.
+        return $prepared->affected_rows > 0;
+      }
+    }
 
-    return $result;
+    return null;
   }
 
   /**

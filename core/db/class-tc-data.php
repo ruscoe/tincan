@@ -263,11 +263,11 @@ class TCData
     $db_table = $class->get_db_table();
     $primary_key = $class->get_primary_key();
 
-    $query = "DELETE FROM `{$db_table}` WHERE `{$primary_key}` = {$id}";
+    $query = "DELETE FROM `{$db_table}` WHERE `{$primary_key}` = ?";
 
     $this->database->open_connection();
 
-    $result = $this->database->query($query);
+    $result = $this->database->query($query, [$id]);
 
     $this->database->close_connection();
 

@@ -27,7 +27,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'setti
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
 <?php
-if (!empty($user) && $user->can_edit_post($post)) {
+if (!empty($user) && $user->can_delete_post($post)) {
   ?>
 
 <div class="confirmation-box">
