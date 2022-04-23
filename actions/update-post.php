@@ -5,6 +5,7 @@ use TinCan\TCJSONResponse;
 use TinCan\TCObject;
 use TinCan\TCPost;
 use TinCan\TCPostSanitizer;
+use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
@@ -83,11 +84,18 @@ if (!empty($ajax)) {
 
   if (empty($error)) {
     // Send user to their updated post.
-    $destination = '/?page='.$settings['page_thread'].'&thread='.$post->thread_id
-    .'&start_at='.$page.'#post-'.$post->post_id;
+    $destination = TCURL::create_url($settings['page_thread'], [
+      'thread' => $post->thread_id,
+      'start_at' => $page,
+    ]);
+
+    $destination .= '#post-'.$post->post_id;
   } else {
     // Send user back to the new post page with an error.
-    $destination .= '/?page='.$settings['page_edit_post'].'&post='.$post->post_id.'&error='.$error;
+    $destination = TCURL::create_url($settings['page_edit_post'], [
+      'post' => $post->post_id,
+      'error' => $error,
+    ]);
   }
 
   header('Location: '.$destination);

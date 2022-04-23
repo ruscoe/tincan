@@ -4,6 +4,7 @@ use TinCan\TCData;
 use TinCan\TCJSONResponse;
 use TinCan\TCObject;
 use TinCan\TCPost;
+use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
@@ -72,10 +73,15 @@ if (!empty($ajax)) {
 
   if (empty($error)) {
     // Send user to the confirmation page.
-    $destination = '/?page='.$settings['page_post_deleted'].'&thread='.$post->thread_id;
+    $destination = TCURL::create_url($settings['page_post_deleted'], [
+      'thread' => $post->thread_id,
+    ]);
   } else {
     // Send user back to the delete post page with an error.
-    $destination .= '/?page='.$settings['page_delete_post'].'&post='.$post->post_id.'&error='.$error;
+    $destination = TCURL::create_url($settings['page_post_deleted'], [
+      'post' => $post->post_id,
+      'error' => $error,
+    ]);
   }
 
   header('Location: '.$destination);

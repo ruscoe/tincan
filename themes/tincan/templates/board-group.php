@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCURL;
+
 /**
  * Board group template.
  *
@@ -9,10 +12,14 @@
   $settings = $data['settings'];
   $board_group = $data['board_group'];
   $boards = $data['boards'];
+
+  $board_group_url = TCURL::create_url($settings['page_board_group'], [
+    'board_group' => $board_group->board_group_id,
+  ]);
 ?>
 
 <div id="board-group-<?php echo $board_group->board_group_id; ?>" class="board-group">
-  <h2><a href="/?page=<?php echo $settings['page_board_group']; ?>&board_group=<?php echo $board_group->board_group_id; ?>"><?php echo $board_group->board_group_name; ?></a></h2>
+  <h2><a href="<?php echo $board_group_url; ?>"><?php echo $board_group->board_group_name; ?></a></h2>
   <ul>
     <?php foreach ($boards as $board) { ?>
       <li>

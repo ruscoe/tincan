@@ -4,6 +4,7 @@ use TinCan\TCData;
 use TinCan\TCImage;
 use TinCan\TCJSONResponse;
 use TinCan\TCObject;
+use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
@@ -104,10 +105,15 @@ if (!empty($ajax)) {
 
   if (empty($error)) {
     // Send user to their updated page.
-    $destination = '/?page='.$settings['page_user'].'&user='.$user->user_id;
+    $destination = TCURL::create_url($settings['page_user'], [
+      'user' => $user->user_id,
+    ]);
   } else {
     // Send user back to their page with an error.
-    $destination .= '/?page='.$settings['page_user'].'&user='.$user->user_id.'&error='.$error;
+    $destination = TCURL::create_url($settings['page_user'], [
+      'user' => $user->user_id,
+      'error' => $error,
+    ]);
   }
 
   header('Location: '.$destination);

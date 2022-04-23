@@ -2,6 +2,7 @@
 
 use TinCan\TCData;
 use TinCan\TCJSONResponse;
+use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
@@ -64,14 +65,14 @@ if (!empty($ajax)) {
 
   exit($response->get_output());
 } else {
-  $destination = '/index.php';
+  $destination = '';
 
   if (empty($error)) {
     // Send user to the forum homepage.
-    $destination .= '?';
+    $destination = TCURL::create_url(null);
   } else {
     // Send user back to the log in page with an error.
-    $destination .= '?page='.$settings['page_log_in'].'&error='.$error;
+    $destination = TCURL::create_url($settings['page_log_in'], ['error' => $error]);
   }
 
   header('Location: '.$destination);

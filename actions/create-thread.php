@@ -7,6 +7,7 @@ use TinCan\TCObject;
 use TinCan\TCPost;
 use TinCan\TCPostSanitizer;
 use TinCan\TCThread;
+use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
@@ -122,15 +123,19 @@ if (!empty($ajax)) {
 
   exit($response->get_output());
 } else {
-  $destination = '/index.php';
+  $destination = '';
 
   if (empty($error)) {
     // Send user to their new thread.
-    $destination .= '?page='.$settings['page_thread'].'&thread='.$new_thread->thread_id;
+    $destination = TCURL::create_url($settings['page_thread'], [
+      'thread' => $new_thread->thread_id,
+    ]);
   } else {
     // Send user back to the new thread page with an error.
-    $destination .= '?page='.$settings['page_new_thread'].'&board='.$board_id
-    .'&error='.$error;
+    $destination = TCURL::create_url($settings['page_new_thread'], [
+      'board' => $board_id,
+      'error' => $error,
+    ]);
   }
 
   header('Location: '.$destination);

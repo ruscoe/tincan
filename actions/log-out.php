@@ -1,5 +1,6 @@
 <?php
 
+use TinCan\TCURL;
 use TinCan\TCUserSession;
 
 /**
@@ -16,16 +17,12 @@ require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-template.php';
 require TC_BASE_PATH.'/includes/include-user.php';
 
-require 'class-tc-json-response.php';
-
 // Destroy the user's session. Goodbye.
 $session = new TCUserSession();
 $session->start_session();
 $session->destroy_session();
 
-// $response = new TCJSONResponse();
-// $response->success = true;
-// exit($response->get_output());
+$destination = TCURL::create_url(null);
 
-header('Location: /index.php');
+header('Location: ' . $destination);
 exit;

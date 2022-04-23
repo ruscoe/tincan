@@ -7,6 +7,7 @@ use TinCan\TCPagination;
 use TinCan\TCPost;
 use TinCan\TCPostSanitizer;
 use TinCan\TCThread;
+use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
@@ -105,11 +106,20 @@ if (!empty($ajax)) {
 
   if (empty($error)) {
     // Send user to their new post.
-    $destination .= '&start_at='.$total_pages.'#post-'.$new_post->post_id;
+    $destination = TCURL::create_url($settings['page_thread'], [
+      'thread' => $thread_id,
+      'start_at' => $total_pages,
+    ]);
+
+    $destination .= '#post-'.$new_post->post_id;
   } else {
     // Send user back to the new post page with an error.
-    $destination .= '&error='.$error;
     // TODO: Add an anchor link to the form.
+    $destination = TCURL::create_url($settings['page_thread'], [
+      'thread' => $thread_id,
+      'start_at' => $total_pages,
+      'error' => $error,
+    ]);
   }
 
   header('Location: '.$destination);
