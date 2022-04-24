@@ -28,7 +28,9 @@ $order = [];
 $threads = $db->load_objects(new TCThread(), [], $conditions, $order);
 ?>
 
-<table>
+<table class="objects">
+  <th>Thread Title</th>
+  <th colspan="3">&nbsp;</th>
 <?php
 foreach ($threads as $thread) {
   $data = [

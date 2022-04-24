@@ -19,7 +19,8 @@
     <div id="header">
       <div id="user-info">
         <ul class="navigation">
-          <li>Logged in as <?php echo $user->username; ?> at <?php echo date($settings['date_time_format'], time()); ?></li>
+          <li>Tin Can Forum version <?php echo TC_VERSION; ?></li>
+          <li>Logged in as <?php echo $user->username; ?></li>
           <li><a href="/actions/log-out.php">Log Out</a></li>
           <li><a href="/" target="_blank">View Forum</a></li>
         </ul>
@@ -38,8 +39,6 @@
           <li><a href="/admin?page=<?php echo $settings['admin_page_posts']; ?>">Posts</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_pages']; ?>">Pages</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_users']; ?>">Users</a></li>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_phpinfo']; ?>">PHP Info</a></li>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_log_out']; ?>">Log out</a></li>
         </ul>
       </div>
       <!-- Start content -->

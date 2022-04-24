@@ -14,15 +14,7 @@ body.tincan-admin {
   /* Navigation */
   /* Text */
   /* Links */
-}
-@media (min-width: 600px) {
-  /* line 61, ../sass/style.scss */
-  body.tincan-admin #page {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-  }
+  /* Tables */
 }
 /* line 71, ../sass/style.scss */
 body.tincan-admin #header, body.tincan-admin #navigation, body.tincan-admin #content, body.tincan-admin #footer {
@@ -41,7 +33,7 @@ body.tincan-admin #header h1 {
 body.tincan-admin #header ul.navigation {
   position: absolute;
   right: 2rem;
-  top: 1rem;
+  top: 0;
   list-style: none;
   padding: 0;
 }
@@ -64,35 +56,52 @@ body.tincan-admin #content {
   margin: 0 2rem 0 2rem;
   padding-top: 1rem;
 }
-/* line 110, ../sass/style.scss */
+@media (min-width: 600px) {
+  /* line 104, ../sass/style.scss */
+  body.tincan-admin #content {
+    margin-left: 240px;
+  }
+}
+/* line 114, ../sass/style.scss */
 body.tincan-admin #footer {
   padding: 3rem 0 3rem 0;
   text-align: center;
 }
-/* line 116, ../sass/style.scss */
+/* line 120, ../sass/style.scss */
 body.tincan-admin #navigation {
   background-color: #404040;
 }
-/* line 119, ../sass/style.scss */
+/* line 123, ../sass/style.scss */
 body.tincan-admin #navigation ul {
   flex-direction: column;
   list-style: none;
   padding: 0;
 }
-/* line 124, ../sass/style.scss */
-body.tincan-admin #navigation ul li {
-  padding: 0 0.5rem 0 0.5rem;
-}
-/* line 127, ../sass/style.scss */
+/* line 130, ../sass/style.scss */
 body.tincan-admin #navigation ul li a {
   color: white;
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem 0.25rem 0.85rem;
+  text-decoration: none;
 }
-/* line 136, ../sass/style.scss */
+@media (min-width: 600px) {
+  /* line 120, ../sass/style.scss */
+  body.tincan-admin #navigation {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 220px;
+  }
+}
+/* line 152, ../sass/style.scss */
 body.tincan-admin h1, body.tincan-admin h2, body.tincan-admin h3, body.tincan-admin p, body.tincan-admin li, body.tincan-admin th, body.tincan-admin td {
   color: #6b6666;
   text-align: left;
 }
-/* line 141, ../sass/style.scss */
+/* line 157, ../sass/style.scss */
 body.tincan-admin h1.section-header {
   background-color: #295c7a;
   color: white;
@@ -100,21 +109,38 @@ body.tincan-admin h1.section-header {
   margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
-/* line 149, ../sass/style.scss */
+/* line 165, ../sass/style.scss */
 body.tincan-admin h2.section-subheader, body.tincan-admin h3.section-subheader {
   font-size: 1.5rem;
   margin: 0 0.5rem 0 0.5rem;
 }
-/* line 156, ../sass/style.scss */
+/* line 172, ../sass/style.scss */
 body.tincan-admin a:link {
   color: #123266;
   text-decoration: underline;
 }
-/* line 161, ../sass/style.scss */
+/* line 177, ../sass/style.scss */
 body.tincan-admin a:visited {
   color: #123266;
 }
-/* line 165, ../sass/style.scss */
+/* line 181, ../sass/style.scss */
 body.tincan-admin a:hover {
   color: #d76a3a;
+}
+/* line 189, ../sass/style.scss */
+body.tincan-admin table.objects th {
+  background-color: #295c7a;
+  color: white;
+}
+/* line 194, ../sass/style.scss */
+body.tincan-admin table.objects tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+/* line 198, ../sass/style.scss */
+body.tincan-admin table.objects th, body.tincan-admin table.objects td {
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+/* line 202, ../sass/style.scss */
+body.tincan-admin table.objects a {
+  text-decoration: none;
 }

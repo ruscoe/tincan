@@ -28,7 +28,9 @@ $order = [];
 $boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
 ?>
 
-<table>
+<table class="objects">
+  <th>Board Name</th>
+  <th colspan="3">&nbsp;</th>
 <?php
 foreach ($boards as $board) {
   $data = [

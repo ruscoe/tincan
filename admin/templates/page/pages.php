@@ -28,7 +28,9 @@ $order = [];
 $pages = $db->load_objects(new TCPage(), [], $conditions, $order);
 ?>
 
-<table>
+<table class="objects">
+  <th>Page Name</th>
+  <th colspan="3">&nbsp;</th>
 <?php
 foreach ($pages as $page) {
   $data = [

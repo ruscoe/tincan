@@ -28,7 +28,9 @@ $order = [];
 $posts = $db->load_objects(new TCPost(), [], $conditions, $order);
 ?>
 
-<table>
+<table class="objects">
+  <th>Post ID</th>
+  <th colspan="3">&nbsp;</th>
 <?php
 foreach ($posts as $post) {
   $data = [

@@ -60,12 +60,12 @@ body.tincan-admin {
 
   #page {
 
-    @include for-tablet-portrait-up {
-      display: flex;
-      flex-direction: row;
-      flex-flow: row nowrap;
-      justify-content: flex-start;
-    }
+    // @include for-tablet-portrait-up {
+    //   display: flex;
+    //   flex-direction: row;
+    //   flex-flow: row nowrap;
+    //   justify-content: flex-start;
+    // }
   }
 
   #header, #navigation, #content, #footer {
@@ -83,7 +83,7 @@ body.tincan-admin {
     ul.navigation {
       position: absolute;
       right: 2rem;
-      top: 1rem;
+      top: 0;
       list-style: none;
       padding: 0;
 
@@ -105,6 +105,10 @@ body.tincan-admin {
     flex: 1;
     margin: 0 2rem 0 2rem;
     padding-top: 1rem;
+
+    @include for-tablet-portrait-up {
+      margin-left: 240px;
+    }
   }
 
   #footer {
@@ -122,12 +126,24 @@ body.tincan-admin {
       padding: 0;
 
       li {
-        padding: 0 0.5rem 0 0.5rem;
 
         a {
           color: $navigationText;
+          display: block;
+          font-size: 1rem;
+          font-weight: bold;
+          padding: 0.25rem 0.5rem 0.25rem 0.85rem;
+          text-decoration: none;
         }
       }
+    }
+
+    @include for-tablet-portrait-up {
+      height: 100%;
+      left: 0;
+      position: fixed;
+      top: 0;
+      width: 220px;
     }
   }
 
@@ -164,6 +180,29 @@ body.tincan-admin {
 
   a:hover {
     color: $linkTextHover;
+  }
+
+  /* Tables */
+
+  table.objects {
+
+    th {
+      background-color: $sectionHeader;
+      color: $sectionHeaderText;
+    }
+
+    tr:nth-child(even) {
+      background-color: $sectionAlt;
+    }
+
+    th, td {
+      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
   }
 
 }

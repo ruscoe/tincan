@@ -28,7 +28,9 @@ $order = [];
 $users = $db->load_objects(new TCUser(), [], $conditions, $order);
 ?>
 
-<table>
+<table class="objects">
+  <th>Username</th>
+  <th colspan="3">&nbsp;</th>
 <?php
 foreach ($users as $user) {
   $data = [
