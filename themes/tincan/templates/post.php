@@ -54,9 +54,9 @@ use TinCan\TCPostParser;
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
     <ul class="post-controls">
       <?php if (!empty($user) && $user->can_edit_post($post)) { ?>
-        <li><a href="<?=TCURL::create_url($settings['page_edit_post'], ['post' => $post->post_id])?>">Edit</a></li>
+        <li><a href="<?php echo TCURL::create_url($settings['page_edit_post'], ['post' => $post->post_id]); ?>">Edit</a></li>
       <?php } if (!empty($user) && $thread->post_can_be_deleted($post) && $user->can_delete_post($post)) { ?>
-        <li><a href="<?=TCURL::create_url($settings['page_delete_post'], ['post' => $post->post_id])?>">Delete</a></li>
+        <li><a href="<?php echo TCURL::create_url($settings['page_delete_post'], ['post' => $post->post_id]); ?>">Delete</a></li>
       <?php } ?>
     </ul>
   </div>

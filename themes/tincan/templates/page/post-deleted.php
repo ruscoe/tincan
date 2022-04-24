@@ -14,4 +14,4 @@ $settings = $data['settings'];
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
-<p>Post deleted. <a href="<?=TCURL::create_url($settings['page_thread'], ['thread' => $thread_id])?>">Return to thread</a>.</p>
+<p>Post deleted. <a href="<?php echo TCURL::create_url($settings['page_thread'], ['thread' => $thread_id]); ?>">Return to thread</a>.</p>

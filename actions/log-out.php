@@ -24,5 +24,5 @@ $session->destroy_session();
 
 $destination = TCURL::create_url(null);
 
-header('Location: ' . $destination);
+header('Location: '.$destination);
 exit;
