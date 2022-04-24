@@ -73,6 +73,7 @@ foreach ($threads as $thread) {
     'thread' => $thread,
     'url' => TCURL::create_url($settings['page_thread'], ['thread' => $thread->thread_id]),
     'last_post_date' => date($settings['date_time_format'], $thread->updated_time),
+    'settings' => $settings,
   ];
 
   TCTemplate::render('thread-preview', $settings['theme'], $template_data);
