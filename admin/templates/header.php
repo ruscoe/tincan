@@ -17,16 +17,18 @@
   </head>
   <body class="tincan-admin">
     <div id="header">
-      <h1>Tin Can Forum Admin</h1>
       <div id="user-info">
-        <ul>
+        <ul class="navigation">
           <li>Logged in as <?php echo $user->username; ?> at <?php echo date($settings['date_time_format'], time()); ?></li>
+          <li><a href="/actions/log-out.php">Log Out</a></li>
+          <li><a href="/" target="_blank">View Forum</a></li>
         </ul>
       </div>
     </div>
     <!-- Start page -->
     <div id="page">
       <div id="navigation">
+        <a href="/admin"><img class="admin-logo" src="/admin/images/tc-logo.png" /></a>
         <ul>
           <li><a href="/admin">Dashboard</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_forum_settings']; ?>">Settings</a></li>

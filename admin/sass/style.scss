@@ -84,6 +84,20 @@ body.tincan-admin {
       position: absolute;
       right: 2rem;
       top: 1rem;
+      list-style: none;
+      padding: 0;
+
+      li {
+
+        padding: 0 0.5rem 0 0.5rem;
+      }
+
+      @include for-tablet-portrait-up {
+        display: flex;
+        flex-direction: row;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+      }
     }
   }
 
@@ -95,6 +109,7 @@ body.tincan-admin {
 
   #footer {
     padding: 3rem 0 3rem 0;
+    text-align: center;
   }
 
   /* Navigation */

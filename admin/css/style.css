@@ -42,41 +42,57 @@ body.tincan-admin #header ul.navigation {
   position: absolute;
   right: 2rem;
   top: 1rem;
+  list-style: none;
+  padding: 0;
 }
 /* line 90, ../sass/style.scss */
+body.tincan-admin #header ul.navigation li {
+  padding: 0 0.5rem 0 0.5rem;
+}
+@media (min-width: 600px) {
+  /* line 83, ../sass/style.scss */
+  body.tincan-admin #header ul.navigation {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+  }
+}
+/* line 104, ../sass/style.scss */
 body.tincan-admin #content {
   flex: 1;
   margin: 0 2rem 0 2rem;
   padding-top: 1rem;
 }
-/* line 96, ../sass/style.scss */
+/* line 110, ../sass/style.scss */
 body.tincan-admin #footer {
   padding: 3rem 0 3rem 0;
+  text-align: center;
 }
-/* line 101, ../sass/style.scss */
+/* line 116, ../sass/style.scss */
 body.tincan-admin #navigation {
   background-color: #404040;
 }
-/* line 104, ../sass/style.scss */
+/* line 119, ../sass/style.scss */
 body.tincan-admin #navigation ul {
   flex-direction: column;
   list-style: none;
   padding: 0;
 }
-/* line 109, ../sass/style.scss */
+/* line 124, ../sass/style.scss */
 body.tincan-admin #navigation ul li {
   padding: 0 0.5rem 0 0.5rem;
 }
-/* line 112, ../sass/style.scss */
+/* line 127, ../sass/style.scss */
 body.tincan-admin #navigation ul li a {
   color: white;
 }
-/* line 121, ../sass/style.scss */
+/* line 136, ../sass/style.scss */
 body.tincan-admin h1, body.tincan-admin h2, body.tincan-admin h3, body.tincan-admin p, body.tincan-admin li, body.tincan-admin th, body.tincan-admin td {
   color: #6b6666;
   text-align: left;
 }
-/* line 126, ../sass/style.scss */
+/* line 141, ../sass/style.scss */
 body.tincan-admin h1.section-header {
   background-color: #295c7a;
   color: white;
@@ -84,21 +100,21 @@ body.tincan-admin h1.section-header {
   margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
-/* line 134, ../sass/style.scss */
+/* line 149, ../sass/style.scss */
 body.tincan-admin h2.section-subheader, body.tincan-admin h3.section-subheader {
   font-size: 1.5rem;
   margin: 0 0.5rem 0 0.5rem;
 }
-/* line 141, ../sass/style.scss */
+/* line 156, ../sass/style.scss */
 body.tincan-admin a:link {
   color: #123266;
   text-decoration: underline;
 }
-/* line 146, ../sass/style.scss */
+/* line 161, ../sass/style.scss */
 body.tincan-admin a:visited {
   color: #123266;
 }
-/* line 150, ../sass/style.scss */
+/* line 165, ../sass/style.scss */
 body.tincan-admin a:hover {
   color: #d76a3a;
 }
