@@ -33,7 +33,9 @@ $pages = $db->load_objects(new TCPage());
   foreach ($settings as $setting) {
     switch ($setting->type) {
       case 'page':
-        TCAdminTemplate::render('table-row-settings-page', ['setting' => $setting, 'pages' => $pages]);
+        // Don't display page settings. Too easy to break the entire forum by
+        // reassigning default pages.
+        // TCAdminTemplate::render('table-row-settings-page', ['setting' => $setting, 'pages' => $pages]);
       break;
       case 'bool':
         TCAdminTemplate::render('table-row-settings-bool', ['setting' => $setting]);
