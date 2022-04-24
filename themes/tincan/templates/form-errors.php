@@ -21,15 +21,14 @@ $page = $data['page'];
       $error_text = '';
 
       if ('log-in' == $page->template) {
+        // User is logging in.
         if (TCObject::ERR_NOT_FOUND == $error_code) {
           $error_text = 'No match found for the credentials you\'re logging in with.';
         }
-      }
-
-      if ('create-account' == $page->template) {
+      } elseif ('create-account' == $page->template) {
         // User is creating an account.
         if (TCUser::ERR_USER == $error_code) {
-          $error_text = 'Please choose a username at least '.TCUser::MIN_USERNAME_LENGTH.' characters long.';
+          $error_text = 'Please choose a username at least '.TCUser::MIN_USERNAME_LENGTH.' characters long. Alphanumeric characters only.';
         } elseif (TCUser::ERR_EMAIL == $error_code) {
           $error_text = 'Please check your email address has been entered correctly.';
         } elseif (TCUser::ERR_PASSWORD == $error_code) {
@@ -37,7 +36,7 @@ $page = $data['page'];
         } elseif (TCUser::ERR_USERNAME_EXISTS == $error_code) {
           $error_text = 'The username you entered has been taken. Please choose another.';
         } elseif (TCUser::ERR_EMAIL_EXISTS == $error_code) {
-          $error_text = 'The email address you entered is already in use. You may already have an account.';
+          $error_text = 'The email address you entered is in use. You may already have an account.';
         }
       } elseif ('thread' == $page->template) {
         // User is posting a reply to a thread.
