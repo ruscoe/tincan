@@ -236,7 +236,13 @@ class TCUser extends TCObject
    */
   public function validate_username($username)
   {
+    // Check username length.
     if (strlen($username) < self::MIN_USERNAME_LENGTH) {
+      return false;
+    }
+
+    // Check for non-alphanumeric characters.
+    if (!ctype_alnum($username)) {
       return false;
     }
 
