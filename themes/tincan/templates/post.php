@@ -2,6 +2,7 @@
 
 use TinCan\TCData;
 use TinCan\TCPostParser;
+use TinCan\TCURL;
 
   /**
    * Post template.

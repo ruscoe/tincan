@@ -5,6 +5,7 @@ use TinCan\TCData;
 use TinCan\TCPagination;
 use TinCan\TCTemplate;
 use TinCan\TCThread;
+use TinCan\TCURL;
 use TinCan\TCUser;
 
 /**

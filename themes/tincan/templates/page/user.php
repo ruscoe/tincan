@@ -2,6 +2,7 @@
 
 use TinCan\TCData;
 use TinCan\TCTemplate;
+use TinCan\TCURL;
 
 /**
  * User page template.

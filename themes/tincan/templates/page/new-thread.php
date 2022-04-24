@@ -3,6 +3,7 @@
 use TinCan\TCBoard;
 use TinCan\TCData;
 use TinCan\TCTemplate;
+use TinCan\TCURL;
 use TinCan\TCUser;
 
 /**

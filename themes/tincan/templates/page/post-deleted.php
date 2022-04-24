@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCURL;
+
 /**
  * Post Deleted page template.
  *
