@@ -86,6 +86,9 @@ if (empty($error) && !imagejpeg($scaled_image, $target_full_path)) {
 if (empty($error)) {
   $user->avatar = $target_file;
 
+  // TODO: Can this line go into TCObject?
+  $user->updated_time = time();
+
   if (!$db->save_object($user)) {
     $error = TCObject::ERR_NOT_SAVED;
   }
