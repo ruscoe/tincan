@@ -36,7 +36,7 @@ foreach ($threads as $thread) {
   $data = [
     'title' => $thread->thread_title,
     'object_id' => $thread->thread_id,
-    'view_page_id' => $settings['page_thread'],
+    'view_url' => '/index.php?page='.$settings['page_thread'].'&thread='.$thread->thread_id,
     'edit_page_id' => $settings['admin_page_edit_thread'],
   ];
 

@@ -36,7 +36,7 @@ foreach ($pages as $page) {
   $data = [
     'title' => $page->page_title,
     'object_id' => $page->page_id,
-    'view_page_id' => '',
+    'view_url' => '/index.php?page=' . $page->page_id,
     'edit_page_id' => $settings['admin_page_edit_page'],
   ];
   TCAdminTemplate::render('table-row', $data);

@@ -36,7 +36,7 @@ foreach ($users as $user) {
   $data = [
     'title' => $user->username,
     'object_id' => $user->user_id,
-    'view_page_id' => $settings['page_user'],
+    'view_url' => '/index.php?page='.$settings['page_user'].'&user='.$user->user_id,
     'edit_page_id' => $settings['admin_page_edit_user'],
   ];
   TCAdminTemplate::render('table-row', $data);

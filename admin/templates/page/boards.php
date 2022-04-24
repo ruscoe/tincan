@@ -36,7 +36,7 @@ foreach ($boards as $board) {
   $data = [
     'title' => $board->board_name,
     'object_id' => $board->board_id,
-    'view_page_id' => $settings['page_board'],
+    'view_url' => '/index.php?page='.$settings['page_board'].'&board='.$board->board_id,
     'edit_page_id' => $settings['admin_page_edit_board'],
   ];
 
