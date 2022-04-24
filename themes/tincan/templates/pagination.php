@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCURL;
+
 /**
  * Pagination template.
  *
@@ -10,25 +13,25 @@ $start_at = $data['start_at'];
 $page_params = $data['page_params'];
 $total_pages = $data['total_pages'];
 
-$base_url = '?';
+$page = $page_params['page'];
 
-foreach ($page_params as $name => $value) {
-  $base_url .= $name.'='.$value.'&';
-}
+unset($page_params['page']);
+
+$base_url = TCURL::create_url($page, $page_params);
 ?>
 
 <ul class="pagination">
   <?php
   if ($start_at > 1) {
-    echo "<li><a href=\"{$base_url}start_at=".($start_at - 1).'">Prev</a></li>';
+    echo "<li><a href=\"{$base_url}&start_at=".($start_at - 1).'">Prev</a></li>';
   }
   // TODO: Show selection of first / last page numbers with ellipses in the middle.
   // Avoid massive list of pages.
   for ($i = 1; $i <= $total_pages; ++$i) {
-    echo "<li><a href=\"{$base_url}start_at={$i}\">{$i}</a></li>";
+    echo "<li><a href=\"{$base_url}&start_at={$i}\">{$i}</a></li>";
   }
   if ($start_at < $total_pages) {
-    echo "<li><a href=\"{$base_url}start_at=".($start_at + 1).'">Next</a></li>';
+    echo "<li><a href=\"{$base_url}&start_at=".($start_at + 1).'">Next</a></li>';
   }
   ?>
 </ul>
