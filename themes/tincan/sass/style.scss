@@ -84,6 +84,33 @@ body {
   padding: 3rem 0 3rem 0;
 }
 
+.tc-code {
+
+  table {
+
+    th {
+      background-color: $sectionHeader;
+      color: $sectionHeaderText;
+    }
+
+    tr:nth-child(even) {
+      background-color: $sectionAlt;
+    }
+
+    th, td {
+      padding: 1rem;
+    }
+
+    td {
+
+      h1, h2, h3, h4, h5 {
+        line-height: 100%;
+        margin: 0;
+      }
+    }
+  }
+}
+
 /* Navigation */
 
 ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {

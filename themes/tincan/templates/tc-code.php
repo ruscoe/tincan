@@ -9,6 +9,8 @@
 ?>
 
 <div class="tc-code">
+  <h3>Formatting Guide</h3>
+
   <table>
     <tr>
       <th>Format</th>
