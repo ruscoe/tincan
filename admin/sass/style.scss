@@ -1,0 +1,154 @@
+// Tin Can Admin style sheet.
+// @author Dan Ruscoe
+// @email danruscoe@protonmail.com
+
+/* Colors */
+
+$page: #FFFFFF;
+$section: #F1F1F1;
+$sectionAlt: #EEEEEE;
+$sectionHeader: #295C7A;
+$sectionHeaderText: #FFFFFF;
+$sectionBorder: #DDDDDD;
+
+$navigation: #404040;
+$navigationText: #FFFFFF;
+
+$formFieldLabel: #295C7A;
+$formFieldLabelText: #FFFFFF;
+$formField: #F1F1F1;
+
+$text: #6B6666;
+$headerText: #6B6666;
+$linkText: #123266;
+$linkTextHover: #D76A3A;
+$errorText: #DC0139;
+
+/* Fonts */
+
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+$openSansRegular: 'OpenSans-Regular';
+
+/* Breakpoints */
+
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) { @content; }
+}
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) { @content; }
+}
+@mixin for-desktop-up {
+  @media (min-width: 1200px) { @content; }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) { @content; }
+}
+
+/* Containers */
+
+body.tincan-admin {
+  background-color: $page;
+  margin: 0;
+  padding: 0;
+
+  #page {
+
+    @include for-tablet-portrait-up {
+      display: flex;
+      flex-direction: row;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+    }
+  }
+
+  #header, #navigation, #content, #footer {
+    font-family: $openSansRegular, serif;
+  }
+
+  #header {
+    position: relative;
+
+    h1 {
+      padding-top: 3rem;
+      text-align: center;
+    }
+
+    ul.navigation {
+      position: absolute;
+      right: 2rem;
+      top: 1rem;
+    }
+  }
+
+  #content {
+    flex: 1;
+    margin: 0 2rem 0 2rem;
+    padding-top: 1rem;
+  }
+
+  #footer {
+    padding: 3rem 0 3rem 0;
+  }
+
+  /* Navigation */
+  #navigation {
+    background-color: $navigation;
+
+    ul {
+      flex-direction: column;
+      list-style: none;
+      padding: 0;
+
+      li {
+        padding: 0 0.5rem 0 0.5rem;
+
+        a {
+          color: $navigationText;
+        }
+      }
+    }
+  }
+
+  /* Text */
+
+  h1, h2, h3, p, li, th, td {
+    color: $text;
+    text-align: left;
+  }
+
+  h1.section-header {
+    background-color: $sectionHeader;
+    color: $sectionHeaderText;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+  }
+
+  h2.section-subheader, h3.section-subheader {
+    font-size: 1.5rem;
+    margin: 0 0.5rem 0 0.5rem;
+  }
+
+  /* Links */
+
+  a:link {
+    color: $linkText;
+    text-decoration: underline;
+  }
+
+  a:visited {
+    color: $linkText;
+  }
+
+  a:hover {
+    color: $linkTextHover;
+  }
+
+}

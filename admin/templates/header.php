@@ -13,16 +13,20 @@
 <html>
   <head>
     <title>Tin Can Forum</title>
+    <link href="/admin/css/style.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="tincan-admin">
     <div id="header">
       <h1>Tin Can Forum Admin</h1>
       <div id="user-info">
         <ul>
-          <li>Logged in as <?php echo $user->username; ?> at <?php echo date($settings['date_format'], time()); ?></li>
+          <li>Logged in as <?php echo $user->username; ?> at <?php echo date($settings['date_time_format'], time()); ?></li>
         </ul>
       </div>
-      <div id="main-navigation">
+    </div>
+    <!-- Start page -->
+    <div id="page">
+      <div id="navigation">
         <ul>
           <li><a href="/admin">Dashboard</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_forum_settings']; ?>">Settings</a></li>
@@ -36,4 +40,5 @@
           <li><a href="/admin?page=<?php echo $settings['admin_page_log_out']; ?>">Log out</a></li>
         </ul>
       </div>
-    </div>
+      <!-- Start content -->
+      <div id="content">
