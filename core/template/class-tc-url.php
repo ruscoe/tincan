@@ -11,19 +11,17 @@ namespace TinCan;
  */
 class TCURL
 {
-
   /**
-   * TODO
+   * TODO.
    *
    * @since 0.06
    */
-  public static function create_url($page, $params = [], $pretty = false) {
-
+  public static function create_url($page, $params = [], $pretty = false)
+  {
     $url = '';
     if ($pretty) {
       // TODO: Pretty URL formatting.
-    }
-    else {
+    } else {
       $url = self::create_standard_url($page, $params);
     }
 
@@ -31,7 +29,7 @@ class TCURL
   }
 
   /**
-   * TODO
+   * TODO.
    *
    * @since 0.06
    */
@@ -40,15 +38,14 @@ class TCURL
     $url = '/index.php';
 
     if (!empty($page)) {
-      $url .= '?page=' . $page;
+      $url .= '?page='.$page;
 
       // URL parameters only used when a page is specified.
       foreach ($params as $name => $value) {
-        $url .= "&{$name}={$value}";
+        $url .= '&'.$name.'='.urlencode($value);
       }
     }
 
     return $url;
   }
-
 }
