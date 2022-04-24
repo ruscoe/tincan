@@ -37,7 +37,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'sett
 
   <div id="board-navigation">
     <ul class="navigation">
-      <li><a href="/?page=<?php echo $settings['page_new_thread']; ?>&board=<?php echo $board->board_id; ?>">New thread</a></li>
+      <li><a href="<?php=TCURL::create_url($settings['page_new_thread'], ['board' => $board->board_id])?>">New thread</a></li>
     </ul>
   </div>
 
@@ -70,7 +70,7 @@ foreach ($threads as $thread) {
   $template_data = [
     'user' => $db->load_user($thread->updated_by_user),
     'thread' => $thread,
-    'url' => '/?page='.$settings['page_thread'].'&amp;thread='.$thread->thread_id,
+    'url' => TCURL::create_url($settings['page_thread'], ['thread' => $thread->thread_id]),
     'last_post_date' => date($settings['date_time_format'], $thread->updated_time),
   ];
 

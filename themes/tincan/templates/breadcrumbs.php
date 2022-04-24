@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCData;
+use TinCan\TCURL;
 
 /**
  * Breadcrumb template.
@@ -30,8 +31,8 @@ if (!empty($object)) {
 // Map object primary keys to the pages the objects appear on.
 // This is used to create the breadcrumb links.
 $template_page_map = [
-  'board_id' => ('/?page='.$settings['page_board'].'&board='),
-  'board_group_id' => ('/?page='.$settings['page_board_group'].'&board_group='),
+  'board_id' => [$settings['page_board'], 'board'],
+  'board_group_id' => [$settings['page_board_group'], 'board_group'],
 ];
 ?>
 
@@ -48,11 +49,17 @@ if (!empty($chain)) {
     $object = $chain[$i - 1];
     $object_id = $parent->get_primary_key_value();
     $primary_key = $object->get_primary_key();
-    $page_url = (isset($template_page_map[$primary_key])) ? $template_page_map[$primary_key] : null;
+
+    $page_url = null;
+
+    if (isset($template_page_map[$primary_key])) {
+      $page_id = $template_page_map[$primary_key][0];
+      $url_param = $template_page_map[$primary_key][1];
+
+      $page_url = TCURL::create_url($page_id, [$url_param => $object->get_primary_key_value()]);
+    }
 
     if (!empty($page_url)) {
-      $page_url .= $object->get_primary_key_value();
-
       echo '<li class="subpage"><a href="'.$page_url.'">'.$object->get_name().'</a></li>';
     }
   }

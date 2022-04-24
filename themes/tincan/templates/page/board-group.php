@@ -48,7 +48,7 @@ $boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
 foreach ($boards as $board) {
   $data = [
       'board' => $board,
-      'url' => '/?page='.$settings['page_board'].'&amp;board='.$board->board_id,
+      'url' => TCURL::create_url($settings['page_board'], ['board' => $board->board_id]),
     ];
 
   TCTemplate::render('board-preview', $settings['theme'], $data);

@@ -36,7 +36,7 @@ $post = $db->load_object(new TCPost(), $post_id);
 
 if (isset($_POST['cancel'])) {
   // Cancel post deletion and return user to the thread.
-  $destination = '/?page='.$settings['page_thread'].'&thread='.$post->thread_id;
+  TCURL::create_url($settings['page_thread'], ['thread' => $post->thread_id]);
 
   header('Location: '.$destination);
   exit;

@@ -26,8 +26,8 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
   ?>
 
 <div>
-  Please <a href="/?page=<?php echo $settings['page_log_in']; ?>">log in</a>
-  or <a href="/?page=<?php echo $settings['page_create_account']; ?>">create an account</a> if you'd like to do that!
+  Please <a href="<?=TCURL::create_url($settings['page_log_in'])?>">log in</a>
+  or <a href="<?=TCURL::create_url($settings['page_create_account'])?>">create an account</a> if you'd like to do that!
 </div>
 
 <?php

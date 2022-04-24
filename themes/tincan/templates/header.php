@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCUser;
+use TinCan\TCURL;
 
   /**
    * Header template.
@@ -25,14 +26,14 @@ use TinCan\TCUser;
       <h1><?php echo $settings['forum_name']; ?></h1>
       <ul class="navigation">
       <?php if (empty($user)) { ?>
-        <li><a href="/?page=<?php echo $settings['page_create_account']; ?>">Create Account</a></li>
-        <li><a href="/?page=<?php echo $settings['page_log_in']; ?>">Log In</a></li>
+        <li><a href="<?=TCURL::create_url($settings['page_create_account'])?>">Create Account</a></li>
+        <li><a href="<?=TCURL::create_url($settings['page_log_in'])?>">Log In</a></li>
       <?php } else { ?>
-        <li>Logged in as <a href="/?page=<?php echo $settings['page_user']; ?>&user=<?php echo $user->user_id; ?>"><?php echo $user->username; ?></a></li>
+        <li>Logged in as <a href="<?=TCURL::create_url($settings['page_user'], ['user' => $user->user_id]])?>"><?php echo $user->username; ?></a></li>
         <?php if (!empty($user) && $user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
           <li><a href="/admin">Administration</a></li>
         <?php } ?>
-        <li><a href="/?page=<?php echo $settings['page_log_out']; ?>">Log Out</a></li>
+        <li><a href="<?=TCURL::create_url($settings['page_log_out'])?>">Log Out</a></li>
       <?php } ?>
       </ul>
     </div>

@@ -20,7 +20,7 @@ use TinCan\TCPostParser;
 
   $avatar_image = (!empty($avatar)) ? '/uploads/avatars/'.$author->avatar : '/assets/images/default-profile.png';
 
-  $user_page_url = "/?page={$settings['page_user']}&user={$author->user_id}";
+  $user_page_url = TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);
 
   $parser = new TCPostParser();
 ?>
@@ -54,9 +54,9 @@ use TinCan\TCPostParser;
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
     <ul class="post-controls">
       <?php if (!empty($user) && $user->can_edit_post($post)) { ?>
-        <li><a href="/?page=<?php echo $settings['page_edit_post']; ?>&post=<?php echo $post->post_id; ?>">Edit</a></li>
+        <li><a href="<?=TCURL::create_url($settings['page_edit_post'], ['post' => $post->post_id])?>">Edit</a></li>
       <?php } if (!empty($user) && $thread->post_can_be_deleted($post) && $user->can_delete_post($post)) { ?>
-        <li><a href="/?page=<?php echo $settings['page_delete_post']; ?>&post=<?php echo $post->post_id; ?>">Delete</a></li>
+        <li><a href="<?=TCURL::create_url($settings['page_delete_post'], ['post' => $post->post_id])?>">Delete</a></li>
       <?php } ?>
     </ul>
   </div>

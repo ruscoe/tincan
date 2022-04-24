@@ -102,7 +102,7 @@ if (!empty($ajax)) {
   $total_posts = $db->count_objects(new TCPost(), $conditions);
   $total_pages = TCPagination::calculate_total_pages($total_posts, $settings['posts_per_page']);
 
-  $destination = '/index.php?page='.$settings['page_thread'].'&thread='.$thread_id;
+  $destination = '';
 
   if (empty($error)) {
     // Send user to their new post.

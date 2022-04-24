@@ -33,7 +33,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user
   <div class="profile-image">
     <img src="<?php echo $avatar_image; ?>" />
     <?php if (!empty($user) && $user->can_edit_user($profile_user)) { ?>
-      <div><a href="/?page=<?php echo $settings['page_user_avatar']; ?>">Change avatar</a></div>
+      <div><a href="<?=TCURL::create_url($settings['page_user_avatar'])?>">Change avatar</a></div>
     <?php } ?>
   </div>
   <div class="joined">Joined: <?php echo date($settings['date_format'], $profile_user->created_time); ?></div>
