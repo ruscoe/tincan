@@ -3,6 +3,7 @@
 use TinCan\TCBoard;
 use TinCan\TCBoardGroup;
 use TinCan\TCData;
+use TinCan\TCException;
 use TinCan\TCPage;
 use TinCan\TCPost;
 use TinCan\TCRole;
@@ -25,6 +26,7 @@ use TinCan\TCUser;
  */
 require 'tc-config.php';
 
+require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-template.php';
@@ -181,7 +183,11 @@ function tc_create_settings()
     ];
 
   foreach ($settings as $setting) {
-    $db->save_object(new TCSetting((object) $setting));
+    try {
+      $db->save_object(new TCSetting((object) $setting));
+    } catch (TCException $e) {
+      echo $e->getMessage()."\n";
+    }
   }
 }
 
@@ -221,7 +227,11 @@ function tc_create_roles()
   ];
 
   foreach ($roles as $role) {
-    $db->save_object(new TCRole((object) $role));
+    try {
+      $db->save_object(new TCRole((object) $role));
+    } catch (TCException $e) {
+      echo $e->getMessage()."\n";
+    }
   }
 }
 
@@ -267,7 +277,12 @@ function tc_create_pages()
   foreach ($pages as $page) {
     $page['created_time'] = time();
     $page['updated_time'] = time();
-    $saved_page = $db->save_object(new TCPage((object) $page));
+
+    try {
+      $saved_page = $db->save_object(new TCPage((object) $page));
+    } catch (TCException $e) {
+      echo $e->getMessage()."\n";
+    }
 
     // Each page has a matching setting to identify its purpose.
     $setting_prefix = ('Admin' == substr($saved_page->page_title, 0, 5)) ? 'admin_' : '';
@@ -282,7 +297,11 @@ function tc_create_pages()
           'required' => 1,
         ];
 
-    $db->save_object(new TCSetting((object) $setting));
+    try {
+      $db->save_object(new TCSetting((object) $setting));
+    } catch (TCException $e) {
+      echo $e->getMessage()."\n";
+    }
   }
 }
 
@@ -316,7 +335,12 @@ function tc_create_users()
   foreach ($users as $user) {
     $user['created_time'] = time();
     $user['updated_time'] = time();
-    $db->save_object(new TCUser((object) $user));
+
+    try {
+      $db->save_object(new TCUser((object) $user));
+    } catch (TCException $e) {
+      echo $e->getMessage()."\n";
+    }
   }
 }
 
@@ -324,7 +348,7 @@ function tc_create_board_groups()
 {
   global $db;
 
-  $board_groups_to_create = 4;
+  $board_groups_to_create = 1;
 
   for ($i = 0; $i < $board_groups_to_create; ++$i) {
     $board_groups[] = ['board_group_name' => 'Board Group '.($i + 1)];
@@ -335,7 +359,12 @@ function tc_create_board_groups()
   foreach ($board_groups as $board_group) {
     $board_group['created_time'] = time();
     $board_group['updated_time'] = time();
-    $new_board_group = $db->save_object(new TCBoardGroup((object) $board_group));
+
+    try {
+      $new_board_group = $db->save_object(new TCBoardGroup((object) $board_group));
+    } catch (TCException $e) {
+      echo $e->getMessage()."\n";
+    }
 
     $new_board_group_ids[] = $new_board_group->board_group_id;
   }
@@ -347,10 +376,10 @@ function tc_create_boards($new_board_group_ids)
 {
   global $db;
 
-  $board_groups_to_create = 4;
+  $boards_to_create = 1;
 
   foreach ($new_board_group_ids as $board_group_id) {
-    for ($i = 0; $i < $board_groups_to_create; ++$i) {
+    for ($i = 0; $i < $boards_to_create; ++$i) {
       $boards[] = ['board_group_id' => $board_group_id, 'board_name' => 'Board '.($i + 1), 'description' => tc_get_random_lipsum_short()];
     }
   }
@@ -360,7 +389,12 @@ function tc_create_boards($new_board_group_ids)
   foreach ($boards as $board) {
     $board['created_time'] = time();
     $board['updated_time'] = time();
-    $new_board = $db->save_object(new TCBoard((object) $board));
+
+    try {
+      $new_board = $db->save_object(new TCBoard((object) $board));
+    } catch (TCException $e) {
+      echo $e->getMessage()."\n";
+    }
 
     $new_board_ids[] = $new_board->board_id;
   }
@@ -372,7 +406,7 @@ function tc_create_threads($new_board_ids)
 {
   global $db;
 
-  $threads_to_create = 12;
+  $threads_to_create = 1;
 
   $threads = [];
 
@@ -387,9 +421,15 @@ function tc_create_threads($new_board_ids)
   foreach ($threads as $thread) {
     $thread['created_by_user'] = 1;
     $thread['updated_by_user'] = 1;
+    $thread['first_post_id'] = 0;
     $thread['created_time'] = time();
     $thread['updated_time'] = time();
-    $new_thread = $db->save_object(new TCThread((object) $thread));
+
+    try {
+      $new_thread = $db->save_object(new TCThread((object) $thread));
+    } catch (TCException $e) {
+      echo $e->getMessage()."\n";
+    }
 
     $new_thread_ids[] = $new_thread->thread_id;
   }
@@ -401,7 +441,7 @@ function tc_create_posts($new_thread_ids)
 {
   global $db;
 
-  $posts_to_create = 24;
+  $posts_to_create = 240;
 
   $posts = [];
 
@@ -415,7 +455,12 @@ function tc_create_posts($new_thread_ids)
     $post['created_time'] = time();
     $post['updated_time'] = time();
     $post['updated_by_user'] = 1;
-    $db->save_object(new TCPost((object) $post));
+
+    try {
+      $db->save_object(new TCPost((object) $post));
+    } catch (TCException $e) {
+      echo $e->getMessage()."\n";
+    }
   }
 }
 

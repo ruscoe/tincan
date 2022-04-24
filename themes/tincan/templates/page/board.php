@@ -38,7 +38,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'sett
 
   <div id="board-navigation">
     <ul class="navigation">
-      <li><a href="<?php echo TCURL::create_url($settings['page_new_thread'], ['board' => $board->board_id])?>">New thread</a></li>
+      <li><a href="<?php echo TCURL::create_url($settings['page_new_thread'], ['board' => $board->board_id]); ?>">New thread</a></li>
     </ul>
   </div>
 

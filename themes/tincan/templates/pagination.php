@@ -30,8 +30,7 @@ $base_url = TCURL::create_url($page, $page_params);
   for ($i = 1; $i <= $total_pages; ++$i) {
     if ($i == $start_at) {
       echo "<li>{$i}</li>";
-    }
-    else {
+    } else {
       echo "<li><a href=\"{$base_url}&start_at={$i}\">{$i}</a></li>";
     }
   }

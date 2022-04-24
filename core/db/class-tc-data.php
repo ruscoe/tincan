@@ -9,10 +9,6 @@ namespace TinCan;
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
-/**
- * @since 0.01
- */
 class TCData
 {
   /**
@@ -149,8 +145,9 @@ class TCData
       $query = "INSERT INTO `{$db_table}` ({$sql_field_names}) VALUES ({$sql_field_values})";
 
       $result = $this->database->query($query);
+
       if (!$result) {
-        throw new \Exception($this->database->get_last_error());
+        throw new TCException('DB query failed: '.$query);
       }
 
       $insert_id = $this->database->get_last_insert_id();
@@ -170,7 +167,7 @@ class TCData
 
       if (!$this->database->query($query)) {
         if (!$result) {
-          throw new Exception($this->database->get_last_error());
+          throw new TCException('DB query failed: '.$query);
         }
       }
     }
