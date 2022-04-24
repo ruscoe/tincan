@@ -25,16 +25,17 @@ $page = null;
 
 $db = new TCData();
 
-// Get page template if available, otherwise default to dashboard.
+$settings = $db->load_settings();
+
+// Get page template if available, otherwise default to forum settings.
 if (!empty($page_id)) {
   $page = $db->load_object(new TCPage(), $page_id);
 
   $page_template = (!empty($page)) ? $page->template : '404';
 } else {
-  $page_template = 'dashboard';
+  header('Location: /admin/index.php?page='.$settings['admin_page_forum_settings']);
+  exit;
 }
-
-$settings = $db->load_settings();
 
 // Get logged in user.
 $session = new TCUserSession();
