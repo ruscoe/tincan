@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCData;
+use TinCan\TCException;
 use TinCan\TCPage;
 use TinCan\TCTemplate;
 use TinCan\TCUserSession;
@@ -23,7 +24,12 @@ require TC_BASE_PATH.'/includes/include-user.php';
 
 $db = new TCData();
 
-$settings = $db->load_settings();
+try {
+  $settings = $db->load_settings();
+} catch (TCException $e) {
+  echo $e->getMessage();
+  exit;
+}
 
 // Get logged in user.
 $session = new TCUserSession();

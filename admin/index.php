@@ -15,6 +15,7 @@ use TinCan\TCUserSession;
  */
 require '../tc-config.php';
 
+require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-user.php';
@@ -25,7 +26,12 @@ $page = null;
 
 $db = new TCData();
 
-$settings = $db->load_settings();
+try {
+  $settings = $db->load_settings();
+} catch (TCException $e) {
+  echo $e->getMessage();
+  exit;
+}
 
 // Get page template if available, otherwise default to forum settings.
 if (!empty($page_id)) {

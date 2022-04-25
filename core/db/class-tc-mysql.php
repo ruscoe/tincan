@@ -2,6 +2,8 @@
 
 namespace TinCan;
 
+use TinCan\TCException;
+
 /**
  * Tin Can MySQL database service.
  *
@@ -21,15 +23,39 @@ class TCMySQL extends TCDB
   private $connection;
 
   /**
+   * Tests for an existing database connection.
+   *
+   * This is needed when using PHP 8 and above due to what looks like a bug.
+   * @see https://github.com/joomlatools/joomlatools-framework/issues/554
+   *
+   * @since 0.06
+   */
+  public function is_connected()
+  {
+    try {
+      return (($this->connection instanceof MySQLi) && @$this->_connection->ping());
+    } catch (\Exception $e) {
+      return false;
+    }
+  }
+
+  /**
    * @since 0.01
    */
   public function open_connection()
   {
+    if (!empty($this->connection) && !$this->is_connected()) {
+      return $this->connection;
+    }
+
     try {
       $this->connection = new \mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
     } catch (mysqli_sql_exception $e) {
-      // TODO: Handle exception.
-      exit($e->message);
+      throw new TCException('Database connection failed.');
+    }
+
+    if (!empty($this->connection->connect_errno)) {
+      throw new TCException('Database connection failed: '.$this->connection->connect_errno);
     }
 
     return $this->connection;
@@ -40,6 +66,9 @@ class TCMySQL extends TCDB
    */
   public function close_connection()
   {
+    if (!empty($this->connection) && $this->is_connected()) {
+      $this->connection->close();
+    }
   }
 
   /**
@@ -47,6 +76,12 @@ class TCMySQL extends TCDB
    */
   public function query($query, $params = [])
   {
+    try {
+      $this->open_connection();
+    } catch (TCException $e) {
+      throw new TCException($e->getMessage());
+    }
+
     $prepared = $this->connection->prepare($query);
 
     foreach ($params as $param) {
@@ -59,6 +94,8 @@ class TCMySQL extends TCDB
 
     if (false !== $prepared->execute()) {
       $result = $prepared->get_result();
+
+      $this->close_connection();
 
       if (!empty($result)) {
         $prepared->free_result();

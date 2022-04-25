@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCData;
+use TinCan\TCException;
 use TinCan\TCJSONResponse;
 use TinCan\TCObject;
 use TinCan\TCPost;
@@ -17,6 +18,7 @@ use TinCan\TCUserSession;
  */
 require '../tc-config.php';
 
+require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-content.php';
@@ -30,7 +32,12 @@ $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
-$settings = $db->load_settings();
+try {
+  $settings = $db->load_settings();
+} catch (TCException $e) {
+  echo $e->getMessage();
+  exit;
+}
 
 $post = $db->load_object(new TCPost(), $post_id);
 

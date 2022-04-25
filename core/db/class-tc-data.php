@@ -2,6 +2,8 @@
 
 namespace TinCan;
 
+use TinCan\TCException;
+
 /**
  * Tin Can database layer.
  *
@@ -35,17 +37,21 @@ class TCData
    */
   public function run_query($query)
   {
-    $this->database->open_connection();
-
-    $result = $this->database->query($query);
-
-    $this->database->close_connection();
+    try {
+      $result = $this->database->query($query);
+    } catch (TCException $e) {
+      throw new TCException('Unable to run DB query.');
+    }
 
     return $result;
   }
 
   /**
    * @since 0.01
+   *
+   * @return array associative array of forum settings
+   *
+   * @throws TCException
    */
   public function load_settings()
   {
@@ -54,17 +60,17 @@ class TCData
 
     $settings = [];
 
-    $this->database->open_connection();
-
     $query = "SELECT `setting_name`, `value` FROM `{$db_table}`";
 
-    $result = $this->database->query($query);
+    try {
+      $result = $this->database->query($query);
+    } catch (TCException $e) {
+      throw new TCException('Unable to load forum settings.');
+    }
 
     while ($object = $result->fetch_object()) {
       $settings[$object->setting_name] = $object->value;
     }
-
-    $this->database->close_connection();
 
     return $settings;
   }
@@ -74,10 +80,18 @@ class TCData
    */
   public function load_user($user_id)
   {
-    $user = $this->load_object(new TCUser(), $user_id);
+    try {
+      $user = $this->load_object(new TCUser(), $user_id);
+    } catch (TCException $e) {
+      throw new TCException($e->getMessage());
+    }
 
     if (!empty($user)) {
-      $user->role = $this->load_object(new TCRole(), $user->role_id);
+      try {
+        $user->role = $this->load_object(new TCRole(), $user->role_id);
+      } catch (TCException $e) {
+        throw new TCException($e->getMessage());
+      }
 
       return $user;
     }
@@ -99,17 +113,17 @@ class TCData
 
     $query = "SELECT * FROM `{$db_table}` WHERE `{$primary_key}` = ?";
 
-    $this->database->open_connection();
-
-    $result = $this->database->query($query, [$id]);
+    try {
+      $result = $this->database->query($query, [$id]);
+    } catch (TCException $e) {
+      throw new TCException($e->getMessage());
+    }
 
     if (empty($result)) {
       return null;
     }
 
     $row = $result->fetch_object();
-
-    $this->database->close_connection();
 
     if (!empty($row)) {
       return new $class($row);
@@ -126,8 +140,6 @@ class TCData
     $db_table = $object->get_db_table();
     $primary_key = $object->get_primary_key();
     $db_fields = $object->get_db_fields();
-
-    $this->database->open_connection();
 
     if (empty($object->$primary_key)) {
       // New object to create.
@@ -172,8 +184,6 @@ class TCData
       }
     }
 
-    $this->database->close_connection();
-
     return $object;
   }
 
@@ -206,8 +216,6 @@ class TCData
       $query .= " LIMIT {$offset}, {$limit}";
     }
 
-    $this->database->open_connection();
-
     $result = $this->database->query($query);
 
     $objects = [];
@@ -217,8 +225,6 @@ class TCData
         $objects[] = new $class($object);
       }
     }
-
-    $this->database->close_connection();
 
     return $objects;
   }
@@ -241,13 +247,9 @@ class TCData
       }
     }
 
-    $this->database->open_connection();
-
     $result = $this->database->query($query);
 
     $row = $result->fetch_object();
-
-    $this->database->close_connection();
 
     return (!empty($row)) ? $row->count : 0;
   }
@@ -262,11 +264,7 @@ class TCData
 
     $query = "DELETE FROM `{$db_table}` WHERE `{$primary_key}` = ?";
 
-    $this->database->open_connection();
-
     $result = $this->database->query($query, [$id]);
-
-    $this->database->close_connection();
 
     return $result;
   }

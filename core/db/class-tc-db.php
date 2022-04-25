@@ -44,6 +44,11 @@ abstract class TCDB
   }
 
   /**
+   * @since 0.06
+   */
+  abstract public function is_connected();
+
+  /**
    * @since 0.01
    */
   abstract public function open_connection();

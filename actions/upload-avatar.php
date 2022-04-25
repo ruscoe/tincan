@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCData;
+use TinCan\TCException;
 use TinCan\TCImage;
 use TinCan\TCJSONResponse;
 use TinCan\TCObject;
@@ -19,6 +20,7 @@ $file = $_FILES['avatar_image'];
  */
 require '../tc-config.php';
 
+require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-content.php';
@@ -102,7 +104,12 @@ if (!empty($ajax)) {
 
   exit($response->get_output());
 } else {
-  $settings = $db->load_settings();
+  try {
+    $settings = $db->load_settings();
+  } catch (TCException $e) {
+    echo $e->getMessage();
+    exit;
+  }
 
   $destination = '';
 

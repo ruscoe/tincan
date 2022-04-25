@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCData;
+use TinCan\TCException;
 use TinCan\TCJSONResponse;
 use TinCan\TCObject;
 use TinCan\TCPagination;
@@ -20,6 +21,7 @@ use TinCan\TCUserSession;
  */
 require '../tc-config.php';
 
+require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-content.php';
@@ -91,7 +93,12 @@ if (!empty($ajax)) {
 
   exit($response->get_output());
 } else {
-  $settings = $db->load_settings();
+  try {
+    $settings = $db->load_settings();
+  } catch (TCException $e) {
+    echo $e->getMessage();
+    exit;
+  }
 
   // Calculate the total pages in this thread so the user can be sent
   // directly to their new post.

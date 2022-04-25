@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCData;
+use TinCan\TCException;
 use TinCan\TCJSONResponse;
 use TinCan\TCURL;
 use TinCan\TCUser;
@@ -15,6 +16,7 @@ use TinCan\TCUserSession;
  */
 require '../tc-config.php';
 
+require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-template.php';
@@ -28,7 +30,12 @@ $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
-$settings = $db->load_settings();
+try {
+  $settings = $db->load_settings();
+} catch (TCException $e) {
+  echo $e->getMessage();
+  exit;
+}
 
 // Find user with matching username.
 $conditions = [

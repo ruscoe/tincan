@@ -2,6 +2,7 @@
 
 use TinCan\TCBoard;
 use TinCan\TCData;
+use TinCan\TCException;
 use TinCan\TCJSONResponse;
 use TinCan\TCObject;
 use TinCan\TCPost;
@@ -20,6 +21,7 @@ use TinCan\TCUserSession;
  */
 require '../tc-config.php';
 
+require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-content.php';
@@ -39,12 +41,17 @@ $db = new TCData();
 $session = new TCUserSession();
 $session->start_session();
 $user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 $error = null;
 
+try {
+  $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+} catch (TCException $e) {
+  $error = TCUser::ERR_NOT_AUTHORIZED;
+}
+
 // Check user has permission to create a new thread.
-if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
+if (empty($error) && (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD))) {
   $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
@@ -58,7 +65,12 @@ if (empty($error)) {
   }
 }
 
-$settings = $db->load_settings();
+try {
+  $settings = $db->load_settings();
+} catch (TCException $e) {
+  echo $e->getMessage();
+  exit;
+}
 
 // Validate thread title.
 $thread_title = trim($thread_title);
@@ -87,7 +99,11 @@ if (empty($error)) {
   $thread->created_time = time();
   $thread->updated_time = time();
 
-  $new_thread = $db->save_object($thread);
+  try {
+    $new_thread = $db->save_object($thread);
+  } catch (TCException $e) {
+    $new_thread = null;
+  }
 
   if (!empty($new_thread)) {
     $sanitizer = new TCPostSanitizer();
