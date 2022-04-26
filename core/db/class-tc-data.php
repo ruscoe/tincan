@@ -158,9 +158,9 @@ class TCData
 
       $result = $this->database->query($query);
 
-      if (!$result) {
-        throw new TCException('DB query failed: '.$query);
-      }
+      // if (!$result) {
+      //   throw new TCException('DB query failed: '.$query);
+      // }
 
       $insert_id = $this->database->get_last_insert_id();
 
@@ -177,11 +177,11 @@ class TCData
       $query .= implode(',', $sql_fields);
       $query .= " WHERE `{$primary_key}` = '{$object->$primary_key}'";
 
-      if (!$this->database->query($query)) {
-        if (!$result) {
-          throw new TCException('DB query failed: '.$query);
-        }
-      }
+      $result = $this->database->query($query);
+
+      // if (!$result) {
+      //   throw new TCException('DB query failed: '.$query);
+      // }
     }
 
     return $object;
