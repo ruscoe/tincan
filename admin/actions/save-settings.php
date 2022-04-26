@@ -61,3 +61,8 @@ foreach ($submitted_fields as $field_name => $field_value) {
       }
   }
 }
+
+$destination = '/admin/index.php?page='.$settings['admin_page_forum_settings'];
+
+header('Location: '.$destination);
+exit;
