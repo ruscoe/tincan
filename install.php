@@ -272,6 +272,7 @@ function tc_create_pages()
       ['page_title' => 'Admin Edit Post',        'template' => 'edit-post'],
       ['page_title' => 'Admin Edit Thread',      'template' => 'edit-thread'],
       ['page_title' => 'Admin Edit User',        'template' => 'edit-user'],
+      ['page_title' => 'Admin Delete Object',    'template' => 'delete-object'],
     ];
 
   foreach ($pages as $page) {
