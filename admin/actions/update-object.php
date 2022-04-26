@@ -48,10 +48,6 @@ switch ($object_type) {
     $object = new TCPage();
     $page = $settings['admin_page_edit_page'];
     break;
-  case 'post':
-    $object = new TCPost();
-    $page = $settings['admin_page_edit_post'];
-    break;
   case 'thread':
     $object = new TCThread();
     $page = $settings['admin_page_edit_thread'];
@@ -61,8 +57,6 @@ switch ($object_type) {
     $page = $settings['admin_page_edit_user'];
     break;
 }
-
-$db = new TCData();
 
 $error = false;
 $saved = false;

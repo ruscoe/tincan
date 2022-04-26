@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCData;
+use TinCan\TCThread;
 
 /**
  * Page template for thread editing.
