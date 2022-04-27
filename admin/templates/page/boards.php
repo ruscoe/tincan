@@ -17,6 +17,10 @@ $settings = $data['settings'];
 
 <h1><?php echo $page->page_title; ?></h1>
 
+<div class="add-new">
+  <a href="/admin/index.php?page=<?=$settings['admin_page_edit_board']?>">New Board</a>
+</div>
+
 <?php
 
 $db = new TCData();

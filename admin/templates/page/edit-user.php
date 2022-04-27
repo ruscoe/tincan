@@ -15,13 +15,13 @@ $page = $data['page'];
 $object_id = filter_input(INPUT_GET, 'object_id', FILTER_SANITIZE_NUMBER_INT);
 ?>
 
-<h1><?php echo $page->page_title; ?></h1>
+<h1><?php echo (!empty($object_id)) ? 'Edit User' : 'Add New User'; ?></h1>
 
 <?php
 
 $db = new TCData();
 
-$object = $db->load_object(new TCUser(), $object_id);
+$object = (!empty($object_id)) ? $db->load_object(new TCUser(), $object_id) : new TCUser();
 ?>
 
 <form action="/admin/actions/update-object.php" method="POST">

@@ -28,6 +28,10 @@ $order = [];
 $pages = $db->load_objects(new TCPage(), [], $conditions, $order);
 ?>
 
+<div class="add-new">
+  <a href="/admin/index.php?page=<?=$settings['admin_page_edit_page']?>">New Page</a>
+</div>
+
 <table class="objects">
   <th>Page Name</th>
   <th colspan="3">&nbsp;</th>
