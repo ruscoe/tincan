@@ -24,14 +24,25 @@ $db = new TCData();
 $object = (!empty($object_id)) ? $db->load_object(new TCUser(), $object_id) : new TCUser();
 ?>
 
-<form action="/admin/actions/update-object.php" method="POST">
-  <label for="username">Username</label>
-  <input type="text" name="username" value="<?php echo $object->username; ?>" />
+<form id="edit-user" action="/admin/actions/update-object.php" method="POST">
+  <div class="fieldset">
+    <label for="username">Username</label>
+    <div class="field">
+      <input type="text" name="username" value="<?php echo $object->username; ?>" />
+    </div>
+  </div>
 
-  <label for="email">Email Address</label>
-  <input type="text" name="email" value="<?php echo $object->email; ?>" />
+  <div class="fieldset">
+    <label for="email">Email Address</label>
+    <div class="field">
+      <input type="text" name="email" value="<?php echo $object->email; ?>" />
+    </div>
+  </div>
 
   <input type="hidden" name="object_type" value="user" />
   <input type="hidden" name="object_id" value="<?php echo $object->user_id; ?>" />
-  <input type="submit" value="Update User" />
+
+  <div class="fieldset button">
+    <input type="submit" value="Update User" />
+  </div>
 </form>

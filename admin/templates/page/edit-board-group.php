@@ -24,10 +24,18 @@ $db = new TCData();
 $object = (!empty($object_id)) ? $db->load_object(new TCBoardGroup(), $object_id) : new TCBoardGroup();
 ?>
 
-<form action="/admin/actions/update-object.php" method="POST">
-  <label for="board_group_name">Board Group Name</label>
-  <input type="text" name="board_group_name" value="<?php echo $object->board_group_name; ?>" />
+<form id="edit-board-group" action="/admin/actions/update-object.php" method="POST">
+  <div class="fieldset">
+    <label for="board_group_name">Board Group Name</label>
+    <div class="field">
+      <input type="text" name="board_group_name" value="<?php echo $object->board_group_name; ?>" />
+    </div>
+  </div>
+
   <input type="hidden" name="object_type" value="board_group" />
   <input type="hidden" name="object_id" value="<?php echo $object->board_group_id; ?>" />
-  <input type="submit" value="Update Board Group" />
+
+  <div class="fieldset button">
+    <input type="submit" value="Update Board Group" />
+  </div>
 </form>

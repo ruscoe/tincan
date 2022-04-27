@@ -15,6 +15,7 @@ body.tincan-admin {
   /* Text */
   /* Links */
   /* Tables */
+  /* Forms */
 }
 /* line 71, ../sass/style.scss */
 body.tincan-admin #header, body.tincan-admin #navigation, body.tincan-admin #content, body.tincan-admin #footer {
@@ -143,4 +144,40 @@ body.tincan-admin table.objects th, body.tincan-admin table.objects td {
 /* line 202, ../sass/style.scss */
 body.tincan-admin table.objects a {
   text-decoration: none;
+}
+/* line 210, ../sass/style.scss */
+body.tincan-admin form#edit-board-group, body.tincan-admin form#edit-board, body.tincan-admin form#edit-page, body.tincan-admin form#edit-thread, body.tincan-admin form#edit-user {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 0 auto;
+  padding-top: 3rem;
+}
+/* line 216, ../sass/style.scss */
+body.tincan-admin form#edit-board-group .fieldset, body.tincan-admin form#edit-board .fieldset, body.tincan-admin form#edit-page .fieldset, body.tincan-admin form#edit-thread .fieldset, body.tincan-admin form#edit-user .fieldset {
+  display: flex;
+  flex: 1;
+  margin: 0.5rem 0 0.5rem 0;
+}
+/* line 222, ../sass/style.scss */
+body.tincan-admin form#edit-board-group .fieldset.button, body.tincan-admin form#edit-board .fieldset.button, body.tincan-admin form#edit-page .fieldset.button, body.tincan-admin form#edit-thread .fieldset.button, body.tincan-admin form#edit-user .fieldset.button {
+  padding-top: 1rem;
+  justify-content: flex-end;
+}
+/* line 227, ../sass/style.scss */
+body.tincan-admin form#edit-board-group .field, body.tincan-admin form#edit-board .field, body.tincan-admin form#edit-page .field, body.tincan-admin form#edit-thread .field, body.tincan-admin form#edit-user .field {
+  background-color: #f1f1f1;
+  flex: 1.5;
+  padding: 0.25rem;
+}
+/* line 233, ../sass/style.scss */
+body.tincan-admin form#edit-board-group label, body.tincan-admin form#edit-board label, body.tincan-admin form#edit-page label, body.tincan-admin form#edit-thread label, body.tincan-admin form#edit-user label {
+  background-color: #295c7a;
+  color: white;
+  display: block;
+  flex: 1;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+/* line 241, ../sass/style.scss */
+body.tincan-admin form#edit-board-group input.text-input, body.tincan-admin form#edit-board input.text-input, body.tincan-admin form#edit-page input.text-input, body.tincan-admin form#edit-thread input.text-input, body.tincan-admin form#edit-user input.text-input {
+  width: 100%;
 }

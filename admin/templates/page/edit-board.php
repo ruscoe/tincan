@@ -24,10 +24,18 @@ $db = new TCData();
 $object = (!empty($object_id)) ? $db->load_object(new TCBoard(), $object_id) : new TCBoard();
 ?>
 
-<form action="/admin/actions/update-object.php" method="POST">
-  <label for="board_name">Board Name</label>
-  <input type="text" name="board_name" value="<?php echo $object->board_name; ?>" />
+<form id="edit-board" action="/admin/actions/update-object.php" method="POST">
+  <div class="fieldset">
+    <label for="board_name">Board Name</label>
+    <div class="field">
+      <input type="text" name="board_name" value="<?php echo $object->board_name; ?>" />
+    </div>
+  </div>
+
   <input type="hidden" name="object_type" value="board" />
   <input type="hidden" name="object_id" value="<?php echo $object->board_id; ?>" />
-  <input type="submit" value="Update Board" />
+
+  <div class="fieldset button">
+    <input type="submit" value="Update Board" />
+  </div>
 </form>
