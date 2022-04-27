@@ -9,9 +9,9 @@ use TinCan\TCThread;
 use TinCan\TCUser;
 
 /**
- * Tin Can update object handler.
+ * Tin Can delete object handler.
  *
- * @since 0.01
+ * @since 0.06
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
@@ -27,64 +27,49 @@ require TC_BASE_PATH.'/actions/class-tc-json-response.php';
 
 $object_type = filter_input(INPUT_POST, 'object_type', FILTER_SANITIZE_STRING);
 $object_id = filter_input(INPUT_POST, 'object_id', FILTER_SANITIZE_NUMBER_INT);
-$saved = filter_input(INPUT_POST, 'saved', FILTER_SANITIZE_STRING);
+$delete = filter_input(INPUT_POST, 'delete', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 $settings = $db->load_settings();
 
+$class = null;
 $object = null;
 $page = null;
 
 switch ($object_type) {
   case 'board_group':
-    $object = new TCBoardGroup();
-    $page = $settings['admin_page_edit_board_group'];
+    $class = new TCBoardGroup();
+    $page = $settings['admin_page_board_groups'];
     break;
   case 'board':
-    $object = new TCBoard();
-    $page = $settings['admin_page_edit_board'];
+    $class = new TCBoard();
+    $page = $settings['admin_page_boards'];
     break;
   case 'page':
-    $object = new TCPage();
-    $page = $settings['admin_page_edit_page'];
+    $class = new TCPage();
+    $page = $settings['admin_page_pages'];
     break;
   case 'thread':
-    $object = new TCThread();
-    $page = $settings['admin_page_edit_thread'];
+    $class = new TCThread();
+    $page = $settings['admin_page_threads'];
     break;
   case 'user':
-    $object = new TCUser();
-    $page = $settings['admin_page_edit_user'];
+    $class = new TCUser();
+    $page = $settings['admin_page_users'];
     break;
 }
 
-$error = false;
-$saved = false;
-
-if (empty($object)) {
-  $error = true;
+if (!empty($class)) {
+  $object = $db->load_object($class, $object_id);
 }
 
 $loaded_object = $db->load_object($object, $object_id);
 
-if (!$error && empty($loaded_object)) {
-  $error = true;
+if (!empty($loaded_object)) {
+  $db->delete_object($loaded_object, $object_id);
 }
 
-// Update object fields.
-$db_fields = $loaded_object->get_db_fields();
-
-foreach ($db_fields as $field) {
-  if (isset($_POST[$field])) {
-    $loaded_object->$field = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
-  }
-}
-
-$loaded_object->updated_time = time();
-
-$updated_object = $db->save_object($loaded_object);
-
-$destination = '/admin/index.php?page='.$page.'&object_id='.$object_id.'&saved='.(!$error);
+$destination = '/admin/index.php?page='.$page;
 
 header('Location: '.$destination);
 exit;

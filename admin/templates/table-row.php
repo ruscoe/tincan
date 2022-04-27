@@ -11,6 +11,6 @@
 <tr>
   <td><a href="<?php echo $data['view_url']; ?>" target="_blank"><?php echo $data['title']; ?></a></td>
   <td><a href="<?php echo $data['view_url']; ?>" target="_blank">View</a></td>
-  <td><a href="/admin/?page=<?php echo $data['edit_page_id']; ?>&object=<?php echo $data['object_id']; ?>">Edit</a></td>
-  <td><a href="#">Delete</a></td>
+  <td><a href="<?php echo $data['edit_url']; ?>">Edit</a></td>
+  <td><a href="<?php echo $data['delete_url']; ?>">Delete</a></td>
 </tr>

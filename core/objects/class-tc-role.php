@@ -27,6 +27,16 @@ class TCRole extends TCObject
   protected $allowed_actions;
 
   /**
+   * @see TCObject::get_name()
+   *
+   * @since 0.06
+   */
+  public function get_name()
+  {
+    return $this->role_name;
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.02
    */

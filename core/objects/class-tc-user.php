@@ -278,6 +278,16 @@ class TCUser extends TCObject
   }
 
   /**
+   * @see TCObject::get_name()
+   *
+   * @since 0.06
+   */
+  public function get_name()
+  {
+    return $this->username;
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.01
    */

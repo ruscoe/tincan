@@ -48,9 +48,8 @@ class TCBoardGroup extends TCObject
 
   /**
    * @see TCObject::get_name()
-   * @since 0.04
    *
-   * @return string the board group name
+   * @since 0.04
    */
   public function get_name()
   {

@@ -12,7 +12,7 @@ use TinCan\TCUser;
  */
 $page = $data['page'];
 
-$object_id = filter_input(INPUT_GET, 'object', FILTER_SANITIZE_NUMBER_INT);
+$object_id = filter_input(INPUT_GET, 'object_id', FILTER_SANITIZE_NUMBER_INT);
 ?>
 
 <h1><?php echo $page->page_title; ?></h1>

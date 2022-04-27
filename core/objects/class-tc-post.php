@@ -69,6 +69,16 @@ class TCPost extends TCObject
   }
 
   /**
+   * @see TCObject::get_name()
+   *
+   * @since 0.06
+   */
+  public function get_name()
+  {
+    return 'Post '.$this->post_id;
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.01
    */

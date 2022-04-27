@@ -37,7 +37,8 @@ foreach ($pages as $page) {
     'title' => $page->page_title,
     'object_id' => $page->page_id,
     'view_url' => '/index.php?page='.$page->page_id,
-    'edit_page_id' => $settings['admin_page_edit_page'],
+    'edit_url' => '/admin/index.php?page='.$settings['admin_page_edit_page'].'&object_id='.$page->page_id,
+    'delete_url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=page&object_id='.$page->page_id,
   ];
   TCAdminTemplate::render('table-row', $data);
 }

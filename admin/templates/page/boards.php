@@ -37,7 +37,8 @@ foreach ($boards as $board) {
     'title' => $board->board_name,
     'object_id' => $board->board_id,
     'view_url' => '/index.php?page='.$settings['page_board'].'&board='.$board->board_id,
-    'edit_page_id' => $settings['admin_page_edit_board'],
+    'edit_url' => '/admin/index.php?page='.$settings['admin_page_edit_board'].'&object_id='.$board->board_id,
+    'delete_url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=board&object_id='.$board->board_id,
   ];
 
   TCAdminTemplate::render('table-row', $data);

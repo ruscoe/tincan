@@ -37,6 +37,16 @@ class TCPage extends TCObject
   protected $updated_time;
 
   /**
+   * @see TCObject::get_name()
+   *
+   * @since 0.06
+   */
+  public function get_name()
+  {
+    return $this->page_title;
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.01
    */
