@@ -8,6 +8,8 @@
  */
   $settings = $data['settings'];
   $user = $data['user'];
+
+  // TODO: Check user role before anything else.
 ?>
 
 <html>

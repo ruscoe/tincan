@@ -38,23 +38,23 @@ $page = null;
 switch ($object_type) {
   case 'board_group':
     $object = new TCBoardGroup();
-    $page = $settings['admin_page_edit_board_group'];
+    $page = $settings['admin_page_board_groups'];
     break;
   case 'board':
     $object = new TCBoard();
-    $page = $settings['admin_page_edit_board'];
+    $page = $settings['admin_page_boards'];
     break;
   case 'page':
     $object = new TCPage();
-    $page = $settings['admin_page_edit_page'];
+    $page = $settings['admin_page_pages'];
     break;
   case 'thread':
     $object = new TCThread();
-    $page = $settings['admin_page_edit_thread'];
+    $page = $settings['admin_page_threads'];
     break;
   case 'user':
     $object = new TCUser();
-    $page = $settings['admin_page_edit_user'];
+    $page = $settings['admin_page_users'];
     break;
 }
 
@@ -65,11 +65,8 @@ if (empty($object)) {
   $error = true;
 }
 
+// TODO: Error handling here.
 $loaded_object = $db->load_object($object, $object_id);
-
-if (!$error && empty($loaded_object)) {
-  $error = true;
-}
 
 // Update object fields.
 $db_fields = $loaded_object->get_db_fields();
@@ -80,11 +77,15 @@ foreach ($db_fields as $field) {
   }
 }
 
+if (empty($object_id)) {
+  $loaded_object->created_time = time();
+}
+
 $loaded_object->updated_time = time();
 
 $updated_object = $db->save_object($loaded_object);
 
-$destination = '/admin/index.php?page='.$page.'&object_id='.$object_id.'&saved='.(!$error);
+$destination = '/admin/index.php?page='.$page.'&object_id='.$updated_object->get_primary_key_value().'&saved='.(!$error);
 
 header('Location: '.$destination);
 exit;

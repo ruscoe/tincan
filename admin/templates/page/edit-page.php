@@ -22,9 +22,11 @@ $object_id = filter_input(INPUT_GET, 'object_id', FILTER_SANITIZE_NUMBER_INT);
 $db = new TCData();
 
 $object = (!empty($object_id)) ? $db->load_object(new TCPage(), $object_id) : new TCPage();
+
+$form_action = (!empty($object_id)) ? '/admin/actions/update-object.php' : '/admin/actions/create-page.php';
 ?>
 
-<form id="edit-page" action="/admin/actions/update-object.php" method="POST">
+<form id="edit-page" action="<?php echo $form_action; ?>" method="POST">
   <div class="fieldset">
     <label for="page_title">Page Title</label>
     <div class="field">
@@ -39,7 +41,6 @@ $object = (!empty($object_id)) ? $db->load_object(new TCPage(), $object_id) : ne
     </div>
   </div>
 
-  <input type="hidden" name="object_type" value="page" />
   <input type="hidden" name="object_id" value="<?php echo $object->page_id; ?>" />
 
   <div class="fieldset button">

@@ -2,6 +2,7 @@
 
 use TinCan\TCData;
 use TinCan\TCUser;
+use TinCan\TCRole;
 
 /**
  * Page template for user editing.
@@ -21,10 +22,15 @@ $object_id = filter_input(INPUT_GET, 'object_id', FILTER_SANITIZE_NUMBER_INT);
 
 $db = new TCData();
 
-$object = (!empty($object_id)) ? $db->load_object(new TCUser(), $object_id) : new TCUser();
+$object = (!empty($object_id)) ? $db->load_user($object_id) : new TCUser();
+
+// Get available user roles.
+$roles = $db->load_objects(new TCRole());
+
+$form_action = (!empty($object_id)) ? '/admin/actions/update-object.php' : '/admin/actions/create-user.php';
 ?>
 
-<form id="edit-user" action="/admin/actions/update-object.php" method="POST">
+<form id="edit-user" action="<?php echo $form_action; ?>" method="POST">
   <div class="fieldset">
     <label for="username">Username</label>
     <div class="field">
@@ -39,10 +45,23 @@ $object = (!empty($object_id)) ? $db->load_object(new TCUser(), $object_id) : ne
     </div>
   </div>
 
-  <input type="hidden" name="object_type" value="user" />
+  <div class="fieldset">
+    <label for="role_id">Role</label>
+    <div class="field">
+      <select name="role_id">
+        <?php
+          foreach ($roles as $role) {
+            $selected = ($role->role_id == $object->role_id) ? ' selected' : '';
+            echo "<option value=\"{$role->role_id}\"{$selected}>{$role->role_name}</option>\n";
+          }
+        ?>
+      </select>
+    </div>
+  </div>
+
   <input type="hidden" name="object_id" value="<?php echo $object->user_id; ?>" />
 
   <div class="fieldset button">
-    <input type="submit" value="Update User" />
+    <input type="submit" value="<?php echo (!empty($object_id)) ? 'Update User' : 'Add User'; ?>" />
   </div>
 </form>
