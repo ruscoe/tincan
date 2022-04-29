@@ -34,8 +34,6 @@ foreach ($db_fields as $field) {
   }
 }
 
-// TODO: Generate password.
-$user->password = 'abc123';
 $user->created_time = time();
 $user->updated_time = time();
 

@@ -28,7 +28,7 @@ class TCUser extends TCObject
   public const ERR_EMAIL_EXISTS = 'email-exists';
   public const ERR_NOT_AUTHORIZED = 'auth';
 
-  public const MIN_PASSWORD_LENGTH = 8;
+  public const MIN_PASSWORD_LENGTH = 12;
   public const MIN_USERNAME_LENGTH = 3;
 
   /**
@@ -198,6 +198,35 @@ class TCUser extends TCObject
     }
 
     return false;
+  }
+
+  /**
+   * Generates a random password.
+   *
+   * @since 0.06
+   *
+   * @param int $length length of password to generate
+   *
+   * @return string the password in plain text
+   */
+  public function generate_password($length = 0)
+  {
+    if ($length < self::MIN_PASSWORD_LENGTH) {
+      $length = self::MIN_PASSWORD_LENGTH;
+    }
+
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+
+    $password = '';
+
+    $max_char = (strlen($chars) - 1);
+
+    for ($i = 0; $i < $length; $i++) {
+      $index = rand(0, $max_char);
+      $password .= substr($chars, $index, 1);
+    }
+
+    return $password;
   }
 
   /**

@@ -46,6 +46,13 @@ $form_action = (!empty($object_id)) ? '/admin/actions/update-object.php' : '/adm
   </div>
 
   <div class="fieldset">
+    <label for="password">Password</label>
+    <div class="field">
+      <input type="text" name="password" value="<?php echo (empty($object_id)) ? $object->generate_password() : '***'; ?>" />
+    </div>
+  </div>
+
+  <div class="fieldset">
     <label for="role_id">Role</label>
     <div class="field">
       <select name="role_id">
