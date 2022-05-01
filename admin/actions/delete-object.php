@@ -4,9 +4,10 @@ use TinCan\TCBoard;
 use TinCan\TCBoardGroup;
 use TinCan\TCData;
 use TinCan\TCPage;
-use TinCan\TCPost;
 use TinCan\TCThread;
 use TinCan\TCUser;
+
+// TODO: Check user role before anything else.
 
 /**
  * Tin Can delete object handler.

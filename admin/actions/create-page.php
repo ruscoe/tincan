@@ -2,7 +2,6 @@
 
 use TinCan\TCData;
 use TinCan\TCPage;
-use TinCan\TCUser;
 
 // TODO: Check user role before anything else.
 

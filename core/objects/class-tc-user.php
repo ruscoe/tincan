@@ -221,7 +221,7 @@ class TCUser extends TCObject
 
     $max_char = (strlen($chars) - 1);
 
-    for ($i = 0; $i < $length; $i++) {
+    for ($i = 0; $i < $length; ++$i) {
       $index = rand(0, $max_char);
       $password .= substr($chars, $index, 1);
     }
@@ -308,7 +308,6 @@ class TCUser extends TCObject
 
   /**
    * @see TCObject::get_name()
-   *
    * @since 0.06
    */
   public function get_name()

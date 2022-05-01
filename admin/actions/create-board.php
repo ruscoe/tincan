@@ -1,9 +1,7 @@
 <?php
 
 use TinCan\TCBoard;
-use TinCan\TCBoardGroup;
 use TinCan\TCData;
-use TinCan\TCUser;
 
 // TODO: Check user role before anything else.
 

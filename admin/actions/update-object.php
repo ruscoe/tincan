@@ -4,12 +4,14 @@ use TinCan\TCBoard;
 use TinCan\TCBoardGroup;
 use TinCan\TCData;
 use TinCan\TCPage;
-use TinCan\TCPost;
 use TinCan\TCThread;
-use TinCan\TCUser;
+
+exit('phasing this out');
+
+// TODO: Check user role before anything else.
 
 /**
- * Tin Can update object handler.
+ * Tin Can update handler for objects that have no custom requirements.
  *
  * @since 0.01
  *
@@ -52,10 +54,6 @@ switch ($object_type) {
     $object = new TCThread();
     $page = $settings['admin_page_threads'];
     break;
-  case 'user':
-    $object = new TCUser();
-    $page = $settings['admin_page_users'];
-    break;
 }
 
 $error = false;
@@ -64,6 +62,11 @@ $saved = false;
 if (empty($object)) {
   $error = true;
 }
+
+var_dump($object_type);
+var_dump($object);
+var_dump($object_id);
+exit;
 
 // TODO: Error handling here.
 $loaded_object = $db->load_object($object, $object_id);

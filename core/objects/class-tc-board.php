@@ -45,7 +45,6 @@ class TCBoard extends TCObject
 
   /**
    * @see TCObject::get_name()
-   *
    * @since 0.04
    */
   public function get_name()

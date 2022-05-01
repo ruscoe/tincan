@@ -1,10 +1,8 @@
 <?php
 
-use TinCan\TCBoard;
 use TinCan\TCData;
 use TinCan\TCPost;
 use TinCan\TCThread;
-use TinCan\TCUser;
 
 // TODO: Check user role before anything else.
 
@@ -46,7 +44,7 @@ $saved_thread = $db->save_object($thread);
 $post = new TCPost();
 $post->thread_id = $saved_thread->thread_id;
 // TODO: Initial post content.
-//$post->content = $sanitizer->sanitize_post($post_content);
+// $post->content = $sanitizer->sanitize_post($post_content);
 $post->updated_by_user = $thread->updated_by_user;
 $post->created_time = time();
 $post->updated_time = time();

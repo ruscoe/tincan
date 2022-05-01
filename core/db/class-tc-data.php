@@ -2,8 +2,6 @@
 
 namespace TinCan;
 
-use TinCan\TCException;
-
 /**
  * Tin Can database layer.
  *

@@ -3,6 +3,8 @@
 use TinCan\TCData;
 use TinCan\TCSetting;
 
+// TODO: Check user role before anything else.
+
 /**
  * Tin Can save settings handler.
  *

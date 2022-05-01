@@ -18,7 +18,7 @@ $settings = $data['settings'];
 <h1><?php echo $page->page_title; ?></h1>
 
 <div class="add-new">
-  <a href="/admin/index.php?page=<?=$settings['admin_page_edit_board']?>">New Board</a>
+  <a href="/admin/index.php?page=<?php echo $settings['admin_page_edit_board']; ?>">New Board</a>
 </div>
 
 <?php
@@ -41,7 +41,7 @@ foreach ($boards as $board) {
     'title' => $board->board_name,
     'object_id' => $board->board_id,
     'view_url' => '/index.php?page='.$settings['page_board'].'&board='.$board->board_id,
-    'edit_url' => '/admin/index.php?page='.$settings['admin_page_edit_board'].'&object_id='.$board->board_id,
+    'edit_url' => '/admin/index.php?page='.$settings['admin_page_edit_board'].'&board_id='.$board->board_id,
     'delete_url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=board&object_id='.$board->board_id,
   ];
 

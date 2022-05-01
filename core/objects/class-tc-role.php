@@ -28,7 +28,6 @@ class TCRole extends TCObject
 
   /**
    * @see TCObject::get_name()
-   *
    * @since 0.06
    */
   public function get_name()

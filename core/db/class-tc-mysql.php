@@ -2,8 +2,6 @@
 
 namespace TinCan;
 
-use TinCan\TCException;
-
 /**
  * Tin Can MySQL database service.
  *
@@ -26,14 +24,14 @@ class TCMySQL extends TCDB
    * Tests for an existing database connection.
    *
    * This is needed when using PHP 8 and above due to what looks like a bug.
-   * @see https://github.com/joomlatools/joomlatools-framework/issues/554
    *
+   * @see https://github.com/joomlatools/joomlatools-framework/issues/554
    * @since 0.06
    */
   public function is_connected()
   {
     try {
-      return (($this->connection instanceof MySQLi) && @$this->_connection->ping());
+      return ($this->connection instanceof MySQLi) && @$this->_connection->ping();
     } catch (\Exception $e) {
       return false;
     }
