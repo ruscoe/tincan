@@ -3,8 +3,7 @@
 use TinCan\TCData;
 use TinCan\TCObject;
 use TinCan\TCUser;
-
-// TODO: Check user role before anything else.
+use TinCan\TCUserSession;
 
 /**
  * Tin Can user update handler.
@@ -33,6 +32,19 @@ if ('***' == $password) {
 
 $db = new TCData();
 $settings = $db->load_settings();
+
+// Get logged in user.
+$session = new TCUserSession();
+$session->start_session();
+$user_id = $session->get_user_id();
+$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+
+// Check for admin user.
+if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+  // Not an admin user; redirect to log in page.
+  header('Location: /index.php?page='.$settings['page_log_in']);
+  exit;
+}
 
 $user = $db->load_user($user_id);
 

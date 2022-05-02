@@ -3,8 +3,8 @@
 use TinCan\TCData;
 use TinCan\TCPost;
 use TinCan\TCThread;
-
-// TODO: Check user role before anything else.
+use TinCan\TCUser;
+use TinCan\TCUserSession;
 
 /**
  * Tin Can thread creation handler.
@@ -22,6 +22,19 @@ require TC_BASE_PATH.'/includes/include-user.php';
 
 $db = new TCData();
 $settings = $db->load_settings();
+
+// Get logged in user.
+$session = new TCUserSession();
+$session->start_session();
+$user_id = $session->get_user_id();
+$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+
+// Check for admin user.
+if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+  // Not an admin user; redirect to log in page.
+  header('Location: /index.php?page='.$settings['page_log_in']);
+  exit;
+}
 
 $thread = new TCThread();
 

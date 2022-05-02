@@ -6,8 +6,7 @@ use TinCan\TCData;
 use TinCan\TCPage;
 use TinCan\TCThread;
 use TinCan\TCUser;
-
-// TODO: Check user role before anything else.
+use TinCan\TCUserSession;
 
 /**
  * Tin Can delete object handler.
@@ -24,14 +23,25 @@ require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-template.php';
 require TC_BASE_PATH.'/includes/include-user.php';
 
-require TC_BASE_PATH.'/actions/class-tc-json-response.php';
-
 $object_type = filter_input(INPUT_POST, 'object_type', FILTER_SANITIZE_STRING);
 $object_id = filter_input(INPUT_POST, 'object_id', FILTER_SANITIZE_NUMBER_INT);
 $delete = filter_input(INPUT_POST, 'delete', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 $settings = $db->load_settings();
+
+// Get logged in user.
+$session = new TCUserSession();
+$session->start_session();
+$user_id = $session->get_user_id();
+$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+
+// Check for admin user.
+if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+  // Not an admin user; redirect to log in page.
+  header('Location: /index.php?page='.$settings['page_log_in']);
+  exit;
+}
 
 $class = null;
 $object = null;

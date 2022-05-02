@@ -2,8 +2,8 @@
 
 use TinCan\TCData;
 use TinCan\TCSetting;
-
-// TODO: Check user role before anything else.
+use TinCan\TCUser;
+use TinCan\TCUserSession;
 
 /**
  * Tin Can save settings handler.
@@ -17,10 +17,25 @@ require '../../tc-config.php';
 require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
+require TC_BASE_PATH.'/includes/include-user.php';
 
 $submitted_fields = $_POST;
 
 $db = new TCData();
+$settings = $db->load_settings();
+
+// Get logged in user.
+$session = new TCUserSession();
+$session->start_session();
+$user_id = $session->get_user_id();
+$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+
+// Check for admin user.
+if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+  // Not an admin user; redirect to log in page.
+  header('Location: /index.php?page='.$settings['page_log_in']);
+  exit;
+}
 
 // Boolean settings are controlled by checkboxes on the settings form.
 // An unchecked box results in no value for that field. This means we don't
