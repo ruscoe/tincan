@@ -36,43 +36,170 @@ global $db;
 
 $run_install = filter_input(INPUT_POST, 'run_install', FILTER_SANITIZE_NUMBER_INT);
 $create_test_data = filter_input(INPUT_POST, 'create_test_data', FILTER_SANITIZE_STRING);
+$admin_email = filter_input(INPUT_POST, 'admin_email', FILTER_SANITIZE_STRING);
+$admin_password = filter_input(INPUT_POST, 'admin_password', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
 if (1 == $run_install) {
-  tc_truncate_tables();
+  tc_create_tables();
   tc_create_settings();
-  tc_create_users();
+  tc_create_roles();
+  tc_create_pages();
+  // TODO: Validate email and password.
+  tc_create_users($admin_email, $admin_password);
 
   if (!empty($create_test_data)) {
-    tc_create_roles();
-    tc_create_pages();
     $new_board_group_ids = tc_create_board_groups();
     $new_board_ids = tc_create_boards($new_board_group_ids);
     $new_thread_ids = tc_create_threads($new_board_ids);
     tc_create_posts($new_thread_ids);
   }
+
+  header('Location: /');
+  exit;
 } else {
-  ?>
+?>
+
+<html>
+<head>
+  <style type="text/css">
+
+    div#content {
+      color: #6B6666;
+      font-family: Verdana, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-top: 3rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    div#installed, form#install-options {
+      max-width: 600px;
+    }
+
+    div#installed {
+      background-color: #F1F1F1;
+      border: 2px solid #DDDDDD;
+      margin: 0 auto 0 auto;
+      margin-top: 3rem;
+      padding: 1rem 0 1rem 0;
+    }
+
+    form#install-options {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto 0 auto;
+      padding-top: 2rem;
+    }
+
+    form#install-options .fieldset {
+      display: flex;
+      flex: 1;
+      margin: 0.5rem 0 0.5rem 0;
+    }
+
+    form#install-options .fieldset.button {
+      justify-content: flex-end;
+      padding-top: 1rem;
+    }
+
+    form#install-options .field {
+      background-color: #F1F1F1;
+      flex: 1.5;
+      padding: 0.25rem;
+      text-align: left;
+    }
+
+    form#install-options label {
+      background-color: #295C7A;
+      color: #FFFFFF;
+      display: block;
+      flex: 1;
+      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    }
+
+    form#install-options input.text-input {
+      width: 100%;
+    }
+
+  </style>
+</head>
+<body>
+<div id="content">
 
 <h1>Tin Can Forum Installer</h1>
 
-<?php if (tc_is_installed()) { ?>
+<?php
+  $error = false;
 
-  <div>
+  try {
+    if (tc_is_installed()) {
+  ?>
+
+  <div id="installed">
     <h2>Tin Can Forum is already installed!</h2>
     <p>If you run this installer, all your data will be erased.</p>
     <p>This cannot be undone.</p>
   </div>
 
+<?php
+    }
+  } catch (TCException $e) {
+?>
+  <div id="error-box">
+    <p>Unable to connect to the database. Please check your configuration.</p>
+  </div>
+<?php
+    $error = true;
+  }
+?>
+
+<?php if (!$error) { ?>
+<form id="install-options" action="/install.php" method="POST">
+  <div class="fieldset">
+    <label for="create_test_data">Generate test data</label>
+    <div class="field">
+      <input type="checkbox" name="create_test_data" />
+    </div>
+  </div>
+
+<?php
+  $user = new TCUser();
+  $password = $user->generate_password();
+?>
+
+<div class="fieldset">
+  <label for="admin_email">Admin email</label>
+  <div class="field">
+    <input type="text" name="admin_email" value="admin@example.org" />
+  </div>
+</div>
+
+  <div class="fieldset">
+    <label for="admin_password">Admin password</label>
+    <div class="field">
+      <input type="text" name="admin_password" value="<?=$password?>" />
+    </div>
+  </div>
+
+  <input type="hidden" name="run_install" value="1" />
+
+  <div class="fieldset button">
+    <input type="submit" name="submit_install" value="Install Tin Can Forum" />
+  </div>
+</form>
 <?php } ?>
 
-<form action="/install.php" method="POST">
-  <input type="checkbox" name="create_test_data" />
-  <label for="create_test_data">Generate test data</label>
-  <input type="hidden" name="run_install" value="1" />
-  <input type="submit" name="submit_install" value="Install Tin Can Forum" />
-</form>
+</div>
+</body>
+</html>
 
 <?php
 }
@@ -81,26 +208,125 @@ function tc_is_installed()
 {
   global $db;
 
-  return (int) $db->count_objects(new TCSetting()) > 0;
+  $result = $db->run_query("SELECT count(*) AS `count` FROM `information_schema`.`TABLES` WHERE `TABLE_NAME` = 'tc_settings'");
+  $row = $result->fetch_object();
+
+  return ((int) $row->count !== 0);
 }
 
-function tc_truncate_tables()
+function tc_create_tables()
 {
   global $db;
 
-  $tables = [
-      'tc_board_groups',
-      'tc_boards',
-      'tc_pages',
-      'tc_posts',
-      'tc_roles',
-      'tc_settings',
-      'tc_threads',
-      'tc_users',
-    ];
+  $queries = [
 
-  foreach ($tables as $table) {
-    $db->run_query("TRUNCATE {$table}");
+    "DROP TABLE IF EXISTS `tc_board_groups`",
+
+    "CREATE TABLE `tc_board_groups` (
+      `board_group_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `board_group_name` varchar(255) NOT NULL DEFAULT '',
+      `created_time` int(10) unsigned NOT NULL,
+      `updated_time` int(10) unsigned NOT NULL,
+      PRIMARY KEY (`board_group_id`)
+    ) AUTO_INCREMENT=1000",
+
+    "DROP TABLE IF EXISTS `tc_boards`",
+
+    "CREATE TABLE `tc_boards` (
+      `board_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `board_name` varchar(255) NOT NULL DEFAULT '',
+      `board_group_id` bigint(20) unsigned NOT NULL,
+      `description` mediumtext NOT NULL,
+      `created_time` int(10) unsigned NOT NULL,
+      `updated_time` int(10) unsigned NOT NULL,
+      PRIMARY KEY (`board_id`)
+    ) AUTO_INCREMENT=1000",
+
+    "DROP TABLE IF EXISTS `tc_pages`",
+
+    "CREATE TABLE `tc_pages` (
+      `page_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `page_title` varchar(255) NOT NULL DEFAULT '',
+      `template` varchar(255) NOT NULL DEFAULT '',
+      `created_time` int(10) unsigned NOT NULL,
+      `updated_time` int(10) unsigned NOT NULL,
+      PRIMARY KEY (`page_id`)
+    ) AUTO_INCREMENT=1000",
+
+    "DROP TABLE IF EXISTS `tc_posts`",
+
+    "CREATE TABLE `tc_posts` (
+      `post_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `user_id` bigint(20) unsigned NOT NULL,
+      `thread_id` bigint(20) unsigned NOT NULL,
+      `content` longtext NOT NULL,
+      `updated_time` int(10) unsigned NOT NULL,
+      `created_time` int(10) unsigned NOT NULL,
+      `updated_by_user` bigint(20) unsigned NOT NULL,
+      PRIMARY KEY (`post_id`)
+    ) AUTO_INCREMENT=1000",
+
+    "DROP TABLE IF EXISTS `tc_roles`",
+
+    "CREATE TABLE `tc_roles` (
+      `role_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `role_name` varchar(255) NOT NULL DEFAULT '',
+      `allowed_actions` varchar(255) NOT NULL DEFAULT '',
+      PRIMARY KEY (`role_id`)
+    )",
+
+    "DROP TABLE IF EXISTS `tc_roles_actions`",
+
+    "CREATE TABLE `tc_roles_actions` (
+      `role_id` bigint(20) unsigned NOT NULL,
+      `action_id` bigint(20) unsigned NOT NULL,
+      PRIMARY KEY (`role_id`,`action_id`)
+    )",
+
+    "DROP TABLE IF EXISTS `tc_settings`",
+
+    "CREATE TABLE `tc_settings` (
+      `setting_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `setting_name` varchar(255) NOT NULL DEFAULT '',
+      `type` varchar(16) NOT NULL DEFAULT '',
+      `title` varchar(255) NOT NULL DEFAULT '',
+      `value` varchar(255) NOT NULL DEFAULT '',
+      `required` tinyint(1) unsigned NOT NULL,
+      PRIMARY KEY (`setting_id`)
+    )",
+
+    "DROP TABLE IF EXISTS `tc_threads`",
+
+    "CREATE TABLE `tc_threads` (
+      `thread_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `board_id` bigint(20) unsigned NOT NULL,
+      `thread_title` varchar(255) NOT NULL DEFAULT '',
+      `first_post_id` bigint(20) unsigned NOT NULL,
+      `created_by_user` bigint(20) unsigned NOT NULL,
+      `updated_by_user` bigint(20) unsigned NOT NULL,
+      `created_time` int(10) unsigned NOT NULL,
+      `updated_time` int(10) unsigned NOT NULL,
+      PRIMARY KEY (`thread_id`)
+    ) AUTO_INCREMENT=1000",
+
+    "DROP TABLE IF EXISTS `tc_users`",
+
+    "CREATE TABLE `tc_users` (
+      `user_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `username` varchar(255) NOT NULL DEFAULT '',
+      `email` varchar(255) NOT NULL DEFAULT '',
+      `password` varchar(255) NOT NULL DEFAULT '',
+      `role_id` bigint(20) unsigned NOT NULL,
+      `avatar` varchar(16) NOT NULL DEFAULT '',
+      `created_time` int(10) unsigned NOT NULL,
+      `updated_time` int(10) unsigned NOT NULL,
+      PRIMARY KEY (`user_id`)
+    ) AUTO_INCREMENT=1000",
+
+  ];
+
+  foreach ($queries as $query) {
+    $db->run_query($query);
   }
 }
 
@@ -306,7 +532,7 @@ function tc_create_pages()
   }
 }
 
-function tc_create_users()
+function tc_create_users($email, $password)
 {
   global $db;
 
@@ -314,21 +540,9 @@ function tc_create_users()
 
   $users = [
       [
-        'username' => 'user',
-        'email' => 'user+test@example.org',
-        'password' => $user->get_password_hash('user'),
-        'role_id' => 1, // Default user role.
-      ],
-      [
-        'username' => 'mod',
-        'email' => 'mod+test@example.org',
-        'password' => $user->get_password_hash('mod'),
-        'role_id' => 2, // Moderator user role.
-      ],
-      [
         'username' => 'admin',
-        'email' => 'admin+test@example.org',
-        'password' => $user->get_password_hash('admin'),
+        'email' => $email,
+        'password' => $user->get_password_hash($password),
         'role_id' => 3, // Administrator user role.
       ],
     ];
