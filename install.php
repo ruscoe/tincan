@@ -59,7 +59,7 @@ if (1 == $run_install) {
   header('Location: /');
   exit;
 } else {
-?>
+  ?>
 
 <html>
 <head>
@@ -141,7 +141,7 @@ if (1 == $run_install) {
 
   try {
     if (tc_is_installed()) {
-  ?>
+      ?>
 
   <div id="installed">
     <h2>Tin Can Forum is already installed!</h2>
@@ -152,14 +152,13 @@ if (1 == $run_install) {
 <?php
     }
   } catch (TCException $e) {
-?>
+    ?>
   <div id="error-box">
     <p>Unable to connect to the database. Please check your configuration.</p>
   </div>
 <?php
     $error = true;
-  }
-?>
+  } ?>
 
 <?php if (!$error) { ?>
 <form id="install-options" action="/install.php" method="POST">
@@ -185,7 +184,7 @@ if (1 == $run_install) {
   <div class="fieldset">
     <label for="admin_password">Admin password</label>
     <div class="field">
-      <input type="text" name="admin_password" value="<?=$password?>" />
+      <input type="text" name="admin_password" value="<?php echo $password; ?>" />
     </div>
   </div>
 
@@ -211,7 +210,7 @@ function tc_is_installed()
   $result = $db->run_query("SELECT count(*) AS `count` FROM `information_schema`.`TABLES` WHERE `TABLE_NAME` = 'tc_settings'");
   $row = $result->fetch_object();
 
-  return ((int) $row->count !== 0);
+  return 0 !== (int) $row->count;
 }
 
 function tc_create_tables()
@@ -219,8 +218,7 @@ function tc_create_tables()
   global $db;
 
   $queries = [
-
-    "DROP TABLE IF EXISTS `tc_board_groups`",
+    'DROP TABLE IF EXISTS `tc_board_groups`',
 
     "CREATE TABLE `tc_board_groups` (
       `board_group_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -230,7 +228,7 @@ function tc_create_tables()
       PRIMARY KEY (`board_group_id`)
     ) AUTO_INCREMENT=1000",
 
-    "DROP TABLE IF EXISTS `tc_boards`",
+    'DROP TABLE IF EXISTS `tc_boards`',
 
     "CREATE TABLE `tc_boards` (
       `board_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -242,7 +240,7 @@ function tc_create_tables()
       PRIMARY KEY (`board_id`)
     ) AUTO_INCREMENT=1000",
 
-    "DROP TABLE IF EXISTS `tc_pages`",
+    'DROP TABLE IF EXISTS `tc_pages`',
 
     "CREATE TABLE `tc_pages` (
       `page_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -253,9 +251,9 @@ function tc_create_tables()
       PRIMARY KEY (`page_id`)
     ) AUTO_INCREMENT=1000",
 
-    "DROP TABLE IF EXISTS `tc_posts`",
+    'DROP TABLE IF EXISTS `tc_posts`',
 
-    "CREATE TABLE `tc_posts` (
+    'CREATE TABLE `tc_posts` (
       `post_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `user_id` bigint(20) unsigned NOT NULL,
       `thread_id` bigint(20) unsigned NOT NULL,
@@ -264,9 +262,9 @@ function tc_create_tables()
       `created_time` int(10) unsigned NOT NULL,
       `updated_by_user` bigint(20) unsigned NOT NULL,
       PRIMARY KEY (`post_id`)
-    ) AUTO_INCREMENT=1000",
+    ) AUTO_INCREMENT=1000',
 
-    "DROP TABLE IF EXISTS `tc_roles`",
+    'DROP TABLE IF EXISTS `tc_roles`',
 
     "CREATE TABLE `tc_roles` (
       `role_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -275,15 +273,15 @@ function tc_create_tables()
       PRIMARY KEY (`role_id`)
     )",
 
-    "DROP TABLE IF EXISTS `tc_roles_actions`",
+    'DROP TABLE IF EXISTS `tc_roles_actions`',
 
-    "CREATE TABLE `tc_roles_actions` (
+    'CREATE TABLE `tc_roles_actions` (
       `role_id` bigint(20) unsigned NOT NULL,
       `action_id` bigint(20) unsigned NOT NULL,
       PRIMARY KEY (`role_id`,`action_id`)
-    )",
+    )',
 
-    "DROP TABLE IF EXISTS `tc_settings`",
+    'DROP TABLE IF EXISTS `tc_settings`',
 
     "CREATE TABLE `tc_settings` (
       `setting_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -295,7 +293,7 @@ function tc_create_tables()
       PRIMARY KEY (`setting_id`)
     )",
 
-    "DROP TABLE IF EXISTS `tc_threads`",
+    'DROP TABLE IF EXISTS `tc_threads`',
 
     "CREATE TABLE `tc_threads` (
       `thread_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -309,7 +307,7 @@ function tc_create_tables()
       PRIMARY KEY (`thread_id`)
     ) AUTO_INCREMENT=1000",
 
-    "DROP TABLE IF EXISTS `tc_users`",
+    'DROP TABLE IF EXISTS `tc_users`',
 
     "CREATE TABLE `tc_users` (
       `user_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -322,7 +320,6 @@ function tc_create_tables()
       `updated_time` int(10) unsigned NOT NULL,
       PRIMARY KEY (`user_id`)
     ) AUTO_INCREMENT=1000",
-
   ];
 
   foreach ($queries as $query) {
