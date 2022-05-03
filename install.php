@@ -403,6 +403,21 @@ function tc_create_settings()
         'value' => 'tincan',
         'required' => 1,
       ],
+      [
+        'setting_name' => 'site_email_name',
+        'type' => 'text',
+        'title' => 'Site email sender name',
+        'value' => 'Tin Can Forum',
+        'required' => 1,
+      ],
+      [
+        'setting_name' => 'site_email_address',
+        'type' => 'text',
+        'title' => 'Site email sender address',
+        // TODO: Change this.
+        'value' => 'dan@ruscoe.org',
+        'required' => 1,
+      ],
     ];
 
   foreach ($settings as $setting) {
