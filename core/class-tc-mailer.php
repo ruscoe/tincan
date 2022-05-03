@@ -58,8 +58,6 @@ class TCMailer
    */
   public function send_mail($from_name, $from_email, $recipients)
   {
-    var_dump($recipients);
-
     $this->mailer->setFrom($from_email, $from_name);
 
     foreach ($recipients as $recipient) {
