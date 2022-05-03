@@ -48,7 +48,11 @@ class TCMailer
    *
    * @since 0.07
    *
-   * @param array $recipients the email addresses to send email to
+   * @param array $recipients associative array of names and email addresses
+   *   [
+   *     'name' => 'Oscar Wilde',
+   *     'email' => 'happyprince@example.org'
+   *   ]
    *
    * @return bool true if email was successfully sent
    */
@@ -58,8 +62,8 @@ class TCMailer
 
     $this->mailer->setFrom($from_email, $from_name);
 
-    foreach ($recipients as $recipient_email) {
-      $this->mailer->addAddress($recipient_email);
+    foreach ($recipients as $recipient) {
+      $this->mailer->addAddress($recipient['email'], $recipient['name']);
     }
 
     $this->mailer->isHTML(false);
