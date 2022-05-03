@@ -13,9 +13,14 @@ use TinCan\TCUserSession;
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
+
+// Base configuation.
 require 'tc-config.php';
+// Composer autoload.
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
+require TC_BASE_PATH.'/core/class-tc-mailer.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-content.php';
