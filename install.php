@@ -48,6 +48,7 @@ if (1 == $run_install) {
   tc_create_pages();
   // TODO: Validate email and password.
   tc_create_users($admin_email, $admin_password);
+  tc_create_mail_templates();
 
   if (!empty($create_test_data)) {
     $new_board_group_ids = tc_create_board_groups();
@@ -320,6 +321,17 @@ function tc_create_tables()
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
       PRIMARY KEY (`user_id`)
+    ) AUTO_INCREMENT=1000",
+
+    'DROP TABLE IF EXISTS `tc_mail_templates`',
+
+    "CREATE TABLE `tc_mail_templates` (
+      `mail_template_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `mail_template_name` varchar(255) NOT NULL DEFAULT '',
+      `content` longtext NOT NULL,
+      `updated_time` int(10) unsigned NOT NULL,
+      `created_time` int(10) unsigned NOT NULL,
+      PRIMARY KEY (`mail_template_id`)
     ) AUTO_INCREMENT=1000",
   ];
 
@@ -690,6 +702,31 @@ function tc_create_posts($new_thread_ids)
     } catch (TCException $e) {
       echo $e->getMessage()."\n";
     }
+  }
+}
+
+function tc_create_mail_templates()
+{
+  global $db;
+
+  $time = time();
+
+  $queries = [
+    "INSERT INTO `tc_mail_templates` (
+      `mail_template_name`,
+      `content`,
+      `created_time`,
+      `updated_time`
+    ) VALUES (
+      'Reset Password',
+      'Your password reset code is {code}',
+      {$time},
+      {$time}
+    )",
+  ];
+
+  foreach ($queries as $query) {
+    $db->run_query($query);
   }
 }
 
