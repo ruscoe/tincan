@@ -82,6 +82,11 @@ class TCMySQL extends TCDB
 
     $prepared = $this->connection->prepare($query);
 
+    if (empty($prepared)) {
+      $this->close_connection();
+      throw new TCException('Unable to prepare query for execution: '.$query);
+    }
+
     foreach ($params as $param) {
       if (is_int($param)) {
         $prepared->bind_param('i', $param);

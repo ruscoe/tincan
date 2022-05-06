@@ -201,6 +201,9 @@ class TCData
     } elseif (!empty($conditions)) {
       $query .= ' WHERE';
       foreach ($conditions as $condition) {
+        if (!$this->validate_object_field($class, $condition['field'])) {
+          throw new TCException('Invalid field '.$db_table.'.'.$condition['field']);
+        }
         // TODO: Allow conditions other than equals.
         $query .= " `{$condition['field']}` = '{$condition['value']}'";
       }
@@ -265,5 +268,23 @@ class TCData
     $result = $this->database->query($query, [$id]);
 
     return $result;
+  }
+
+  /**
+   * TODO
+   *
+   * @since 0.07
+   */
+  public function validate_object_field(TCObject $object, $field)
+  {
+    $valid_db_fields = $object->get_db_fields();
+
+    foreach ($valid_db_fields as $valid_field) {
+      if ($field == $valid_field) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }
