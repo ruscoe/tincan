@@ -314,6 +314,7 @@ function tc_create_tables()
       `username` varchar(255) NOT NULL DEFAULT '',
       `email` varchar(255) NOT NULL DEFAULT '',
       `password` varchar(255) NOT NULL DEFAULT '',
+      `password_reset_code` varchar(255) NOT NULL DEFAULT '',
       `role_id` bigint(20) unsigned NOT NULL,
       `avatar` varchar(16) NOT NULL DEFAULT '',
       `created_time` int(10) unsigned NOT NULL,

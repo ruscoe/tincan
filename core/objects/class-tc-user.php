@@ -52,6 +52,13 @@ class TCUser extends TCObject
   protected $password;
 
   /**
+   * Populated only when the user has requested a password reset.
+   *
+   * @since 0.07
+   */
+  protected $password_reset_code;
+
+  /**
    * Reference to TCRole::$role_id.
    *
    * @since 0.02
@@ -230,6 +237,23 @@ class TCUser extends TCObject
   }
 
   /**
+   * Generates a random code that allows the user to reset their password.
+   *
+   * @since 0.07
+   *
+   * @return string the password reset code
+   */
+  public function generate_password_reset_code($length = 0)
+  {
+    // Use the password generator to create a random string.
+    $code = $this->generate_password(16);
+    // Hash the random string to create the code.
+    $hash = md5($code);
+
+    return $hash;
+  }
+
+  /**
    * Converts a password to a hash for security.
    *
    * @since 0.01
@@ -352,6 +376,7 @@ class TCUser extends TCObject
           'username',
           'email',
           'password',
+          'password_reset_code',
           'role_id',
           'avatar',
           'created_time',

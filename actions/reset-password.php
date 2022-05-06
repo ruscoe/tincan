@@ -66,6 +66,13 @@ if (empty($user)) {
   $error = TCUser::ERR_NOT_FOUND;
 }
 
+if (empty($error)) {
+  $reset_code = $user->generate_password_reset_code();
+
+  $user->password_reset_code = $reset_code;
+  $db->save_object($user);
+}
+
 if (!empty($ajax)) {
   $response = new TCJSONResponse();
 
