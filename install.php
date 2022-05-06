@@ -431,6 +431,14 @@ function tc_create_settings()
         'value' => 'dan@ruscoe.org',
         'required' => 1,
       ],
+      [
+        'setting_name' => 'mail_reset_password',
+        'type' => 'text',
+        'title' => 'Reset Password Mail Template',
+        // TODO: Make this a select box.
+        'value' => 1000,
+        'required' => 1,
+      ],
     ];
 
   foreach ($settings as $setting) {

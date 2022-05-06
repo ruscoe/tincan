@@ -4,6 +4,7 @@ namespace TinCan;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
+use TinCan\TCMailTemplate;
 
 /**
  * Tin Can mail handler.
@@ -42,6 +43,29 @@ class TCMailer
   }
 
   /**
+   * Replaces tokens with values in a mail template.
+   *
+   * @since 0.07
+   *
+   * @param TCMailTemplate $template the email template to tokenize
+   *
+   * @param array $tokens associative array of tokens and values
+   *   ['color' => 'blue'] would replace token {color} with "blue"
+   *
+   * @return string tokenized mail template
+   */
+  public function tokenize_template(TCMailTemplate $template, $tokens)
+  {
+    $content = $template->content;
+
+    foreach ($tokens as $token => $value) {
+      $content = str_replace('{'.$token.'}', $value, $content);
+    }
+
+    return $content;
+  }
+
+  /**
    * Sends an email.
    *
    * TODO: Add email templates.
@@ -56,7 +80,7 @@ class TCMailer
    *
    * @return bool true if email was successfully sent
    */
-  public function send_mail($from_name, $from_email, $recipients)
+  public function send_mail($from_name, $from_email, $subject, $content, $recipients)
   {
     $this->mailer->setFrom($from_email, $from_name);
 
@@ -65,8 +89,8 @@ class TCMailer
     }
 
     $this->mailer->isHTML(false);
-    $this->mailer->Subject = 'Tin Can Forum Test Email';
-    $this->mailer->Body = 'Hello! Here is an email from Tin Can Forum!';
+    $this->mailer->Subject = $subject;
+    $this->mailer->Body = $content;
 
     $this->mailer->send();
 

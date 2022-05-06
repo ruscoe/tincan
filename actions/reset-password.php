@@ -4,6 +4,7 @@ use TinCan\TCData;
 use TinCan\TCException;
 use TinCan\TCJSONResponse;
 use TinCan\TCMailer;
+use TinCan\TCMailTemplate;
 use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
@@ -82,12 +83,21 @@ if (empty($error)) {
   // Send password reset code to the user.
   $mailer = new TCMailer();
 
+  // Load email template.
+  // TODO: Error handling.
+  $mail_template = $db->load_object(new TCMailTemplate(), $settings['mail_reset_password']);
+  $mail_subject = $mail_template->mail_template_name;
+  $mail_content = $mailer->tokenize_template($mail_template, ['code' => $user->password_reset_code]);
+
   $recipients = [
     ['name' => $user->username, 'email' => $user->email],
   ];
 
-  // TODO: Load email template.
-  $mailer->send_mail($settings['site_email_name'], $settings['site_email_address'], $recipients);
+  $mailer->send_mail($settings['site_email_name'],
+    $settings['site_email_address'],
+    $mail_subject,
+    $mail_content,
+    $recipients);
 }
 
 if (!empty($ajax)) {
