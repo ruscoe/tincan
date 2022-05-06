@@ -3,6 +3,7 @@
 use TinCan\TCData;
 use TinCan\TCException;
 use TinCan\TCJSONResponse;
+use TinCan\TCMailer;
 use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
@@ -15,8 +16,11 @@ use TinCan\TCUserSession;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 require '../tc-config.php';
+// Composer autoload.
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
+require TC_BASE_PATH.'/core/class-tc-mailer.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-template.php';
@@ -71,6 +75,19 @@ if (empty($error)) {
 
   $user->password_reset_code = $reset_code;
   $db->save_object($user);
+  // TODO: Ensure code is created and saved.
+}
+
+if (empty($error)) {
+  // Send password reset code to the user.
+  $mailer = new TCMailer();
+
+  $recipients = [
+    ['name' => $user->username, 'email' => $user->email],
+  ];
+
+  // TODO: Load email template.
+  $mailer->send_mail($settings['site_email_name'], $settings['site_email_address'], $recipients);
 }
 
 if (!empty($ajax)) {
