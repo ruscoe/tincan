@@ -1,12 +1,11 @@
 <?php
 
 use TinCan\TCTemplate;
-use TinCan\TCURL;
 
   /**
-   * Log in page template.
+   * Reset password page template.
    *
-   * @since 0.01
+   * @since 0.07
    *
    * @author Dan Ruscoe danruscoe@protonmail.com
    */
@@ -26,26 +25,17 @@ use TinCan\TCURL;
   }
 ?>
 
-<form id="log-in" action="/actions/log-in.php" method="POST">
+<form id="log-in" action="/actions/reset-password.php" method="POST">
   <div class="fieldset">
-    <label for="username">Username</label>
+    <label for="email">Email address</label>
     <div class="field">
-      <input class="text-input" type="text" name="username" />
-    </div>
-  </div>
-
-  <div class="fieldset">
-    <label for="password">Password</label>
-    <div class="field">
-      <input class="text-input" type="password" name="password" />
+      <input class="text-input" type="text" name="email" />
     </div>
   </div>
 
   <input type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
-    <input type="submit" name="log_in" value="Log in" />
+    <input type="submit" name="reset_password" value="Reset password" />
   </div>
-
-  <a href="<?php echo TCURL::create_url($settings['page_reset_password']); ?>">Reset password</a>
 </form>
