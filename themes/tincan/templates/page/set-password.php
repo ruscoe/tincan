@@ -1,9 +1,10 @@
 <?php
 
 use TinCan\TCTemplate;
+use TinCan\TCURL;
 
   /**
-   * Reset password page template.
+   * Set password page template.
    *
    * @since 0.07
    *
@@ -12,6 +13,7 @@ use TinCan\TCTemplate;
   $page = $data['page'];
   $settings = $data['settings'];
 
+  $code = filter_input(INPUT_GET, 'code', FILTER_SANITIZE_STRING);
   $status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_STRING);
   $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
@@ -24,11 +26,11 @@ use TinCan\TCTemplate;
   if (!empty($error)) {
     TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
   }
-  else if (!empty($status) && ($status == 'sent')) {
+  else if (!empty($status) && ($status == 'set')) {
     ?>
 
     <div class="message-box">
-      <p>Please check your email for your password reset link.</p>
+      <p>Your new password has been set! <a href="<?php echo TCURL::create_url($settings['page_log_in']); ?>">Log in</a>.</p>
     </div>
 
     <?php
@@ -36,18 +38,19 @@ use TinCan\TCTemplate;
 ?>
 
 <?php if (empty($status)) { ?>
-<form id="log-in" action="/actions/reset-password.php" method="POST">
+<form id="set-password" action="/actions/set-password.php" method="POST">
   <div class="fieldset">
-    <label for="email">Email address</label>
+    <label for="password">New password</label>
     <div class="field">
-      <input class="text-input" type="text" name="email" />
+      <input class="text-input" type="password" name="password" />
     </div>
   </div>
 
+  <input type="hidden" name="code" value="<?=$code?>" />
   <input type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
-    <input type="submit" name="reset_password" value="Reset password" />
+    <input type="submit" name="change_password" value="Set new password" />
   </div>
 </form>
 <?php } ?>

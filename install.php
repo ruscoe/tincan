@@ -353,6 +353,14 @@ function tc_create_settings()
         'required' => 1,
       ],
       [
+        'setting_name' => 'base_url',
+        'type' => 'text',
+        'title' => 'Forum base URL',
+        // TODO: User set on install.
+        'value' => 'http://tincan.local',
+        'required' => 1,
+      ],
+      [
         'setting_name' => 'date_format',
         'type' => 'text',
         'title' => 'Date format',
@@ -509,6 +517,7 @@ function tc_create_pages()
       ['page_title' => 'Log In',                 'template' => 'log-in'],
       ['page_title' => 'Log Out',                'template' => 'log-out'],
       ['page_title' => 'Reset Password',         'template' => 'reset-password'],
+      ['page_title' => 'Set Password',           'template' => 'set-password'],
       ['page_title' => 'New Thread',             'template' => 'new-thread'],
       ['page_title' => 'Edit Post',              'template' => 'edit-post'],
       ['page_title' => 'Delete Post',            'template' => 'delete-post'],
@@ -727,7 +736,7 @@ function tc_create_mail_templates()
       `updated_time`
     ) VALUES (
       'Reset Password',
-      'Your password reset code is {code}',
+      'Your password reset link is\n{url}',
       {$time},
       {$time}
     )",

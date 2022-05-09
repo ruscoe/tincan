@@ -10,7 +10,7 @@ $formFieldLabelText: #FFFFFF;
 
 body.tincan {
 
-  form#create-account, form#log-in {
+  form#create-account, form#log-in, form#set-password {
     width: 400px;
   }
 
@@ -21,7 +21,7 @@ body.tincan {
     }
   }
 
-  form#create-account, form#log-in, form#create-thread, form#post-reply {
+  form#create-account, form#log-in, form#create-thread, form#post-reply, form#set-password {
     display: flex;
     flex-direction: column;
     margin: 0 auto 0 auto;
@@ -64,6 +64,10 @@ body.tincan {
     max-width: 400px;
     margin-top: 3rem;
     padding: 1rem 0 1rem 0;
+
+    p {
+      margin: 0 2rem 0 2rem;
+    }
 
     ul.errors {
       list-style: none;

@@ -80,6 +80,8 @@ if (empty($error)) {
 }
 
 if (empty($error)) {
+  $reset_url = $settings['base_url'].TCURL::create_url($settings['page_set_password'], ['code' => $user->password_reset_code]);
+
   // Send password reset code to the user.
   $mailer = new TCMailer();
 
@@ -87,7 +89,7 @@ if (empty($error)) {
   // TODO: Error handling.
   $mail_template = $db->load_object(new TCMailTemplate(), $settings['mail_reset_password']);
   $mail_subject = $mail_template->mail_template_name;
-  $mail_content = $mailer->tokenize_template($mail_template, ['code' => $user->password_reset_code]);
+  $mail_content = $mailer->tokenize_template($mail_template, ['url' => $reset_url]);
 
   $recipients = [
     ['name' => $user->username, 'email' => $user->email],
@@ -111,9 +113,8 @@ if (!empty($ajax)) {
   $destination = '';
 
   if (empty($error)) {
-    // Send user to the reset password page.
-    // TODO: Add a success message.
-    $destination = TCURL::create_url($settings['page_reset_password']);
+    // Send user to the reset password page with a success message.
+    $destination = TCURL::create_url($settings['page_reset_password'], ['status' => 'sent']);
   } else {
     // Send user back to the reset password page with an error.
     $destination = TCURL::create_url($settings['page_reset_password'], ['error' => $error]);
