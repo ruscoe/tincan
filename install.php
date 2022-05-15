@@ -333,6 +333,16 @@ function tc_create_tables()
       `created_time` int(10) unsigned NOT NULL,
       PRIMARY KEY (`mail_template_id`)
     ) AUTO_INCREMENT=1000",
+
+    'DROP TABLE IF EXISTS `tc_pending_users`',
+
+    "CREATE TABLE `tc_pending_users` (
+      `pending_user_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `user_id` bigint(20) unsigned NOT NULL,
+      `confirmation_code` varchar(255) NOT NULL DEFAULT '',
+      PRIMARY KEY (`pending_user_id`)
+    ) AUTO_INCREMENT=1000",
+
   ];
 
   foreach ($queries as $query) {
@@ -445,6 +455,14 @@ function tc_create_settings()
         'title' => 'Reset Password Mail Template',
         // TODO: Make this a select box.
         'value' => 1000,
+        'required' => 1,
+      ],
+      [
+        'setting_name' => 'mail_confirm_account',
+        'type' => 'text',
+        'title' => 'Confirm Account Mail Template',
+        // TODO: Make this a select box.
+        'value' => 1001,
         'required' => 1,
       ],
     ];
@@ -737,6 +755,17 @@ function tc_create_mail_templates()
     ) VALUES (
       'Reset Password',
       'Your password reset link is\n{url}',
+      {$time},
+      {$time}
+    )",
+    "INSERT INTO `tc_mail_templates` (
+      `mail_template_name`,
+      `content`,
+      `created_time`,
+      `updated_time`
+    ) VALUES (
+      'Confirm Account',
+      'Your account confirmation link is\n{url}',
       {$time},
       {$time}
     )",

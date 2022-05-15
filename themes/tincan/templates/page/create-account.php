@@ -14,6 +14,7 @@ use TinCan\TCTemplate;
 
  $username = filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING);
  $email = filter_input(INPUT_GET, 'email', FILTER_SANITIZE_STRING);
+ $status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_STRING);
  $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
@@ -23,8 +24,18 @@ use TinCan\TCTemplate;
   if (!empty($error)) {
     TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
   }
+  else if (!empty($status) && ($status == 'sent')) {
+    ?>
+
+    <div class="message-box">
+      <p>Please check your email for your account confirmation link.</p>
+    </div>
+
+    <?php
+  }
 ?>
 
+<?php if (empty($status)) { ?>
 <form id="create-account" action="/actions/create-account.php" method="POST">
   <div class="fieldset">
     <label for="username">Username</label>
@@ -53,3 +64,4 @@ use TinCan\TCTemplate;
     <input type="submit" name="submit_thread" value="Create account" />
   </div>
 </form>
+<?php } ?>

@@ -3,7 +3,10 @@
 use TinCan\TCData;
 use TinCan\TCException;
 use TinCan\TCJSONResponse;
+use TinCan\TCMailer;
+use TinCan\TCMailTemplate;
 use TinCan\TCObject;
+use TinCan\TCPendingUser;
 use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
@@ -16,8 +19,11 @@ use TinCan\TCUserSession;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 require '../tc-config.php';
+// Composer autoload.
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
+require TC_BASE_PATH.'/core/class-tc-mailer.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-template.php';
@@ -92,9 +98,39 @@ if (empty($error)) {
 }
 
 if (empty($error)) {
-  // Successfully created account. Create the user's session.
-  $session = new TCUserSession();
-  $session->create_session($user);
+  // Successfully created account. Set up account confirmation.
+  $pending_user = new TCPendingUser();
+  $pending_user->user_id = $user->user_id;
+  $pending_user->confirmation_code = $pending_user->generate_confirmation_code();
+
+  $saved_pending_user = $db->save_object($pending_user);
+
+  if (empty($saved_pending_user)) {
+    $error = TCObject::ERR_NOT_SAVED;
+  }
+}
+
+if (empty($error)) {
+  $confirmation_url = $settings['base_url'].'/actions/confirm-account.php?code='.$pending_user->confirmation_code;
+
+  // Send password reset code to the user.
+  $mailer = new TCMailer();
+
+  // Load email template.
+  // TODO: Error handling.
+  $mail_template = $db->load_object(new TCMailTemplate(), $settings['mail_confirm_account']);
+  $mail_subject = $mail_template->mail_template_name;
+  $mail_content = $mailer->tokenize_template($mail_template, ['url' => $confirmation_url]);
+
+  $recipients = [
+    ['name' => $user->username, 'email' => $user->email],
+  ];
+
+  $mailer->send_mail($settings['site_email_name'],
+    $settings['site_email_address'],
+    $mail_subject,
+    $mail_content,
+    $recipients);
 }
 
 if (!empty($ajax)) {
@@ -108,8 +144,8 @@ if (!empty($ajax)) {
   $destination = '';
 
   if (empty($error)) {
-    // Send user to the forum homepage.
-    $destination = TCURL::create_url(null);
+    // Send user to the create account page with success message.
+    $destination = TCURL::create_url($settings['page_create_account'], ['status' => 'sent']);
   } else {
     // Send user back to the create account page with an error.
     $destination = TCURL::create_url($settings['page_create_account'], [
