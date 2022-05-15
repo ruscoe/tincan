@@ -23,8 +23,7 @@ use TinCan\TCTemplate;
 <?php
   if (!empty($error)) {
     TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
-  }
-  else if (!empty($status) && ($status == 'sent')) {
+  } elseif (!empty($status) && ('sent' == $status)) {
     ?>
 
     <div class="message-box">

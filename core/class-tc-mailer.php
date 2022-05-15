@@ -4,7 +4,6 @@ namespace TinCan;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-use TinCan\TCMailTemplate;
 
 /**
  * Tin Can mail handler.
@@ -48,9 +47,8 @@ class TCMailer
    * @since 0.07
    *
    * @param TCMailTemplate $template the email template to tokenize
-   *
-   * @param array $tokens associative array of tokens and values
-   *   ['color' => 'blue'] would replace token {color} with "blue"
+   * @param array          $tokens   associative array of tokens and values
+   *                                 ['color' => 'blue'] would replace token {color} with "blue"
    *
    * @return string tokenized mail template
    */
@@ -73,10 +71,10 @@ class TCMailer
    * @since 0.07
    *
    * @param array $recipients associative array of names and email addresses
-   *   [
-   *     'name' => 'Oscar Wilde',
-   *     'email' => 'happyprince@example.org'
-   *   ]
+   *                          [
+   *                          'name' => 'Oscar Wilde',
+   *                          'email' => 'happyprince@example.org'
+   *                          ]
    *
    * @return bool true if email was successfully sent
    */

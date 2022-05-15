@@ -9,7 +9,6 @@ use TinCan\TCObject;
 use TinCan\TCPendingUser;
 use TinCan\TCURL;
 use TinCan\TCUser;
-use TinCan\TCUserSession;
 
 /**
  * Tin Can create account handler.

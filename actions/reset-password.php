@@ -7,7 +7,6 @@ use TinCan\TCMailer;
 use TinCan\TCMailTemplate;
 use TinCan\TCURL;
 use TinCan\TCUser;
-use TinCan\TCUserSession;
 
 /**
  * Tin Can password reset handler.

@@ -2,11 +2,9 @@
 
 use TinCan\TCData;
 use TinCan\TCException;
-use TinCan\TCJSONResponse;
 use TinCan\TCObject;
 use TinCan\TCPendingUser;
 use TinCan\TCURL;
-use TinCan\TCUser;
 use TinCan\TCUserSession;
 
 /**
@@ -43,8 +41,7 @@ $pending_results = $db->load_objects($pending_user, [], [['field' => 'confirmati
 
 if (!empty($pending_results)) {
   $pending_user = reset($pending_results);
-}
-else {
+} else {
   $error = TCObject::ERR_NOT_FOUND;
 }
 
@@ -65,7 +62,6 @@ if (empty($error)) {
   // Send the user to the forum homepage.
   header('Location: '.TCURL::create_url(null));
   exit;
-}
-else {
+} else {
   echo 'Unable to confirm your account. Please check the link in your email.';
 }

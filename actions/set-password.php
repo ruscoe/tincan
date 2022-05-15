@@ -6,7 +6,6 @@ use TinCan\TCJSONResponse;
 use TinCan\TCObject;
 use TinCan\TCURL;
 use TinCan\TCUser;
-use TinCan\TCUserSession;
 
 /**
  * Tin Can set password handler.

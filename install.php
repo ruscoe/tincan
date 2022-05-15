@@ -342,7 +342,6 @@ function tc_create_tables()
       `confirmation_code` varchar(255) NOT NULL DEFAULT '',
       PRIMARY KEY (`pending_user_id`)
     ) AUTO_INCREMENT=1000",
-
   ];
 
   foreach ($queries as $query) {

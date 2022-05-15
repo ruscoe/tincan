@@ -25,8 +25,7 @@ use TinCan\TCURL;
 <?php
   if (!empty($error)) {
     TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
-  }
-  else if (!empty($status) && ($status == 'set')) {
+  } elseif (!empty($status) && ('set' == $status)) {
     ?>
 
     <div class="message-box">
@@ -46,7 +45,7 @@ use TinCan\TCURL;
     </div>
   </div>
 
-  <input type="hidden" name="code" value="<?=$code?>" />
+  <input type="hidden" name="code" value="<?php echo $code; ?>" />
   <input type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">

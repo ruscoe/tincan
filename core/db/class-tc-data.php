@@ -271,7 +271,7 @@ class TCData
   }
 
   /**
-   * TODO
+   * TODO.
    *
    * @since 0.07
    */
