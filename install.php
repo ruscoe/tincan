@@ -694,9 +694,9 @@ function tc_create_threads($new_board_ids)
   $new_thread_ids = [];
 
   foreach ($threads as $thread) {
-    $thread['created_by_user'] = 1;
-    $thread['updated_by_user'] = 1;
-    $thread['first_post_id'] = 0;
+    $thread['created_by_user'] = 1000;
+    $thread['updated_by_user'] = 1000;
+    $thread['first_post_id'] = 1000;
     $thread['created_time'] = time();
     $thread['updated_time'] = time();
 
@@ -722,14 +722,14 @@ function tc_create_posts($new_thread_ids)
 
   foreach ($new_thread_ids as $thread_id) {
     for ($i = 0; $i < $posts_to_create; ++$i) {
-      $posts[] = ['user_id' => 1, 'thread_id' => $thread_id, 'content' => tc_get_random_lipsum_long()];
+      $posts[] = ['user_id' => 1000, 'thread_id' => $thread_id, 'content' => tc_get_random_lipsum_long()];
     }
   }
 
   foreach ($posts as $post) {
     $post['created_time'] = time();
     $post['updated_time'] = time();
-    $post['updated_by_user'] = 1;
+    $post['updated_by_user'] = 1000;
 
     try {
       $db->save_object(new TCPost((object) $post));
