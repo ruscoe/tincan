@@ -1,6 +1,6 @@
 <?php
 
-define('TC_VERSION', '0.07');
+define('TC_VERSION', '0.08');
 
 /* File paths * */
 
