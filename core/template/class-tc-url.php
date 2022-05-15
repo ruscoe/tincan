@@ -12,20 +12,13 @@ namespace TinCan;
 class TCURL
 {
   /**
-   * TODO.
+   * Legacy function.
    *
-   * @since 0.06
+   * @since 0.08
    */
-  public static function create_url($page, $params = [], $pretty = false)
+  public static function create_url($page, $params = [])
   {
-    $url = '';
-    if ($pretty) {
-      // TODO: Pretty URL formatting.
-    } else {
-      $url = self::create_standard_url($page, $params);
-    }
-
-    return $url;
+    return TCURL::create_standard_url($page, $params);
   }
 
   /**
@@ -45,6 +38,19 @@ class TCURL
         $url .= '&'.$name.'='.urlencode($value);
       }
     }
+
+    return $url;
+  }
+
+  /**
+   * TODO.
+   *
+   * @since 0.08
+   */
+  public static function create_friendly_url($base, TCObject $object, $params = [])
+  {
+    // $url = $base.'/'.$object->slug.'.'.$object->get_primary_key_value();
+    $url = $base.'/'.$object->slug;
 
     return $url;
   }

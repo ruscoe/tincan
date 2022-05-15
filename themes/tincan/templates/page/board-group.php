@@ -7,6 +7,7 @@ use TinCan\TCTemplate;
 use TinCan\TCURL;
 
 $settings = $data['settings'];
+$slug = $data['slug'];
 
 /**
  * Board group page template.
@@ -17,9 +18,16 @@ $settings = $data['settings'];
  */
 $board_group_id = filter_input(INPUT_GET, 'board_group', FILTER_SANITIZE_NUMBER_INT);
 
+$board_group = null;
+
 $db = new TCData();
 
-$board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
+if (!empty($board_group_id)) {
+  $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
+} elseif (!empty($slug)) {
+  $matched_board_groups = $db->load_objects(new TCBoardGroup(), null, [['field' => 'slug', 'value' => $slug]]);
+  $board_group = reset($matched_board_groups);
+}
 
 if (empty($board_group)) {
   header('Location: '.TCURL::create_url($settings['page_404']));

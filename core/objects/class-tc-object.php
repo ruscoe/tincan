@@ -104,6 +104,22 @@ abstract class TCObject
   }
 
   /**
+   * Creates a URL slug from an object name.
+   *
+   * @since 0.08
+   *
+   * @param string $name the name to create a slug from
+   *
+   * @return string the URL slug
+   */
+  public function generate_slug($name)
+  {
+    $slug = strtolower(str_replace(' ', '-', $name));
+
+    return $slug;
+  }
+
+  /**
    * Gets the name of this object's primary key used by the database.
    *
    * @since 0.01

@@ -224,9 +224,11 @@ function tc_create_tables()
     "CREATE TABLE `tc_board_groups` (
       `board_group_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `board_group_name` varchar(255) NOT NULL DEFAULT '',
+      `slug` varchar(255) NOT NULL DEFAULT '',
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
-      PRIMARY KEY (`board_group_id`)
+      PRIMARY KEY (`board_group_id`),
+      UNIQUE KEY `SLUG_INDEX` (`slug`)
     ) AUTO_INCREMENT=1000",
 
     'DROP TABLE IF EXISTS `tc_boards`',
@@ -234,11 +236,13 @@ function tc_create_tables()
     "CREATE TABLE `tc_boards` (
       `board_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `board_name` varchar(255) NOT NULL DEFAULT '',
+      `slug` varchar(255) NOT NULL DEFAULT '',
       `board_group_id` bigint(20) unsigned NOT NULL,
       `description` mediumtext NOT NULL,
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
-      PRIMARY KEY (`board_id`)
+      PRIMARY KEY (`board_id`),
+      KEY `SLUG_INDEX` (`slug`)
     ) AUTO_INCREMENT=1000",
 
     'DROP TABLE IF EXISTS `tc_pages`',
@@ -246,10 +250,12 @@ function tc_create_tables()
     "CREATE TABLE `tc_pages` (
       `page_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `page_title` varchar(255) NOT NULL DEFAULT '',
+      `slug` varchar(255) NOT NULL DEFAULT '',
       `template` varchar(255) NOT NULL DEFAULT '',
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
-      PRIMARY KEY (`page_id`)
+      PRIMARY KEY (`page_id`),
+      KEY `SLUG_INDEX` (`slug`)
     ) AUTO_INCREMENT=1000",
 
     'DROP TABLE IF EXISTS `tc_posts`',
@@ -300,6 +306,7 @@ function tc_create_tables()
       `thread_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `board_id` bigint(20) unsigned NOT NULL,
       `thread_title` varchar(255) NOT NULL DEFAULT '',
+      `slug` varchar(255) NOT NULL DEFAULT '',
       `first_post_id` bigint(20) unsigned NOT NULL,
       `created_by_user` bigint(20) unsigned NOT NULL,
       `updated_by_user` bigint(20) unsigned NOT NULL,
@@ -413,6 +420,13 @@ function tc_create_settings()
         'required' => 1,
       ],
       [
+        'setting_name' => 'theme',
+        'type' => 'text',
+        'title' => 'Theme',
+        'value' => 'tincan',
+        'required' => 1,
+      ],
+      [
         'setting_name' => 'enable_js',
         'type' => 'bool',
         'title' => 'Enable JavaScript',
@@ -427,10 +441,31 @@ function tc_create_settings()
         'required' => 1,
       ],
       [
-        'setting_name' => 'theme',
+        'setting_name' => 'enable_urls',
+        'type' => 'bool',
+        'title' => 'Enable friendly URLs',
+        'value' => 'false',
+        'required' => 1,
+      ],
+      [
+        'setting_name' => 'base_url_board_groups',
         'type' => 'text',
-        'title' => 'Theme',
-        'value' => 'tincan',
+        'title' => 'Board groups base URL',
+        'value' => 'board-groups',
+        'required' => 1,
+      ],
+      [
+        'setting_name' => 'base_url_boards',
+        'type' => 'text',
+        'title' => 'Boards base URL',
+        'value' => 'boards',
+        'required' => 1,
+      ],
+      [
+        'setting_name' => 'base_url_threads',
+        'type' => 'text',
+        'title' => 'Threads base URL',
+        'value' => 'threads',
         'required' => 1,
       ],
       [
@@ -638,6 +673,9 @@ function tc_create_board_groups()
 
     try {
       $new_board_group = $db->save_object(new TCBoardGroup((object) $board_group));
+
+      $new_board_group->slug = $new_board_group->generate_slug($new_board_group->board_group_name);
+      $db->save_object($new_board_group);
     } catch (TCException $e) {
       echo $e->getMessage()."\n";
     }
@@ -668,6 +706,9 @@ function tc_create_boards($new_board_group_ids)
 
     try {
       $new_board = $db->save_object(new TCBoard((object) $board));
+
+      $new_board->slug = $new_board->generate_slug($new_board->board_name);
+      $db->save_object($new_board);
     } catch (TCException $e) {
       echo $e->getMessage()."\n";
     }
@@ -703,6 +744,9 @@ function tc_create_threads($new_board_ids)
 
     try {
       $new_thread = $db->save_object(new TCThread((object) $thread));
+
+      $new_thread->slug = $new_thread->generate_slug($new_thread->thread_title);
+      $db->save_object($new_thread);
     } catch (TCException $e) {
       echo $e->getMessage()."\n";
     }

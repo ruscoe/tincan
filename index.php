@@ -37,14 +37,31 @@ try {
   exit;
 }
 
-// Get logged in user.
-$session = new TCUserSession();
-$session->start_session();
-$user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
-
 $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
+$page_slug = null;
 $page = null;
+
+if (empty($page_id)) {
+  // Work out page ID from friendly URL.
+  $path_parts = explode('/', $_SERVER['REQUEST_URI']);
+
+  $base_urls = [
+    [
+      'base' => $settings['base_url_board_groups'],
+      'page_id' => $settings['page_board_group'],
+      'slug_value' => isset($path_parts[2]) ? trim($path_parts[2]) : null,
+    ],
+    // $settings['base_url_boards'],
+    // $settings['base_url_threads'],
+  ];
+
+  foreach ($base_urls as $base) {
+    if ($path_parts[1] == $base['base']) {
+      $page_id = $base['page_id'];
+      $page_slug = $base['slug_value'];
+    }
+  }
+}
 
 // Get page template if available, otherwise default to front page.
 if (!empty($page_id)) {
@@ -61,8 +78,15 @@ if (!empty($page_id)) {
   $page_template = 'front';
 }
 
+// Get logged in user.
+$session = new TCUserSession();
+$session->start_session();
+$user_id = $session->get_user_id();
+$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+
+// Render page.
 TCTemplate::render('header', $settings['theme'], ['page_template' => $page_template, 'settings' => $settings, 'user' => $user]);
 
-TCTemplate::render('page/'.$page_template, $settings['theme'], ['page' => $page, 'settings' => $settings, 'user' => $user]);
+TCTemplate::render('page/'.$page_template, $settings['theme'], ['page' => $page, 'settings' => $settings, 'user' => $user, 'slug' => $page_slug]);
 
 TCTemplate::render('footer', $settings['theme'], null);
