@@ -21,6 +21,11 @@ $db = new TCData();
 
 $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
 
+if (empty($board_group)) {
+  header('Location: '.TCURL::create_url($settings['page_404']));
+  exit;
+}
+
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board_group, 'settings' => $settings]);
 ?>
 

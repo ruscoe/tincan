@@ -21,6 +21,11 @@ $db = new TCData();
 
 $post = $db->load_object(new TCPost(), $post_id);
 
+if (empty($post)) {
+  header('Location: '.TCURL::create_url($settings['page_404']));
+  exit;
+}
+
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'settings' => $settings]);
 ?>
 

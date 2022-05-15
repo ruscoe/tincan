@@ -25,6 +25,11 @@ $db = new TCData();
 
 $thread = $db->load_object(new TCThread(), $thread_id);
 
+if (empty($thread)) {
+  header('Location: '.TCURL::create_url($settings['page_404']));
+  exit;
+}
+
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $thread, 'settings' => $settings]);
 ?>
 

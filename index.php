@@ -4,6 +4,7 @@ use TinCan\TCData;
 use TinCan\TCException;
 use TinCan\TCPage;
 use TinCan\TCTemplate;
+use TinCan\TCURL;
 use TinCan\TCUserSession;
 
 /**
@@ -49,7 +50,13 @@ $page = null;
 if (!empty($page_id)) {
   $page = $db->load_object(new TCPage(), $page_id);
 
-  $page_template = (!empty($page)) ? $page->template : '404';
+  if (!empty($page)) {
+    $page_template = $page->template;
+  } else {
+    // Page not found, redirect to 404 error page.
+    header('Location: '.TCURL::create_url($settings['page_404']));
+    exit;
+  }
 } else {
   $page_template = 'front';
 }

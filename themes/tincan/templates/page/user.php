@@ -21,6 +21,11 @@ $db = new TCData();
 
 $profile_user = $db->load_user($user_id);
 
+if (empty($profile_user)) {
+  header('Location: '.TCURL::create_url($settings['page_404']));
+  exit;
+}
+
 $avatar = $profile_user->avatar;
 
 // TODO: Error handling for missing user (404).

@@ -524,6 +524,7 @@ function tc_create_pages()
   global $db;
 
   $pages = [
+      ['page_title' => 'Page Not Found',         'template' => '404'],
       ['page_title' => 'Front Page',             'template' => 'front'],
       ['page_title' => 'Board Group',            'template' => 'board-group'],
       ['page_title' => 'Board',                  'template' => 'board'],
