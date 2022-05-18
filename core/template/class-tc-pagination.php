@@ -49,4 +49,26 @@ class TCPagination
 
     return $offset;
   }
+
+  /**
+   * Restricts a number to within a given range.
+   *
+   * @since 0.08
+   *
+   * @param int $min the smallest number allowed
+   * @param int $max the largest number allowed
+   *
+   * @return int the given number capped between min and max values
+   */
+  public static function enforce_range($min, $max, $number)
+  {
+    if ($number < $min) {
+      $number = $min;
+    }
+    elseif ($number > $max) {
+      $number = $max;
+    }
+
+    return $number;
+  }
 }
