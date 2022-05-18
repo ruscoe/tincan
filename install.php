@@ -709,6 +709,9 @@ function tc_create_boards($new_board_group_ids)
 
       $new_board->slug = $new_board->generate_slug($new_board->board_name);
       $db->save_object($new_board);
+
+      $new_board->slug = $new_board->generate_slug($new_board->board_name);
+      $db->save_object($new_board);
     } catch (TCException $e) {
       echo $e->getMessage()."\n";
     }
@@ -744,6 +747,9 @@ function tc_create_threads($new_board_ids)
 
     try {
       $new_thread = $db->save_object(new TCThread((object) $thread));
+
+      $new_thread->slug = $new_thread->generate_slug($new_thread->thread_title);
+      $db->save_object($new_thread);
 
       $new_thread->slug = $new_thread->generate_slug($new_thread->thread_title);
       $db->save_object($new_thread);
