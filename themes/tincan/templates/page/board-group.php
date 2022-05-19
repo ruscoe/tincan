@@ -59,10 +59,19 @@ $order = [
 // TODO: Sorting and pagination.
 $boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
 
+$board_url = null;
 foreach ($boards as $board) {
+  if ($settings['enable_urls']) {
+    $board_url = TCURL::create_friendly_url($settings['base_url_boards'], $board);
+  } else {
+    $board_url = TCURL::create_url($settings['page_board'], [
+      'board' => $board->board_id,
+    ]);
+  }
+
   $data = [
       'board' => $board,
-      'url' => TCURL::create_url($settings['page_board'], ['board' => $board->board_id]),
+      'url' => $board_url,
     ];
 
   TCTemplate::render('board-preview', $settings['theme'], $data);

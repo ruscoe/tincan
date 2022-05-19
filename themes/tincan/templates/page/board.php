@@ -18,13 +18,21 @@ use TinCan\TCUser;
 $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
 $start_at = filter_input(INPUT_GET, 'start_at', FILTER_SANITIZE_NUMBER_INT);
 
-$page = $data['page'];
 $settings = $data['settings'];
+$slug = $data['slug'];
+$page = $data['page'];
 $user = $data['user'];
 
 $db = new TCData();
 
-$board = $db->load_object(new TCBoard(), $board_id);
+if (!empty($board_id)) {
+  $board = $db->load_object(new TCBoard(), $board_id);
+} elseif (!empty($slug)) {
+  $matched_boards = $db->load_objects(new TCBoard(), null, [['field' => 'slug', 'value' => $slug]]);
+  $board = reset($matched_boards);
+}
+
+//$board = $db->load_object(new TCBoard(), $board_id);
 
 if (empty($board)) {
   header('Location: '.TCURL::create_url($settings['page_404']));
