@@ -51,6 +51,15 @@ class TCPage extends TCObject
   }
 
   /**
+   * @see TCObject::get_slug()
+   * @since 0.08
+   */
+  public function get_slug()
+  {
+    return $this->slug;
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.01
    */

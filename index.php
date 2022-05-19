@@ -45,28 +45,22 @@ if (empty($page_id)) {
   // Work out page ID from friendly URL.
   $path_parts = explode('/', $_SERVER['REQUEST_URI']);
 
-  $base_urls = [
-    [
-      'base' => $settings['base_url_board_groups'],
-      'page_id' => $settings['page_board_group'],
-      'slug_value' => isset($path_parts[2]) ? trim($path_parts[2]) : null,
-    ],
-    [
-      'base' => $settings['base_url_boards'],
-      'page_id' => $settings['page_board'],
-      'slug_value' => isset($path_parts[2]) ? trim($path_parts[2]) : null,
-    ],
-    [
-      'base' => $settings['base_url_threads'],
-      'page_id' => $settings['page_thread'],
-      'slug_value' => isset($path_parts[2]) ? trim($path_parts[2]) : null,
-    ],
+  $page_slug = isset($path_parts[2]) ? trim($path_parts[2]) : null;
+
+  $base_urls_to_page_ids = [
+    $settings['base_url_board_groups'] => $settings['page_board_group'],
+    $settings['base_url_boards'] => $settings['page_board'],
+    $settings['base_url_threads'] => $settings['page_thread'],
+    $settings['base_url_users'] => $settings['page_user'],
+    'log-in' => $settings['page_log_in'],
+    'log-out' => $settings['page_log_out'],
+    'create-account' => $settings['page_create_account'],
+    'reset-password' => $settings['page_reset_password'],
   ];
 
-  foreach ($base_urls as $base) {
-    if ($path_parts[1] == $base['base']) {
-      $page_id = $base['page_id'];
-      $page_slug = $base['slug_value'];
+  foreach ($base_urls_to_page_ids as $base_url => $base_page_id) {
+    if ($path_parts[1] == $base_url) {
+      $page_id = $base_page_id;
     }
   }
 }

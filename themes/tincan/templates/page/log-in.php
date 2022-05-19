@@ -47,5 +47,13 @@ use TinCan\TCURL;
     <input type="submit" name="log_in" value="Log in" />
   </div>
 
-  <a href="<?php echo TCURL::create_url($settings['page_reset_password']); ?>">Reset password</a>
+  <?php
+    if ($settings['enable_urls']) {
+      $reset_password_url = '/reset-password';
+    } else {
+      $reset_password_url = TCURL::create_url($settings['page_reset_password']);
+    }
+  ?>
+
+  <a href="<?php echo $reset_password_url; ?>">Reset password</a>
 </form>

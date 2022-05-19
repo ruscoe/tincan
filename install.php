@@ -469,6 +469,20 @@ function tc_create_settings()
         'required' => 1,
       ],
       [
+        'setting_name' => 'base_url_users',
+        'type' => 'text',
+        'title' => 'Users base URL',
+        'value' => 'users',
+        'required' => 1,
+      ],
+      [
+        'setting_name' => 'base_url_pages',
+        'type' => 'text',
+        'title' => 'Pages base URL',
+        'value' => 'pages',
+        'required' => 1,
+      ],
+      [
         'setting_name' => 'site_email_name',
         'type' => 'text',
         'title' => 'Site email sender name',
