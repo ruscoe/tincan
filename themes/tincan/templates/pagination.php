@@ -20,6 +20,8 @@ $page = $page_params['page'];
 unset($page_params['page']);
 
 $base_url = TCURL::create_url($page, $page_params);
+
+if ($total_pages > 1) {
 ?>
 
 <ul class="pagination">
@@ -38,8 +40,15 @@ $base_url = TCURL::create_url($page, $page_params);
   $range = 4;
 
   // First and last page will always appear; trim them from the shown range.
-  $range_start = TCPagination::enforce_range(2, ($total_pages - 1), ($start_at - $range));
-  $range_end = TCPagination::enforce_range(2, ($total_pages - 1), ($start_at + $range));
+  $first_page_for_range = 2;
+  $last_page_for_range = ($total_pages - 1);
+
+  $range_start = TCPagination::enforce_range($first_page_for_range, $last_page_for_range, ($start_at - $range));
+  $range_end = TCPagination::enforce_range($first_page_for_range, $last_page_for_range, ($start_at + $range));
+
+  if ($range_start > $first_page_for_range) {
+    echo "<li>...</li>";
+  }
 
   for ($i = $range_start; $i <= $range_end; ++$i) {
     if ($i == $start_at) {
@@ -47,6 +56,10 @@ $base_url = TCURL::create_url($page, $page_params);
     } else {
       echo "<li><a href=\"{$base_url}&start_at={$i}\">{$i}</a></li>";
     }
+  }
+
+  if ($start_at < $last_page_for_range) {
+    echo "<li>...</li>";
   }
 
   if ($start_at >= $total_pages) {
@@ -58,5 +71,6 @@ $base_url = TCURL::create_url($page, $page_params);
     echo "<li><a href=\"{$base_url}&start_at={$total_pages}\">{$total_pages}</a></li>";
     echo "<li><a href=\"{$base_url}&start_at=".($start_at + 1).'">Next</a></li>';
   }
+}
   ?>
 </ul>
