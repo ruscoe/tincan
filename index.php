@@ -56,7 +56,11 @@ if (empty($page_id)) {
       'page_id' => $settings['page_board'],
       'slug_value' => isset($path_parts[2]) ? trim($path_parts[2]) : null,
     ],
-    // TODO $settings['base_url_threads'],
+    [
+      'base' => $settings['base_url_threads'],
+      'page_id' => $settings['page_thread'],
+      'slug_value' => isset($path_parts[2]) ? trim($path_parts[2]) : null,
+    ],
   ];
 
   foreach ($base_urls as $base) {

@@ -64,8 +64,7 @@ class TCPagination
   {
     if ($number < $min) {
       $number = $min;
-    }
-    elseif ($number > $max) {
+    } elseif ($number > $max) {
       $number = $max;
     }
 

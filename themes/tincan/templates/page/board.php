@@ -32,8 +32,6 @@ if (!empty($board_id)) {
   $board = reset($matched_boards);
 }
 
-//$board = $db->load_object(new TCBoard(), $board_id);
-
 if (empty($board)) {
   header('Location: '.TCURL::create_url($settings['page_404']));
   exit;
@@ -80,11 +78,20 @@ $offset = TCPagination::calculate_page_offset($start_at, $settings['threads_per_
 
 $threads = $db->load_objects(new TCThread(), [], $conditions, $order, $offset, $settings['threads_per_page']);
 
+$thread_url = null;
 foreach ($threads as $thread) {
+  if ($settings['enable_urls']) {
+    $thread_url = TCURL::create_friendly_url($settings['base_url_threads'], $thread);
+  } else {
+    $thread_url = TCURL::create_url($settings['page_thread'], [
+      'thread' => $thread->thread_id,
+    ]);
+  }
+
   $template_data = [
     'user' => $db->load_user($thread->updated_by_user),
     'thread' => $thread,
-    'url' => TCURL::create_url($settings['page_thread'], ['thread' => $thread->thread_id]),
+    'url' => $thread_url,
     'last_post_date' => date($settings['date_time_format'], $thread->updated_time),
     'settings' => $settings,
   ];

@@ -35,13 +35,12 @@ use TinCan\TCURL;
         $board_url = TCURL::create_url($settings['page_board'], [
           'board' => $board->board_id,
         ]);
-      }
-    ?>
+      } ?>
       <li>
         <h3 class="section-subheader"><a href="<?php echo $board_url; ?>"><?php echo $board->board_name; ?></a></h3>
         <p><?php echo $board->description; ?></p>
       </li>
     <?php
-} ?>
+    } ?>
   </ul>
 </div>

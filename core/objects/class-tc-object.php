@@ -120,6 +120,18 @@ abstract class TCObject
   }
 
   /**
+   * Gets the URL slug specific to this object.
+   *
+   * @since 0.08
+   *
+   * @return string the URL slug
+   */
+  public function get_slug()
+  {
+    return null;
+  }
+
+  /**
    * Gets the name of this object's primary key used by the database.
    *
    * @since 0.01

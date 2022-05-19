@@ -106,6 +106,15 @@ class TCThread extends TCObject
   }
 
   /**
+   * @see TCObject::get_slug()
+   * @since 0.08
+   */
+  public function get_slug()
+  {
+    return $this->thread_id;
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.01
    */

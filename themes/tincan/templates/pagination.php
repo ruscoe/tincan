@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCURL;
 use TinCan\TCPagination;
+use TinCan\TCURL;
 
 /**
  * Pagination template.
@@ -22,15 +22,14 @@ unset($page_params['page']);
 $base_url = TCURL::create_url($page, $page_params);
 
 if ($total_pages > 1) {
-?>
+  ?>
 
 <ul class="pagination">
   <?php
-  if ($start_at == 1) {
+  if (1 == $start_at) {
     // User is at the first page and cannot go any further back.
     echo '<li>1</li>';
-  }
-  else {
+  } else {
     // User is beyond the first page and can go back.
     echo "<li><a href=\"{$base_url}&start_at=".($start_at - 1).'">Prev</a></li>';
     echo "<li><a href=\"{$base_url}&start_at=1\">1</a></li>";
@@ -47,7 +46,7 @@ if ($total_pages > 1) {
   $range_end = TCPagination::enforce_range($first_page_for_range, $last_page_for_range, ($start_at + $range));
 
   if ($range_start > $first_page_for_range) {
-    echo "<li>...</li>";
+    echo '<li>...</li>';
   }
 
   for ($i = $range_start; $i <= $range_end; ++$i) {
@@ -59,14 +58,13 @@ if ($total_pages > 1) {
   }
 
   if ($start_at < $last_page_for_range) {
-    echo "<li>...</li>";
+    echo '<li>...</li>';
   }
 
   if ($start_at >= $total_pages) {
     // User is at the last page and cannot go any further.
     echo "<li>{$total_pages}</li>";
-  }
-  else {
+  } else {
     // Use isn't at the last page yet.
     echo "<li><a href=\"{$base_url}&start_at={$total_pages}\">{$total_pages}</a></li>";
     echo "<li><a href=\"{$base_url}&start_at=".($start_at + 1).'">Next</a></li>';
