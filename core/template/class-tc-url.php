@@ -50,7 +50,7 @@ class TCURL
   public static function create_friendly_url($base, TCObject $object, $params = [])
   {
     // $url = $base.'/'.$object->slug.'.'.$object->get_primary_key_value();
-    $url = $base.'/'.$object->slug;
+    $url = '/'.$base.'/'.$object->slug;
 
     return $url;
   }
