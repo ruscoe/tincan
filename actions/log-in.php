@@ -3,6 +3,7 @@
 use TinCan\TCData;
 use TinCan\TCException;
 use TinCan\TCJSONResponse;
+use TinCan\TCPendingUser;
 use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
@@ -37,21 +38,22 @@ try {
   exit;
 }
 
-// Find user with matching username.
-$conditions = [
-  [
-    'field' => 'username',
-    'value' => $username,
-  ],
-];
-
 $error = null;
-
 $user = null;
 
-$user_results = $db->load_objects(new TCUser(), [], $conditions);
+// Find user with matching username.
+$user_results = $db->load_objects(new TCUser(), [], [['field' => 'username', 'value' => $username]]);
 if (!empty($user_results)) {
   $user = reset($user_results);
+}
+
+if (!empty($user)) {
+  // Check for pending user.
+  $pending_user_results = $db->load_objects(new TCPendingUser(), [], [['field' => 'user_id', 'value' => $user->user_id]]);
+  if (!empty($pending_user_results)) {
+    // Pending users cannot log in until the account is confirmed.
+    $error = TCUser::ERR_NOT_FOUND;
+  }
 }
 
 if (empty($user) || !$user->verify_password_hash($password, $user->password)) {
