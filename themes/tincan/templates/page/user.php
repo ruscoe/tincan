@@ -11,11 +11,16 @@ use TinCan\TCURL;
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-$page = $data['page'];
 $settings = $data['settings'];
+$slug = $data['slug'];
+$page = $data['page'];
 $user = $data['user'];
 
 $user_id = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_NUMBER_INT);
+
+if (empty($user_id)) {
+  $user_id = $slug;
+}
 
 $db = new TCData();
 

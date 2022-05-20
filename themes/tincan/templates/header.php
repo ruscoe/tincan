@@ -38,13 +38,16 @@ if ($settings['enable_urls']) {
       <?php if (empty($user)) { ?>
         <li><a href="<?php echo $create_account_url; ?>">Create Account</a></li>
         <li><a href="<?php echo $log_in_url; ?>">Log In</a></li>
-      <?php } else { ?>
-        <li>Logged in as <a href="<?php echo TCURL::create_url($settings['page_user'], ['user' => $user->user_id]); ?>"><?php echo $user->username; ?></a></li>
+      <?php
+      } else {
+        $user_url = ($settings['enable_urls']) ? TCURL::create_friendly_url($settings['base_url_users'], $user) : TCURL::create_url($settings['page_user'], ['user' => $user->user_id]); ?>
+        <li>Logged in as <a href="<?php echo $user_url; ?>"><?php echo $user->username; ?></a></li>
         <?php if (!empty($user) && $user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
           <li><a href="/admin">Administration</a></li>
         <?php } ?>
         <li><a href="<?php echo $log_out_url; ?>">Log Out</a></li>
-      <?php } ?>
+      <?php
+      } ?>
       </ul>
     </div>
     <!-- Start content -->
