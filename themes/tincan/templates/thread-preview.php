@@ -13,7 +13,7 @@ $user = $data['user'];
 $thread = $data['thread'];
 $settings = $data['settings'];
 
-$user_url = TCURL::create_url($settings['page_user'], ['user' => $user->user_id]);
+$user_url = ($settings['enable_urls']) ? TCURL::create_friendly_url($settings['base_url_users'], $user) : TCURL::create_url($settings['page_user'], ['user' => $user->user_id]);
 ?>
 
 <div id="thread-<?php echo $thread->thread_id; ?>" class="thread-preview">
