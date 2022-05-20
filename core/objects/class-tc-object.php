@@ -128,7 +128,7 @@ abstract class TCObject
    */
   public function get_slug()
   {
-    return null;
+    throw new TCException('Attempting to get URL slug for unsupported object.');
   }
 
   /**
