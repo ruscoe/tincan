@@ -58,7 +58,7 @@ class TCData
 
     $settings = [];
 
-    $query = "SELECT `setting_name`, `value` FROM `{$db_table}`";
+    $query = "SELECT `setting_name`, `type`, `value` FROM `{$db_table}`";
 
     try {
       $result = $this->database->query($query);
@@ -67,7 +67,12 @@ class TCData
     }
 
     while ($object = $result->fetch_object()) {
-      $settings[$object->setting_name] = $object->value;
+      if ($object->type == 'bool') {
+        $settings[$object->setting_name] = ($object->value == 'true');
+      }
+      else {
+        $settings[$object->setting_name] = $object->value;
+      }
     }
 
     return $settings;
