@@ -16,6 +16,10 @@ this software is designed around functionality and simplicity.
 * PHP 7.4.0 or above
 * MySQL
 
+## TODO: Running on nginx
+
+## TODO: Running on Apache
+
 ## Configuration
 
 Copy tc-config-example.php to tc-config.php and change these values to suit your environment.
@@ -27,10 +31,24 @@ Copy tc-config-example.php to tc-config.php and change these values to suit your
 * `TC_DB_PASS` = `root`
 * `TC_DB_NAME` = `tincan`
 
+## TODO: Installation
+
+## TODO: Custom Themes
+
 ## Running Tests
 
 Copy phpunit-example.xml to phpunit.xml and change the `const` values to match
-those in the Configuration section.
+those in the **Configuration** section.
+
+### I have PHPUnit installed globally
+Run `phpunit` in the root directory (phpunit.xml should exist here.)
+
+### I just want PHPUnit for this project
+In the root directory, run the following:
+```
+composer install
+./vendor/bin/phpunit
+```
 
 ## License
 
