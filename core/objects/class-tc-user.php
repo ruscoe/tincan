@@ -114,7 +114,7 @@ class TCUser extends TCObject
    *
    * @since 0.05
    *
-   * @param TCPost $user the user to check
+   * @param TCUser $user the user to check
    *
    * @return bool true if the user may edit the user
    */
@@ -138,12 +138,23 @@ class TCUser extends TCObject
    *
    * @since 0.05
    *
-   * @param TCPost $thread the thread to check
+   * @param TCThread $thread the thread to check
    *
    * @return bool true if the user may edit the thread
    */
   public function can_edit_thread(TCThread $thread)
   {
+    // Check for roles that can edit any thread.
+    if ($this->can_perform_action(self::ACT_EDIT_ANY_THREAD)) {
+      return true;
+    }
+
+    // User can edit their own threads.
+    if ($thread->created_by_user == $this->user_id) {
+      return true;
+    }
+
+    return false;
   }
 
   /**
@@ -151,12 +162,23 @@ class TCUser extends TCObject
    *
    * @since 0.05
    *
-   * @param TCPost $thread the thread to check
+   * @param TCThread $thread the thread to check
    *
    * @return bool true if the user may delete the thread
    */
   public function can_delete_thread(TCThread $thread)
   {
+    // Check for roles that can delete any thread.
+    if ($this->can_perform_action(self::ACT_DELETE_ANY_THREAD)) {
+      return true;
+    }
+
+    // User can delete their own threads.
+    if ($thread->created_by_user == $this->user_id) {
+      return true;
+    }
+
+    return false;
   }
 
   /**

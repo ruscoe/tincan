@@ -5,6 +5,7 @@ require_once TC_BASE_PATH.'/includes/include-objects.php';
 use PHPUnit\Framework\TestCase;
 use TinCan\TCPost;
 use TinCan\TCRole;
+use TinCan\TCThread;
 use TinCan\TCUser;
 
 class AdministratorTest extends TestCase
@@ -23,12 +24,8 @@ class AdministratorTest extends TestCase
 
   public function testAdministratorRole()
   {
-    $role = new TCRole();
-    $role->role_name = 'Administrator';
-    $role->allowed_actions = 'create-post,create-thread,edit-any-post,edit-any-thread,delete-any-post,delete-any-thread,access-admin';
-
     $user = new TCUser();
-    $user->role = $role;
+    $user->role = $this->role_admin;
 
     $this->assertTrue($user->can_perform_action(TCUser::ACT_CREATE_POST));
     $this->assertTrue($user->can_perform_action(TCUser::ACT_CREATE_THREAD));
@@ -69,9 +66,29 @@ class AdministratorTest extends TestCase
 
   public function testAdministratorCanEditAnyThread()
   {
+    $user = new TCUser();
+    $user->user_id = 1;
+    $user->role = $this->role_admin;
+
+    $thread = new TCThread();
+    $thread->thread_id = 99;
+    // Post's user ID shouldn't be the same as Moderator's user ID.
+    $thread->created_by_user = 2;
+
+    $this->assertTrue($user->can_edit_thread($thread));
   }
 
   public function testAdministratorCanDeleteAnyThread()
   {
+    $user = new TCUser();
+    $user->user_id = 1;
+    $user->role = $this->role_admin;
+
+    $thread = new TCThread();
+    $thread->thread_id = 99;
+    // Post's user ID shouldn't be the same as Moderator's user ID.
+    $thread->created_by_user = 2;
+
+    $this->assertTrue($user->can_delete_thread($thread));
   }
 }
