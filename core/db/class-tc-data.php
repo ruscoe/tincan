@@ -67,10 +67,9 @@ class TCData
     }
 
     while ($object = $result->fetch_object()) {
-      if ($object->type == 'bool') {
-        $settings[$object->setting_name] = ($object->value == 'true');
-      }
-      else {
+      if ('bool' == $object->type) {
+        $settings[$object->setting_name] = ('true' == $object->value);
+      } else {
         $settings[$object->setting_name] = $object->value;
       }
     }
