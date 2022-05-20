@@ -38,12 +38,13 @@ $run_install = filter_input(INPUT_POST, 'run_install', FILTER_SANITIZE_NUMBER_IN
 $create_test_data = filter_input(INPUT_POST, 'create_test_data', FILTER_SANITIZE_STRING);
 $admin_email = filter_input(INPUT_POST, 'admin_email', FILTER_SANITIZE_STRING);
 $admin_password = filter_input(INPUT_POST, 'admin_password', FILTER_SANITIZE_STRING);
+$base_url = filter_input(INPUT_POST, 'base_url', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
 if (1 == $run_install) {
   tc_create_tables();
-  tc_create_settings();
+  tc_create_settings(['base_url' => $base_url, 'site_email_address' => $admin_email]);
   tc_create_roles();
   tc_create_pages();
   // TODO: Validate email and password.
@@ -175,17 +176,35 @@ if (1 == $run_install) {
   $password = $user->generate_password();
 ?>
 
-<div class="fieldset">
-  <label for="admin_email">Admin email</label>
-  <div class="field">
-    <input type="text" name="admin_email" value="admin@example.org" />
+  <div class="fieldset">
+    <label for="admin_username">Admin username</label>
+    <div class="field">
+      <input type="text" name="admin_username" value="admin" disabled />
+    </div>
   </div>
-</div>
+
+  <div class="fieldset">
+    <label for="admin_email">Admin email</label>
+    <div class="field">
+      <input type="text" name="admin_email" value="admin@example.org" />
+    </div>
+  </div>
 
   <div class="fieldset">
     <label for="admin_password">Admin password</label>
     <div class="field">
       <input type="text" name="admin_password" value="<?php echo $password; ?>" />
+    </div>
+  </div>
+
+  <?php
+    $base_url = (isset($_SERVER['HTTPS'])) ? 'https://'.$_SERVER['HTTPS_HOST'] : 'http://'.$_SERVER['HTTP_HOST'];
+  ?>
+
+  <div class="fieldset">
+    <label for="base_url">Base URL</label>
+    <div class="field">
+      <input type="text" name="base_url" value="<?php echo $base_url; ?>" />
     </div>
   </div>
 
@@ -356,7 +375,7 @@ function tc_create_tables()
   }
 }
 
-function tc_create_settings()
+function tc_create_settings($install_settings = [])
 {
   global $db;
 
@@ -372,8 +391,7 @@ function tc_create_settings()
         'setting_name' => 'base_url',
         'type' => 'text',
         'title' => 'Forum base URL',
-        // TODO: User set on install.
-        'value' => 'http://tincan.local',
+        'value' => $install_settings['base_url'],
         'required' => 1,
       ],
       [
@@ -493,8 +511,7 @@ function tc_create_settings()
         'setting_name' => 'site_email_address',
         'type' => 'text',
         'title' => 'Site email sender address',
-        // TODO: Change this.
-        'value' => 'dan@ruscoe.org',
+        'value' => $install_settings['site_email_address'],
         'required' => 1,
       ],
       [
