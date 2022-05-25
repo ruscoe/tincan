@@ -4,8 +4,6 @@ require_once TC_BASE_PATH.'/includes/include-db.php';
 require_once TC_BASE_PATH.'/includes/include-objects.php';
 
 use PHPUnit\Framework\TestCase;
-use TinCan\TCBoard;
-use TinCan\TCData;
 use TinCan\TCPost;
 use TinCan\TCThread;
 
