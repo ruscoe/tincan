@@ -227,7 +227,7 @@ function tc_is_installed()
 {
   global $db;
 
-  $result = $db->run_query("SELECT count(*) AS `count` FROM `information_schema`.`TABLES` WHERE `TABLE_NAME` = 'tc_settings'");
+  $result = $db->run_query("SELECT count(*) AS `count` FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA` = '".TC_DB_NAME."' AND `TABLE_NAME` = 'tc_settings'");
   $row = $result->fetch_object();
 
   return 0 !== (int) $row->count;
