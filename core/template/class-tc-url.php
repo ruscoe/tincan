@@ -54,4 +54,14 @@ class TCURL
 
     return $url;
   }
+
+  /**
+   * TODO.
+   *
+   * @since 0.09
+   */
+  public static function get_installer_url()
+  {
+    return '/install.php';
+  }
 }

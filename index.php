@@ -33,7 +33,10 @@ $db = new TCData();
 try {
   $settings = $db->load_settings();
 } catch (TCException $e) {
-  echo $e->getMessage();
+  // echo $e->getMessage();
+  // For now assume this means the site hasn't been installed.
+  // Redirect to the installer.
+  header('Location: '.TCURL::get_installer_url());
   exit;
 }
 
