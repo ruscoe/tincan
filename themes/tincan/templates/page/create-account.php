@@ -16,6 +16,8 @@ use TinCan\TCTemplate;
  $email = filter_input(INPUT_GET, 'email', FILTER_SANITIZE_STRING);
  $status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_STRING);
  $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
+
+ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
