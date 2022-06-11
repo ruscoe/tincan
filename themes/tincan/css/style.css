@@ -45,38 +45,62 @@ body {
   padding: 3rem 0 3rem 0;
 }
 
-/* line 91, ../sass/style.scss */
+/* line 87, ../sass/style.scss */
+.message-box {
+  background-color: #f1f1f1;
+  border: 2px solid #dddddd;
+  margin: 0 auto 0 auto;
+  max-width: 400px;
+  margin-top: 3rem;
+  padding: 1rem 0 1rem 0;
+}
+/* line 95, ../sass/style.scss */
+.message-box p {
+  margin: 0 2rem 0 2rem;
+}
+/* line 99, ../sass/style.scss */
+.message-box ul.errors {
+  list-style: none;
+  margin: 0 1rem 0 1rem;
+  padding: 0;
+}
+/* line 104, ../sass/style.scss */
+.message-box ul.errors li {
+  color: #dc0139;
+}
+
+/* line 114, ../sass/style.scss */
 .tc-code table th {
   background-color: #295c7a;
   color: white;
 }
-/* line 96, ../sass/style.scss */
+/* line 119, ../sass/style.scss */
 .tc-code table tr:nth-child(even) {
   background-color: #eeeeee;
 }
-/* line 100, ../sass/style.scss */
+/* line 123, ../sass/style.scss */
 .tc-code table th, .tc-code table td {
   padding: 1rem;
 }
-/* line 106, ../sass/style.scss */
+/* line 129, ../sass/style.scss */
 .tc-code table td h1, .tc-code table td h2, .tc-code table td h3, .tc-code table td h4, .tc-code table td h5 {
   line-height: 100%;
   margin: 0;
 }
 
 /* Navigation */
-/* line 116, ../sass/style.scss */
+/* line 139, ../sass/style.scss */
 ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
   flex-direction: column;
   list-style: none;
   padding: 0;
 }
-/* line 121, ../sass/style.scss */
+/* line 144, ../sass/style.scss */
 ul.navigation li, ul.pagination li, ul.post-controls li, ul.breadcrumbs li {
   padding: 0 0.5rem 0 0.5rem;
 }
 @media (min-width: 600px) {
-  /* line 116, ../sass/style.scss */
+  /* line 139, ../sass/style.scss */
   ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
     display: flex;
     flex-direction: row;
@@ -86,33 +110,33 @@ ul.navigation li, ul.pagination li, ul.post-controls li, ul.breadcrumbs li {
 }
 
 @media (min-width: 600px) {
-  /* line 134, ../sass/style.scss */
+  /* line 157, ../sass/style.scss */
   ul.pagination {
     justify-content: center;
   }
 }
 
-/* line 145, ../sass/style.scss */
+/* line 168, ../sass/style.scss */
 ul.breadcrumbs li a {
   padding-left: 1rem;
 }
-/* line 150, ../sass/style.scss */
+/* line 173, ../sass/style.scss */
 ul.breadcrumbs li.home::before {
   content: '\2616';
 }
-/* line 154, ../sass/style.scss */
+/* line 177, ../sass/style.scss */
 ul.breadcrumbs li.subpage::before {
   content: '\21D2';
 }
 
 /* Text */
-/* line 161, ../sass/style.scss */
+/* line 184, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
   text-align: left;
 }
 
-/* line 166, ../sass/style.scss */
+/* line 189, ../sass/style.scss */
 h1.section-header {
   background-color: #295c7a;
   color: white;
@@ -121,25 +145,25 @@ h1.section-header {
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-/* line 174, ../sass/style.scss */
+/* line 197, ../sass/style.scss */
 h2.section-subheader, h3.section-subheader {
   font-size: 1.5rem;
   margin: 0 0.5rem 0 0.5rem;
 }
 
 /* Links */
-/* line 181, ../sass/style.scss */
+/* line 204, ../sass/style.scss */
 a:link {
   color: #123266;
   text-decoration: underline;
 }
 
-/* line 186, ../sass/style.scss */
+/* line 209, ../sass/style.scss */
 a:visited {
   color: #123266;
 }
 
-/* line 190, ../sass/style.scss */
+/* line 213, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
 }
@@ -251,29 +275,6 @@ body.tincan form#create-account label, body.tincan form#log-in label, body.tinca
 /* line 55, ../sass/_tc-forms.scss */
 body.tincan form#create-account input.text-input, body.tincan form#log-in input.text-input, body.tincan form#create-thread input.text-input, body.tincan form#post-reply input.text-input, body.tincan form#set-password input.text-input {
   width: 100%;
-}
-/* line 60, ../sass/_tc-forms.scss */
-body.tincan .message-box {
-  background-color: #f1f1f1;
-  border: 2px solid #dddddd;
-  margin: 0 auto 0 auto;
-  max-width: 400px;
-  margin-top: 3rem;
-  padding: 1rem 0 1rem 0;
-}
-/* line 68, ../sass/_tc-forms.scss */
-body.tincan .message-box p {
-  margin: 0 2rem 0 2rem;
-}
-/* line 72, ../sass/_tc-forms.scss */
-body.tincan .message-box ul.errors {
-  list-style: none;
-  margin: 0 1rem 0 1rem;
-  padding: 0;
-}
-/* line 77, ../sass/_tc-forms.scss */
-body.tincan .message-box ul.errors li {
-  color: #dc0139;
 }
 
 /* Colors */

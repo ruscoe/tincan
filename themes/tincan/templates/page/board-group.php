@@ -5,8 +5,10 @@ use TinCan\TCBoardGroup;
 use TinCan\TCData;
 use TinCan\TCTemplate;
 use TinCan\TCURL;
+use TinCan\TCUser;
 
 $settings = $data['settings'];
+$user = $data['user'];
 $slug = $data['slug'];
 
 /**
@@ -60,19 +62,32 @@ $order = [
 $boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
 
 $board_url = null;
-foreach ($boards as $board) {
-  if ($settings['enable_urls']) {
-    $board_url = TCURL::create_friendly_url($settings['base_url_boards'], $board);
-  } else {
-    $board_url = TCURL::create_url($settings['page_board'], [
-      'board' => $board->board_id,
-    ]);
-  }
+if (!empty($boards)) {
+  foreach ($boards as $board) {
+    if ($settings['enable_urls']) {
+      $board_url = TCURL::create_friendly_url($settings['base_url_boards'], $board);
+    } else {
+      $board_url = TCURL::create_url($settings['page_board'], [
+        'board' => $board->board_id,
+      ]);
+    }
 
-  $data = [
+    $data = [
       'board' => $board,
       'url' => $board_url,
     ];
 
-  TCTemplate::render('board-preview', $settings['theme'], $data);
+    TCTemplate::render('board-preview', $settings['theme'], $data);
+  }
+} else {
+  $log_in_url = TCURL::create_url($settings['page_log_in']); ?>
+  <div class="message-box">
+    <p>No boards here!</p>
+    <?php if (empty($user)) { ?>
+    <p>If you are the administrator, you can <a href="<?php echo $log_in_url; ?>">log in and create some boards!</p>
+    <?php } elseif ($user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
+      <p>You are the administrator! You can <a href="/admin">create some boards!</p>
+    <?php } ?>
+  </div>
+<?php
 }

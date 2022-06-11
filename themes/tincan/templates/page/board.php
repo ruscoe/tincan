@@ -79,24 +79,43 @@ $offset = TCPagination::calculate_page_offset($start_at, $settings['threads_per_
 $threads = $db->load_objects(new TCThread(), [], $conditions, $order, $offset, $settings['threads_per_page']);
 
 $thread_url = null;
-foreach ($threads as $thread) {
-  if ($settings['enable_urls']) {
-    $thread_url = TCURL::create_friendly_url($settings['base_url_threads'], $thread);
-  } else {
-    $thread_url = TCURL::create_url($settings['page_thread'], [
-      'thread' => $thread->thread_id,
-    ]);
+if (!empty($threads)) {
+  foreach ($threads as $thread) {
+    if ($settings['enable_urls']) {
+      $thread_url = TCURL::create_friendly_url($settings['base_url_threads'], $thread);
+    } else {
+      $thread_url = TCURL::create_url($settings['page_thread'], [
+        'thread' => $thread->thread_id,
+      ]);
+    }
+
+    $template_data = [
+      'user' => $db->load_user($thread->updated_by_user),
+      'thread' => $thread,
+      'url' => $thread_url,
+      'last_post_date' => date($settings['date_time_format'], $thread->updated_time),
+      'settings' => $settings,
+    ];
+
+    TCTemplate::render('thread-preview', $settings['theme'], $template_data);
   }
-
-  $template_data = [
-    'user' => $db->load_user($thread->updated_by_user),
-    'thread' => $thread,
-    'url' => $thread_url,
-    'last_post_date' => date($settings['date_time_format'], $thread->updated_time),
-    'settings' => $settings,
-  ];
-
-  TCTemplate::render('thread-preview', $settings['theme'], $template_data);
+} else {
+  ?>
+  <div class="message-box">
+    <p>No threads here!</p>
+    <?php
+    // Show new thread link if user has permission to create a new thread.
+    if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
+      ?>
+      <p>You can <a href="<?php echo TCURL::create_url($settings['page_new_thread'], ['board' => $board->board_id]); ?>">create the first one!</a></p>
+      <?php
+    } else {
+      ?>
+      <p>You can <a href="<?php echo TCURL::create_url($settings['page_create_account']); ?>">create an account and change that!</a></p>
+      <?php
+    } ?>
+  </div>
+  <?php
 }
 
 $page_params = [
