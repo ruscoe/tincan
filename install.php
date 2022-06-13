@@ -515,6 +515,13 @@ function tc_create_settings($install_settings = [])
         'required' => 1,
       ],
       [
+        'setting_name' => 'require_confirm_email',
+        'type' => 'bool',
+        'title' => 'Require account confirmation by email',
+        'value' => 'false',
+        'required' => 1,
+      ],
+      [
         'setting_name' => 'mail_reset_password',
         'type' => 'text',
         'title' => 'Reset Password Mail Template',

@@ -9,6 +9,7 @@ use TinCan\TCObject;
 use TinCan\TCPendingUser;
 use TinCan\TCURL;
 use TinCan\TCUser;
+use TinCan\TCUserSession;
 
 /**
  * Tin Can create account handler.
@@ -96,7 +97,7 @@ if (empty($error)) {
   }
 }
 
-if (empty($error)) {
+if (empty($error) && $settings['require_confirm_email']) {
   // Successfully created account. Set up account confirmation.
   $pending_user = new TCPendingUser();
   $pending_user->user_id = $user->user_id;
@@ -109,10 +110,10 @@ if (empty($error)) {
   }
 }
 
-if (empty($error)) {
+if (empty($error) && $settings['require_confirm_email']) {
   $confirmation_url = $settings['base_url'].'/actions/confirm-account.php?code='.$pending_user->confirmation_code;
 
-  // Send password reset code to the user.
+  // Send confirmation code to the user.
   $mailer = new TCMailer();
 
   // Load email template.
@@ -143,8 +144,18 @@ if (!empty($ajax)) {
   $destination = '';
 
   if (empty($error)) {
-    // Send user to the create account page with success message.
-    $destination = TCURL::create_url($settings['page_create_account'], ['status' => 'sent']);
+    if ($settings['require_confirm_email']) {
+      // Send user to the create account page with success message.
+      $destination = TCURL::create_url($settings['page_create_account'], ['status' => 'sent']);
+    } else {
+      // Account confirmation not required; create the user's session.
+      $session = new TCUserSession();
+      $session->create_session($user);
+
+      // Send the user to the forum homepage.
+      header('Location: '.TCURL::create_url(null));
+      exit;
+    }
   } else {
     // Send user back to the create account page with an error.
     $destination = TCURL::create_url($settings['page_create_account'], [
