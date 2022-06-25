@@ -312,6 +312,7 @@ function tc_create_tables()
     "CREATE TABLE `tc_settings` (
       `setting_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `setting_name` varchar(255) NOT NULL DEFAULT '',
+      `category` varchar(16) NOT NULL DEFAULT '',
       `type` varchar(16) NOT NULL DEFAULT '',
       `title` varchar(255) NOT NULL DEFAULT '',
       `value` varchar(255) NOT NULL DEFAULT '',
@@ -382,6 +383,7 @@ function tc_create_settings($install_settings = [])
   $settings = [
       [
         'setting_name' => 'forum_name',
+        'category' => 'forum',
         'type' => 'text',
         'title' => 'Forum name',
         'value' => 'Tin Can Forum',
@@ -389,6 +391,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'base_url',
+        'category' => 'forum',
         'type' => 'text',
         'title' => 'Forum base URL',
         'value' => $install_settings['base_url'],
@@ -396,6 +399,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'date_format',
+        'category' => 'date',
         'type' => 'text',
         'title' => 'Date format',
         'value' => 'F jS Y',
@@ -403,6 +407,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'date_time_format',
+        'category' => 'date',
         'type' => 'text',
         'title' => 'Date & time format',
         'value' => 'F jS Y H:i',
@@ -410,6 +415,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'min_thread_title',
+        'category' => '',
         'type' => 'text',
         'title' => 'Minimum thread title length',
         'value' => '8',
@@ -417,6 +423,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'posts_per_page',
+        'category' => '',
         'type' => 'text',
         'title' => 'Posts per page',
         'value' => 10,
@@ -424,6 +431,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'threads_per_page',
+        'category' => '',
         'type' => 'text',
         'title' => 'Threads per page',
         'value' => 10,
@@ -432,13 +440,15 @@ function tc_create_settings($install_settings = [])
       [
         // TODO: Create a select box setting type so role can be chosen by name.
         'setting_name' => 'default_user_role',
-        'type' => 'text',
+        'category' => 'user',
+        'type' => 'role',
         'title' => 'Default user role',
         'value' => '1',
         'required' => 1,
       ],
       [
         'setting_name' => 'theme',
+        'category' => 'theme',
         'type' => 'text',
         'title' => 'Theme',
         'value' => 'tincan',
@@ -446,6 +456,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'enable_js',
+        'category' => 'theme',
         'type' => 'bool',
         'title' => 'Enable JavaScript',
         'value' => 'true',
@@ -453,6 +464,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'enable_css',
+        'category' => 'theme',
         'type' => 'bool',
         'title' => 'Enable CSS',
         'value' => 'true',
@@ -460,6 +472,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'enable_urls',
+        'category' => 'urls',
         'type' => 'bool',
         'title' => 'Enable friendly URLs',
         'value' => 'false',
@@ -467,6 +480,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'base_url_board_groups',
+        'category' => 'urls',
         'type' => 'text',
         'title' => 'Board groups base URL',
         'value' => 'board-groups',
@@ -474,6 +488,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'base_url_boards',
+        'category' => 'urls',
         'type' => 'text',
         'title' => 'Boards base URL',
         'value' => 'boards',
@@ -481,6 +496,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'base_url_threads',
+        'category' => 'urls',
         'type' => 'text',
         'title' => 'Threads base URL',
         'value' => 'threads',
@@ -488,6 +504,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'base_url_users',
+        'category' => 'urls',
         'type' => 'text',
         'title' => 'Users base URL',
         'value' => 'users',
@@ -495,6 +512,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'base_url_pages',
+        'category' => 'urls',
         'type' => 'text',
         'title' => 'Pages base URL',
         'value' => 'pages',
@@ -502,6 +520,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'site_email_name',
+        'category' => 'email',
         'type' => 'text',
         'title' => 'Site email sender name',
         'value' => 'Tin Can Forum',
@@ -509,6 +528,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'site_email_address',
+        'category' => 'email',
         'type' => 'text',
         'title' => 'Site email sender address',
         'value' => $install_settings['site_email_address'],
@@ -516,6 +536,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'require_confirm_email',
+        'category' => 'email',
         'type' => 'bool',
         'title' => 'Require account confirmation by email',
         'value' => 'false',
@@ -523,6 +544,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'mail_reset_password',
+        'category' => 'email',
         'type' => 'text',
         'title' => 'Reset Password Mail Template',
         // TODO: Make this a select box.
@@ -531,6 +553,7 @@ function tc_create_settings($install_settings = [])
       ],
       [
         'setting_name' => 'mail_confirm_account',
+        'category' => 'email',
         'type' => 'text',
         'title' => 'Confirm Account Mail Template',
         // TODO: Make this a select box.

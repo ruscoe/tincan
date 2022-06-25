@@ -27,10 +27,27 @@ $pages = $db->load_objects(new TCPage());
 ?>
 
 <form action="/admin/actions/save-settings.php" method="POST">
-  <table>
-  <?php
 
+  <?php
+  $settings_by_cat = [];
   foreach ($settings as $setting) {
+    if (!isset($settings_by_cat[$setting->category])) {
+      $settings_by_cat[$setting->category] = [];
+    }
+
+    $settings_by_cat[$setting->category][] = $setting;
+  }
+
+  $last_category = null;
+
+  foreach ($settings_by_cat as $category => $settings) {
+    ?>
+    <div class="setting-category">
+      <h2><?php echo $settings[0]->category; ?></h2>
+      <table>
+    <?php
+    foreach ($settings as $setting) {
+
     switch ($setting->type) {
       case 'page':
         // Don't display page settings. Too easy to break the entire forum by
@@ -40,9 +57,17 @@ $pages = $db->load_objects(new TCPage());
       case 'bool':
         TCAdminTemplate::render('table-row-settings-bool', ['setting' => $setting]);
       break;
+      case 'role':
+        TCAdminTemplate::render('table-row-settings-user-role', ['setting' => $setting]);
+      break;
       default:
         TCAdminTemplate::render('table-row-settings-text', ['setting' => $setting]);
     }
+  }
+  ?>
+    </table>
+  </div>
+  <?php
   }
   ?>
   </table>

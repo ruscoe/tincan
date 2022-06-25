@@ -22,6 +22,11 @@ class TCSetting extends TCObject
   protected $setting_name;
 
   /**
+   * @since 0.09
+   */
+  protected $category;
+
+  /**
    * @since 0.01
    */
   protected $type;
@@ -76,6 +81,7 @@ class TCSetting extends TCObject
   {
     return [
           'setting_name',
+          'category',
           'type',
           'title',
           'value',
