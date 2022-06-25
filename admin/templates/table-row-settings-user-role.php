@@ -11,7 +11,6 @@ use TinCan\TCRole;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
   $setting = $data['setting'];
-  $state = ('true' == $setting->value);
 
   $db = new TCData();
   $roles = $db->load_objects(new TCRole());
