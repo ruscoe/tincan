@@ -57,6 +57,6 @@ $form_action = (!empty($thread_id)) ? '/admin/actions/update-thread.php' : '/adm
   <input type="hidden" name="updated_by_user" value="<?php echo $user->user_id; ?>" />
 
   <div class="fieldset button">
-    <input type="submit" value="<?php echo (!empty($thread_id)) ? 'Update Thread' : 'Add Thread'; ?>" />
+    <input class="submit-button" type="submit" value="<?php echo (!empty($thread_id)) ? 'Update Thread' : 'Add Thread'; ?>" />
   </div>
 </form>

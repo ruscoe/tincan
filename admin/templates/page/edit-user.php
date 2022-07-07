@@ -67,6 +67,6 @@ $form_action = (!empty($user_id)) ? '/admin/actions/update-user.php' : '/admin/a
   <input type="hidden" name="user_id" value="<?php echo $user->user_id; ?>" />
 
   <div class="fieldset button">
-    <input type="submit" value="<?php echo (!empty($user_id)) ? 'Update User' : 'Add User'; ?>" />
+    <input class="submit-button" type="submit" value="<?php echo (!empty($user_id)) ? 'Update User' : 'Add User'; ?>" />
   </div>
 </form>

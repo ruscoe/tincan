@@ -55,8 +55,11 @@ if (!empty($class)) {
 
 <h1>Really delete <?php echo $object->get_name(); ?>?</h1>
 
-<form action="/admin/actions/delete-object.php" method="POST">
+<form id="delete-object" action="/admin/actions/delete-object.php" method="POST">
   <input type="hidden" name="object_type" value="<?php echo $object_type; ?>" />
   <input type="hidden" name="object_id" value="<?php echo $object_id; ?>" />
-  <input type="submit" value="Delete" />
+
+  <div class="fieldset button">
+    <input class="submit-button" type="submit" value="Delete" />
+  </div>
 </form>

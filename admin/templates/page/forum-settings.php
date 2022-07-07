@@ -26,7 +26,7 @@ $settings = $db->load_objects(new TCSetting());
 $pages = $db->load_objects(new TCPage());
 ?>
 
-<form action="/admin/actions/save-settings.php" method="POST">
+<form id="forum-settings" action="/admin/actions/save-settings.php" method="POST">
 
   <?php
   $settings_by_cat = [];
@@ -75,5 +75,7 @@ $pages = $db->load_objects(new TCPage());
   ?>
   </table>
 
-  <input type="submit" value="Save settings" />
+  <div class="fieldset button">
+    <input class="submit-button" type="submit" value="Save settings" />
+  </div>
 </form>

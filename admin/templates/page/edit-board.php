@@ -53,6 +53,6 @@ $form_action = (!empty($board_id)) ? '/admin/actions/update-board.php' : '/admin
   <input type="hidden" name="board_id" value="<?php echo $board->board_id; ?>" />
 
   <div class="fieldset button">
-    <input type="submit" value="<?php echo (!empty($board_id)) ? 'Update Board' : 'Add Board'; ?>" />
+    <input class="submit-button" type="submit" value="<?php echo (!empty($board_id)) ? 'Update Board' : 'Add Board'; ?>" />
   </div>
 </form>

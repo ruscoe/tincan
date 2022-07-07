@@ -42,6 +42,6 @@ $form_action = (!empty($page_id)) ? '/admin/actions/update-page.php' : '/admin/a
   <input type="hidden" name="page_id" value="<?php echo $page->page_id; ?>" />
 
   <div class="fieldset button">
-    <input type="submit" value="<?php echo (!empty($page_id)) ? 'Update Page' : 'Add Page'; ?>" />
+    <input class="submit-button" type="submit" value="<?php echo (!empty($page_id)) ? 'Update Page' : 'Add Page'; ?>" />
   </div>
 </form>

@@ -226,7 +226,8 @@ body.tincan-admin {
 
   /* Forms */
 
-  form#edit-board-group, form#edit-board, form#edit-page, form#edit-thread, form#edit-user {
+  form#delete-object, form#edit-board-group, form#edit-board, form#edit-page, form#edit-thread, form#edit-user, form#forum-settings {
+  //form#edit-board-group, form#edit-board, form#edit-page, form#edit-thread, form#edit-user {
     display: flex;
     flex-direction: column;
     margin: 0 auto 0 auto;
@@ -259,6 +260,16 @@ body.tincan-admin {
 
     input.text-input {
       width: 100%;
+    }
+
+    input.submit-button {
+      background-color: $adminButton;
+      box-shadow: 2px 2px $adminButtonShadow;
+      color: $adminButtonText;
+      display: inline-block;
+      font-weight: bold;
+      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+      text-decoration: none;
     }
   }
 

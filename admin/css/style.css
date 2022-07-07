@@ -164,38 +164,48 @@ body.tincan-admin table.objects a {
   text-decoration: none;
 }
 /* line 229, ../sass/style.scss */
-body.tincan-admin form#edit-board-group, body.tincan-admin form#edit-board, body.tincan-admin form#edit-page, body.tincan-admin form#edit-thread, body.tincan-admin form#edit-user {
+body.tincan-admin form#delete-object, body.tincan-admin form#edit-board-group, body.tincan-admin form#edit-board, body.tincan-admin form#edit-page, body.tincan-admin form#edit-thread, body.tincan-admin form#edit-user, body.tincan-admin form#forum-settings {
   display: flex;
   flex-direction: column;
   margin: 0 auto 0 auto;
   padding-top: 3rem;
 }
-/* line 235, ../sass/style.scss */
-body.tincan-admin form#edit-board-group .fieldset, body.tincan-admin form#edit-board .fieldset, body.tincan-admin form#edit-page .fieldset, body.tincan-admin form#edit-thread .fieldset, body.tincan-admin form#edit-user .fieldset {
+/* line 236, ../sass/style.scss */
+body.tincan-admin form#delete-object .fieldset, body.tincan-admin form#edit-board-group .fieldset, body.tincan-admin form#edit-board .fieldset, body.tincan-admin form#edit-page .fieldset, body.tincan-admin form#edit-thread .fieldset, body.tincan-admin form#edit-user .fieldset, body.tincan-admin form#forum-settings .fieldset {
   display: flex;
   flex: 1;
   margin: 0.5rem 0 0.5rem 0;
 }
-/* line 241, ../sass/style.scss */
-body.tincan-admin form#edit-board-group .fieldset.button, body.tincan-admin form#edit-board .fieldset.button, body.tincan-admin form#edit-page .fieldset.button, body.tincan-admin form#edit-thread .fieldset.button, body.tincan-admin form#edit-user .fieldset.button {
+/* line 242, ../sass/style.scss */
+body.tincan-admin form#delete-object .fieldset.button, body.tincan-admin form#edit-board-group .fieldset.button, body.tincan-admin form#edit-board .fieldset.button, body.tincan-admin form#edit-page .fieldset.button, body.tincan-admin form#edit-thread .fieldset.button, body.tincan-admin form#edit-user .fieldset.button, body.tincan-admin form#forum-settings .fieldset.button {
   padding-top: 1rem;
   justify-content: flex-end;
 }
-/* line 246, ../sass/style.scss */
-body.tincan-admin form#edit-board-group .field, body.tincan-admin form#edit-board .field, body.tincan-admin form#edit-page .field, body.tincan-admin form#edit-thread .field, body.tincan-admin form#edit-user .field {
+/* line 247, ../sass/style.scss */
+body.tincan-admin form#delete-object .field, body.tincan-admin form#edit-board-group .field, body.tincan-admin form#edit-board .field, body.tincan-admin form#edit-page .field, body.tincan-admin form#edit-thread .field, body.tincan-admin form#edit-user .field, body.tincan-admin form#forum-settings .field {
   background-color: #f1f1f1;
   flex: 1.5;
   padding: 0.25rem;
 }
-/* line 252, ../sass/style.scss */
-body.tincan-admin form#edit-board-group label, body.tincan-admin form#edit-board label, body.tincan-admin form#edit-page label, body.tincan-admin form#edit-thread label, body.tincan-admin form#edit-user label {
+/* line 253, ../sass/style.scss */
+body.tincan-admin form#delete-object label, body.tincan-admin form#edit-board-group label, body.tincan-admin form#edit-board label, body.tincan-admin form#edit-page label, body.tincan-admin form#edit-thread label, body.tincan-admin form#edit-user label, body.tincan-admin form#forum-settings label {
   background-color: #295c7a;
   color: white;
   display: block;
   flex: 1;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
-/* line 260, ../sass/style.scss */
-body.tincan-admin form#edit-board-group input.text-input, body.tincan-admin form#edit-board input.text-input, body.tincan-admin form#edit-page input.text-input, body.tincan-admin form#edit-thread input.text-input, body.tincan-admin form#edit-user input.text-input {
+/* line 261, ../sass/style.scss */
+body.tincan-admin form#delete-object input.text-input, body.tincan-admin form#edit-board-group input.text-input, body.tincan-admin form#edit-board input.text-input, body.tincan-admin form#edit-page input.text-input, body.tincan-admin form#edit-thread input.text-input, body.tincan-admin form#edit-user input.text-input, body.tincan-admin form#forum-settings input.text-input {
   width: 100%;
+}
+/* line 265, ../sass/style.scss */
+body.tincan-admin form#delete-object input.submit-button, body.tincan-admin form#edit-board-group input.submit-button, body.tincan-admin form#edit-board input.submit-button, body.tincan-admin form#edit-page input.submit-button, body.tincan-admin form#edit-thread input.submit-button, body.tincan-admin form#edit-user input.submit-button, body.tincan-admin form#forum-settings input.submit-button {
+  background-color: #d76a3a;
+  box-shadow: 2px 2px black;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  text-decoration: none;
 }

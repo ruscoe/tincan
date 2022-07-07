@@ -35,6 +35,6 @@ $form_action = (!empty($board_group_id)) ? '/admin/actions/update-board-group.ph
   <input type="hidden" name="board_group_id" value="<?php echo $board_group->board_group_id; ?>" />
 
   <div class="fieldset button">
-    <input type="submit" value="<?php echo (!empty($board_group_id)) ? 'Update Board Group' : 'Add Board Group'; ?>" />
+    <input class="submit-button" type="submit" value="<?php echo (!empty($board_group_id)) ? 'Update Board Group' : 'Add Board Group'; ?>" />
   </div>
 </form>
