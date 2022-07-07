@@ -60,6 +60,9 @@ $pages = $db->load_objects(new TCPage());
       case 'role':
         TCAdminTemplate::render('table-row-settings-user-role', ['setting' => $setting]);
       break;
+      case 'mail_template':
+        TCAdminTemplate::render('table-row-settings-mail-template', ['setting' => $setting]);
+      break;
       default:
         TCAdminTemplate::render('table-row-settings-text', ['setting' => $setting]);
     }

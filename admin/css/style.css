@@ -6,7 +6,7 @@
 }
 /* Breakpoints */
 /* Containers */
-/* line 56, ../sass/style.scss */
+/* line 60, ../sass/style.scss */
 body.tincan-admin {
   background-color: white;
   margin: 0;
@@ -17,20 +17,20 @@ body.tincan-admin {
   /* Tables */
   /* Forms */
 }
-/* line 71, ../sass/style.scss */
+/* line 75, ../sass/style.scss */
 body.tincan-admin #header, body.tincan-admin #navigation, body.tincan-admin #content, body.tincan-admin #footer {
   font-family: "OpenSans-Regular", serif;
 }
-/* line 75, ../sass/style.scss */
+/* line 79, ../sass/style.scss */
 body.tincan-admin #header {
   position: relative;
 }
-/* line 78, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 body.tincan-admin #header h1 {
   padding-top: 3rem;
   text-align: center;
 }
-/* line 83, ../sass/style.scss */
+/* line 87, ../sass/style.scss */
 body.tincan-admin #header ul.navigation {
   position: absolute;
   right: 2rem;
@@ -38,12 +38,12 @@ body.tincan-admin #header ul.navigation {
   list-style: none;
   padding: 0;
 }
-/* line 90, ../sass/style.scss */
+/* line 94, ../sass/style.scss */
 body.tincan-admin #header ul.navigation li {
   padding: 0 0.5rem 0 0.5rem;
 }
 @media (min-width: 600px) {
-  /* line 83, ../sass/style.scss */
+  /* line 87, ../sass/style.scss */
   body.tincan-admin #header ul.navigation {
     display: flex;
     flex-direction: row;
@@ -51,34 +51,34 @@ body.tincan-admin #header ul.navigation li {
     justify-content: flex-start;
   }
 }
-/* line 104, ../sass/style.scss */
+/* line 108, ../sass/style.scss */
 body.tincan-admin #content {
   flex: 1;
   margin: 0 2rem 0 2rem;
   padding-top: 1rem;
 }
 @media (min-width: 600px) {
-  /* line 104, ../sass/style.scss */
+  /* line 108, ../sass/style.scss */
   body.tincan-admin #content {
     margin-left: 240px;
   }
 }
-/* line 114, ../sass/style.scss */
+/* line 118, ../sass/style.scss */
 body.tincan-admin #footer {
   padding: 3rem 0 3rem 0;
   text-align: center;
 }
-/* line 120, ../sass/style.scss */
+/* line 124, ../sass/style.scss */
 body.tincan-admin #navigation {
   background-color: #404040;
 }
-/* line 123, ../sass/style.scss */
+/* line 127, ../sass/style.scss */
 body.tincan-admin #navigation ul {
   flex-direction: column;
   list-style: none;
   padding: 0;
 }
-/* line 130, ../sass/style.scss */
+/* line 134, ../sass/style.scss */
 body.tincan-admin #navigation ul li a {
   color: white;
   display: block;
@@ -88,7 +88,7 @@ body.tincan-admin #navigation ul li a {
   text-decoration: none;
 }
 @media (min-width: 600px) {
-  /* line 120, ../sass/style.scss */
+  /* line 124, ../sass/style.scss */
   body.tincan-admin #navigation {
     height: 100%;
     left: 0;
@@ -97,12 +97,12 @@ body.tincan-admin #navigation ul li a {
     width: 220px;
   }
 }
-/* line 152, ../sass/style.scss */
+/* line 156, ../sass/style.scss */
 body.tincan-admin h1, body.tincan-admin h2, body.tincan-admin h3, body.tincan-admin p, body.tincan-admin li, body.tincan-admin th, body.tincan-admin td {
   color: #6b6666;
   text-align: left;
 }
-/* line 157, ../sass/style.scss */
+/* line 161, ../sass/style.scss */
 body.tincan-admin h1.section-header {
   background-color: #295c7a;
   color: white;
@@ -110,66 +110,84 @@ body.tincan-admin h1.section-header {
   margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
-/* line 165, ../sass/style.scss */
+/* line 169, ../sass/style.scss */
 body.tincan-admin h2.section-subheader, body.tincan-admin h3.section-subheader {
   font-size: 1.5rem;
   margin: 0 0.5rem 0 0.5rem;
 }
-/* line 172, ../sass/style.scss */
+/* line 176, ../sass/style.scss */
 body.tincan-admin a:link {
   color: #123266;
   text-decoration: underline;
 }
-/* line 177, ../sass/style.scss */
+/* line 181, ../sass/style.scss */
 body.tincan-admin a:visited {
   color: #123266;
 }
-/* line 181, ../sass/style.scss */
+/* line 185, ../sass/style.scss */
 body.tincan-admin a:hover {
   color: #d76a3a;
 }
 /* line 189, ../sass/style.scss */
+body.tincan-admin .objects-nav {
+  margin: 0 0 2rem 0;
+}
+/* line 193, ../sass/style.scss */
+body.tincan-admin a.admin-button {
+  background-color: #d76a3a;
+  box-shadow: 2px 2px black;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  text-decoration: none;
+}
+/* line 205, ../sass/style.scss */
+body.tincan-admin table.objects {
+  width: 100%;
+}
+/* line 208, ../sass/style.scss */
 body.tincan-admin table.objects th {
   background-color: #295c7a;
   color: white;
 }
-/* line 194, ../sass/style.scss */
+/* line 213, ../sass/style.scss */
 body.tincan-admin table.objects tr:nth-child(even) {
   background-color: #eeeeee;
 }
-/* line 198, ../sass/style.scss */
+/* line 217, ../sass/style.scss */
 body.tincan-admin table.objects th, body.tincan-admin table.objects td {
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
-/* line 202, ../sass/style.scss */
+/* line 221, ../sass/style.scss */
 body.tincan-admin table.objects a {
   text-decoration: none;
 }
-/* line 210, ../sass/style.scss */
+/* line 229, ../sass/style.scss */
 body.tincan-admin form#edit-board-group, body.tincan-admin form#edit-board, body.tincan-admin form#edit-page, body.tincan-admin form#edit-thread, body.tincan-admin form#edit-user {
   display: flex;
   flex-direction: column;
   margin: 0 auto 0 auto;
   padding-top: 3rem;
 }
-/* line 216, ../sass/style.scss */
+/* line 235, ../sass/style.scss */
 body.tincan-admin form#edit-board-group .fieldset, body.tincan-admin form#edit-board .fieldset, body.tincan-admin form#edit-page .fieldset, body.tincan-admin form#edit-thread .fieldset, body.tincan-admin form#edit-user .fieldset {
   display: flex;
   flex: 1;
   margin: 0.5rem 0 0.5rem 0;
 }
-/* line 222, ../sass/style.scss */
+/* line 241, ../sass/style.scss */
 body.tincan-admin form#edit-board-group .fieldset.button, body.tincan-admin form#edit-board .fieldset.button, body.tincan-admin form#edit-page .fieldset.button, body.tincan-admin form#edit-thread .fieldset.button, body.tincan-admin form#edit-user .fieldset.button {
   padding-top: 1rem;
   justify-content: flex-end;
 }
-/* line 227, ../sass/style.scss */
+/* line 246, ../sass/style.scss */
 body.tincan-admin form#edit-board-group .field, body.tincan-admin form#edit-board .field, body.tincan-admin form#edit-page .field, body.tincan-admin form#edit-thread .field, body.tincan-admin form#edit-user .field {
   background-color: #f1f1f1;
   flex: 1.5;
   padding: 0.25rem;
 }
-/* line 233, ../sass/style.scss */
+/* line 252, ../sass/style.scss */
 body.tincan-admin form#edit-board-group label, body.tincan-admin form#edit-board label, body.tincan-admin form#edit-page label, body.tincan-admin form#edit-thread label, body.tincan-admin form#edit-user label {
   background-color: #295c7a;
   color: white;
@@ -177,7 +195,7 @@ body.tincan-admin form#edit-board-group label, body.tincan-admin form#edit-board
   flex: 1;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
-/* line 241, ../sass/style.scss */
+/* line 260, ../sass/style.scss */
 body.tincan-admin form#edit-board-group input.text-input, body.tincan-admin form#edit-board input.text-input, body.tincan-admin form#edit-page input.text-input, body.tincan-admin form#edit-thread input.text-input, body.tincan-admin form#edit-user input.text-input {
   width: 100%;
 }

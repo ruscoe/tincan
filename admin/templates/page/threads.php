@@ -17,8 +17,8 @@ $settings = $data['settings'];
 
 <h1><?php echo $page->page_title; ?></h1>
 
-<div class="add-new">
-  <a href="/admin/index.php?page=<?php echo $settings['admin_page_edit_thread']; ?>">New Thread</a>
+<div class="objects-nav">
+  <a class="admin-button" href="/admin/index.php?page=<?php echo $settings['admin_page_edit_thread']; ?>">New Thread</a>
 </div>
 
 <?php

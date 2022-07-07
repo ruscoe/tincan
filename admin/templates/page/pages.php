@@ -28,8 +28,8 @@ $order = [];
 $pages = $db->load_objects(new TCPage(), [], $conditions, $order);
 ?>
 
-<div class="add-new">
-  <a href="/admin/index.php?page=<?php echo $settings['admin_page_edit_page']; ?>">New Page</a>
+<div class="objects-nav">
+  <a class="admin-button" href="/admin/index.php?page=<?php echo $settings['admin_page_edit_page']; ?>">New Page</a>
 </div>
 
 <table class="objects">
