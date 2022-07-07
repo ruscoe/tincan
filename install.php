@@ -545,7 +545,7 @@ function tc_create_settings($install_settings = [])
       [
         'setting_name' => 'mail_reset_password',
         'category' => 'email',
-        'type' => 'text',
+        'type' => 'mail_template',
         'title' => 'Reset Password Mail Template',
         // TODO: Make this a select box.
         'value' => 1000,
@@ -554,7 +554,7 @@ function tc_create_settings($install_settings = [])
       [
         'setting_name' => 'mail_confirm_account',
         'category' => 'email',
-        'type' => 'text',
+        'type' => 'mail_template',
         'title' => 'Confirm Account Mail Template',
         // TODO: Make this a select box.
         'value' => 1001,
