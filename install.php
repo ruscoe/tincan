@@ -273,6 +273,7 @@ function tc_create_tables()
       `template` varchar(255) NOT NULL DEFAULT '',
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
+      `required` tinyint(1) unsigned NOT NULL,
       PRIMARY KEY (`page_id`),
       KEY `SLUG_INDEX` (`slug`)
     ) AUTO_INCREMENT=1000",
@@ -661,6 +662,8 @@ function tc_create_pages()
   foreach ($pages as $page) {
     $page['created_time'] = time();
     $page['updated_time'] = time();
+    // All default pages are required and cannot be deleted.
+    $page['required'] = 1;
 
     try {
       $saved_page = $db->save_object(new TCPage((object) $page));

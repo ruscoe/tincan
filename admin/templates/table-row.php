@@ -12,5 +12,9 @@
   <td><a href="<?php echo $data['view_url']; ?>" target="_blank"><?php echo $data['title']; ?></a></td>
   <td><a href="<?php echo $data['view_url']; ?>" target="_blank">View</a></td>
   <td><a href="<?php echo $data['edit_url']; ?>">Edit</a></td>
-  <td><a href="<?php echo $data['delete_url']; ?>">Delete</a></td>
+  <td>
+    <?php
+      echo (!empty($data['delete_url'])) ? '<a href="' . $data['delete_url'] . '">Delete</a>' : '<strike>Delete</strike>';
+    ?>
+  </td>
 </tr>

@@ -42,6 +42,18 @@ class TCPage extends TCObject
   protected $updated_time;
 
   /**
+   * @since 0.09
+   */
+  protected $required;
+
+  /**
+   * @since 0.09
+   */
+  public function is_required() {
+    return ($this->required == 1);
+  }
+
+  /**
    * @see TCObject::get_name()
    * @since 0.06
    */
@@ -98,6 +110,7 @@ class TCPage extends TCObject
           'template',
           'created_time',
           'updated_time',
+          'required',
         ];
   }
 }

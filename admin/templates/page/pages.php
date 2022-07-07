@@ -42,7 +42,7 @@ foreach ($pages as $page) {
     'object_id' => $page->page_id,
     'view_url' => '/index.php?page='.$page->page_id,
     'edit_url' => '/admin/index.php?page='.$settings['admin_page_edit_page'].'&page_id='.$page->page_id,
-    'delete_url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=page&object_id='.$page->page_id,
+    'delete_url' => ($page->is_required()) ? '' : '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=page&object_id='.$page->page_id,
   ];
   TCAdminTemplate::render('table-row', $data);
 }

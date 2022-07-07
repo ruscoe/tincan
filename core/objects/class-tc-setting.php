@@ -47,6 +47,13 @@ class TCSetting extends TCObject
   protected $required;
 
   /**
+   * @since 0.09
+   */
+  public function is_required() {
+    return ($this->required == 1);
+  }
+
+  /**
    * @see TCObject::get_primary_key()
    * @since 0.01
    */
