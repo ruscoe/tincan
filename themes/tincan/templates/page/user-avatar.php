@@ -34,6 +34,6 @@ use TinCan\TCTemplate;
   <input type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
-    <input type="submit" name="avatar" value="Upload new avatar" />
+    <input class="submit-button" type="submit" name="avatar" value="Upload new avatar" />
   </div>
 </form>

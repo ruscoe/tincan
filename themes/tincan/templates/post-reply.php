@@ -33,7 +33,7 @@ use TinCan\TCTemplate;
   <input type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
-    <input type="submit" name="submit_post" value="Submit reply" />
+    <input class="submit-button" type="submit" name="submit_post" value="Submit reply" />
   </div>
 </form>
 

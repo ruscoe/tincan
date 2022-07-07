@@ -8,20 +8,24 @@ $formField: #F1F1F1;
 $formFieldLabel: #295C7A;
 $formFieldLabelText: #FFFFFF;
 
+$button: #D76A3A;
+$buttonText: #FFFFFF;
+$buttonShadow: #000000;
+
 body.tincan {
 
   form#create-account, form#log-in, form#set-password {
     width: 400px;
   }
 
-  form#create-thread, form#post-reply {
+  form#create-thread, form#post-reply, form#update-post {
 
     textarea {
       width: 100%;
     }
   }
 
-  form#create-account, form#log-in, form#create-thread, form#post-reply, form#set-password {
+  form#create-account, form#log-in, form#create-thread, form#post-reply, form#update-post, form#set-password {
     display: flex;
     flex-direction: column;
     margin: 0 auto 0 auto;
@@ -54,6 +58,16 @@ body.tincan {
 
     input.text-input {
       width: 100%;
+    }
+
+    input.submit-button {
+      background-color: $button;
+      box-shadow: 2px 2px $buttonShadow;
+      color: $buttonText;
+      display: inline-block;
+      font-weight: bold;
+      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+      text-decoration: none;
     }
   }
 

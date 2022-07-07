@@ -42,8 +42,8 @@ if (!empty($user) && $user->can_delete_post($post)) {
   <form id="delete-post" action="/actions/delete-post.php" method="POST">
     <div class="fieldset button">
       <input type="hidden" name="post_id" value="<?php echo $post->post_id; ?>" />
-      <input type="submit" name="delete_post" value="Delete post" />
-      <input type="submit" name="cancel" value="Cancel" />
+      <input class="submit-button" type="submit" name="delete_post" value="Delete post" />
+      <input class="submit-button" type="submit" name="cancel" value="Cancel" />
     </div>
   </form>
 

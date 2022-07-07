@@ -44,7 +44,7 @@ use TinCan\TCURL;
   <input type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
-    <input type="submit" name="log_in" value="Log in" />
+    <input class="submit-button" type="submit" name="log_in" value="Log in" />
   </div>
 
   <?php

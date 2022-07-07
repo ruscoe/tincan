@@ -49,7 +49,7 @@ use TinCan\TCURL;
   <input type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
-    <input type="submit" name="change_password" value="Set new password" />
+    <input class="submit-button" type="submit" name="change_password" value="Set new password" />
   </div>
 </form>
 <?php } ?>

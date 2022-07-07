@@ -45,7 +45,7 @@ if (!empty($user) && $user->can_edit_post($post)) {
   <input type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
-    <input type="submit" name="submit_post" value="Save changes" />
+    <input class="submit-button" type="submit" name="submit_post" value="Save changes" />
   </div>
 </form>
 

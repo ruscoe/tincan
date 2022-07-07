@@ -63,7 +63,7 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
   <input type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
-    <input type="submit" name="submit_thread" value="Submit thread" />
+    <input class="submit-button" type="submit" name="submit_thread" value="Submit thread" />
   </div>
 </form>
 
