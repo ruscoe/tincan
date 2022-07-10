@@ -16,9 +16,9 @@ use TinCan\TCRole;
   $roles = $db->load_objects(new TCRole());
 ?>
 
-<tr>
-  <td><?php echo $setting->title; ?></td>
-  <td>
+<div class="fieldset">
+  <label for="<?php echo $setting->setting_name; ?>"><?php echo $setting->title; ?></label>
+  <div class="field">
     <select name="<?php echo $setting->setting_name; ?>">
       <?php
         foreach ($roles as $role) {
@@ -29,5 +29,5 @@ use TinCan\TCRole;
         }
       ?>
     </select>
-  </td>
-</tr>
+  </div>
+</div>

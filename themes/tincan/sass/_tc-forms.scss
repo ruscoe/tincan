@@ -25,7 +25,7 @@ body.tincan {
     }
   }
 
-  form#create-account, form#log-in, form#create-thread, form#post-reply, form#update-post, form#set-password {
+  form#create-account, form#log-in, form#create-thread, form#post-reply, form#update-post, form#set-password, form#forum-settings {
     display: flex;
     flex-direction: column;
     margin: 0 auto 0 auto;

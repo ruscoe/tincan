@@ -10,7 +10,9 @@
   $state = ('true' == $setting->value);
 ?>
 
-<tr>
-  <td><?php echo $setting->title; ?></td>
-  <td><input type="checkbox" name="<?php echo $setting->setting_name; ?>"<?php echo ($state) ? ' checked' : ''; ?>></td>
-</tr>
+<div class="fieldset">
+  <label for="<?php echo $setting->setting_name; ?>"><?php echo $setting->title; ?></label>
+  <div class="field">
+    <input type="checkbox" name="<?php echo $setting->setting_name; ?>"<?php echo ($state) ? ' checked' : ''; ?>>
+  </div>
+</div>

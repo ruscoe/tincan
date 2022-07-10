@@ -241,31 +241,31 @@ body.tincan form#create-thread textarea, body.tincan form#post-reply textarea, b
   width: 100%;
 }
 /* line 28, ../sass/_tc-forms.scss */
-body.tincan form#create-account, body.tincan form#log-in, body.tincan form#create-thread, body.tincan form#post-reply, body.tincan form#update-post, body.tincan form#set-password {
+body.tincan form#create-account, body.tincan form#log-in, body.tincan form#create-thread, body.tincan form#post-reply, body.tincan form#update-post, body.tincan form#set-password, body.tincan form#forum-settings {
   display: flex;
   flex-direction: column;
   margin: 0 auto 0 auto;
   padding-top: 3rem;
 }
 /* line 34, ../sass/_tc-forms.scss */
-body.tincan form#create-account .fieldset, body.tincan form#log-in .fieldset, body.tincan form#create-thread .fieldset, body.tincan form#post-reply .fieldset, body.tincan form#update-post .fieldset, body.tincan form#set-password .fieldset {
+body.tincan form#create-account .fieldset, body.tincan form#log-in .fieldset, body.tincan form#create-thread .fieldset, body.tincan form#post-reply .fieldset, body.tincan form#update-post .fieldset, body.tincan form#set-password .fieldset, body.tincan form#forum-settings .fieldset {
   display: flex;
   flex: 1;
   margin: 0.5rem 0 0.5rem 0;
 }
 /* line 40, ../sass/_tc-forms.scss */
-body.tincan form#create-account .fieldset.button, body.tincan form#log-in .fieldset.button, body.tincan form#create-thread .fieldset.button, body.tincan form#post-reply .fieldset.button, body.tincan form#update-post .fieldset.button, body.tincan form#set-password .fieldset.button {
+body.tincan form#create-account .fieldset.button, body.tincan form#log-in .fieldset.button, body.tincan form#create-thread .fieldset.button, body.tincan form#post-reply .fieldset.button, body.tincan form#update-post .fieldset.button, body.tincan form#set-password .fieldset.button, body.tincan form#forum-settings .fieldset.button {
   padding-top: 1rem;
   justify-content: flex-end;
 }
 /* line 45, ../sass/_tc-forms.scss */
-body.tincan form#create-account .field, body.tincan form#log-in .field, body.tincan form#create-thread .field, body.tincan form#post-reply .field, body.tincan form#update-post .field, body.tincan form#set-password .field {
+body.tincan form#create-account .field, body.tincan form#log-in .field, body.tincan form#create-thread .field, body.tincan form#post-reply .field, body.tincan form#update-post .field, body.tincan form#set-password .field, body.tincan form#forum-settings .field {
   background-color: #f1f1f1;
   flex: 1.5;
   padding: 0.25rem;
 }
 /* line 51, ../sass/_tc-forms.scss */
-body.tincan form#create-account label, body.tincan form#log-in label, body.tincan form#create-thread label, body.tincan form#post-reply label, body.tincan form#update-post label, body.tincan form#set-password label {
+body.tincan form#create-account label, body.tincan form#log-in label, body.tincan form#create-thread label, body.tincan form#post-reply label, body.tincan form#update-post label, body.tincan form#set-password label, body.tincan form#forum-settings label {
   background-color: #295c7a;
   color: white;
   display: block;
@@ -273,11 +273,11 @@ body.tincan form#create-account label, body.tincan form#log-in label, body.tinca
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
 /* line 59, ../sass/_tc-forms.scss */
-body.tincan form#create-account input.text-input, body.tincan form#log-in input.text-input, body.tincan form#create-thread input.text-input, body.tincan form#post-reply input.text-input, body.tincan form#update-post input.text-input, body.tincan form#set-password input.text-input {
+body.tincan form#create-account input.text-input, body.tincan form#log-in input.text-input, body.tincan form#create-thread input.text-input, body.tincan form#post-reply input.text-input, body.tincan form#update-post input.text-input, body.tincan form#set-password input.text-input, body.tincan form#forum-settings input.text-input {
   width: 100%;
 }
 /* line 63, ../sass/_tc-forms.scss */
-body.tincan form#create-account input.submit-button, body.tincan form#log-in input.submit-button, body.tincan form#create-thread input.submit-button, body.tincan form#post-reply input.submit-button, body.tincan form#update-post input.submit-button, body.tincan form#set-password input.submit-button {
+body.tincan form#create-account input.submit-button, body.tincan form#log-in input.submit-button, body.tincan form#create-thread input.submit-button, body.tincan form#post-reply input.submit-button, body.tincan form#update-post input.submit-button, body.tincan form#set-password input.submit-button, body.tincan form#forum-settings input.submit-button {
   background-color: #d76a3a;
   box-shadow: 2px 2px black;
   color: white;

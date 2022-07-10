@@ -9,7 +9,9 @@
   $setting = $data['setting'];
 ?>
 
-<tr>
-  <td><?php echo $setting->title; ?></td>
-  <td><input type="text" name="<?php echo $setting->setting_name; ?>" value="<?php echo $setting->value; ?>" /></td>
-</tr>
+<div class="fieldset">
+  <label for="<?php echo $setting->setting_name; ?>"><?php echo $setting->title; ?></label>
+  <div class="field">
+    <input type="text" name="<?php echo $setting->setting_name; ?>" value="<?php echo $setting->value; ?>" />
+  </div>
+</div>
