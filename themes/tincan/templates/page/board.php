@@ -45,11 +45,19 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'sett
 <?php
   // Show new thread link if user has permission to create a new thread.
   if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
+    $new_thread_url = null;
+    if ($settings['enable_urls']) {
+      $new_thread_url = TCURL::create_friendly_url($settings['base_url_boards'], $board) . 'new';
+    } else {
+      $new_thread_url = TCURL::create_url($settings['page_new_thread'], [
+        'board' => $board->board_id,
+      ]);
+    }
     ?>
 
   <div id="board-navigation">
     <ul class="navigation">
-      <li><a href="<?php echo TCURL::create_url($settings['page_new_thread'], ['board' => $board->board_id]); ?>">New thread</a></li>
+      <li><a href="<?php echo $new_thread_url; ?>">New thread</a></li>
     </ul>
   </div>
 

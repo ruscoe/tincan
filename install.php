@@ -480,7 +480,7 @@ function tc_create_settings($install_settings = [])
         'category' => 'urls',
         'type' => 'bool',
         'title' => 'Enable friendly URLs',
-        'value' => 'false',
+        'value' => 'true',
         'required' => 1,
       ],
       [
@@ -505,6 +505,14 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Threads base URL',
         'value' => 'threads/%slug%',
+        'required' => 1,
+      ],
+      [
+        'setting_name' => 'base_url_new_thread',
+        'category' => 'urls',
+        'type' => 'text',
+        'title' => 'New thread base URL',
+        'value' => 'boards/%slug%/new',
         'required' => 1,
       ],
       [

@@ -53,6 +53,7 @@ if (empty($page_id)) {
     $settings['base_url_boards'] => $settings['page_board'],
     $settings['base_url_threads'] => $settings['page_thread'],
     $settings['base_url_users'] => $settings['page_user'],
+    $settings['base_url_new_thread'] => $settings['page_new_thread'],
     'log-in' => $settings['page_log_in'],
     'log-out' => $settings['page_log_out'],
     'create-account' => $settings['page_create_account'],

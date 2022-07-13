@@ -13,14 +13,22 @@ use TinCan\TCUser;
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-$page = $data['page'];
 $settings = $data['settings'];
+$page = $data['page'];
 $user = $data['user'];
+$slug = $data['slug'];
 
 $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
 $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
+
+if (!empty($board_id)) {
+  $board = $db->load_object(new TCBoard(), $board_id);
+} elseif (!empty($slug)) {
+  $matched_boards = $db->load_objects(new TCBoard(), null, [['field' => 'slug', 'value' => $slug]]);
+  $board = reset($matched_boards);
+}
 
 // Check user has permission to create a new thread.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
@@ -33,8 +41,6 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
 
 <?php
 } else {
-    $board = $db->load_object(new TCBoard(), $board_id);
-
     TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]); ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
