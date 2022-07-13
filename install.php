@@ -10,6 +10,7 @@ use TinCan\TCRole;
 use TinCan\TCSetting;
 use TinCan\TCThread;
 use TinCan\TCUser;
+use TinCan\TCUserSession;
 
 /**
  * Installs Tin Can Forum with optional test data.
@@ -48,7 +49,7 @@ if (1 == $run_install) {
   tc_create_roles();
   tc_create_pages();
   // TODO: Validate email and password.
-  tc_create_users($admin_email, $admin_password);
+  $admin_user = tc_create_admin_user($admin_email, $admin_password);
   tc_create_mail_templates();
 
   if (!empty($create_test_data)) {
@@ -57,6 +58,9 @@ if (1 == $run_install) {
     $new_thread_ids = tc_create_threads($new_board_ids);
     tc_create_posts($new_thread_ids);
   }
+
+  $session = new TCUserSession();
+  $session->create_session($admin_user);
 
   header('Location: /');
   exit;
@@ -692,31 +696,25 @@ function tc_create_pages()
   }
 }
 
-function tc_create_users($email, $password)
+function tc_create_admin_user($email, $password)
 {
   global $db;
 
   $user = new TCUser();
+  $user->username = 'admin';
+  $user->email = $email;
+  $user->password = $user->get_password_hash($password);
+  $user->role_id = 3; // Administrator user role.
+  $user->created_time = time();
+  $user->updated_time = time();
 
-  $users = [
-      [
-        'username' => 'admin',
-        'email' => $email,
-        'password' => $user->get_password_hash($password),
-        'role_id' => 3, // Administrator user role.
-      ],
-    ];
-
-  foreach ($users as $user) {
-    $user['created_time'] = time();
-    $user['updated_time'] = time();
-
-    try {
-      $db->save_object(new TCUser((object) $user));
-    } catch (TCException $e) {
-      echo $e->getMessage()."\n";
-    }
+  try {
+    $saved_user = $db->save_object(new TCUser((object) $user));
+  } catch (TCException $e) {
+    echo $e->getMessage()."\n";
   }
+
+  return $saved_user;
 }
 
 function tc_create_board_groups()
