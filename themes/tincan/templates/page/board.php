@@ -47,7 +47,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'sett
   if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
     $new_thread_url = null;
     if ($settings['enable_urls']) {
-      $new_thread_url = TCURL::create_friendly_url($settings['base_url_boards'], $board) . 'new';
+      $new_thread_url = TCURL::create_friendly_url($settings['base_url_new_thread'], $board);
     } else {
       $new_thread_url = TCURL::create_url($settings['page_new_thread'], [
         'board' => $board->board_id,

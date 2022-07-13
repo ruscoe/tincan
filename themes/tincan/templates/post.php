@@ -53,12 +53,23 @@ use TinCan\TCURL;
       }
       ?>
     </div>
+    <?php
+    $edit_post_url = null;
+    $delete_post_url = null;
+    if ($settings['enable_urls']) {
+      $edit_post_url = TCURL::create_friendly_url($settings['base_url_edit_post'], $post);
+      $delete_post_url = TCURL::create_friendly_url($settings['base_url_delete_post'], $post);
+    } else {
+      $edit_post_url = TCURL::create_url($settings['page_edit_post'], ['post' => $post->post_id]);
+      $delete_post_url = TCURL::create_url($settings['page_delete_post'], ['post' => $post->post_id]);
+    }
+    ?>
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
     <ul class="post-controls">
       <?php if (!empty($user) && $user->can_edit_post($post)) { ?>
-        <li><a href="<?php echo TCURL::create_url($settings['page_edit_post'], ['post' => $post->post_id]); ?>">Edit</a></li>
+        <li><a href="<?php echo $edit_post_url; ?>">Edit</a></li>
       <?php } if (!empty($user) && $thread->post_can_be_deleted($post) && $user->can_delete_post($post)) { ?>
-        <li><a href="<?php echo TCURL::create_url($settings['page_delete_post'], ['post' => $post->post_id]); ?>">Delete</a></li>
+        <li><a href="<?php echo $delete_post_url; ?>">Delete</a></li>
       <?php } ?>
     </ul>
   </div>

@@ -28,10 +28,10 @@ class TCURL
    */
   public static function create_standard_url($page, $params)
   {
-    $url = '/index.php';
+    $url = '/';
 
     if (!empty($page)) {
-      $url .= '?page='.$page;
+      $url .= 'index.php?page='.$page;
 
       // URL parameters only used when a page is specified.
       foreach ($params as $name => $value) {

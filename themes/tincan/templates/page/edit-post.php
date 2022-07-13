@@ -3,6 +3,7 @@
 use TinCan\TCData;
 use TinCan\TCPost;
 use TinCan\TCTemplate;
+use TinCan\TCURL;
 
 /**
  * Edit Post page template.
@@ -12,6 +13,10 @@ use TinCan\TCTemplate;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
+
+if (empty($post_id) && !empty($data['slug'])) {
+  $post_id = $data['slug'];
+}
 
 $page = $data['page'];
 $settings = $data['settings'];
