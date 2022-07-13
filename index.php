@@ -46,9 +46,7 @@ $page = null;
 
 if (empty($page_id)) {
   // Work out page ID from friendly URL.
-  $path_parts = explode('/', $_SERVER['REQUEST_URI']);
-
-  $page_slug = isset($path_parts[2]) ? trim($path_parts[2]) : null;
+  $path = filter_input(INPUT_SERVER, 'REQUEST_URI');
 
   $base_urls_to_page_ids = [
     $settings['base_url_board_groups'] => $settings['page_board_group'],
@@ -61,9 +59,22 @@ if (empty($page_id)) {
     'reset-password' => $settings['page_reset_password'],
   ];
 
+  // Attempt to match a base URL with the current path.
   foreach ($base_urls_to_page_ids as $base_url => $base_page_id) {
-    if ($path_parts[1] == $base_url) {
+    // Start regex with initial slash.
+    $regex_prefix = '#^/';
+    // End regex with optional trailing slash. Case insensitive.
+    $regex_suffix = '/?$#i';
+    // Replace the %slug% token with the regex string.
+    $path_regex = $regex_prefix . str_replace('%slug%', '([a-z_\-0-9]*)', $base_url) . $regex_suffix;
+
+    $page_matches = null;
+    preg_match($path_regex, $path, $page_matches);
+
+    // We have a match! Set the page ID and slug to be used by the template.
+    if (!empty($page_matches)) {
       $page_id = $base_page_id;
+      $page_slug = (isset($page_matches[1])) ? $page_matches[1] : null;
     }
   }
 }

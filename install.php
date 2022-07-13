@@ -484,7 +484,7 @@ function tc_create_settings($install_settings = [])
         'category' => 'urls',
         'type' => 'text',
         'title' => 'Board groups base URL',
-        'value' => 'board-groups',
+        'value' => 'board-groups/%slug%',
         'required' => 1,
       ],
       [
@@ -492,7 +492,7 @@ function tc_create_settings($install_settings = [])
         'category' => 'urls',
         'type' => 'text',
         'title' => 'Boards base URL',
-        'value' => 'boards',
+        'value' => 'boards/%slug%',
         'required' => 1,
       ],
       [
@@ -500,7 +500,7 @@ function tc_create_settings($install_settings = [])
         'category' => 'urls',
         'type' => 'text',
         'title' => 'Threads base URL',
-        'value' => 'threads',
+        'value' => 'threads/%slug%',
         'required' => 1,
       ],
       [
@@ -508,7 +508,7 @@ function tc_create_settings($install_settings = [])
         'category' => 'urls',
         'type' => 'text',
         'title' => 'Users base URL',
-        'value' => 'users',
+        'value' => 'users/%slug%',
         'required' => 1,
       ],
       [
@@ -516,7 +516,7 @@ function tc_create_settings($install_settings = [])
         'category' => 'urls',
         'type' => 'text',
         'title' => 'Pages base URL',
-        'value' => 'pages',
+        'value' => 'pages/%slug%',
         'required' => 1,
       ],
       [
