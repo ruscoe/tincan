@@ -24,6 +24,12 @@ $user = $data['user'];
 
 $db = new TCData();
 
+// Check user has permission to edit this post.
+if (empty($user) || !$user->can_edit_post($post)) {
+  header('Location: '.TCURL::create_url($settings['page_404']));
+  exit;
+}
+
 $post = $db->load_object(new TCPost(), $post_id);
 
 if (empty($post)) {
