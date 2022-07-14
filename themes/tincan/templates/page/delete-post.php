@@ -31,6 +31,12 @@ if (empty($post)) {
   exit;
 }
 
+// Check user has permission to delete this post.
+if (empty($user) || !$user->can_delete_post($post)) {
+  header('Location: '.TCURL::create_url($settings['page_404']));
+  exit;
+}
+
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'settings' => $settings]);
 ?>
 

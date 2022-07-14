@@ -548,6 +548,14 @@ function tc_create_settings($install_settings = [])
         'required' => 1,
       ],
       [
+        'setting_name' => 'base_url_avatar',
+        'category' => 'urls',
+        'type' => 'text',
+        'title' => 'Upload avatar URL',
+        'value' => 'users/%slug%/avatar',
+        'required' => 1,
+      ],
+      [
         'setting_name' => 'site_email_name',
         'category' => 'email',
         'type' => 'text',

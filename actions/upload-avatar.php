@@ -42,6 +42,8 @@ if (empty($user)) {
   $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
+$profile_user = $db->load_user($user_id);
+
 $file = $_FILES['avatar_image'];
 
 if (empty($error) && (empty($file) || UPLOAD_ERR_OK !== $file['error'])) {
@@ -111,7 +113,16 @@ if (!empty($ajax)) {
     exit;
   }
 
-  $destination = '';
+  $destination = null;
+
+  if ($settings['enable_urls']) {
+    $destination = TCURL::create_friendly_url($settings['base_url_user'], $board);
+  } else {
+    $destination = TCURL::create_url($settings['page_new_thread'], [
+      'board' => $board->board_id,
+    ]);
+  }
+
 
   if (empty($error)) {
     // Send user to their updated page.
