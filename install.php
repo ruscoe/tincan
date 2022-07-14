@@ -53,6 +53,7 @@ if (1 == $run_install) {
   tc_create_mail_templates();
 
   if (!empty($create_test_data)) {
+    tc_create_users();
     $new_board_group_ids = tc_create_board_groups();
     $new_board_ids = tc_create_boards($new_board_group_ids);
     $new_thread_ids = tc_create_threads($new_board_ids);
@@ -728,6 +729,45 @@ function tc_create_pages()
   }
 }
 
+function tc_create_users()
+{
+  global $db;
+
+  $user = new TCUser();
+
+  $users = [
+    [
+      'username' => 'Manny',
+      'email' => 'manny@example.org',
+      'password' => $user->get_password_hash('manny'),
+      'role_id' => 2, // Moderator user role.
+    ],
+    [
+      'username' => 'Meche',
+      'email' => 'meche@example.org',
+      'password' => $user->get_password_hash('meche'),
+      'role_id' => 1, // User role.
+    ],
+    [
+      'username' => 'Domino',
+      'email' => 'domino@example.org',
+      'password' => $user->get_password_hash('domino'),
+      'role_id' => 1, // User role.
+    ],
+  ];
+
+  foreach ($users as $user_data) {
+    $user_data['created_time'] = time();
+    $user_data['updated_time'] = time();
+
+    try {
+      $db->save_object(new TCUser((object) $user_data));
+    } catch (TCException $e) {
+      echo $e->getMessage()."\n";
+    }
+  }
+}
+
 function tc_create_admin_user($email, $password)
 {
   global $db;
@@ -861,13 +901,21 @@ function tc_create_posts($new_thread_ids)
 {
   global $db;
 
+  $user_ids = [
+    '1000', '1001', '1002', '1003'
+  ];
+
   $posts_to_create = 240;
 
   $posts = [];
 
   foreach ($new_thread_ids as $thread_id) {
     for ($i = 0; $i < $posts_to_create; ++$i) {
-      $posts[] = ['user_id' => 1000, 'thread_id' => $thread_id, 'content' => tc_get_random_lipsum_long()];
+      $posts[] = [
+        'user_id' => $user_ids[array_rand($user_ids, 1)],
+        'thread_id' => $thread_id,
+        'content' => tc_get_random_lipsum_long()
+      ];
     }
   }
 
