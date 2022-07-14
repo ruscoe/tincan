@@ -9,8 +9,6 @@ use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
-$file = $_FILES['avatar_image'];
-
 /**
  * Tin Can update post handler.
  *
@@ -43,6 +41,8 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 if (empty($user)) {
   $error = TCUser::ERR_NOT_AUTHORIZED;
 }
+
+$file = $_FILES['avatar_image'];
 
 if (empty($error) && (empty($file) || UPLOAD_ERR_OK !== $file['error'])) {
   $error = TCImage::ERR_FILE_GENERAL;

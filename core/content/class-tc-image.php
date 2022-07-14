@@ -84,13 +84,13 @@ class TCImage
     $crop_options = [
       'x' => $center_x,
       'y' => $center_y,
-     'width' => $crop_size,
-     'height' => $crop_size,
+      'width' => $crop_size,
+      'height' => $crop_size,
     ];
 
     $cropped_image = imagecrop($image, $crop_options);
 
-    $scaled_image = imagescale($cropped_image, $size, $size, IMG_BICUBIC);
+    $scaled_image = imagescale($cropped_image, $size, $size, IMG_BILINEAR_FIXED);
 
     return $scaled_image;
   }
