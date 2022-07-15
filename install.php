@@ -481,7 +481,7 @@ function tc_create_settings($install_settings = [])
         'category' => 'urls',
         'type' => 'bool',
         'title' => 'Enable friendly URLs',
-        'value' => 'true',
+        'value' => 'false',
         'required' => 1,
       ],
       [
