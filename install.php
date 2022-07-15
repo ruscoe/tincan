@@ -444,7 +444,6 @@ function tc_create_settings($install_settings = [])
         'required' => 1,
       ],
       [
-        // TODO: Create a select box setting type so role can be chosen by name.
         'setting_name' => 'default_user_role',
         'category' => 'user',
         'type' => 'role',
@@ -585,7 +584,6 @@ function tc_create_settings($install_settings = [])
         'category' => 'email',
         'type' => 'mail_template',
         'title' => 'Reset Password Mail Template',
-        // TODO: Make this a select box.
         'value' => 1000,
         'required' => 1,
       ],
@@ -594,7 +592,6 @@ function tc_create_settings($install_settings = [])
         'category' => 'email',
         'type' => 'mail_template',
         'title' => 'Confirm Account Mail Template',
-        // TODO: Make this a select box.
         'value' => 1001,
         'required' => 1,
       ],
