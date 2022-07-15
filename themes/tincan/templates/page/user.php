@@ -16,15 +16,15 @@ $slug = $data['slug'];
 $page = $data['page'];
 $user = $data['user'];
 
-$user_id = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_NUMBER_INT);
+$profile_user_id = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_NUMBER_INT);
 
-if (empty($user_id)) {
-  $user_id = $slug;
+if (empty($profile_user_id)) {
+  $profile_user_id = $slug;
 }
 
 $db = new TCData();
 
-$profile_user = $db->load_user($user_id);
+$profile_user = $db->load_user($profile_user_id);
 
 if (empty($profile_user)) {
   header('Location: '.TCURL::create_url($settings['page_404']));
@@ -48,7 +48,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user
       if ($settings['enable_urls']) {
         $avatar_url = TCURL::create_friendly_url($settings['base_url_avatar'], $profile_user);
       } else {
-        $avatar_url = TCURL::create_url($settings['page_user_avatar']);
+        $avatar_url = TCURL::create_url($settings['page_user_avatar'], ['user' => $profile_user->user_id]);
       } ?>
       <div><a href="<?php echo $avatar_url; ?>">Change avatar</a></div>
     <?php
