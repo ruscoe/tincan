@@ -14,7 +14,7 @@
   <td><a href="<?php echo $data['edit_url']; ?>">Edit</a></td>
   <td>
     <?php
-      echo (!empty($data['delete_url'])) ? '<a href="' . $data['delete_url'] . '">Delete</a>' : '<strike>Delete</strike>';
+      echo (!empty($data['delete_url'])) ? '<a href="'.$data['delete_url'].'">Delete</a>' : '<strike>Delete</strike>';
     ?>
   </td>
 </tr>

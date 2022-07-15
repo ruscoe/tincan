@@ -47,8 +47,7 @@ $pages = $db->load_objects(new TCPage());
       <table>
     <?php
     foreach ($settings as $setting) {
-
-    switch ($setting->type) {
+      switch ($setting->type) {
       case 'page':
         // Don't display page settings. Too easy to break the entire forum by
         // reassigning default pages.
@@ -66,8 +65,7 @@ $pages = $db->load_objects(new TCPage());
       default:
         TCAdminTemplate::render('table-row-settings-text', ['setting' => $setting]);
     }
-  }
-  ?>
+    } ?>
     </table>
   </div>
   <?php

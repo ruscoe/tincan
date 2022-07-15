@@ -905,7 +905,7 @@ function tc_create_posts($new_thread_ids)
   global $db;
 
   $user_ids = [
-    '1000', '1001', '1002', '1003'
+    '1000', '1001', '1002', '1003',
   ];
 
   $posts_to_create = 240;
@@ -917,7 +917,7 @@ function tc_create_posts($new_thread_ids)
       $posts[] = [
         'user_id' => $user_ids[array_rand($user_ids, 1)],
         'thread_id' => $thread_id,
-        'content' => tc_get_random_lipsum_long()
+        'content' => tc_get_random_lipsum_long(),
       ];
     }
   }

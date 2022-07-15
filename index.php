@@ -70,7 +70,7 @@ if (empty($page_id)) {
     // End regex with optional trailing slash. Case insensitive.
     $regex_suffix = '/?$#i';
     // Replace the %slug% token with the regex string.
-    $path_regex = $regex_prefix . str_replace('%slug%', '([a-z_\-0-9]*)', $base_url) . $regex_suffix;
+    $path_regex = $regex_prefix.str_replace('%slug%', '([a-z_\-0-9]*)', $base_url).$regex_suffix;
 
     $page_matches = null;
     preg_match($path_regex, $path, $page_matches);

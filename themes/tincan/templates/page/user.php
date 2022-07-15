@@ -49,9 +49,9 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user
         $avatar_url = TCURL::create_friendly_url($settings['base_url_avatar'], $profile_user);
       } else {
         $avatar_url = TCURL::create_url($settings['page_user_avatar']);
-      }
-      ?>
+      } ?>
       <div><a href="<?php echo $avatar_url; ?>">Change avatar</a></div>
-    <?php } ?>
+    <?php
+    } ?>
   </div>
   <div class="joined">Joined: <?php echo date($settings['date_format'], $profile_user->created_time); ?></div>

@@ -49,8 +49,9 @@ class TCPage extends TCObject
   /**
    * @since 0.09
    */
-  public function is_required() {
-    return ($this->required == 1);
+  public function is_required()
+  {
+    return 1 == $this->required;
   }
 
   /**
