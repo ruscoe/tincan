@@ -88,7 +88,7 @@ if (empty($error) && !imagejpeg($scaled_image, $target_full_path)) {
 }
 
 if (empty($error)) {
-  $user->avatar = $target_file;
+  $user->avatar = $target_full_path;
 
   // TODO: Can this line go into TCObject?
   $user->updated_time = time();

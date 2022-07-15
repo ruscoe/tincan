@@ -19,7 +19,7 @@ use TinCan\TCURL;
 
   $avatar = $author->avatar;
 
-  $avatar_image = (!empty($avatar)) ? '/uploads/avatars/'.$author->avatar : '/assets/images/default-profile.png';
+  $avatar_image = (!empty($avatar)) ? $author->avatar : '/assets/images/default-profile.png';
 
   // $user_page_url = TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);
   $user_page_url = ($settings['enable_urls']) ? TCURL::create_friendly_url($settings['base_url_users'], $author) : TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);

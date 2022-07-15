@@ -35,7 +35,7 @@ $avatar = $profile_user->avatar;
 
 // TODO: Error handling for missing user (404).
 
-$avatar_image = (!empty($avatar)) ? '/uploads/avatars/'.$profile_user->avatar : '/assets/images/default-profile.png';
+$avatar_image = (!empty($avatar)) ? $profile_user->avatar : '/assets/images/default-profile.png';
 
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user, 'settings' => $settings]);
 ?>

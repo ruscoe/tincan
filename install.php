@@ -350,7 +350,7 @@ function tc_create_tables()
       `password` varchar(255) NOT NULL DEFAULT '',
       `password_reset_code` varchar(255) NOT NULL DEFAULT '',
       `role_id` bigint(20) unsigned NOT NULL,
-      `avatar` varchar(16) NOT NULL DEFAULT '',
+      `avatar` varchar(255) NOT NULL DEFAULT '',
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
       PRIMARY KEY (`user_id`)
@@ -741,18 +741,21 @@ function tc_create_users()
       'email' => 'manny@example.org',
       'password' => $user->get_password_hash('manny'),
       'role_id' => 2, // Moderator user role.
+      'avatar' => '/assets/images/sample-avatars/manny.png',
     ],
     [
       'username' => 'Meche',
       'email' => 'meche@example.org',
       'password' => $user->get_password_hash('meche'),
       'role_id' => 1, // User role.
+      'avatar' => '/assets/images/sample-avatars/meche.png',
     ],
     [
       'username' => 'Domino',
       'email' => 'domino@example.org',
       'password' => $user->get_password_hash('domino'),
       'role_id' => 1, // User role.
+      'avatar' => '/assets/images/sample-avatars/domino.png',
     ],
   ];
 
@@ -761,7 +764,7 @@ function tc_create_users()
     $user_data['updated_time'] = time();
 
     try {
-      $db->save_object(new TCUser((object) $user_data));
+      $new_user = $db->save_object(new TCUser((object) $user_data));
     } catch (TCException $e) {
       echo $e->getMessage()."\n";
     }
