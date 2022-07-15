@@ -27,6 +27,7 @@ require TC_BASE_PATH.'/includes/include-user.php';
 
 require 'class-tc-json-response.php';
 
+$avatar_user_id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
 $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
@@ -42,7 +43,7 @@ if (empty($user)) {
   $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
-$profile_user = $db->load_user($user_id);
+$avatar_user = $db->load_user($avatar_user_id);
 
 $file = $_FILES['avatar_image'];
 
@@ -73,7 +74,7 @@ if (empty($error) && !$image->is_valid_size()) {
 // The directory containing the avatar file is named for the last digit of
 // the user's ID. This just allows us to split up files and avoid massive
 // directories.
-$target_file = substr($user->user_id, -1).'/'.$user->user_id.'.jpg';
+$target_file = substr($avatar_user->user_id, -1).'/'.$avatar_user->user_id.'.jpg';
 $target_full_path = TC_UPLOADS_PATH.'/avatars/'.$target_file;
 
 if (empty($error) && !move_uploaded_file($file['tmp_name'], $target_full_path)) {
@@ -88,12 +89,12 @@ if (empty($error) && !imagejpeg($scaled_image, $target_full_path)) {
 }
 
 if (empty($error)) {
-  $user->avatar = $target_full_path;
+  $avatar_user->avatar = '/uploads/avatars/'.$target_file;
 
   // TODO: Can this line go into TCObject?
-  $user->updated_time = time();
+  $avatar_user->updated_time = time();
 
-  if (!$db->save_object($user)) {
+  if (!$db->save_object($avatar_user)) {
     $error = TCObject::ERR_NOT_SAVED;
   }
 }
@@ -115,26 +116,25 @@ if (!empty($ajax)) {
 
   $destination = null;
 
-  if ($settings['enable_urls']) {
-    $destination = TCURL::create_friendly_url($settings['base_url_user'], $board);
-  } else {
-    $destination = TCURL::create_url($settings['page_new_thread'], [
-      'board' => $board->board_id,
-    ]);
-  }
-
-
   if (empty($error)) {
-    // Send user to their updated page.
-    $destination = TCURL::create_url($settings['page_user'], [
-      'user' => $user->user_id,
-    ]);
+    // Send user to the updated page.
+    if ($settings['enable_urls']) {
+      $destination = TCURL::create_friendly_url($settings['base_url_users'], $avatar_user);
+    } else {
+      $destination = TCURL::create_url($settings['page_user'], [
+        'user' => $avatar_user->user_id,
+      ]);
+    }
   } else {
-    // Send user back to their page with an error.
-    $destination = TCURL::create_url($settings['page_user'], [
-      'user' => $user->user_id,
-      'error' => $error,
-    ]);
+    // Send user back to the page with an error.
+    if ($settings['enable_urls']) {
+      $destination = TCURL::create_friendly_url($settings['base_url_users'], $avatar_user, ['error' => $error]);
+    } else {
+      $destination = TCURL::create_url($settings['page_user'], [
+        'user' => $avatar_user->user_id,
+        'error' => $error,
+      ]);
+    }
   }
 
   header('Location: '.$destination);

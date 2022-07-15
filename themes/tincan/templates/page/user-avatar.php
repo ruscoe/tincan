@@ -34,7 +34,7 @@ if (empty($avatar_user)) {
 }
 
 // Check user has permission to edit this user's avatar.
-if (empty($user) || !$user->can_edit_user($profile_user)) {
+if (empty($user) || !$user->can_edit_user($avatar_user)) {
   header('Location: '.TCURL::create_url($settings['page_404']));
   exit;
 }
@@ -58,7 +58,7 @@ if (empty($user) || !$user->can_edit_user($profile_user)) {
   </div>
 
   <input type="hidden" name="ajax" value="" />
-  <input type="hidden" name="user_id" value="<? echo $avatar_user->user_id; ?>" />
+  <input type="hidden" name="user_id" value="<?php echo $avatar_user->user_id; ?>" />
 
   <div class="fieldset button">
     <input class="submit-button" type="submit" name="avatar" value="Upload new avatar" />
