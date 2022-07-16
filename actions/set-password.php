@@ -79,6 +79,8 @@ if (empty($error)) {
 }
 
 if (!empty($ajax)) {
+  header('Content-type: application/json; charset=utf-8');
+
   $response = new TCJSONResponse();
 
   $response->success = (empty($error));

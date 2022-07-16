@@ -133,6 +133,8 @@ if (empty($error) && $settings['require_confirm_email']) {
 }
 
 if (!empty($ajax)) {
+  header('Content-type: application/json; charset=utf-8');
+
   $response = new TCJSONResponse();
 
   $response->success = (empty($error));
