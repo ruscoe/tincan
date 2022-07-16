@@ -25,7 +25,7 @@ tincan.user = (function($) {
 
   $(document).ready(function() {
 
-    $('form#log-in').submit(tincan.form.submit);
+    $('form#log-in').submit({callback: tincan.user.handle_log_in}, tincan.form.submit);
 
   });
 

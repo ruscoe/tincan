@@ -14,6 +14,7 @@ tincan.form = (function($) {
 
     submit: function(event) {
       event.preventDefault();
+
       var form = event.target;
 
       var params = {};
@@ -22,7 +23,7 @@ tincan.form = (function($) {
         params[$(this).attr('name')] = $(this).val();
       });
 
-      tincan.http.post(form.action, params, $(form).data('callback'));
+      tincan.http.post(form.action, params, event.data.callback);
     }
 
   };

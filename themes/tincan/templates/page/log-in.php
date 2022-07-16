@@ -26,7 +26,7 @@ use TinCan\TCURL;
   }
 ?>
 
-<form id="log-in" data-callback="tincan.user.handle_log_in" action="/actions/log-in.php" method="POST">
+<form id="log-in" action="/actions/log-in.php" method="POST">
   <div class="fieldset">
     <label for="username">Username</label>
     <div class="field">

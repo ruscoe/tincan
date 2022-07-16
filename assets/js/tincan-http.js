@@ -19,9 +19,7 @@ tincan.http = (function($) {
 
       params.ajax = true;
 
-      console.log(callback);
-
-      $.post(url, params).done(callback);
+      $.post(url, params).always(callback);
     }
 
   };
