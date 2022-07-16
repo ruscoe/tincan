@@ -2,6 +2,7 @@
 
 namespace TinCan;
 
+use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
@@ -90,7 +91,11 @@ class TCMailer
     $this->mailer->Subject = $subject;
     $this->mailer->Body = $content;
 
-    $this->mailer->send();
+    try {
+      $this->mailer->send();
+    } catch (Exception $e) {
+      throw new TCException('Unable to send mail: '.$this->mailer->ErrorInfo);
+    }
 
     return true;
   }

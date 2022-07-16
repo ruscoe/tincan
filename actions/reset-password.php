@@ -94,11 +94,16 @@ if (empty($error)) {
     ['name' => $user->username, 'email' => $user->email],
   ];
 
-  $mailer->send_mail($settings['site_email_name'],
-    $settings['site_email_address'],
-    $mail_subject,
-    $mail_content,
-    $recipients);
+  try {
+    $mailer->send_mail($settings['site_email_name'],
+      $settings['site_email_address'],
+      $mail_subject,
+      $mail_content,
+      $recipients);
+  } catch (TCException $e) {
+    echo $e->getMessage();
+    exit;
+  }
 }
 
 if (!empty($ajax)) {
