@@ -13,8 +13,13 @@ tincan.user = (function($) {
   return {
 
     handle_log_in: function(data) {
-      console.log('handle_log_in');
-      console.log(data);
+      if (tincan.core.debug) {
+        console.log(data);
+      }
+
+      if (data.success) {
+        window.location.href = '/';
+      }
     }
 
   };
