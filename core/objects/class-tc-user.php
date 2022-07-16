@@ -28,7 +28,7 @@ class TCUser extends TCObject
   public const ERR_EMAIL_EXISTS = 'email-exists';
   public const ERR_NOT_AUTHORIZED = 'auth';
 
-  public const MIN_PASSWORD_LENGTH = 12;
+  public const MIN_PASSWORD_LENGTH = 8;
   public const MIN_USERNAME_LENGTH = 3;
 
   /**
