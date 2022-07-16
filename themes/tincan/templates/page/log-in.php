@@ -26,7 +26,7 @@ use TinCan\TCURL;
   }
 ?>
 
-<form id="log-in" action="/actions/log-in.php" method="POST">
+<form id="log-in" data-callback="tincan.user.handle_log_in" action="/actions/log-in.php" method="POST">
   <div class="fieldset">
     <label for="username">Username</label>
     <div class="field">
@@ -41,7 +41,7 @@ use TinCan\TCURL;
     </div>
   </div>
 
-  <input type="hidden" name="ajax" value="" />
+  <input class="ajax" type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
     <input class="submit-button" type="submit" name="log_in" value="Log in" />

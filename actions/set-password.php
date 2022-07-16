@@ -17,12 +17,11 @@ use TinCan\TCUser;
 require '../tc-config.php';
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
+require TC_BASE_PATH.'/core/class-tc-json-response.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-template.php';
 require TC_BASE_PATH.'/includes/include-user.php';
-
-require 'class-tc-json-response.php';
 
 $code = filter_input(INPUT_POST, 'code', FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);

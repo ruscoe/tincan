@@ -20,13 +20,12 @@ require '../tc-config.php';
 require TC_BASE_PATH.'/vendor/autoload.php';
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
+require TC_BASE_PATH.'/core/class-tc-json-response.php';
 require TC_BASE_PATH.'/core/class-tc-mailer.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-template.php';
 require TC_BASE_PATH.'/includes/include-user.php';
-
-require 'class-tc-json-response.php';
 
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
 $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);

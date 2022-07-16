@@ -22,13 +22,12 @@ use TinCan\TCUserSession;
 require '../tc-config.php';
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
+require TC_BASE_PATH.'/core/class-tc-json-response.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-content.php';
 require TC_BASE_PATH.'/includes/include-template.php';
 require TC_BASE_PATH.'/includes/include-user.php';
-
-require 'class-tc-json-response.php';
 
 $board_id = filter_input(INPUT_POST, 'board_id', FILTER_SANITIZE_NUMBER_INT);
 $thread_title = filter_input(INPUT_POST, 'thread_title', FILTER_SANITIZE_STRING);

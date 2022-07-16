@@ -30,7 +30,7 @@ use TinCan\TCTemplate;
   </div>
 
   <input type="hidden" name="thread_id" value="<?php echo $thread->thread_id; ?>" />
-  <input type="hidden" name="ajax" value="" />
+  <input class="ajax" type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
     <input class="submit-button" type="submit" name="submit_post" value="Submit reply" />
