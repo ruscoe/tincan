@@ -26,4 +26,4 @@ define('TC_SMTP_PORT', '465');
 // Enable implicit TLS encryption.
 define('TC_SMTP_TLS', true);
 // Enable verbose debug output.
-define('TC_SMTP_DEBUG', true);
+define('TC_SMTP_DEBUG', false);
