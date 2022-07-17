@@ -24,6 +24,16 @@ tincan.form = (function($) {
       });
 
       tincan.http.post(form.action, params, event.data.callback);
+    },
+
+    display_errors: function(form, errors = []) {
+      var markup = '<div class="message-box"><ul class="errors">';
+      for (var i = 0; i < errors.length; i++) {
+        markup += '<li>' + errors[i] + '</li>';
+      }
+      markup += '</ul></div>';
+
+      $(form).before(markup);
     }
 
   };

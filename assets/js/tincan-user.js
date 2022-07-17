@@ -20,6 +20,9 @@ tincan.user = (function($) {
       if (data.success) {
         window.location.href = '/';
       }
+      else {
+        tincan.form.display_errors($('form#log-in'), [data.errors]);
+      }
     }
 
   };
