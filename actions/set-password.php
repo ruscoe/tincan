@@ -17,7 +17,7 @@ use TinCan\TCUser;
  */
 require '../tc-config.php';
 
-require TC_BASE_PATH.'/core/content/class-tc-error-message.php';
+require TC_BASE_PATH.'/core/class-tc-error-message.php';
 require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/core/class-tc-json-response.php';
 require TC_BASE_PATH.'/includes/include-db.php';

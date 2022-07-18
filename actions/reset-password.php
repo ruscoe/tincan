@@ -20,7 +20,7 @@ require '../tc-config.php';
 // Composer autoload.
 require TC_BASE_PATH.'/vendor/autoload.php';
 
-require TC_BASE_PATH.'/core/content/class-tc-error-message.php';
+require TC_BASE_PATH.'/core/class-tc-error-message.php';
 require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/core/class-tc-json-response.php';
 require TC_BASE_PATH.'/core/class-tc-mailer.php';
