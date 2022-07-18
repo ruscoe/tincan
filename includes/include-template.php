@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Includes template related files.
  *

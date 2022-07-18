@@ -9,7 +9,6 @@ namespace TinCan;
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
 class TCUser extends TCObject
 {
   public const ACT_CREATE_POST = 'create-post';

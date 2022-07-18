@@ -4,27 +4,27 @@ use TinCan\TCData;
 use TinCan\TCPostParser;
 use TinCan\TCURL;
 
-  /**
-   * Post template.
-   *
-   * @since 0.01
-   *
-   * @author Dan Ruscoe danruscoe@protonmail.com
-   */
-  $thread = $data['thread'];
-  $post = $data['post'];
-  $author = $data['author'];
-  $user = $data['user'];
-  $settings = $data['settings'];
+/**
+ * Post template.
+ *
+ * @since 0.01
+ *
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
+$thread = $data['thread'];
+$post = $data['post'];
+$author = $data['author'];
+$user = $data['user'];
+$settings = $data['settings'];
 
-  $avatar = $author->avatar;
+$avatar = $author->avatar;
 
-  $avatar_image = (!empty($avatar)) ? $author->avatar : '/assets/images/default-profile.png';
+$avatar_image = (!empty($avatar)) ? $author->avatar : '/assets/images/default-profile.png';
 
-  // $user_page_url = TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);
-  $user_page_url = ($settings['enable_urls']) ? TCURL::create_friendly_url($settings['base_url_users'], $author) : TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);
+// $user_page_url = TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);
+$user_page_url = ($settings['enable_urls']) ? TCURL::create_friendly_url($settings['base_url_users'], $author) : TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);
 
-  $parser = new TCPostParser();
+$parser = new TCPostParser();
 ?>
 
 <div id="post-<?php echo $post->post_id; ?>" class="post">

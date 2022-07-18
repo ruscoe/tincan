@@ -3,19 +3,19 @@
 use TinCan\TCTemplate;
 use TinCan\TCURL;
 
-  /**
-   * Log in page template.
-   *
-   * @since 0.01
-   *
-   * @author Dan Ruscoe danruscoe@protonmail.com
-   */
-  $page = $data['page'];
-  $settings = $data['settings'];
+/**
+ * Log in page template.
+ *
+ * @since 0.01
+ *
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
+$page = $data['page'];
+$settings = $data['settings'];
 
-  $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
-  TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>

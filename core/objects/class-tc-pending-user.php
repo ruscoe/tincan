@@ -9,7 +9,6 @@ namespace TinCan;
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-
 class TCPendingUser extends TCObject
 {
   /**

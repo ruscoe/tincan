@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Includes user related files.
  *

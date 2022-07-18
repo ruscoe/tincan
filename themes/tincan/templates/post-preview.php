@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Post preview template.
  *
@@ -6,7 +7,7 @@
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-  $post = $data['post'];
+$post = $data['post'];
 ?>
 
 <div class="post-preview">

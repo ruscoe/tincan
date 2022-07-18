@@ -2,19 +2,19 @@
 
 use TinCan\TCTemplate;
 
-  /**
-   * Post reply template.
-   *
-   * @since 0.01
-   *
-   * @author Dan Ruscoe danruscoe@protonmail.com
-   */
-  $thread = $data['thread'];
-  $user = $data['user'];
-  $page = $data['page'];
-  $settings = $data['settings'];
+/**
+ * Post reply template.
+ *
+ * @since 0.01
+ *
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
+$thread = $data['thread'];
+$user = $data['user'];
+$page = $data['page'];
+$settings = $data['settings'];
 
-  $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
 <?php

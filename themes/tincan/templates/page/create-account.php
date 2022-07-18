@@ -2,22 +2,22 @@
 
 use TinCan\TCTemplate;
 
- /**
-  * Create account page template.
-  *
-  * @since 0.01
-  *
-  * @author Dan Ruscoe danruscoe@protonmail.com
-  */
- $page = $data['page'];
- $settings = $data['settings'];
+/**
+ * Create account page template.
+ *
+ * @since 0.01
+ *
+ * @author Dan Ruscoe danruscoe@protonmail.com
+ */
+$page = $data['page'];
+$settings = $data['settings'];
 
- $username = filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING);
- $email = filter_input(INPUT_GET, 'email', FILTER_SANITIZE_STRING);
- $status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_STRING);
- $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
+$username = filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING);
+$email = filter_input(INPUT_GET, 'email', FILTER_SANITIZE_STRING);
+$status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_STRING);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
- TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>

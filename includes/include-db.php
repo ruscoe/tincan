@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Includes database related files.
  *

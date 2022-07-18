@@ -12,7 +12,7 @@ namespace TinCan;
 class TCErrorMessage
 {
   /**
-   * TODO
+   * TODO.
    */
   public function get_error_message($context, $error_code)
   {

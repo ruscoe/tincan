@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tin Can Code helper template.
  *

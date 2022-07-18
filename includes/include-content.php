@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Includes content related files.
  *

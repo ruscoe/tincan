@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Renders the contents of the page <header> tag.
  *

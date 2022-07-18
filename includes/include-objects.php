@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Includes object related files.
  *
@@ -7,7 +8,6 @@
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 require TC_BASE_PATH.'/core/objects/class-tc-object.php';
-
 require TC_BASE_PATH.'/core/objects/class-tc-board-group.php';
 require TC_BASE_PATH.'/core/objects/class-tc-board.php';
 require TC_BASE_PATH.'/core/objects/class-tc-mail-template.php';

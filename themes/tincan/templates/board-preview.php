@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Board preview template.
  *
@@ -6,7 +7,7 @@
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-  $board = $data['board'];
+$board = $data['board'];
 ?>
 
 <div id="board-<?php echo $board->board_id; ?>" class="board-preview">

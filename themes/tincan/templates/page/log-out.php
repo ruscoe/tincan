@@ -7,6 +7,6 @@
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
-  // $page = $data['page'];
+// $page = $data['page'];
 
-  header('Location: /actions/log-out.php');
+header('Location: /actions/log-out.php');
