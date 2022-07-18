@@ -8,6 +8,7 @@ $page: #FFFFFF;
 $section: #F1F1F1;
 $sectionAlt: #EEEEEE;
 $sectionHeader: #295C7A;
+$sectionHeaderBorder: #224D67;
 $sectionHeaderText: #FFFFFF;
 $sectionBorder: #DDDDDD;
 
@@ -188,6 +189,8 @@ h1, h2, h3, p, li, th, td {
 
 h1.section-header {
   background-color: $sectionHeader;
+  border: solid $sectionHeaderBorder;
+  border-width: 0 2px 2px 0;
   color: $sectionHeaderText;
   font-size: 2rem;
   margin: 0;

@@ -6,46 +6,46 @@
 }
 /* Breakpoints */
 /* Containers */
-/* line 53, ../sass/style.scss */
+/* line 54, ../sass/style.scss */
 body {
   background-color: white;
   margin: 0;
   padding: 0;
 }
 
-/* line 59, ../sass/style.scss */
+/* line 60, ../sass/style.scss */
 #header, #content, #footer {
   font-family: "OpenSans-Regular", serif;
 }
 
-/* line 63, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 #header {
   position: relative;
 }
-/* line 66, ../sass/style.scss */
+/* line 67, ../sass/style.scss */
 #header h1 {
   padding-top: 3rem;
   text-align: center;
 }
-/* line 71, ../sass/style.scss */
+/* line 72, ../sass/style.scss */
 #header ul.navigation {
   position: absolute;
   right: 2rem;
   top: 1rem;
 }
 
-/* line 78, ../sass/style.scss */
+/* line 79, ../sass/style.scss */
 #content {
   margin: 0 2rem 0 2rem;
   padding-top: 1rem;
 }
 
-/* line 83, ../sass/style.scss */
+/* line 84, ../sass/style.scss */
 #footer {
   padding: 3rem 0 3rem 0;
 }
 
-/* line 87, ../sass/style.scss */
+/* line 88, ../sass/style.scss */
 .message-box {
   background-color: #f1f1f1;
   border: 2px solid #dddddd;
@@ -54,53 +54,53 @@ body {
   margin-top: 3rem;
   padding: 1rem 0 1rem 0;
 }
-/* line 95, ../sass/style.scss */
+/* line 96, ../sass/style.scss */
 .message-box p {
   margin: 0 2rem 0 2rem;
 }
-/* line 99, ../sass/style.scss */
+/* line 100, ../sass/style.scss */
 .message-box ul.errors {
   list-style: none;
   margin: 0 1rem 0 1rem;
   padding: 0;
 }
-/* line 104, ../sass/style.scss */
+/* line 105, ../sass/style.scss */
 .message-box ul.errors li {
   color: #dc0139;
 }
 
-/* line 114, ../sass/style.scss */
+/* line 115, ../sass/style.scss */
 .tc-code table th {
   background-color: #295c7a;
   color: white;
 }
-/* line 119, ../sass/style.scss */
+/* line 120, ../sass/style.scss */
 .tc-code table tr:nth-child(even) {
   background-color: #eeeeee;
 }
-/* line 123, ../sass/style.scss */
+/* line 124, ../sass/style.scss */
 .tc-code table th, .tc-code table td {
   padding: 1rem;
 }
-/* line 129, ../sass/style.scss */
+/* line 130, ../sass/style.scss */
 .tc-code table td h1, .tc-code table td h2, .tc-code table td h3, .tc-code table td h4, .tc-code table td h5 {
   line-height: 100%;
   margin: 0;
 }
 
 /* Navigation */
-/* line 139, ../sass/style.scss */
+/* line 140, ../sass/style.scss */
 ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
   flex-direction: column;
   list-style: none;
   padding: 0;
 }
-/* line 144, ../sass/style.scss */
+/* line 145, ../sass/style.scss */
 ul.navigation li, ul.pagination li, ul.post-controls li, ul.breadcrumbs li {
   padding: 0 0.5rem 0 0.5rem;
 }
 @media (min-width: 600px) {
-  /* line 139, ../sass/style.scss */
+  /* line 140, ../sass/style.scss */
   ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
     display: flex;
     flex-direction: row;
@@ -110,60 +110,62 @@ ul.navigation li, ul.pagination li, ul.post-controls li, ul.breadcrumbs li {
 }
 
 @media (min-width: 600px) {
-  /* line 157, ../sass/style.scss */
+  /* line 158, ../sass/style.scss */
   ul.pagination {
     justify-content: center;
   }
 }
 
-/* line 168, ../sass/style.scss */
+/* line 169, ../sass/style.scss */
 ul.breadcrumbs li a {
   padding-left: 1rem;
 }
-/* line 173, ../sass/style.scss */
+/* line 174, ../sass/style.scss */
 ul.breadcrumbs li.home::before {
   content: '\2616';
 }
-/* line 177, ../sass/style.scss */
+/* line 178, ../sass/style.scss */
 ul.breadcrumbs li.subpage::before {
   content: '\21D2';
 }
 
 /* Text */
-/* line 184, ../sass/style.scss */
+/* line 185, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
   text-align: left;
 }
 
-/* line 189, ../sass/style.scss */
+/* line 190, ../sass/style.scss */
 h1.section-header {
   background-color: #295c7a;
+  border: solid #224d67;
+  border-width: 0 2px 2px 0;
   color: white;
   font-size: 2rem;
   margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-/* line 197, ../sass/style.scss */
+/* line 200, ../sass/style.scss */
 h2.section-subheader, h3.section-subheader {
   font-size: 1.5rem;
   margin: 0 0.5rem 0 0.5rem;
 }
 
 /* Links */
-/* line 204, ../sass/style.scss */
+/* line 207, ../sass/style.scss */
 a:link {
   color: #123266;
   text-decoration: underline;
 }
 
-/* line 209, ../sass/style.scss */
+/* line 212, ../sass/style.scss */
 a:visited {
   color: #123266;
 }
 
-/* line 213, ../sass/style.scss */
+/* line 216, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
 }
