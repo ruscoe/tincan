@@ -23,6 +23,19 @@ tincan.user = (function($) {
       else {
         tincan.form.display_errors($('form#log-in'), [data.errors]);
       }
+    },
+
+    handle_create_account: function(data) {
+      if (tincan.core.debug) {
+        console.log(data);
+      }
+
+      if (data.success) {
+        window.location.href = data.target_url;
+      }
+      else {
+        tincan.form.display_errors($('form#create-account'), [data.errors]);
+      }
     }
 
   };
@@ -34,6 +47,7 @@ tincan.user = (function($) {
   $(document).ready(function() {
 
     $('form#log-in').submit({callback: tincan.user.handle_log_in}, tincan.form.submit);
+    $('form#create-account').submit({callback: tincan.user.handle_create_account}, tincan.form.submit);
 
   });
 

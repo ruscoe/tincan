@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCData;
+use TinCan\TCErrorMessage;
 use TinCan\TCException;
 use TinCan\TCJSONResponse;
 use TinCan\TCMailer;
@@ -22,6 +23,7 @@ require '../tc-config.php';
 // Composer autoload.
 require TC_BASE_PATH.'/vendor/autoload.php';
 
+require TC_BASE_PATH.'/core/content/class-tc-error-message.php';
 require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/core/class-tc-json-response.php';
 require TC_BASE_PATH.'/core/class-tc-mailer.php';
@@ -132,13 +134,24 @@ if (empty($error) && $settings['require_confirm_email']) {
     $recipients);
 }
 
+if (empty($error) && (!$settings['require_confirm_email'])) {
+  // Account confirmation not required; create the user's session.
+  $session = new TCUserSession();
+  $session->create_session($user);
+}
+
 if (!empty($ajax)) {
   header('Content-type: application/json; charset=utf-8');
 
   $response = new TCJSONResponse();
 
   $response->success = (empty($error));
-  $response->errors = [$error];
+  $response->target_url = ($settings['require_confirm_email']) ? TCURL::create_url($settings['page_create_account'], ['status' => 'sent']) : '/';
+
+  if (!empty($error)) {
+    $error_message = new TCErrorMessage();
+    $response->errors = $error_message->get_error_message('create-account', $error);
+  }
 
   exit($response->get_output());
 } else {
@@ -149,10 +162,6 @@ if (!empty($ajax)) {
       // Send user to the create account page with success message.
       $destination = TCURL::create_url($settings['page_create_account'], ['status' => 'sent']);
     } else {
-      // Account confirmation not required; create the user's session.
-      $session = new TCUserSession();
-      $session->create_session($user);
-
       // Send the user to the forum homepage.
       header('Location: '.TCURL::create_url(null));
       exit;
