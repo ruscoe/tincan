@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCData;
+use TinCan\TCErrorMessage;
 use TinCan\TCException;
 use TinCan\TCJSONResponse;
 use TinCan\TCMailer;
@@ -19,6 +20,7 @@ require '../tc-config.php';
 // Composer autoload.
 require TC_BASE_PATH.'/vendor/autoload.php';
 
+require TC_BASE_PATH.'/core/content/class-tc-error-message.php';
 require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/core/class-tc-json-response.php';
 require TC_BASE_PATH.'/core/class-tc-mailer.php';
@@ -111,7 +113,11 @@ if (!empty($ajax)) {
   $response = new TCJSONResponse();
 
   $response->success = (empty($error));
-  $response->errors = [$error];
+
+  if (!empty($error)) {
+    $error_message = new TCErrorMessage();
+    $response->errors = $error_message->get_error_message('reset-password', $error);
+  }
 
   exit($response->get_output());
 } else {
