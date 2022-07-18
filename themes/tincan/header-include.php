@@ -18,6 +18,7 @@
   <script src="/assets/js/tincan-core.js"></script>
   <script src="/assets/js/tincan-form.js"></script>
   <script src="/assets/js/tincan-http.js"></script>
+  <script src="/assets/js/tincan-post.js"></script>
   <script src="/assets/js/tincan-thread.js"></script>
   <script src="/assets/js/tincan-user.js"></script>
 <?php } ?>
