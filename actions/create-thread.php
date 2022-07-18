@@ -139,7 +139,11 @@ if (!empty($ajax)) {
 
   $response->success = (empty($error));
 
-  if (!empty($error)) {
+  if ($response->success) {
+    $response->target_url = TCURL::create_url($settings['page_thread'], [
+      'thread' => $new_thread->thread_id,
+    ]);
+  } else {
     $error_message = new TCErrorMessage();
     $response->errors = $error_message->get_error_message('create-thread', $error);
   }

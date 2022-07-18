@@ -51,7 +51,7 @@ class TCErrorMessage
     }
 
     if (empty($error_text)) {
-      $error_text = 'A general error has occurred. Please try again later. ('.$page->template.'/'.$error_code.')';
+      $error_text = 'A general error has occurred. Please try again later. ('.$context.' : '.$error_code.')';
     }
 
     return $error_text;
