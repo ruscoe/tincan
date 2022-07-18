@@ -15,6 +15,8 @@ tincan.form = (function($) {
     submit: function(event) {
       event.preventDefault();
 
+      tincan.form.clear_errors();
+
       var form = event.target;
 
       var params = {};
@@ -34,6 +36,10 @@ tincan.form = (function($) {
       markup += '</ul></div>';
 
       $(form).before(markup);
+    },
+
+    clear_errors: function() {
+      $('.message-box').remove();
     }
 
   };
