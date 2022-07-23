@@ -65,11 +65,11 @@ $parser = new TCPostParser();
     }
     ?>
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
-    <ul class="post-controls">
+    <ul class="post-controls" data-post="<?=$post->post_id?>">
       <?php if (!empty($user) && $user->can_edit_post($post)) { ?>
-        <li><a href="<?php echo $edit_post_url; ?>">Edit</a></li>
+        <li class="edit"><a href="<?php echo $edit_post_url; ?>">Edit</a></li>
       <?php } if (!empty($user) && $thread->post_can_be_deleted($post) && $user->can_delete_post($post)) { ?>
-        <li><a href="<?php echo $delete_post_url; ?>">Delete</a></li>
+        <li class="delete"><a href="<?php echo $delete_post_url; ?>">Delete</a></li>
       <?php } ?>
     </ul>
   </div>

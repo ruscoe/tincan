@@ -78,3 +78,7 @@ TCTemplate::render('pagination', $settings['theme'], ['page_params' => $page_par
 if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_POST)) {
   TCTemplate::render('post-reply', $settings['theme'], ['thread' => $thread, 'user' => $user, 'page' => $page, 'settings' => $settings]);
 }
+
+?>
+
+<div id="delete-post-dialog">Really delete this post?</div>

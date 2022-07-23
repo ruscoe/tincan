@@ -42,7 +42,11 @@ try {
 
 $post = $db->load_object(new TCPost(), $post_id);
 
-if (isset($_POST['cancel'])) {
+if (empty($post)) {
+  $error = TCObject::ERR_NOT_FOUND;
+}
+
+if (empty($error) && isset($_POST['cancel'])) {
   // Cancel post deletion and return user to the thread.
   TCURL::create_url($settings['page_thread'], ['thread' => $post->thread_id]);
 
@@ -57,7 +61,7 @@ $user_id = $session->get_user_id();
 $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check user has permission to delete this post.
-if (empty($user) || !$user->can_delete_post($post)) {
+if (empty($error) && (empty($user) || !$user->can_delete_post($post))) {
   $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
@@ -73,8 +77,8 @@ if (!empty($ajax)) {
   header('Content-type: application/json; charset=utf-8');
 
   $response = new TCJSONResponse();
-
   $response->success = (empty($error));
+  $response->post_id = (!empty($post)) ? $post->post_id : null;
 
   if (!empty($error)) {
     $error_message = new TCErrorMessage();
