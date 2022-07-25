@@ -65,6 +65,7 @@ body {
   position: relative;
 
   h1 {
+    margin: 0;
     padding-top: 3rem;
     text-align: center;
   }
@@ -77,8 +78,12 @@ body {
 }
 
 #content {
-  margin: 0 2rem 0 2rem;
+  margin: 0;
   padding-top: 1rem;
+
+  @include for-tablet-portrait-up {
+    margin: 0 2rem 0 2rem;
+  }
 }
 
 #footer {
@@ -138,41 +143,41 @@ body {
 /* Navigation */
 
 ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
-  flex-direction: column;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
   list-style: none;
+  margin: 0;
   padding: 0;
 
   li {
-
     padding: 0 0.5rem 0 0.5rem;
-  }
-
-  @include for-tablet-portrait-up {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
   }
 }
 
 ul.pagination {
-
-  @include for-tablet-portrait-up {
-    justify-content: center;
-  }
+  justify-content: center;
+  padding: 1rem 0 0 0;
 }
 
 ul.breadcrumbs {
+  margin: 1rem 0 1rem 0;
 
-  li {
-
-    a {
+  li.home a {
+    @include for-tablet-portrait-up {
       padding-left: 1rem;
     }
   }
 
+  li.subpage a {
+    padding-left: 1rem;
+  }
+
   li.home::before {
-    content: '\2616';
+
+    @include for-tablet-portrait-up {
+      content: '\2616';
+    }
   }
 
   li.subpage::before {
@@ -187,19 +192,31 @@ h1, h2, h3, p, li, th, td {
   text-align: left;
 }
 
+p {
+  font-size: 1rem;
+}
+
 h1.section-header {
   background-color: $sectionHeader;
   border: solid $sectionHeaderBorder;
   border-width: 0 2px 2px 0;
   color: $sectionHeaderText;
-  font-size: 2rem;
+  font-size: 1rem;
   margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
+
+  @include for-tablet-portrait-up {
+    font-size: 2rem;
+  }
 }
 
 h2.section-subheader, h3.section-subheader {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 0 0.5rem 0 0.5rem;
+
+  @include for-tablet-portrait-up {
+    font-size: 1.5rem;
+  }
 }
 
 /* Links */

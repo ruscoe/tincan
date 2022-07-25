@@ -35,7 +35,6 @@ if ($settings['enable_urls']) {
   </head>
   <body class="tincan <?php echo $data['page_template']; ?>">
     <div id="header">
-      <h1><?php echo $settings['forum_name']; ?></h1>
       <ul class="navigation">
       <?php if (empty($user)) { ?>
         <li><a href="<?php echo $create_account_url; ?>">Create Account</a></li>
@@ -51,6 +50,7 @@ if ($settings['enable_urls']) {
       <?php
       } ?>
       </ul>
+      <h1><?php echo $settings['forum_name']; ?></h1>
     </div>
     <!-- Start content -->
     <div id="content">

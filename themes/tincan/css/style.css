@@ -24,28 +24,35 @@ body {
 }
 /* line 67, ../sass/style.scss */
 #header h1 {
+  margin: 0;
   padding-top: 3rem;
   text-align: center;
 }
-/* line 72, ../sass/style.scss */
+/* line 73, ../sass/style.scss */
 #header ul.navigation {
   position: absolute;
   right: 2rem;
   top: 1rem;
 }
 
-/* line 79, ../sass/style.scss */
+/* line 80, ../sass/style.scss */
 #content {
-  margin: 0 2rem 0 2rem;
+  margin: 0;
   padding-top: 1rem;
 }
+@media (min-width: 600px) {
+  /* line 80, ../sass/style.scss */
+  #content {
+    margin: 0 2rem 0 2rem;
+  }
+}
 
-/* line 84, ../sass/style.scss */
+/* line 89, ../sass/style.scss */
 #footer {
   padding: 3rem 0 3rem 0;
 }
 
-/* line 88, ../sass/style.scss */
+/* line 93, ../sass/style.scss */
 .message-box {
   background-color: #f1f1f1;
   border: 2px solid #dddddd;
@@ -54,118 +61,140 @@ body {
   margin-top: 3rem;
   padding: 1rem 0 1rem 0;
 }
-/* line 96, ../sass/style.scss */
+/* line 101, ../sass/style.scss */
 .message-box p {
   margin: 0 2rem 0 2rem;
 }
-/* line 100, ../sass/style.scss */
+/* line 105, ../sass/style.scss */
 .message-box ul.errors {
   list-style: none;
   margin: 0 1rem 0 1rem;
   padding: 0;
 }
-/* line 105, ../sass/style.scss */
+/* line 110, ../sass/style.scss */
 .message-box ul.errors li {
   color: #dc0139;
 }
 
-/* line 115, ../sass/style.scss */
+/* line 120, ../sass/style.scss */
 .tc-code table th {
   background-color: #295c7a;
   color: white;
 }
-/* line 120, ../sass/style.scss */
+/* line 125, ../sass/style.scss */
 .tc-code table tr:nth-child(even) {
   background-color: #eeeeee;
 }
-/* line 124, ../sass/style.scss */
+/* line 129, ../sass/style.scss */
 .tc-code table th, .tc-code table td {
   padding: 1rem;
 }
-/* line 130, ../sass/style.scss */
+/* line 135, ../sass/style.scss */
 .tc-code table td h1, .tc-code table td h2, .tc-code table td h3, .tc-code table td h4, .tc-code table td h5 {
   line-height: 100%;
   margin: 0;
 }
 
 /* Navigation */
-/* line 140, ../sass/style.scss */
+/* line 145, ../sass/style.scss */
 ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
-  flex-direction: column;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
   list-style: none;
+  margin: 0;
   padding: 0;
 }
-/* line 145, ../sass/style.scss */
+/* line 153, ../sass/style.scss */
 ul.navigation li, ul.pagination li, ul.post-controls li, ul.breadcrumbs li {
   padding: 0 0.5rem 0 0.5rem;
 }
-@media (min-width: 600px) {
-  /* line 140, ../sass/style.scss */
-  ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-  }
+
+/* line 158, ../sass/style.scss */
+ul.pagination {
+  justify-content: center;
+  padding: 1rem 0 0 0;
 }
 
+/* line 163, ../sass/style.scss */
+ul.breadcrumbs {
+  margin: 1rem 0 1rem 0;
+}
 @media (min-width: 600px) {
-  /* line 158, ../sass/style.scss */
-  ul.pagination {
-    justify-content: center;
+  /* line 166, ../sass/style.scss */
+  ul.breadcrumbs li.home a {
+    padding-left: 1rem;
   }
 }
-
-/* line 169, ../sass/style.scss */
-ul.breadcrumbs li a {
+/* line 172, ../sass/style.scss */
+ul.breadcrumbs li.subpage a {
   padding-left: 1rem;
 }
-/* line 174, ../sass/style.scss */
-ul.breadcrumbs li.home::before {
-  content: '\2616';
+@media (min-width: 600px) {
+  /* line 176, ../sass/style.scss */
+  ul.breadcrumbs li.home::before {
+    content: '\2616';
+  }
 }
-/* line 178, ../sass/style.scss */
+/* line 183, ../sass/style.scss */
 ul.breadcrumbs li.subpage::before {
   content: '\21D2';
 }
 
 /* Text */
-/* line 185, ../sass/style.scss */
+/* line 190, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
   text-align: left;
 }
 
-/* line 190, ../sass/style.scss */
+/* line 195, ../sass/style.scss */
+p {
+  font-size: 1rem;
+}
+
+/* line 199, ../sass/style.scss */
 h1.section-header {
   background-color: #295c7a;
   border: solid #224d67;
   border-width: 0 2px 2px 0;
   color: white;
-  font-size: 2rem;
+  font-size: 1rem;
   margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
+@media (min-width: 600px) {
+  /* line 199, ../sass/style.scss */
+  h1.section-header {
+    font-size: 2rem;
+  }
+}
 
-/* line 200, ../sass/style.scss */
+/* line 213, ../sass/style.scss */
 h2.section-subheader, h3.section-subheader {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 0 0.5rem 0 0.5rem;
+}
+@media (min-width: 600px) {
+  /* line 213, ../sass/style.scss */
+  h2.section-subheader, h3.section-subheader {
+    font-size: 1.5rem;
+  }
 }
 
 /* Links */
-/* line 207, ../sass/style.scss */
+/* line 224, ../sass/style.scss */
 a:link {
   color: #123266;
   text-decoration: underline;
 }
 
-/* line 212, ../sass/style.scss */
+/* line 229, ../sass/style.scss */
 a:visited {
   color: #123266;
 }
 
-/* line 216, ../sass/style.scss */
+/* line 233, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
 }
@@ -294,49 +323,93 @@ body.tincan form#create-account input.submit-button, body.tincan form#log-in inp
 body.tincan .post {
   background-color: #f1f1f1;
   border-bottom: 2px solid #dddddd;
-  display: flex;
+  display: block;
 }
-/* line 17, ../sass/_tc-post.scss */
-body.tincan .post .post-user, body.tincan .post .post-content {
-  flex: 1 auto;
+@media (min-width: 600px) {
+  /* line 12, ../sass/_tc-post.scss */
+  body.tincan .post {
+    display: flex;
+  }
 }
-/* line 21, ../sass/_tc-post.scss */
+@media (min-width: 600px) {
+  /* line 21, ../sass/_tc-post.scss */
+  body.tincan .post .post-user, body.tincan .post .post-content {
+    flex: 1 auto;
+  }
+}
+/* line 28, ../sass/_tc-post.scss */
 body.tincan .post .post-user {
   background-color: #748499;
   color: white;
-  padding: 1rem 0 1rem 0;
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 0.5rem 0 0.5rem 0;
+  justify-content: flex-end;
   text-align: center;
 }
-/* line 27, ../sass/_tc-post.scss */
+/* line 37, ../sass/_tc-post.scss */
 body.tincan .post .post-user h3.username {
   font-size: 1.25rem;
   color: white;
   margin: 0;
   text-align: center;
 }
-/* line 34, ../sass/_tc-post.scss */
+/* line 44, ../sass/_tc-post.scss */
 body.tincan .post .post-user .profile-image {
-  padding: 1rem;
-}
-/* line 37, ../sass/_tc-post.scss */
-body.tincan .post .post-user .profile-image img {
-  height: 120px;
   margin: 0 1rem 0 1rem;
-  width: 120px;
 }
-/* line 45, ../sass/_tc-post.scss */
-body.tincan .post .post-content {
-  flex: 1 100%;
+/* line 47, ../sass/_tc-post.scss */
+body.tincan .post .post-user .profile-image img {
+  height: 48px;
+  width: 48px;
 }
-/* line 49, ../sass/_tc-post.scss */
+@media (min-width: 600px) {
+  /* line 47, ../sass/_tc-post.scss */
+  body.tincan .post .post-user .profile-image img {
+    height: 120px;
+    margin: 0 1rem 0 1rem;
+    width: 120px;
+  }
+}
+@media (min-width: 600px) {
+  /* line 44, ../sass/_tc-post.scss */
+  body.tincan .post .post-user .profile-image {
+    margin: 0;
+    padding: 1rem;
+  }
+}
+/* line 64, ../sass/_tc-post.scss */
+body.tincan .post .post-user .joined {
+  display: none;
+}
+@media (min-width: 600px) {
+  /* line 64, ../sass/_tc-post.scss */
+  body.tincan .post .post-user .joined {
+    display: block;
+  }
+}
+@media (min-width: 600px) {
+  /* line 28, ../sass/_tc-post.scss */
+  body.tincan .post .post-user {
+    display: block;
+    padding: 1rem 0 1rem 0;
+  }
+}
+@media (min-width: 600px) {
+  /* line 78, ../sass/_tc-post.scss */
+  body.tincan .post .post-content {
+    flex: 1 100%;
+  }
+}
+/* line 85, ../sass/_tc-post.scss */
 body.tincan .post .date {
   padding: 0.5rem 1rem 0 1rem;
 }
-/* line 53, ../sass/_tc-post.scss */
+/* line 89, ../sass/_tc-post.scss */
 body.tincan .post .content {
   padding: 1rem;
 }
-/* line 58, ../sass/_tc-post.scss */
+/* line 94, ../sass/_tc-post.scss */
 body.tincan .post:nth-child(even) {
   background-color: #eeeeee;
 }
