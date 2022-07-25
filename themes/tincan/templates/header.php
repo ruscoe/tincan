@@ -24,9 +24,11 @@ if ($settings['enable_urls']) {
 }
 ?>
 
+<!DOCTYPE html>
 <html>
   <head>
     <title><?php echo $settings['forum_name']; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php if (!empty($settings['theme'])) {
   include TC_BASE_PATH."/themes/{$settings['theme']}/header-include.php";
 } ?>
