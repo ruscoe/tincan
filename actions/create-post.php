@@ -37,6 +37,13 @@ $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
+try {
+  $settings = $db->load_settings();
+} catch (TCException $e) {
+  echo $e->getMessage();
+  exit;
+}
+
 // Get logged in user.
 $session = new TCUserSession();
 $session->start_session();
@@ -86,12 +93,34 @@ if (empty($error)) {
   }
 }
 
+// Calculate the total pages in this thread so the user can be sent
+// directly to their new post.
+$conditions = [
+  ['field' => 'thread_id', 'value' => $thread_id],
+];
+
+$total_posts = $db->count_objects(new TCPost(), $conditions);
+$total_pages = TCPagination::calculate_total_pages($total_posts, $settings['posts_per_page']);
+
+$destination = '';
+
+if (empty($error)) {
+  // Send user to their new post.
+  $destination = TCURL::create_url($settings['page_thread'], [
+    'thread' => $thread_id,
+    'start_at' => $total_pages,
+  ]);
+
+  $destination .= '#post-'.$new_post->post_id;
+}
+
 if (!empty($ajax)) {
   header('Content-type: application/json; charset=utf-8');
 
   $response = new TCJSONResponse();
 
   $response->success = (empty($error));
+  $response->target_url = $destination;
 
   if (!empty($error)) {
     $error_message = new TCErrorMessage();
@@ -100,33 +129,7 @@ if (!empty($ajax)) {
 
   exit($response->get_output());
 } else {
-  try {
-    $settings = $db->load_settings();
-  } catch (TCException $e) {
-    echo $e->getMessage();
-    exit;
-  }
-
-  // Calculate the total pages in this thread so the user can be sent
-  // directly to their new post.
-  $conditions = [
-      ['field' => 'thread_id', 'value' => $thread_id],
-    ];
-
-  $total_posts = $db->count_objects(new TCPost(), $conditions);
-  $total_pages = TCPagination::calculate_total_pages($total_posts, $settings['posts_per_page']);
-
-  $destination = '';
-
-  if (empty($error)) {
-    // Send user to their new post.
-    $destination = TCURL::create_url($settings['page_thread'], [
-      'thread' => $thread_id,
-      'start_at' => $total_pages,
-    ]);
-
-    $destination .= '#post-'.$new_post->post_id;
-  } else {
+  if (!empty($error)) {
     // Send user back to the new post page with an error.
     // TODO: Add an anchor link to the form.
     $destination = TCURL::create_url($settings['page_thread'], [

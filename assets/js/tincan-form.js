@@ -21,9 +21,13 @@ tincan.form = (function($) {
 
       var params = {};
 
-      $(form).find('input').each(function() {
-        params[$(this).attr('name')] = $(this).val();
-      });
+      var field_types = ['input', 'textarea'];
+
+      for (var i = 0; i < field_types.length; i++) {
+        $(form).find(field_types[i]).each(function() {
+          params[$(this).attr('name')] = $(this).val();
+        });
+      }
 
       tincan.http.post(form.action, params, event.data.callback);
     },

@@ -35,6 +35,13 @@ $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
+try {
+  $settings = $db->load_settings();
+} catch (TCException $e) {
+  echo $e->getMessage();
+  exit;
+}
+
 // Get logged in user.
 $session = new TCUserSession();
 $session->start_session();
@@ -70,12 +77,29 @@ if (empty($error)) {
   }
 }
 
+// TODO: Get the page of the thread this post appears on.
+$page = 1;
+
+$destination = '';
+
+if (empty($error)) {
+  // Send user to their updated post.
+  $destination = TCURL::create_url($settings['page_thread'], [
+    'thread' => $post->thread_id,
+    'start_at' => $page,
+  ]);
+
+  $destination .= '#post-'.$post->post_id;
+}
+
 if (!empty($ajax)) {
   header('Content-type: application/json; charset=utf-8');
 
   $response = new TCJSONResponse();
 
   $response->success = (empty($error));
+  $response->post_id = (!empty($post)) ? $post->post_id : null;
+  $response->target_url = $destination;
 
   if (!empty($error)) {
     $error_message = new TCErrorMessage();
@@ -84,27 +108,7 @@ if (!empty($ajax)) {
 
   exit($response->get_output());
 } else {
-  try {
-    $settings = $db->load_settings();
-  } catch (TCException $e) {
-    echo $e->getMessage();
-    exit;
-  }
-
-  // TODO: Get the page of the thread this post appears on.
-  $page = 1;
-
-  $destination = '';
-
-  if (empty($error)) {
-    // Send user to their updated post.
-    $destination = TCURL::create_url($settings['page_thread'], [
-      'thread' => $post->thread_id,
-      'start_at' => $page,
-    ]);
-
-    $destination .= '#post-'.$post->post_id;
-  } else {
+  if (!empty($error)) {
     // Send user back to the new post page with an error.
     $destination = TCURL::create_url($settings['page_edit_post'], [
       'post' => $post->post_id,

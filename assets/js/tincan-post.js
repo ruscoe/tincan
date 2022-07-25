@@ -12,23 +12,34 @@ tincan.post = (function($) {
 
   return {
 
-    // TODO:
     handle_post_reply: function(data) {
       if (tincan.core.debug) {
         console.log('handle_post_reply');
         console.log(data);
       }
+
+      if (data.success) {
+        window.location.href = data.target_url;
+      }
+      else {
+        // TODO: Error message.
+      }
     },
 
-    // TODO:
     handle_update_post: function(data) {
       if (tincan.core.debug) {
         console.log('handle_update_post');
         console.log(data);
       }
+
+      if (data.success) {
+        window.location.href = data.target_url;
+      }
+      else {
+        // TODO: Error message.
+      }
     },
 
-    // TODO:
     handle_delete_post: function(data) {
       if (tincan.core.debug) {
         console.log('handle_delete_post');
@@ -40,7 +51,6 @@ tincan.post = (function($) {
       }
     },
 
-    // TODO:
     confirm_delete_post: function(post_id) {
       if (tincan.core.debug) {
         console.log('confirm_delete_post');
