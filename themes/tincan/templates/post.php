@@ -65,7 +65,7 @@ $parser = new TCPostParser();
     }
     ?>
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
-    <ul class="post-controls" data-post="<?=$post->post_id?>">
+    <ul class="post-controls" data-post="<?php echo $post->post_id; ?>">
       <?php if (!empty($user) && $user->can_edit_post($post)) { ?>
         <li class="edit"><a href="<?php echo $edit_post_url; ?>">Edit</a></li>
       <?php } if (!empty($user) && $thread->post_can_be_deleted($post) && $user->can_delete_post($post)) { ?>
