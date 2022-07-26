@@ -291,4 +291,26 @@ class TCData
 
     return false;
   }
+
+  /**
+   * TODO.
+   *
+   * @since 0.10
+   */
+  public function get_user_posts($user_id, $offset = 0, $limit = 5)
+  {
+    $conditions = [
+      [
+        'field' => 'user_id',
+        'value' => $user_id,
+      ],
+    ];
+
+    $order = [
+      'field' => 'post_id',
+      'direction' => 'DESC',
+    ];
+
+    return $this->load_objects(new TCPost(), [], $conditions, $order, $offset, $limit);
+  }
 }

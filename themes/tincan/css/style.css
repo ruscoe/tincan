@@ -320,25 +320,25 @@ body.tincan form#create-account input.submit-button, body.tincan form#log-in inp
 
 /* Colors */
 /* line 12, ../sass/_tc-post.scss */
-body.tincan .post {
+body.tincan.thread .post {
   background-color: #f1f1f1;
   border-bottom: 2px solid #dddddd;
   display: block;
 }
 @media (min-width: 600px) {
   /* line 12, ../sass/_tc-post.scss */
-  body.tincan .post {
+  body.tincan.thread .post {
     display: flex;
   }
 }
 @media (min-width: 600px) {
   /* line 21, ../sass/_tc-post.scss */
-  body.tincan .post .post-user, body.tincan .post .post-content {
+  body.tincan.thread .post .post-user, body.tincan.thread .post .post-content {
     flex: 1 auto;
   }
 }
 /* line 28, ../sass/_tc-post.scss */
-body.tincan .post .post-user {
+body.tincan.thread .post .post-user {
   background-color: #748499;
   color: white;
   display: flex;
@@ -348,24 +348,24 @@ body.tincan .post .post-user {
   text-align: center;
 }
 /* line 37, ../sass/_tc-post.scss */
-body.tincan .post .post-user h3.username {
+body.tincan.thread .post .post-user h3.username {
   font-size: 1.25rem;
   color: white;
   margin: 0;
   text-align: center;
 }
 /* line 44, ../sass/_tc-post.scss */
-body.tincan .post .post-user .profile-image {
+body.tincan.thread .post .post-user .profile-image {
   margin: 0 1rem 0 1rem;
 }
 /* line 47, ../sass/_tc-post.scss */
-body.tincan .post .post-user .profile-image img {
+body.tincan.thread .post .post-user .profile-image img {
   height: 48px;
   width: 48px;
 }
 @media (min-width: 600px) {
   /* line 47, ../sass/_tc-post.scss */
-  body.tincan .post .post-user .profile-image img {
+  body.tincan.thread .post .post-user .profile-image img {
     height: 120px;
     margin: 0 1rem 0 1rem;
     width: 120px;
@@ -373,43 +373,89 @@ body.tincan .post .post-user .profile-image img {
 }
 @media (min-width: 600px) {
   /* line 44, ../sass/_tc-post.scss */
-  body.tincan .post .post-user .profile-image {
+  body.tincan.thread .post .post-user .profile-image {
     margin: 0;
     padding: 1rem;
   }
 }
 /* line 64, ../sass/_tc-post.scss */
-body.tincan .post .post-user .joined {
+body.tincan.thread .post .post-user .joined {
   display: none;
 }
 @media (min-width: 600px) {
   /* line 64, ../sass/_tc-post.scss */
-  body.tincan .post .post-user .joined {
+  body.tincan.thread .post .post-user .joined {
     display: block;
   }
 }
 @media (min-width: 600px) {
   /* line 28, ../sass/_tc-post.scss */
-  body.tincan .post .post-user {
+  body.tincan.thread .post .post-user {
     display: block;
     padding: 1rem 0 1rem 0;
   }
 }
 @media (min-width: 600px) {
   /* line 78, ../sass/_tc-post.scss */
-  body.tincan .post .post-content {
+  body.tincan.thread .post .post-content {
     flex: 1 100%;
   }
 }
 /* line 85, ../sass/_tc-post.scss */
-body.tincan .post .date {
+body.tincan.thread .post .date {
   padding: 0.5rem 1rem 0 1rem;
 }
 /* line 89, ../sass/_tc-post.scss */
-body.tincan .post .content {
+body.tincan.thread .post .content {
   padding: 1rem;
 }
 /* line 94, ../sass/_tc-post.scss */
-body.tincan .post:nth-child(even) {
+body.tincan.thread .post:nth-child(even) {
   background-color: #eeeeee;
+}
+
+/* Colors */
+@media (min-width: 600px) {
+  /* line 12, ../sass/_tc-user.scss */
+  body.tincan.user #user-profile {
+    display: flex;
+  }
+}
+/* line 19, ../sass/_tc-user.scss */
+body.tincan.user #user-info {
+  background-color: #748499;
+  text-align: center;
+}
+/* line 23, ../sass/_tc-user.scss */
+body.tincan.user #user-info .profile-image {
+  padding: 1rem 0 0 0;
+}
+/* line 27, ../sass/_tc-user.scss */
+body.tincan.user #user-info .joined {
+  color: white;
+  padding: 0 0 1rem 0;
+}
+@media (min-width: 600px) {
+  /* line 19, ../sass/_tc-user.scss */
+  body.tincan.user #user-info {
+    flex: 0.5;
+    max-width: 300px;
+    padding: 1rem;
+  }
+}
+/* line 39, ../sass/_tc-user.scss */
+body.tincan.user #user-posts {
+  margin: 0 2rem 0 2rem;
+}
+/* line 42, ../sass/_tc-user.scss */
+body.tincan.user #user-posts ul.post-list {
+  list-style-type: none;
+  padding: 0;
+}
+@media (min-width: 600px) {
+  /* line 39, ../sass/_tc-user.scss */
+  body.tincan.user #user-posts {
+    flex: 1;
+    padding: 0 0 0 2rem;
+  }
 }

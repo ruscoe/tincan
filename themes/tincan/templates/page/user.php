@@ -2,6 +2,7 @@
 
 use TinCan\TCData;
 use TinCan\TCTemplate;
+use TinCan\TCThread;
 use TinCan\TCURL;
 
 /**
@@ -35,21 +36,67 @@ $avatar = $profile_user->avatar;
 
 $avatar_image = (!empty($avatar)) ? $profile_user->avatar : '/assets/images/default-profile.png';
 
+$avatar_url = null;
+
+if (!empty($user) && $user->can_edit_user($profile_user)) {
+  if ($settings['enable_urls']) {
+    $avatar_url = TCURL::create_friendly_url($settings['base_url_avatar'], $profile_user);
+  } else {
+    $avatar_url = TCURL::create_url($settings['page_user_avatar'], ['user' => $profile_user->user_id]);
+  }
+}
+
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $profile_user->username; ?></h1>
-  <div class="profile-image">
-    <img src="<?php echo $avatar_image; ?>" />
-    <?php
-    if (!empty($user) && $user->can_edit_user($profile_user)) {
-      if ($settings['enable_urls']) {
-        $avatar_url = TCURL::create_friendly_url($settings['base_url_avatar'], $profile_user);
-      } else {
-        $avatar_url = TCURL::create_url($settings['page_user_avatar'], ['user' => $profile_user->user_id]);
-      } ?>
-      <div><a href="<?php echo $avatar_url; ?>">Change avatar</a></div>
-    <?php
-    } ?>
+<div id="user-profile">
+  <div id="user-info">
+    <div class="profile-image">
+      <img src="<?php echo $avatar_image; ?>" />
+      <?php if (!empty($avatar_url)) { ?>
+        <div><a href="<?php echo $avatar_url; ?>">Change avatar</a></div>
+      <?php } ?>
+    </div>
+    <div class="joined">Joined: <?php echo date($settings['date_format'], $profile_user->created_time); ?></div>
   </div>
-  <div class="joined">Joined: <?php echo date($settings['date_format'], $profile_user->created_time); ?></div>
+  <div id="user-posts">
+    <h2>Recent posts</h2>
+    <?php
+    $posts = $db->get_user_posts($profile_user->user_id);
+
+    if (!empty($posts)) {
+      $thread = null; ?>
+      <ul class="post-list">
+      <?php
+      foreach ($posts as $post) {
+        $thread = $db->load_object(new TCThread(), $post->thread_id);
+
+        $thread_url = null;
+        if ($settings['enable_urls']) {
+          $thread_url = TCURL::create_friendly_url($settings['base_url_threads'], $thread);
+        } else {
+          $thread_url = TCURL::create_url($settings['page_thread'], [
+            'thread' => $thread->thread_id,
+          ]);
+        }
+
+        // TODO: Figure out the page of the thread this post appears on.
+        $thread_url .= '#post-'.$post->post_id; ?>
+        <li>
+          <h3><a href="<?php echo $thread_url; ?>"><?php echo $thread->thread_title; ?></a></h3>
+          <p class="post"><?php echo $post->get_trimmed_content(); ?></p>
+          <p class="meta"><?php echo date($settings['date_time_format'], $post->created_time); ?></p>
+        </li>
+        <?php
+      } ?>
+      </ul>
+      <?php
+    } else {
+      ?>
+      <p><?php echo $profile_user->username; ?> hasn't posted anything yet.</p>
+      <?php
+    }
+     ?>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+// Tin Can theme user style sheet.
+// @author Dan Ruscoe
+// @email danruscoe@protonmail.com
+
+/* Colors */
+
+$userInfo: #748499;
+$userInfoText: #FFFFFF;
+
+body.tincan.user {
+
+  #user-profile {
+
+    @include for-tablet-portrait-up {
+      display: flex;
+    }
+  }
+
+  #user-info {
+    background-color: $userInfo;
+    text-align: center;
+
+    .profile-image {
+      padding: 1rem 0 0 0;
+    }
+
+    .joined {
+      color: $userInfoText;
+      padding: 0 0 1rem 0;
+    }
+
+    @include for-tablet-portrait-up {
+      flex: 0.5;
+      max-width: 300px;
+      padding: 1rem;
+    }
+  }
+
+  #user-posts {
+    margin: 0 2rem 0 2rem;
+
+    ul.post-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    @include for-tablet-portrait-up {
+      flex: 1;
+      padding: 0 0 0 2rem;
+    }
+  }
+
+}

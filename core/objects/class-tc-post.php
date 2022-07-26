@@ -53,6 +53,20 @@ class TCPost extends TCObject
   protected $updated_by_user;
 
   /**
+   * TODO.
+   *
+   * @since 0.10
+   */
+  public function get_trimmed_content($length = 64)
+  {
+    if (strlen($this->content) < $length) {
+      return $this->content;
+    } else {
+      return substr($this->content, 0, $length).'...';
+    }
+  }
+
+  /**
    * @see TCObject::get_parent()
    * @since 0.04
    */
