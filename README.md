@@ -58,6 +58,6 @@ composer install
 
 Please send questions and comments to danruscoe@protonmail.com
 
----
-*"An idiot admires complexity, a genius admires simplicity" - Terry A. Davis*
----
+___
+"An idiot admires complexity, a genius admires simplicity" - Terry A. Davis
+___
