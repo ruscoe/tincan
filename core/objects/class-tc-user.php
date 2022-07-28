@@ -304,7 +304,11 @@ class TCUser extends TCObject
   }
 
   /**
-   * TODO:.
+   * Determines if a username can be used.
+   *
+   * @param string $username the username to test
+   *
+   * @return bool true if username is valid
    *
    * @since 0.04
    */
@@ -324,12 +328,17 @@ class TCUser extends TCObject
   }
 
   /**
-   * TODO:.
+   * Determines if an email address can be used.
    *
    * @since 0.04
+   *
+   * @param string $email the password to test
+   *
+   * @return bool true if email is valid
    */
   public function validate_email($email)
   {
+    // TODO: Validate email format.
     if (empty($email)) {
       return false;
     }
@@ -338,9 +347,13 @@ class TCUser extends TCObject
   }
 
   /**
-   * TODO:.
+   * Determines if a password can be used.
    *
    * @since 0.04
+   *
+   * @param string $password the password to test
+   *
+   * @return bool true if password is valid
    */
   public function validate_password($password)
   {

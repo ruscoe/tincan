@@ -12,7 +12,14 @@ namespace TinCan;
 class TCErrorMessage
 {
   /**
-   * TODO.
+   * Gets an error message from an error code depending on the context used.
+   *
+   * @since 0.10
+   *
+   * @param string $context    the context of the error message (usually a form)
+   * @param string $error_code the code used to identify the error
+   *
+   * @return string the appropriate error message
    */
   public function get_error_message($context, $error_code)
   {
