@@ -262,12 +262,14 @@ class TCUser extends TCObject
    *
    * @since 0.07
    *
+   * @param int $length length of the code to generate
+   *
    * @return string the password reset code
    */
-  public function generate_password_reset_code($length = 0)
+  public function generate_password_reset_code($length = 16)
   {
     // Use the password generator to create a random string.
-    $code = $this->generate_password(16);
+    $code = $this->generate_password($length);
     // Hash the random string to create the code.
     $hash = md5($code);
 
