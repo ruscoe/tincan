@@ -922,7 +922,7 @@ function tc_create_posts($new_thread_ids)
   foreach ($posts as $post) {
     $post['created_time'] = time();
     $post['updated_time'] = time();
-    $post['updated_by_user'] = 1000;
+    $post['updated_by_user'] = $post['user_id'];
 
     try {
       $db->save_object(new TCPost((object) $post));
