@@ -29,6 +29,7 @@ require TC_BASE_PATH.'/includes/include-content.php';
 require TC_BASE_PATH.'/includes/include-template.php';
 require TC_BASE_PATH.'/includes/include-user.php';
 
+$page_number = filter_input(INPUT_POST, 'page_number', FILTER_SANITIZE_NUMBER_INT);
 $post_id = filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT);
 $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_STRING);
 $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
@@ -77,16 +78,13 @@ if (empty($error)) {
   }
 }
 
-// TODO: Get the page of the thread this post appears on.
-$page = 1;
-
 $destination = '';
 
 if (empty($error)) {
   // Send user to their updated post.
   $destination = TCURL::create_url($settings['page_thread'], [
     'thread' => $post->thread_id,
-    'start_at' => $page,
+    'start_at' => $page_number,
   ]);
 
   $destination .= '#post-'.$post->post_id;

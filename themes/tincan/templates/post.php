@@ -63,11 +63,11 @@ $parser = new TCPostParser();
     $edit_post_url = null;
     $delete_post_url = null;
     if ($settings['enable_urls']) {
-      $edit_post_url = TCURL::create_friendly_url($settings['base_url_edit_post'], $post);
-      $delete_post_url = TCURL::create_friendly_url($settings['base_url_delete_post'], $post);
+      $edit_post_url = TCURL::create_friendly_url($settings['base_url_edit_post'], $post, ['page_number' => $page_number]);
+      $delete_post_url = TCURL::create_friendly_url($settings['base_url_delete_post'], $post, ['page_number' => $page_number]);
     } else {
-      $edit_post_url = TCURL::create_url($settings['page_edit_post'], ['post' => $post->post_id]);
-      $delete_post_url = TCURL::create_url($settings['page_delete_post'], ['post' => $post->post_id]);
+      $edit_post_url = TCURL::create_url($settings['page_edit_post'], ['post' => $post->post_id, 'page_number' => $page_number]);
+      $delete_post_url = TCURL::create_url($settings['page_delete_post'], ['post' => $post->post_id, 'page_number' => $page_number]);
     }
     ?>
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>

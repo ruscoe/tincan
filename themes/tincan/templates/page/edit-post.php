@@ -13,6 +13,7 @@ use TinCan\TCURL;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
+$page_number = filter_input(INPUT_GET, 'page_number', FILTER_SANITIZE_NUMBER_INT);
 
 if (empty($post_id) && !empty($data['slug'])) {
   $post_id = $data['slug'];
@@ -52,6 +53,7 @@ if (!empty($user) && $user->can_edit_post($post)) {
     <textarea name="post_content" rows="20" cols="30"><?php echo $post->content; ?></textarea>
   </div>
 
+  <input type="hidden" name="page_number" value="<?php echo $page_number; ?>" />
   <input type="hidden" name="post_id" value="<?php echo $post->post_id; ?>" />
   <input class="ajax" type="hidden" name="ajax" value="" />
 
