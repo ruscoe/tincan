@@ -47,7 +47,7 @@ $parser = new TCPostParser();
       <a href="<?php echo $post_url; ?>"><?php echo date($settings['date_time_format'], $post->created_time); ?></a>
       <?php
       if ($post->updated_time != $post->created_time) {
-        echo ' (updated '.date($settings['date_time_format'], $post->updated_time);
+        echo ' (edited '.date($settings['date_time_format'], $post->updated_time);
 
         if ($post->updated_by_user != $post->user_id) {
           $db = new TCData();
