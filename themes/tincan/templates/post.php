@@ -12,6 +12,7 @@ use TinCan\TCURL;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $thread = $data['thread'];
+$page_number = $data['page_number'];
 $post = $data['post'];
 $author = $data['author'];
 $user = $data['user'];
@@ -21,8 +22,14 @@ $avatar = $author->avatar;
 
 $avatar_image = (!empty($avatar)) ? $author->avatar : '/assets/images/default-profile.png';
 
-// $user_page_url = TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);
 $user_page_url = ($settings['enable_urls']) ? TCURL::create_friendly_url($settings['base_url_users'], $author) : TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);
+
+$post_url = TCURL::create_url($settings['page_thread'], [
+  'thread' => $post->thread_id,
+  'start_at' => $page_number,
+]);
+
+$post_url .= '#post-'.$post->post_id;
 
 $parser = new TCPostParser();
 ?>
@@ -37,9 +44,8 @@ $parser = new TCPostParser();
   </div>
   <div class="post-content">
     <div class="date">
+      <a href="<?php echo $post_url; ?>"><?php echo date($settings['date_time_format'], $post->created_time); ?></a>
       <?php
-      echo date($settings['date_time_format'], $post->created_time);
-
       if ($post->updated_time != $post->created_time) {
         echo ' (updated '.date($settings['date_time_format'], $post->updated_time);
 

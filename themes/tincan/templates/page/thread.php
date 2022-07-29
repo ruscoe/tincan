@@ -64,7 +64,7 @@ $posts = $db->load_objects(new TCPost(), [], $conditions, $order, $offset, $sett
 foreach ($posts as $post) {
   $author = $db->load_user($post->user_id);
 
-  TCTemplate::render('post', $settings['theme'], ['thread' => $thread, 'post' => $post, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
+  TCTemplate::render('post', $settings['theme'], ['thread' => $thread, 'page_number' => $start_at, 'post' => $post, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
 }
 
 $page_params = [
