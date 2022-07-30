@@ -47,7 +47,9 @@ $page = null;
 $request_uri = filter_input(INPUT_SERVER, 'REQUEST_URI');
 $path = explode('?', $request_uri)[0];
 
-if ($path == '/') {
+$page_template = null;
+
+if (($path == '/') && empty($page_id)) {
   $page_template = 'front';
 } else if ($settings['enable_urls'] && empty($page_id) && !empty($path)) {
   // Work out page ID from friendly URL.

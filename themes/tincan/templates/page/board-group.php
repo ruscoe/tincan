@@ -64,13 +64,8 @@ $boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
 $board_url = null;
 if (!empty($boards)) {
   foreach ($boards as $board) {
-    if ($settings['enable_urls']) {
-      $board_url = TCURL::create_friendly_url($settings['base_url_boards'], $board);
-    } else {
-      $board_url = TCURL::create_url($settings['page_board'], [
-        'board' => $board->board_id,
-      ]);
-    }
+    $url_id = ($settings['enable_urls']) ? $settings['base_url_boards'] : $settings['page_board'];
+    $board_url = TCURL::create_url($url_id, ['board' => $board->board_id], $settings['enable_urls'], $board->get_slug());
 
     $data = [
       'board' => $board,

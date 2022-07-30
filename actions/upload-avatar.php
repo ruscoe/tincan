@@ -125,23 +125,12 @@ if (!empty($ajax)) {
 
   if (empty($error)) {
     // Send user to the updated page.
-    if ($settings['enable_urls']) {
-      $destination = TCURL::create_friendly_url($settings['base_url_users'], $avatar_user);
-    } else {
-      $destination = TCURL::create_url($settings['page_user'], [
-        'user' => $avatar_user->user_id,
-      ]);
-    }
+    $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
+    TCURL::create_url($url_id, ['user' => $avatar_user->user_id], $settings['enable_urls'], $avatar_user->get_slug());
   } else {
     // Send user back to the page with an error.
-    if ($settings['enable_urls']) {
-      $destination = TCURL::create_friendly_url($settings['base_url_users'], $avatar_user, ['error' => $error]);
-    } else {
-      $destination = TCURL::create_url($settings['page_user'], [
-        'user' => $avatar_user->user_id,
-        'error' => $error,
-      ]);
-    }
+    $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
+    TCURL::create_url($url_id, ['user' => $avatar_user->user_id, 'error' => $error], $settings['enable_urls'], $avatar_user->get_slug());
   }
 
   header('Location: '.$destination);

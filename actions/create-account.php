@@ -160,7 +160,8 @@ if (!empty($ajax)) {
   if (empty($error)) {
     if ($settings['require_confirm_email']) {
       // Send user to the create account page with success message.
-      $destination = TCURL::create_url($settings['page_create_account'], ['status' => 'sent']);
+      $url_id = ($settings['enable_urls']) ? 'create-account' : $settings['page_create_account'];
+      $destination = TCURL::create_url($url_id, ['status' => 'sent'], $settings['enable_urls']);
     } else {
       // Send the user to the forum homepage.
       header('Location: '.TCURL::create_url(null));
@@ -168,11 +169,13 @@ if (!empty($ajax)) {
     }
   } else {
     // Send user back to the create account page with an error.
-    $destination = TCURL::create_url($settings['page_create_account'], [
+    $url_id = ($settings['enable_urls']) ? 'create-account' : $settings['page_create_account'];
+    $url_params = [
       'username' => $username,
       'email' => $email,
       'error' => $error,
-    ]);
+    ];
+    $destination = TCURL::create_url($url_id, $url_params, $settings['enable_urls']);
   }
 
   header('Location: '.$destination);

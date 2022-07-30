@@ -20,11 +20,8 @@ $db = new TCData();
 
 $thread = $db->load_object(new TCThread(), $thread_id);
 
-if ($settings['enable_urls']) {
-  $thread_url = TCURL::create_friendly_url($settings['base_url_threads'], $thread);
-} else {
-  $thread_url = TCURL::create_url($settings['page_thread'], ['thread' => $thread_id]);
-}
+$url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
+$thread_url = TCURL::create_url($url_id, ['thread' => $thread->thread_id], $settings['enable_urls'], $thread->get_slug());
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>

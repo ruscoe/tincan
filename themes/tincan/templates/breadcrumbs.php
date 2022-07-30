@@ -53,14 +53,9 @@ if (!empty($chain)) {
     $page_url = null;
 
     if (isset($template_page_map[$primary_key])) {
-      if ($settings['enable_urls']) {
-        $base_url = $template_page_map[$primary_key][0];
-        $page_url = TCURL::create_friendly_url($base_url, $object);
-      } else {
-        $page_id = $template_page_map[$primary_key][1];
-        $url_param = $template_page_map[$primary_key][2];
-        $page_url = TCURL::create_url($page_id, [$url_param => $object->get_primary_key_value()]);
-      }
+      $url_id = ($settings['enable_urls']) ? $template_page_map[$primary_key][0] : $template_page_map[$primary_key][1];
+      $object_name = $template_page_map[$primary_key][2];
+      $page_url = TCURL::create_url($url_id, [$object_name => $object_id], $settings['enable_urls'], $object->get_slug());
     }
 
     if (!empty($page_url)) {

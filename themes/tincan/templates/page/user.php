@@ -39,11 +39,8 @@ $avatar_image = (!empty($avatar)) ? $profile_user->avatar : '/assets/images/defa
 $avatar_url = null;
 
 if (!empty($user) && $user->can_edit_user($profile_user)) {
-  if ($settings['enable_urls']) {
-    $avatar_url = TCURL::create_friendly_url($settings['base_url_avatar'], $profile_user);
-  } else {
-    $avatar_url = TCURL::create_url($settings['page_user_avatar'], ['user' => $profile_user->user_id]);
-  }
+  $url_id = ($settings['enable_urls']) ? $settings['base_url_avatar'] : $settings['page_user_avatar'];
+  $avatar_url = TCURL::create_url($url_id, ['user' => $profile_user->user_id], $settings['enable_urls'], $profile_user->get_slug());
 }
 
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user, 'settings' => $settings]);
@@ -72,14 +69,8 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user
       foreach ($posts as $post) {
         $thread = $db->load_object(new TCThread(), $post->thread_id);
 
-        $thread_url = null;
-        if ($settings['enable_urls']) {
-          $thread_url = TCURL::create_friendly_url($settings['base_url_threads'], $thread);
-        } else {
-          $thread_url = TCURL::create_url($settings['page_thread'], [
-            'thread' => $thread->thread_id,
-          ]);
-        }
+        $url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
+        $thread_url = TCURL::create_url($url_id, ['thread' => $thread->thread_id], $settings['enable_urls'], $thread->get_slug());
 
         // TODO: Figure out the page of the thread this post appears on.
         $thread_url .= '#post-'.$post->post_id; ?>

@@ -45,14 +45,8 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'sett
 <?php
   // Show new thread link if user has permission to create a new thread.
   if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
-    $new_thread_url = null;
-    if ($settings['enable_urls']) {
-      $new_thread_url = TCURL::create_friendly_url($settings['base_url_new_thread'], $board);
-    } else {
-      $new_thread_url = TCURL::create_url($settings['page_new_thread'], [
-        'board' => $board->board_id,
-      ]);
-    } ?>
+    $url_id = ($settings['enable_urls']) ? $settings['base_url_new_thread'] : $settings['page_new_thread'];
+    $new_thread_url = TCURL::create_url($url_id, ['board' => $board->board_id], $settings['enable_urls'], $board->get_slug()); ?>
 
   <div id="board-navigation">
     <ul class="navigation">
@@ -88,13 +82,8 @@ $threads = $db->load_objects(new TCThread(), [], $conditions, $order, $offset, $
 $thread_url = null;
 if (!empty($threads)) {
   foreach ($threads as $thread) {
-    if ($settings['enable_urls']) {
-      $thread_url = TCURL::create_friendly_url($settings['base_url_threads'], $thread);
-    } else {
-      $thread_url = TCURL::create_url($settings['page_thread'], [
-        'thread' => $thread->thread_id,
-      ]);
-    }
+    $url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
+    $thread_url = TCURL::create_url($url_id, ['thread' => $thread->thread_id], $settings['enable_urls'], $thread->get_slug());
 
     $template_data = [
       'user' => $db->load_user($thread->updated_by_user),
