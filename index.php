@@ -44,10 +44,13 @@ $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
 $page_slug = null;
 $page = null;
 
-if (empty($page_id)) {
-  // Work out page ID from friendly URL.
-  $path = filter_input(INPUT_SERVER, 'REQUEST_URI');
+$request_uri = filter_input(INPUT_SERVER, 'REQUEST_URI');
+$path = explode('?', $request_uri)[0];
 
+if ($path == '/') {
+  $page_template = 'front';
+} else if ($settings['enable_urls'] && empty($page_id) && !empty($path)) {
+  // Work out page ID from friendly URL.
   $base_urls_to_page_ids = [
     $settings['base_url_board_groups'] => $settings['page_board_group'],
     $settings['base_url_boards'] => $settings['page_board'],
@@ -67,8 +70,10 @@ if (empty($page_id)) {
   foreach ($base_urls_to_page_ids as $base_url => $base_page_id) {
     // Start regex with initial slash.
     $regex_prefix = '#^/';
-    // End regex with optional trailing slash. Case insensitive.
-    $regex_suffix = '/?$#i';
+    // End regex with optional trailing slash or slash with question mark to
+    // support URL parameters. Do not accept any other appendages.
+    // Case insensitive.
+    $regex_suffix = '(/?|(/\?)?)#i';
     // Replace the %slug% token with the regex string.
     $path_regex = $regex_prefix.str_replace('%slug%', '([a-z_\-0-9]*)', $base_url).$regex_suffix;
 
@@ -81,9 +86,15 @@ if (empty($page_id)) {
       $page_slug = (isset($page_matches[1])) ? $page_matches[1] : null;
     }
   }
+
+  if (empty($page_id)) {
+    // Page not found, redirect to 404 error page.
+    header('Location: '.TCURL::create_url($settings['page_404']));
+    exit;
+  }
 }
 
-// Get page template if available, otherwise default to front page.
+// Get page template if available, otherwise default to 404.
 if (!empty($page_id)) {
   $page = $db->load_object(new TCPage(), $page_id);
 
@@ -94,8 +105,6 @@ if (!empty($page_id)) {
     header('Location: '.TCURL::create_url($settings['page_404']));
     exit;
   }
-} else {
-  $page_template = 'front';
 }
 
 // Get logged in user.
