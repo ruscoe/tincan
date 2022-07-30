@@ -102,11 +102,15 @@ if (!empty($page_id)) {
 
   if (!empty($page)) {
     $page_template = $page->template;
-  } else {
-    // Page not found, redirect to 404 error page.
-    header('Location: '.TCURL::create_url($settings['page_404']));
-    exit;
   }
+}
+
+if (empty($page_template)) {
+  // Page not found, redirect to 404 error page.
+  // Potentially troublesome as any missing file will end up here,
+  // not just forum URLs. Start debugging here if it becomes a problem.
+  header('Location: '.TCURL::create_url($settings['page_404']));
+  exit;
 }
 
 // Get logged in user.
