@@ -39,8 +39,8 @@ $session->start_session();
 $user_id = $session->get_user_id();
 $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
-// TODO: Check user has permission to upload an avatar.
-if (empty($user)) {
+// Check user has permission to upload an avatar.
+if (empty($user) && $user->can_edit_user($avatar_user_id)) {
   $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
@@ -126,11 +126,11 @@ if (!empty($ajax)) {
   if (empty($error)) {
     // Send user to the updated page.
     $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-    TCURL::create_url($url_id, ['user' => $avatar_user->user_id], $settings['enable_urls'], $avatar_user->get_slug());
+    $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id], $settings['enable_urls'], $avatar_user->get_slug());
   } else {
     // Send user back to the page with an error.
     $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-    TCURL::create_url($url_id, ['user' => $avatar_user->user_id, 'error' => $error], $settings['enable_urls'], $avatar_user->get_slug());
+    $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id, 'error' => $error], $settings['enable_urls'], $avatar_user->get_slug());
   }
 
   header('Location: '.$destination);
