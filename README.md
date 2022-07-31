@@ -14,43 +14,132 @@ Tin Can is still in early development.
 
 ## Requirements
 
-* Composer (if you want to run unit tests)
+* [Composer](https://getcomposer.org)
 * PHP 7.4.0 or above
 * MySQL
 
-## TODO: Running on nginx
+## Running Tin Can Forum
 
-## TODO: Running on Apache
+For these examples, assume the URL will be tincan.local and your root directory
+is /var/www/tincan.local/html
+
+To set this up, run the following:
+
+`sudo mkdir /var/www/tincan.local/html`
+
+`sudo mkdir /var/www/tincan.local/html/uploads`
+
+### Running on nginx
+
+Create an nginx configuration file:
+
+`sudo nano /etc/nginx/sites-available/tincan.local`
+
+Populate the configuration as below. Change anything that doesn't match
+your environment to something that does. The PHP version likely needs to be
+changed, unless you are running 7.4.
+
+```
+server {
+  listen 80;
+  listen [::]:80;
+
+  root /var/www/tincan.local/html;
+  index index.php;
+
+  server_name tincan.local;
+
+  if (!-e $request_filename) {
+    rewrite ^.*$ /index.php last;
+  }
+
+  location / {
+    try_files $uri $uri/ =404;
+  }
+
+  location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+  }
+
+  location ~ /\.ht {
+    deny all;
+  }
+}
+```
+
+Enable your new configuration file by symlinking it:
+
+`sudo ln -s /etc/nginx/sites-available/tincan.local /etc/nginx/sites-enabled/tincan.local`
+
+Edit your hosts file:
+
+`sudo nano /etc/hosts`
+
+Add:
+
+`127.0.0.1 tincan.local`
+
+Finally, restart nginx:
+
+`sudo service nginx restart`
+
+Continue on to the Configuration section.
 
 ## Configuration
 
-Copy tc-config-example.php to tc-config.php and change these values to suit your environment.
+Copy *tc-config-example.php* to *tc-config.php*
 
-* `TC_BASE_PATH` = `/var/www/YOUR_SITE`
-* `TC_UPLOADS_PATH` = `/var/www/YOUR_SITE/uploads`
-* `TC_DB_HOST` = `http://localhost`
-* `TC_DB_USER` = `root`
-* `TC_DB_PASS` = `root`
-* `TC_DB_NAME` = `tincan`
+`cp tc-config-example.php tc-config.php`
 
-## TODO: Installation
+Edit *tc-config.php* and change these values to suit your environment.
+
+| Property        | Example Value              |
+|-----------------|----------------------------|
+| TC_BASE_PATH    | /var/www/YOUR_SITE         |
+| TC_UPLOADS_PATH | /var/www/YOUR_SITE/uploads |
+| TC_DB_HOST      | http://localhost           |
+| TC_DB_USER      | root                       |
+| TC_DB_PASS      | root                       |
+| TC_DB_NAME      | tincan                     |
+
+## Installation
+
+Access your MySQL instance and create a new database.
+
+`mysql> create database tincan;`
+
+Be sure to set *TC_DB_NAME* in your configuration file if you choose
+a different database name.
+
+In your browser, open the URL you've set up for Tin Can forum.
+You will be taken to the installer.
+
+Check the "Generate test data" checkbox if you'd like to start with sample
+users, boards, threads, and posts. This is useful for testing your new forum.
+
+Click the "Install Tin Can Forum" button to install the forum and automatically
+log in to the admin account.
+
+**DELETE install.php FROM YOUR SERVER AFTER INSTALLATION**
 
 ## TODO: Custom Themes
 
 ## Running Tests
 
-Copy phpunit-example.xml to phpunit.xml and change the `const` values to match
-those in the **Configuration** section.
+Copy *phpunit-example.xml* to *phpunit.xml*
 
-### I have PHPUnit installed globally
-Run `phpunit` in the root directory (phpunit.xml should exist here.)
+`cp phpunit-example.xml phpunit.xml`
 
-### I just want PHPUnit for this project
-In the root directory, run the following:
-```
-composer install
-./vendor/bin/phpunit
-```
+Edit phpunit.xml and change the *const* values to match those in
+the *Configuration* section.
+
+Run in the root directory:
+
+`phpunit`
 
 ## License
 
