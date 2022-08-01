@@ -91,8 +91,6 @@ if (empty($error) && !imagejpeg($scaled_image, $target_full_path)) {
 
 if (empty($error)) {
   $avatar_user->avatar = '/uploads/avatars/'.$target_file;
-
-  // TODO: Can this line go into TCObject?
   $avatar_user->updated_time = time();
 
   if (!$db->save_object($avatar_user)) {

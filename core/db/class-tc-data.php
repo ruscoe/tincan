@@ -275,9 +275,14 @@ class TCData
   }
 
   /**
-   * TODO.
+   * Compares a field name to the fields of a given object.
    *
    * @since 0.07
+   *
+   * @param TCObject $object
+   * @param string $field
+   *
+   * @return bool if the field is valid
    */
   public function validate_object_field(TCObject $object, $field)
   {
@@ -293,9 +298,15 @@ class TCData
   }
 
   /**
-   * TODO.
+   * Gets an array of posts by a given user, ordered by most recent first.
    *
    * @since 0.10
+   *
+   * @param int $user_id the user to retrieve the posts of
+   * @param int $offset the number of posts to skip
+   * @param int $limit the number of posts to retrieve
+   *
+   * @return array of TCPost objects
    */
   public function get_user_posts($user_id, $offset = 0, $limit = 5)
   {

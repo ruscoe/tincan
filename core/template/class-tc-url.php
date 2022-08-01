@@ -32,7 +32,8 @@ class TCURL
     if ($friendly && !empty($page)) {
       $url .= str_replace('%slug%', $slug, $page).'/';
 
-      // TODO: Parameters for friendly URLs.
+      // The first parameter here must be ?.
+      // All subsequent parameters are prefixed with &.
       if (!empty($params)) {
         $url .= '?';
 
@@ -62,7 +63,7 @@ class TCURL
    */
   public static function create_standard_url($page, $params)
   {
-    throw new TCException('Function deprecated: create_standard_url');
+    throw new TCException('Function deprecated. Use TCURL::create_url instead.');
   }
 
   /**
@@ -72,11 +73,11 @@ class TCURL
    */
   public static function create_friendly_url($base, TCObject $object, $params = [])
   {
-    throw new TCException('Function deprecated: create_friendly_url');
+    throw new TCException('Function deprecated. Use TCURL::create_url instead.');
   }
 
   /**
-   * TODO.
+   * Gets the URL of the Tin Can forum installer.
    *
    * @since 0.09
    */

@@ -53,9 +53,13 @@ class TCPost extends TCObject
   protected $updated_by_user;
 
   /**
-   * TODO.
+   * Gets this post's content trimmed to a given length and adds ellipses.
    *
    * @since 0.10
+   *
+   * @param int $length
+   *
+   * @return string the trimmed content
    */
   public function get_trimmed_content($length = 64)
   {
