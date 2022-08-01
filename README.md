@@ -126,7 +126,9 @@ log in to the admin account.
 
 **DELETE install.php FROM YOUR SERVER AFTER INSTALLATION**
 
-## TODO: Custom Themes
+## Custom Themes
+
+See themes/README.md
 
 ## Running Tests
 
