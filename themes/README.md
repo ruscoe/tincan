@@ -36,3 +36,9 @@ The name must match the directory name.
 
 For example, if your custom theme is in the directory *themes/mytheme*,
 enter *mytheme*
+
+## Compass and compiling CSS
+
+Tin Can themes use [Compass](http://compass-style.org/) to make CSS authoring
+much easier. It isn't required, but highly recommended that you do the same
+with your custom themes.
