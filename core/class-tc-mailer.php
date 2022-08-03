@@ -20,7 +20,7 @@ class TCMailer
    */
   private PHPMailer $mailer;
 
-  public function __construct($enable_exceptions = true)
+  public function __construct($settings, $enable_exceptions = true)
   {
     $this->mailer = new PHPMailer($enable_exceptions);
 
@@ -28,18 +28,18 @@ class TCMailer
     $this->mailer->isSMTP();
     $this->mailer->SMTPAuth = true;
 
-    if (TC_SMTP_DEBUG) {
+    if ($settings['smtp_enable_verbose']) {
       $this->mailer->SMTPDebug = SMTP::DEBUG_SERVER;
     }
 
-    if (TC_SMTP_TLS) {
+    if ($settings['smtp_enable_tls']) {
       $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     }
 
-    $this->mailer->Host = TC_SMTP_HOST;
-    $this->mailer->Username = TC_SMTP_USER;
-    $this->mailer->Password = TC_SMTP_PASS;
-    $this->mailer->Port = TC_SMTP_PORT;
+    $this->mailer->Host = $settings['smtp_host'];
+    $this->mailer->Username = $settings['smtp_user'];
+    $this->mailer->Password = $settings['smtp_pass'];
+    $this->mailer->Port = $settings['smtp_port'];
   }
 
   /**

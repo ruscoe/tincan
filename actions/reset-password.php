@@ -83,7 +83,7 @@ if (empty($error)) {
   $reset_url = $settings['base_url'].TCURL::create_url($settings['page_set_password'], ['code' => $user->password_reset_code]);
 
   // Send password reset code to the user.
-  $mailer = new TCMailer();
+  $mailer = new TCMailer($settings);
 
   // Load email template.
   // TODO: Error handling.

@@ -115,7 +115,7 @@ if (empty($error) && $settings['require_confirm_email']) {
   $confirmation_url = $settings['base_url'].'/actions/confirm-account.php?code='.$pending_user->confirmation_code;
 
   // Send confirmation code to the user.
-  $mailer = new TCMailer();
+  $mailer = new TCMailer($settings);
 
   // Load email template.
   // TODO: Error handling.
