@@ -6,6 +6,7 @@ use TinCan\TCObject;
 use TinCan\TCPendingUser;
 use TinCan\TCURL;
 use TinCan\TCUserSession;
+use TinCan\TCTemplate;
 
 /**
  * Tin Can confirm account handler.
@@ -57,10 +58,13 @@ if (empty($error)) {
 
   // Delete the pending user record.
   $db->delete_object($pending_user, $pending_user->pending_user_id);
-
-  // Send the user to the forum homepage.
-  header('Location: '.TCURL::create_url(null));
-  exit;
-} else {
-  echo 'Unable to confirm your account. Please check the link in your email.';
 }
+
+// Render page.
+$page_template = 'confirm-account';
+
+TCTemplate::render('header', $settings['theme'], ['page_template' => $page_template, 'settings' => $settings, 'user' => $user]);
+
+TCTemplate::render('page/'.$page_template, $settings['theme'], ['settings' => $settings, 'user' => $user, 'error' => $error]);
+
+TCTemplate::render('footer', $settings['theme'], null);
