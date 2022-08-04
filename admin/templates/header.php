@@ -34,11 +34,12 @@
         <a href="/admin"><img class="admin-logo" src="/admin/images/tc-logo.png" /></a>
         <ul>
           <li><a href="/admin?page=<?php echo $settings['admin_page_forum_settings']; ?>">Settings</a></li>
+          <li><a href="/admin?page=<?php echo $settings['admin_page_users']; ?>">Users</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_board_groups']; ?>">Board Groups</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_boards']; ?>">Boards</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_threads']; ?>">Threads</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_pages']; ?>">Pages</a></li>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_users']; ?>">Users</a></li>
+          <li><a href="/admin?page=<?php echo $settings['admin_page_mail_templates']; ?>">Mail Templates</a></li>
         </ul>
       </div>
       <!-- Start content -->

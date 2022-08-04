@@ -731,7 +731,7 @@ function tc_create_pages()
       ['page_title' => 'Admin Posts',            'template' => 'posts'],
       ['page_title' => 'Admin Pages',            'template' => 'pages'],
       ['page_title' => 'Admin Users',            'template' => 'users'],
-      ['page_title' => 'Admin PHP Information',  'template' => 'phpinfo'],
+      ['page_title' => 'Admin Mail Templates',   'template' => 'mail-templates'],
       ['page_title' => 'Admin Edit Board Group', 'template' => 'edit-board-group'],
       ['page_title' => 'Admin Edit Board',       'template' => 'edit-board'],
       ['page_title' => 'Admin Edit Page',        'template' => 'edit-page'],
