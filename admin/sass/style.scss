@@ -226,8 +226,14 @@ body.tincan-admin {
 
   /* Forms */
 
-  form#delete-object, form#edit-board-group, form#edit-board, form#edit-page, form#edit-thread, form#edit-user, form#forum-settings {
-  //form#edit-board-group, form#edit-board, form#edit-page, form#edit-thread, form#edit-user {
+  form#delete-object,
+  form#edit-board-group,
+  form#edit-board,
+  form#edit-page,
+  form#edit-thread,
+  form#edit-user,
+  form#edit-mail-template,
+  form#forum-settings {
     display: flex;
     flex-direction: column;
     margin: 0 auto 0 auto;
