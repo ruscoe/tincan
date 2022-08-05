@@ -21,7 +21,7 @@ $db = new TCData();
 
 $mail_template = (!empty($mail_template_id)) ? $db->load_object(new TCMailTemplate(), $mail_template_id) : new TCMailTemplate();
 
-$form_action = (!empty($mail_template)) ? '/admin/actions/update-mail-template.php' : '/admin/actions/create-mail-template.php';
+$form_action = (!empty($mail_template_id)) ? '/admin/actions/update-mail-template.php' : '/admin/actions/create-mail-template.php';
 ?>
 
 <form id="edit-mail-template" action="<?php echo $form_action; ?>" method="POST">
@@ -40,6 +40,6 @@ $form_action = (!empty($mail_template)) ? '/admin/actions/update-mail-template.p
   <input type="hidden" name="mail_template_id" value="<?php echo $mail_template->mail_template_id; ?>" />
 
   <div class="fieldset button">
-    <input class="submit-button" type="submit" value="<?php echo (!empty($mail_template)) ? 'Update Mail Template' : 'Add Mail Template'; ?>" />
+    <input class="submit-button" type="submit" value="<?php echo (!empty($mail_template_id)) ? 'Update Mail Template' : 'Add Mail Template'; ?>" />
   </div>
 </form>

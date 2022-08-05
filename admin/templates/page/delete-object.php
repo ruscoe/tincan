@@ -3,6 +3,7 @@
 use TinCan\TCBoard;
 use TinCan\TCBoardGroup;
 use TinCan\TCData;
+use TinCan\TCMailTemplate;
 use TinCan\TCPage;
 use TinCan\TCThread;
 use TinCan\TCUser;
@@ -46,11 +47,14 @@ switch ($object_type) {
     $class = new TCUser();
     $page = $settings['admin_page_edit_user'];
     break;
+  case 'mail_template':
+    $class = new TCMailTemplate();
+    $page = $settings['admin_page_mail_templates'];
+    break;
 }
 
 if (!empty($class)) {
   $object = $db->load_object($class, $object_id);
-}
 ?>
 
 <h1>Really delete <?php echo $object->get_name(); ?>?</h1>
@@ -63,3 +67,11 @@ if (!empty($class)) {
     <input class="submit-button" type="submit" value="Delete" />
   </div>
 </form>
+<?php
+} else {
+  ?>
+  <h1>Unknown object type</h1>
+  <p>"<?php echo $object_type; ?>" isn't a known object type and cannot be deleted.</p>
+  <?php
+}
+?>

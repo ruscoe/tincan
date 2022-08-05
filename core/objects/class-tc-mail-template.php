@@ -79,7 +79,6 @@ class TCMailTemplate extends TCObject
   public function get_db_fields()
   {
     return [
-          'mail_template_id',
           'mail_template_name',
           'content',
           'created_time',

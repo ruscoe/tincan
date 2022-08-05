@@ -3,6 +3,7 @@
 use TinCan\TCBoard;
 use TinCan\TCBoardGroup;
 use TinCan\TCData;
+use TinCan\TCMailTemplate;
 use TinCan\TCPage;
 use TinCan\TCThread;
 use TinCan\TCUser;
@@ -68,10 +69,16 @@ switch ($object_type) {
     $class = new TCUser();
     $page = $settings['admin_page_users'];
     break;
+  case 'mail_template':
+    $class = new TCMailTemplate();
+    $page = $settings['admin_page_mail_templates'];
+    break;
 }
 
 if (!empty($class)) {
   $object = $db->load_object($class, $object_id);
+} else {
+  throw new TCException('Unknown object type: '.$object_type);
 }
 
 $loaded_object = $db->load_object($object, $object_id);
