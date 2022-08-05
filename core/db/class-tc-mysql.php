@@ -109,8 +109,10 @@ class TCMySQL extends TCDB
         // If $result is empty but the query executed, then it was a query
         // that does not return a result (i.e. DELETE).
         // Check for affected rows.
-        return $prepared->affected_rows > 0;
+        return ($prepared->affected_rows > 0);
       }
+    } else if (!empty($prepared->error)) {
+      throw new TCException('Unable to execute query: '.$prepared->error);
     }
 
     return null;
