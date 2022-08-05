@@ -37,6 +37,8 @@ $page = $data['page'];
           $error_text = 'The username you entered has been taken. Please choose another.';
         } elseif (TCUser::ERR_EMAIL_EXISTS == $error_code) {
           $error_text = 'The email address you entered is in use. You may already have an account.';
+        } elseif (TCUser::ERR_NOT_AUTHORIZED == $error_code) {
+          $error_text = 'Registration is currently closed.';
         }
       } elseif ('thread' == $page->template) {
         // User is posting a reply to a thread.

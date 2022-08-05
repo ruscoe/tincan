@@ -50,6 +50,10 @@ try {
 
 $user = new TCUser();
 
+if (!$settings['allow_registration']) {
+  $error = TCObject::ERR_NOT_SAVED;
+}
+
 // Validate username.
 if (!$user->validate_username($username)) {
   $error = TCUser::ERR_USER;

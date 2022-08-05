@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\TCTemplate;
+use TinCan\TCUser;
 
 /**
  * Create account page template.
@@ -18,6 +19,10 @@ $status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_STRING);
 $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
+
+if (!$settings['allow_registration']) {
+  $error = TCUser::ERR_NOT_AUTHORIZED;
+}
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
@@ -36,7 +41,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settin
   }
 ?>
 
-<?php if (empty($status)) { ?>
+<?php if (empty($status) && $settings['allow_registration']) { ?>
 <form id="create-account" action="/actions/create-account.php" method="POST">
   <div class="fieldset">
     <label for="username">Username</label>

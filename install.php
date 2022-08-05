@@ -444,6 +444,14 @@ function tc_create_settings($install_settings = [])
         'required' => 1,
       ],
       [
+        'setting_name' => 'allow_registration',
+        'category' => 'user',
+        'type' => 'bool',
+        'title' => 'Allow new registrations',
+        'value' => 'true',
+        'required' => 1,
+      ],
+      [
         'setting_name' => 'default_user_role',
         'category' => 'user',
         'type' => 'role',
