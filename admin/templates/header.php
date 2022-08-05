@@ -31,7 +31,7 @@
     <!-- Start page -->
     <div id="page">
       <div id="navigation">
-        <a href="/admin"><img class="admin-logo" src="/admin/images/tc-logo.png" /></a>
+        <a href="/admin" class="admin-logo"><img src="/admin/images/tin-can-logo.png" /></a>
         <ul>
           <li><a href="/admin?page=<?php echo $settings['admin_page_forum_settings']; ?>">Settings</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_users']; ?>">Users</a></li>

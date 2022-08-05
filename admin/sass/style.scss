@@ -123,6 +123,18 @@ body.tincan-admin {
   /* Navigation */
   #navigation {
     background-color: $navigation;
+    padding-top: 2rem;
+
+    a.admin-logo {
+      display: block;
+      text-align: center;
+      width: 100%;
+
+      img {
+        margin: 0 auto 0 auto;
+        width: 180px;
+      }
+    }
 
     ul {
       flex-direction: column;
