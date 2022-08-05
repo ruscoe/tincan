@@ -49,9 +49,9 @@ $path = explode('?', $request_uri)[0];
 
 $page_template = null;
 
-if (($path == '/') && empty($page_id)) {
+if (('/' == $path) && empty($page_id)) {
   $page_template = 'front';
-} else if ($settings['enable_urls'] && empty($page_id) && !empty($path)) {
+} elseif ($settings['enable_urls'] && empty($page_id) && !empty($path)) {
   // Work out page ID from friendly URL.
   $base_urls_to_page_ids = [
     $settings['base_url_board_groups'] => $settings['page_board_group'],

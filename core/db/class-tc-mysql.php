@@ -106,7 +106,7 @@ class TCMySQL extends TCDB
 
         return $result;
       }
-    } else if (!empty($prepared->error)) {
+    } elseif (!empty($prepared->error)) {
       throw new TCException('Unable to execute query: '.$prepared->error);
     }
 

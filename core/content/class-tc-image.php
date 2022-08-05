@@ -54,10 +54,10 @@ class TCImage
    * @since 0.05
    *
    * @param string $source_image the path of the image to scale
-   * @param int $size the intended width in pixels of the image
+   * @param int    $size         the intended width in pixels of the image
    *
    * @return GDImage resized image object
-   *   @see: https://www.php.net/manual/en/class.gdimage.php
+   * @see: https://www.php.net/manual/en/class.gdimage.php
    */
   public function scale_to_square($source_image, $size)
   {

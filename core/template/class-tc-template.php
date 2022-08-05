@@ -11,15 +11,14 @@ namespace TinCan;
  */
 class TCTemplate
 {
-
   /**
    * Includes and renders a template file. Will use parent theme if available.
    *
    * @see /themes/README.md
    *
    * @param string $template_name the name of the template to render
-   * @param string $theme the theme containing the template
-   * @param array $data optional array of data referenced by the template
+   * @param string $theme         the theme containing the template
+   * @param array  $data          optional array of data referenced by the template
    *
    * @since 0.01
    */
@@ -29,7 +28,7 @@ class TCTemplate
 
     $template_path = TC_BASE_PATH.'/themes/'.$theme.'/templates/'.$template_name.'.php';
 
-    if (!file_exists($template_path) && ($parent_theme !== null)) {
+    if (!file_exists($template_path) && (null !== $parent_theme)) {
       // Template not found; try the parent theme.
       $template_path = TC_BASE_PATH.'/themes/'.$parent_theme.'/templates/'.$template_name.'.php';
     }

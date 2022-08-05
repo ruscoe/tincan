@@ -54,8 +54,7 @@ switch ($object_type) {
 }
 
 if (!empty($class)) {
-  $object = $db->load_object($class, $object_id);
-?>
+  $object = $db->load_object($class, $object_id); ?>
 
 <h1>Really delete <?php echo $object->get_name(); ?>?</h1>
 
@@ -69,9 +68,9 @@ if (!empty($class)) {
 </form>
 <?php
 } else {
-  ?>
+    ?>
   <h1>Unknown object type</h1>
   <p>"<?php echo $object_type; ?>" isn't a known object type and cannot be deleted.</p>
   <?php
-}
+  }
 ?>

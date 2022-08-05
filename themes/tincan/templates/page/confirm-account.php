@@ -17,14 +17,14 @@ $error = $data['error'];
 
 <?php
   if (!empty($error)) {
-?>
+    ?>
   <p>Unable to confirm your account. Please check the link in your email.</p>
 <?php
-} else {
-?>
+  } else {
+    ?>
   <p>Your account has been confirmed and you are now logged in!</p>
 <?php
-}
+  }
 ?>
 
 <p><a href="<?php echo TCURL::create_url(null); ?>">Return to the forum</a></p>

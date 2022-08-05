@@ -14,12 +14,12 @@ class TCURL
   /**
    * Creates either a regular parameterized URL or friendly formatted URL.
    *
-   * @param mixed $page the page identifier
-   *   int if using the page ID
-   *   string if using the base path
-   * @param array $params array of parameters to append to the URL
-   * @param bool $friendly true if creating a friendly formatted URL
-   * @param string $slug object-specific slug used for friendly formatted URL
+   * @param mixed  $page     the page identifier
+   *                         int if using the page ID
+   *                         string if using the base path
+   * @param array  $params   array of parameters to append to the URL
+   * @param bool   $friendly true if creating a friendly formatted URL
+   * @param string $slug     object-specific slug used for friendly formatted URL
    *
    * @return string the URL
    *
@@ -38,14 +38,13 @@ class TCURL
         $url .= '?';
 
         foreach ($params as $name => $value) {
-          if (substr($url, -1) !== '?') {
+          if ('?' !== substr($url, -1)) {
             $url .= '&';
           }
           $url .= $name.'='.urlencode($value);
         }
       }
-    }
-    else if (!empty($page)) {
+    } elseif (!empty($page)) {
       $url .= 'index.php?page='.$page;
 
       foreach ($params as $name => $value) {

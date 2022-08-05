@@ -17,7 +17,7 @@ use TinCan\TCUser;
 $user = $data['user'];
 
 if (!empty($user)) {
-?>
+  ?>
   <div>Thanks for using the forum, <?php echo $user->username; ?>!</div>
 <?php
 }

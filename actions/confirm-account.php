@@ -4,9 +4,8 @@ use TinCan\TCData;
 use TinCan\TCException;
 use TinCan\TCObject;
 use TinCan\TCPendingUser;
-use TinCan\TCURL;
-use TinCan\TCUserSession;
 use TinCan\TCTemplate;
+use TinCan\TCUserSession;
 
 /**
  * Tin Can confirm account handler.

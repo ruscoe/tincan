@@ -271,7 +271,6 @@ class TCData
    *
    * @since 0.07
    *
-   * @param TCObject $object
    * @param string $field
    *
    * @return bool if the field is valid
@@ -295,8 +294,8 @@ class TCData
    * @since 0.10
    *
    * @param int $user_id the user to retrieve the posts of
-   * @param int $offset the number of posts to skip
-   * @param int $limit the number of posts to retrieve
+   * @param int $offset  the number of posts to skip
+   * @param int $limit   the number of posts to retrieve
    *
    * @return array of TCPost objects
    */
