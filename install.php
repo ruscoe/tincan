@@ -35,6 +35,11 @@ require TC_BASE_PATH.'/includes/include-user.php';
 
 global $db;
 
+define('BOARD_GROUPS_TO_CREATE', 2);
+define('BOARDS_TO_CREATE', 2);
+define('THREADS_TO_CREATE', 2);
+define('POSTS_TO_CREATE', 16);
+
 $run_install = filter_input(INPUT_POST, 'run_install', FILTER_SANITIZE_NUMBER_INT);
 $create_test_data = filter_input(INPUT_POST, 'create_test_data', FILTER_SANITIZE_STRING);
 $admin_email = filter_input(INPUT_POST, 'admin_email', FILTER_SANITIZE_STRING);
@@ -850,9 +855,7 @@ function tc_create_board_groups()
 {
   global $db;
 
-  $board_groups_to_create = 1;
-
-  for ($i = 0; $i < $board_groups_to_create; ++$i) {
+  for ($i = 0; $i < BOARD_GROUPS_TO_CREATE; ++$i) {
     $board_groups[] = ['board_group_name' => 'Board Group '.($i + 1)];
   }
 
@@ -881,10 +884,8 @@ function tc_create_boards($new_board_group_ids)
 {
   global $db;
 
-  $boards_to_create = 1;
-
   foreach ($new_board_group_ids as $board_group_id) {
-    for ($i = 0; $i < $boards_to_create; ++$i) {
+    for ($i = 0; $i < BOARDS_TO_CREATE; ++$i) {
       $boards[] = ['board_group_id' => $board_group_id, 'board_name' => 'Board '.($i + 1), 'description' => tc_get_random_lipsum_short()];
     }
   }
@@ -917,12 +918,10 @@ function tc_create_threads($new_board_ids)
 {
   global $db;
 
-  $threads_to_create = 1;
-
   $threads = [];
 
   foreach ($new_board_ids as $board_id) {
-    for ($i = 0; $i < $threads_to_create; ++$i) {
+    for ($i = 0; $i < THREADS_TO_CREATE; ++$i) {
       $threads[] = ['board_id' => $board_id, 'thread_title' => tc_get_random_thread_title()];
     }
   }
@@ -962,12 +961,10 @@ function tc_create_posts($new_thread_ids)
     '1000', '1001', '1002', '1003',
   ];
 
-  $posts_to_create = 240;
-
   $posts = [];
 
   foreach ($new_thread_ids as $thread_id) {
-    for ($i = 0; $i < $posts_to_create; ++$i) {
+    for ($i = 0; $i < POSTS_TO_CREATE; ++$i) {
       $posts[] = [
         'user_id' => $user_ids[array_rand($user_ids, 1)],
         'thread_id' => $thread_id,
