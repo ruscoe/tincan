@@ -1,7 +1,5 @@
 <?php
 
-define('TC_VERSION', '0.11');
-
 /* File paths * */
 
 define('TC_BASE_PATH', '/var/www/YOUR_SITE');
