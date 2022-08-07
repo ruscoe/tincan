@@ -6,6 +6,9 @@ use TinCan\TCPage;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
 
+// Tin Can Forum version.
+define('TC_VERSION', '0.12');
+
 /**
  * Admin section entry point.
  *
