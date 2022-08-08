@@ -38,11 +38,25 @@ $threads = $db->load_objects(new TCThread(), [], $conditions, $order);
 <?php
 foreach ($threads as $thread) {
   $data = [
-    'title' => $thread->thread_title,
-    'object_id' => $thread->thread_id,
-    'view_url' => '/index.php?page='.$settings['page_thread'].'&thread='.$thread->thread_id,
-    'edit_url' => '/admin/index.php?page='.$settings['admin_page_edit_thread'].'&thread_id='.$thread->thread_id,
-    'delete_url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=thread&object_id='.$thread->thread_id,
+    [
+      'type' => 'text',
+      'value' => $thread->thread_title,
+    ],
+    [
+      'type' => 'link',
+      'url' => '/index.php?page='.$settings['page_thread'].'&thread='.$thread->thread_id,
+      'value' => 'View',
+    ],
+    [
+      'type' => 'link',
+      'url' => '/admin/index.php?page='.$settings['admin_page_edit_thread'].'&thread_id='.$thread->thread_id,
+      'value' => 'Edit',
+    ],
+    [
+      'type' => 'link',
+      'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=thread&object_id='.$thread->thread_id,
+      'value' => 'Delete',
+    ],
   ];
 
   TCAdminTemplate::render('table-row', $data);

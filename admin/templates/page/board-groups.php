@@ -38,11 +38,25 @@ $board_groups = $db->load_objects(new TCBoardGroup(), [], $conditions, $order);
 <?php
 foreach ($board_groups as $board_group) {
   $data = [
-    'title' => $board_group->board_group_name,
-    'object_id' => $board_group->board_group_id,
-    'view_url' => '/index.php?page='.$settings['page_board_group'].'&board_group='.$board_group->board_group_id,
-    'edit_url' => '/admin/index.php?page='.$settings['admin_page_edit_board_group'].'&board_group_id='.$board_group->board_group_id,
-    'delete_url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=board_group&object_id='.$board_group->board_group_id,
+    [
+      'type' => 'text',
+      'value' => $board_group->board_group_name,
+    ],
+    [
+      'type' => 'link',
+      'url' => '/index.php?page='.$settings['page_board_group'].'&board_group='.$board_group->board_group_id,
+      'value' => 'View',
+    ],
+    [
+      'type' => 'link',
+      'url' => '/admin/index.php?page='.$settings['admin_page_edit_board_group'].'&board_group_id='.$board_group->board_group_id,
+      'value' => 'Edit',
+    ],
+    [
+      'type' => 'link',
+      'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=board_group&object_id='.$board_group->board_group_id,
+      'value' => 'Delete',
+    ],
   ];
 
   TCAdminTemplate::render('table-row', $data);

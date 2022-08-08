@@ -38,13 +38,27 @@ $users = $db->load_objects(new TCUser(), [], $conditions, $order);
 <?php
 foreach ($users as $user) {
   $data = [
-    'title' => $user->username,
-    'object_id' => $user->user_id,
-    'view_url' => '/index.php?page='.$settings['page_user'].'&user='.$user->user_id,
-    'edit_page_id' => $settings['admin_page_edit_user'],
-    'edit_url' => '/admin/index.php?page='.$settings['admin_page_edit_user'].'&user_id='.$user->user_id,
-    'delete_url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=user&object_id='.$user->user_id,
+    [
+      'type' => 'text',
+      'value' => $user->username,
+    ],
+    [
+      'type' => 'link',
+      'url' => '/index.php?page='.$settings['page_user'].'&user='.$user->user_id,
+      'value' => 'View',
+    ],
+    [
+      'type' => 'link',
+      'url' => '/admin/index.php?page='.$settings['admin_page_edit_user'].'&user_id='.$user->user_id,
+      'value' => 'Edit',
+    ],
+    [
+      'type' => 'link',
+      'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=user&object_id='.$user->user_id,
+      'value' => 'Delete',
+    ],
   ];
+
   TCAdminTemplate::render('table-row', $data);
 }
 ?>

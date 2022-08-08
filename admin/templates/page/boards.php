@@ -2,6 +2,7 @@
 
 use TinCan\Admin\TCAdminTemplate;
 use TinCan\TCBoard;
+use TinCan\TCBoardGroup;
 use TinCan\TCData;
 
 /**
@@ -30,19 +31,44 @@ $conditions = [];
 $order = [];
 
 $boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
+$board_groups = $db->load_objects(new TCBoardGroup());
+
+$indexed_board_groups = [];
+foreach ($board_groups as $board_group) {
+  $indexed_board_groups[$board_group->board_group_id] = $board_group;
+}
 ?>
 
 <table class="objects">
+  <th>Board Group</th>
   <th>Board Name</th>
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($boards as $board) {
   $data = [
-    'title' => $board->board_name,
-    'object_id' => $board->board_id,
-    'view_url' => '/index.php?page='.$settings['page_board'].'&board='.$board->board_id,
-    'edit_url' => '/admin/index.php?page='.$settings['admin_page_edit_board'].'&board_id='.$board->board_id,
-    'delete_url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=board&object_id='.$board->board_id,
+    [
+      'type' => 'text',
+      'value' => $indexed_board_groups[$board->board_group_id]->board_group_name,
+    ],
+    [
+      'type' => 'text',
+      'value' => $board->board_name,
+    ],
+    [
+      'type' => 'link',
+      'url' => '/index.php?page='.$settings['page_board'].'&board='.$board->board_id,
+      'value' => 'View',
+    ],
+    [
+      'type' => 'link',
+      'url' => '/admin/index.php?page='.$settings['admin_page_edit_board'].'&board_id='.$board->board_id,
+      'value' => 'Edit',
+    ],
+    [
+      'type' => 'link',
+      'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=board&object_id='.$board->board_id,
+      'value' => 'Delete',
+    ],
   ];
 
   TCAdminTemplate::render('table-row', $data);

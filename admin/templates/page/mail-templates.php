@@ -38,14 +38,22 @@ $mail_templates = $db->load_objects(new TCMailTemplate(), [], $conditions, $orde
 <?php
 foreach ($mail_templates as $template) {
   $data = [
-    'title' => $template->mail_template_name,
-    'object_id' => $template->mail_template_id,
-    // TODO: Preview URL.
-    'view_url' => '',
-    'edit_page_id' => $settings['admin_page_edit_mail_template'],
-    'edit_url' => '/admin/index.php?page='.$settings['admin_page_edit_mail_template'].'&mail_template_id='.$template->mail_template_id,
-    'delete_url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=mail_template&object_id='.$template->mail_template_id,
+    [
+      'type' => 'text',
+      'value' => $template->mail_template_name,
+    ],
+    [
+      'type' => 'link',
+      'url' => '/admin/index.php?page='.$settings['admin_page_edit_mail_template'].'&mail_template_id='.$template->mail_template_id,
+      'value' => 'Edit',
+    ],
+    [
+      'type' => 'link',
+      'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=mail_template&object_id='.$template->mail_template_id,
+      'value' => 'Delete',
+    ],
   ];
+
   TCAdminTemplate::render('table-row', $data);
 }
 ?>
