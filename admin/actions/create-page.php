@@ -49,6 +49,9 @@ foreach ($db_fields as $field) {
 $page->created_time = time();
 $page->updated_time = time();
 
+// Custom pages are never required and can be deleted by an admin user.
+$page->required = 0;
+
 $saved_page = $db->save_object($page);
 
 // Return to the boards page.
