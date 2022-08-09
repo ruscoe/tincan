@@ -236,59 +236,8 @@ body.tincan-admin {
 
   }
 
-  /* Forms */
-
-  form#delete-object,
-  form#edit-board-group,
-  form#edit-board,
-  form#edit-page,
-  form#edit-thread,
-  form#edit-user,
-  form#edit-mail-template,
-  form#forum-settings {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto 0 auto;
-    padding-top: 3rem;
-
-    .fieldset {
-      display: flex;
-      flex: 1;
-      margin: 0.5rem 0 0.5rem 0;
-    }
-
-    .fieldset.button {
-      padding-top: 1rem;
-      justify-content: flex-end;
-    }
-
-    .field {
-      background-color: $formField;
-      flex: 1.5;
-      padding: 0.25rem;
-    }
-
-    label {
-      background-color: $formFieldLabel;
-      color: $formFieldLabelText;
-      display: block;
-      flex: 1;
-      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-    }
-
-    input.text-input {
-      width: 100%;
-    }
-
-    input.submit-button {
-      background-color: $adminButton;
-      box-shadow: 2px 2px $adminButtonShadow;
-      color: $adminButtonText;
-      display: inline-block;
-      font-weight: bold;
-      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-      text-decoration: none;
-    }
-  }
-
 }
+
+/* Includes */
+
+@import '_tc-admin-forms';

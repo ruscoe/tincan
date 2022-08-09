@@ -24,11 +24,22 @@ $settings = $data['settings'];
 
 <?php
 
-$db = new TCData();
+// Filter results.
+$board_group_id = filter_input(INPUT_GET, 'board_group', FILTER_SANITIZE_NUMBER_INT);
 
-// TODO: Sorting and pagination.
 $conditions = [];
+
+if (!empty($board_group_id)) {
+  $conditions[] = [
+    'field' => 'board_group_id',
+    'value' => $board_group_id,
+  ];
+}
+
+// TODO Sorting and pagination.
 $order = [];
+
+$db = new TCData();
 
 $boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
 $board_groups = $db->load_objects(new TCBoardGroup());
@@ -38,6 +49,24 @@ foreach ($board_groups as $board_group) {
   $indexed_board_groups[$board_group->board_group_id] = $board_group;
 }
 ?>
+
+<form id="filters" action="/admin/actions/process-filters.php" method="POST">
+  <div class="fieldset">
+    <select name="board_group">
+      <option value="">All board groups</option>
+      <?php
+      foreach ($board_groups as $board_group) {
+        $selected = ($board_group->board_group_id == $board_group_id) ? ' selected' : '';
+        ?>
+        <option value="<?php echo $board_group->board_group_id; ?>"<?php echo $selected; ?>><?php echo $board_group->board_group_name; ?></option>
+      <?php } ?>
+    </select>
+  </div>
+  <div class="fieldset button">
+    <input class="submit-bottom" type="submit" value="Filter boards" />
+  </div>
+  <input type="hidden" name="page" value="<?php echo $settings['admin_page_boards']; ?>" />
+</form>
 
 <table class="objects">
   <th>Board Group</th>
