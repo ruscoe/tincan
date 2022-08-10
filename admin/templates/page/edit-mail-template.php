@@ -43,3 +43,21 @@ $form_action = (!empty($mail_template_id)) ? '/admin/actions/update-mail-templat
     <input class="submit-button" type="submit" value="<?php echo (!empty($mail_template_id)) ? 'Update Mail Template' : 'Add Mail Template'; ?>" />
   </div>
 </form>
+
+<div>
+  <h3>Mail Template Tokens</h3>
+  <h4>Confirm account</h4>
+  <table>
+    <tr>
+      <td>{url}</td>
+      <td>The user's account confirmation URL</td>
+    </tr>
+  </table>
+  <h4>Reset password</h4>
+  <table>
+    <tr>
+      <td>{url}</td>
+      <td>The user's password reset URL</td>
+    </tr>
+  </table>
+</div>
