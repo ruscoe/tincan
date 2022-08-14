@@ -9,7 +9,7 @@ use TinCan\TCThread;
 use TinCan\TCUser;
 
 /**
- * Page template for admin board editing.
+ * Generic page template for admin object deletion.
  *
  * @since 0.01
  *
@@ -24,32 +24,25 @@ $settings = $db->load_settings();
 
 $class = null;
 $object = null;
-$page = null;
 
 switch ($object_type) {
   case 'board_group':
     $class = new TCBoardGroup();
-    $page = $settings['admin_page_edit_board_group'];
     break;
   case 'board':
     $class = new TCBoard();
-    $page = $settings['admin_page_edit_board'];
     break;
   case 'page':
     $class = new TCPage();
-    $page = $settings['admin_page_edit_page'];
     break;
   case 'thread':
     $class = new TCThread();
-    $page = $settings['admin_page_edit_thread'];
     break;
   case 'user':
     $class = new TCUser();
-    $page = $settings['admin_page_edit_user'];
     break;
   case 'mail_template':
     $class = new TCMailTemplate();
-    $page = $settings['admin_page_mail_templates'];
     break;
 }
 
