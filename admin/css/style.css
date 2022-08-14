@@ -204,6 +204,50 @@ body.tincan-admin form#forum-settings .fieldset {
   margin: 0.5rem 0 0.5rem 0;
 }
 /* line 22, ../sass/_tc-admin-forms.scss */
+body.tincan-admin form#delete-object .fieldset.textarea,
+body.tincan-admin form#edit-board-group .fieldset.textarea,
+body.tincan-admin form#edit-board .fieldset.textarea,
+body.tincan-admin form#edit-page .fieldset.textarea,
+body.tincan-admin form#edit-thread .fieldset.textarea,
+body.tincan-admin form#edit-user .fieldset.textarea,
+body.tincan-admin form#edit-mail-template .fieldset.textarea,
+body.tincan-admin form#forum-settings .fieldset.textarea {
+  display: block;
+}
+/* line 25, ../sass/_tc-admin-forms.scss */
+body.tincan-admin form#delete-object .fieldset.textarea label,
+body.tincan-admin form#edit-board-group .fieldset.textarea label,
+body.tincan-admin form#edit-board .fieldset.textarea label,
+body.tincan-admin form#edit-page .fieldset.textarea label,
+body.tincan-admin form#edit-thread .fieldset.textarea label,
+body.tincan-admin form#edit-user .fieldset.textarea label,
+body.tincan-admin form#edit-mail-template .fieldset.textarea label,
+body.tincan-admin form#forum-settings .fieldset.textarea label {
+  max-width: none !important;
+}
+/* line 29, ../sass/_tc-admin-forms.scss */
+body.tincan-admin form#delete-object .fieldset.textarea .field,
+body.tincan-admin form#edit-board-group .fieldset.textarea .field,
+body.tincan-admin form#edit-board .fieldset.textarea .field,
+body.tincan-admin form#edit-page .fieldset.textarea .field,
+body.tincan-admin form#edit-thread .fieldset.textarea .field,
+body.tincan-admin form#edit-user .fieldset.textarea .field,
+body.tincan-admin form#edit-mail-template .fieldset.textarea .field,
+body.tincan-admin form#forum-settings .fieldset.textarea .field {
+  flex: none;
+}
+/* line 32, ../sass/_tc-admin-forms.scss */
+body.tincan-admin form#delete-object .fieldset.textarea .field textarea,
+body.tincan-admin form#edit-board-group .fieldset.textarea .field textarea,
+body.tincan-admin form#edit-board .fieldset.textarea .field textarea,
+body.tincan-admin form#edit-page .fieldset.textarea .field textarea,
+body.tincan-admin form#edit-thread .fieldset.textarea .field textarea,
+body.tincan-admin form#edit-user .fieldset.textarea .field textarea,
+body.tincan-admin form#edit-mail-template .fieldset.textarea .field textarea,
+body.tincan-admin form#forum-settings .fieldset.textarea .field textarea {
+  width: 100%;
+}
+/* line 38, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object .fieldset.button,
 body.tincan-admin form#edit-board-group .fieldset.button,
 body.tincan-admin form#edit-board .fieldset.button,
@@ -215,7 +259,7 @@ body.tincan-admin form#forum-settings .fieldset.button {
   padding-top: 1rem;
   justify-content: flex-end;
 }
-/* line 27, ../sass/_tc-admin-forms.scss */
+/* line 43, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object .field,
 body.tincan-admin form#edit-board-group .field,
 body.tincan-admin form#edit-board .field,
@@ -228,7 +272,7 @@ body.tincan-admin form#forum-settings .field {
   flex: 1.5;
   padding: 0.25rem;
 }
-/* line 33, ../sass/_tc-admin-forms.scss */
+/* line 49, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object label,
 body.tincan-admin form#edit-board-group label,
 body.tincan-admin form#edit-board label,
@@ -241,9 +285,10 @@ body.tincan-admin form#forum-settings label {
   color: white;
   display: block;
   flex: 1;
+  max-width: 240px;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
-/* line 41, ../sass/_tc-admin-forms.scss */
+/* line 58, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object input.text-input,
 body.tincan-admin form#edit-board-group input.text-input,
 body.tincan-admin form#edit-board input.text-input,
@@ -254,7 +299,7 @@ body.tincan-admin form#edit-mail-template input.text-input,
 body.tincan-admin form#forum-settings input.text-input {
   width: 100%;
 }
-/* line 45, ../sass/_tc-admin-forms.scss */
+/* line 62, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object input.submit-button,
 body.tincan-admin form#edit-board-group input.submit-button,
 body.tincan-admin form#edit-board input.submit-button,
@@ -271,11 +316,11 @@ body.tincan-admin form#forum-settings input.submit-button {
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   text-decoration: none;
 }
-/* line 56, ../sass/_tc-admin-forms.scss */
+/* line 73, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#filters {
   padding: 1rem 0 2rem 0;
 }
-/* line 59, ../sass/_tc-admin-forms.scss */
+/* line 76, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#filters .fieldset {
   float: left;
   margin: 0 0.5rem 0 0.5rem;

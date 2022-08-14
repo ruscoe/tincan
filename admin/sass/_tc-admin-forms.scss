@@ -19,6 +19,22 @@ body.tincan-admin {
       margin: 0.5rem 0 0.5rem 0;
     }
 
+    .fieldset.textarea {
+      display: block;
+
+      label {
+        max-width: none !important;
+      }
+
+      .field {
+        flex: none;
+
+        textarea {
+          width: 100%;
+        }
+      }
+    }
+
     .fieldset.button {
       padding-top: 1rem;
       justify-content: flex-end;
@@ -35,6 +51,7 @@ body.tincan-admin {
       color: $formFieldLabelText;
       display: block;
       flex: 1;
+      max-width: 240px;
       padding: 0.25rem 0.5rem 0.25rem 0.5rem;
     }
 

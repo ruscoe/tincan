@@ -32,9 +32,11 @@ $form_action = (!empty($mail_template_id)) ? '/admin/actions/update-mail-templat
     </div>
   </div>
 
-  <div class="fieldset">
+  <div class="fieldset textarea">
     <label for="content">Content</label>
-    <textarea name="content" rows="20" cols="30"><?php echo $mail_template->content; ?></textarea>
+    <div class="field">
+      <textarea name="content" rows="20" cols="30"><?php echo $mail_template->content; ?></textarea>
+    </div>
   </div>
 
   <input type="hidden" name="mail_template_id" value="<?php echo $mail_template->mail_template_id; ?>" />
