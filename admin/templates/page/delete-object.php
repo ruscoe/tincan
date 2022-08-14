@@ -17,7 +17,6 @@ use TinCan\TCUser;
  */
 $object_type = filter_input(INPUT_GET, 'object_type', FILTER_SANITIZE_STRING);
 $object_id = filter_input(INPUT_GET, 'object_id', FILTER_SANITIZE_NUMBER_INT);
-$delete = filter_input(INPUT_GET, 'delete', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 $settings = $db->load_settings();
