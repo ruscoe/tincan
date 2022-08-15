@@ -37,7 +37,7 @@ global $db;
 
 define('BOARD_GROUPS_TO_CREATE', 2);
 define('BOARDS_TO_CREATE', 2);
-define('THREADS_TO_CREATE', 2);
+define('THREADS_TO_CREATE', 1);
 define('POSTS_TO_CREATE', 16);
 
 $run_install = filter_input(INPUT_POST, 'run_install', FILTER_SANITIZE_NUMBER_INT);
@@ -750,6 +750,7 @@ function tc_create_pages()
       ['page_title' => 'Admin Edit Page',          'template' => 'edit-page'],
       ['page_title' => 'Admin Edit Post',          'template' => 'edit-post'],
       ['page_title' => 'Admin Edit Thread',        'template' => 'edit-thread'],
+      ['page_title' => 'Admin Delete Thread',      'template' => 'delete-thread'],
       ['page_title' => 'Admin Edit User',          'template' => 'edit-user'],
       ['page_title' => 'Admin Edit Mail Template', 'template' => 'edit-mail-template'],
       ['page_title' => 'Admin Delete Object',      'template' => 'delete-object'],
