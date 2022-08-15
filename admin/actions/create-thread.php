@@ -48,6 +48,8 @@ foreach ($db_fields as $field) {
 }
 
 $thread->first_post_id = 0;
+$thread->created_by_user = $user->user_id;
+$thread->updated_by_user = $user->user_id;
 $thread->created_time = time();
 $thread->updated_time = time();
 
@@ -56,6 +58,7 @@ $saved_thread = $db->save_object($thread);
 // Create the initial post.
 $post = new TCPost();
 $post->thread_id = $saved_thread->thread_id;
+$post->user_id = $saved_thread->created_by_user;
 // TODO: Initial post content.
 // $post->content = $sanitizer->sanitize_post($post_content);
 $post->updated_by_user = $thread->updated_by_user;
