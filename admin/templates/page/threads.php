@@ -54,7 +54,7 @@ foreach ($threads as $thread) {
     ],
     [
       'type' => 'link',
-      'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=thread&object_id='.$thread->thread_id,
+      'url' => '/admin/index.php?page='.$settings['admin_page_delete_thread'].'&thread_id='.$thread->thread_id,
       'value' => 'Delete',
     ],
   ];
