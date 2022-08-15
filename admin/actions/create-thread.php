@@ -2,6 +2,7 @@
 
 use TinCan\TCData;
 use TinCan\TCPost;
+use TinCan\TCPostSanitizer;
 use TinCan\TCThread;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
@@ -16,9 +17,12 @@ use TinCan\TCUserSession;
 require '../../tc-config.php';
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
+require TC_BASE_PATH.'/includes/include-content.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-user.php';
+
+$content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 $settings = $db->load_settings();
@@ -55,12 +59,15 @@ $thread->updated_time = time();
 
 $saved_thread = $db->save_object($thread);
 
+// Validate post content.
+$post_sanitizer = new TCPostSanitizer();
+$post_content = $post_sanitizer->sanitize_post($content);
+
 // Create the initial post.
 $post = new TCPost();
 $post->thread_id = $saved_thread->thread_id;
 $post->user_id = $saved_thread->created_by_user;
-// TODO: Initial post content.
-// $post->content = $sanitizer->sanitize_post($post_content);
+$post->content = $post_content;
 $post->updated_by_user = $thread->updated_by_user;
 $post->created_time = time();
 $post->updated_time = time();

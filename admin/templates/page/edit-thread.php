@@ -52,6 +52,13 @@ $form_action = (!empty($thread_id)) ? '/admin/actions/update-thread.php' : '/adm
     </div>
   </div>
 
+  <div class="fieldset textarea">
+    <label for="content">Content</label>
+    <div class="field">
+      <textarea name="content" rows="20" cols="30"><?php echo $mail_template->content; ?></textarea>
+    </div>
+  </div>
+
   <input type="hidden" name="thread_id" value="<?php echo $thread->thread_id; ?>" />
   <input type="hidden" name="created_by_user" value="<?php echo $user->user_id; ?>" />
   <input type="hidden" name="updated_by_user" value="<?php echo $user->user_id; ?>" />
