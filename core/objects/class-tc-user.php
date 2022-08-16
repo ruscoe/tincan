@@ -11,6 +11,7 @@ namespace TinCan;
  */
 class TCUser extends TCObject
 {
+  public const ACT_LOG_IN = 'log-in';
   public const ACT_CREATE_POST = 'create-post';
   public const ACT_CREATE_THREAD = 'create-thread';
   public const ACT_EDIT_ANY_POST = 'edit-any-post';
@@ -100,7 +101,12 @@ class TCUser extends TCObject
    */
   public function can_perform_action($action)
   {
-    // Suspended accounts can't do anything.
+    // All users can log in except suspended.
+    if (($action == self::ACT_LOG_IN) && !$this->suspended) {
+      return true;
+    }
+
+    // Suspended users can't do anything.
     if ($this->suspended) {
       return false;
     }

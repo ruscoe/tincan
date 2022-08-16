@@ -48,6 +48,10 @@ if (!empty($user_results)) {
   $user = reset($user_results);
 }
 
+if (!empty($user) && !$user->can_perform_action(TCUser::ACT_LOG_IN)) {
+  $error = TCUser::ERR_NOT_FOUND;
+}
+
 if (!empty($user)) {
   // Check for pending user.
   $pending_user_results = $db->load_objects(new TCPendingUser(), [], [['field' => 'user_id', 'value' => $user->user_id]]);
