@@ -356,6 +356,7 @@ function tc_create_tables()
       `password_reset_code` varchar(255) NOT NULL DEFAULT '',
       `role_id` bigint(20) unsigned NOT NULL,
       `avatar` varchar(255) NOT NULL DEFAULT '',
+      `suspended` tinyint(1) unsigned NOT NULL,
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
       PRIMARY KEY (`user_id`)
@@ -820,6 +821,7 @@ function tc_create_users()
   ];
 
   foreach ($users as $user_data) {
+    $user_data['suspended'] = 0;
     $user_data['created_time'] = time();
     $user_data['updated_time'] = time();
 
@@ -840,6 +842,7 @@ function tc_create_admin_user($email, $password)
   $user->email = $email;
   $user->password = $user->get_password_hash($password);
   $user->role_id = 3; // Administrator user role.
+  $user->suspended = 0;
   $user->created_time = time();
   $user->updated_time = time();
 

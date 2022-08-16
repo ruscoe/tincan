@@ -70,6 +70,11 @@ class TCUser extends TCObject
   protected $avatar;
 
   /**
+   * @since 0.12
+   */
+  protected $suspended;
+
+  /**
    * @since 0.01
    */
   protected $created_time;
@@ -95,6 +100,11 @@ class TCUser extends TCObject
    */
   public function can_perform_action($action)
   {
+    // Suspended accounts can't do anything.
+    if ($this->suspended) {
+      return false;
+    }
+
     if (!empty($this->role)) {
       $allowed_actions = explode(',', $this->role->allowed_actions);
 
@@ -424,6 +434,7 @@ class TCUser extends TCObject
           'password_reset_code',
           'role_id',
           'avatar',
+          'suspended',
           'created_time',
           'updated_time',
         ];

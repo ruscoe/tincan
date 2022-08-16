@@ -19,7 +19,7 @@ require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-user.php';
 
-$user_id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
+$update_user_id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
 $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
 $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING));
 $role_id = filter_input(INPUT_POST, 'role_id', FILTER_SANITIZE_NUMBER_INT);
@@ -29,6 +29,8 @@ $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 if ('***' == $password) {
   $password = null;
 }
+
+$suspended = ('on' === filter_input(INPUT_POST, 'suspended', FILTER_SANITIZE_STRING)) ? 1 : 0;
 
 $db = new TCData();
 $settings = $db->load_settings();
@@ -46,24 +48,24 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
   exit;
 }
 
-$user = $db->load_user($user_id);
+$update_user = $db->load_user($update_user_id);
 
 $error = null;
 
-if (empty($user)) {
+if (empty($update_user)) {
   $error = TCObject::ERR_NOT_FOUND;
 }
 
 // Validate username.
-if (empty($error) && !$user->validate_username($username)) {
+if (empty($error) && !$update_user->validate_username($username)) {
   $error = TCUser::ERR_USER;
 }
 // Validate email.
-if (empty($error) && !$user->validate_email($email)) {
+if (empty($error) && !$update_user->validate_email($email)) {
   $error = TCUser::ERR_EMAIL;
 }
 // Validate password.
-if (empty($error) && (!empty($password)) && !$user->validate_password($password)) {
+if (empty($error) && (!empty($password)) && !$update_user->validate_password($password)) {
   $error = TCUser::ERR_PASSWORD;
 }
 
@@ -83,10 +85,10 @@ $existing_user_checks = [
 
 if (empty($error)) {
   foreach ($existing_user_checks as $user_check) {
-    $existing_user = $db->load_objects($user, [], [['field' => $user_check['field'], 'value' => $user_check['value']]]);
+    $existing_user = $db->load_objects($update_user, [], [['field' => $user_check['field'], 'value' => $user_check['value']]]);
 
     if (!empty($existing_user)) {
-      if ($existing_user[0]->user_id != $user->user_id) {
+      if ($existing_user[0]->user_id != $update_user->user_id) {
         $error = $user_check['err_code'];
       }
     }
@@ -96,16 +98,22 @@ if (empty($error)) {
 $saved_user = null;
 
 if (empty($error)) {
-  $user->username = $username;
-  $user->email = $email;
-  $user->role_id = $role_id;
-  $user->updated_time = time();
+  $update_user->username = $username;
+  $update_user->email = $email;
+  $update_user->role_id = $role_id;
+  $update_user->suspended = $suspended;
+  $update_user->updated_time = time();
 
-  if (!empty($password)) {
-    $user->password = $user->get_password_hash($password);
+  // Users cannot suspend themselves.
+  if ($user->user_id == $update_user->user_id) {
+    $update_user->suspended = 0;
   }
 
-  $saved_user = $db->save_object($user);
+  if (!empty($password)) {
+    $update_user->password = $user->get_password_hash($password);
+  }
+
+  $saved_user = $db->save_object($update_user);
 
   // Verify user has been updated.
   if (empty($saved_user)) {
