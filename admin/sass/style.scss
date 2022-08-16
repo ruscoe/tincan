@@ -79,11 +79,6 @@ body.tincan-admin {
   #header {
     position: relative;
 
-    h1 {
-      padding-top: 3rem;
-      text-align: center;
-    }
-
     ul.navigation {
       position: absolute;
       right: 2rem;
@@ -109,6 +104,10 @@ body.tincan-admin {
     flex: 1;
     margin: 0 2rem 0 2rem;
     padding-top: 1rem;
+
+    h1 {
+      padding-top: 2rem;
+    }
 
     @include for-tablet-portrait-up {
       margin-left: 240px;
