@@ -42,12 +42,7 @@ $order = [];
 $db = new TCData();
 
 $boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
-$board_groups = $db->load_objects(new TCBoardGroup());
-
-$indexed_board_groups = [];
-foreach ($board_groups as $board_group) {
-  $indexed_board_groups[$board_group->board_group_id] = $board_group;
-}
+$indexed_board_groups = $db->get_indexed_objects(new TCBoardGroup(), 'board_group_id');
 ?>
 
 <form id="filters" action="/admin/actions/process-filters.php" method="POST">
@@ -55,7 +50,7 @@ foreach ($board_groups as $board_group) {
     <select name="board_group">
       <option value="">All board groups</option>
       <?php
-      foreach ($board_groups as $board_group) {
+      foreach ($indexed_board_groups as $board_group) {
         $selected = ($board_group->board_group_id == $board_group_id) ? ' selected' : ''; ?>
         <option value="<?php echo $board_group->board_group_id; ?>"<?php echo $selected; ?>><?php echo $board_group->board_group_name; ?></option>
       <?php

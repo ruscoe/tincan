@@ -42,13 +42,7 @@ if (!empty($board_id)) {
 $order = [];
 
 $threads = $db->load_objects(new TCThread(), [], $conditions, $order);
-$boards = $db->load_objects(new TCBoard());
-
-// TODO: This should be functionality of TCData.
-$indexed_boards = [];
-foreach ($boards as $board) {
-  $indexed_boards[$board->board_id] = $board;
-}
+$indexed_boards = $db->get_indexed_objects(new TCBoard(), 'board_id');
 ?>
 
 <form id="filters" action="/admin/actions/process-filters.php" method="POST">
@@ -56,7 +50,7 @@ foreach ($boards as $board) {
     <select name="board">
       <option value="">All boards</option>
       <?php
-      foreach ($boards as $board) {
+      foreach ($indexed_boards as $board) {
         $selected = ($board->board_id == $board_id) ? ' selected' : ''; ?>
         <option value="<?php echo $board->board_id; ?>"<?php echo $selected; ?>><?php echo $board->board_name; ?></option>
       <?php

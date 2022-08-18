@@ -227,6 +227,30 @@ class TCData
   }
 
   /**
+   * @since 0.12
+   */
+  public function get_indexed_objects($class, $index_field, $ids = [], $conditions = [], $order = [], $offset = 0, $limit = 0) {
+    $objects = $this->load_objects($class, $ids, $conditions, $order, $offset, $limit);
+
+    // Check indexed field exists on the object.
+    $db_fields = $class->get_db_fields();
+    // If not a field, could be the primary key.
+    $db_fields[] = $class->get_primary_key();
+
+    if (!in_array($index_field, $db_fields)) {
+      throw new TCException('Attempting to index objects by a field that doesn\'t exist: '.$index_field);
+    }
+
+    $indexed_objects = [];
+
+    foreach ($objects as $object) {
+      $indexed_objects[$object->$index_field] = $object;
+    }
+
+    return $indexed_objects;
+  }
+
+  /**
    * @since 0.02
    */
   public function count_objects($class, $conditions = [])
