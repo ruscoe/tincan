@@ -18,12 +18,21 @@ $author = $data['author'];
 $user = $data['user'];
 $settings = $data['settings'];
 
-$avatar = $author->avatar;
+$avatar = null;
+$user_page_url = null;
+$username = null;
 
-$avatar_image = (!empty($avatar)) ? $author->avatar : '/assets/images/default-profile.png';
+if (!empty($author)) {
+  $username = $author->username;
+  $avatar = $author->avatar;
 
-$url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-$user_page_url = TCURL::create_url($url_id, ['user' => $author->user_id], $settings['enable_urls'], $author->get_slug());
+  $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
+  $user_page_url = TCURL::create_url($url_id, ['user' => $author->user_id], $settings['enable_urls'], $author->get_slug());
+} else {
+  $username = 'Deleted User';
+}
+
+$avatar_image = (!empty($avatar)) ? $avatar : '/assets/images/default-profile.png';
 
 $url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
 $post_url = TCURL::create_url($url_id, ['thread' => $post->thread_id, 'start_at' => $page_number], $settings['enable_urls'], $thread->get_slug());
@@ -34,11 +43,21 @@ $parser = new TCPostParser();
 
 <div id="post-<?php echo $post->post_id; ?>" class="post">
   <div class="post-user">
-    <h3 class="username"><a href="<?php echo $user_page_url; ?>"><?php echo $author->username; ?></a></h3>
+    <?php if (!empty($author)) { ?>
+      <h3 class="username"><a href="<?php echo $user_page_url; ?>"><?php echo $username; ?></a></h3>
+    <?php } else { ?>
+      <h3 class="username"><?php echo $username; ?></h3>
+     <?php } ?>
     <div class="profile-image">
-      <a href="<?php echo $user_page_url; ?>"><img src="<?php echo $avatar_image; ?>" /></a>
+      <?php if (!empty($author)) { ?>
+        <a href="<?php echo $user_page_url; ?>"><img src="<?php echo $avatar_image; ?>" /></a>
+      <?php } else { ?>
+        <img src="<?php echo $avatar_image; ?>" />
+     <?php } ?>
     </div>
-    <div class="joined">Joined: <?php echo date($settings['date_format'], $author->created_time); ?></div>
+    <?php if (!empty($author)) { ?>
+      <div class="joined">Joined: <?php echo date($settings['date_format'], $author->created_time); ?></div>
+    <?php } ?>
   </div>
   <div class="post-content">
     <div class="date">

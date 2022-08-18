@@ -2,7 +2,6 @@
 
 use TinCan\TCData;
 use TinCan\TCUser;
-use TinCan\TCUserSession;
 
 /**
  * Page template for user deletion.
@@ -20,11 +19,11 @@ $db = new TCData();
 $delete_user = $db->load_object(new TCUser(), $delete_user_id);
 
 if ((!empty($delete_user)) && ($delete_user->user_id == $user->user_id)) {
-?>
+  ?>
   <h1>Can't delete own account</h1>
   <p>You can't delete the account you're logged in to.</p>
 <?php
-} else if (!empty($delete_user)) {
+} elseif (!empty($delete_user)) {
     ?>
     <h1>Really delete <?php echo $delete_user->get_name(); ?>?</h1>
 
@@ -36,7 +35,7 @@ if ((!empty($delete_user)) && ($delete_user->user_id == $user->user_id)) {
       </div>
     </form>
 <?php
-} else {
+  } else {
     ?>
   <h1>User not found</h1>
   <p>This user either never existed or has already been deleted.</p>
