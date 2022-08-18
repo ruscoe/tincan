@@ -44,7 +44,7 @@ if (!empty($board)) {
     <label for="move_threads">Move <?php echo $total_threads; ?> thread(s)</label>
   </div>
 
-  <div class="fieldset">
+  <div class="fieldset move-to-board">
     <label for="board_id">Move to board</label>
     <div class="field">
       <select name="move_to_board_id">
@@ -76,3 +76,19 @@ if (!empty($board)) {
   <?php
   }
 ?>
+
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      $('input[name=thread_fate]').change(function() {
+        console.log($(this).val());
+        if ($(this).val() == 'move') {
+          $('.fieldset.move-to-board').css('display', 'flex');
+        }
+        else {
+          $('.fieldset.move-to-board').hide();
+        }
+      });
+    });
+  })(jQuery);
+</script>

@@ -16,6 +16,8 @@
   <head>
     <title>Tin Can Forum</title>
     <link href="/admin/css/style.css" rel="stylesheet">
+    <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
+    <script src="/assets/js/jquery-3.6.0.min.js"></script>
   </head>
   <body class="tincan-admin">
     <div id="header">

@@ -342,15 +342,19 @@ body.tincan-admin form#delete-board .fieldset.thread-options {
   align-items: center;
 }
 /* line 81, ../sass/_tc-admin-forms.scss */
+body.tincan-admin form#delete-board .fieldset.move-to-board {
+  display: none;
+}
+/* line 85, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-board label {
   background: none;
   color: #6b6666;
 }
-/* line 87, ../sass/_tc-admin-forms.scss */
+/* line 91, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#filters {
   padding: 1rem 0 2rem 0;
 }
-/* line 90, ../sass/_tc-admin-forms.scss */
+/* line 94, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#filters .fieldset {
   float: left;
   margin: 0 0.5rem 0 0.5rem;

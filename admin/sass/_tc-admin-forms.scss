@@ -78,6 +78,10 @@ body.tincan-admin {
       align-items: center;
     }
 
+    .fieldset.move-to-board {
+      display: none;
+    }
+
     label {
       background: none;
       color: $text;
