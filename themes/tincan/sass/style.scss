@@ -234,6 +234,17 @@ a:hover {
   color: $linkTextHover;
 }
 
+a.button {
+  background-color: #d76a3a;
+  box-shadow: 2px 2px black;
+  color: white;
+  //display: none;
+  display: block;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  text-decoration: none;
+}
+
 /* Includes */
 
 @import '_tc-board-group';

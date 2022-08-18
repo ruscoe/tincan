@@ -40,8 +40,6 @@ if (empty($board)) {
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'settings' => $settings]);
 ?>
 
-<h1 class="section-header"><?php echo $board->board_name; ?></h1>
-
 <?php
   // Show new thread link if user has permission to create a new thread.
   if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
@@ -50,13 +48,14 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'sett
 
   <div id="board-navigation">
     <ul class="navigation">
-      <li><a href="<?php echo $new_thread_url; ?>">New thread</a></li>
+      <li><a class="button" href="<?php echo $new_thread_url; ?>">New thread</a></li>
     </ul>
   </div>
-
 <?php
   }
 ?>
+
+<h1 class="section-header"><?php echo $board->board_name; ?></h1>
 
 <?php
 // Get threads in this board; order by thread with most recent post.

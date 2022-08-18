@@ -199,6 +199,17 @@ a:hover {
   color: #d76a3a;
 }
 
+/* line 237, ../sass/style.scss */
+a.button {
+  background-color: #d76a3a;
+  box-shadow: 2px 2px black;
+  color: white;
+  display: block;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  text-decoration: none;
+}
+
 /* Includes */
 /* line 9, ../sass/_tc-board-group.scss */
 body.tincan.board-group #content .board-preview {
@@ -255,6 +266,20 @@ body.tincan.board #content .thread-preview {
 /* line 14, ../sass/_tc-board.scss */
 body.tincan.board #content .thread-preview h2, body.tincan.board #content .thread-preview span.thread-meta {
   margin: 0 0.5rem 0 0.5rem;
+}
+/* line 20, ../sass/_tc-board.scss */
+body.tincan.board #board-navigation {
+  padding: 1rem 0 1rem 0;
+}
+/* line 23, ../sass/_tc-board.scss */
+body.tincan.board #board-navigation ul.navigation {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+/* line 28, ../sass/_tc-board.scss */
+body.tincan.board #board-navigation ul.navigation li {
+  flex: 1;
 }
 
 /* line 7, ../sass/_tc-footer.scss */
