@@ -62,7 +62,7 @@ foreach ($users as $user) {
     ],
     [
       'type' => 'link',
-      'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=user&object_id='.$user->user_id,
+      'url' => '/admin/index.php?page='.$settings['admin_page_delete_user'].'&user_id='.$user->user_id,
       'value' => 'Delete',
     ],
   ];

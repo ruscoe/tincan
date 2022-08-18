@@ -755,6 +755,7 @@ function tc_create_pages()
       ['page_title' => 'Admin Edit Thread',        'template' => 'edit-thread'],
       ['page_title' => 'Admin Delete Thread',      'template' => 'delete-thread'],
       ['page_title' => 'Admin Edit User',          'template' => 'edit-user'],
+      ['page_title' => 'Admin Delete User',        'template' => 'delete-user'],
       ['page_title' => 'Admin Edit Mail Template', 'template' => 'edit-mail-template'],
       ['page_title' => 'Admin Delete Object',      'template' => 'delete-object'],
     ];
