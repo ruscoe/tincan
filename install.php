@@ -135,6 +135,7 @@ if (1 == $run_install) {
       display: block;
       flex: 1;
       padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+      text-align: left;
     }
 
     form#install-options input.text-input {
