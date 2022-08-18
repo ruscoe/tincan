@@ -894,7 +894,7 @@ function tc_create_boards($new_board_group_ids)
       $boards[] = [
         'board_group_id' => $board_group_id,
         'board_name' => tc_get_random_board_name(),
-        'description' => tc_get_random_lipsum_short()
+        'description' => tc_get_random_lipsum_short(),
       ];
     }
   }

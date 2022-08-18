@@ -1,10 +1,9 @@
 <?php
 
 use TinCan\TCData;
-use TinCan\TCObject;
+use TinCan\TCURL;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
-use TinCan\TCURL;
 
 /**
  * Admin page object filter handler.
@@ -45,14 +44,14 @@ $page_params = array_keys($_POST);
 $sanitized_params = [];
 
 foreach ($page_params as $param) {
-  if ($param == 'page') {
+  if ('page' == $param) {
     continue;
   }
 
   $sanitized_params[$param] = filter_input(INPUT_POST, $param, FILTER_SANITIZE_STRING);
 }
 
-$destination = '/admin' . TCURL::create_url($page_id, $sanitized_params);
+$destination = '/admin'.TCURL::create_url($page_id, $sanitized_params);
 
 header('Location: '.$destination);
 exit;

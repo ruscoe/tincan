@@ -3,7 +3,6 @@
 use TinCan\TCData;
 use TinCan\TCPost;
 use TinCan\TCThread;
-use TinCan\TCUser;
 
 /**
  * Page template for thread deletion.
@@ -19,8 +18,7 @@ $db = new TCData();
 $thread = $db->load_object(new TCThread(), $thread_id);
 
 if (!empty($thread)) {
-  $total_posts = $db->count_objects(new TCPost(), [['field' => 'thread_id', 'value' => $thread->thread_id]]);
-  ?>
+  $total_posts = $db->count_objects(new TCPost(), [['field' => 'thread_id', 'value' => $thread->thread_id]]); ?>
 
 <h1>Really delete <?php echo $thread->get_name(); ?>?</h1>
 

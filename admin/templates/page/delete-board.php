@@ -2,9 +2,7 @@
 
 use TinCan\TCBoard;
 use TinCan\TCData;
-use TinCan\TCPost;
 use TinCan\TCThread;
-use TinCan\TCUser;
 
 /**
  * Page template for board deletion.
@@ -23,8 +21,7 @@ $board = $db->load_object(new TCBoard(), $board_id);
 $available_boards = $db->load_objects(new TCBoard());
 
 if (!empty($board)) {
-  $total_threads = $db->count_objects(new TCThread(), [['field' => 'board_id', 'value' => $board->board_id]]);
-  ?>
+  $total_threads = $db->count_objects(new TCThread(), [['field' => 'board_id', 'value' => $board->board_id]]); ?>
 
 <h1>Really delete <?php echo $board->get_name(); ?>?</h1>
 
@@ -70,11 +67,11 @@ if (!empty($board)) {
 </form>
 <?php
 } else {
-    ?>
+          ?>
   <h1>Board not found</h1>
   <p>This board either never existed or has already been deleted.</p>
   <?php
-  }
+        }
 ?>
 
 <script type="text/javascript">

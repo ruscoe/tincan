@@ -102,7 +102,7 @@ class TCUser extends TCObject
   public function can_perform_action($action)
   {
     // All users can log in except suspended.
-    if (($action == self::ACT_LOG_IN) && !$this->suspended) {
+    if ((self::ACT_LOG_IN == $action) && !$this->suspended) {
       return true;
     }
 

@@ -52,13 +52,12 @@ $db->delete_object(new TCBoard(), $board->board_id);
 
 $threads = $db->load_objects(new TCThread(), null, [['field' => 'board_id', 'value' => $board->board_id]]);
 
-if ($thread_fate == 'move') {
+if ('move' == $thread_fate) {
   foreach ($threads as $thread) {
     $thread->board_id = $move_to_board_id;
     $db->save_object($thread);
   }
-}
-else {
+} else {
   foreach ($threads as $thread) {
     $db->delete_object(new TCThread(), $thread->thread_id);
   }

@@ -56,10 +56,10 @@ foreach ($board_groups as $board_group) {
       <option value="">All board groups</option>
       <?php
       foreach ($board_groups as $board_group) {
-        $selected = ($board_group->board_group_id == $board_group_id) ? ' selected' : '';
-        ?>
+        $selected = ($board_group->board_group_id == $board_group_id) ? ' selected' : ''; ?>
         <option value="<?php echo $board_group->board_group_id; ?>"<?php echo $selected; ?>><?php echo $board_group->board_group_name; ?></option>
-      <?php } ?>
+      <?php
+      } ?>
     </select>
   </div>
   <div class="fieldset button">
@@ -74,7 +74,7 @@ foreach ($board_groups as $board_group) {
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($boards as $board) {
-  $data = [
+        $data = [
     [
       'type' => 'text',
       'value' => $board->board_name,
@@ -100,7 +100,7 @@ foreach ($boards as $board) {
     ],
   ];
 
-  TCAdminTemplate::render('table-row', $data);
-}
+        TCAdminTemplate::render('table-row', $data);
+      }
 ?>
 </table>

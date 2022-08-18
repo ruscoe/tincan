@@ -57,10 +57,10 @@ foreach ($boards as $board) {
       <option value="">All boards</option>
       <?php
       foreach ($boards as $board) {
-        $selected = ($board->board_id == $board_id) ? ' selected' : '';
-        ?>
+        $selected = ($board->board_id == $board_id) ? ' selected' : ''; ?>
         <option value="<?php echo $board->board_id; ?>"<?php echo $selected; ?>><?php echo $board->board_name; ?></option>
-      <?php } ?>
+      <?php
+      } ?>
     </select>
   </div>
   <div class="fieldset button">
@@ -75,7 +75,7 @@ foreach ($boards as $board) {
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($threads as $thread) {
-  $data = [
+        $data = [
     [
       'type' => 'text',
       'value' => $thread->thread_title,
@@ -101,7 +101,7 @@ foreach ($threads as $thread) {
     ],
   ];
 
-  TCAdminTemplate::render('table-row', $data);
-}
+        TCAdminTemplate::render('table-row', $data);
+      }
 ?>
 </table>
