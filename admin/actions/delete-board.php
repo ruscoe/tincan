@@ -54,7 +54,7 @@ $threads = $db->load_objects(new TCThread(), null, [['field' => 'board_id', 'val
 
 if ($thread_fate == 'move') {
   foreach ($threads as $thread) {
-    $thread->board_id = $board->board_id;
+    $thread->board_id = $move_to_board_id;
     $db->save_object($thread);
   }
 }
