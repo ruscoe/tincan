@@ -3,6 +3,7 @@
 use TinCan\Admin\TCAdminTemplate;
 use TinCan\TCData;
 use TinCan\TCUser;
+use TinCan\TCRole;
 
 /**
  * Page template for admin user list.
@@ -25,6 +26,8 @@ $settings = $data['settings'];
 
 $db = new TCData();
 
+$indexed_roles = $db->get_indexed_objects(new TCRole(), 'role_id');
+
 // TODO: Sorting and pagination.
 $conditions = [];
 $order = [];
@@ -34,6 +37,7 @@ $users = $db->load_objects(new TCUser(), [], $conditions, $order);
 
 <table class="objects">
   <th>Username</th>
+  <th>Role</th>
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($users as $user) {
@@ -41,6 +45,10 @@ foreach ($users as $user) {
     [
       'type' => 'text',
       'value' => $user->username,
+    ],
+    [
+      'type' => 'text',
+      'value' => $indexed_roles[$user->role_id]->role_name,
     ],
     [
       'type' => 'link',
