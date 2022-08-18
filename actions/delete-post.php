@@ -65,12 +65,10 @@ if (empty($error) && (empty($user) || !$user->can_delete_post($post))) {
   $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
-if (empty($error)) {
-  $result = $db->delete_object($post, $post->post_id);
-
-  if (!$result) {
-    $error = TCObject::ERR_NOT_SAVED;
-  }
+try {
+  $db->delete_object($post, $post->post_id);
+} catch (TCException $e) {
+  $error = TCObject::ERR_NOT_SAVED;
 }
 
 if (!empty($ajax)) {
