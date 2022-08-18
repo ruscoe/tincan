@@ -69,19 +69,19 @@ foreach ($board_groups as $board_group) {
 </form>
 
 <table class="objects">
-  <th>Board Group</th>
   <th>Board Name</th>
+  <th>Board Group</th>
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($boards as $board) {
   $data = [
     [
       'type' => 'text',
-      'value' => $indexed_board_groups[$board->board_group_id]->board_group_name,
+      'value' => $board->board_name,
     ],
     [
       'type' => 'text',
-      'value' => $board->board_name,
+      'value' => $indexed_board_groups[$board->board_group_id]->board_group_name,
     ],
     [
       'type' => 'link',
