@@ -1,6 +1,8 @@
 body.tincan-admin {
 
   form#delete-object,
+  form#delete-board,
+  form#delete-thread,
   form#edit-board-group,
   form#edit-board,
   form#edit-page,
@@ -67,6 +69,18 @@ body.tincan-admin {
       font-weight: bold;
       padding: 0.25rem 0.5rem 0.25rem 0.5rem;
       text-decoration: none;
+    }
+  }
+
+  form#delete-board {
+
+    .fieldset.thread-options {
+      align-items: center;
+    }
+
+    label {
+      background: none;
+      color: $text;
     }
   }
 

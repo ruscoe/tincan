@@ -748,6 +748,7 @@ function tc_create_pages()
       ['page_title' => 'Admin Mail Templates',     'template' => 'mail-templates'],
       ['page_title' => 'Admin Edit Board Group',   'template' => 'edit-board-group'],
       ['page_title' => 'Admin Edit Board',         'template' => 'edit-board'],
+      ['page_title' => 'Admin Delete Board',       'template' => 'delete-board'],
       ['page_title' => 'Admin Edit Page',          'template' => 'edit-page'],
       ['page_title' => 'Admin Edit Post',          'template' => 'edit-post'],
       ['page_title' => 'Admin Edit Thread',        'template' => 'edit-thread'],

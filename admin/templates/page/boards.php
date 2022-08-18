@@ -95,7 +95,7 @@ foreach ($boards as $board) {
     ],
     [
       'type' => 'link',
-      'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=board&object_id='.$board->board_id,
+      'url' => '/admin/index.php?page='.$settings['admin_page_delete_board'].'&board_id='.$board->board_id,
       'value' => 'Delete',
     ],
   ];
