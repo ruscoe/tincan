@@ -891,7 +891,11 @@ function tc_create_boards($new_board_group_ids)
 
   foreach ($new_board_group_ids as $board_group_id) {
     for ($i = 0; $i < BOARDS_TO_CREATE; ++$i) {
-      $boards[] = ['board_group_id' => $board_group_id, 'board_name' => 'Board '.($i + 1), 'description' => tc_get_random_lipsum_short()];
+      $boards[] = [
+        'board_group_id' => $board_group_id,
+        'board_name' => tc_get_random_board_name(),
+        'description' => tc_get_random_lipsum_short()
+      ];
     }
   }
 
@@ -1025,6 +1029,24 @@ function tc_create_mail_templates()
   foreach ($queries as $query) {
     $db->run_query($query);
   }
+}
+
+function tc_get_random_board_name()
+{
+  $names = [
+      'Red',
+      'Blue',
+      'Yellow',
+      'Green',
+      'Orange',
+      'Purple',
+      'Silver',
+      'Gold',
+    ];
+
+  $index = rand(0, (count($names) - 1));
+
+  return $names[$index].' Board';
 }
 
 function tc_get_random_thread_title()
