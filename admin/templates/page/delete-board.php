@@ -36,10 +36,20 @@ if (!empty($board)) {
     <label for="delete_threads">Delete <?php echo $total_threads; ?> thread(s)</label>
   </div>
 
+  <?php
+  // Display option to move threads only if there's at least one other board.
+  if (count($available_boards) > 1) { ?>
+
   <div class="fieldset thread-options">
     <input type="radio" id="move_threads" name="thread_fate" value="move" />
     <label for="move_threads">Move <?php echo $total_threads; ?> thread(s)</label>
   </div>
+
+  <?php } else { ?>
+    <div class="fieldset">
+      <p>You'll need to create a new board if you'd like to move threads rather than delete them.</p>
+    </div>
+  <?php } ?>
 
   <div class="fieldset move-to-board">
     <label for="board_id">Move to board</label>
