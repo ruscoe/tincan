@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\Admin\TCAdminTemplate;
+use TinCan\TCBoard;
 use TinCan\TCData;
 use TinCan\TCThread;
 
@@ -25,15 +26,52 @@ $settings = $data['settings'];
 
 $db = new TCData();
 
-// TODO: Sorting and pagination.
+// Filter results.
+$board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
+
 $conditions = [];
+
+if (!empty($board_id)) {
+  $conditions[] = [
+    'field' => 'board_id',
+    'value' => $board_id,
+  ];
+}
+
+// TODO Sorting and pagination.
 $order = [];
 
 $threads = $db->load_objects(new TCThread(), [], $conditions, $order);
+$boards = $db->load_objects(new TCBoard());
+
+// TODO: This should be functionality of TCData.
+$indexed_boards = [];
+foreach ($boards as $board) {
+  $indexed_boards[$board->board_id] = $board;
+}
 ?>
+
+<form id="filters" action="/admin/actions/process-filters.php" method="POST">
+  <div class="fieldset">
+    <select name="board">
+      <option value="">All boards</option>
+      <?php
+      foreach ($boards as $board) {
+        $selected = ($board->board_id == $board_id) ? ' selected' : '';
+        ?>
+        <option value="<?php echo $board->board_id; ?>"<?php echo $selected; ?>><?php echo $board->board_name; ?></option>
+      <?php } ?>
+    </select>
+  </div>
+  <div class="fieldset button">
+    <input class="submit-bottom" type="submit" value="Filter threads" />
+  </div>
+  <input type="hidden" name="page" value="<?php echo $settings['admin_page_threads']; ?>" />
+</form>
 
 <table class="objects">
   <th>Thread Title</th>
+  <th>Board</th>
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($threads as $thread) {
@@ -41,6 +79,10 @@ foreach ($threads as $thread) {
     [
       'type' => 'text',
       'value' => $thread->thread_title,
+    ],
+    [
+      'type' => 'text',
+      'value' => $indexed_boards[$thread->board_id]->board_name,
     ],
     [
       'type' => 'link',
