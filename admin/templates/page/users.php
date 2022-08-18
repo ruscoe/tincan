@@ -2,8 +2,8 @@
 
 use TinCan\Admin\TCAdminTemplate;
 use TinCan\TCData;
-use TinCan\TCUser;
 use TinCan\TCRole;
+use TinCan\TCUser;
 
 /**
  * Page template for admin user list.

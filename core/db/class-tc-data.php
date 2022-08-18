@@ -229,7 +229,8 @@ class TCData
   /**
    * @since 0.12
    */
-  public function get_indexed_objects($class, $index_field, $ids = [], $conditions = [], $order = [], $offset = 0, $limit = 0) {
+  public function get_indexed_objects($class, $index_field, $ids = [], $conditions = [], $order = [], $offset = 0, $limit = 0)
+  {
     $objects = $this->load_objects($class, $ids, $conditions, $order, $offset, $limit);
 
     // Check indexed field exists on the object.
