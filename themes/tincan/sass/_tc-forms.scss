@@ -18,13 +18,6 @@ body.tincan {
     width: 400px;
   }
 
-  form#create-thread, form#post-reply, form#update-post {
-
-    textarea {
-      width: 100%;
-    }
-  }
-
   form#create-account, form#log-in, form#create-thread, form#post-reply, form#update-post, form#set-password, form#forum-settings {
     display: flex;
     flex-direction: column;
@@ -40,6 +33,22 @@ body.tincan {
     .fieldset.button {
       padding-top: 1rem;
       justify-content: flex-end;
+    }
+
+    .fieldset.textarea {
+      display: block;
+
+      label {
+        max-width: none !important;
+      }
+
+      .field {
+        flex: none;
+
+        textarea {
+          width: 100%;
+        }
+      }
     }
 
     .field {

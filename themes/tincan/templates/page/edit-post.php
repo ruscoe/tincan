@@ -48,9 +48,11 @@ if (!empty($user) && $user->can_edit_post($post)) {
   ?>
 
 <form id="update-post" action="/actions/update-post.php" method="POST">
-  <div class="fieldset">
-    <label for="thread_title">Reply Content</label>
-    <textarea name="post_content" rows="20" cols="30"><?php echo $post->content; ?></textarea>
+  <div class="fieldset textarea">
+    <label for="post_content">Reply Content</label>
+    <div class="field">
+      <textarea name="post_content" rows="20" cols="30"><?php echo $post->content; ?></textarea>
+    </div>
   </div>
 
   <input type="hidden" name="page_number" value="<?php echo $page_number; ?>" />

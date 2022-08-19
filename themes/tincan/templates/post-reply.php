@@ -24,9 +24,11 @@ $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
 <form id="post-reply" action="/actions/create-post.php" method="POST">
-  <div class="fieldset">
-    <label for="thread_title">Reply Content</label>
-    <textarea name="post_content" rows="20" cols="30"></textarea>
+  <div class="fieldset textarea">
+    <label for="post_content">Reply Content</label>
+    <div class="field">
+      <textarea name="post_content" rows="20" cols="30"></textarea>
+    </div>
   </div>
 
   <input type="hidden" name="thread_id" value="<?php echo $thread->thread_id; ?>" />
