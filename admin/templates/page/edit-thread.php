@@ -3,6 +3,7 @@
 use TinCan\TCBoard;
 use TinCan\TCData;
 use TinCan\TCThread;
+use TinCan\TCPost;
 
 /**
  * Page template for thread editing.
@@ -34,7 +35,7 @@ $form_action = (!empty($thread_id)) ? '/admin/actions/update-thread.php' : '/adm
   <div class="fieldset">
     <label for="thread_title">Thread Title</label>
     <div class="field">
-      <input type="text" name="thread_title" value="<?php echo $thread->thread_title; ?>" />
+      <input class="text-input" type="text" name="thread_title" value="<?php echo $thread->thread_title; ?>" />
     </div>
   </div>
 
@@ -52,10 +53,14 @@ $form_action = (!empty($thread_id)) ? '/admin/actions/update-thread.php' : '/adm
     </div>
   </div>
 
+  <?php
+  $first_post = $db->load_object(new TCPost(), $thread->first_post_id);
+  ?>
+
   <div class="fieldset textarea">
     <label for="content">Content</label>
     <div class="field">
-      <textarea name="content" rows="20" cols="30"><?php echo $mail_template->content; ?></textarea>
+      <textarea name="content" rows="20" cols="30"><?php echo (!empty($first_post)) ? $first_post->content : ''; ?></textarea>
     </div>
   </div>
 
