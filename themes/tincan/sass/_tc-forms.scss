@@ -62,6 +62,7 @@ body.tincan {
       color: $formFieldLabelText;
       display: block;
       flex: 1;
+      max-width: 240px;
       padding: 0.25rem 0.5rem 0.25rem 0.5rem;
     }
 

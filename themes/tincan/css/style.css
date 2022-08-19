@@ -141,19 +141,28 @@ ul.breadcrumbs li.subpage::before {
   content: '\21D2';
 }
 
+/* line 188, ../sass/style.scss */
+ul.post-controls {
+  padding-left: 1rem;
+}
+/* line 191, ../sass/style.scss */
+ul.post-controls li {
+  padding-left: 0;
+}
+
 /* Text */
-/* line 190, ../sass/style.scss */
+/* line 198, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
   color: #6b6666;
   text-align: left;
 }
 
-/* line 195, ../sass/style.scss */
+/* line 203, ../sass/style.scss */
 p {
   font-size: 1rem;
 }
 
-/* line 199, ../sass/style.scss */
+/* line 207, ../sass/style.scss */
 h1.section-header {
   background-color: #295c7a;
   border: solid #224d67;
@@ -164,42 +173,42 @@ h1.section-header {
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
 @media (min-width: 600px) {
-  /* line 199, ../sass/style.scss */
+  /* line 207, ../sass/style.scss */
   h1.section-header {
     font-size: 2rem;
   }
 }
 
-/* line 213, ../sass/style.scss */
+/* line 221, ../sass/style.scss */
 h2.section-subheader, h3.section-subheader {
   font-size: 1rem;
   margin: 0 0.5rem 0 0.5rem;
 }
 @media (min-width: 600px) {
-  /* line 213, ../sass/style.scss */
+  /* line 221, ../sass/style.scss */
   h2.section-subheader, h3.section-subheader {
     font-size: 1.5rem;
   }
 }
 
 /* Links */
-/* line 224, ../sass/style.scss */
+/* line 232, ../sass/style.scss */
 a:link {
   color: #123266;
   text-decoration: underline;
 }
 
-/* line 229, ../sass/style.scss */
+/* line 237, ../sass/style.scss */
 a:visited {
   color: #123266;
 }
 
-/* line 233, ../sass/style.scss */
+/* line 241, ../sass/style.scss */
 a:hover {
   color: #d76a3a;
 }
 
-/* line 237, ../sass/style.scss */
+/* line 245, ../sass/style.scss */
 a.button {
   background-color: #d76a3a;
   box-shadow: 2px 2px black;
@@ -338,13 +347,14 @@ body.tincan form#create-account label, body.tincan form#log-in label, body.tinca
   color: white;
   display: block;
   flex: 1;
+  max-width: 240px;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
-/* line 68, ../sass/_tc-forms.scss */
+/* line 69, ../sass/_tc-forms.scss */
 body.tincan form#create-account input.text-input, body.tincan form#log-in input.text-input, body.tincan form#create-thread input.text-input, body.tincan form#post-reply input.text-input, body.tincan form#update-post input.text-input, body.tincan form#set-password input.text-input, body.tincan form#forum-settings input.text-input {
   width: 100%;
 }
-/* line 72, ../sass/_tc-forms.scss */
+/* line 73, ../sass/_tc-forms.scss */
 body.tincan form#create-account input.submit-button, body.tincan form#log-in input.submit-button, body.tincan form#create-thread input.submit-button, body.tincan form#post-reply input.submit-button, body.tincan form#update-post input.submit-button, body.tincan form#set-password input.submit-button, body.tincan form#forum-settings input.submit-button {
   background-color: #d76a3a;
   box-shadow: 2px 2px black;

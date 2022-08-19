@@ -58,7 +58,7 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
     </div>
   </div>
 
-  <div class="fieldset">
+  <div class="fieldset textarea">
     <label for="post_content">Thread Content</label>
     <div class="field">
       <textarea name="post_content" rows="10" cols="50"></textarea>
