@@ -17,6 +17,7 @@ $code = filter_input(INPUT_GET, 'code', FILTER_SANITIZE_STRING);
 $status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_STRING);
 $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
+TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
 ?>
 

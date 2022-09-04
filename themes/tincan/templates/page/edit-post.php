@@ -38,6 +38,7 @@ if (empty($user) || !$user->can_edit_post($post)) {
   exit;
 }
 
+TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'settings' => $settings]);
 ?>
 

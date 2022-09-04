@@ -8,8 +8,9 @@ use TinCan\TCURL;
 use TinCan\TCUser;
 
 $settings = $data['settings'];
-$user = $data['user'];
+$page = $data['page'];
 $slug = $data['slug'];
+$user = $data['user'];
 
 /**
  * Board group page template.
@@ -36,10 +37,11 @@ if (empty($board_group)) {
   exit;
 }
 
+TCTemplate::render('header', $settings['theme'], ['page_title' => $board_group->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board_group, 'settings' => $settings]);
 ?>
 
-<h1 class="section-header"><?php echo $board_group->board_group_name; ?></h1>
+<h1 class="section-header"><?php echo $board_group->get_name(); ?></h1>
 
 <?php
 

@@ -43,6 +43,7 @@ if (!empty($user) && $user->can_edit_user($profile_user)) {
   $avatar_url = TCURL::create_url($url_id, ['user' => $profile_user->user_id], $settings['enable_urls'], $profile_user->get_slug());
 }
 
+TCTemplate::render('header', $settings['theme'], ['page_title' => $profile_user->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user, 'settings' => $settings]);
 ?>
 

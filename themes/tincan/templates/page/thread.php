@@ -35,6 +35,7 @@ if (empty($thread)) {
   exit;
 }
 
+TCTemplate::render('header', $settings['theme'], ['page_title' => $thread->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $thread, 'settings' => $settings]);
 ?>
 

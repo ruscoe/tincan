@@ -37,6 +37,7 @@ if (empty($board)) {
   exit;
 }
 
+TCTemplate::render('header', $settings['theme'], ['page_title' => $board->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'settings' => $settings]);
 ?>
 

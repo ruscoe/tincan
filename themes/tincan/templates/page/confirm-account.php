@@ -11,6 +11,8 @@ use TinCan\TCURL;
  */
 $settings = $data['settings'];
 $error = $data['error'];
+
+TCTemplate::render('header', $settings['theme'], ['page_title' => 'Account Confirmation', 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 ?>
 
 <h1 class="section-header">Account Confirmation</h1>

@@ -22,6 +22,8 @@ $thread = $db->load_object(new TCThread(), $thread_id);
 
 $url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
 $thread_url = TCURL::create_url($url_id, ['thread' => $thread->thread_id], $settings['enable_urls'], $thread->get_slug());
+
+TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>

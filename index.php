@@ -123,8 +123,5 @@ $user_id = $session->get_user_id();
 $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Render page.
-TCTemplate::render('header', $settings['theme'], ['page_template' => $page_template, 'settings' => $settings, 'user' => $user]);
-
 TCTemplate::render('page/'.$page_template, $settings['theme'], ['page' => $page, 'settings' => $settings, 'user' => $user, 'slug' => $page_slug]);
-
 TCTemplate::render('footer', $settings['theme'], null);

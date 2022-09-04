@@ -30,6 +30,8 @@ if (!empty($board_id)) {
   $board = reset($matched_boards);
 }
 
+TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
+
 // Check user has permission to create a new thread.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
   ?>

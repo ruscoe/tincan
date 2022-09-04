@@ -22,12 +22,15 @@ if ($settings['enable_urls']) {
   $log_in_url = TCURL::create_url($settings['page_log_in']);
   $log_out_url = TCURL::create_url($settings['page_log_out']);
 }
+
+$title = (!empty($data['page_title'])) ? $data['page_title'] . ' - ' : '';
+$title .= $settings['forum_name'];
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title><?php echo $settings['forum_name']; ?></title>
+    <title><?php echo $title; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php if (!empty($settings['theme'])) {
   include TC_BASE_PATH."/themes/{$settings['theme']}/header-include.php";
