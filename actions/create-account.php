@@ -91,6 +91,7 @@ if (empty($error)) {
   $user->email = $email;
   $user->password = $user->get_password_hash($password);
   $user->role_id = $settings['default_user_role'];
+  $user->suspended = 0;
   $user->created_time = time();
   $user->updated_time = time();
 
