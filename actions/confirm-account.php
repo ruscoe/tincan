@@ -62,8 +62,5 @@ if (empty($error)) {
 // Render page.
 $page_template = 'confirm-account';
 
-TCTemplate::render('header', $settings['theme'], ['page_template' => $page_template, 'settings' => $settings, 'user' => $user]);
-
 TCTemplate::render('page/'.$page_template, $settings['theme'], ['settings' => $settings, 'user' => $user, 'error' => $error]);
-
 TCTemplate::render('footer', $settings['theme'], null);
