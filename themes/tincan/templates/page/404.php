@@ -1,5 +1,6 @@
 <?php
 
+use TinCan\TCTemplate;
 use TinCan\TCURL;
 
 /**
@@ -9,7 +10,11 @@ use TinCan\TCURL;
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
+$settings = $data['settings'];
 $page = $data['page'];
+$user = $data['user'];
+
+TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>

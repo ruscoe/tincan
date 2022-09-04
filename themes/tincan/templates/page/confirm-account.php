@@ -1,5 +1,6 @@
 <?php
 
+use TinCan\TCTemplate;
 use TinCan\TCURL;
 
 /**
@@ -10,6 +11,8 @@ use TinCan\TCURL;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $settings = $data['settings'];
+$page = $data['page'];
+$user = $data['user'];
 $error = $data['error'];
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => 'Account Confirmation', 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);

@@ -38,6 +38,8 @@ if (empty($user) || !$user->can_edit_user($avatar_user)) {
   header('Location: '.TCURL::create_url($settings['page_404']));
   exit;
 }
+
+TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
