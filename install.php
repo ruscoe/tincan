@@ -761,6 +761,7 @@ function tc_create_pages()
     ];
 
   foreach ($pages as $page) {
+    $page['slug'] = '';
     $page['created_time'] = time();
     $page['updated_time'] = time();
     // All default pages are required and cannot be deleted.
@@ -779,6 +780,7 @@ function tc_create_pages()
 
     $setting = [
           'setting_name' => $setting_name,
+          'category' => '',
           'type' => 'page',
           'title' => $saved_page->page_title,
           'value' => $saved_page->page_id,

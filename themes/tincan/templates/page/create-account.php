@@ -11,6 +11,7 @@ use TinCan\TCUser;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $page = $data['page'];
+$user = $data['user'];
 $settings = $data['settings'];
 
 $username = filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING);

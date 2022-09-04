@@ -11,6 +11,7 @@ use TinCan\TCURL;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $page = $data['page'];
+$user = $data['user'];
 $settings = $data['settings'];
 
 $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
