@@ -48,7 +48,8 @@ class TCMySQL extends TCDB
 
     try {
       $this->connection = new \mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
-    } catch (mysqli_sql_exception $e) {
+    } catch (\mysqli_sql_exception $e) {
+      //echo $e->getMessage();
       throw new TCException('Database connection failed.');
     }
 
@@ -80,9 +81,9 @@ class TCMySQL extends TCDB
       throw new TCException($e->getMessage());
     }
 
-    $prepared = $this->connection->prepare($query);
-
-    if (empty($prepared)) {
+    try {
+      $prepared = $this->connection->prepare($query);
+    } catch (\mysqli_sql_exception $e) {
       $this->close_connection();
       throw new TCException('Unable to prepare query for execution: '.$query);
     }
