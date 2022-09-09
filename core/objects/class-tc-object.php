@@ -58,7 +58,7 @@ abstract class TCObject
     $db_fields = $this->get_db_fields();
 
     foreach ($db_fields as $field) {
-      if ($this->validate_field_value($field, $object->$field)) {
+      if (isset($object->$field) && $this->validate_field_value($field, $object->$field)) {
         $this->$field = $object->$field;
       }
     }
@@ -104,17 +104,16 @@ abstract class TCObject
   }
 
   /**
-   * Creates a URL slug from an object name.
+   * Creates a unique URL slug from this object's name and primary key.
    *
    * @since 0.08
    *
-   * @param string $name the name to create a slug from
-   *
    * @return string the URL slug
    */
-  public function generate_slug($name)
+  public function generate_slug()
   {
-    $slug = strtolower(str_replace(' ', '-', $name));
+    $slug = strtolower(str_replace(' ', '-', $this->get_name()));
+    $slug .= '-'.$this->get_primary_key_value();
 
     return $slug;
   }

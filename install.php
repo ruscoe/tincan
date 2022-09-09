@@ -400,7 +400,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Forum name',
         'value' => 'Tin Can Forum',
-        'required' => 1,
       ],
       [
         'setting_name' => 'base_url',
@@ -408,7 +407,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Forum base URL',
         'value' => $install_settings['base_url'],
-        'required' => 1,
       ],
       [
         'setting_name' => 'date_format',
@@ -416,7 +414,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Date format',
         'value' => 'F jS Y',
-        'required' => 1,
       ],
       [
         'setting_name' => 'date_time_format',
@@ -424,7 +421,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Date & time format',
         'value' => 'F jS Y H:i',
-        'required' => 1,
       ],
       [
         'setting_name' => 'min_thread_title',
@@ -432,7 +428,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Minimum thread title length',
         'value' => '8',
-        'required' => 1,
       ],
       [
         'setting_name' => 'posts_per_page',
@@ -440,7 +435,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Posts per page',
         'value' => 10,
-        'required' => 1,
       ],
       [
         'setting_name' => 'threads_per_page',
@@ -448,7 +442,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Threads per page',
         'value' => 10,
-        'required' => 1,
       ],
       [
         'setting_name' => 'allow_registration',
@@ -456,7 +449,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'bool',
         'title' => 'Allow new registrations',
         'value' => 'true',
-        'required' => 1,
       ],
       [
         'setting_name' => 'default_user_role',
@@ -464,7 +456,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'role',
         'title' => 'Default user role',
         'value' => '1',
-        'required' => 1,
       ],
       [
         'setting_name' => 'theme',
@@ -472,7 +463,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Theme',
         'value' => 'tincan',
-        'required' => 1,
       ],
       [
         'setting_name' => 'enable_js',
@@ -480,7 +470,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'bool',
         'title' => 'Enable JavaScript',
         'value' => 'true',
-        'required' => 1,
       ],
       [
         'setting_name' => 'enable_css',
@@ -488,7 +477,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'bool',
         'title' => 'Enable CSS',
         'value' => 'true',
-        'required' => 1,
       ],
       [
         'setting_name' => 'enable_urls',
@@ -496,7 +484,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'bool',
         'title' => 'Enable friendly URLs',
         'value' => 'false',
-        'required' => 1,
       ],
       [
         'setting_name' => 'base_url_board_groups',
@@ -504,7 +491,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Board groups base URL',
         'value' => 'board-groups/%slug%',
-        'required' => 1,
       ],
       [
         'setting_name' => 'base_url_boards',
@@ -512,7 +498,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Boards base URL',
         'value' => 'boards/%slug%',
-        'required' => 1,
       ],
       [
         'setting_name' => 'base_url_threads',
@@ -520,7 +505,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Threads base URL',
         'value' => 'threads/%slug%',
-        'required' => 1,
       ],
       [
         'setting_name' => 'base_url_users',
@@ -528,7 +512,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Users base URL',
         'value' => 'users/%slug%',
-        'required' => 1,
       ],
       [
         'setting_name' => 'base_url_pages',
@@ -536,7 +519,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Pages base URL',
         'value' => 'pages/%slug%',
-        'required' => 1,
       ],
       [
         'setting_name' => 'base_url_new_thread',
@@ -544,7 +526,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'New thread base URL',
         'value' => 'boards/%slug%/new',
-        'required' => 1,
       ],
       [
         'setting_name' => 'base_url_edit_post',
@@ -552,7 +533,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Edit post base URL',
         'value' => 'posts/%slug%/edit',
-        'required' => 1,
       ],
       [
         'setting_name' => 'base_url_delete_post',
@@ -560,7 +540,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Delete post base URL',
         'value' => 'posts/%slug%/delete',
-        'required' => 1,
       ],
       [
         'setting_name' => 'base_url_avatar',
@@ -568,7 +547,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Upload avatar URL',
         'value' => 'users/%slug%/avatar',
-        'required' => 1,
       ],
       [
         'setting_name' => 'site_email_name',
@@ -576,7 +554,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Site email sender name',
         'value' => 'Tin Can Forum',
-        'required' => 1,
       ],
       [
         'setting_name' => 'site_email_address',
@@ -584,7 +561,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'Site email sender address',
         'value' => $install_settings['site_email_address'],
-        'required' => 1,
       ],
       [
         'setting_name' => 'smtp_host',
@@ -592,7 +568,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'SMTP host',
         'value' => '',
-        'required' => 1,
       ],
       [
         'setting_name' => 'smtp_user',
@@ -600,7 +575,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'SMTP username',
         'value' => '',
-        'required' => 1,
       ],
       [
         'setting_name' => 'smtp_pass',
@@ -608,7 +582,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'SMTP password',
         'value' => '',
-        'required' => 1,
       ],
       [
         'setting_name' => 'smtp_port',
@@ -616,7 +589,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'text',
         'title' => 'SMTP port',
         'value' => '465',
-        'required' => 1,
       ],
       [
         'setting_name' => 'smtp_enable_tls',
@@ -624,7 +596,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'bool',
         'title' => 'Enable implicit TLS encryption',
         'value' => 'true',
-        'required' => 1,
       ],
       [
         'setting_name' => 'smtp_enable_verbose',
@@ -632,7 +603,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'bool',
         'title' => 'Enable verbose debug output',
         'value' => 'false',
-        'required' => 1,
       ],
       [
         'setting_name' => 'require_confirm_email',
@@ -640,7 +610,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'bool',
         'title' => 'Require account confirmation by email',
         'value' => 'false',
-        'required' => 1,
       ],
       [
         'setting_name' => 'mail_reset_password',
@@ -648,7 +617,6 @@ function tc_create_settings($install_settings = [])
         'type' => 'mail_template',
         'title' => 'Reset Password Mail Template',
         'value' => 1000,
-        'required' => 1,
       ],
       [
         'setting_name' => 'mail_confirm_account',
@@ -656,11 +624,13 @@ function tc_create_settings($install_settings = [])
         'type' => 'mail_template',
         'title' => 'Confirm Account Mail Template',
         'value' => 1001,
-        'required' => 1,
       ],
     ];
 
   foreach ($settings as $setting) {
+    // All default settings are required and cannot be deleted.
+    $setting['required'] = 1;
+
     try {
       $db->save_object(new TCSetting((object) $setting));
     } catch (TCException $e) {
@@ -769,6 +739,9 @@ function tc_create_pages()
 
     try {
       $saved_page = $db->save_object(new TCPage((object) $page));
+
+      $saved_page->slug = $saved_page->generate_slug();
+      $db->save_object($saved_page);
     } catch (TCException $e) {
       echo $e->getMessage()."\n";
     }
@@ -826,6 +799,7 @@ function tc_create_users()
   ];
 
   foreach ($users as $user_data) {
+    $user_data['password_reset_code'] = '';
     $user_data['suspended'] = 0;
     $user_data['created_time'] = time();
     $user_data['updated_time'] = time();
@@ -871,13 +845,14 @@ function tc_create_board_groups()
   $new_board_group_ids = [];
 
   foreach ($board_groups as $board_group) {
+    $board_group['slug'] = '';
     $board_group['created_time'] = time();
     $board_group['updated_time'] = time();
 
     try {
       $new_board_group = $db->save_object(new TCBoardGroup((object) $board_group));
 
-      $new_board_group->slug = $new_board_group->generate_slug($new_board_group->board_group_name);
+      $new_board_group->slug = $new_board_group->generate_slug();
       $db->save_object($new_board_group);
     } catch (TCException $e) {
       echo $e->getMessage()."\n";
@@ -906,16 +881,14 @@ function tc_create_boards($new_board_group_ids)
   $new_board_ids = [];
 
   foreach ($boards as $board) {
+    $board['slug'] = '';
     $board['created_time'] = time();
     $board['updated_time'] = time();
 
     try {
       $new_board = $db->save_object(new TCBoard((object) $board));
 
-      $new_board->slug = $new_board->generate_slug($new_board->board_name);
-      $db->save_object($new_board);
-
-      $new_board->slug = $new_board->generate_slug($new_board->board_name);
+      $new_board->slug = $new_board->generate_slug();
       $db->save_object($new_board);
     } catch (TCException $e) {
       echo $e->getMessage()."\n";
@@ -942,6 +915,7 @@ function tc_create_threads($new_board_ids)
   $new_thread_ids = [];
 
   foreach ($threads as $thread) {
+    $thread['slug'] = '';
     $thread['created_by_user'] = 1000;
     $thread['updated_by_user'] = 1000;
     $thread['first_post_id'] = 1000;
@@ -951,10 +925,7 @@ function tc_create_threads($new_board_ids)
     try {
       $new_thread = $db->save_object(new TCThread((object) $thread));
 
-      $new_thread->slug = $new_thread->generate_slug($new_thread->thread_title);
-      $db->save_object($new_thread);
-
-      $new_thread->slug = $new_thread->generate_slug($new_thread->thread_title);
+      $new_thread->slug = $new_thread->generate_slug();
       $db->save_object($new_thread);
     } catch (TCException $e) {
       echo $e->getMessage()."\n";
