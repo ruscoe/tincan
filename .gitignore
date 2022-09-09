@@ -1,6 +1,8 @@
 tools
+vendor
 uploads
 tc-config.php
 phpunit.xml
 .php-cs*
 .phpunit*
+composer.lock
