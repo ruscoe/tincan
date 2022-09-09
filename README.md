@@ -87,6 +87,18 @@ Finally, restart nginx:
 
 `sudo service nginx restart`
 
+If you see the default nginx server when you check http://tincan.local, ensure your nginx
+configuration contains the following:
+
+```
+include /etc/nginx/conf.d/*.conf;
+include /etc/nginx/sites-enabled/*;
+```
+
+Depending on your version of nginx, the second line might be missing. Note that you can also
+place your site configuration file directly into /etc/nginx/conf.d/ if you want to. Just
+rename it from tincan.local to tincan.conf.
+
 Continue on to the Configuration section.
 
 ## Configuration
