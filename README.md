@@ -95,9 +95,13 @@ include /etc/nginx/conf.d/*.conf;
 include /etc/nginx/sites-enabled/*;
 ```
 
-Depending on your version of nginx, the second line might be missing. Note that you can also
-place your site configuration file directly into /etc/nginx/conf.d/ if you want to. Just
-rename it from tincan.local to tincan.conf.
+Depending on your version of nginx, the second line might be missing.
+
+Note that you can also place your site configuration file directly into /etc/nginx/conf.d/
+if you want to. Just rename it from tincan.local to tincan.conf.
+
+The sites-available / sites-enabled structure is just a convenient way of enabling and
+disabling sites using symlinks.
 
 Continue on to the Configuration section.
 
