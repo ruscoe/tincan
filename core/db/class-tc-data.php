@@ -31,6 +31,22 @@ class TCData
   }
 
   /**
+   * @since 0.13
+   *
+   * @return bool true if a database connection is made
+   */
+  public function test_connection()
+  {
+    try {
+      $this->database->open_connection();
+    } catch (TCException $e) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
    * @since 0.01
    */
   public function run_query($query)
