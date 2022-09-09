@@ -122,7 +122,7 @@ Edit *tc-config.php* and change these values to suit your environment.
 | TC_DB_PASS      | root                       |
 | TC_DB_NAME      | tincan                     |
 
-## Installation
+## Create your Database
 
 Access your MySQL instance and create a new database.
 
@@ -131,7 +131,19 @@ Access your MySQL instance and create a new database.
 Be sure to set *TC_DB_NAME* in your configuration file if you choose
 a different database name.
 
-In your browser, open the URL you've set up for Tin Can forum.
+## Install Requirements via Composer
+
+If you don't already have it, install Composer according to the [directions here](https://getcomposer.org/download/).
+
+In the root directory, run:
+
+`composer install`
+
+## Installation
+
+In your browser, open the URL you've set up for Tin Can forum. This will be
+http://tincan.local if you've kept the default options so far.
+
 You will be taken to the installer.
 
 Check the "Generate test data" checkbox if you'd like to start with sample
