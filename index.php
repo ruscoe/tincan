@@ -19,9 +19,21 @@ define('TC_VERSION', '0.12');
  */
 
 // Base configuation.
-require 'tc-config.php';
+$directory = getcwd();
+if (file_exists($directory.'/tc-config.php')) {
+  require $directory.'/tc-config.php';
+}
+else {
+  exit('Configuration file is missing. Did you copy <b>tc-config-example.php</b> to <b>tc-config.php</b>? See README.md for information.');
+}
+
 // Composer autoload.
-require TC_BASE_PATH.'/vendor/autoload.php';
+if (file_exists(TC_BASE_PATH.'/vendor/autoload.php')) {
+  require TC_BASE_PATH.'/vendor/autoload.php';
+}
+else {
+  exit('Composer vendor autoload file is missing. Please run <b>composer install</b> in the root directory. See README.md for information.');
+}
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/core/class-tc-mailer.php';
