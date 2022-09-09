@@ -32,7 +32,7 @@ if (file_exists(TC_BASE_PATH.'/vendor/autoload.php')) {
   require TC_BASE_PATH.'/vendor/autoload.php';
 }
 else {
-  exit('Composer vendor autoload file is missing. Please run <b>composer install</b> in the root directory. See README.md for information.');
+  exit('Composer vendor autoload file is missing. You may need to run <b>composer install</b> in the root directory. See README.md for information.');
 }
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
@@ -45,10 +45,15 @@ require TC_BASE_PATH.'/includes/include-user.php';
 
 $db = new TCData();
 
+// Test database connection.
+if (!$db->test_connection()) {
+  die('No database available. Check the connection information in your configuration file. See README.md for information.');
+  exit;
+}
+
 try {
   $settings = $db->load_settings();
 } catch (TCException $e) {
-  // echo $e->getMessage();
   // For now assume this means the site hasn't been installed.
   // Redirect to the installer.
   header('Location: '.TCURL::get_installer_url());
