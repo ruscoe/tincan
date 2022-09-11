@@ -15,6 +15,8 @@ abstract class TCObject
   public const ERR_NOT_SAVED = 'nosave';
   public const ERR_EMPTY_FIELD = 'empty';
 
+  public const MAX_SLUG_LENGTH = 32;
+
   /**
    * @since 0.01
    */
@@ -113,9 +115,9 @@ abstract class TCObject
   public function generate_slug()
   {
     $slug = strtolower(str_replace(' ', '-', $this->get_name()));
-    $slug .= '-'.$this->get_primary_key_value();
+    $trimmed_slug = substr($slug, 0, self::MAX_SLUG_LENGTH);
 
-    return $slug;
+    return $trimmed_slug.'-'.$this->get_primary_key_value();
   }
 
   /**
