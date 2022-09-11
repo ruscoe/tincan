@@ -179,6 +179,12 @@ class TCData
       $insert_id = $this->database->get_last_insert_id();
 
       $object->$primary_key = $insert_id;
+
+      // Generate slug if this object uses one.
+      if (in_array('slug', $db_fields)) {
+        $object->slug = $object->generate_slug();
+        $this->save_object($object);
+      }
     } else {
       // Existing object to update.
       $sql_fields = [];
