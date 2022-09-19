@@ -402,6 +402,13 @@ function tc_create_settings($install_settings = [])
         'value' => 'Tin Can Forum',
       ],
       [
+        'setting_name' => 'forum_logo',
+        'category' => 'forum',
+        'type' => 'image',
+        'title' => 'Forum logo',
+        'value' => '/assets/images/tin-can-logo.png',
+      ],
+      [
         'setting_name' => 'base_url',
         'category' => 'forum',
         'type' => 'text',

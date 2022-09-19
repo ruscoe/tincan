@@ -56,6 +56,9 @@ $pages = $db->load_objects(new TCPage());
       case 'bool':
         TCAdminTemplate::render('table-row-settings-bool', ['setting' => $setting]);
       break;
+      case 'image':
+        TCAdminTemplate::render('table-row-settings-image', ['setting' => $setting]);
+      break;
       case 'role':
         TCAdminTemplate::render('table-row-settings-user-role', ['setting' => $setting]);
       break;

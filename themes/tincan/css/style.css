@@ -8,7 +8,7 @@
 /* Containers */
 /* line 54, ../sass/style.scss */
 body {
-  background-color: white;
+  background-color: #FFFFFF;
   margin: 0;
   padding: 0;
 }
@@ -25,78 +25,122 @@ body {
 /* line 67, ../sass/style.scss */
 #header h1 {
   margin: 0;
-  padding-top: 3rem;
+  padding-top: 1rem;
   text-align: center;
 }
-/* line 73, ../sass/style.scss */
+@media (min-width: 600px) {
+  /* line 67, ../sass/style.scss */
+  #header h1 {
+    padding-top: 3rem;
+  }
+}
+/* line 77, ../sass/style.scss */
 #header ul.navigation {
-  position: absolute;
-  right: 2rem;
-  top: 1rem;
+  padding-top: 1rem;
+}
+@media (min-width: 600px) {
+  /* line 77, ../sass/style.scss */
+  #header ul.navigation {
+    padding: 0;
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+  }
+}
+/* line 87, ../sass/style.scss */
+#header ul.navigation li {
+  flex: 1;
+  text-align: center;
+}
+@media (min-width: 600px) {
+  /* line 87, ../sass/style.scss */
+  #header ul.navigation li {
+    flex: none;
+    text-align: left;
+  }
+}
+/* line 98, ../sass/style.scss */
+#header .logo {
+  text-align: center;
+  padding-top: 2rem;
+}
+/* line 102, ../sass/style.scss */
+#header .logo img {
+  height: 80px;
+  width: 80px;
+}
+@media (min-width: 600px) {
+  /* line 98, ../sass/style.scss */
+  #header .logo {
+    left: 2rem;
+    padding: 0;
+    position: absolute;
+    top: 1rem;
+  }
 }
 
-/* line 80, ../sass/style.scss */
+/* line 116, ../sass/style.scss */
 #content {
   margin: 0;
   padding-top: 1rem;
 }
 @media (min-width: 600px) {
-  /* line 80, ../sass/style.scss */
+  /* line 116, ../sass/style.scss */
   #content {
     margin: 0 2rem 0 2rem;
   }
 }
 
-/* line 89, ../sass/style.scss */
+/* line 125, ../sass/style.scss */
 #footer {
   padding: 3rem 0 3rem 0;
 }
 
-/* line 93, ../sass/style.scss */
+/* line 129, ../sass/style.scss */
 .message-box {
-  background-color: #f1f1f1;
-  border: 2px solid #dddddd;
+  background-color: #F1F1F1;
+  border: 2px solid #DDDDDD;
   margin: 0 auto 0 auto;
   max-width: 400px;
   margin-top: 3rem;
   padding: 1rem 0 1rem 0;
 }
-/* line 101, ../sass/style.scss */
+/* line 137, ../sass/style.scss */
 .message-box p {
   margin: 0 2rem 0 2rem;
 }
-/* line 105, ../sass/style.scss */
+/* line 141, ../sass/style.scss */
 .message-box ul.errors {
   list-style: none;
   margin: 0 1rem 0 1rem;
   padding: 0;
 }
-/* line 110, ../sass/style.scss */
+/* line 146, ../sass/style.scss */
 .message-box ul.errors li {
-  color: #dc0139;
+  color: #DC0139;
 }
 
-/* line 120, ../sass/style.scss */
+/* line 156, ../sass/style.scss */
 .tc-code table th {
-  background-color: #295c7a;
-  color: white;
+  background-color: #295C7A;
+  color: #FFFFFF;
 }
-/* line 125, ../sass/style.scss */
+/* line 161, ../sass/style.scss */
 .tc-code table tr:nth-child(even) {
-  background-color: #eeeeee;
+  background-color: #EEEEEE;
 }
-/* line 129, ../sass/style.scss */
+/* line 165, ../sass/style.scss */
 .tc-code table th, .tc-code table td {
   padding: 1rem;
 }
-/* line 135, ../sass/style.scss */
+/* line 171, ../sass/style.scss */
 .tc-code table td h1, .tc-code table td h2, .tc-code table td h3, .tc-code table td h4, .tc-code table td h5 {
   line-height: 100%;
   margin: 0;
 }
 
 /* Navigation */
-/* line 145, ../sass/style.scss */
+/* line 181, ../sass/style.scss */
 ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
   display: flex;
   flex-flow: row nowrap;
@@ -105,110 +149,110 @@ ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
   margin: 0;
   padding: 0;
 }
-/* line 153, ../sass/style.scss */
+/* line 189, ../sass/style.scss */
 ul.navigation li, ul.pagination li, ul.post-controls li, ul.breadcrumbs li {
   padding: 0 0.5rem 0 0.5rem;
 }
 
-/* line 158, ../sass/style.scss */
+/* line 194, ../sass/style.scss */
 ul.pagination {
   justify-content: center;
   padding: 1rem 0 0 0;
 }
 
-/* line 163, ../sass/style.scss */
+/* line 199, ../sass/style.scss */
 ul.breadcrumbs {
   margin: 1rem 0 1rem 0;
 }
 @media (min-width: 600px) {
-  /* line 166, ../sass/style.scss */
+  /* line 202, ../sass/style.scss */
   ul.breadcrumbs li.home a {
     padding-left: 1rem;
   }
 }
-/* line 172, ../sass/style.scss */
+/* line 208, ../sass/style.scss */
 ul.breadcrumbs li.subpage a {
   padding-left: 1rem;
 }
 @media (min-width: 600px) {
-  /* line 176, ../sass/style.scss */
+  /* line 212, ../sass/style.scss */
   ul.breadcrumbs li.home::before {
     content: '\2616';
   }
 }
-/* line 183, ../sass/style.scss */
+/* line 219, ../sass/style.scss */
 ul.breadcrumbs li.subpage::before {
   content: '\21D2';
 }
 
-/* line 188, ../sass/style.scss */
+/* line 224, ../sass/style.scss */
 ul.post-controls {
   padding-left: 1rem;
 }
-/* line 191, ../sass/style.scss */
+/* line 227, ../sass/style.scss */
 ul.post-controls li {
   padding-left: 0;
 }
 
 /* Text */
-/* line 198, ../sass/style.scss */
+/* line 234, ../sass/style.scss */
 h1, h2, h3, p, li, th, td {
-  color: #6b6666;
+  color: #6B6666;
   text-align: left;
 }
 
-/* line 203, ../sass/style.scss */
+/* line 239, ../sass/style.scss */
 p {
   font-size: 1rem;
 }
 
-/* line 207, ../sass/style.scss */
+/* line 243, ../sass/style.scss */
 h1.section-header {
-  background-color: #295c7a;
-  border: solid #224d67;
+  background-color: #295C7A;
+  border: solid #224D67;
   border-width: 0 2px 2px 0;
-  color: white;
+  color: #FFFFFF;
   font-size: 1rem;
   margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
 @media (min-width: 600px) {
-  /* line 207, ../sass/style.scss */
+  /* line 243, ../sass/style.scss */
   h1.section-header {
     font-size: 2rem;
   }
 }
 
-/* line 221, ../sass/style.scss */
+/* line 257, ../sass/style.scss */
 h2.section-subheader, h3.section-subheader {
   font-size: 1rem;
   margin: 0 0.5rem 0 0.5rem;
 }
 @media (min-width: 600px) {
-  /* line 221, ../sass/style.scss */
+  /* line 257, ../sass/style.scss */
   h2.section-subheader, h3.section-subheader {
     font-size: 1.5rem;
   }
 }
 
 /* Links */
-/* line 232, ../sass/style.scss */
+/* line 268, ../sass/style.scss */
 a:link {
   color: #123266;
   text-decoration: underline;
 }
 
-/* line 237, ../sass/style.scss */
+/* line 273, ../sass/style.scss */
 a:visited {
   color: #123266;
 }
 
-/* line 241, ../sass/style.scss */
+/* line 277, ../sass/style.scss */
 a:hover {
-  color: #d76a3a;
+  color: #D76A3A;
 }
 
-/* line 245, ../sass/style.scss */
+/* line 281, ../sass/style.scss */
 a.button {
   background-color: #d76a3a;
   box-shadow: 2px 2px black;
@@ -222,8 +266,8 @@ a.button {
 /* Includes */
 /* line 9, ../sass/_tc-board-group.scss */
 body.tincan.board-group #content .board-preview {
-  background-color: #f1f1f1;
-  border-bottom: 2px solid #dddddd;
+  background-color: #F1F1F1;
+  border-bottom: 2px solid #DDDDDD;
   padding: 0.5rem 0 0.5rem 0;
 }
 /* line 14, ../sass/_tc-board-group.scss */
@@ -237,12 +281,12 @@ body.tincan.board-group #content .board-preview h2 {
 
 /* line 29, ../sass/_tc-board-group.scss */
 body.tincan.front .board-group h2 {
-  background-color: #295c7a;
+  background-color: #295C7A;
   margin: 0;
 }
 /* line 33, ../sass/_tc-board-group.scss */
 body.tincan.front .board-group h2 a {
-  color: white;
+  color: #FFFFFF;
   display: block;
   font-size: 1rem;
   margin: 0 0.5rem 0 0.5rem;
@@ -257,8 +301,8 @@ body.tincan.front .board-group ul {
 }
 /* line 48, ../sass/_tc-board-group.scss */
 body.tincan.front .board-group ul li {
-  background-color: #f1f1f1;
-  border-bottom: 2px solid #dddddd;
+  background-color: #F1F1F1;
+  border-bottom: 2px solid #DDDDDD;
   padding: 1rem;
 }
 /* line 53, ../sass/_tc-board-group.scss */
@@ -268,8 +312,8 @@ body.tincan.front .board-group ul li h3, body.tincan.front .board-group ul li p 
 
 /* line 9, ../sass/_tc-board.scss */
 body.tincan.board #content .thread-preview {
-  background-color: #f1f1f1;
-  border-bottom: 2px solid #dddddd;
+  background-color: #F1F1F1;
+  border-bottom: 2px solid #DDDDDD;
   padding: 1rem;
 }
 /* line 14, ../sass/_tc-board.scss */
@@ -337,14 +381,14 @@ body.tincan form#create-account .fieldset.textarea .field textarea, body.tincan 
 }
 /* line 54, ../sass/_tc-forms.scss */
 body.tincan form#create-account .field, body.tincan form#log-in .field, body.tincan form#create-thread .field, body.tincan form#post-reply .field, body.tincan form#update-post .field, body.tincan form#set-password .field, body.tincan form#forum-settings .field {
-  background-color: #f1f1f1;
+  background-color: #F1F1F1;
   flex: 1.5;
   padding: 0.25rem;
 }
 /* line 60, ../sass/_tc-forms.scss */
 body.tincan form#create-account label, body.tincan form#log-in label, body.tincan form#create-thread label, body.tincan form#post-reply label, body.tincan form#update-post label, body.tincan form#set-password label, body.tincan form#forum-settings label {
-  background-color: #295c7a;
-  color: white;
+  background-color: #295C7A;
+  color: #FFFFFF;
   display: block;
   flex: 1;
   max-width: 240px;
@@ -356,9 +400,9 @@ body.tincan form#create-account input.text-input, body.tincan form#log-in input.
 }
 /* line 73, ../sass/_tc-forms.scss */
 body.tincan form#create-account input.submit-button, body.tincan form#log-in input.submit-button, body.tincan form#create-thread input.submit-button, body.tincan form#post-reply input.submit-button, body.tincan form#update-post input.submit-button, body.tincan form#set-password input.submit-button, body.tincan form#forum-settings input.submit-button {
-  background-color: #d76a3a;
-  box-shadow: 2px 2px black;
-  color: white;
+  background-color: #D76A3A;
+  box-shadow: 2px 2px #000000;
+  color: #FFFFFF;
   display: inline-block;
   font-weight: bold;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
@@ -368,8 +412,8 @@ body.tincan form#create-account input.submit-button, body.tincan form#log-in inp
 /* Colors */
 /* line 12, ../sass/_tc-post.scss */
 body.tincan.thread .post {
-  background-color: #f1f1f1;
-  border-bottom: 2px solid #dddddd;
+  background-color: #F1F1F1;
+  border-bottom: 2px solid #DDDDDD;
   display: block;
 }
 @media (min-width: 600px) {
@@ -387,7 +431,7 @@ body.tincan.thread .post {
 /* line 28, ../sass/_tc-post.scss */
 body.tincan.thread .post .post-user {
   background-color: #748499;
-  color: white;
+  color: #FFFFFF;
   display: flex;
   flex-direction: row-reverse;
   padding: 0.5rem 0 0.5rem 0;
@@ -397,7 +441,7 @@ body.tincan.thread .post .post-user {
 /* line 37, ../sass/_tc-post.scss */
 body.tincan.thread .post .post-user h3.username {
   font-size: 1.25rem;
-  color: white;
+  color: #FFFFFF;
   margin: 0;
   text-align: center;
 }
@@ -458,7 +502,7 @@ body.tincan.thread .post .content {
 }
 /* line 94, ../sass/_tc-post.scss */
 body.tincan.thread .post:nth-child(even) {
-  background-color: #eeeeee;
+  background-color: #EEEEEE;
 }
 
 /* Colors */
@@ -479,7 +523,7 @@ body.tincan.user #user-info .profile-image {
 }
 /* line 27, ../sass/_tc-user.scss */
 body.tincan.user #user-info .joined {
-  color: white;
+  color: #FFFFFF;
   padding: 0 0 1rem 0;
 }
 @media (min-width: 600px) {
