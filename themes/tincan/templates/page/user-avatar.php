@@ -53,7 +53,7 @@ TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_ti
 <form id="upload-avatar" action="/actions/upload-avatar.php" method="POST" enctype="multipart/form-data">
 
   <div class="fieldset">
-    <label for="username">Username</label>
+    <label for="avatar_image">Username</label>
     <div class="field">
       <input type="file" name="avatar_image">
     </div>
