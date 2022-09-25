@@ -15,118 +15,118 @@ namespace TinCan;
  */
 class TCMySQL extends TCDB
 {
-  /**
-   * @since 0.01
-   */
-  private $connection;
+    /**
+     * @since 0.01
+     */
+    private $connection;
 
-  /**
-   * Tests for an existing database connection.
-   *
-   * This is needed when using PHP 8 and above due to what looks like a bug.
-   *
-   * @see https://github.com/joomlatools/joomlatools-framework/issues/554
-   * @since 0.06
-   */
-  public function is_connected()
-  {
-    try {
-      return ($this->connection instanceof MySQLi) && @$this->_connection->ping();
-    } catch (\Exception $e) {
-      return false;
-    }
-  }
-
-  /**
-   * @since 0.01
-   */
-  public function open_connection()
-  {
-    if (!empty($this->connection) && !$this->is_connected()) {
-      return $this->connection;
+    /**
+     * Tests for an existing database connection.
+     *
+     * This is needed when using PHP 8 and above due to what looks like a bug.
+     *
+     * @see https://github.com/joomlatools/joomlatools-framework/issues/554
+     * @since 0.06
+     */
+    public function is_connected()
+    {
+        try {
+            return ($this->connection instanceof MySQLi) && @$this->_connection->ping();
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
-    try {
-      $this->connection = new \mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
-    } catch (\mysqli_sql_exception $e) {
-      //echo $e->getMessage();
-      throw new TCException('Database connection failed.');
+    /**
+     * @since 0.01
+     */
+    public function open_connection()
+    {
+        if (!empty($this->connection) && !$this->is_connected()) {
+            return $this->connection;
+        }
+
+        try {
+            $this->connection = new \mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
+        } catch (\mysqli_sql_exception $e) {
+            //echo $e->getMessage();
+            throw new TCException('Database connection failed.');
+        }
+
+        if (!empty($this->connection->connect_errno)) {
+            throw new TCException('Database connection failed: '.$this->connection->connect_errno);
+        }
+
+        return $this->connection;
     }
 
-    if (!empty($this->connection->connect_errno)) {
-      throw new TCException('Database connection failed: '.$this->connection->connect_errno);
+    /**
+     * @since 0.01
+     */
+    public function close_connection()
+    {
+        if (!empty($this->connection) && $this->is_connected()) {
+            $this->connection->close();
+        }
     }
 
-    return $this->connection;
-  }
+    /**
+     * @since 0.01
+     */
+    public function query($query, $params = [])
+    {
+        try {
+            $this->open_connection();
+        } catch (TCException $e) {
+            throw new TCException($e->getMessage());
+        }
 
-  /**
-   * @since 0.01
-   */
-  public function close_connection()
-  {
-    if (!empty($this->connection) && $this->is_connected()) {
-      $this->connection->close();
-    }
-  }
+        try {
+            $prepared = $this->connection->prepare($query);
+        } catch (\mysqli_sql_exception $e) {
+            $this->close_connection();
+            throw new TCException('Unable to prepare query for execution: '.$query);
+        }
 
-  /**
-   * @since 0.01
-   */
-  public function query($query, $params = [])
-  {
-    try {
-      $this->open_connection();
-    } catch (TCException $e) {
-      throw new TCException($e->getMessage());
-    }
+        foreach ($params as $param) {
+            if (is_int($param)) {
+                $prepared->bind_param('i', $param);
+            } else {
+                $prepared->bind_param('s', $param);
+            }
+        }
 
-    try {
-      $prepared = $this->connection->prepare($query);
-    } catch (\mysqli_sql_exception $e) {
-      $this->close_connection();
-      throw new TCException('Unable to prepare query for execution: '.$query);
-    }
+        if (false !== $prepared->execute()) {
+            $result = $prepared->get_result();
 
-    foreach ($params as $param) {
-      if (is_int($param)) {
-        $prepared->bind_param('i', $param);
-      } else {
-        $prepared->bind_param('s', $param);
-      }
-    }
+            $this->close_connection();
 
-    if (false !== $prepared->execute()) {
-      $result = $prepared->get_result();
+            if (!empty($result)) {
+                $prepared->free_result();
+                $prepared->close();
 
-      $this->close_connection();
+                return $result;
+            }
+        } elseif (!empty($prepared->error)) {
+            throw new TCException('Unable to execute query: '.$prepared->error);
+        }
 
-      if (!empty($result)) {
-        $prepared->free_result();
-        $prepared->close();
-
-        return $result;
-      }
-    } elseif (!empty($prepared->error)) {
-      throw new TCException('Unable to execute query: '.$prepared->error);
+        return null;
     }
 
-    return null;
-  }
+    /**
+     * @since 0.01
+     */
+    public function get_last_insert_id()
+    {
+        return $this->connection->insert_id;
+    }
 
-  /**
-   * @since 0.01
-   */
-  public function get_last_insert_id()
-  {
-    return $this->connection->insert_id;
-  }
-
-  /**
-   * @since 0.01
-   */
-  public function get_last_error()
-  {
-    return $this->connection->error;
-  }
+    /**
+     * @since 0.01
+     */
+    public function get_last_error()
+    {
+        return $this->connection->error;
+    }
 }

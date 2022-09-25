@@ -37,29 +37,29 @@ $board_groups = $db->load_objects(new TCBoardGroup(), [], $conditions, $order);
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($board_groups as $board_group) {
-  $data = [
-    [
-      'type' => 'text',
-      'value' => $board_group->board_group_name,
-    ],
-    [
-      'type' => 'link',
-      'url' => '/index.php?page='.$settings['page_board_group'].'&board_group='.$board_group->board_group_id,
-      'value' => 'View',
-    ],
-    [
-      'type' => 'link',
-      'url' => '/admin/index.php?page='.$settings['admin_page_edit_board_group'].'&board_group_id='.$board_group->board_group_id,
-      'value' => 'Edit',
-    ],
-    [
-      'type' => 'link',
-      'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=board_group&object_id='.$board_group->board_group_id,
-      'value' => 'Delete',
-    ],
-  ];
+    $data = [
+      [
+        'type' => 'text',
+        'value' => $board_group->board_group_name,
+      ],
+      [
+        'type' => 'link',
+        'url' => '/index.php?page='.$settings['page_board_group'].'&board_group='.$board_group->board_group_id,
+        'value' => 'View',
+      ],
+      [
+        'type' => 'link',
+        'url' => '/admin/index.php?page='.$settings['admin_page_edit_board_group'].'&board_group_id='.$board_group->board_group_id,
+        'value' => 'Edit',
+      ],
+      [
+        'type' => 'link',
+        'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=board_group&object_id='.$board_group->board_group_id,
+        'value' => 'Delete',
+      ],
+    ];
 
-  TCAdminTemplate::render('table-row', $data);
+    TCAdminTemplate::render('table-row', $data);
 }
 ?>
 </table>

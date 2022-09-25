@@ -35,9 +35,9 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $thread = $db->load_object(new TCThread(), $thread_id);
@@ -45,22 +45,22 @@ $thread = $db->load_object(new TCThread(), $thread_id);
 $error = null;
 
 if (empty($thread)) {
-  $error = TCObject::ERR_NOT_FOUND;
+    $error = TCObject::ERR_NOT_FOUND;
 }
 
 $saved_thread = null;
 
 if (empty($error)) {
-  $thread->thread_title = $thread_title;
-  $thread->board_id = $board_id;
-  $thread->updated_time = time();
+    $thread->thread_title = $thread_title;
+    $thread->board_id = $board_id;
+    $thread->updated_time = time();
 
-  $saved_thread = $db->save_object($thread);
+    $saved_thread = $db->save_object($thread);
 
-  // Verify thread has been updated.
-  if (empty($saved_thread)) {
-    $error = TCObject::ERR_NOT_SAVED;
-  }
+    // Verify thread has been updated.
+    if (empty($saved_thread)) {
+        $error = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 // Return to the boards page.

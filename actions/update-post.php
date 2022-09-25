@@ -37,10 +37,10 @@ $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 $db = new TCData();
 
 try {
-  $settings = $db->load_settings();
+    $settings = $db->load_settings();
 } catch (TCException $e) {
-  echo $e->getMessage();
-  exit;
+    echo $e->getMessage();
+    exit;
 }
 
 // Get logged in user.
@@ -53,7 +53,7 @@ $post = $db->load_object(new TCPost(), $post_id);
 
 // Check user has permission to edit this post.
 if (empty($user) || !$user->can_edit_post($post)) {
-  $error = TCUser::ERR_NOT_AUTHORIZED;
+    $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
 // Validate post content.
@@ -61,59 +61,59 @@ $post_sanitizer = new TCPostSanitizer();
 $post_content = $post_sanitizer->sanitize_post($post_content);
 
 if (empty($post_content)) {
-  $error = TCObject::ERR_NOT_SAVED;
+    $error = TCObject::ERR_NOT_SAVED;
 }
 
 $sanitizer = new TCPostSanitizer();
 
 if (empty($error)) {
-  $post->content = $sanitizer->sanitize_post($post_content);
-  $post->updated_time = time();
-  $post->updated_by_user = $user->user_id;
+    $post->content = $sanitizer->sanitize_post($post_content);
+    $post->updated_time = time();
+    $post->updated_by_user = $user->user_id;
 
-  $updated_post = $db->save_object($post);
+    $updated_post = $db->save_object($post);
 
-  if (empty($updated_post)) {
-    $error = TCObject::ERR_NOT_SAVED;
-  }
+    if (empty($updated_post)) {
+        $error = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 $destination = '';
 
 if (empty($error)) {
-  // Send user to their updated post.
-  $destination = TCURL::create_url($settings['page_thread'], [
-    'thread' => $post->thread_id,
-    'start_at' => $page_number,
-  ]);
+    // Send user to their updated post.
+    $destination = TCURL::create_url($settings['page_thread'], [
+      'thread' => $post->thread_id,
+      'start_at' => $page_number,
+    ]);
 
-  $destination .= '#post-'.$post->post_id;
+    $destination .= '#post-'.$post->post_id;
 }
 
 if (!empty($ajax)) {
-  header('Content-type: application/json; charset=utf-8');
+    header('Content-type: application/json; charset=utf-8');
 
-  $response = new TCJSONResponse();
+    $response = new TCJSONResponse();
 
-  $response->success = (empty($error));
-  $response->post_id = (!empty($post)) ? $post->post_id : null;
-  $response->target_url = $destination;
+    $response->success = (empty($error));
+    $response->post_id = (!empty($post)) ? $post->post_id : null;
+    $response->target_url = $destination;
 
-  if (!empty($error)) {
-    $error_message = new TCErrorMessage();
-    $response->errors = $error_message->get_error_message('update-post', $error);
-  }
+    if (!empty($error)) {
+        $error_message = new TCErrorMessage();
+        $response->errors = $error_message->get_error_message('update-post', $error);
+    }
 
-  exit($response->get_output());
+    exit($response->get_output());
 } else {
-  if (!empty($error)) {
-    // Send user back to the new post page with an error.
-    $destination = TCURL::create_url($settings['page_edit_post'], [
-      'post' => $post->post_id,
-      'error' => $error,
-    ]);
-  }
+    if (!empty($error)) {
+        // Send user back to the new post page with an error.
+        $destination = TCURL::create_url($settings['page_edit_post'], [
+          'post' => $post->post_id,
+          'error' => $error,
+        ]);
+    }
 
-  header('Location: '.$destination);
-  exit;
+    header('Location: '.$destination);
+    exit;
 }

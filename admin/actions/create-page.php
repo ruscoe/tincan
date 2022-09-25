@@ -30,9 +30,9 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $page = new TCPage();
@@ -41,9 +41,9 @@ $page = new TCPage();
 $db_fields = $page->get_db_fields();
 
 foreach ($db_fields as $field) {
-  if (isset($_POST[$field])) {
-    $page->$field = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
-  }
+    if (isset($_POST[$field])) {
+        $page->$field = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
+    }
 }
 
 $page->created_time = time();

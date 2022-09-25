@@ -25,26 +25,26 @@ $board_groups = $db->load_objects(new TCBoardGroup());
 TCTemplate::render('header', $settings['theme'], ['page_title' => null, 'page_template' => 'front', 'settings' => $settings, 'user' => $user]);
 
 if (!empty($board_groups)) {
-  foreach ($board_groups as $group) {
-    $board_conditions = [
-      [
-        'field' => 'board_group_id',
-        'value' => $group->board_group_id,
-      ],
-    ];
+    foreach ($board_groups as $group) {
+        $board_conditions = [
+          [
+            'field' => 'board_group_id',
+            'value' => $group->board_group_id,
+          ],
+        ];
 
-    $boards = $db->load_objects(new TCBoard(), [], $board_conditions);
+        $boards = $db->load_objects(new TCBoard(), [], $board_conditions);
 
-    $data = [
-      'settings' => $settings,
-      'board_group' => $group,
-      'boards' => $boards,
-    ];
+        $data = [
+          'settings' => $settings,
+          'board_group' => $group,
+          'boards' => $boards,
+        ];
 
-    TCTemplate::render('board-group', $settings['theme'], $data);
-  }
+        TCTemplate::render('board-group', $settings['theme'], $data);
+    }
 } else {
-  $log_in_url = TCURL::create_url($settings['page_log_in']); ?>
+    $log_in_url = TCURL::create_url($settings['page_log_in']); ?>
   <div class="message-box">
     <p>Nothing here yet!</p>
     <?php if (empty($user)) { ?>

@@ -30,50 +30,50 @@ $pages = $db->load_objects(new TCPage());
 
   <?php
   $settings_by_cat = [];
-  foreach ($settings as $setting) {
+foreach ($settings as $setting) {
     if (!isset($settings_by_cat[$setting->category])) {
-      $settings_by_cat[$setting->category] = [];
+        $settings_by_cat[$setting->category] = [];
     }
 
     $settings_by_cat[$setting->category][] = $setting;
-  }
+}
 
-  $last_category = null;
+$last_category = null;
 
-  foreach ($settings_by_cat as $category => $settings) {
+foreach ($settings_by_cat as $category => $settings) {
     ?>
     <div class="setting-category">
       <h2><?php echo $settings[0]->category; ?></h2>
       <table>
     <?php
     foreach ($settings as $setting) {
-      switch ($setting->type) {
-      case 'page':
-        // Don't display page settings. Too easy to break the entire forum by
-        // reassigning default pages.
-        // TCAdminTemplate::render('table-row-settings-page', ['setting' => $setting, 'pages' => $pages]);
-      break;
-      case 'bool':
-        TCAdminTemplate::render('table-row-settings-bool', ['setting' => $setting]);
-      break;
-      case 'image':
-        TCAdminTemplate::render('table-row-settings-image', ['setting' => $setting]);
-      break;
-      case 'role':
-        TCAdminTemplate::render('table-row-settings-user-role', ['setting' => $setting]);
-      break;
-      case 'mail_template':
-        TCAdminTemplate::render('table-row-settings-mail-template', ['setting' => $setting]);
-      break;
-      default:
-        TCAdminTemplate::render('table-row-settings-text', ['setting' => $setting]);
-    }
+        switch ($setting->type) {
+            case 'page':
+                // Don't display page settings. Too easy to break the entire forum by
+                // reassigning default pages.
+                // TCAdminTemplate::render('table-row-settings-page', ['setting' => $setting, 'pages' => $pages]);
+                break;
+            case 'bool':
+                TCAdminTemplate::render('table-row-settings-bool', ['setting' => $setting]);
+                break;
+            case 'image':
+                TCAdminTemplate::render('table-row-settings-image', ['setting' => $setting]);
+                break;
+            case 'role':
+                TCAdminTemplate::render('table-row-settings-user-role', ['setting' => $setting]);
+                break;
+            case 'mail_template':
+                TCAdminTemplate::render('table-row-settings-mail-template', ['setting' => $setting]);
+                break;
+            default:
+                TCAdminTemplate::render('table-row-settings-text', ['setting' => $setting]);
+        }
     } ?>
     </table>
   </div>
   <?php
-  }
-  ?>
+}
+?>
   </table>
 
   <div class="fieldset button">

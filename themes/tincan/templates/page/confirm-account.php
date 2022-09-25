@@ -22,11 +22,11 @@ TCTemplate::render('header', $settings['theme'], ['page_title' => 'Account Confi
 
 <?php
   if (!empty($error)) {
-    ?>
+      ?>
   <p>Unable to confirm your account. Please check the link in your email.</p>
 <?php
   } else {
-    ?>
+      ?>
   <p>Your account has been confirmed and you are now logged in!</p>
 <?php
   }

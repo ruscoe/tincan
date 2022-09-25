@@ -34,9 +34,9 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $error = null;
@@ -52,7 +52,7 @@ $saved_mail_template = $db->save_object($mail_template);
 
 // Verify mail template has been created.
 if (empty($saved_mail_template)) {
-  $error = TCObject::ERR_NOT_SAVED;
+    $error = TCObject::ERR_NOT_SAVED;
 }
 
 // Return to the mail templates page.

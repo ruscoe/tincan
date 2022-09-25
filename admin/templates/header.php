@@ -6,10 +6,10 @@
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-  $settings = $data['settings'];
-  $user = $data['user'];
+$settings = $data['settings'];
+$user = $data['user'];
 
-  // TODO: Check user role before anything else.
+// TODO: Check user role before anything else.
 ?>
 
 <html>

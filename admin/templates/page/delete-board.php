@@ -21,7 +21,7 @@ $board = $db->load_object(new TCBoard(), $board_id);
 $available_boards = $db->load_objects(new TCBoard());
 
 if (!empty($board)) {
-  $total_threads = $db->count_objects(new TCThread(), [['field' => 'board_id', 'value' => $board->board_id]]); ?>
+    $total_threads = $db->count_objects(new TCThread(), [['field' => 'board_id', 'value' => $board->board_id]]); ?>
 
 <h1>Really delete <?php echo $board->get_name(); ?>?</h1>
 
@@ -37,8 +37,8 @@ if (!empty($board)) {
   </div>
 
   <?php
-  // Display option to move threads only if there's at least one other board.
-  if (count($available_boards) > 1) { ?>
+    // Display option to move threads only if there's at least one other board.
+    if (count($available_boards) > 1) { ?>
 
   <div class="fieldset thread-options">
     <input type="radio" id="move_threads" name="thread_fate" value="move" />
@@ -56,13 +56,13 @@ if (!empty($board)) {
     <div class="field">
       <select name="move_to_board_id">
         <?php
-          foreach ($available_boards as $available_board) {
-            if ($available_board->board_id == $board->board_id) {
-              continue;
+            foreach ($available_boards as $available_board) {
+                if ($available_board->board_id == $board->board_id) {
+                    continue;
+                }
+                echo "<option value=\"{$available_board->board_id}\">{$available_board->board_name}</option>\n";
             }
-            echo "<option value=\"{$available_board->board_id}\">{$available_board->board_name}</option>\n";
-          }
-        ?>
+    ?>
       </select>
     </div>
   </div>
@@ -77,11 +77,11 @@ if (!empty($board)) {
 </form>
 <?php
 } else {
-          ?>
+    ?>
   <h1>Board not found</h1>
   <p>This board either never existed or has already been deleted.</p>
   <?php
-        }
+}
 ?>
 
 <script type="text/javascript">

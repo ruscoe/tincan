@@ -24,9 +24,9 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settin
 
 <?php
   if (!empty($error)) {
-    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
   } elseif (!empty($status) && ('sent' == $status)) {
-    ?>
+      ?>
 
     <div class="message-box">
       <p>Please check your email for your password reset link.</p>

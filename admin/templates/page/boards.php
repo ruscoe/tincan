@@ -30,10 +30,10 @@ $board_group_id = filter_input(INPUT_GET, 'board_group', FILTER_SANITIZE_NUMBER_
 $conditions = [];
 
 if (!empty($board_group_id)) {
-  $conditions[] = [
-    'field' => 'board_group_id',
-    'value' => $board_group_id,
-  ];
+    $conditions[] = [
+      'field' => 'board_group_id',
+      'value' => $board_group_id,
+    ];
 }
 
 // TODO Sorting and pagination.
@@ -51,7 +51,7 @@ $indexed_board_groups = $db->get_indexed_objects(new TCBoardGroup(), 'board_grou
       <option value="">All board groups</option>
       <?php
       foreach ($indexed_board_groups as $board_group) {
-        $selected = ($board_group->board_group_id == $board_group_id) ? ' selected' : ''; ?>
+          $selected = ($board_group->board_group_id == $board_group_id) ? ' selected' : ''; ?>
         <option value="<?php echo $board_group->board_group_id; ?>"<?php echo $selected; ?>><?php echo $board_group->board_group_name; ?></option>
       <?php
       } ?>
@@ -69,7 +69,7 @@ $indexed_board_groups = $db->get_indexed_objects(new TCBoardGroup(), 'board_grou
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($boards as $board) {
-        $data = [
+    $data = [
     [
       'type' => 'text',
       'value' => $board->board_name,
@@ -95,7 +95,7 @@ foreach ($boards as $board) {
     ],
   ];
 
-        TCAdminTemplate::render('table-row', $data);
-      }
+    TCAdminTemplate::render('table-row', $data);
+}
 ?>
 </table>

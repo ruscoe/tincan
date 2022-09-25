@@ -25,28 +25,28 @@ $class = null;
 $object = null;
 
 switch ($object_type) {
-  case 'board_group':
-    $class = new TCBoardGroup();
-    break;
-  case 'board':
-    $class = new TCBoard();
-    break;
-  case 'page':
-    $class = new TCPage();
-    break;
-  case 'thread':
-    $class = new TCThread();
-    break;
-  case 'user':
-    $class = new TCUser();
-    break;
-  case 'mail_template':
-    $class = new TCMailTemplate();
-    break;
+    case 'board_group':
+        $class = new TCBoardGroup();
+        break;
+    case 'board':
+        $class = new TCBoard();
+        break;
+    case 'page':
+        $class = new TCPage();
+        break;
+    case 'thread':
+        $class = new TCThread();
+        break;
+    case 'user':
+        $class = new TCUser();
+        break;
+    case 'mail_template':
+        $class = new TCMailTemplate();
+        break;
 }
 
 if (!empty($class)) {
-  $object = $db->load_object($class, $object_id); ?>
+    $object = $db->load_object($class, $object_id); ?>
 
 <h1>Really delete <?php echo $object->get_name(); ?>?</h1>
 
@@ -64,5 +64,5 @@ if (!empty($class)) {
   <h1>Unknown object type</h1>
   <p>"<?php echo $object_type; ?>" isn't a known object type and cannot be deleted.</p>
   <?php
-  }
+}
 ?>

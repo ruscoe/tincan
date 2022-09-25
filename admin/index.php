@@ -30,10 +30,10 @@ $page = null;
 $db = new TCData();
 
 try {
-  $settings = $db->load_settings();
+    $settings = $db->load_settings();
 } catch (TCException $e) {
-  echo $e->getMessage();
-  exit;
+    echo $e->getMessage();
+    exit;
 }
 
 // Get logged in user.
@@ -44,19 +44,19 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 // Get page template if available, otherwise default to forum settings.
 if (!empty($page_id)) {
-  $page = $db->load_object(new TCPage(), $page_id);
+    $page = $db->load_object(new TCPage(), $page_id);
 
-  $page_template = (!empty($page)) ? $page->template : '404';
+    $page_template = (!empty($page)) ? $page->template : '404';
 } else {
-  header('Location: /admin/index.php?page='.$settings['admin_page_forum_settings']);
-  exit;
+    header('Location: /admin/index.php?page='.$settings['admin_page_forum_settings']);
+    exit;
 }
 
 TCAdminTemplate::render('header', ['settings' => $settings, 'user' => $user]);

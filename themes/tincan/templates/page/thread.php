@@ -25,14 +25,14 @@ $user = $data['user'];
 $db = new TCData();
 
 if (empty($thread_id)) {
-  $thread_id = $slug;
+    $thread_id = $slug;
 }
 
 $thread = $db->load_object(new TCThread(), $thread_id);
 
 if (empty($thread)) {
-  header('Location: '.TCURL::create_url($settings['page_404']));
-  exit;
+    header('Location: '.TCURL::create_url($settings['page_404']));
+    exit;
 }
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $thread->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
@@ -63,9 +63,9 @@ $offset = TCPagination::calculate_page_offset($start_at, $settings['posts_per_pa
 $posts = $db->load_objects(new TCPost(), [], $conditions, $order, $offset, $settings['posts_per_page']);
 
 foreach ($posts as $post) {
-  $author = $db->load_user($post->user_id);
+    $author = $db->load_user($post->user_id);
 
-  TCTemplate::render('post', $settings['theme'], ['thread' => $thread, 'page_number' => $start_at, 'post' => $post, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
+    TCTemplate::render('post', $settings['theme'], ['thread' => $thread, 'page_number' => $start_at, 'post' => $post, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
 }
 
 $page_params = [
@@ -77,7 +77,7 @@ TCTemplate::render('pagination', $settings['theme'], ['page_params' => $page_par
 
 // Display reply form if user has permission to reply to this thread.
 if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_POST)) {
-  TCTemplate::render('post-reply', $settings['theme'], ['thread' => $thread, 'user' => $user, 'page' => $page, 'settings' => $settings]);
+    TCTemplate::render('post-reply', $settings['theme'], ['thread' => $thread, 'user' => $user, 'page' => $page, 'settings' => $settings]);
 }
 
 ?>

@@ -41,33 +41,33 @@ $users = $db->load_objects(new TCUser(), [], $conditions, $order);
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($users as $user) {
-  $data = [
-    [
-      'type' => 'text',
-      'value' => $user->username,
-    ],
-    [
-      'type' => 'text',
-      'value' => $indexed_roles[$user->role_id]->role_name,
-    ],
-    [
-      'type' => 'link',
-      'url' => '/index.php?page='.$settings['page_user'].'&user='.$user->user_id,
-      'value' => 'View',
-    ],
-    [
-      'type' => 'link',
-      'url' => '/admin/index.php?page='.$settings['admin_page_edit_user'].'&user_id='.$user->user_id,
-      'value' => 'Edit',
-    ],
-    [
-      'type' => 'link',
-      'url' => '/admin/index.php?page='.$settings['admin_page_delete_user'].'&user_id='.$user->user_id,
-      'value' => 'Delete',
-    ],
-  ];
+    $data = [
+      [
+        'type' => 'text',
+        'value' => $user->username,
+      ],
+      [
+        'type' => 'text',
+        'value' => $indexed_roles[$user->role_id]->role_name,
+      ],
+      [
+        'type' => 'link',
+        'url' => '/index.php?page='.$settings['page_user'].'&user='.$user->user_id,
+        'value' => 'View',
+      ],
+      [
+        'type' => 'link',
+        'url' => '/admin/index.php?page='.$settings['admin_page_edit_user'].'&user_id='.$user->user_id,
+        'value' => 'Edit',
+      ],
+      [
+        'type' => 'link',
+        'url' => '/admin/index.php?page='.$settings['admin_page_delete_user'].'&user_id='.$user->user_id,
+        'value' => 'Delete',
+      ],
+    ];
 
-  TCAdminTemplate::render('table-row', $data);
+    TCAdminTemplate::render('table-row', $data);
 }
 ?>
 </table>

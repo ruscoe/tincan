@@ -8,15 +8,15 @@ use TinCan\TCData;
 
 class SQLInjectionTest extends TestCase
 {
-  public function testLoadUser()
-  {
-    $db = new TCData();
+    public function testLoadUser()
+    {
+        $db = new TCData();
 
-    // Attempt to load all users through SQL injection.
-    $injection = "'' or 1=1;--";
+        // Attempt to load all users through SQL injection.
+        $injection = "'' or 1=1;--";
 
-    $result = $db->load_user($injection);
+        $result = $db->load_user($injection);
 
-    $this->assertEmpty($result);
-  }
+        $this->assertEmpty($result);
+    }
 }

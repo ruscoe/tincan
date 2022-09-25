@@ -6,8 +6,8 @@
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-  $setting = $data['setting'];
-  $pages = $data['pages'];
+$setting = $data['setting'];
+$pages = $data['pages'];
 ?>
 
 <tr>
@@ -16,10 +16,10 @@
     <select name="<?php echo $setting->setting_name; ?>">
       <?php
         foreach ($pages as $page) {
-          $selected = ($page->page_id == $setting->value) ? ' selected' : '';
-          echo "<option value=\"{$page->page_id}\"{$selected}>{$page->page_title}</option>\n";
+            $selected = ($page->page_id == $setting->value) ? ' selected' : '';
+            echo "<option value=\"{$page->page_id}\"{$selected}>{$page->page_title}</option>\n";
         }
-      ?>
+?>
     </select>
   </td>
 </tr>

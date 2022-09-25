@@ -18,7 +18,7 @@ $db = new TCData();
 $thread = $db->load_object(new TCThread(), $thread_id);
 
 if (!empty($thread)) {
-  $total_posts = $db->count_objects(new TCPost(), [['field' => 'thread_id', 'value' => $thread->thread_id]]); ?>
+    $total_posts = $db->count_objects(new TCPost(), [['field' => 'thread_id', 'value' => $thread->thread_id]]); ?>
 
 <h1>Really delete <?php echo $thread->get_name(); ?>?</h1>
 
@@ -37,5 +37,5 @@ if (!empty($thread)) {
   <h1>Thread not found</h1>
   <p>This thread either never existed or has already been deleted.</p>
   <?php
-  }
+}
 ?>

@@ -36,60 +36,60 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $user = new TCUser();
 
 // Validate username.
 if (!$user->validate_username($username)) {
-  $error = TCUser::ERR_USER;
+    $error = TCUser::ERR_USER;
 }
 // Validate email.
 if (empty($error) && !$user->validate_email($email)) {
-  $error = TCUser::ERR_EMAIL;
+    $error = TCUser::ERR_EMAIL;
 }
 // Validate password.
 if (empty($error) && !$user->validate_password($password)) {
-  $error = TCUser::ERR_PASSWORD;
+    $error = TCUser::ERR_PASSWORD;
 }
 
 // Check for existing username / email.
 if (empty($error)) {
-  $existing_user = $db->load_objects($user, [], [['field' => 'username', 'value' => $username]]);
+    $existing_user = $db->load_objects($user, [], [['field' => 'username', 'value' => $username]]);
 
-  if (!empty($existing_user)) {
-    $error = TCUser::ERR_USERNAME_EXISTS;
-  }
+    if (!empty($existing_user)) {
+        $error = TCUser::ERR_USERNAME_EXISTS;
+    }
 }
 
 if (empty($error)) {
-  $existing_user = $db->load_objects($user, [], [['field' => 'email', 'value' => $email]]);
+    $existing_user = $db->load_objects($user, [], [['field' => 'email', 'value' => $email]]);
 
-  if (!empty($existing_user)) {
-    $error = TCUser::ERR_EMAIL_EXISTS;
-  }
+    if (!empty($existing_user)) {
+        $error = TCUser::ERR_EMAIL_EXISTS;
+    }
 }
 
 $saved_user = null;
 
 if (empty($error)) {
-  $user->username = $username;
-  $user->email = $email;
-  $user->password = $user->get_password_hash($password);
-  $user->role_id = $role_id;
-  $user->suspended = 0;
-  $user->created_time = time();
-  $user->updated_time = time();
+    $user->username = $username;
+    $user->email = $email;
+    $user->password = $user->get_password_hash($password);
+    $user->role_id = $role_id;
+    $user->suspended = 0;
+    $user->created_time = time();
+    $user->updated_time = time();
 
-  $saved_user = $db->save_object($user);
+    $saved_user = $db->save_object($user);
 
-  // Verify user has been created.
-  if (empty($saved_user)) {
-    $error = TCObject::ERR_NOT_SAVED;
-  }
+    // Verify user has been created.
+    if (empty($saved_user)) {
+        $error = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 // Return to the users page.

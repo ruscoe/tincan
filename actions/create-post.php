@@ -38,10 +38,10 @@ $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 $db = new TCData();
 
 try {
-  $settings = $db->load_settings();
+    $settings = $db->load_settings();
 } catch (TCException $e) {
-  echo $e->getMessage();
-  exit;
+    echo $e->getMessage();
+    exit;
 }
 
 // Get logged in user.
@@ -52,17 +52,17 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check user has permission to create a new post.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_POST)) {
-  $error = TCUser::ERR_NOT_AUTHORIZED;
+    $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
 // Check this post can be created in the given thread.
 if (empty($error)) {
-  $thread = $db->load_object(new TCThread(), $thread_id);
+    $thread = $db->load_object(new TCThread(), $thread_id);
 
-  // Validate thread.
-  if (empty($thread)) {
-    $error = TCObject::ERR_NOT_SAVED;
-  }
+    // Validate thread.
+    if (empty($thread)) {
+        $error = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 // Validate post content.
@@ -70,7 +70,7 @@ $post_sanitizer = new TCPostSanitizer();
 $post_content = $post_sanitizer->sanitize_post($post_content);
 
 if (empty($post_content)) {
-  $error = TCObject::ERR_NOT_SAVED;
+    $error = TCObject::ERR_NOT_SAVED;
 }
 
 $sanitizer = new TCPostSanitizer();
@@ -78,19 +78,19 @@ $sanitizer = new TCPostSanitizer();
 $new_post = null;
 
 if (empty($error)) {
-  $post = new TCPost();
-  $post->user_id = $user->user_id;
-  $post->thread_id = $thread->thread_id;
-  $post->content = $sanitizer->sanitize_post($post_content);
-  $post->created_time = time();
-  $post->updated_time = time();
-  $post->updated_by_user = $user->user_id;
+    $post = new TCPost();
+    $post->user_id = $user->user_id;
+    $post->thread_id = $thread->thread_id;
+    $post->content = $sanitizer->sanitize_post($post_content);
+    $post->created_time = time();
+    $post->updated_time = time();
+    $post->updated_by_user = $user->user_id;
 
-  $new_post = $db->save_object($post);
+    $new_post = $db->save_object($post);
 
-  if (empty($new_post)) {
-    $error = TCObject::ERR_NOT_SAVED;
-  }
+    if (empty($new_post)) {
+        $error = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 // Calculate the total pages in this thread so the user can be sent
@@ -105,40 +105,40 @@ $total_pages = TCPagination::calculate_total_pages($total_posts, $settings['post
 $destination = '';
 
 if (empty($error)) {
-  // Send user to their new post.
-  $destination = TCURL::create_url($settings['page_thread'], [
-    'thread' => $thread_id,
-    'start_at' => $total_pages,
-  ]);
-
-  $destination .= '#post-'.$new_post->post_id;
-}
-
-if (!empty($ajax)) {
-  header('Content-type: application/json; charset=utf-8');
-
-  $response = new TCJSONResponse();
-
-  $response->success = (empty($error));
-  $response->target_url = $destination;
-
-  if (!empty($error)) {
-    $error_message = new TCErrorMessage();
-    $response->errors = $error_message->get_error_message('create-post', $error);
-  }
-
-  exit($response->get_output());
-} else {
-  if (!empty($error)) {
-    // Send user back to the new post page with an error.
-    // TODO: Add an anchor link to the form.
+    // Send user to their new post.
     $destination = TCURL::create_url($settings['page_thread'], [
       'thread' => $thread_id,
       'start_at' => $total_pages,
-      'error' => $error,
     ]);
-  }
 
-  header('Location: '.$destination);
-  exit;
+    $destination .= '#post-'.$new_post->post_id;
+}
+
+if (!empty($ajax)) {
+    header('Content-type: application/json; charset=utf-8');
+
+    $response = new TCJSONResponse();
+
+    $response->success = (empty($error));
+    $response->target_url = $destination;
+
+    if (!empty($error)) {
+        $error_message = new TCErrorMessage();
+        $response->errors = $error_message->get_error_message('create-post', $error);
+    }
+
+    exit($response->get_output());
+} else {
+    if (!empty($error)) {
+        // Send user back to the new post page with an error.
+        // TODO: Add an anchor link to the form.
+        $destination = TCURL::create_url($settings['page_thread'], [
+          'thread' => $thread_id,
+          'start_at' => $total_pages,
+          'error' => $error,
+        ]);
+    }
+
+    header('Location: '.$destination);
+    exit;
 }

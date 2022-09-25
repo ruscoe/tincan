@@ -24,17 +24,17 @@ $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 $db = new TCData();
 
 if (!empty($board_id)) {
-  $board = $db->load_object(new TCBoard(), $board_id);
+    $board = $db->load_object(new TCBoard(), $board_id);
 } elseif (!empty($slug)) {
-  $matched_boards = $db->load_objects(new TCBoard(), null, [['field' => 'slug', 'value' => $slug]]);
-  $board = reset($matched_boards);
+    $matched_boards = $db->load_objects(new TCBoard(), null, [['field' => 'slug', 'value' => $slug]]);
+    $board = reset($matched_boards);
 }
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 
 // Check user has permission to create a new thread.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
-  ?>
+    ?>
 
 <div>
   Please <a href="<?php echo TCURL::create_url($settings['page_log_in']); ?>">log in</a>
@@ -49,7 +49,7 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
 
 <?php
   if (!empty($error)) {
-    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
   } ?>
 
 <form id="create-thread" action="/actions/create-thread.php" method="POST">
@@ -76,5 +76,5 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
 </form>
 
 <?php
-  }
+}
 ?>

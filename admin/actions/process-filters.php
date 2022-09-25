@@ -31,9 +31,9 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 // Sanitize parameters from the filter form and create admin page URL.
@@ -44,11 +44,11 @@ $page_params = array_keys($_POST);
 $sanitized_params = [];
 
 foreach ($page_params as $param) {
-  if ('page' == $param) {
-    continue;
-  }
+    if ('page' == $param) {
+        continue;
+    }
 
-  $sanitized_params[$param] = filter_input(INPUT_POST, $param, FILTER_SANITIZE_STRING);
+    $sanitized_params[$param] = filter_input(INPUT_POST, $param, FILTER_SANITIZE_STRING);
 }
 
 $destination = '/admin'.TCURL::create_url($page_id, $sanitized_params);

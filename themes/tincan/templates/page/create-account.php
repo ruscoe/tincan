@@ -23,7 +23,7 @@ TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_ti
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
 
 if (!$settings['allow_registration']) {
-  $error = TCUser::ERR_NOT_AUTHORIZED;
+    $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 ?>
 
@@ -31,9 +31,9 @@ if (!$settings['allow_registration']) {
 
 <?php
   if (!empty($error)) {
-    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
   } elseif (!empty($status) && ('sent' == $status)) {
-    ?>
+      ?>
 
     <div class="message-box">
       <p>Please check your email for your account confirmation link.</p>

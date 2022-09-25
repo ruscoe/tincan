@@ -41,7 +41,7 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check user has permission to upload an avatar.
 if (empty($user) && $user->can_edit_user($avatar_user_id)) {
-  $error = TCUser::ERR_NOT_AUTHORIZED;
+    $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
 $avatar_user = $db->load_user($avatar_user_id);
@@ -49,7 +49,7 @@ $avatar_user = $db->load_user($avatar_user_id);
 $file = $_FILES['avatar_image'];
 
 if (empty($error) && (empty($file) || UPLOAD_ERR_OK !== $file['error'])) {
-  $error = TCImage::ERR_FILE_GENERAL;
+    $error = TCImage::ERR_FILE_GENERAL;
 }
 
 $image_data = getimagesize($file['tmp_name']);
@@ -63,12 +63,12 @@ $image->file_size = $file['size'];
 
 // Check for valid file type.
 if (empty($error) && !$image->is_valid_type()) {
-  $error = TCImage::ERR_FILE_TYPE;
+    $error = TCImage::ERR_FILE_TYPE;
 }
 
 // Check file size.
 if (empty($error) && !$image->is_valid_size()) {
-  $error = TCImage::ERR_FILE_SIZE;
+    $error = TCImage::ERR_FILE_SIZE;
 }
 
 // Avatar filename is the user's ID followed by the file extension.
@@ -79,58 +79,58 @@ $target_file = substr($avatar_user->user_id, -1).'/'.$avatar_user->user_id.'.jpg
 $target_full_path = TC_UPLOADS_PATH.'/avatars/'.$target_file;
 
 if (empty($error) && !move_uploaded_file($file['tmp_name'], $target_full_path)) {
-  $error = TCImage::ERR_FILE_GENERAL;
+    $error = TCImage::ERR_FILE_GENERAL;
 }
 
 // TODO: Resize and crop file to a square.
 $scaled_image = $image->scale_to_square($target_full_path, 256);
 
 if (empty($error) && !imagejpeg($scaled_image, $target_full_path)) {
-  $error = TCImage::ERR_FILE_GENERAL;
+    $error = TCImage::ERR_FILE_GENERAL;
 }
 
 if (empty($error)) {
-  $avatar_user->avatar = '/uploads/avatars/'.$target_file;
-  $avatar_user->updated_time = time();
+    $avatar_user->avatar = '/uploads/avatars/'.$target_file;
+    $avatar_user->updated_time = time();
 
-  if (!$db->save_object($avatar_user)) {
-    $error = TCObject::ERR_NOT_SAVED;
-  }
+    if (!$db->save_object($avatar_user)) {
+        $error = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 if (!empty($ajax)) {
-  header('Content-type: application/json; charset=utf-8');
+    header('Content-type: application/json; charset=utf-8');
 
-  $response = new TCJSONResponse();
+    $response = new TCJSONResponse();
 
-  $response->success = (empty($error));
+    $response->success = (empty($error));
 
-  if (!empty($error)) {
-    $error_message = new TCErrorMessage();
-    $response->errors = $error_message->get_error_message('upload-avatar', $error);
-  }
+    if (!empty($error)) {
+        $error_message = new TCErrorMessage();
+        $response->errors = $error_message->get_error_message('upload-avatar', $error);
+    }
 
-  exit($response->get_output());
+    exit($response->get_output());
 } else {
-  try {
-    $settings = $db->load_settings();
-  } catch (TCException $e) {
-    echo $e->getMessage();
+    try {
+        $settings = $db->load_settings();
+    } catch (TCException $e) {
+        echo $e->getMessage();
+        exit;
+    }
+
+    $destination = null;
+
+    if (empty($error)) {
+        // Send user to the updated page.
+        $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
+        $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id], $settings['enable_urls'], $avatar_user->get_slug());
+    } else {
+        // Send user back to the page with an error.
+        $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
+        $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id, 'error' => $error], $settings['enable_urls'], $avatar_user->get_slug());
+    }
+
+    header('Location: '.$destination);
     exit;
-  }
-
-  $destination = null;
-
-  if (empty($error)) {
-    // Send user to the updated page.
-    $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-    $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id], $settings['enable_urls'], $avatar_user->get_slug());
-  } else {
-    // Send user back to the page with an error.
-    $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-    $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id, 'error' => $error], $settings['enable_urls'], $avatar_user->get_slug());
-  }
-
-  header('Location: '.$destination);
-  exit;
 }

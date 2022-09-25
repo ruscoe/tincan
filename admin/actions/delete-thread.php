@@ -35,15 +35,15 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $thread = $db->load_object(new TCThread(), $thread_id);
 
 if (empty($thread)) {
-  throw new TCException('Unable to find thread ID '.$thread_id);
+    throw new TCException('Unable to find thread ID '.$thread_id);
 }
 
 $db->delete_object(new TCThread(), $thread->thread_id);
@@ -51,7 +51,7 @@ $db->delete_object(new TCThread(), $thread->thread_id);
 $posts = $db->load_objects(new TCPost(), null, [['field' => 'thread_id', 'value' => $thread->thread_id]]);
 
 foreach ($posts as $post) {
-  $db->delete_object(new TCPost(), $post->post_id);
+    $db->delete_object(new TCPost(), $post->post_id);
 }
 
 $destination = '/admin/index.php?page='.$settings['admin_page_threads'];

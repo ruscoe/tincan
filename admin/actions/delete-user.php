@@ -33,19 +33,19 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $delete_user = $db->load_object(new TCUser(), $delete_user_id);
 
 if (empty($delete_user)) {
-  throw new TCException('Unable to find user ID '.$delete_user_id);
+    throw new TCException('Unable to find user ID '.$delete_user_id);
 }
 
 if ($delete_user->user_id == $user->user_id) {
-  throw new TCException('User cannot delete their own account.');
+    throw new TCException('User cannot delete their own account.');
 }
 
 $db->delete_object(new TCUser(), $delete_user->user_id);

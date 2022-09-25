@@ -35,9 +35,9 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $page = $db->load_object(new TCPage(), $page_id);
@@ -45,22 +45,22 @@ $page = $db->load_object(new TCPage(), $page_id);
 $error = null;
 
 if (empty($page)) {
-  $error = TCObject::ERR_NOT_FOUND;
+    $error = TCObject::ERR_NOT_FOUND;
 }
 
 $saved_page = null;
 
 if (empty($error)) {
-  $page->page_title = $page_title;
-  $page->template = $template;
-  $page->updated_time = time();
+    $page->page_title = $page_title;
+    $page->template = $template;
+    $page->updated_time = time();
 
-  $saved_page = $db->save_object($page);
+    $saved_page = $db->save_object($page);
 
-  // Verify page has been updated.
-  if (empty($saved_page)) {
-    $error = TCObject::ERR_NOT_SAVED;
-  }
+    // Verify page has been updated.
+    if (empty($saved_page)) {
+        $error = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 // Return to the pages page.

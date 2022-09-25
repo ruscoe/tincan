@@ -6,8 +6,8 @@
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-  $setting = $data['setting'];
-  $state = ('true' == $setting->value);
+$setting = $data['setting'];
+$state = ('true' == $setting->value);
 ?>
 
 <div class="fieldset">

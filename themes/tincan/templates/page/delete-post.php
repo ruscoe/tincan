@@ -15,7 +15,7 @@ use TinCan\TCURL;
 $post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
 
 if (empty($post_id) && !empty($data['slug'])) {
-  $post_id = $data['slug'];
+    $post_id = $data['slug'];
 }
 
 $page = $data['page'];
@@ -27,14 +27,14 @@ $db = new TCData();
 $post = $db->load_object(new TCPost(), $post_id);
 
 if (empty($post)) {
-  header('Location: '.TCURL::create_url($settings['page_404']));
-  exit;
+    header('Location: '.TCURL::create_url($settings['page_404']));
+    exit;
 }
 
 // Check user has permission to delete this post.
 if (empty($user) || !$user->can_delete_post($post)) {
-  header('Location: '.TCURL::create_url($settings['page_404']));
-  exit;
+    header('Location: '.TCURL::create_url($settings['page_404']));
+    exit;
 }
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
@@ -45,7 +45,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'setti
 
 <?php
 if (!empty($user) && $user->can_delete_post($post)) {
-  ?>
+    ?>
 
 <div class="confirmation-box">
 

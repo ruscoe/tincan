@@ -23,20 +23,20 @@ $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 $db = new TCData();
 
 if (empty($avatar_user_id)) {
-  $avatar_user_id = $slug;
+    $avatar_user_id = $slug;
 }
 
 $avatar_user = $db->load_object(new TCUser(), $avatar_user_id);
 
 if (empty($avatar_user)) {
-  header('Location: '.TCURL::create_url($settings['page_404']));
-  exit;
+    header('Location: '.TCURL::create_url($settings['page_404']));
+    exit;
 }
 
 // Check user has permission to edit this user's avatar.
 if (empty($user) || !$user->can_edit_user($avatar_user)) {
-  header('Location: '.TCURL::create_url($settings['page_404']));
-  exit;
+    header('Location: '.TCURL::create_url($settings['page_404']));
+    exit;
 }
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
@@ -46,7 +46,7 @@ TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_ti
 
 <?php
   if (!empty($error)) {
-    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
   }
 ?>
 

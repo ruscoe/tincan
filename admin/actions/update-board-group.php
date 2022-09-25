@@ -34,9 +34,9 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
@@ -44,21 +44,21 @@ $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
 $error = null;
 
 if (empty($board_group)) {
-  $error = TCObject::ERR_NOT_FOUND;
+    $error = TCObject::ERR_NOT_FOUND;
 }
 
 $saved_board_group = null;
 
 if (empty($error)) {
-  $board_group->board_group_name = $board_group_name;
-  $board_group->updated_time = time();
+    $board_group->board_group_name = $board_group_name;
+    $board_group->updated_time = time();
 
-  $saved_board_group = $db->save_object($board_group);
+    $saved_board_group = $db->save_object($board_group);
 
-  // Verify board group has been updated.
-  if (empty($saved_board_group)) {
-    $error = TCObject::ERR_NOT_SAVED;
-  }
+    // Verify board group has been updated.
+    if (empty($saved_board_group)) {
+        $error = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 // Return to the board groups page.

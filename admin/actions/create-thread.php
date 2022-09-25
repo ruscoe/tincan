@@ -35,9 +35,9 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $thread = new TCThread();
@@ -46,9 +46,9 @@ $thread = new TCThread();
 $db_fields = $thread->get_db_fields();
 
 foreach ($db_fields as $field) {
-  if (isset($_POST[$field])) {
-    $thread->$field = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
-  }
+    if (isset($_POST[$field])) {
+        $thread->$field = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
+    }
 }
 
 $thread->first_post_id = 0;

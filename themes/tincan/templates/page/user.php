@@ -20,7 +20,7 @@ $user = $data['user'];
 $profile_user_id = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_NUMBER_INT);
 
 if (empty($profile_user_id)) {
-  $profile_user_id = $slug;
+    $profile_user_id = $slug;
 }
 
 $db = new TCData();
@@ -28,8 +28,8 @@ $db = new TCData();
 $profile_user = $db->load_user($profile_user_id);
 
 if (empty($profile_user)) {
-  header('Location: '.TCURL::create_url($settings['page_404']));
-  exit;
+    header('Location: '.TCURL::create_url($settings['page_404']));
+    exit;
 }
 
 $avatar = $profile_user->avatar;
@@ -39,8 +39,8 @@ $avatar_image = (!empty($avatar)) ? $profile_user->avatar : '/assets/images/defa
 $avatar_url = null;
 
 if (!empty($user) && $user->can_edit_user($profile_user)) {
-  $url_id = ($settings['enable_urls']) ? $settings['base_url_avatar'] : $settings['page_user_avatar'];
-  $avatar_url = TCURL::create_url($url_id, ['user' => $profile_user->user_id], $settings['enable_urls'], $profile_user->get_slug());
+    $url_id = ($settings['enable_urls']) ? $settings['base_url_avatar'] : $settings['page_user_avatar'];
+    $avatar_url = TCURL::create_url($url_id, ['user' => $profile_user->user_id], $settings['enable_urls'], $profile_user->get_slug());
 }
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $profile_user->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
@@ -63,11 +63,11 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user
     <?php
     $posts = $db->get_user_posts($profile_user->user_id);
 
-    if (!empty($posts)) {
-      $thread = null; ?>
+if (!empty($posts)) {
+    $thread = null; ?>
       <ul class="post-list">
       <?php
-      foreach ($posts as $post) {
+    foreach ($posts as $post) {
         $thread = $db->load_object(new TCThread(), $post->thread_id);
 
         $url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
@@ -81,14 +81,14 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user
           <p class="meta"><?php echo date($settings['date_time_format'], $post->created_time); ?></p>
         </li>
         <?php
-      } ?>
+    } ?>
       </ul>
       <?php
-    } else {
-      ?>
+} else {
+    ?>
       <p><?php echo $profile_user->username; ?> hasn't posted anything yet.</p>
       <?php
-    }
-     ?>
+}
+?>
   </div>
 </div>

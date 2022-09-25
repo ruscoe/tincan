@@ -37,15 +37,15 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $board = $db->load_object(new TCBoard(), $board_id);
 
 if (empty($board)) {
-  throw new TCException('Unable to find board ID '.$board_id);
+    throw new TCException('Unable to find board ID '.$board_id);
 }
 
 $db->delete_object(new TCBoard(), $board->board_id);
@@ -53,14 +53,14 @@ $db->delete_object(new TCBoard(), $board->board_id);
 $threads = $db->load_objects(new TCThread(), null, [['field' => 'board_id', 'value' => $board->board_id]]);
 
 if ('move' == $thread_fate) {
-  foreach ($threads as $thread) {
-    $thread->board_id = $move_to_board_id;
-    $db->save_object($thread);
-  }
+    foreach ($threads as $thread) {
+        $thread->board_id = $move_to_board_id;
+        $db->save_object($thread);
+    }
 } else {
-  foreach ($threads as $thread) {
-    $db->delete_object(new TCThread(), $thread->thread_id);
-  }
+    foreach ($threads as $thread) {
+        $db->delete_object(new TCThread(), $thread->thread_id);
+    }
 }
 
 $destination = '/admin/index.php?page='.$settings['admin_page_boards'];

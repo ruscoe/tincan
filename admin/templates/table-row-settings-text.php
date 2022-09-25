@@ -6,7 +6,7 @@
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-  $setting = $data['setting'];
+$setting = $data['setting'];
 ?>
 
 <div class="fieldset">

@@ -35,9 +35,9 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Check for admin user.
 if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
-  // Not an admin user; redirect to log in page.
-  header('Location: /index.php?page='.$settings['page_log_in']);
-  exit;
+    // Not an admin user; redirect to log in page.
+    header('Location: /index.php?page='.$settings['page_log_in']);
+    exit;
 }
 
 $mail_template = $db->load_object(new TCMailTemplate(), $mail_template_id);
@@ -45,21 +45,21 @@ $mail_template = $db->load_object(new TCMailTemplate(), $mail_template_id);
 $error = null;
 
 if (empty($mail_template)) {
-  $error = TCObject::ERR_NOT_FOUND;
+    $error = TCObject::ERR_NOT_FOUND;
 }
 
 $saved_mail_template = null;
 
 if (empty($error)) {
-  $mail_template->mail_template_name = $mail_template_name;
-  $mail_template->content = $content;
+    $mail_template->mail_template_name = $mail_template_name;
+    $mail_template->content = $content;
 
-  $saved_mail_template = $db->save_object($mail_template);
+    $saved_mail_template = $db->save_object($mail_template);
 
-  // Verify mail template has been updated.
-  if (empty($saved_mail_template)) {
-    $error = TCObject::ERR_NOT_SAVED;
-  }
+    // Verify mail template has been updated.
+    if (empty($saved_mail_template)) {
+        $error = TCObject::ERR_NOT_SAVED;
+    }
 }
 
 // Return to the mail templates page.

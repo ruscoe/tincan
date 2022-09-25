@@ -32,10 +32,10 @@ $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
 $conditions = [];
 
 if (!empty($board_id)) {
-  $conditions[] = [
-    'field' => 'board_id',
-    'value' => $board_id,
-  ];
+    $conditions[] = [
+      'field' => 'board_id',
+      'value' => $board_id,
+    ];
 }
 
 // TODO Sorting and pagination.
@@ -51,7 +51,7 @@ $indexed_boards = $db->get_indexed_objects(new TCBoard(), 'board_id');
       <option value="">All boards</option>
       <?php
       foreach ($indexed_boards as $board) {
-        $selected = ($board->board_id == $board_id) ? ' selected' : ''; ?>
+          $selected = ($board->board_id == $board_id) ? ' selected' : ''; ?>
         <option value="<?php echo $board->board_id; ?>"<?php echo $selected; ?>><?php echo $board->board_name; ?></option>
       <?php
       } ?>
@@ -69,7 +69,7 @@ $indexed_boards = $db->get_indexed_objects(new TCBoard(), 'board_id');
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($threads as $thread) {
-        $data = [
+    $data = [
     [
       'type' => 'text',
       'value' => $thread->thread_title,
@@ -95,7 +95,7 @@ foreach ($threads as $thread) {
     ],
   ];
 
-        TCAdminTemplate::render('table-row', $data);
-      }
+    TCAdminTemplate::render('table-row', $data);
+}
 ?>
 </table>

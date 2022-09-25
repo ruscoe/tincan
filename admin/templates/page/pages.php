@@ -37,37 +37,37 @@ $pages = $db->load_objects(new TCPage(), [], $conditions, $order);
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($pages as $page) {
-  $data = [
-    [
-      'type' => 'text',
-      'value' => $page->page_title,
-    ],
-    [
-      'type' => 'link',
-      'url' => '/index.php?page='.$page->page_id,
-      'value' => 'View',
-    ],
-    [
-      'type' => 'link',
-      'url' => '/admin/index.php?page='.$settings['admin_page_edit_page'].'&page_id='.$page->page_id,
-      'value' => 'Edit',
-    ],
-  ];
-
-  if ($page->is_required()) {
-    $data[] = [
-      'type' => 'text',
-      'value' => '<s>Delete</s>',
+    $data = [
+      [
+        'type' => 'text',
+        'value' => $page->page_title,
+      ],
+      [
+        'type' => 'link',
+        'url' => '/index.php?page='.$page->page_id,
+        'value' => 'View',
+      ],
+      [
+        'type' => 'link',
+        'url' => '/admin/index.php?page='.$settings['admin_page_edit_page'].'&page_id='.$page->page_id,
+        'value' => 'Edit',
+      ],
     ];
-  } else {
-    $data[] = [
-      'type' => 'link',
-      'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=page&object_id='.$page->page_id,
-      'value' => 'Delete',
-    ];
-  }
 
-  TCAdminTemplate::render('table-row', $data);
+    if ($page->is_required()) {
+        $data[] = [
+          'type' => 'text',
+          'value' => '<s>Delete</s>',
+        ];
+    } else {
+        $data[] = [
+          'type' => 'link',
+          'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=page&object_id='.$page->page_id,
+          'value' => 'Delete',
+        ];
+    }
+
+    TCAdminTemplate::render('table-row', $data);
 }
 ?>
 </table>

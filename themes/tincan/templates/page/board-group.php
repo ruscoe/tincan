@@ -26,15 +26,15 @@ $board_group = null;
 $db = new TCData();
 
 if (!empty($board_group_id)) {
-  $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
+    $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
 } elseif (!empty($slug)) {
-  $matched_board_groups = $db->load_objects(new TCBoardGroup(), null, [['field' => 'slug', 'value' => $slug]]);
-  $board_group = reset($matched_board_groups);
+    $matched_board_groups = $db->load_objects(new TCBoardGroup(), null, [['field' => 'slug', 'value' => $slug]]);
+    $board_group = reset($matched_board_groups);
 }
 
 if (empty($board_group)) {
-  header('Location: '.TCURL::create_url($settings['page_404']));
-  exit;
+    header('Location: '.TCURL::create_url($settings['page_404']));
+    exit;
 }
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $board_group->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
@@ -65,19 +65,19 @@ $boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
 
 $board_url = null;
 if (!empty($boards)) {
-  foreach ($boards as $board) {
-    $url_id = ($settings['enable_urls']) ? $settings['base_url_boards'] : $settings['page_board'];
-    $board_url = TCURL::create_url($url_id, ['board' => $board->board_id], $settings['enable_urls'], $board->get_slug());
+    foreach ($boards as $board) {
+        $url_id = ($settings['enable_urls']) ? $settings['base_url_boards'] : $settings['page_board'];
+        $board_url = TCURL::create_url($url_id, ['board' => $board->board_id], $settings['enable_urls'], $board->get_slug());
 
-    $data = [
-      'board' => $board,
-      'url' => $board_url,
-    ];
+        $data = [
+          'board' => $board,
+          'url' => $board_url,
+        ];
 
-    TCTemplate::render('board-preview', $settings['theme'], $data);
-  }
+        TCTemplate::render('board-preview', $settings['theme'], $data);
+    }
 } else {
-  $log_in_url = TCURL::create_url($settings['page_log_in']); ?>
+    $log_in_url = TCURL::create_url($settings['page_log_in']); ?>
   <div class="message-box">
     <p>No boards here!</p>
     <?php if (empty($user)) { ?>

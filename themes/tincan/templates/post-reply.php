@@ -19,7 +19,7 @@ $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 <?php
   if (!empty($error)) {
-    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
   }
 ?>
 

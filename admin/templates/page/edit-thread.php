@@ -45,17 +45,17 @@ $form_action = (!empty($thread_id)) ? '/admin/actions/update-thread.php' : '/adm
       <select name="board_id">
         <?php
           foreach ($boards as $board) {
-            $selected = ($board->board_id == $thread->board_id) ? ' selected' : '';
-            echo "<option value=\"{$board->board_id}\"{$selected}>{$board->board_name}</option>\n";
+              $selected = ($board->board_id == $thread->board_id) ? ' selected' : '';
+              echo "<option value=\"{$board->board_id}\"{$selected}>{$board->board_name}</option>\n";
           }
-        ?>
+?>
       </select>
     </div>
   </div>
 
   <?php
   $first_post = $db->load_object(new TCPost(), $thread->first_post_id);
-  ?>
+?>
 
   <div class="fieldset textarea">
     <label for="content">Content</label>
