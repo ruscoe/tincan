@@ -49,11 +49,34 @@ class TCImage
     protected $height;
 
     /**
+     * Creates an image from a file path.
+     *
+     * @since 0.13
+     *
+     * @param string $source_image the path of the source file
+     *
+     * @return GDImage image object
+     * @see: https://www.php.net/manual/en/class.gdimage.php
+     */
+    public function create_image_file($source_image)
+    {
+        $image = null;
+
+        if (IMAGETYPE_JPEG == $this->file_type) {
+            $image = imagecreatefromjpeg($source_image);
+        } elseif (IMAGETYPE_PNG == $this->file_type) {
+            $image = imagecreatefrompng($source_image);
+        }
+
+        return image;
+    }
+
+    /**
      * Creates, resizes and scales an image from a file path.
      *
      * @since 0.05
      *
-     * @param string $source_image the path of the image to scale
+     * @param string $source_image the path of the source file
      * @param int    $size         the intended width in pixels of the image
      *
      * @return GDImage resized image object
