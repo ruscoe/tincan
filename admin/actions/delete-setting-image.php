@@ -53,7 +53,7 @@ $image_setting->value = '';
 $db->save_object($image_setting);
 
 // Return to forum settings page.
-$destination = '/admin/index.php?page='.$settings['admin_page_settings'];
+$destination = '/admin/index.php?page='.$settings['admin_page_forum_settings'];
 
 header('Location: '.$destination);
 exit;
