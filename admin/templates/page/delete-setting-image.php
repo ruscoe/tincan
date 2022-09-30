@@ -23,11 +23,11 @@ $setting_objects = $db->get_indexed_objects(new TCSetting(), 'setting_name');
 $image_setting = $setting_objects[$setting];
 
 if (!empty($image_setting) && ($image_setting->type == 'image')) {
-  $settings = $db->load_settings();
+    $settings = $db->load_settings();
 
-  // Avoid browser cache so latest image always appears.
-  $image_path = $settings[$setting].'?v='.time();
-?>
+    // Avoid browser cache so latest image always appears.
+    $image_path = $settings[$setting].'?v='.time();
+    ?>
 
 <h1>Really delete <?php echo $image_setting->setting_name; ?>?</h1>
 
