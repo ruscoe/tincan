@@ -55,7 +55,7 @@ $title .= $settings['forum_name'];
       } ?>
       </ul>
       <div class="logo">
-        <img src="<?php echo $settings['forum_logo']; ?>" alt="<?php echo $settings['forum_name']; ?>" />
+        <a href="/" title="<?php echo $settings['forum_name']; ?>"><img src="<?php echo $settings['forum_logo']; ?>" alt="<?php echo $settings['forum_name']; ?>" /></a>
       </div>
       <h1><?php echo $settings['forum_name']; ?></h1>
     </div>
