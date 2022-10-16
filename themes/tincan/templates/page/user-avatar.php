@@ -48,12 +48,19 @@ TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_ti
   if (!empty($error)) {
       TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
   }
+
+  $avatar_image = (!empty($avatar_user->avatar)) ? $avatar_user->avatar : '/assets/images/default-profile.png';
+
+  // Avoid browser cache so latest image always appears.
+  $avatar_image .= '?v='.time();
 ?>
+
+<img src="<?php echo $avatar_image; ?>" width="128" />
 
 <form id="upload-avatar" action="/actions/upload-avatar.php" method="POST" enctype="multipart/form-data">
 
   <div class="fieldset">
-    <label for="avatar_image">Username</label>
+    <label for="avatar_image">Image file</label>
     <div class="field">
       <input type="file" name="avatar_image">
     </div>
