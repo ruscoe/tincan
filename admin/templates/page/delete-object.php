@@ -28,9 +28,6 @@ switch ($object_type) {
     case 'board_group':
         $class = new TCBoardGroup();
         break;
-    case 'board':
-        $class = new TCBoard();
-        break;
     case 'page':
         $class = new TCPage();
         break;
