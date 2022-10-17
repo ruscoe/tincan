@@ -51,8 +51,8 @@ TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_ti
 
   $avatar_image = (!empty($avatar_user->avatar)) ? $avatar_user->avatar : '/assets/images/default-profile.png';
 
-  // Avoid browser cache so latest image always appears.
-  $avatar_image .= '?v='.time();
+// Avoid browser cache so latest image always appears.
+$avatar_image .= '?v='.time();
 ?>
 
 <img src="<?php echo $avatar_image; ?>" width="128" />
