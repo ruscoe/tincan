@@ -8,7 +8,7 @@ use TinCan\TCURL;
 use TinCan\TCUserSession;
 
 // Tin Can Forum version.
-define('TC_VERSION', '0.13');
+define('TC_VERSION', '0.14');
 
 /**
  * Forum entry point.
