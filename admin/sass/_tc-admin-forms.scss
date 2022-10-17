@@ -88,6 +88,22 @@ body.tincan-admin {
     }
   }
 
+  form#delete-board-group {
+
+    .fieldset.board-options {
+      align-items: center;
+    }
+
+    .fieldset.move-to-board-group {
+      display: none;
+    }
+
+    label {
+      background: none;
+      color: $text;
+    }
+  }
+
   form#filters {
     padding: 1rem 0 2rem 0;
 

@@ -54,7 +54,7 @@ foreach ($board_groups as $board_group) {
       ],
       [
         'type' => 'link',
-        'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=board_group&object_id='.$board_group->board_group_id,
+        'url' => '/admin/index.php?page='.$settings['admin_page_delete_board_group'].'&board_group_id='.$board_group->board_group_id,
         'value' => 'Delete',
       ],
     ];

@@ -8,7 +8,7 @@
 /* Containers */
 /* line 60, ../sass/style.scss */
 body.tincan-admin {
-  background-color: white;
+  background-color: #FFFFFF;
   margin: 0;
   padding: 0;
   /* Navigation */
@@ -90,7 +90,7 @@ body.tincan-admin #navigation ul {
 }
 /* line 145, ../sass/style.scss */
 body.tincan-admin #navigation ul li a {
-  color: white;
+  color: #FFFFFF;
   display: block;
   font-size: 1rem;
   font-weight: bold;
@@ -109,13 +109,13 @@ body.tincan-admin #navigation ul li a {
 }
 /* line 167, ../sass/style.scss */
 body.tincan-admin h1, body.tincan-admin h2, body.tincan-admin h3, body.tincan-admin p, body.tincan-admin li, body.tincan-admin th, body.tincan-admin td {
-  color: #6b6666;
+  color: #6B6666;
   text-align: left;
 }
 /* line 172, ../sass/style.scss */
 body.tincan-admin h1.section-header {
-  background-color: #295c7a;
-  color: white;
+  background-color: #295C7A;
+  color: #FFFFFF;
   font-size: 2rem;
   margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -136,7 +136,7 @@ body.tincan-admin a:visited {
 }
 /* line 196, ../sass/style.scss */
 body.tincan-admin a:hover {
-  color: #d76a3a;
+  color: #D76A3A;
 }
 /* line 200, ../sass/style.scss */
 body.tincan-admin .objects-nav {
@@ -144,9 +144,9 @@ body.tincan-admin .objects-nav {
 }
 /* line 204, ../sass/style.scss */
 body.tincan-admin a.admin-button {
-  background-color: #d76a3a;
-  box-shadow: 2px 2px black;
-  color: white;
+  background-color: #D76A3A;
+  box-shadow: 2px 2px #000000;
+  color: #FFFFFF;
   display: inline-block;
   font-weight: bold;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
@@ -158,12 +158,12 @@ body.tincan-admin table.objects {
 }
 /* line 219, ../sass/style.scss */
 body.tincan-admin table.objects th {
-  background-color: #295c7a;
-  color: white;
+  background-color: #295C7A;
+  color: #FFFFFF;
 }
 /* line 224, ../sass/style.scss */
 body.tincan-admin table.objects tr:nth-child(even) {
-  background-color: #eeeeee;
+  background-color: #EEEEEE;
 }
 /* line 228, ../sass/style.scss */
 body.tincan-admin table.objects th, body.tincan-admin table.objects td {
@@ -283,7 +283,7 @@ body.tincan-admin form#edit-thread .field,
 body.tincan-admin form#edit-user .field,
 body.tincan-admin form#edit-mail-template .field,
 body.tincan-admin form#forum-settings .field {
-  background-color: #f1f1f1;
+  background-color: #F1F1F1;
   flex: 1.5;
   padding: 0.25rem;
 }
@@ -298,8 +298,8 @@ body.tincan-admin form#edit-thread label,
 body.tincan-admin form#edit-user label,
 body.tincan-admin form#edit-mail-template label,
 body.tincan-admin form#forum-settings label {
-  background-color: #295c7a;
-  color: white;
+  background-color: #295C7A;
+  color: #FFFFFF;
   display: block;
   flex: 1;
   max-width: 240px;
@@ -329,9 +329,9 @@ body.tincan-admin form#edit-thread input.submit-button,
 body.tincan-admin form#edit-user input.submit-button,
 body.tincan-admin form#edit-mail-template input.submit-button,
 body.tincan-admin form#forum-settings input.submit-button {
-  background-color: #d76a3a;
-  box-shadow: 2px 2px black;
-  color: white;
+  background-color: #D76A3A;
+  box-shadow: 2px 2px #000000;
+  color: #FFFFFF;
   display: inline-block;
   font-weight: bold;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
@@ -348,13 +348,26 @@ body.tincan-admin form#delete-board .fieldset.move-to-board {
 /* line 85, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-board label {
   background: none;
-  color: #6b6666;
+  color: #6B6666;
 }
-/* line 91, ../sass/_tc-admin-forms.scss */
+/* line 93, ../sass/_tc-admin-forms.scss */
+body.tincan-admin form#delete-board-group .fieldset.board-options {
+  align-items: center;
+}
+/* line 97, ../sass/_tc-admin-forms.scss */
+body.tincan-admin form#delete-board-group .fieldset.move-to-board-group {
+  display: none;
+}
+/* line 101, ../sass/_tc-admin-forms.scss */
+body.tincan-admin form#delete-board-group label {
+  background: none;
+  color: #6B6666;
+}
+/* line 107, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#filters {
   padding: 1rem 0 2rem 0;
 }
-/* line 94, ../sass/_tc-admin-forms.scss */
+/* line 110, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#filters .fieldset {
   float: left;
   margin: 0 0.5rem 0 0.5rem;
