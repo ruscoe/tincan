@@ -75,8 +75,16 @@ if (empty($error) && !$image->is_valid_size()) {
 // The directory containing the avatar file is named for the last digit of
 // the user's ID. This just allows us to split up files and avoid massive
 // directories.
-$target_file = substr($avatar_user->user_id, -1).'/'.$avatar_user->user_id.'.jpg';
-$target_full_path = TC_UPLOADS_PATH.'/avatars/'.$target_file;
+
+$target_path = 'avatars/'.substr($avatar_user->user_id, -1);
+
+if (!is_dir(TC_UPLOADS_PATH.'/'.$target_path)) {
+    // If the avatar upload path doesn't exist, create it with write permissions.
+    mkdir(TC_UPLOADS_PATH.'/'.$target_path, TC_UPLOADS_PERMISSIONS, true);
+}
+
+$target_file = $avatar_user->user_id.'.jpg';
+$target_full_path = TC_UPLOADS_PATH.'/'.$target_path.'/'.$target_file;
 
 if (empty($error) && !move_uploaded_file($file['tmp_name'], $target_full_path)) {
     $error = TCImage::ERR_FILE_GENERAL;
@@ -90,7 +98,7 @@ if (empty($error) && !imagejpeg($scaled_image, $target_full_path)) {
 }
 
 if (empty($error)) {
-    $avatar_user->avatar = '/uploads/avatars/'.$target_file;
+    $avatar_user->avatar = '/uploads/'.$target_path.'/'.$target_file;
     $avatar_user->updated_time = time();
 
     if (!$db->save_object($avatar_user)) {
