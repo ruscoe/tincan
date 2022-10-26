@@ -41,6 +41,7 @@ $user = $data['user'];
           <li><a href="/admin?page=<?php echo $settings['admin_page_boards']; ?>">Boards</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_threads']; ?>">Threads</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_pages']; ?>">Pages</a></li>
+          <li><a href="/admin?page=<?php echo $settings['admin_page_plugins']; ?>">Plugins</a></li>
           <li><a href="/admin?page=<?php echo $settings['admin_page_mail_templates']; ?>">Mail Templates</a></li>
         </ul>
       </div>
