@@ -37,39 +37,23 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
     exit;
 }
 
-// Sanitize parameters from the filter form and create admin page URL.
 $plugin_path = filter_input(INPUT_GET, 'plugin', FILTER_SANITIZE_STRING);
 
-// Check for existing plugin. There should never be more than one.
-$conditions = [[
-    'field' => 'path',
-    'value' => $plugin_path,
-]];
+// Load config and create a new database record.
+$config = file_get_contents(TC_PLUGINS_PATH.'/'.$plugin_path.'/plugin.json');
 
-$existing_plugin_results = $db->load_objects(new TCPlugin, null, $conditions);
-$existing_plugin = reset($existing_plugin_results);
+if (!empty($config)) {
+    $decoded_config = json_decode($config);
 
-if (!empty($existing_plugin)) {
-    // Enable existing plugin.
-    $existing_plugin->enabled = true;
-    $db->save_object($existing_plugin);
+    $plugin = new TCPlugin();
+    $plugin->plugin_name = $decoded_config->name;
+    $plugin->plugin_namespace = $decoded_config->namespace;
+    $plugin->path = $plugin_path;
+    $plugin->enabled = 1;
+
+    $db->save_object($plugin);
 } else {
-    // New plugin. Load config and create a new database record.
-    $config = file_get_contents(TC_PLUGINS_PATH.'/'.$plugin_path.'/plugin.json');
-
-    if (!empty($config)) {
-        $decoded_config = json_decode($config);
-
-        $plugin = new TCPlugin();
-        $plugin->plugin_name = $decoded_config->name;
-        $plugin->plugin_namespace = $decoded_config->namespace;
-        $plugin->path = $plugin_path;
-        $plugin->enabled = 1;
-
-        $db->save_object($plugin);
-    } else {
-        // TODO: Error handling.
-    }
+    // TODO: Error handling.
 }
 
 $destination = '/admin/index.php?page='.$settings['admin_page_plugins'];
