@@ -13,6 +13,7 @@ require TC_BASE_PATH.'/core/objects/class-tc-board.php';
 require TC_BASE_PATH.'/core/objects/class-tc-mail-template.php';
 require TC_BASE_PATH.'/core/objects/class-tc-page.php';
 require TC_BASE_PATH.'/core/objects/class-tc-pending-user.php';
+require TC_BASE_PATH.'/core/objects/class-tc-plugin.php';
 require TC_BASE_PATH.'/core/objects/class-tc-post.php';
 require TC_BASE_PATH.'/core/objects/class-tc-role.php';
 require TC_BASE_PATH.'/core/objects/class-tc-setting.php';

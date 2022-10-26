@@ -36,7 +36,9 @@ if (!empty($plugin_files)) {
       $plugin_path = TC_PLUGINS_PATH.'/'.$entry;
       $config = file_get_contents($plugin_path.'/plugin.json');
       if (!empty($config)) {
-        $plugin_configs[] = json_decode($config);
+        $decoded_config = json_decode($config);
+        $decoded_config->path = $entry;
+        $plugin_configs[] = $decoded_config;
       }
     }
   }
@@ -61,9 +63,10 @@ foreach ($plugin_configs as $config) {
       'type' => 'text',
       'value' => $config->version,
     ],
+    // TODO: Toggle enable / disable plugin.
     [
       'type' => 'link',
-      'url' => '#',
+      'url' => '/admin/actions/enable-plugin.php?plugin='.$config->path,
       'value' => 'Enable',
     ],
   ];
