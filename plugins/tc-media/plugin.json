@@ -1,0 +1,13 @@
+{
+    "name": "Media",
+    "namespace": "tincan-forum/media",
+    "description": "Adds multimedia functionality to Tin Can Forum.",
+    "authors": [
+      {
+        "name": "Dan Ruscoe",
+        "email": "danruscoe@protonmail.com"
+      }
+    ],
+    "version": "1.0",
+    "minimum-tincan-version": "0.13"
+}
