@@ -1,16 +1,8 @@
 # Tin Can Forum
 
-Tin Can is a lightweight web forum written in PHP. Named after the
-[tin can telephone](https://en.wikipedia.org/wiki/Tin_can_telephone),
-this software is designed around functionality and simplicity.
+Tin Can is a hobby project; an attempt to create a lightweight web forum in PHP.
 
-Tin Can is still in early development.
-
-## Goals
-
-* Completely free and open
-* No bloat
-* Functional if JavaScript and / or style sheets are disabled
+The name comes from the [tin can telephone](https://en.wikipedia.org/wiki/Tin_can_telephone).
 
 ## Requirements
 
@@ -97,12 +89,6 @@ include /etc/nginx/sites-enabled/*;
 
 Depending on your version of nginx, the second line might be missing.
 
-Note that you can also place your site configuration file directly into /etc/nginx/conf.d/
-if you want to. Just rename it from tincan.local to tincan.conf.
-
-The sites-available / sites-enabled structure is just a convenient way of enabling and
-disabling sites using symlinks.
-
 Continue on to the Configuration section.
 
 ## Configuration
@@ -174,10 +160,4 @@ Run in the root directory:
 
 ## License
 
-[MIT](https://mit-license.org). Do whatever you want.
-
-Please send questions and comments to danruscoe@protonmail.com
-
-___
-"An idiot admires complexity, a genius admires simplicity" - Terry A. Davis
-___
+[MIT](https://mit-license.org).
