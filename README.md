@@ -4,6 +4,8 @@ Tin Can is a hobby project; an attempt to create a lightweight web forum in PHP.
 
 The name comes from the [tin can telephone](https://en.wikipedia.org/wiki/Tin_can_telephone).
 
+Tin Can is not production-ready, but you can play around with it if you like.
+
 ## Requirements
 
 * [Composer](https://getcomposer.org)
