@@ -39,6 +39,6 @@ enter *mytheme*
 
 ## Compass and compiling CSS
 
-Tin Can themes use [Compass](http://compass-style.org/) to make CSS authoring
-much easier. It isn't required, but highly recommended that you do the same
-with your custom themes.
+Tin Can themes use [Compass](http://beta.compass-style.org/) to compile CSS
+from SASS files. Compass is going to be replaced with a more modern SASS
+compiler in the near future.
