@@ -2,6 +2,8 @@
 
 use TinCan\Admin\TCAdminTemplate;
 use TinCan\TCData;
+use TinCan\TCException;
+use TinCan\TCHook;
 use TinCan\TCPage;
 use TinCan\TCUser;
 use TinCan\TCUserSession;
@@ -19,6 +21,7 @@ define('TC_VERSION', '0.14');
 require '../tc-config.php';
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
+require TC_BASE_PATH.'/core/class-tc-hook.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-user.php';

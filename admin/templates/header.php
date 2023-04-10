@@ -1,4 +1,7 @@
 <?php
+
+use TinCan\TCHook;
+
 /**
  * Admin header template.
  *
@@ -34,16 +37,34 @@ $user = $data['user'];
     <div id="page">
       <div id="navigation">
         <a href="/admin" class="admin-logo"><img src="/admin/images/tin-can-logo.png" /></a>
+
+        <?php
+          $nav_items = [
+            '/admin?page='.$settings['admin_page_forum_settings'] => 'Settings',
+            '/admin?page='.$settings['admin_page_users'] => 'Users',
+            '/admin?page='.$settings['admin_page_board_groups'] => 'Board Groups',
+            '/admin?page='.$settings['admin_page_boards'] => 'Boards',
+            '/admin?page='.$settings['admin_page_threads'] => 'Threads',
+            '/admin?page='.$settings['admin_page_pages'] => 'Pages',
+            '/admin?page='.$settings['admin_page_plugins'] => 'Plugins',
+            '/admin?page='.$settings['admin_page_mail_templates'] => 'Mail Templates',
+          ];
+
+          $hook = new TCHook('admin_nav_menu');
+          $nav_items = $hook->process($nav_items);
+        ?>
+
         <ul>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_forum_settings']; ?>">Settings</a></li>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_users']; ?>">Users</a></li>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_board_groups']; ?>">Board Groups</a></li>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_boards']; ?>">Boards</a></li>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_threads']; ?>">Threads</a></li>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_pages']; ?>">Pages</a></li>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_plugins']; ?>">Plugins</a></li>
-          <li><a href="/admin?page=<?php echo $settings['admin_page_mail_templates']; ?>">Mail Templates</a></li>
+          <?php
+            foreach ($nav_items as $url => $title)
+            {
+              ?>
+              <li><a href="<?php echo $url; ?>"><?php echo $title; ?></a></li>
+              <?php
+            }
+          ?>
         </ul>
+
       </div>
       <!-- Start content -->
       <div id="content">
