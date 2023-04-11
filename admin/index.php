@@ -21,7 +21,7 @@ define('TC_VERSION', '0.14');
 require '../tc-config.php';
 
 require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/core/class-tc-hook.php';
+require TC_BASE_PATH.'/core/hooks/class-tc-hook.php';
 require TC_BASE_PATH.'/includes/include-db.php';
 require TC_BASE_PATH.'/includes/include-objects.php';
 require TC_BASE_PATH.'/includes/include-user.php';
