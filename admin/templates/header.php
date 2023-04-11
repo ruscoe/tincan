@@ -1,7 +1,5 @@
 <?php
 
-use TinCan\TCHook;
-
 /**
  * Admin header template.
  *
@@ -46,12 +44,8 @@ $user = $data['user'];
             '/admin?page='.$settings['admin_page_boards'] => 'Boards',
             '/admin?page='.$settings['admin_page_threads'] => 'Threads',
             '/admin?page='.$settings['admin_page_pages'] => 'Pages',
-            '/admin?page='.$settings['admin_page_plugins'] => 'Plugins',
             '/admin?page='.$settings['admin_page_mail_templates'] => 'Mail Templates',
           ];
-
-          $hook = new TCHook('admin_nav_menu');
-          $nav_items = $hook->process($nav_items);
         ?>
 
         <ul>

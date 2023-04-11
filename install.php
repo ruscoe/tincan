@@ -382,18 +382,6 @@ function tc_create_tables()
       `confirmation_code` varchar(255) NOT NULL DEFAULT '',
       PRIMARY KEY (`pending_user_id`)
     ) AUTO_INCREMENT=1000",
-
-      'DROP TABLE IF EXISTS `tc_plugins`',
-
-      "CREATE TABLE `tc_plugins` (
-      `plugin_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-      `plugin_name` varchar(255) NOT NULL DEFAULT '',
-      `plugin_namespace` varchar(255) NOT NULL DEFAULT '',
-      `path` varchar(255) NOT NULL DEFAULT '',
-      `enabled` tinyint(1) unsigned NOT NULL,
-      PRIMARY KEY (`plugin_id`),
-      KEY `NAMESPACE_INDEX` (`plugin_namespace`)
-      ) AUTO_INCREMENT=1000",
     ];
 
     foreach ($queries as $query) {
@@ -750,7 +738,6 @@ function tc_create_pages()
         ['page_title' => 'Admin Delete Object',        'template' => 'delete-object'],
         ['page_title' => 'Admin Upload Setting Image', 'template' => 'upload-setting-image'],
         ['page_title' => 'Admin Delete Setting Image', 'template' => 'delete-setting-image'],
-        ['page_title' => 'Admin Plugins',              'template' => 'plugins'],
       ];
 
     foreach ($pages as $page) {
