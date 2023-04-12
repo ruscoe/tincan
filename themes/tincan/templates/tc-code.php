@@ -58,4 +58,9 @@
       <td>__This text is underlined__</td>
       <td><u>This text is underlined</u></td>
     </tr>
+    <tr>
+      <td>Link</td>
+      <td>[Example link](http://example.org/)</td>
+      <td><a href="http://example.org/" target="_blank">Example link</a></td>
+    </tr>
   </table>
