@@ -47,7 +47,11 @@ class TCSetting extends TCObject
     protected $required;
 
     /**
+     * Determines if this setting is a required setting.
+     *
      * @since 0.09
+     *
+     * @return bool true if this setting is required
      */
     public function is_required()
     {

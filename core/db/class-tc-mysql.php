@@ -21,16 +21,14 @@ class TCMySQL extends TCDB
     private $connection;
 
     /**
-     * Tests for an existing database connection.
-     *
-     * This is needed when using PHP 8 and above due to what looks like a bug.
-     *
-     * @see https://github.com/joomlatools/joomlatools-framework/issues/554
+     * @see TCDB::is_connected()
      * @since 0.06
      */
     public function is_connected()
     {
         try {
+            // This is needed when using PHP 8 and above due to what looks like a bug.
+            // @see https://github.com/joomlatools/joomlatools-framework/issues/554
             return ($this->connection instanceof MySQLi) && @$this->_connection->ping();
         } catch (\Exception $e) {
             return false;
@@ -38,6 +36,7 @@ class TCMySQL extends TCDB
     }
 
     /**
+     * @see TCDB::open_connection()
      * @since 0.01
      */
     public function open_connection()
@@ -61,6 +60,7 @@ class TCMySQL extends TCDB
     }
 
     /**
+     * @see TCDB::close_connection()
      * @since 0.01
      */
     public function close_connection()
@@ -71,6 +71,7 @@ class TCMySQL extends TCDB
     }
 
     /**
+     * @see TCDB::query()
      * @since 0.01
      */
     public function query($query, $params = [])
@@ -115,6 +116,7 @@ class TCMySQL extends TCDB
     }
 
     /**
+     * @see TCDB::get_last_insert_id()
      * @since 0.01
      */
     public function get_last_insert_id()
@@ -123,6 +125,7 @@ class TCMySQL extends TCDB
     }
 
     /**
+     * @see TCDB::get_last_error()
      * @since 0.01
      */
     public function get_last_error()
