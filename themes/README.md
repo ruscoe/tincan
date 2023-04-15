@@ -37,8 +37,20 @@ The name must match the directory name.
 For example, if your custom theme is in the directory *themes/mytheme*,
 enter *mytheme*
 
-## Compass and compiling CSS
+## Sass and CSS
 
-Tin Can themes use [Compass](http://beta.compass-style.org/) to compile CSS
-from SASS files. Compass is going to be replaced with a more modern SASS
-compiler in the near future.
+Tin Can themes use [Sass](https://sass-lang.com/guide) rather than CSS directly.
+
+To compile a theme's CSS, enter the theme directory:
+
+`cd themes/tincan`
+
+Then run:
+
+`npm install`
+
+`npm run build`
+
+A CSS file will be compiled from the contents of `sass/style.scss` and will appear as `css/style.css`
+
+You'll only need to run `npm install` once.
