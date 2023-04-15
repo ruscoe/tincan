@@ -145,7 +145,7 @@ if (!empty($ajax)) {
         ]);
     } else {
         $error_message = new TCErrorMessage();
-        $response->errors = $error_message->get_error_message('create-thread', $error);
+        $response->errors = $error_message->get_error_message('new-thread', $error);
     }
 
     exit($response->get_output());
