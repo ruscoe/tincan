@@ -33,6 +33,7 @@ if (file_exists(TC_BASE_PATH.'/vendor/autoload.php')) {
     exit('Composer vendor autoload file is missing. You may need to run <b>composer install</b> in the root directory. See README.md for information.');
 }
 
+require TC_BASE_PATH.'/core/class-tc-error-message.php';
 require TC_BASE_PATH.'/core/class-tc-exception.php';
 require TC_BASE_PATH.'/core/class-tc-mailer.php';
 require TC_BASE_PATH.'/includes/include-db.php';

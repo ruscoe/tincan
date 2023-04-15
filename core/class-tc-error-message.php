@@ -48,7 +48,7 @@ class TCErrorMessage
             } elseif (TCObject::ERR_NOT_SAVED == $error_code) {
                 $error_text = 'Couldn\'t reply to this thread right now. Please try again later.';
             }
-        } elseif ('create-thread' == $context) {
+        } elseif ('new-thread' == $context) {
             // User is posting a reply to a thread.
             if (TCUser::ERR_NOT_AUTHORIZED == $error_code) {
                 $error_text = 'Your account isn\'t able to create a new thread.';
