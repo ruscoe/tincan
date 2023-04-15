@@ -12,9 +12,11 @@ Tin Can is not production-ready, but you can play around with it if you like.
 
 ## Requirements
 
-* [Composer](https://getcomposer.org)
+* A Linux web server or compatible
 * PHP 7.4.0 or above
-* MySQL
+* MySQL or compatible (MariaDB will probably work, too)
+* [Composer](https://getcomposer.org)
+* [Node.js](https://nodejs.org/) (if you want to create or edit themes)
 
 ## Running Tin Can Forum
 
