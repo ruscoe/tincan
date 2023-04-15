@@ -21,15 +21,15 @@ TCTemplate::render('header', $settings['theme'], ['page_title' => 'Account Confi
 <h1 class="section-header">Account Confirmation</h1>
 
 <?php
-  if (!empty($error)) {
-      ?>
+if (!empty($error)) {
+    ?>
   <p>Unable to confirm your account. Please check the link in your email.</p>
-<?php
-  } else {
-      ?>
+    <?php
+} else {
+    ?>
   <p>Your account has been confirmed and you are now logged in!</p>
-<?php
-  }
+    <?php
+}
 ?>
 
 <p><a href="<?php echo TCURL::create_url(null); ?>">Return to the forum</a></p>

@@ -50,11 +50,11 @@ $indexed_boards = $db->get_indexed_objects(new TCBoard(), 'board_id');
     <select name="board">
       <option value="">All boards</option>
       <?php
-      foreach ($indexed_boards as $board) {
-          $selected = ($board->board_id == $board_id) ? ' selected' : ''; ?>
+        foreach ($indexed_boards as $board) {
+            $selected = ($board->board_id == $board_id) ? ' selected' : ''; ?>
         <option value="<?php echo $board->board_id; ?>"<?php echo $selected; ?>><?php echo $board->board_name; ?></option>
-      <?php
-      } ?>
+            <?php
+        } ?>
     </select>
   </div>
   <div class="fieldset button">
@@ -93,7 +93,7 @@ foreach ($threads as $thread) {
       'url' => '/admin/index.php?page='.$settings['admin_page_delete_thread'].'&thread_id='.$thread->thread_id,
       'value' => 'Delete',
     ],
-  ];
+    ];
 
     TCAdminTemplate::render('table-row', $data);
 }

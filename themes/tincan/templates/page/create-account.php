@@ -30,17 +30,17 @@ if (!$settings['allow_registration']) {
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
 <?php
-  if (!empty($error)) {
-      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
-  } elseif (!empty($status) && ('sent' == $status)) {
-      ?>
+if (!empty($error)) {
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+} elseif (!empty($status) && ('sent' == $status)) {
+    ?>
 
     <div class="message-box">
       <p>Please check your email for your account confirmation link.</p>
     </div>
 
     <?php
-  }
+}
 ?>
 
 <?php if (empty($status) && $settings['allow_registration']) { ?>

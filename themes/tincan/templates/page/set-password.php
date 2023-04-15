@@ -24,17 +24,17 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settin
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
 <?php
-  if (!empty($error)) {
-      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
-  } elseif (!empty($status) && ('set' == $status)) {
-      ?>
+if (!empty($error)) {
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+} elseif (!empty($status) && ('set' == $status)) {
+    ?>
 
     <div class="message-box">
       <p>Your new password has been set! <a href="<?php echo TCURL::create_url($settings['page_log_in']); ?>">Log in</a>.</p>
     </div>
 
     <?php
-  }
+}
 ?>
 
 <?php if (empty($status)) { ?>

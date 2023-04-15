@@ -56,7 +56,7 @@ class TCPendingUser extends TCObject
     }
 
     /**
-     * @see TCObject::get_primary_key()
+     * @see   TCObject::get_primary_key()
      * @since 0.07
      */
     public function get_primary_key()
@@ -65,7 +65,7 @@ class TCPendingUser extends TCObject
     }
 
     /**
-     * @see TCObject::get_primary_key_value()
+     * @see   TCObject::get_primary_key_value()
      * @since 0.07
      */
     public function get_primary_key_value()
@@ -74,7 +74,7 @@ class TCPendingUser extends TCObject
     }
 
     /**
-     * @see TCObject::get_db_table()
+     * @see   TCObject::get_db_table()
      * @since 0.07
      */
     public function get_db_table()
@@ -83,7 +83,7 @@ class TCPendingUser extends TCObject
     }
 
     /**
-     * @see TCObject::get_db_fields()
+     * @see   TCObject::get_db_fields()
      * @since 0.07
      */
     public function get_db_fields()

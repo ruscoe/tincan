@@ -67,14 +67,14 @@ foreach ($submitted_fields as $field_name => $field_value) {
 
     if (!empty($setting)) {
         switch ($setting->type) {
-            case 'bool':
-                $checked = filter_var($field_value, FILTER_SANITIZE_STRING);
-                $setting->value = ('on' === $checked) ? 'true' : 'false';
-                $db->save_object($setting);
-                break;
-            default:
-                $setting->value = filter_var($field_value, FILTER_SANITIZE_STRING);
-                $db->save_object($setting);
+        case 'bool':
+            $checked = filter_var($field_value, FILTER_SANITIZE_STRING);
+            $setting->value = ('on' === $checked) ? 'true' : 'false';
+            $db->save_object($setting);
+            break;
+        default:
+            $setting->value = filter_var($field_value, FILTER_SANITIZE_STRING);
+            $db->save_object($setting);
         }
     }
 }

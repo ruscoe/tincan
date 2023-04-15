@@ -149,7 +149,7 @@ if (1 == $run_install) {
 
 <h1>Tin Can Forum Installer</h1>
 
-<?php
+    <?php
     $error = false;
 
     try {
@@ -162,18 +162,18 @@ if (1 == $run_install) {
     <p>This cannot be undone.</p>
   </div>
 
-<?php
+            <?php
         }
     } catch (TCException $e) {
         ?>
   <div id="error-box">
     <p>Unable to connect to the database. Please check your configuration.</p>
   </div>
-<?php
+        <?php
         $error = true;
     } ?>
 
-<?php if (!$error) { ?>
+    <?php if (!$error) { ?>
 <form id="install-options" action="/install.php" method="POST">
   <div class="fieldset">
     <label for="create_test_data">Generate test data</label>
@@ -182,10 +182,10 @@ if (1 == $run_install) {
     </div>
   </div>
 
-<?php
-    $user = new TCUser();
-    $password = $user->generate_password();
-    ?>
+        <?php
+        $user = new TCUser();
+        $password = $user->generate_password();
+        ?>
 
   <div class="fieldset">
     <label for="admin_username">Admin username</label>
@@ -208,9 +208,9 @@ if (1 == $run_install) {
     </div>
   </div>
 
-  <?php
+        <?php
         $base_url = (isset($_SERVER['HTTPS'])) ? 'https://'.$_SERVER['HTTPS_HOST'] : 'http://'.$_SERVER['HTTP_HOST'];
-    ?>
+        ?>
 
   <div class="fieldset">
     <label for="base_url">Base URL</label>
@@ -225,13 +225,13 @@ if (1 == $run_install) {
     <input type="submit" name="submit_install" value="Install Tin Can Forum" />
   </div>
 </form>
-<?php } ?>
+    <?php } ?>
 
 </div>
 </body>
 </html>
 
-<?php
+    <?php
 }
 
 function tc_is_installed()

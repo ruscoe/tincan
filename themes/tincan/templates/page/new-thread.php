@@ -41,16 +41,16 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
   or <a href="<?php echo TCURL::create_url($settings['page_create_account']); ?>">create an account</a> if you'd like to do that!
 </div>
 
-<?php
+    <?php
 } else {
     TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]); ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
-<?php
-  if (!empty($error)) {
-      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
-  } ?>
+    <?php
+    if (!empty($error)) {
+        TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+    } ?>
 
 <form id="create-thread" action="/actions/create-thread.php" method="POST">
   <div class="fieldset">
@@ -75,7 +75,7 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
   </div>
 </form>
 
-<?php
-  TCTemplate::render('tc-code', $settings['theme'], []);
+    <?php
+    TCTemplate::render('tc-code', $settings['theme'], []);
 }
 ?>

@@ -31,11 +31,11 @@ if (!empty($thread)) {
     <input class="submit-button" type="submit" value="Delete" />
   </div>
 </form>
-<?php
+    <?php
 } else {
     ?>
   <h1>Thread not found</h1>
   <p>This thread either never existed or has already been deleted.</p>
-  <?php
+    <?php
 }
 ?>

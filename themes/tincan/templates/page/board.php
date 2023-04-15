@@ -43,17 +43,17 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'sett
 
 <?php
   // Show new thread link if user has permission to create a new thread.
-  if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
-      $url_id = ($settings['enable_urls']) ? $settings['base_url_new_thread'] : $settings['page_new_thread'];
-      $new_thread_url = TCURL::create_url($url_id, ['board' => $board->board_id], $settings['enable_urls'], $board->get_slug()); ?>
+if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
+    $url_id = ($settings['enable_urls']) ? $settings['base_url_new_thread'] : $settings['page_new_thread'];
+    $new_thread_url = TCURL::create_url($url_id, ['board' => $board->board_id], $settings['enable_urls'], $board->get_slug()); ?>
 
   <div id="board-navigation">
     <ul class="navigation">
       <li><a class="button" href="<?php echo $new_thread_url; ?>">New thread</a></li>
     </ul>
   </div>
-<?php
-  }
+    <?php
+}
 ?>
 
 <h1 class="section-header"><?php echo $board->board_name; ?></h1>
@@ -101,17 +101,17 @@ if (!empty($threads)) {
     <p>No threads here!</p>
     <?php
       // Show new thread link if user has permission to create a new thread.
-      if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
-          ?>
+    if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
+        ?>
       <p>You can <a href="<?php echo TCURL::create_url($settings['page_new_thread'], ['board' => $board->board_id]); ?>">create the first one!</a></p>
-      <?php
-      } else {
-          ?>
+        <?php
+    } else {
+        ?>
       <p>You can <a href="<?php echo TCURL::create_url($settings['page_create_account']); ?>">create an account and change that!</a></p>
-      <?php
-      } ?>
+        <?php
+    } ?>
   </div>
-  <?php
+    <?php
 }
 
 $page_params = [

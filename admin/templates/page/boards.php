@@ -50,11 +50,11 @@ $indexed_board_groups = $db->get_indexed_objects(new TCBoardGroup(), 'board_grou
     <select name="board_group">
       <option value="">All board groups</option>
       <?php
-      foreach ($indexed_board_groups as $board_group) {
-          $selected = ($board_group->board_group_id == $board_group_id) ? ' selected' : ''; ?>
+        foreach ($indexed_board_groups as $board_group) {
+            $selected = ($board_group->board_group_id == $board_group_id) ? ' selected' : ''; ?>
         <option value="<?php echo $board_group->board_group_id; ?>"<?php echo $selected; ?>><?php echo $board_group->board_group_name; ?></option>
-      <?php
-      } ?>
+            <?php
+        } ?>
     </select>
   </div>
   <div class="fieldset button">
@@ -93,7 +93,7 @@ foreach ($boards as $board) {
       'url' => '/admin/index.php?page='.$settings['admin_page_delete_board'].'&board_id='.$board->board_id,
       'value' => 'Delete',
     ],
-  ];
+    ];
 
     TCAdminTemplate::render('table-row', $data);
 }

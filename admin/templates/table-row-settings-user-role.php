@@ -24,9 +24,9 @@ $roles = $db->load_objects(new TCRole());
         foreach ($roles as $role) {
             $selected = ($role->role_id == $setting->value) ? ' selected' : ''; ?>
           <option value="<?php echo $role->role_id; ?>"<?php echo $selected; ?>><?php echo $role->role_name; ?></option>
-          <?php
+            <?php
         }
-?>
+        ?>
     </select>
   </div>
 </div>

@@ -21,14 +21,14 @@ define('TC_VERSION', '0.14');
 // Base configuation.
 $directory = getcwd();
 if (file_exists($directory.'/tc-config.php')) {
-    require $directory.'/tc-config.php';
+    include $directory.'/tc-config.php';
 } else {
     exit('Configuration file is missing. Did you copy <b>tc-config-example.php</b> to <b>tc-config.php</b>? See README.md for information.');
 }
 
 // Composer autoload.
 if (file_exists(TC_BASE_PATH.'/vendor/autoload.php')) {
-    require TC_BASE_PATH.'/vendor/autoload.php';
+    include TC_BASE_PATH.'/vendor/autoload.php';
 } else {
     exit('Composer vendor autoload file is missing. You may need to run <b>composer install</b> in the root directory. See README.md for information.');
 }

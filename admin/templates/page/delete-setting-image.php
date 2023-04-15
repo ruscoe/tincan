@@ -41,11 +41,11 @@ if (!empty($image_setting) && ($image_setting->type == 'image')) {
   </div>
 </form>
 
-<?php
+    <?php
 } else {
     ?>
   <h1>Image setting not found</h1>
   <p>This image setting does not exist.</p>
-  <?php
+    <?php
 }
 ?>

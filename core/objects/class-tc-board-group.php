@@ -39,7 +39,7 @@ class TCBoardGroup extends TCObject
     protected $updated_time;
 
     /**
-     * @see TCObject::validate_field_value()
+     * @see   TCObject::validate_field_value()
      * @since 0.01
      */
     public function validate_field_value($field_name, $value)
@@ -52,7 +52,7 @@ class TCBoardGroup extends TCObject
     }
 
     /**
-     * @see TCObject::get_name()
+     * @see   TCObject::get_name()
      * @since 0.04
      */
     public function get_name()
@@ -61,7 +61,7 @@ class TCBoardGroup extends TCObject
     }
 
     /**
-     * @see TCObject::get_slug()
+     * @see   TCObject::get_slug()
      * @since 0.08
      */
     public function get_slug()
@@ -70,7 +70,7 @@ class TCBoardGroup extends TCObject
     }
 
     /**
-     * @see TCObject::get_primary_key()
+     * @see   TCObject::get_primary_key()
      * @since 0.01
      */
     public function get_primary_key()
@@ -79,7 +79,7 @@ class TCBoardGroup extends TCObject
     }
 
     /**
-     * @see TCObject::get_primary_key_value()
+     * @see   TCObject::get_primary_key_value()
      * @since 0.04
      */
     public function get_primary_key_value()
@@ -88,7 +88,7 @@ class TCBoardGroup extends TCObject
     }
 
     /**
-     * @see TCObject::get_db_table()
+     * @see   TCObject::get_db_table()
      * @since 0.01
      */
     public function get_db_table()
@@ -97,7 +97,7 @@ class TCBoardGroup extends TCObject
     }
 
     /**
-     * @see TCObject::get_db_fields()
+     * @see   TCObject::get_db_fields()
      * @since 0.01
      */
     public function get_db_fields()

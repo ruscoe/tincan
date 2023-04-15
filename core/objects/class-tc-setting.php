@@ -59,7 +59,7 @@ class TCSetting extends TCObject
     }
 
     /**
-     * @see TCObject::get_primary_key()
+     * @see   TCObject::get_primary_key()
      * @since 0.01
      */
     public function get_primary_key()
@@ -68,7 +68,7 @@ class TCSetting extends TCObject
     }
 
     /**
-     * @see TCObject::get_primary_key_value()
+     * @see   TCObject::get_primary_key_value()
      * @since 0.04
      */
     public function get_primary_key_value()
@@ -77,7 +77,7 @@ class TCSetting extends TCObject
     }
 
     /**
-     * @see TCObject::get_db_table()
+     * @see   TCObject::get_db_table()
      * @since 0.01
      */
     public function get_db_table()
@@ -86,7 +86,7 @@ class TCSetting extends TCObject
     }
 
     /**
-     * @see TCObject::get_db_fields()
+     * @see   TCObject::get_db_fields()
      * @since 0.01
      */
     public function get_db_fields()

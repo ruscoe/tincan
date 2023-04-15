@@ -22,7 +22,7 @@ if ((!empty($delete_user)) && ($delete_user->user_id == $user->user_id)) {
     ?>
   <h1>Can't delete own account</h1>
   <p>You can't delete the account you're logged in to.</p>
-<?php
+    <?php
 } elseif (!empty($delete_user)) {
     ?>
     <h1>Really delete <?php echo $delete_user->get_name(); ?>?</h1>
@@ -34,11 +34,11 @@ if ((!empty($delete_user)) && ($delete_user->user_id == $user->user_id)) {
         <input class="submit-button" type="submit" value="Delete User" />
       </div>
     </form>
-<?php
+    <?php
 } else {
     ?>
   <h1>User not found</h1>
   <p>This user either never existed or has already been deleted.</p>
-  <?php
+    <?php
 }
 ?>

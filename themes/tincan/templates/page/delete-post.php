@@ -61,5 +61,5 @@ if (!empty($user) && $user->can_delete_post($post)) {
 
 </div>
 
-<?php
+    <?php
 }

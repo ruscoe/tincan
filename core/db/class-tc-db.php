@@ -71,8 +71,8 @@ abstract class TCDB
      *
      * @since 0.01
      *
-     * @param string $query the query string
-     * @param array $params optional array of query parameters
+     * @param string $query  the query string
+     * @param array  $params optional array of query parameters
      *
      * @return object the query result object
      */

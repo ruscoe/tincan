@@ -51,7 +51,7 @@ class TCData
      *
      * @since 0.01
      *
-     * @param string $query the query string
+     * @param  string $query the query string
      * @return object the query result object
      */
     public function run_query($query)
@@ -105,7 +105,7 @@ class TCData
      *
      * @since 0.02
      *
-     * @param int $user_id the user's ID
+     * @param  int $user_id the user's ID
      * @return TCUser the user object
      */
     public function load_user($user_id)
@@ -135,7 +135,7 @@ class TCData
      * @since 0.01
      *
      * @param string $class the class name
-     * @param int $id       the object ID
+     * @param int    $id    the object ID
      *
      * @return object the populated object
      */
@@ -174,7 +174,7 @@ class TCData
      *
      * @since 0.01
      *
-     * @param TCObject $object the object to save
+     * @param  TCObject $object the object to save
      * @return TCObject the saved object
      */
     public function save_object(TCObject $object)
@@ -233,24 +233,15 @@ class TCData
      *
      * @since 0.01
      *
-     * @param string $class     the class name of the objects
-     * @param array $ids        the IDs of the objects
-     * @param array $conditions associative array of database fields and values to match.
-     *      Example:
-     *          [
-     *              [
-     *                  'field' => 'role_id',
-     *                  'value' => 1
-     *              ]
-     *          ]
-     * @param array $order associative array of order conditions
-     *      Example:
-     *          [
-     *              'field' => 'created_time',
-     *              'direction' => 'ASC'
-     *          ]
-     * @param int $offset the number of records to skip before returning results
-     * @param int $limit  the maximum number of records
+     * @param string $class      the class name of the objects
+     * @param array  $ids        the IDs of the objects
+     * @param array  $conditions associative array of database fields and values to match.
+     *                           Example: [ [ 'field' => 'role_id', 'value' => 1 ] ]
+     * @param array  $order      associative array of order conditions
+     *                           Example: [ 'field' => 'created_time',
+     *                           'direction' => 'ASC' ]
+     * @param int    $offset     the number of records to skip before returning results
+     * @param int    $limit      the maximum number of records
      *
      * @return array an array of matching objects
      */
@@ -303,23 +294,14 @@ class TCData
      *
      * @param string $class       the class name of the objects
      * @param string $index_field the name of the field to index objects by
-     * @param array $ids          the IDs of the objects
-     * @param array $conditions   associative array of database fields and values to match.
-     *      Example:
-     *          [
-     *              [
-     *                  'field' => 'role_id',
-     *                  'value' => 1
-     *              ]
-     *          ]
-     * @param array $order associative array of order conditions
-     *      Example:
-     *          [
-     *              'field' => 'created_time',
-     *              'direction' => 'ASC'
-     *          ]
-     * @param int $offset the number of records to skip before returning results
-     * @param int $limit  the maximum number of records
+     * @param array  $ids         the IDs of the objects
+     * @param array  $conditions  associative array of database fields and values to match.
+     *                            Example: [ [ 'field' => 'role_id', 'value' => 1 ] ]
+     * @param array  $order       associative array of order conditions
+     *                            Example: [ 'field' => 'created_time',
+     *                            'direction' => 'ASC' ]
+     * @param int    $offset      the number of records to skip before returning results
+     * @param int    $limit       the maximum number of records
      *
      * @return array an associative array of matching objects indexed by $index_field
      */
@@ -350,15 +332,9 @@ class TCData
      *
      * @since 0.02
      *
-     * @param string $class     the class name of the objects
-     * @param array $conditions associative array of database fields and values to match.
-     *      Example:
-     *          [
-     *              [
-     *                  'field' => 'role_id',
-     *                  'value' => 1
-     *              ]
-     *          ]
+     * @param string $class      the class name of the objects
+     * @param array  $conditions associative array of database fields and values to match.
+     *                           Example: [ [ 'field' => 'role_id', 'value' => 1 ] ]
      *
      * @return int the total number of objects
      */
@@ -390,7 +366,7 @@ class TCData
      * @since 0.04
      *
      * @param string $class the class name of the object
-     * @param int $id       the ID of the object
+     * @param int    $id    the ID of the object
      *
      * @return object the database query result
      */

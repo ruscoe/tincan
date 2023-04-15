@@ -63,32 +63,32 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user
     <?php
     $posts = $db->get_user_posts($profile_user->user_id);
 
-if (!empty($posts)) {
-    $thread = null; ?>
+    if (!empty($posts)) {
+        $thread = null; ?>
       <ul class="post-list">
-      <?php
-    foreach ($posts as $post) {
-        $thread = $db->load_object(new TCThread(), $post->thread_id);
+          <?php
+            foreach ($posts as $post) {
+                $thread = $db->load_object(new TCThread(), $post->thread_id);
 
-        $url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
-        $thread_url = TCURL::create_url($url_id, ['thread' => $thread->thread_id], $settings['enable_urls'], $thread->get_slug());
+                $url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
+                $thread_url = TCURL::create_url($url_id, ['thread' => $thread->thread_id], $settings['enable_urls'], $thread->get_slug());
 
-        // TODO: Figure out the page of the thread this post appears on.
-        $thread_url .= '#post-'.$post->post_id; ?>
+                // TODO: Figure out the page of the thread this post appears on.
+                $thread_url .= '#post-'.$post->post_id; ?>
         <li>
           <h3><a href="<?php echo $thread_url; ?>"><?php echo $thread->thread_title; ?></a></h3>
           <p class="post"><?php echo $post->get_trimmed_content(); ?></p>
           <p class="meta"><?php echo date($settings['date_time_format'], $post->created_time); ?></p>
         </li>
-        <?php
-    } ?>
+                <?php
+            } ?>
       </ul>
-      <?php
-} else {
-    ?>
+          <?php
+    } else {
+        ?>
       <p><?php echo $profile_user->username; ?> hasn't posted anything yet.</p>
-      <?php
-}
-?>
+        <?php
+    }
+    ?>
   </div>
 </div>

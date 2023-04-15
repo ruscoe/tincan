@@ -106,10 +106,12 @@ $destination = '';
 
 if (empty($error)) {
     // Send user to their new post.
-    $destination = TCURL::create_url($settings['page_thread'], [
-      'thread' => $thread_id,
-      'start_at' => $total_pages,
-    ]);
+    $destination = TCURL::create_url(
+        $settings['page_thread'], [
+        'thread' => $thread_id,
+        'start_at' => $total_pages,
+        ]
+    );
 
     $destination .= '#post-'.$new_post->post_id;
 }
@@ -132,11 +134,13 @@ if (!empty($ajax)) {
     if (!empty($error)) {
         // Send user back to the new post page with an error.
         // TODO: Add an anchor link to the form.
-        $destination = TCURL::create_url($settings['page_thread'], [
-          'thread' => $thread_id,
-          'start_at' => $total_pages,
-          'error' => $error,
-        ]);
+        $destination = TCURL::create_url(
+            $settings['page_thread'], [
+            'thread' => $thread_id,
+            'start_at' => $total_pages,
+            'error' => $error,
+            ]
+        );
     }
 
     header('Location: '.$destination);

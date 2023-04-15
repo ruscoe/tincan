@@ -25,6 +25,6 @@ $page = $data['page'];
 
         echo "<li>{$error_text}</li>";
     }
-?>
+    ?>
   </ul>
 </div>

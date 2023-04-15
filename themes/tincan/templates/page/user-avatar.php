@@ -45,9 +45,9 @@ TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_ti
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
 <?php
-  if (!empty($error)) {
-      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
-  }
+if (!empty($error)) {
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+}
 
   $avatar_image = (!empty($avatar_user->avatar)) ? $avatar_user->avatar : '/assets/images/default-profile.png';
 

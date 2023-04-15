@@ -27,7 +27,7 @@ class TCRole extends TCObject
     protected $allowed_actions;
 
     /**
-     * @see TCObject::get_name()
+     * @see   TCObject::get_name()
      * @since 0.06
      */
     public function get_name()
@@ -36,7 +36,7 @@ class TCRole extends TCObject
     }
 
     /**
-     * @see TCObject::get_primary_key()
+     * @see   TCObject::get_primary_key()
      * @since 0.02
      */
     public function get_primary_key()
@@ -45,7 +45,7 @@ class TCRole extends TCObject
     }
 
     /**
-     * @see TCObject::get_primary_key_value()
+     * @see   TCObject::get_primary_key_value()
      * @since 0.04
      */
     public function get_primary_key_value()
@@ -54,7 +54,7 @@ class TCRole extends TCObject
     }
 
     /**
-     * @see TCObject::get_db_table()
+     * @see   TCObject::get_db_table()
      * @since 0.02
      */
     public function get_db_table()
@@ -63,7 +63,7 @@ class TCRole extends TCObject
     }
 
     /**
-     * @see TCObject::get_db_fields()
+     * @see   TCObject::get_db_fields()
      * @since 0.02
      */
     public function get_db_fields()

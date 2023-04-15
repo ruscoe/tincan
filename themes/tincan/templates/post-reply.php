@@ -18,9 +18,9 @@ $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
 <?php
-  if (!empty($error)) {
-      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
-  }
+if (!empty($error)) {
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+}
 ?>
 
 <form id="post-reply" action="/actions/create-post.php" method="POST">

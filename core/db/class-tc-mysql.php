@@ -21,7 +21,7 @@ class TCMySQL extends TCDB
     private $connection;
 
     /**
-     * @see TCDB::is_connected()
+     * @see   TCDB::is_connected()
      * @since 0.06
      */
     public function is_connected()
@@ -36,7 +36,7 @@ class TCMySQL extends TCDB
     }
 
     /**
-     * @see TCDB::open_connection()
+     * @see   TCDB::open_connection()
      * @since 0.01
      */
     public function open_connection()
@@ -60,7 +60,7 @@ class TCMySQL extends TCDB
     }
 
     /**
-     * @see TCDB::close_connection()
+     * @see   TCDB::close_connection()
      * @since 0.01
      */
     public function close_connection()
@@ -71,7 +71,7 @@ class TCMySQL extends TCDB
     }
 
     /**
-     * @see TCDB::query()
+     * @see   TCDB::query()
      * @since 0.01
      */
     public function query($query, $params = [])
@@ -116,7 +116,7 @@ class TCMySQL extends TCDB
     }
 
     /**
-     * @see TCDB::get_last_insert_id()
+     * @see   TCDB::get_last_insert_id()
      * @since 0.01
      */
     public function get_last_insert_id()
@@ -125,7 +125,7 @@ class TCMySQL extends TCDB
     }
 
     /**
-     * @see TCDB::get_last_error()
+     * @see   TCDB::get_last_error()
      * @since 0.01
      */
     public function get_last_error()

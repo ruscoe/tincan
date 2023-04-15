@@ -86,5 +86,5 @@ if (!empty($boards)) {
       <p>You are the administrator! You can <a href="/admin">create some boards!</p>
     <?php } ?>
   </div>
-<?php
+    <?php
 }

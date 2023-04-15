@@ -49,30 +49,30 @@ $object = null;
 $page = null;
 
 switch ($object_type) {
-    case 'board_group':
-        $class = new TCBoardGroup();
-        $page = $settings['admin_page_board_groups'];
-        break;
-    case 'board':
-        $class = new TCBoard();
-        $page = $settings['admin_page_boards'];
-        break;
-    case 'page':
-        $class = new TCPage();
-        $page = $settings['admin_page_pages'];
-        break;
-    case 'thread':
-        $class = new TCThread();
-        $page = $settings['admin_page_threads'];
-        break;
-    case 'user':
-        $class = new TCUser();
-        $page = $settings['admin_page_users'];
-        break;
-    case 'mail_template':
-        $class = new TCMailTemplate();
-        $page = $settings['admin_page_mail_templates'];
-        break;
+case 'board_group':
+    $class = new TCBoardGroup();
+    $page = $settings['admin_page_board_groups'];
+    break;
+case 'board':
+    $class = new TCBoard();
+    $page = $settings['admin_page_boards'];
+    break;
+case 'page':
+    $class = new TCPage();
+    $page = $settings['admin_page_pages'];
+    break;
+case 'thread':
+    $class = new TCThread();
+    $page = $settings['admin_page_threads'];
+    break;
+case 'user':
+    $class = new TCUser();
+    $page = $settings['admin_page_users'];
+    break;
+case 'mail_template':
+    $class = new TCMailTemplate();
+    $page = $settings['admin_page_mail_templates'];
+    break;
 }
 
 if (!empty($class)) {

@@ -42,16 +42,16 @@ $title .= $settings['forum_name'];
       <?php if (empty($user)) { ?>
         <li><a href="<?php echo $create_account_url; ?>">Create Account</a></li>
         <li><a href="<?php echo $log_in_url; ?>">Log In</a></li>
-      <?php
+            <?php
       } else {
           $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
           $user_url = TCURL::create_url($url_id, ['user' => $user->user_id], $settings['enable_urls'], $user->get_slug()); ?>
         <li>Logged in as <a href="<?php echo $user_url; ?>"><?php echo $user->username; ?></a></li>
-        <?php if (!empty($user) && $user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
+          <?php if (!empty($user) && $user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
           <li><a href="/admin">Administration</a></li>
-        <?php } ?>
+          <?php } ?>
         <li><a href="<?php echo $log_out_url; ?>">Log Out</a></li>
-      <?php
+          <?php
       } ?>
       </ul>
       <div class="logo">

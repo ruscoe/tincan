@@ -23,9 +23,9 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settin
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
 <?php
-  if (!empty($error)) {
-      TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
-  }
+if (!empty($error)) {
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+}
 ?>
 
 <form id="log-in" action="/actions/log-in.php" method="POST">
@@ -55,7 +55,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settin
     } else {
         $reset_password_url = TCURL::create_url($settings['page_reset_password']);
     }
-?>
+    ?>
 
   <a href="<?php echo $reset_password_url; ?>">Reset password</a>
 </form>

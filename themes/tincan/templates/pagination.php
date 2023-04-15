@@ -25,7 +25,7 @@ if ($total_pages > 1) {
     ?>
 
 <ul class="pagination">
-  <?php
+    <?php
     if (1 == $start_at) {
         // User is at the first page and cannot go any further back.
         echo '<li>1</li>';

@@ -53,5 +53,5 @@ if (!empty($board_groups)) {
       <p>You are the administrator! You can <a href="/admin">create some boards!</p>
     <?php } ?>
   </div>
-<?php
+    <?php
 }

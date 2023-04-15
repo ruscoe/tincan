@@ -37,7 +37,7 @@ class TCMailTemplate extends TCObject
     protected $updated_time;
 
     /**
-     * @see TCObject::get_name()
+     * @see   TCObject::get_name()
      * @since 0.07
      */
     public function get_name()
@@ -46,7 +46,7 @@ class TCMailTemplate extends TCObject
     }
 
     /**
-     * @see TCObject::get_primary_key()
+     * @see   TCObject::get_primary_key()
      * @since 0.07
      */
     public function get_primary_key()
@@ -55,7 +55,7 @@ class TCMailTemplate extends TCObject
     }
 
     /**
-     * @see TCObject::get_primary_key_value()
+     * @see   TCObject::get_primary_key_value()
      * @since 0.07
      */
     public function get_primary_key_value()
@@ -64,7 +64,7 @@ class TCMailTemplate extends TCObject
     }
 
     /**
-     * @see TCObject::get_db_table()
+     * @see   TCObject::get_db_table()
      * @since 0.07
      */
     public function get_db_table()
@@ -73,7 +73,7 @@ class TCMailTemplate extends TCObject
     }
 
     /**
-     * @see TCObject::get_db_fields()
+     * @see   TCObject::get_db_fields()
      * @since 0.07
      */
     public function get_db_fields()

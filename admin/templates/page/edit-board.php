@@ -41,11 +41,11 @@ $form_action = (!empty($board_id)) ? '/admin/actions/update-board.php' : '/admin
     <div class="field">
       <select name="board_group_id">
         <?php
-          foreach ($board_groups as $board_group) {
-              $selected = ($board_group->board_group_id == $board->board_group_id) ? ' selected' : '';
-              echo "<option value=\"{$board_group->board_group_id}\"{$selected}>{$board_group->board_group_name}</option>\n";
-          }
-?>
+        foreach ($board_groups as $board_group) {
+            $selected = ($board_group->board_group_id == $board->board_group_id) ? ' selected' : '';
+            echo "<option value=\"{$board_group->board_group_id}\"{$selected}>{$board_group->board_group_name}</option>\n";
+        }
+        ?>
       </select>
     </div>
   </div>

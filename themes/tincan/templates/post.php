@@ -47,13 +47,13 @@ $parser = new TCPostParser();
       <h3 class="username"><a href="<?php echo $user_page_url; ?>"><?php echo $username; ?></a></h3>
     <?php } else { ?>
       <h3 class="username"><?php echo $username; ?></h3>
-     <?php } ?>
+    <?php } ?>
     <div class="profile-image">
       <?php if (!empty($author)) { ?>
         <a href="<?php echo $user_page_url; ?>"><img src="<?php echo $avatar_image; ?>" /></a>
       <?php } else { ?>
         <img src="<?php echo $avatar_image; ?>" />
-     <?php } ?>
+      <?php } ?>
     </div>
     <?php if (!empty($author)) { ?>
       <div class="joined">Joined: <?php echo date($settings['date_format'], $author->created_time); ?></div>
@@ -63,26 +63,26 @@ $parser = new TCPostParser();
     <div class="date">
       <a href="<?php echo $post_url; ?>"><?php echo date($settings['date_time_format'], $post->created_time); ?></a>
       <?php
-      if ($post->updated_time != $post->created_time) {
-          echo ' (edited '.date($settings['date_time_format'], $post->updated_time);
+        if ($post->updated_time != $post->created_time) {
+            echo ' (edited '.date($settings['date_time_format'], $post->updated_time);
 
-          if ($post->updated_by_user != $post->user_id) {
-              $db = new TCData();
-              $updated_by = $db->load_user($post->updated_by_user);
-              echo ' by '.$updated_by->username;
-          }
+            if ($post->updated_by_user != $post->user_id) {
+                $db = new TCData();
+                $updated_by = $db->load_user($post->updated_by_user);
+                echo ' by '.$updated_by->username;
+            }
 
-          echo ')';
-      }
-?>
+            echo ')';
+        }
+        ?>
     </div>
     <?php
     $url_id = ($settings['enable_urls']) ? $settings['base_url_edit_post'] : $settings['page_edit_post'];
-$edit_post_url = TCURL::create_url($url_id, ['post' => $post->post_id, 'page_number' => $page_number], $settings['enable_urls'], $post->get_slug());
+    $edit_post_url = TCURL::create_url($url_id, ['post' => $post->post_id, 'page_number' => $page_number], $settings['enable_urls'], $post->get_slug());
 
-$url_id = ($settings['enable_urls']) ? $settings['base_url_delete_post'] : $settings['page_delete_post'];
-$delete_post_url = TCURL::create_url($url_id, ['post' => $post->post_id, 'page_number' => $page_number], $settings['enable_urls'], $post->get_slug());
-?>
+    $url_id = ($settings['enable_urls']) ? $settings['base_url_delete_post'] : $settings['page_delete_post'];
+    $delete_post_url = TCURL::create_url($url_id, ['post' => $post->post_id, 'page_number' => $page_number], $settings['enable_urls'], $post->get_slug());
+    ?>
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
     <ul class="post-controls" data-post="<?php echo $post->post_id; ?>">
       <?php if (!empty($user) && $user->can_edit_post($post)) { ?>

@@ -27,7 +27,7 @@ if (!empty($board)) {
 
 <form id="delete-board" action="/admin/actions/delete-board.php" method="POST">
 
-<?php if ($total_threads) { ?>
+    <?php if ($total_threads) { ?>
 
   <p>This board contains <?php echo $total_threads; ?> thread(s).</p>
 
@@ -36,38 +36,38 @@ if (!empty($board)) {
     <label for="delete_threads">Delete <?php echo $total_threads; ?> thread(s)</label>
   </div>
 
-  <?php
-    // Display option to move threads only if there's at least one other board.
-    if (count($available_boards) > 1) { ?>
+        <?php
+        // Display option to move threads only if there's at least one other board.
+        if (count($available_boards) > 1) { ?>
 
   <div class="fieldset thread-options">
     <input type="radio" id="move_threads" name="thread_fate" value="move" />
     <label for="move_threads">Move <?php echo $total_threads; ?> thread(s)</label>
   </div>
 
-  <?php } else { ?>
+        <?php } else { ?>
     <div class="fieldset">
       <p>You'll need to create a new board if you'd like to move threads rather than delete them.</p>
     </div>
-  <?php } ?>
+        <?php } ?>
 
   <div class="fieldset move-to-board">
     <label for="board_id">Move to board</label>
     <div class="field">
       <select name="move_to_board_id">
-        <?php
+            <?php
             foreach ($available_boards as $available_board) {
                 if ($available_board->board_id == $board->board_id) {
                     continue;
                 }
                 echo "<option value=\"{$available_board->board_id}\">{$available_board->board_name}</option>\n";
             }
-    ?>
+            ?>
       </select>
     </div>
   </div>
 
-<?php } ?>
+    <?php } ?>
 
   <input type="hidden" name="board_id" value="<?php echo $board->board_id; ?>" />
 
@@ -75,12 +75,12 @@ if (!empty($board)) {
     <input class="submit-button" type="submit" value="Delete Board" />
   </div>
 </form>
-<?php
+    <?php
 } else {
     ?>
   <h1>Board not found</h1>
   <p>This board either never existed or has already been deleted.</p>
-  <?php
+    <?php
 }
 ?>
 

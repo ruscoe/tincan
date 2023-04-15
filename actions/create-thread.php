@@ -140,9 +140,11 @@ if (!empty($ajax)) {
     $response->success = (empty($error));
 
     if ($response->success) {
-        $response->target_url = TCURL::create_url($settings['page_thread'], [
-          'thread' => $new_thread->thread_id,
-        ]);
+        $response->target_url = TCURL::create_url(
+            $settings['page_thread'], [
+            'thread' => $new_thread->thread_id,
+            ]
+        );
     } else {
         $error_message = new TCErrorMessage();
         $response->errors = $error_message->get_error_message('new-thread', $error);
@@ -154,15 +156,19 @@ if (!empty($ajax)) {
 
     if (empty($error)) {
         // Send user to their new thread.
-        $destination = TCURL::create_url($settings['page_thread'], [
-          'thread' => $new_thread->thread_id,
-        ]);
+        $destination = TCURL::create_url(
+            $settings['page_thread'], [
+            'thread' => $new_thread->thread_id,
+            ]
+        );
     } else {
         // Send user back to the new thread page with an error.
-        $destination = TCURL::create_url($settings['page_new_thread'], [
-          'board' => $board_id,
-          'error' => $error,
-        ]);
+        $destination = TCURL::create_url(
+            $settings['page_new_thread'], [
+            'board' => $board_id,
+            'error' => $error,
+            ]
+        );
     }
 
     header('Location: '.$destination);

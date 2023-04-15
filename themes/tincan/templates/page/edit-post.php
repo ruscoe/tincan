@@ -65,6 +65,6 @@ if (!empty($user) && $user->can_edit_post($post)) {
   </div>
 </form>
 
-<?php
-  TCTemplate::render('tc-code', $settings['theme'], []);
+    <?php
+    TCTemplate::render('tc-code', $settings['theme'], []);
 }
