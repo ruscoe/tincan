@@ -1,5 +1,6 @@
 <?php
 
+require_once TC_BASE_PATH.'/core/class-tc-exception.php';
 require_once TC_BASE_PATH.'/includes/include-db.php';
 require_once TC_BASE_PATH.'/includes/include-objects.php';
 
