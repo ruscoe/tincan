@@ -63,4 +63,9 @@
       <td>[Example link](http://example.org/)</td>
       <td><a href="http://example.org/" target="_blank">Example link</a></td>
     </tr>
+    <tr>
+      <td>Image</td>
+      <td>[Example image](https://example.org/image.png)</td>
+      <td><img src="/assets/images/default-profile.png" alt="Example image" /></td>
+    </tr>
   </table>

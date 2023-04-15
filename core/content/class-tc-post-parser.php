@@ -24,6 +24,7 @@ class TCPostParser
     {
         $parsed_content = $this->parse_lines($content);
         $parsed_content = $this->parse_text($parsed_content);
+        $parsed_content = $this->parse_images($parsed_content);
         $parsed_content = $this->parse_links($parsed_content);
 
         return $parsed_content;
@@ -66,6 +67,13 @@ class TCPostParser
                 $parsed_content = $replaced_content;
             }
         }
+
+        return $parsed_content;
+    }
+
+    private function parse_images($content)
+    {
+        $parsed_content = preg_replace("/!\[(.*)\]\((.*)\)/", "<img src=\"$2\" alt=\"$1\" />", $content);
 
         return $parsed_content;
     }
