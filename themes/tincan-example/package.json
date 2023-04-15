@@ -1,0 +1,13 @@
+{
+    "name": "tincan-example-theme",
+    "version": "1.0.0",
+	"description": "The example Tin Can forum child theme.",
+	"author": "Dan Ruscoe",
+	"license": "MIT",
+    "scripts": {
+        "build": "sass sass/style.scss css/style.css"
+    },
+    "dependencies": {
+        "sass": "1.62.0"
+    }
+}
