@@ -77,7 +77,7 @@ try {
 $thread_title = trim($thread_title);
 
 if (empty($thread_title) || (strlen($thread_title) < $settings['min_thread_title'])) {
-    $error = TCObject::ERR_NOT_SAVED;
+    $error = TCThread::ERR_TITLE;
 }
 
 // Validate post content.

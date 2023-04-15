@@ -11,6 +11,8 @@ namespace TinCan;
  */
 class TCThread extends TCObject
 {
+    public const ERR_TITLE = 'title';
+
     /**
      * @since 0.01
      */
