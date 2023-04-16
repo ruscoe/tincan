@@ -45,6 +45,8 @@ abstract class TCDB
      * Tests for an existing database connection.
      *
      * @since 0.06
+     *
+     * @return bool true if a database connection exists
      */
     abstract public function is_connected();
 

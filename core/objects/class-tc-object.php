@@ -74,6 +74,9 @@ abstract class TCObject
      *
      * @since 0.01
      *
+     * @param string $field_name the name of the field
+     * @param string $value      the value to validate
+     *
      * @return bool true if the field value is valid
      */
     public function validate_field_value($field_name, $value)
@@ -87,7 +90,7 @@ abstract class TCObject
      *
      * @since 0.04
      *
-     * @return string
+     * @return string the object name
      */
     public function get_name()
     {
