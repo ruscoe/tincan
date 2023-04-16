@@ -101,7 +101,7 @@ if (!empty($ajax)) {
         $destination = TCURL::create_url($settings['page_set_password'], ['status' => 'set']);
     } else {
         // Send user back to the set password page with an error.
-        $destination = TCURL::create_url($settings['page_set_password'], ['error' => $error]);
+        $destination = TCURL::create_url($settings['page_set_password'], ['code' => $code, 'error' => $error]);
     }
 
     header('Location: '.$destination);
