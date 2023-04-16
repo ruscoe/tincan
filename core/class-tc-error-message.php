@@ -43,6 +43,11 @@ class TCErrorMessage
             } elseif (TCUser::ERR_EMAIL_EXISTS == $error_code) {
                 $error_text = 'The email address you entered is in use. You may already have an account.';
             }
+        } elseif ('reset-password' == $context) {
+            // User is attempting to reset their password.
+            if (TCUser::ERR_NOT_FOUND == $error_code) {
+                $error_text = 'Email address not found. You may have signed up with a different address.';
+            }
         } elseif ('thread' == $context) {
             // User is posting a reply to a thread.
             if (TCUser::ERR_NOT_AUTHORIZED == $error_code) {
