@@ -5,13 +5,11 @@ namespace TinCan;
 /**
  * Base class for Tin Can database services.
  *
- * @since 0.01
- *
- * @author Dan Ruscoe danruscoe@protonmail.com
- */
-
-/**
- * @since 0.01
+ * @package TinCan
+ * @author  Dan Ruscoe <danruscoe@protonmail.com>
+ * @license MIT https://mit-license.org/
+ * @link    https://github.com/ruscoe/tincan
+ * @since   0.01
  */
 abstract class TCDB
 {

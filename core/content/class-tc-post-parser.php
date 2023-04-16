@@ -5,9 +5,11 @@ namespace TinCan;
 /**
  * Post content parser.
  *
- * @since 0.03
- *
- * @author Dan Ruscoe danruscoe@protonmail.com
+ * @package TinCan
+ * @author  Dan Ruscoe <danruscoe@protonmail.com>
+ * @license MIT https://mit-license.org/
+ * @link    https://github.com/ruscoe/tincan
+ * @since   0.03
  */
 class TCPostParser
 {

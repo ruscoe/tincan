@@ -5,9 +5,11 @@ namespace TinCan\Admin;
 /**
  * Template parser.
  *
- * @since 0.01
- *
- * @author Dan Ruscoe danruscoe@protonmail.com
+ * @package TinCan
+ * @author  Dan Ruscoe <danruscoe@protonmail.com>
+ * @license MIT https://mit-license.org/
+ * @link    https://github.com/ruscoe/tincan
+ * @since   0.01
  */
 class TCAdminTemplate
 {

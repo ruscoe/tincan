@@ -5,9 +5,11 @@ namespace TinCan;
 /**
  * Represents a mail template.
  *
- * @since 0.07
- *
- * @author Dan Ruscoe danruscoe@protonmail.com
+ * @package TinCan
+ * @author  Dan Ruscoe <danruscoe@protonmail.com>
+ * @license MIT https://mit-license.org/
+ * @link    https://github.com/ruscoe/tincan
+ * @since   0.07
  */
 class TCMailTemplate extends TCObject
 {
