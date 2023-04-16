@@ -104,8 +104,7 @@ if (empty($error)) {
             $recipients
         );
     } catch (TCException $e) {
-        echo $e->getMessage();
-        exit;
+        $error = $e->getMessage();
     }
 }
 
