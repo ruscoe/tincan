@@ -59,8 +59,10 @@ class TCErrorMessage
             // User is posting a reply to a thread.
             if (TCUser::ERR_NOT_AUTHORIZED == $error_code) {
                 $error_text = 'Your account isn\'t able to create a new thread.';
-            } elseif (TCThread::ERR_TITLE == $error_code) {
+            } elseif (TCThread::ERR_TITLE_SHORT == $error_code) {
                 $error_text = 'Please use a longer thread title.';
+            } elseif (TCThread::ERR_TITLE_LONG == $error_code) {
+                $error_text = 'Please use a shorter thread title.';
             } elseif (TCObject::ERR_NOT_SAVED == $error_code) {
                 $error_text = 'Couldn\'t create a thread right now. Please try again later.';
             }

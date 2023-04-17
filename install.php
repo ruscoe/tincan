@@ -437,6 +437,13 @@ function tc_create_settings($install_settings = [])
           'value' => '8',
         ],
         [
+          'setting_name' => 'max_thread_title',
+          'category' => '',
+          'type' => 'text',
+          'title' => 'Maximum thread title length',
+          'value' => '255',
+        ],
+        [
           'setting_name' => 'posts_per_page',
           'category' => '',
           'type' => 'text',

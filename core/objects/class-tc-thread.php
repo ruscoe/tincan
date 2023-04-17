@@ -13,7 +13,8 @@ namespace TinCan;
  */
 class TCThread extends TCObject
 {
-    public const ERR_TITLE = 'title';
+    public const ERR_TITLE_SHORT = 'title_short';
+    public const ERR_TITLE_LONG = 'title_long';
 
     /**
      * @since 0.01

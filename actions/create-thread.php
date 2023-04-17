@@ -77,7 +77,11 @@ try {
 $thread_title = trim($thread_title);
 
 if (empty($thread_title) || (strlen($thread_title) < $settings['min_thread_title'])) {
-    $error = TCThread::ERR_TITLE;
+    $error = TCThread::ERR_TITLE_SHORT;
+}
+
+if (strlen($thread_title) > $settings['max_thread_title']) {
+    $error = TCThread::ERR_TITLE_LONG;
 }
 
 // Validate post content.
