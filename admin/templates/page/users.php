@@ -41,10 +41,12 @@ $users = $db->load_objects(new TCUser(), [], $conditions, $order);
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($users as $user) {
+    $user_title = $user->username;
+    $user_title .= ($user->suspended) ? ' [suspended]' : '';
     $data = [
       [
         'type' => 'text',
-        'value' => $user->username,
+        'value' => $user_title,
       ],
       [
         'type' => 'text',
