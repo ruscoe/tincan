@@ -4,6 +4,7 @@ use TinCan\Admin\TCAdminTemplate;
 use TinCan\TCBoard;
 use TinCan\TCBoardGroup;
 use TinCan\TCData;
+use TinCan\TCThread;
 
 /**
  * Page template for admin board list.
@@ -66,9 +67,11 @@ $indexed_board_groups = $db->get_indexed_objects(new TCBoardGroup(), 'board_grou
 <table class="objects">
   <th>Board Name</th>
   <th>Board Group</th>
+  <th>Threads</th>
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($boards as $board) {
+    $total_threads = $db->count_objects(new TCThread(), [['field' => 'board_id', 'value' => $board->board_id]]);
     $data = [
     [
       'type' => 'text',
@@ -77,6 +80,10 @@ foreach ($boards as $board) {
     [
       'type' => 'text',
       'value' => $indexed_board_groups[$board->board_group_id]->board_group_name,
+    ],
+    [
+      'type' => 'text',
+      'value' => $total_threads,
     ],
     [
       'type' => 'link',

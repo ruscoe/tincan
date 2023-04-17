@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\Admin\TCAdminTemplate;
+use TinCan\TCBoard;
 use TinCan\TCBoardGroup;
 use TinCan\TCData;
 
@@ -34,13 +35,19 @@ $board_groups = $db->load_objects(new TCBoardGroup(), [], $conditions, $order);
 
 <table class="objects">
   <th>Board Group Name</th>
+  <th>Boards</th>
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($board_groups as $board_group) {
+    $total_boards = $db->count_objects(new TCBoard(), [['field' => 'board_group_id', 'value' => $board_group->board_group_id]]);
     $data = [
       [
         'type' => 'text',
         'value' => $board_group->board_group_name,
+      ],
+      [
+        'type' => 'text',
+        'value' => $total_boards,
       ],
       [
         'type' => 'link',

@@ -3,6 +3,7 @@
 use TinCan\Admin\TCAdminTemplate;
 use TinCan\TCBoard;
 use TinCan\TCData;
+use TinCan\TCPost;
 use TinCan\TCThread;
 
 /**
@@ -66,9 +67,11 @@ $indexed_boards = $db->get_indexed_objects(new TCBoard(), 'board_id');
 <table class="objects">
   <th>Thread Title</th>
   <th>Board</th>
+  <th>Posts</th>
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($threads as $thread) {
+    $total_posts = $db->count_objects(new TCPost(), [['field' => 'thread_id', 'value' => $thread->thread_id]]);
     $data = [
     [
       'type' => 'text',
@@ -77,6 +80,10 @@ foreach ($threads as $thread) {
     [
       'type' => 'text',
       'value' => $indexed_boards[$thread->board_id]->board_name,
+    ],
+    [
+      'type' => 'text',
+      'value' => $total_posts,
     ],
     [
       'type' => 'link',
