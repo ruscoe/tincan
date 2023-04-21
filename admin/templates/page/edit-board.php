@@ -19,6 +19,7 @@ $board_id = filter_input(INPUT_GET, 'board_id', FILTER_SANITIZE_NUMBER_INT);
 <?php
 
 $db = new TCData();
+$settings = $db->load_settings();
 
 $board = (!empty($board_id)) ? $db->load_object(new TCBoard(), $board_id) : new TCBoard();
 
@@ -27,6 +28,10 @@ $board_groups = $db->load_objects(new TCBoardGroup());
 
 $form_action = (!empty($board_id)) ? '/admin/actions/update-board.php' : '/admin/actions/create-board.php';
 ?>
+
+<?php if (empty($board_groups)) { ?>
+  <p>You'll need to <a href="/admin/index.php?page=<?php echo $settings['admin_page_board_groups']; ?>" title="Board Groups">create a board group</a> first.</p>
+<?php } else { ?>
 
 <form id="edit-board" action="<?php echo $form_action; ?>" method="POST">
   <div class="fieldset">
@@ -40,7 +45,7 @@ $form_action = (!empty($board_id)) ? '/admin/actions/update-board.php' : '/admin
     <label for="board_group_id">Board Group</label>
     <div class="field">
       <select name="board_group_id">
-        <?php
+      <?php
         foreach ($board_groups as $board_group) {
             $selected = ($board_group->board_group_id == $board->board_group_id) ? ' selected' : '';
             echo "<option value=\"{$board_group->board_group_id}\"{$selected}>{$board_group->board_group_name}</option>\n";
@@ -56,3 +61,5 @@ $form_action = (!empty($board_id)) ? '/admin/actions/update-board.php' : '/admin
     <input class="submit-button" type="submit" value="<?php echo (!empty($board_id)) ? 'Update Board' : 'Add Board'; ?>" />
   </div>
 </form>
+
+<?php } ?>
