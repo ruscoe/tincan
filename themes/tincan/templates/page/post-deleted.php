@@ -14,6 +14,7 @@ use TinCan\TCURL;
  */
 $thread_id = filter_input(INPUT_GET, 'thread', FILTER_SANITIZE_NUMBER_INT);
 
+$user = $data['user'];
 $page = $data['page'];
 $settings = $data['settings'];
 
