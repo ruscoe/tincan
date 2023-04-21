@@ -58,14 +58,14 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
   <div class="fieldset">
     <label for="thread_title">Thread Title</label>
     <div class="field">
-      <input class="text-input" type="text" name="thread_title" value="<?php echo $title ?>" />
+      <input class="text-input" type="text" name="thread_title" value="<?php echo $title; ?>" />
     </div>
   </div>
 
   <div class="fieldset textarea">
     <label for="post_content">Thread Content</label>
     <div class="field">
-      <textarea name="post_content" rows="10" cols="50"><?php echo $content ?></textarea>
+      <textarea name="post_content" rows="10" cols="50"><?php echo $content; ?></textarea>
     </div>
   </div>
 
