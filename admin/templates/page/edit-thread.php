@@ -22,6 +22,7 @@ $thread_id = filter_input(INPUT_GET, 'thread_id', FILTER_SANITIZE_NUMBER_INT);
 <?php
 
 $db = new TCData();
+$settings = $db->load_settings();
 
 $thread = (!empty($thread_id)) ? $db->load_object(new TCThread(), $thread_id) : new TCThread();
 
@@ -30,6 +31,10 @@ $boards = $db->load_objects(new TCBoard());
 
 $form_action = (!empty($thread_id)) ? '/admin/actions/update-thread.php' : '/admin/actions/create-thread.php';
 ?>
+
+<?php if (empty($boards)) { ?>
+  <p>You'll need to <a href="/admin/index.php?page=<?php echo $settings['admin_page_boards']; ?>" title="Boards">create a board</a> first.</p>
+<?php } else { ?>
 
 <form id="edit-thread" action="<?php echo $form_action; ?>" method="POST">
   <div class="fieldset">
@@ -53,7 +58,7 @@ $form_action = (!empty($thread_id)) ? '/admin/actions/update-thread.php' : '/adm
     </div>
   </div>
 
-  <?php
+    <?php
     $first_post = $db->load_object(new TCPost(), $thread->first_post_id);
     ?>
 
@@ -72,3 +77,5 @@ $form_action = (!empty($thread_id)) ? '/admin/actions/update-thread.php' : '/adm
     <input class="submit-button" type="submit" value="<?php echo (!empty($thread_id)) ? 'Update Thread' : 'Add Thread'; ?>" />
   </div>
 </form>
+
+<?php } ?>
