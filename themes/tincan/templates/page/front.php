@@ -20,6 +20,8 @@ $db = new TCData();
 
 $settings = $db->load_settings();
 
+// var_dump($settings);
+
 $board_groups = $db->load_objects(new TCBoardGroup());
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => null, 'page_template' => 'front', 'settings' => $settings, 'user' => $user]);
@@ -48,9 +50,9 @@ if (!empty($board_groups)) {
   <div class="message-box">
     <p>Nothing here yet!</p>
     <?php if (empty($user)) { ?>
-    <p>If you are the administrator, you can <a href="<?php echo $log_in_url; ?>">log in and create some boards!</p>
+    <p>If you are the administrator, you can <a href="<?php echo $log_in_url; ?>">log in and create some boards!</a></p>
     <?php } elseif ($user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
-      <p>You are the administrator! You can <a href="/admin">create some boards!</p>
+      <p>You are the administrator! You can <a href="/admin/?page=<?php echo $settings['admin_page_board_groups']; ?>">create some boards!</a></p>
     <?php } ?>
   </div>
     <?php
