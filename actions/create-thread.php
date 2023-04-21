@@ -171,6 +171,8 @@ if (!empty($ajax)) {
             $settings['page_new_thread'], [
             'board' => $board_id,
             'error' => $error,
+            'title' => $thread_title,
+            'content' => $post_content,
             ]
         );
     }

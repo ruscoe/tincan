@@ -20,6 +20,8 @@ $slug = $data['slug'];
 
 $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
 $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
+$title = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_STRING);
+$content = filter_input(INPUT_GET, 'content', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
@@ -56,14 +58,14 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
   <div class="fieldset">
     <label for="thread_title">Thread Title</label>
     <div class="field">
-      <input class="text-input" type="text" name="thread_title" />
+      <input class="text-input" type="text" name="thread_title" value="<?php echo $title ?>" />
     </div>
   </div>
 
   <div class="fieldset textarea">
     <label for="post_content">Thread Content</label>
     <div class="field">
-      <textarea name="post_content" rows="10" cols="50"></textarea>
+      <textarea name="post_content" rows="10" cols="50"><?php echo $content ?></textarea>
     </div>
   </div>
 
