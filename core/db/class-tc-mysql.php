@@ -48,7 +48,7 @@ class TCMySQL extends TCDB
         }
 
         try {
-            $this->connection = new \mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
+            $this->connection = new \mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name, $this->db_port);
         } catch (\mysqli_sql_exception $e) {
             //echo $e->getMessage();
             throw new TCException('Database connection failed.');

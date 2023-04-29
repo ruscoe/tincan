@@ -33,12 +33,18 @@ abstract class TCDB
      */
     protected $db_name;
 
-    public function __construct($db_host, $db_user, $db_pass, $db_name)
+    /**
+     * @since 0.14
+     */
+    protected $db_port;
+
+    public function __construct($db_host, $db_user, $db_pass, $db_name, $db_port)
     {
         $this->db_host = $db_host;
         $this->db_user = $db_user;
         $this->db_pass = $db_pass;
         $this->db_name = $db_name;
+        $this->db_port = $db_port;
     }
 
     /**

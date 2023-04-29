@@ -13,3 +13,4 @@ define('TC_DB_HOST', 'http://localhost');
 define('TC_DB_USER', 'root');
 define('TC_DB_PASS', 'root');
 define('TC_DB_NAME', 'tincan');
+define('TC_DB_PORT', '3306');

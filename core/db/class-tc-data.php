@@ -28,8 +28,9 @@ class TCData
         $db_user = TC_DB_USER;
         $db_pass = TC_DB_PASS;
         $db_name = TC_DB_NAME;
+        $db_port = TC_DB_PORT;
 
-        $this->database = new $db_class($db_host, $db_user, $db_pass, $db_name);
+        $this->database = new $db_class($db_host, $db_user, $db_pass, $db_name, $db_port);
     }
 
     /**
