@@ -67,7 +67,6 @@ $avatar_image .= '?v='.time();
   </div>
 
   <input type="hidden" name="user_id" value="<?php echo $avatar_user->user_id; ?>" />
-  <input class="ajax" type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
     <input class="submit-button" type="submit" name="avatar" value="Upload new avatar" />

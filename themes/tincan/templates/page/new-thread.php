@@ -70,7 +70,6 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
   </div>
 
   <input type="hidden" name="board_id" value="<?php echo $board->board_id; ?>" />
-  <input class="ajax" type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
     <input class="submit-button" type="submit" name="submit_thread" value="Submit thread" />

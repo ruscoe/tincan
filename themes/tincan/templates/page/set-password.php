@@ -47,7 +47,6 @@ if (!empty($error)) {
   </div>
 
   <input type="hidden" name="code" value="<?php echo $code; ?>" />
-  <input class="ajax" type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
     <input class="submit-button" type="submit" name="change_password" value="Set new password" />

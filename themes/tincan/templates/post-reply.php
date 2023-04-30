@@ -32,7 +32,6 @@ if (!empty($error)) {
   </div>
 
   <input type="hidden" name="thread_id" value="<?php echo $thread->thread_id; ?>" />
-  <input class="ajax" type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
     <input class="submit-button" type="submit" name="submit_post" value="Submit reply" />

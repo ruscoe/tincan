@@ -45,8 +45,6 @@ if (!empty($error)) {
     </div>
   </div>
 
-  <input class="ajax" type="hidden" name="ajax" value="" />
-
   <div class="fieldset button">
     <input class="submit-button" type="submit" name="reset_password" value="Reset password" />
   </div>

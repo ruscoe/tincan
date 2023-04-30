@@ -58,7 +58,6 @@ if (!empty($user) && $user->can_edit_post($post)) {
 
   <input type="hidden" name="page_number" value="<?php echo $page_number; ?>" />
   <input type="hidden" name="post_id" value="<?php echo $post->post_id; ?>" />
-  <input class="ajax" type="hidden" name="ajax" value="" />
 
   <div class="fieldset button">
     <input class="submit-button" type="submit" name="submit_post" value="Save changes" />
