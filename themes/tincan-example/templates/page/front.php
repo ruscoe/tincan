@@ -28,6 +28,8 @@ $settings = $db->load_settings();
 
 $board_groups = $db->load_objects(new TCBoardGroup());
 
+TCTemplate::render('header', $settings['theme'], ['page_title' => null, 'page_template' => 'front', 'settings' => $settings, 'user' => $user]);
+
 if (!empty($board_groups)) {
     foreach ($board_groups as $group) {
         $board_conditions = [
