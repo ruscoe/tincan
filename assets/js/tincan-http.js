@@ -17,6 +17,7 @@ tincan.http = (function($) {
         console.log('AJAX post to: ' + url);
       }
 
+      // If JavaScript is enabled, instruct all actions to use AJAX.
       params.ajax = true;
 
       $.post(url, params).always(callback);
