@@ -17,6 +17,7 @@
     <const name="TC_DB_USER" value="root"/>
     <const name="TC_DB_PASS" value="root"/>
     <const name="TC_DB_NAME" value="tincan"/>
+    <const name="TC_DB_PORT" value="3306"/>
   </php>
 
   <testsuites>
