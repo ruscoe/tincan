@@ -86,7 +86,7 @@ if (strlen($thread_title) > $settings['max_thread_title']) {
 
 // Validate post content.
 $post_sanitizer = new TCPostSanitizer();
-$post_content = $post_sanitizer->sanitize_post($post_content);
+$sanitized_post = $post_sanitizer->sanitize_post($post_content);
 
 if (empty($post_content)) {
     $error = TCObject::ERR_NOT_SAVED;
@@ -117,7 +117,7 @@ if (empty($error)) {
         $post = new TCPost();
         $post->user_id = $user->user_id;
         $post->thread_id = $new_thread->thread_id;
-        $post->content = $sanitizer->sanitize_post($post_content);
+        $post->content = $sanitized_post;
         $post->created_time = time();
         $post->updated_time = time();
         $post->updated_by_user = $user->user_id;

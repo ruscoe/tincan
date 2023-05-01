@@ -67,13 +67,11 @@ if (empty($error)) {
 
 // Validate post content.
 $post_sanitizer = new TCPostSanitizer();
-$post_content = $post_sanitizer->sanitize_post($post_content);
+$sanitized_post = $post_sanitizer->sanitize_post($post_content);
 
-if (empty($post_content)) {
+if (empty($sanitized_post)) {
     $error = TCObject::ERR_NOT_SAVED;
 }
-
-$sanitizer = new TCPostSanitizer();
 
 $new_post = null;
 
@@ -81,7 +79,7 @@ if (empty($error)) {
     $post = new TCPost();
     $post->user_id = $user->user_id;
     $post->thread_id = $thread->thread_id;
-    $post->content = $sanitizer->sanitize_post($post_content);
+    $post->content = $sanitized_post;
     $post->created_time = time();
     $post->updated_time = time();
     $post->updated_by_user = $user->user_id;
