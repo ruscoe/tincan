@@ -111,8 +111,6 @@ if (empty($error)) {
     }
 
     if (!empty($new_thread)) {
-        $sanitizer = new TCPostSanitizer();
-
         // Create the thread's initial post.
         $post = new TCPost();
         $post->user_id = $user->user_id;
