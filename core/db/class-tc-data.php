@@ -190,10 +190,12 @@ class TCData
             // New object to create.
             $sql_field_names = '';
             $sql_field_values = '';
+            $sql_params = [];
 
             foreach ($db_fields as $field) {
                 $sql_field_names .= "`{$field}`,";
-                $sql_field_values .= "'{$object->$field}',";
+                $sql_field_values .= "?,";
+                $sql_params[] = (null !== $object->$field) ? $object->$field : '';
             }
 
             $sql_field_names = substr($sql_field_names, 0, -1);
@@ -201,7 +203,7 @@ class TCData
 
             $query = "INSERT INTO `{$db_table}` ({$sql_field_names}) VALUES ({$sql_field_values})";
 
-            $result = $this->database->query($query);
+            $result = $this->database->query($query, $sql_params);
 
             // Populate the new object's primary key.
             $insert_id = $this->database->get_last_insert_id();
@@ -216,16 +218,20 @@ class TCData
         } else {
             // Existing object to update.
             $sql_fields = [];
+            $sql_params = [];
 
             foreach ($db_fields as $field) {
-                $sql_fields[] = "`{$field}` = '{$object->$field}'";
+                $sql_fields[] = "`{$field}` = ?";
+                $sql_params[] = (null !== $object->$field) ? $object->$field : '';
             }
 
             $query = "UPDATE `{$db_table}` SET";
             $query .= implode(',', $sql_fields);
-            $query .= " WHERE `{$primary_key}` = '{$object->$primary_key}'";
+            $query .= " WHERE `{$primary_key}` = ?";
 
-            $result = $this->database->query($query);
+            $sql_params[] = $object->$primary_key;
+
+            $result = $this->database->query($query, $sql_params);
         }
 
         return $object;

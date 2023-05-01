@@ -91,12 +91,13 @@ class TCMySQL extends TCDB
             throw new TCException('Unable to prepare query for execution: '.$query);
         }
 
-        foreach ($params as $param) {
-            if (is_int($param)) {
-                $prepared->bind_param('i', $param);
-            } else {
-                $prepared->bind_param('s', $param);
+        if (!empty($params)) {
+            $bind_param_type = '';
+            foreach ($params as $param) {
+                $bind_param_type .= (is_int($param)) ? 'i' : 's';
             }
+
+            $prepared->bind_param($bind_param_type, ...$params);
         }
 
         if (false !== $prepared->execute()) {
