@@ -20,7 +20,14 @@ Tin Can is not production-ready, but you can play around with it if you like.
 
 ## Running Tin Can Forum
 
-For these examples, assume the URL will be tincan.local and your root directory
+### Running via Docker
+
+This [experimental Docker file](https://github.com/ruscoe/tincan-docker) will
+set up an nginx server with MySQL and install Tin Can.
+
+### Running on nginx
+
+This example assumes your URL will be tincan.local and your root directory
 is /var/www/tincan.local/html
 
 To set this up, run the following:
@@ -28,8 +35,6 @@ To set this up, run the following:
 `sudo mkdir /var/www/tincan.local/html`
 
 `sudo mkdir /var/www/tincan.local/html/uploads`
-
-### Running on nginx
 
 Create an nginx configuration file:
 
@@ -99,7 +104,7 @@ Depending on your version of nginx, the second line might be missing.
 
 Continue on to the Configuration section.
 
-## Configuration
+### Configuration
 
 Copy *tc-config-example.php* to *tc-config.php*
 
@@ -117,7 +122,7 @@ Edit *tc-config.php* and change these values to suit your environment.
 | TC_DB_PASS             | root                       |
 | TC_DB_NAME             | tincan                     |
 
-## Create your Database
+### Create your Database
 
 Access your MySQL instance and create a new database.
 
@@ -126,7 +131,7 @@ Access your MySQL instance and create a new database.
 Be sure to set *TC_DB_NAME* in your configuration file if you choose
 a different database name.
 
-## Install Requirements via Composer
+### Install Requirements via Composer
 
 If you don't already have it, install Composer according to the [directions here](https://getcomposer.org/download/).
 
