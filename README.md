@@ -21,7 +21,7 @@ Tin Can is not production-ready, but you can play around with it if you like.
 ## Running with Docker
 
 This [experimental Docker file](https://github.com/ruscoe/tincan-docker) will
-set up an nginx server with MySQL and install Tin Can.
+set up an nginx server, download Tin Can, and install requirements via Composer.
 
 ## Running on nginx
 
