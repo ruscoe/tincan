@@ -18,14 +18,12 @@ Tin Can is not production-ready, but you can play around with it if you like.
 * [Composer](https://getcomposer.org)
 * [Node.js](https://nodejs.org/) (if you want to create or edit themes)
 
-## Running Tin Can Forum
-
-### Running via Docker
+## Running with Docker
 
 This [experimental Docker file](https://github.com/ruscoe/tincan-docker) will
 set up an nginx server with MySQL and install Tin Can.
 
-### Running on nginx
+## Running on nginx
 
 This example assumes your URL will be tincan.local and your root directory
 is /var/www/tincan.local/html
