@@ -107,6 +107,7 @@ Edit *tc-config.php* and change these values to suit your environment.
 | TC_DB_USER             | root                       |
 | TC_DB_PASS             | root                       |
 | TC_DB_NAME             | tincan                     |
+| TC_DB_PORT             | 3306                       |
 
 ### Create your Database
 
