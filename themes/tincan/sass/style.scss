@@ -4,16 +4,16 @@
 
 /* Colors */
 
-$page: #FFFFFF;
+$page: #FFF;
 $section: #F1F1F1;
-$sectionAlt: #EEEEEE;
+$sectionAlt: #EEE;
 $sectionHeader: #295C7A;
 $sectionHeaderBorder: #224D67;
-$sectionHeaderText: #FFFFFF;
-$sectionBorder: #DDDDDD;
+$sectionHeaderText: #FFF;
+$sectionBorder: #DDD;
 
 $formFieldLabel: #295C7A;
-$formFieldLabelText: #FFFFFF;
+$formFieldLabelText: #FFF;
 $formField: #F1F1F1;
 
 $text: #6B6666;
@@ -47,6 +47,65 @@ $openSansRegular: 'OpenSans-Regular';
 }
 @mixin for-big-desktop-up {
   @media (min-width: 1800px) { @content; }
+}
+
+/* Text */
+
+h1, h2, h3, p, li, th, td {
+  color: $text;
+  text-align: left;
+}
+
+p {
+  font-size: 1rem;
+}
+
+h1.section-header {
+  background-color: $sectionHeader;
+  border: solid $sectionHeaderBorder;
+  border-width: 0 2px 2px 0;
+  color: $sectionHeaderText;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0.5rem 1rem;
+
+  @include for-tablet-portrait-up {
+    font-size: 2rem;
+  }
+}
+
+h2.section-subheader, h3.section-subheader {
+  font-size: 1rem;
+  margin: 0 0.5rem;
+
+  @include for-tablet-portrait-up {
+    font-size: 1.5rem;
+  }
+}
+
+/* Links */
+
+a:link {
+  color: $linkText;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: $linkText;
+}
+
+a:hover {
+  color: $linkTextHover;
+}
+
+a.button {
+  background-color: #d76a3a;
+  box-shadow: 2px 2px black;
+  color: white;
+  display: block;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
 }
 
 /* Containers */
@@ -118,29 +177,29 @@ body {
   padding-top: 1rem;
 
   @include for-tablet-portrait-up {
-    margin: 0 2rem 0 2rem;
+    margin: 0 2rem;
   }
 }
 
 #footer {
-  padding: 3rem 0 3rem 0;
+  padding: 3rem 0;
 }
 
 .message-box {
   background-color: $section;
   border: 2px solid $sectionBorder;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   max-width: 400px;
   margin-top: 3rem;
-  padding: 1rem 0 1rem 0;
+  padding: 1rem 0;
 
   p {
-    margin: 0 2rem 0 2rem;
+    margin: 0 2rem;
   }
 
   ul.errors {
     list-style: none;
-    margin: 0 1rem 0 1rem;
+    margin: 0 1rem;
     padding: 0;
 
     li {
@@ -150,9 +209,7 @@ body {
 }
 
 .tc-code {
-
   table {
-
     th {
       background-color: $sectionHeader;
       color: $sectionHeaderText;
@@ -167,7 +224,6 @@ body {
     }
 
     td {
-
       h1, h2, h3, h4, h5 {
         line-height: 100%;
         margin: 0;
@@ -187,17 +243,17 @@ ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
   padding: 0;
 
   li {
-    padding: 0 0.5rem 0 0.5rem;
+    padding: 0 0.5rem;
   }
 }
 
 ul.pagination {
   justify-content: center;
-  padding: 1rem 0 0 0;
+  padding: 1rem 0 0;
 }
 
 ul.breadcrumbs {
-  margin: 1rem 0 1rem 0;
+  margin: 1rem 0;
 
   li.home a {
     @include for-tablet-portrait-up {
@@ -227,66 +283,6 @@ ul.post-controls {
   li {
     padding-left: 0;
   }
-}
-
-/* Text */
-
-h1, h2, h3, p, li, th, td {
-  color: $text;
-  text-align: left;
-}
-
-p {
-  font-size: 1rem;
-}
-
-h1.section-header {
-  background-color: $sectionHeader;
-  border: solid $sectionHeaderBorder;
-  border-width: 0 2px 2px 0;
-  color: $sectionHeaderText;
-  font-size: 1rem;
-  margin: 0;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-
-  @include for-tablet-portrait-up {
-    font-size: 2rem;
-  }
-}
-
-h2.section-subheader, h3.section-subheader {
-  font-size: 1rem;
-  margin: 0 0.5rem 0 0.5rem;
-
-  @include for-tablet-portrait-up {
-    font-size: 1.5rem;
-  }
-}
-
-/* Links */
-
-a:link {
-  color: $linkText;
-  text-decoration: underline;
-}
-
-a:visited {
-  color: $linkText;
-}
-
-a:hover {
-  color: $linkTextHover;
-}
-
-a.button {
-  background-color: #d76a3a;
-  box-shadow: 2px 2px black;
-  color: white;
-  //display: none;
-  display: block;
-  font-weight: bold;
-  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-  text-decoration: none;
 }
 
 /* Includes */

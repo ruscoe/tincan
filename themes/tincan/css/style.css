@@ -6,9 +6,68 @@
   src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
 }
 /* Breakpoints */
+/* Text */
+h1, h2, h3, p, li, th, td {
+  color: #6B6666;
+  text-align: left;
+}
+
+p {
+  font-size: 1rem;
+}
+
+h1.section-header {
+  background-color: #295C7A;
+  border: solid #224D67;
+  border-width: 0 2px 2px 0;
+  color: #FFF;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0.5rem 1rem;
+}
+@media (min-width: 600px) {
+  h1.section-header {
+    font-size: 2rem;
+  }
+}
+
+h2.section-subheader, h3.section-subheader {
+  font-size: 1rem;
+  margin: 0 0.5rem;
+}
+@media (min-width: 600px) {
+  h2.section-subheader, h3.section-subheader {
+    font-size: 1.5rem;
+  }
+}
+
+/* Links */
+a:link {
+  color: #123266;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #123266;
+}
+
+a:hover {
+  color: #D76A3A;
+}
+
+a.button {
+  background-color: #d76a3a;
+  box-shadow: 2px 2px black;
+  color: white;
+  display: block;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+}
+
 /* Containers */
 body {
-  background-color: #FFFFFF;
+  background-color: #FFF;
   margin: 0;
   padding: 0;
 }
@@ -74,28 +133,28 @@ body {
 }
 @media (min-width: 600px) {
   #content {
-    margin: 0 2rem 0 2rem;
+    margin: 0 2rem;
   }
 }
 
 #footer {
-  padding: 3rem 0 3rem 0;
+  padding: 3rem 0;
 }
 
 .message-box {
   background-color: #F1F1F1;
-  border: 2px solid #DDDDDD;
-  margin: 0 auto 0 auto;
+  border: 2px solid #DDD;
+  margin: 0 auto;
   max-width: 400px;
   margin-top: 3rem;
-  padding: 1rem 0 1rem 0;
+  padding: 1rem 0;
 }
 .message-box p {
-  margin: 0 2rem 0 2rem;
+  margin: 0 2rem;
 }
 .message-box ul.errors {
   list-style: none;
-  margin: 0 1rem 0 1rem;
+  margin: 0 1rem;
   padding: 0;
 }
 .message-box ul.errors li {
@@ -104,10 +163,10 @@ body {
 
 .tc-code table th {
   background-color: #295C7A;
-  color: #FFFFFF;
+  color: #FFF;
 }
 .tc-code table tr:nth-child(even) {
-  background-color: #EEEEEE;
+  background-color: #EEE;
 }
 .tc-code table th, .tc-code table td {
   padding: 1rem;
@@ -127,16 +186,16 @@ ul.navigation, ul.pagination, ul.post-controls, ul.breadcrumbs {
   padding: 0;
 }
 ul.navigation li, ul.pagination li, ul.post-controls li, ul.breadcrumbs li {
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0 0.5rem;
 }
 
 ul.pagination {
   justify-content: center;
-  padding: 1rem 0 0 0;
+  padding: 1rem 0 0;
 }
 
 ul.breadcrumbs {
-  margin: 1rem 0 1rem 0;
+  margin: 1rem 0;
 }
 @media (min-width: 600px) {
   ul.breadcrumbs li.home a {
@@ -162,73 +221,14 @@ ul.post-controls li {
   padding-left: 0;
 }
 
-/* Text */
-h1, h2, h3, p, li, th, td {
-  color: #6B6666;
-  text-align: left;
-}
-
-p {
-  font-size: 1rem;
-}
-
-h1.section-header {
-  background-color: #295C7A;
-  border: solid #224D67;
-  border-width: 0 2px 2px 0;
-  color: #FFFFFF;
-  font-size: 1rem;
-  margin: 0;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-}
-@media (min-width: 600px) {
-  h1.section-header {
-    font-size: 2rem;
-  }
-}
-
-h2.section-subheader, h3.section-subheader {
-  font-size: 1rem;
-  margin: 0 0.5rem 0 0.5rem;
-}
-@media (min-width: 600px) {
-  h2.section-subheader, h3.section-subheader {
-    font-size: 1.5rem;
-  }
-}
-
-/* Links */
-a:link {
-  color: #123266;
-  text-decoration: underline;
-}
-
-a:visited {
-  color: #123266;
-}
-
-a:hover {
-  color: #D76A3A;
-}
-
-a.button {
-  background-color: #d76a3a;
-  box-shadow: 2px 2px black;
-  color: white;
-  display: block;
-  font-weight: bold;
-  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-  text-decoration: none;
-}
-
 /* Includes */
 body.tincan.board-group #content .board-preview {
   background-color: #F1F1F1;
-  border-bottom: 2px solid #DDDDDD;
-  padding: 0.5rem 0 0.5rem 0;
+  border-bottom: 2px solid #DDD;
+  padding: 0.5rem 0;
 }
 body.tincan.board-group #content .board-preview h2, body.tincan.board-group #content .board-preview p {
-  margin: 0 1rem 0 1rem;
+  margin: 0 1rem;
 }
 body.tincan.board-group #content .board-preview h2 {
   font-size: 1.25rem;
@@ -239,11 +239,11 @@ body.tincan.front .board-group h2 {
   margin: 0;
 }
 body.tincan.front .board-group h2 a {
-  color: #FFFFFF;
+  color: #FFF;
   display: block;
   font-size: 1rem;
-  margin: 0 0.5rem 0 0.5rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
   text-decoration: none;
 }
 body.tincan.front .board-group ul {
@@ -253,23 +253,23 @@ body.tincan.front .board-group ul {
 }
 body.tincan.front .board-group ul li {
   background-color: #F1F1F1;
-  border-bottom: 2px solid #DDDDDD;
+  border-bottom: 2px solid #DDD;
   padding: 1rem;
 }
 body.tincan.front .board-group ul li h3, body.tincan.front .board-group ul li p {
-  margin: 0 0.5rem 0 0.5rem;
+  margin: 0 0.5rem;
 }
 
 body.tincan.board #content .thread-preview {
   background-color: #F1F1F1;
-  border-bottom: 2px solid #DDDDDD;
+  border-bottom: 2px solid #DDD;
   padding: 1rem;
 }
 body.tincan.board #content .thread-preview h2, body.tincan.board #content .thread-preview span.thread-meta {
-  margin: 0 0.5rem 0 0.5rem;
+  margin: 0 0.5rem;
 }
 body.tincan.board #board-navigation {
-  padding: 1rem 0 1rem 0;
+  padding: 1rem 0;
 }
 body.tincan.board #board-navigation ul.navigation {
   align-items: flex-end;
@@ -297,7 +297,7 @@ body.tincan form#create-account, body.tincan form#log-in, body.tincan form#creat
 body.tincan form#create-account .fieldset, body.tincan form#log-in .fieldset, body.tincan form#create-thread .fieldset, body.tincan form#post-reply .fieldset, body.tincan form#update-post .fieldset, body.tincan form#set-password .fieldset, body.tincan form#forum-settings .fieldset {
   display: flex;
   flex: 1;
-  margin: 0.5rem 0 0.5rem 0;
+  margin: 0.5rem 0;
 }
 body.tincan form#create-account .fieldset.button, body.tincan form#log-in .fieldset.button, body.tincan form#create-thread .fieldset.button, body.tincan form#post-reply .fieldset.button, body.tincan form#update-post .fieldset.button, body.tincan form#set-password .fieldset.button, body.tincan form#forum-settings .fieldset.button {
   padding-top: 1rem;
@@ -322,29 +322,29 @@ body.tincan form#create-account .field, body.tincan form#log-in .field, body.tin
 }
 body.tincan form#create-account label, body.tincan form#log-in label, body.tincan form#create-thread label, body.tincan form#post-reply label, body.tincan form#update-post label, body.tincan form#set-password label, body.tincan form#forum-settings label {
   background-color: #295C7A;
-  color: #FFFFFF;
+  color: #FFF;
   display: block;
   flex: 1;
   max-width: 240px;
-  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem;
 }
 body.tincan form#create-account input.text-input, body.tincan form#log-in input.text-input, body.tincan form#create-thread input.text-input, body.tincan form#post-reply input.text-input, body.tincan form#update-post input.text-input, body.tincan form#set-password input.text-input, body.tincan form#forum-settings input.text-input {
   width: 100%;
 }
 body.tincan form#create-account input.submit-button, body.tincan form#log-in input.submit-button, body.tincan form#create-thread input.submit-button, body.tincan form#post-reply input.submit-button, body.tincan form#update-post input.submit-button, body.tincan form#set-password input.submit-button, body.tincan form#forum-settings input.submit-button {
   background-color: #D76A3A;
-  box-shadow: 2px 2px #000000;
-  color: #FFFFFF;
+  box-shadow: 2px 2px #000;
+  color: #FFF;
   display: inline-block;
   font-weight: bold;
-  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   text-decoration: none;
 }
 
 /* Colors */
 body.tincan.thread .post {
   background-color: #F1F1F1;
-  border-bottom: 2px solid #DDDDDD;
+  border-bottom: 2px solid #DDD;
   display: block;
 }
 @media (min-width: 600px) {
@@ -359,21 +359,21 @@ body.tincan.thread .post {
 }
 body.tincan.thread .post .post-user {
   background-color: #748499;
-  color: #FFFFFF;
+  color: #FFF;
   display: flex;
   flex-direction: row-reverse;
-  padding: 0.5rem 0 0.5rem 0;
+  padding: 0.5rem 0;
   justify-content: flex-end;
   text-align: center;
 }
 body.tincan.thread .post .post-user h3.username {
   font-size: 1.25rem;
-  color: #FFFFFF;
+  color: #FFF;
   margin: 0;
   text-align: center;
 }
 body.tincan.thread .post .post-user .profile-image {
-  margin: 0 1rem 0 1rem;
+  margin: 0 1rem;
 }
 body.tincan.thread .post .post-user .profile-image img {
   height: 48px;
@@ -382,7 +382,7 @@ body.tincan.thread .post .post-user .profile-image img {
 @media (min-width: 600px) {
   body.tincan.thread .post .post-user .profile-image img {
     height: 120px;
-    margin: 0 1rem 0 1rem;
+    margin: 0 1rem;
     width: 120px;
   }
 }
@@ -403,7 +403,7 @@ body.tincan.thread .post .post-user .joined {
 @media (min-width: 600px) {
   body.tincan.thread .post .post-user {
     display: block;
-    padding: 1rem 0 1rem 0;
+    padding: 1rem 0;
   }
 }
 @media (min-width: 600px) {
@@ -412,13 +412,17 @@ body.tincan.thread .post .post-user .joined {
   }
 }
 body.tincan.thread .post .date {
-  padding: 0.5rem 1rem 0 1rem;
+  padding: 0.5rem 1rem 0;
 }
 body.tincan.thread .post .content {
   padding: 1rem;
 }
 body.tincan.thread .post:nth-child(even) {
-  background-color: #EEEEEE;
+  background-color: #EEE;
+}
+
+body.tincan.thread {
+  display: block;
 }
 
 /* Colors */
@@ -432,11 +436,11 @@ body.tincan.user #user-info {
   text-align: center;
 }
 body.tincan.user #user-info .profile-image {
-  padding: 1rem 0 0 0;
+  padding: 1rem 0 0;
 }
 body.tincan.user #user-info .joined {
-  color: #FFFFFF;
-  padding: 0 0 1rem 0;
+  color: #FFF;
+  padding: 0 0 1rem;
 }
 @media (min-width: 600px) {
   body.tincan.user #user-info {
@@ -446,7 +450,7 @@ body.tincan.user #user-info .joined {
   }
 }
 body.tincan.user #user-posts {
-  margin: 0 2rem 0 2rem;
+  margin: 0 2rem;
 }
 body.tincan.user #user-posts ul.post-list {
   list-style-type: none;

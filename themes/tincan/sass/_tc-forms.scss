@@ -4,16 +4,15 @@
 
 /* Colors */
 
-$formField: #F1F1F1;
-$formFieldLabel: #295C7A;
-$formFieldLabelText: #FFFFFF;
+$form-field: #F1F1F1;
+$form-field-label: #295C7A;
+$form-field-label-text: #FFF;
 
 $button: #D76A3A;
-$buttonText: #FFFFFF;
-$buttonShadow: #000000;
+$button-text: #FFF;
+$button-shadow: #000;
 
 body.tincan {
-
   form#create-account, form#log-in, form#set-password {
     width: 400px;
   }
@@ -27,7 +26,7 @@ body.tincan {
     .fieldset {
       display: flex;
       flex: 1;
-      margin: 0.5rem 0 0.5rem 0;
+      margin: 0.5rem 0;
     }
 
     .fieldset.button {
@@ -52,18 +51,18 @@ body.tincan {
     }
 
     .field {
-      background-color: $formField;
+      background-color: $form-field;
       flex: 1.5;
       padding: 0.25rem;
     }
 
     label {
-      background-color: $formFieldLabel;
-      color: $formFieldLabelText;
+      background-color: $form-field-label;
+      color: $form-field-label-text;
       display: block;
       flex: 1;
       max-width: 240px;
-      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+      padding: 0.25rem 0.5rem;
     }
 
     input.text-input {
@@ -72,11 +71,11 @@ body.tincan {
 
     input.submit-button {
       background-color: $button;
-      box-shadow: 2px 2px $buttonShadow;
-      color: $buttonText;
+      box-shadow: 2px 2px $button-shadow;
+      color: $button-text;
       display: inline-block;
       font-weight: bold;
-      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+      padding: 0.25rem 0.5rem;
       text-decoration: none;
     }
   }

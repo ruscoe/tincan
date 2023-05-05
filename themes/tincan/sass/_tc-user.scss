@@ -4,29 +4,27 @@
 
 /* Colors */
 
-$userInfo: #748499;
-$userInfoText: #FFFFFF;
+$user-info: #748499;
+$user-info-text: #FFF;
 
 body.tincan.user {
-
   #user-profile {
-
     @include for-tablet-portrait-up {
       display: flex;
     }
   }
 
   #user-info {
-    background-color: $userInfo;
+    background-color: $user-info;
     text-align: center;
 
     .profile-image {
-      padding: 1rem 0 0 0;
+      padding: 1rem 0 0;
     }
 
     .joined {
-      color: $userInfoText;
-      padding: 0 0 1rem 0;
+      color: $user-info-text;
+      padding: 0 0 1rem;
     }
 
     @include for-tablet-portrait-up {
@@ -37,7 +35,7 @@ body.tincan.user {
   }
 
   #user-posts {
-    margin: 0 2rem 0 2rem;
+    margin: 0 2rem;
 
     ul.post-list {
       list-style-type: none;

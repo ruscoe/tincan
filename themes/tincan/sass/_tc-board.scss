@@ -3,22 +3,20 @@
 // @email danruscoe@protonmail.com
 
 body.tincan.board {
-
   #content {
-
     .thread-preview {
       background-color: $section;
       border-bottom: 2px solid $sectionBorder;
       padding: 1rem;
 
       h2, span.thread-meta {
-        margin: 0 0.5rem 0 0.5rem;
+        margin: 0 0.5rem;
       }
     }
   }
 
   #board-navigation {
-    padding: 1rem 0 1rem 0;
+    padding: 1rem 0;
 
     ul.navigation {
       align-items: flex-end;

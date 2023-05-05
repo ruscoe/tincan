@@ -3,16 +3,14 @@
 // @email danruscoe@protonmail.com
 
 body.tincan.board-group {
-
   #content {
-
     .board-preview {
       background-color: $section;
       border-bottom: 2px solid $sectionBorder;
-      padding: 0.5rem 0 0.5rem 0;
+      padding: 0.5rem 0;
 
       h2, p {
-        margin: 0 1rem 0 1rem;
+        margin: 0 1rem;
       }
 
       h2 {
@@ -23,9 +21,7 @@ body.tincan.board-group {
 }
 
 body.tincan.front {
-
   .board-group {
-
     h2 {
       background-color: $sectionHeader;
       margin: 0;
@@ -34,8 +30,8 @@ body.tincan.front {
         color: $sectionHeaderText;
         display: block;
         font-size: 1rem;
-        margin: 0 0.5rem 0 0.5rem;
-        padding: 0.5rem 1rem 0.5rem 1rem;
+        margin: 0 0.5rem;
+        padding: 0.5rem 1rem;
         text-decoration: none;
       }
     }
@@ -51,7 +47,7 @@ body.tincan.front {
         padding: 1rem;
 
         h3, p {
-          margin: 0 0.5rem 0 0.5rem;
+          margin: 0 0.5rem;
         }
       }
     }
