@@ -45,11 +45,17 @@ To compile a theme's CSS, enter the theme directory:
 
 `cd themes/tincan`
 
-Then run:
+First get things set up by running:
 
 `npm install`
 
-`npm run build`
+To compile CSS once, run:
+
+`npm run sass:build`
+
+To watch and compile CSS as you work on the SCSS files, run:
+
+`npm run sass:watch`
 
 A CSS file will be compiled from the contents of `sass/style.scss` and will appear as `css/style.css`
 

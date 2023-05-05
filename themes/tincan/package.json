@@ -5,7 +5,8 @@
     "author": "Dan Ruscoe",
     "license": "MIT",
     "scripts": {
-        "build": "sass sass/style.scss css/style.css"
+        "sass:build": "sass sass/style.scss css/style.css",
+        "sass:watch": "sass sass/style.scss css/style.css --watch"
     },
     "dependencies": {
         "sass": "1.62.0"
