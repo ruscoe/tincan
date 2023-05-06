@@ -2,32 +2,14 @@
 // @author Dan Ruscoe
 // @email danruscoe@protonmail.com
 
-body.tincan.board-group {
-  #content {
-    .board-preview {
-      background-color: $section;
-      border-bottom: 2px solid $sectionBorder;
-      padding: 0.5rem 0;
-
-      h2, p {
-        margin: 0 1rem;
-      }
-
-      h2 {
-        font-size: 1.25rem;
-      }
-    }
-  }
-}
-
 body.tincan.front {
   .board-group {
     h2 {
-      background-color: $sectionHeader;
+      background-color: $section-header;
       margin: 0;
 
       a {
-        color: $sectionHeaderText;
+        color: $section-header-text;
         display: block;
         font-size: 1rem;
         margin: 0 0.5rem;
@@ -43,12 +25,30 @@ body.tincan.front {
 
       li {
         background-color: $section;
-        border-bottom: 2px solid $sectionBorder;
+        border-bottom: 2px solid $section-border;
         padding: 1rem;
 
         h3, p {
           margin: 0 0.5rem;
         }
+      }
+    }
+  }
+}
+
+body.tincan.board-group {
+  #content {
+    .board-preview {
+      background-color: $section;
+      border-bottom: 2px solid $section-border;
+      padding: 0.5rem 0;
+
+      h2, p {
+        margin: 0 1rem;
+      }
+
+      h2 {
+        font-size: 1.25rem;
       }
     }
   }

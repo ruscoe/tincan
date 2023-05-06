@@ -7,7 +7,6 @@
 $form-field: #F1F1F1;
 $form-field-label: #295C7A;
 $form-field-label-text: #FFF;
-
 $button: #D76A3A;
 $button-text: #FFF;
 $button-shadow: #000;
@@ -20,7 +19,7 @@ body.tincan {
   form#create-account, form#log-in, form#create-thread, form#post-reply, form#update-post, form#set-password, form#forum-settings {
     display: flex;
     flex-direction: column;
-    margin: 0 auto 0 auto;
+    margin: 0 auto;
     padding-top: 3rem;
 
     .fieldset {
@@ -32,6 +31,21 @@ body.tincan {
     .fieldset.button {
       padding-top: 1rem;
       justify-content: flex-end;
+    }
+
+    .field {
+      background-color: $form-field;
+      flex: 1.5;
+      padding: 0.25rem;
+    }
+
+    label {
+      background-color: $form-field-label;
+      color: $form-field-label-text;
+      display: block;
+      flex: 1;
+      max-width: 240px;
+      padding: 0.25rem 0.5rem;
     }
 
     .fieldset.textarea {
@@ -48,21 +62,6 @@ body.tincan {
           width: 100%;
         }
       }
-    }
-
-    .field {
-      background-color: $form-field;
-      flex: 1.5;
-      padding: 0.25rem;
-    }
-
-    label {
-      background-color: $form-field-label;
-      color: $form-field-label-text;
-      display: block;
-      flex: 1;
-      max-width: 240px;
-      padding: 0.25rem 0.5rem;
     }
 
     input.text-input {

@@ -2,7 +2,7 @@
 /* Colors */
 /* Fonts */
 @font-face {
-  font-family: "OpenSans-Regular";
+  font-family: OpenSans-Regular;
   src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
 }
 /* Breakpoints */
@@ -25,7 +25,7 @@ h1.section-header {
   margin: 0;
   padding: 0.5rem 1rem;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   h1.section-header {
     font-size: 2rem;
   }
@@ -35,7 +35,7 @@ h2.section-subheader, h3.section-subheader {
   font-size: 1rem;
   margin: 0 0.5rem;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   h2.section-subheader, h3.section-subheader {
     font-size: 1.5rem;
   }
@@ -84,7 +84,7 @@ body {
   padding-top: 1rem;
   text-align: center;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   #header h1 {
     padding-top: 3rem;
   }
@@ -92,7 +92,7 @@ body {
 #header ul.navigation {
   padding-top: 1rem;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   #header ul.navigation {
     padding: 0;
     position: absolute;
@@ -104,7 +104,7 @@ body {
   flex: 1;
   text-align: center;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   #header ul.navigation li {
     flex: none;
     text-align: left;
@@ -118,7 +118,7 @@ body {
   height: 80px;
   width: 80px;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   #header .logo {
     left: 2rem;
     padding: 0;
@@ -131,7 +131,7 @@ body {
   margin: 0;
   padding-top: 1rem;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   #content {
     margin: 0 2rem;
   }
@@ -197,7 +197,7 @@ ul.pagination {
 ul.breadcrumbs {
   margin: 1rem 0;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   ul.breadcrumbs li.home a {
     padding-left: 1rem;
   }
@@ -205,7 +205,7 @@ ul.breadcrumbs {
 ul.breadcrumbs li.subpage a {
   padding-left: 1rem;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   ul.breadcrumbs li.home::before {
     content: "☖";
   }
@@ -222,18 +222,6 @@ ul.post-controls li {
 }
 
 /* Includes */
-body.tincan.board-group #content .board-preview {
-  background-color: #F1F1F1;
-  border-bottom: 2px solid #DDD;
-  padding: 0.5rem 0;
-}
-body.tincan.board-group #content .board-preview h2, body.tincan.board-group #content .board-preview p {
-  margin: 0 1rem;
-}
-body.tincan.board-group #content .board-preview h2 {
-  font-size: 1.25rem;
-}
-
 body.tincan.front .board-group h2 {
   background-color: #295C7A;
   margin: 0;
@@ -258,6 +246,18 @@ body.tincan.front .board-group ul li {
 }
 body.tincan.front .board-group ul li h3, body.tincan.front .board-group ul li p {
   margin: 0 0.5rem;
+}
+
+body.tincan.board-group #content .board-preview {
+  background-color: #F1F1F1;
+  border-bottom: 2px solid #DDD;
+  padding: 0.5rem 0;
+}
+body.tincan.board-group #content .board-preview h2, body.tincan.board-group #content .board-preview p {
+  margin: 0 1rem;
+}
+body.tincan.board-group #content .board-preview h2 {
+  font-size: 1.25rem;
 }
 
 body.tincan.board #content .thread-preview {
@@ -291,7 +291,7 @@ body.tincan form#create-account, body.tincan form#log-in, body.tincan form#set-p
 body.tincan form#create-account, body.tincan form#log-in, body.tincan form#create-thread, body.tincan form#post-reply, body.tincan form#update-post, body.tincan form#set-password, body.tincan form#forum-settings {
   display: flex;
   flex-direction: column;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   padding-top: 3rem;
 }
 body.tincan form#create-account .fieldset, body.tincan form#log-in .fieldset, body.tincan form#create-thread .fieldset, body.tincan form#post-reply .fieldset, body.tincan form#update-post .fieldset, body.tincan form#set-password .fieldset, body.tincan form#forum-settings .fieldset {
@@ -302,18 +302,6 @@ body.tincan form#create-account .fieldset, body.tincan form#log-in .fieldset, bo
 body.tincan form#create-account .fieldset.button, body.tincan form#log-in .fieldset.button, body.tincan form#create-thread .fieldset.button, body.tincan form#post-reply .fieldset.button, body.tincan form#update-post .fieldset.button, body.tincan form#set-password .fieldset.button, body.tincan form#forum-settings .fieldset.button {
   padding-top: 1rem;
   justify-content: flex-end;
-}
-body.tincan form#create-account .fieldset.textarea, body.tincan form#log-in .fieldset.textarea, body.tincan form#create-thread .fieldset.textarea, body.tincan form#post-reply .fieldset.textarea, body.tincan form#update-post .fieldset.textarea, body.tincan form#set-password .fieldset.textarea, body.tincan form#forum-settings .fieldset.textarea {
-  display: block;
-}
-body.tincan form#create-account .fieldset.textarea label, body.tincan form#log-in .fieldset.textarea label, body.tincan form#create-thread .fieldset.textarea label, body.tincan form#post-reply .fieldset.textarea label, body.tincan form#update-post .fieldset.textarea label, body.tincan form#set-password .fieldset.textarea label, body.tincan form#forum-settings .fieldset.textarea label {
-  max-width: none !important;
-}
-body.tincan form#create-account .fieldset.textarea .field, body.tincan form#log-in .fieldset.textarea .field, body.tincan form#create-thread .fieldset.textarea .field, body.tincan form#post-reply .fieldset.textarea .field, body.tincan form#update-post .fieldset.textarea .field, body.tincan form#set-password .fieldset.textarea .field, body.tincan form#forum-settings .fieldset.textarea .field {
-  flex: none;
-}
-body.tincan form#create-account .fieldset.textarea .field textarea, body.tincan form#log-in .fieldset.textarea .field textarea, body.tincan form#create-thread .fieldset.textarea .field textarea, body.tincan form#post-reply .fieldset.textarea .field textarea, body.tincan form#update-post .fieldset.textarea .field textarea, body.tincan form#set-password .fieldset.textarea .field textarea, body.tincan form#forum-settings .fieldset.textarea .field textarea {
-  width: 100%;
 }
 body.tincan form#create-account .field, body.tincan form#log-in .field, body.tincan form#create-thread .field, body.tincan form#post-reply .field, body.tincan form#update-post .field, body.tincan form#set-password .field, body.tincan form#forum-settings .field {
   background-color: #F1F1F1;
@@ -327,6 +315,18 @@ body.tincan form#create-account label, body.tincan form#log-in label, body.tinca
   flex: 1;
   max-width: 240px;
   padding: 0.25rem 0.5rem;
+}
+body.tincan form#create-account .fieldset.textarea, body.tincan form#log-in .fieldset.textarea, body.tincan form#create-thread .fieldset.textarea, body.tincan form#post-reply .fieldset.textarea, body.tincan form#update-post .fieldset.textarea, body.tincan form#set-password .fieldset.textarea, body.tincan form#forum-settings .fieldset.textarea {
+  display: block;
+}
+body.tincan form#create-account .fieldset.textarea label, body.tincan form#log-in .fieldset.textarea label, body.tincan form#create-thread .fieldset.textarea label, body.tincan form#post-reply .fieldset.textarea label, body.tincan form#update-post .fieldset.textarea label, body.tincan form#set-password .fieldset.textarea label, body.tincan form#forum-settings .fieldset.textarea label {
+  max-width: none !important;
+}
+body.tincan form#create-account .fieldset.textarea .field, body.tincan form#log-in .fieldset.textarea .field, body.tincan form#create-thread .fieldset.textarea .field, body.tincan form#post-reply .fieldset.textarea .field, body.tincan form#update-post .fieldset.textarea .field, body.tincan form#set-password .fieldset.textarea .field, body.tincan form#forum-settings .fieldset.textarea .field {
+  flex: none;
+}
+body.tincan form#create-account .fieldset.textarea .field textarea, body.tincan form#log-in .fieldset.textarea .field textarea, body.tincan form#create-thread .fieldset.textarea .field textarea, body.tincan form#post-reply .fieldset.textarea .field textarea, body.tincan form#update-post .fieldset.textarea .field textarea, body.tincan form#set-password .fieldset.textarea .field textarea, body.tincan form#forum-settings .fieldset.textarea .field textarea {
+  width: 100%;
 }
 body.tincan form#create-account input.text-input, body.tincan form#log-in input.text-input, body.tincan form#create-thread input.text-input, body.tincan form#post-reply input.text-input, body.tincan form#update-post input.text-input, body.tincan form#set-password input.text-input, body.tincan form#forum-settings input.text-input {
   width: 100%;
@@ -347,12 +347,12 @@ body.tincan.thread .post {
   border-bottom: 2px solid #DDD;
   display: block;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   body.tincan.thread .post {
     display: flex;
   }
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   body.tincan.thread .post .post-user, body.tincan.thread .post .post-content {
     flex: 1 auto;
   }
@@ -379,14 +379,14 @@ body.tincan.thread .post .post-user .profile-image img {
   height: 48px;
   width: 48px;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   body.tincan.thread .post .post-user .profile-image img {
     height: 120px;
     margin: 0 1rem;
     width: 120px;
   }
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   body.tincan.thread .post .post-user .profile-image {
     margin: 0;
     padding: 1rem;
@@ -395,18 +395,18 @@ body.tincan.thread .post .post-user .profile-image img {
 body.tincan.thread .post .post-user .joined {
   display: none;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   body.tincan.thread .post .post-user .joined {
     display: block;
   }
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   body.tincan.thread .post .post-user {
     display: block;
     padding: 1rem 0;
   }
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   body.tincan.thread .post .post-content {
     flex: 1 100%;
   }
@@ -426,7 +426,7 @@ body.tincan.thread {
 }
 
 /* Colors */
-@media (min-width: 600px) {
+@media (width >= 600px) {
   body.tincan.user #user-profile {
     display: flex;
   }
@@ -442,7 +442,7 @@ body.tincan.user #user-info .joined {
   color: #FFF;
   padding: 0 0 1rem;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   body.tincan.user #user-info {
     flex: 0.5;
     max-width: 300px;
@@ -456,7 +456,7 @@ body.tincan.user #user-posts ul.post-list {
   list-style-type: none;
   padding: 0;
 }
-@media (min-width: 600px) {
+@media (width >= 600px) {
   body.tincan.user #user-posts {
     flex: 1;
     padding: 0 0 0 2rem;

@@ -10,7 +10,7 @@ $post-user-text: #FFF;
 body.tincan.thread {
   .post {
     background-color: $section;
-    border-bottom: 2px solid $sectionBorder;
+    border-bottom: 2px solid $section-border;
     display: block;
 
     @include for-tablet-portrait-up {
@@ -89,7 +89,7 @@ body.tincan.thread {
   }
 
   .post:nth-child(even) {
-    background-color: $sectionAlt;
+    background-color: $section-alt;
   }
 
 }

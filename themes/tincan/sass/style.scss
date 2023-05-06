@@ -2,51 +2,63 @@
 // @author Dan Ruscoe
 // @email danruscoe@protonmail.com
 
+/* Includes */
+
+@import '_tc-board-group';
+@import '_tc-board';
+@import '_tc-footer';
+@import '_tc-forms';
+@import '_tc-post';
+@import '_tc-thread';
+@import '_tc-user';
+
 /* Colors */
 
 $page: #FFF;
 $section: #F1F1F1;
-$sectionAlt: #EEE;
-$sectionHeader: #295C7A;
-$sectionHeaderBorder: #224D67;
-$sectionHeaderText: #FFF;
-$sectionBorder: #DDD;
-
-$formFieldLabel: #295C7A;
-$formFieldLabelText: #FFF;
-$formField: #F1F1F1;
-
+$section-alt: #EEE;
+$section-header: #295C7A;
+$section-header-border: #224D67;
+$section-header-text: #FFF;
+$section-border: #DDD;
+$form-field-label: #295C7A;
+$form-field-label-text: #FFF;
+$form-field: #F1F1F1;
 $text: #6B6666;
-$headerText: #6B6666;
-$linkText: #123266;
-$linkTextHover: #D76A3A;
-$errorText: #DC0139;
+$header-text: #6B6666;
+$link-text: #123266;
+$link-text-hover: #D76A3A;
+$error-text: #DC0139;
 
 /* Fonts */
 
 @font-face {
-  font-family: 'OpenSans-Regular';
+  font-family: OpenSans-Regular;
   src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
 }
 
-$openSansRegular: 'OpenSans-Regular';
+$open-sans-regular: 'OpenSans-Regular';
 
 /* Breakpoints */
 
 @mixin for-phone-only {
-  @media (max-width: 599px) { @content; }
+  @media (max-width <= 599px) { @content; }
 }
+
 @mixin for-tablet-portrait-up {
-  @media (min-width: 600px) { @content; }
+  @media (width >= 600px) { @content; }
 }
+
 @mixin for-tablet-landscape-up {
-  @media (min-width: 900px) { @content; }
+  @media (width >= 900px) { @content; }
 }
+
 @mixin for-desktop-up {
-  @media (min-width: 1200px) { @content; }
+  @media (width >= 1200px) { @content; }
 }
+
 @mixin for-big-desktop-up {
-  @media (min-width: 1800px) { @content; }
+  @media (width >= 1800px) { @content; }
 }
 
 /* Text */
@@ -61,10 +73,10 @@ p {
 }
 
 h1.section-header {
-  background-color: $sectionHeader;
-  border: solid $sectionHeaderBorder;
+  background-color: $section-header;
+  border: solid $section-header-border;
   border-width: 0 2px 2px 0;
-  color: $sectionHeaderText;
+  color: $section-header-text;
   font-size: 1rem;
   margin: 0;
   padding: 0.5rem 1rem;
@@ -86,16 +98,16 @@ h2.section-subheader, h3.section-subheader {
 /* Links */
 
 a:link {
-  color: $linkText;
+  color: $link-text;
   text-decoration: underline;
 }
 
 a:visited {
-  color: $linkText;
+  color: $link-text;
 }
 
 a:hover {
-  color: $linkTextHover;
+  color: $link-text-hover;
 }
 
 a.button {
@@ -117,7 +129,7 @@ body {
 }
 
 #header, #content, #footer {
-  font-family: $openSansRegular, serif;
+  font-family: $open-sans-regular, serif;
 }
 
 #header {
@@ -187,7 +199,7 @@ body {
 
 .message-box {
   background-color: $section;
-  border: 2px solid $sectionBorder;
+  border: 2px solid $section-border;
   margin: 0 auto;
   max-width: 400px;
   margin-top: 3rem;
@@ -203,7 +215,7 @@ body {
     padding: 0;
 
     li {
-      color: $errorText;
+      color: $error-text;
     }
   }
 }
@@ -211,12 +223,12 @@ body {
 .tc-code {
   table {
     th {
-      background-color: $sectionHeader;
-      color: $sectionHeaderText;
+      background-color: $section-header;
+      color: $section-header-text;
     }
 
     tr:nth-child(even) {
-      background-color: $sectionAlt;
+      background-color: $section-alt;
     }
 
     th, td {
@@ -266,7 +278,6 @@ ul.breadcrumbs {
   }
 
   li.home::before {
-
     @include for-tablet-portrait-up {
       content: '\2616';
     }
@@ -284,13 +295,3 @@ ul.post-controls {
     padding-left: 0;
   }
 }
-
-/* Includes */
-
-@import '_tc-board-group';
-@import '_tc-board';
-@import '_tc-footer';
-@import '_tc-forms';
-@import '_tc-post';
-@import '_tc-thread';
-@import '_tc-user';
