@@ -2,16 +2,6 @@
 // @author Dan Ruscoe
 // @email danruscoe@protonmail.com
 
-/* Includes */
-
-@import '_tc-board-group';
-@import '_tc-board';
-@import '_tc-footer';
-@import '_tc-forms';
-@import '_tc-post';
-@import '_tc-thread';
-@import '_tc-user';
-
 /* Colors */
 
 $page: #FFF;
@@ -295,3 +285,13 @@ body {
 #footer {
   padding: 3rem 0;
 }
+
+/* Includes */
+
+@import '_tc-board-group';
+@import '_tc-board';
+@import '_tc-footer';
+@import '_tc-forms';
+@import '_tc-post';
+@import '_tc-thread';
+@import '_tc-user';
