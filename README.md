@@ -18,10 +18,84 @@ Tin Can is not production-ready, but you can play around with it if you like.
 * [Composer](https://getcomposer.org)
 * [Node.js](https://nodejs.org/) (if you want to create or edit themes)
 
+## Install Requirements via Composer
+
+If you don't already have it, install Composer according to the [directions here](https://getcomposer.org/download/).
+
+In the directory you checked out this repository to, run:
+
+`composer install`
+
+## Configuration
+
+Copy *tc-config-example.php* to *tc-config.php*
+
+`cp tc-config-example.php tc-config.php`
+
+Edit *tc-config.php* and change these values to suit your environment.
+
+| Property               | Example Value              |
+|------------------------|----------------------------|
+| TC_BASE_PATH           | /var/www/html              |
+| TC_UPLOADS_PATH        | /var/www/html/uploads      |
+| TC_UPLOADS_PERMISSIONS | 0755                       |
+| TC_DB_HOST             | 172.18.0.2                 |
+| TC_DB_USER             | tincan                     |
+| TC_DB_PASS             | changethis                 |
+| TC_DB_NAME             | tincan                     |
+| TC_DB_PORT             | 3306                       |
+
 ## Running with Docker
 
-This [experimental Docker file](https://github.com/ruscoe/tincan-docker) will
-set up an nginx server, download Tin Can, and install requirements via Composer.
+This is experimental.
+
+### Create a network
+
+`docker network create -d bridge tincannet`
+
+### Set up MySQL
+
+Start the MySQL container (make sure to change the passwords).
+
+```
+docker run \
+--name tincan-mysql \
+--net=tincannet \
+-e MYSQL_ROOT_PASSWORD=changethis \
+-e MYSQL_DATABASE=tincan \
+-e MYSQL_USER=tincan \
+-e MYSQL_PASSWORD=changethis \
+-p 3308:3308 \
+-d mysql:latest
+```
+
+If you'd like to access the container, run:
+
+`docker exec -it tincan-mysql /bin/bash`
+
+### Set up Tin Can
+
+In the directory you checked out this repository to, run the following.
+
+`docker build -t ruscoe/tincan .`
+
+```
+docker run -d \
+--name tincan \
+--net=tincannet \
+-e TZ=UTC \
+-p 8080:80 \
+--mount type=bind,source="$(pwd)",target=/var/www/html \
+ruscoe/tincan
+```
+
+If you'd like to access the container, run:
+
+`docker exec -it tincan /bin/bash`
+
+Run the installer via your web browser at:
+
+`http://localhost:8080/install.php`
 
 ## Running on nginx
 
@@ -90,25 +164,6 @@ Finally, restart nginx:
 
 `sudo service nginx restart`
 
-### Configuration
-
-Copy *tc-config-example.php* to *tc-config.php*
-
-`cp tc-config-example.php tc-config.php`
-
-Edit *tc-config.php* and change these values to suit your environment.
-
-| Property               | Example Value              |
-|------------------------|----------------------------|
-| TC_BASE_PATH           | /var/www/YOUR_SITE         |
-| TC_UPLOADS_PATH        | /var/www/YOUR_SITE/uploads |
-| TC_UPLOADS_PERMISSIONS | 0755                       |
-| TC_DB_HOST             | http://localhost           |
-| TC_DB_USER             | root                       |
-| TC_DB_PASS             | root                       |
-| TC_DB_NAME             | tincan                     |
-| TC_DB_PORT             | 3306                       |
-
 ### Create your Database
 
 Access your MySQL instance and create a new database.
@@ -117,14 +172,6 @@ Access your MySQL instance and create a new database.
 
 Be sure to set *TC_DB_NAME* in your configuration file if you choose
 a different database name.
-
-### Install Requirements via Composer
-
-If you don't already have it, install Composer according to the [directions here](https://getcomposer.org/download/).
-
-In the root directory, run:
-
-`composer install`
 
 ## Installation
 
