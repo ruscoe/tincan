@@ -100,6 +100,11 @@ class TCMySQL extends TCDB
             $prepared->bind_param($bind_param_type, ...$params);
         }
 
+        // If query cannot be prepared, return null result.
+        if (false === $prepared) {
+            return null;
+        }
+
         if (false !== $prepared->execute()) {
             $result = $prepared->get_result();
 

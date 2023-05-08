@@ -92,6 +92,10 @@ class TCData
             throw new TCException('Unable to load forum settings.');
         }
 
+        if (null === $result) {
+            throw new TCException('Unable to load forum settings.');
+        }
+
         while ($object = $result->fetch_object()) {
             if ('bool' == $object->type) {
                 $settings[$object->setting_name] = ('true' == $object->value);
