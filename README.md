@@ -10,6 +10,10 @@ Tin Can is not production-ready, but you can play around with it if you like.
 
 ![Tin Can screenshot](https://user-images.githubusercontent.com/87952/231024931-3e36e90c-a3b2-4d40-a3de-d733b568c477.png)
 
+## TODO
+
+* More secure installer; stop relying on install.php being deleted post-install
+
 ## Requirements
 
 * A Linux web server or compatible
