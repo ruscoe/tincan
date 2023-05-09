@@ -45,6 +45,16 @@ Edit *tc-config.php* and change these values to suit your environment.
 | TC_DB_NAME             | tincan                     |
 | TC_DB_PORT             | 3306                       |
 
+## Uploads directory
+
+Create a directory for file uploads and set permissions.
+
+`mkdir uploads`
+
+`sudo chown -R www-data:www-data uploads`
+
+`sudo chmod -R 755 uploads`
+
 ## Running with Docker
 
 This is experimental.
