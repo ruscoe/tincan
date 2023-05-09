@@ -6,9 +6,9 @@ The name comes from the [tin can telephone](https://en.wikipedia.org/wiki/Tin_ca
 
 Tin Can is not production-ready, but you can play around with it if you like.
 
-![Screenshot from 2023-04-10 17-29-37](https://user-images.githubusercontent.com/87952/231024890-7c25b40e-147e-43ab-aded-d139e5f09518.png)
+![Tin Can screenshot](https://user-images.githubusercontent.com/87952/231024890-7c25b40e-147e-43ab-aded-d139e5f09518.png)
 
-![Screenshot from 2023-04-10 17-30-06](https://user-images.githubusercontent.com/87952/231024931-3e36e90c-a3b2-4d40-a3de-d733b568c477.png)
+![Tin Can screenshot](https://user-images.githubusercontent.com/87952/231024931-3e36e90c-a3b2-4d40-a3de-d733b568c477.png)
 
 ## Requirements
 
@@ -19,8 +19,6 @@ Tin Can is not production-ready, but you can play around with it if you like.
 * [Node.js](https://nodejs.org/) (if you want to create or edit themes)
 
 ## Install Requirements via Composer
-
-If you don't already have it, install Composer according to the [directions here](https://getcomposer.org/download/).
 
 In the directory you checked out this repository to, run:
 
@@ -189,7 +187,7 @@ http://tincan.local if you've kept the default options so far.
 
 You will be taken to the installer.
 
-![Screenshot from 2023-04-10 17-28-50](https://user-images.githubusercontent.com/87952/231024993-e80b7bbc-879d-4d40-8c55-bb27731fba49.png)
+![Tin Can installer screenshot](https://user-images.githubusercontent.com/87952/231024993-e80b7bbc-879d-4d40-8c55-bb27731fba49.png)
 
 Check the "Generate test data" checkbox if you'd like to start with sample
 users, boards, threads, and posts. This is useful for testing your new forum.
@@ -218,4 +216,4 @@ Run in the root directory:
 
 ## License
 
-[MIT](https://mit-license.org).
+[MIT](https://mit-license.org)
