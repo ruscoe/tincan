@@ -38,7 +38,6 @@ Edit *tc-config.php* and change these values to suit your environment.
 |------------------------|----------------------------|
 | TC_BASE_PATH           | /var/www/html              |
 | TC_UPLOADS_PATH        | /var/www/html/uploads      |
-| TC_UPLOADS_PERMISSIONS | 0755                       |
 | TC_DB_HOST             | 172.18.0.2                 |
 | TC_DB_USER             | tincan                     |
 | TC_DB_PASS             | changethis                 |

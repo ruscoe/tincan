@@ -4,7 +4,6 @@
 
 define('TC_BASE_PATH', '/var/www/YOUR_SITE');
 define('TC_UPLOADS_PATH', '/var/www/YOUR_SITE/uploads');
-define('TC_UPLOADS_PERMISSIONS', 0755);
 
 /* Database server * */
 

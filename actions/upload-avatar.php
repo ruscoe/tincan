@@ -80,7 +80,7 @@ $target_path = 'avatars/'.substr($avatar_user->user_id, -1);
 
 if (!is_dir(TC_UPLOADS_PATH.'/'.$target_path)) {
     // If the avatar upload path doesn't exist, create it with write permissions.
-    mkdir(TC_UPLOADS_PATH.'/'.$target_path, TC_UPLOADS_PERMISSIONS, true);
+    mkdir(TC_UPLOADS_PATH.'/'.$target_path, 0644, true);
 }
 
 $target_file = $avatar_user->user_id.'.jpg';
