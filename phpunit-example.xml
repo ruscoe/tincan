@@ -12,7 +12,7 @@
 
   <php>
     <const name="TC_BASE_PATH" value="/var/www/html"/>
-    <const name="TC_DB_CLASS" value="TinCan\TCMySQL"/>
+    <const name="TC_DB_CLASS" value="TinCan\db\TCMySQL"/>
     <const name="TC_DB_HOST" value="172.18.0.2"/>
     <const name="TC_DB_USER" value="tincan"/>
     <const name="TC_DB_PASS" value="changethis"/>

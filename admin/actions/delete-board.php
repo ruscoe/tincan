@@ -1,11 +1,11 @@
 <?php
 
-use TinCan\TCBoard;
-use TinCan\TCData;
+use TinCan\objects\TCBoard;
+use TinCan\db\TCData;
 use TinCan\TCException;
-use TinCan\TCThread;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\objects\TCThread;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Tin Can board deletion handler.
@@ -16,11 +16,6 @@ use TinCan\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
 
 $board_id = filter_input(INPUT_POST, 'board_id', FILTER_SANITIZE_NUMBER_INT);
 $thread_fate = filter_input(INPUT_POST, 'thread_fate', FILTER_SANITIZE_STRING);

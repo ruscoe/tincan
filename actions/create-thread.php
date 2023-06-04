@@ -1,17 +1,17 @@
 <?php
 
-use TinCan\TCBoard;
-use TinCan\TCData;
+use TinCan\objects\TCBoard;
+use TinCan\db\TCData;
 use TinCan\TCErrorMessage;
 use TinCan\TCException;
 use TinCan\TCJSONResponse;
-use TinCan\TCObject;
-use TinCan\TCPost;
-use TinCan\TCPostSanitizer;
-use TinCan\TCThread;
-use TinCan\TCURL;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\objects\TCObject;
+use TinCan\objects\TCPost;
+use TinCan\content\TCPostSanitizer;
+use TinCan\objects\TCThread;
+use TinCan\template\TCURL;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Tin Can create thread handler.
@@ -22,14 +22,6 @@ use TinCan\TCUserSession;
  */
 require '../tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-error-message.php';
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/core/class-tc-json-response.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-content.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
 
 $board_id = filter_input(INPUT_POST, 'board_id', FILTER_SANITIZE_NUMBER_INT);
 $thread_title = filter_input(INPUT_POST, 'thread_title', FILTER_SANITIZE_STRING);

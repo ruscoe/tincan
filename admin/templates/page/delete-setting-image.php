@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCSetting;
+use TinCan\db\TCData;
+use TinCan\objects\TCSetting;
 
 /**
  * Page template for deleting an image via forum settings.

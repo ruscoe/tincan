@@ -1,12 +1,12 @@
 <?php
 
-use TinCan\TCBoard;
-use TinCan\TCData;
-use TinCan\TCPagination;
-use TinCan\TCTemplate;
-use TinCan\TCThread;
-use TinCan\TCURL;
-use TinCan\TCUser;
+use TinCan\objects\TCBoard;
+use TinCan\db\TCData;
+use TinCan\template\TCPagination;
+use TinCan\template\TCTemplate;
+use TinCan\objects\TCThread;
+use TinCan\template\TCURL;
+use TinCan\objects\TCUser;
 
 /**
  * Board page template.

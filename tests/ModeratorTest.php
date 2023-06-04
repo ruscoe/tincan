@@ -1,12 +1,10 @@
 <?php
 
-require_once TC_BASE_PATH.'/includes/include-objects.php';
-
 use PHPUnit\Framework\TestCase;
-use TinCan\TCPost;
-use TinCan\TCRole;
-use TinCan\TCThread;
-use TinCan\TCUser;
+use TinCan\objects\TCPost;
+use TinCan\objects\TCRole;
+use TinCan\objects\TCThread;
+use TinCan\objects\TCUser;
 
 class ModeratorTest extends TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-use TinCan\TCBoard;
-use TinCan\TCData;
-use TinCan\TCThread;
-use TinCan\TCPost;
+use TinCan\objects\TCBoard;
+use TinCan\db\TCData;
+use TinCan\objects\TCThread;
+use TinCan\objects\TCPost;
 
 /**
  * Page template for thread editing.

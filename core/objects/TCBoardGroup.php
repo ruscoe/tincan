@@ -1,9 +1,11 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\objects;
 
 /**
- * Represents a forum board.
+ * Represents a group of forum boards.
+ *
+ * Referenced in TCBoard::$board_group_id
  *
  * @package TinCan
  * @author  Dan Ruscoe <danruscoe@protonmail.com>
@@ -11,34 +13,22 @@ namespace TinCan;
  * @link    https://github.com/ruscoe/tincan
  * @since   0.01
  */
-class TCBoard extends TCObject
+class TCBoardGroup extends TCObject
 {
     /**
      * @since 0.01
      */
-    public $board_id;
+    public $board_group_id;
 
     /**
      * @since 0.01
      */
-    protected $board_name;
+    protected $board_group_name;
 
     /**
      * @since 0.08
      */
     protected $slug;
-
-    /**
-     * Reference to TCBoardGroup::$board_group_id.
-     *
-     * @since 0.01
-     */
-    protected $board_group_id;
-
-    /**
-     * @since 0.02
-     */
-    protected $description;
 
     /**
      * @since 0.01
@@ -51,28 +41,25 @@ class TCBoard extends TCObject
     protected $updated_time;
 
     /**
+     * @see   TCObject::validate_field_value()
+     * @since 0.01
+     */
+    public function validate_field_value($field_name, $value)
+    {
+        if (!parent::validate_field_value($field_name, $value)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * @see   TCObject::get_name()
      * @since 0.04
      */
     public function get_name()
     {
-        return $this->board_name;
-    }
-
-    /**
-     * @see   TCObject::get_parent()
-     * @since 0.04
-     */
-    public function get_parent()
-    {
-        $parent = null;
-
-        if (!empty($this->board_group_id)) {
-            $parent = new TCBoardGroup();
-            $parent->board_group_id = $this->board_group_id;
-        }
-
-        return $parent;
+        return $this->board_group_name;
     }
 
     /**
@@ -90,7 +77,7 @@ class TCBoard extends TCObject
      */
     public function get_primary_key()
     {
-        return 'board_id';
+        return 'board_group_id';
     }
 
     /**
@@ -99,7 +86,7 @@ class TCBoard extends TCObject
      */
     public function get_primary_key_value()
     {
-        return $this->board_id;
+        return $this->board_group_id;
     }
 
     /**
@@ -108,7 +95,7 @@ class TCBoard extends TCObject
      */
     public function get_db_table()
     {
-        return 'tc_boards';
+        return 'tc_board_groups';
     }
 
     /**
@@ -118,10 +105,8 @@ class TCBoard extends TCObject
     public function get_db_fields()
     {
         return [
-              'board_name',
+              'board_group_name',
               'slug',
-              'board_group_id',
-              'description',
               'created_time',
               'updated_time',
             ];

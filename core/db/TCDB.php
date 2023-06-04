@@ -1,6 +1,6 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\db;
 
 /**
  * Base class for Tin Can database services.

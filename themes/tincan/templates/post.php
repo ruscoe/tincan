@@ -1,8 +1,8 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCPostParser;
-use TinCan\TCURL;
+use TinCan\db\TCData;
+use TinCan\content\TCPostParser;
+use TinCan\template\TCURL;
 
 /**
  * Post template.

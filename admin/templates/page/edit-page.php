@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCPage;
+use TinCan\db\TCData;
+use TinCan\objects\TCPage;
 
 /**
  * Page template for page editing.

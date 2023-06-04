@@ -1,9 +1,9 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCPage;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\db\TCData;
+use TinCan\objects\TCPage;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Tin Can page creation handler.
@@ -14,10 +14,6 @@ use TinCan\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-user.php';
 
 $db = new TCData();
 $settings = $db->load_settings();

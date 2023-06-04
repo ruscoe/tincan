@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCURL;
-use TinCan\TCUserSession;
+use TinCan\template\TCURL;
+use TinCan\user\TCUserSession;
 
 /**
  * Tin Can log out handler.
@@ -12,10 +12,6 @@ use TinCan\TCUserSession;
  */
 require '../tc-config.php';
 
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
 
 // Destroy the user's session. Goodbye.
 $session = new TCUserSession();

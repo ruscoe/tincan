@@ -1,6 +1,6 @@
 <?php
 
-use TinCan\TCTemplate;
+use TinCan\template\TCTemplate;
 
 /**
  * Post reply template.

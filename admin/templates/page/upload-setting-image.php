@@ -1,6 +1,6 @@
 <?php
 
-use TinCan\TCData;
+use TinCan\db\TCData;
 
 /**
  * Page template for uploading an image via forum settings.

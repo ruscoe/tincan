@@ -1,13 +1,13 @@
 <?php
 
-use TinCan\TCData;
+use TinCan\db\TCData;
 use TinCan\TCErrorMessage;
 use TinCan\TCException;
 use TinCan\TCJSONResponse;
-use TinCan\TCPendingUser;
-use TinCan\TCURL;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\objects\TCPendingUser;
+use TinCan\template\TCURL;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Tin Can log in handler.
@@ -18,13 +18,6 @@ use TinCan\TCUserSession;
  */
 require '../tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-error-message.php';
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/core/class-tc-json-response.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
 
 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);

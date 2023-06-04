@@ -1,6 +1,6 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\objects;
 
 /**
  * Represents a pending forum user that needs confirmation.

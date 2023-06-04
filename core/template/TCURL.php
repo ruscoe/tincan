@@ -1,6 +1,9 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\template;
+
+use TinCan\TCException;
+use TinCan\objects\TCObject;
 
 /**
  * URL formatting functionality.

@@ -1,14 +1,14 @@
 <?php
 
-use TinCan\TCData;
+use TinCan\db\TCData;
 use TinCan\TCErrorMessage;
 use TinCan\TCException;
 use TinCan\TCJSONResponse;
-use TinCan\TCObject;
-use TinCan\TCPost;
-use TinCan\TCURL;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\objects\TCObject;
+use TinCan\objects\TCPost;
+use TinCan\template\TCURL;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Tin Can delete post handler.
@@ -19,14 +19,6 @@ use TinCan\TCUserSession;
  */
 require '../tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-error-message.php';
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/core/class-tc-json-response.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-content.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
 
 $post_id = filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT);
 $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);

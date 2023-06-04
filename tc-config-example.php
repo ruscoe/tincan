@@ -7,7 +7,7 @@ define('TC_UPLOADS_PATH', '/var/www/YOUR_SITE/uploads');
 
 /* Database server * */
 
-define('TC_DB_CLASS', 'TinCan\TCMySQL');
+define('TC_DB_CLASS', 'TinCan\db\TCMySQL');
 define('TC_DB_HOST', '172.18.0.2');
 define('TC_DB_USER', 'tincan');
 define('TC_DB_PASS', 'changethis');

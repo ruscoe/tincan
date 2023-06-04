@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCBoardGroup;
-use TinCan\TCData;
+use TinCan\objects\TCBoardGroup;
+use TinCan\db\TCData;
 
 /**
  * Page template for admin board group editing.

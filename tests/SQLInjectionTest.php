@@ -1,11 +1,7 @@
 <?php
 
-require_once TC_BASE_PATH.'/core/class-tc-exception.php';
-require_once TC_BASE_PATH.'/includes/include-db.php';
-require_once TC_BASE_PATH.'/includes/include-objects.php';
-
 use PHPUnit\Framework\TestCase;
-use TinCan\TCData;
+use TinCan\db\TCData;
 
 class SQLInjectionTest extends TestCase
 {

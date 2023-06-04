@@ -1,11 +1,7 @@
 <?php
 
-require_once TC_BASE_PATH.'/includes/include-db.php';
-require_once TC_BASE_PATH.'/includes/include-objects.php';
-require_once TC_BASE_PATH.'/includes/include-template.php';
-
 use PHPUnit\Framework\TestCase;
-use TinCan\TCPagination;
+use TinCan\template\TCPagination;
 
 class PaginationTest extends TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCURL;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\db\TCData;
+use TinCan\template\TCURL;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Admin page object filter handler.
@@ -14,10 +14,6 @@ use TinCan\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-user.php';
 require TC_BASE_PATH.'/core/template/class-tc-url.php';
 
 $db = new TCData();

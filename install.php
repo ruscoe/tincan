@@ -1,16 +1,16 @@
 <?php
 
-use TinCan\TCBoard;
-use TinCan\TCBoardGroup;
-use TinCan\TCData;
+use TinCan\objects\TCBoard;
+use TinCan\objects\TCBoardGroup;
+use TinCan\db\TCData;
 use TinCan\TCException;
-use TinCan\TCPage;
-use TinCan\TCPost;
-use TinCan\TCRole;
-use TinCan\TCSetting;
-use TinCan\TCThread;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\objects\TCPage;
+use TinCan\objects\TCPost;
+use TinCan\objects\TCRole;
+use TinCan\objects\TCSetting;
+use TinCan\objects\TCThread;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Installs Tin Can Forum with optional test data.
@@ -27,11 +27,8 @@ use TinCan\TCUserSession;
  */
 require 'tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
+require_once 'vendor/autoload.php';
+
 
 global $db;
 

@@ -1,6 +1,13 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\db;
+
+use TinCan\TCException;
+use TinCan\objects\TCSetting;
+use TinCan\objects\TCUser;
+use TinCan\objects\TCRole;
+use TinCan\objects\TCObject;
+use TinCan\objects\TCPost;
 
 /**
  * Tin Can database layer.
@@ -141,7 +148,7 @@ class TCData
      *
      * @since 0.01
      *
-     * @param string $class the class name
+     * @param object $class the class name
      * @param int    $id    the object ID
      *
      * @return object the populated object
@@ -246,7 +253,7 @@ class TCData
      *
      * @since 0.01
      *
-     * @param string $class      the class name of the objects
+     * @param object $class      the class name of the objects
      * @param array  $ids        the IDs of the objects
      * @param array  $conditions associative array of database fields and values to match.
      *                           Example: [ [ 'field' => 'role_id', 'value' => 1 ] ]
@@ -305,7 +312,7 @@ class TCData
      *
      * @since 0.12
      *
-     * @param string $class       the class name of the objects
+     * @param object $class       the class name of the objects
      * @param string $index_field the name of the field to index objects by
      * @param array  $ids         the IDs of the objects
      * @param array  $conditions  associative array of database fields and values to match.
@@ -345,7 +352,7 @@ class TCData
      *
      * @since 0.02
      *
-     * @param string $class      the class name of the objects
+     * @param object $class      the class name of the objects
      * @param array  $conditions associative array of database fields and values to match.
      *                           Example: [ [ 'field' => 'role_id', 'value' => 1 ] ]
      *
@@ -378,7 +385,7 @@ class TCData
      *
      * @since 0.04
      *
-     * @param string $class the class name of the object
+     * @param object $class the class name of the object
      * @param int    $id    the ID of the object
      *
      * @return object the database query result

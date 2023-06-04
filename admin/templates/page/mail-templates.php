@@ -1,8 +1,8 @@
 <?php
 
 use TinCan\Admin\TCAdminTemplate;
-use TinCan\TCData;
-use TinCan\TCMailTemplate;
+use TinCan\db\TCData;
+use TinCan\objects\TCMailTemplate;
 
 /**
  * Page template for mail templates list.

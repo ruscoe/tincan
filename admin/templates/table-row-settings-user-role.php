@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCRole;
+use TinCan\db\TCData;
+use TinCan\objects\TCRole;
 
 /**
  * Template used to display a settings table row for user roles.

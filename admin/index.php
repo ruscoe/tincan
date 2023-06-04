@@ -1,11 +1,11 @@
 <?php
 
 use TinCan\Admin\TCAdminTemplate;
-use TinCan\TCData;
+use TinCan\db\TCData;
 use TinCan\TCException;
-use TinCan\TCPage;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\objects\TCPage;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 // Tin Can Forum version.
 define('TC_VERSION', '0.15');
@@ -17,12 +17,9 @@ define('TC_VERSION', '0.15');
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
+require '../vendor/autoload.php';
 require '../tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-user.php';
 require TC_BASE_PATH.'/admin/class-tc-admin-template.php';
 
 $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);

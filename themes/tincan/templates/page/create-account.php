@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCTemplate;
-use TinCan\TCUser;
+use TinCan\template\TCTemplate;
+use TinCan\objects\TCUser;
 
 /**
  * Create account page template.

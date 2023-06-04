@@ -1,9 +1,9 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCTemplate;
-use TinCan\TCThread;
-use TinCan\TCURL;
+use TinCan\db\TCData;
+use TinCan\template\TCTemplate;
+use TinCan\objects\TCThread;
+use TinCan\template\TCURL;
 
 /**
  * Post Deleted page template.

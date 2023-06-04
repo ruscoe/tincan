@@ -1,8 +1,8 @@
 <?php
 
-use TinCan\TCBoard;
-use TinCan\TCData;
-use TinCan\TCThread;
+use TinCan\objects\TCBoard;
+use TinCan\db\TCData;
+use TinCan\objects\TCThread;
 
 /**
  * Page template for board deletion.
