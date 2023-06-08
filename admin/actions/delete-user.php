@@ -14,6 +14,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 $delete_user_id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
 

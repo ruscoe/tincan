@@ -14,6 +14,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 $submitted_fields = $_POST;
 

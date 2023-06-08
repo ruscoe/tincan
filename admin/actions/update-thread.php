@@ -15,6 +15,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 $thread_id = filter_input(INPUT_POST, 'thread_id', FILTER_SANITIZE_NUMBER_INT);
 $thread_title = trim(filter_input(INPUT_POST, 'thread_title', FILTER_SANITIZE_STRING));

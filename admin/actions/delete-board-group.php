@@ -16,6 +16,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 $board_group_id = filter_input(INPUT_POST, 'board_group_id', FILTER_SANITIZE_NUMBER_INT);
 $board_fate = filter_input(INPUT_POST, 'board_fate', FILTER_SANITIZE_STRING);

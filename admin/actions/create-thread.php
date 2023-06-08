@@ -16,6 +16,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING);
 

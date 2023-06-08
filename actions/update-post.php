@@ -19,6 +19,7 @@ use TinCan\user\TCUserSession;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 require '../tc-config.php';
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 
 $page_number = filter_input(INPUT_POST, 'page_number', FILTER_SANITIZE_NUMBER_INT);
