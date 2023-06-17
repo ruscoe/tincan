@@ -18,7 +18,8 @@
   },
   "autoload": {
     "psr-4": {
-      "TinCan\\": "core/"
+      "TinCan\\": "core/",
+      "TinCan\\Admin\\": "admin/"
     }
   }
 }

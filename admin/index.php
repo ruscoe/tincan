@@ -20,8 +20,6 @@ define('TC_VERSION', '0.15');
 require '../vendor/autoload.php';
 require '../tc-config.php';
 
-require TC_BASE_PATH.'/admin/class-tc-admin-template.php';
-
 $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
 $page = null;
 
