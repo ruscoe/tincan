@@ -1,6 +1,6 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\template;
 
 /**
  * Template parser.

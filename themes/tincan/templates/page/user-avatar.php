@@ -1,9 +1,9 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCTemplate;
-use TinCan\TCURL;
-use TinCan\TCUser;
+use TinCan\db\TCData;
+use TinCan\template\TCTemplate;
+use TinCan\template\TCURL;
+use TinCan\objects\TCUser;
 
 /**
  * User avatar page template.

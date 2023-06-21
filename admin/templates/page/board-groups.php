@@ -1,9 +1,9 @@
 <?php
 
 use TinCan\Admin\TCAdminTemplate;
-use TinCan\TCBoard;
-use TinCan\TCBoardGroup;
-use TinCan\TCData;
+use TinCan\objects\TCBoard;
+use TinCan\objects\TCBoardGroup;
+use TinCan\db\TCData;
 
 /**
  * Page template for admin board group list.

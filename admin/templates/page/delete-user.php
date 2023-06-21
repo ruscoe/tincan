@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCUser;
+use TinCan\db\TCData;
+use TinCan\objects\TCUser;
 
 /**
  * Page template for user deletion.

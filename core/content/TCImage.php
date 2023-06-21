@@ -1,6 +1,6 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\content;
 
 /**
  * Represents an image file.
@@ -70,7 +70,7 @@ class TCImage
             $image = imagecreatefrompng($source_image);
         }
 
-        return image;
+        return $image;
     }
 
     /**

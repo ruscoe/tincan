@@ -1,10 +1,10 @@
 <?php
 
 use TinCan\Admin\TCAdminTemplate;
-use TinCan\TCBoard;
-use TinCan\TCBoardGroup;
-use TinCan\TCData;
-use TinCan\TCThread;
+use TinCan\objects\TCBoard;
+use TinCan\objects\TCBoardGroup;
+use TinCan\db\TCData;
+use TinCan\objects\TCThread;
 
 /**
  * Page template for admin board list.

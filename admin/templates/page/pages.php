@@ -1,8 +1,8 @@
 <?php
 
 use TinCan\Admin\TCAdminTemplate;
-use TinCan\TCData;
-use TinCan\TCPage;
+use TinCan\db\TCData;
+use TinCan\objects\TCPage;
 
 /**
  * Page template for admin page list.

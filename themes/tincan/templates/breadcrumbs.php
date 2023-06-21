@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCURL;
+use TinCan\db\TCData;
+use TinCan\template\TCURL;
 
 /**
  * Breadcrumb template.

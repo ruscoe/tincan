@@ -1,6 +1,8 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\objects;
+
+use TinCan\TCException;
 
 /**
  * Base object for database records.

@@ -1,9 +1,9 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCPost;
-use TinCan\TCTemplate;
-use TinCan\TCURL;
+use TinCan\db\TCData;
+use TinCan\objects\TCPost;
+use TinCan\template\TCTemplate;
+use TinCan\template\TCURL;
 
 /**
  * Edit Post page template.

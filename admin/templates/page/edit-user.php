@@ -1,8 +1,8 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCRole;
-use TinCan\TCUser;
+use TinCan\db\TCData;
+use TinCan\objects\TCRole;
+use TinCan\objects\TCUser;
 
 /**
  * Page template for user editing.

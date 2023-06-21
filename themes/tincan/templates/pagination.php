@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCPagination;
-use TinCan\TCURL;
+use TinCan\template\TCPagination;
+use TinCan\template\TCURL;
 
 /**
  * Pagination template.

@@ -1,16 +1,16 @@
 <?php
 
-use TinCan\TCData;
+use TinCan\db\TCData;
 use TinCan\TCErrorMessage;
 use TinCan\TCException;
 use TinCan\TCJSONResponse;
 use TinCan\TCMailer;
-use TinCan\TCMailTemplate;
-use TinCan\TCObject;
-use TinCan\TCPendingUser;
-use TinCan\TCURL;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\objects\TCMailTemplate;
+use TinCan\objects\TCObject;
+use TinCan\objects\TCPendingUser;
+use TinCan\template\TCURL;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Tin Can create account handler.
@@ -23,14 +23,6 @@ require '../tc-config.php';
 // Composer autoload.
 require TC_BASE_PATH.'/vendor/autoload.php';
 
-require TC_BASE_PATH.'/core/class-tc-error-message.php';
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/core/class-tc-json-response.php';
-require TC_BASE_PATH.'/core/class-tc-mailer.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
 
 $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 

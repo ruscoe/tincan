@@ -1,6 +1,8 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\db;
+
+use TinCan\TCException;
 
 /**
  * Tin Can MySQL database service.
@@ -31,7 +33,7 @@ class TCMySQL extends TCDB
         try {
             // This is needed when using PHP 8 and above due to what looks like a bug.
             // @see https://github.com/joomlatools/joomlatools-framework/issues/554
-            return ($this->connection instanceof MySQLi) && @$this->_connection->ping();
+            return ($this->connection instanceof \MySQLi) && @$this->connection->ping();
         } catch (\Exception $e) {
             return false;
         }
@@ -43,7 +45,7 @@ class TCMySQL extends TCDB
      */
     public function open_connection()
     {
-        if (!empty($this->connection) && !$this->is_connected()) {
+        if (!empty($this->connection) && $this->is_connected()) {
             return $this->connection;
         }
 
@@ -69,6 +71,7 @@ class TCMySQL extends TCDB
     {
         if (!empty($this->connection) && $this->is_connected()) {
             $this->connection->close();
+            $this->connection = null;
         }
     }
 
@@ -116,6 +119,7 @@ class TCMySQL extends TCDB
 
                 return $result;
             }
+
         } elseif (!empty($prepared->error)) {
             throw new TCException('Unable to execute query: '.$prepared->error);
         }

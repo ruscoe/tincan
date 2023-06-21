@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCTemplate;
-use TinCan\TCURL;
+use TinCan\template\TCTemplate;
+use TinCan\template\TCURL;
 
 /**
  * Account confirmation page template.

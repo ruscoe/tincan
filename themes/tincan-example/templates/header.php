@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCURL;
-use TinCan\TCUser;
+use TinCan\template\TCURL;
+use TinCan\objects\TCUser;
 
 /**
  * Header template.

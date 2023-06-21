@@ -1,6 +1,6 @@
 <?php
 
-use TinCan\TCData;
+use TinCan\db\TCData;
 
 /**
  * Template used to display a settings table row for image settings.

@@ -1,10 +1,10 @@
 <?php
 
-use TinCan\TCData;
+use TinCan\db\TCData;
 use TinCan\TCException;
-use TinCan\TCSetting;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\objects\TCSetting;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Tin Can image setting deletion handler.
@@ -15,11 +15,7 @@ use TinCan\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 $setting = filter_input(INPUT_POST, 'setting', FILTER_SANITIZE_STRING);
 

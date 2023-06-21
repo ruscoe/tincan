@@ -2,6 +2,10 @@
 
 namespace TinCan;
 
+use TinCan\objects\TCObject;
+use TinCan\objects\TCThread;
+use TinCan\objects\TCUser;
+
 /**
  * Error message provider.
  *

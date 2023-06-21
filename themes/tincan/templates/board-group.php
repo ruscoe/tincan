@@ -1,6 +1,6 @@
 <?php
 
-use TinCan\TCURL;
+use TinCan\template\TCURL;
 
 /**
  * Board group template.

@@ -1,11 +1,11 @@
 <?php
 
-use TinCan\TCData;
+use TinCan\db\TCData;
 use TinCan\TCException;
-use TinCan\TCPage;
-use TinCan\TCTemplate;
-use TinCan\TCURL;
-use TinCan\TCUserSession;
+use TinCan\template\TCTemplate;
+use TinCan\user\TCUserSession;
+use TinCan\template\TCURL;
+use TinCan\objects\TCPage;
 
 // Tin Can Forum version.
 define('TC_VERSION', '0.15');
@@ -32,15 +32,6 @@ if (file_exists(TC_BASE_PATH.'/vendor/autoload.php')) {
 } else {
     exit('Composer vendor autoload file is missing. You may need to run <b>composer install</b> in the root directory. See README.md for information.');
 }
-
-require TC_BASE_PATH.'/core/class-tc-error-message.php';
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/core/class-tc-mailer.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-content.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
 
 $db = new TCData();
 

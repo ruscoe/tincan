@@ -1,12 +1,12 @@
 <?php
 
-use TinCan\TCBoard;
-use TinCan\TCBoardGroup;
-use TinCan\TCData;
-use TinCan\TCMailTemplate;
-use TinCan\TCPage;
-use TinCan\TCThread;
-use TinCan\TCUser;
+use TinCan\objects\TCBoard;
+use TinCan\objects\TCBoardGroup;
+use TinCan\db\TCData;
+use TinCan\objects\TCMailTemplate;
+use TinCan\objects\TCPage;
+use TinCan\objects\TCThread;
+use TinCan\objects\TCUser;
 
 /**
  * Generic page template for admin object deletion.

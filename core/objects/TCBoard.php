@@ -1,9 +1,9 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\objects;
 
 /**
- * Represents a forum post.
+ * Represents a forum board.
  *
  * @package TinCan
  * @author  Dan Ruscoe <danruscoe@protonmail.com>
@@ -11,31 +11,34 @@ namespace TinCan;
  * @link    https://github.com/ruscoe/tincan
  * @since   0.01
  */
-class TCPost extends TCObject
+class TCBoard extends TCObject
 {
     /**
      * @since 0.01
      */
-    public $post_id;
+    public $board_id;
 
     /**
-     * Reference to TCUser::$user_id.
+     * @since 0.01
+     */
+    protected $board_name;
+
+    /**
+     * @since 0.08
+     */
+    protected $slug;
+
+    /**
+     * Reference to TCBoardGroup::$board_group_id.
      *
      * @since 0.01
      */
-    protected $user_id;
+    protected $board_group_id;
 
     /**
-     * Reference to TCThread::$thread_id.
-     *
-     * @since 0.01
+     * @since 0.02
      */
-    protected $thread_id;
-
-    /**
-     * @since 0.01
-     */
-    protected $content;
+    protected $description;
 
     /**
      * @since 0.01
@@ -48,28 +51,12 @@ class TCPost extends TCObject
     protected $updated_time;
 
     /**
-     * Reference to TCUser::$user_id.
-     *
-     * @since 0.05
+     * @see   TCObject::get_name()
+     * @since 0.04
      */
-    protected $updated_by_user;
-
-    /**
-     * Gets this post's content trimmed to a given length and adds ellipses.
-     *
-     * @since 0.10
-     *
-     * @param int $length
-     *
-     * @return string the trimmed content
-     */
-    public function get_trimmed_content($length = 64)
+    public function get_name()
     {
-        if (strlen($this->content) < $length) {
-            return $this->content;
-        } else {
-            return substr($this->content, 0, $length).'...';
-        }
+        return $this->board_name;
     }
 
     /**
@@ -80,30 +67,21 @@ class TCPost extends TCObject
     {
         $parent = null;
 
-        if (!empty($this->thread_id)) {
-            $parent = new TCThread();
-            $parent->thread_id = $this->thread_id;
+        if (!empty($this->board_group_id)) {
+            $parent = new TCBoardGroup();
+            $parent->board_group_id = $this->board_group_id;
         }
 
         return $parent;
     }
 
     /**
-     * @see   TCObject::get_name()
-     * @since 0.06
-     */
-    public function get_name()
-    {
-        return 'Post '.$this->post_id;
-    }
-
-    /**
      * @see   TCObject::get_slug()
-     * @since 0.09
+     * @since 0.08
      */
     public function get_slug()
     {
-        return $this->post_id;
+        return $this->slug;
     }
 
     /**
@@ -112,7 +90,7 @@ class TCPost extends TCObject
      */
     public function get_primary_key()
     {
-        return 'post_id';
+        return 'board_id';
     }
 
     /**
@@ -121,7 +99,7 @@ class TCPost extends TCObject
      */
     public function get_primary_key_value()
     {
-        return $this->post_id;
+        return $this->board_id;
     }
 
     /**
@@ -130,7 +108,7 @@ class TCPost extends TCObject
      */
     public function get_db_table()
     {
-        return 'tc_posts';
+        return 'tc_boards';
     }
 
     /**
@@ -140,12 +118,12 @@ class TCPost extends TCObject
     public function get_db_fields()
     {
         return [
-              'user_id',
-              'thread_id',
-              'content',
+              'board_name',
+              'slug',
+              'board_group_id',
+              'description',
               'created_time',
               'updated_time',
-              'updated_by_user',
             ];
     }
 }

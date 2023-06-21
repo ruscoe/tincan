@@ -1,13 +1,13 @@
 <?php
 
-use TinCan\TCBoard;
-use TinCan\TCBoardGroup;
-use TinCan\TCData;
-use TinCan\TCMailTemplate;
-use TinCan\TCPage;
-use TinCan\TCThread;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\objects\TCBoard;
+use TinCan\objects\TCBoardGroup;
+use TinCan\db\TCData;
+use TinCan\objects\TCMailTemplate;
+use TinCan\objects\TCPage;
+use TinCan\objects\TCThread;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Tin Can delete object handler.
@@ -18,11 +18,7 @@ use TinCan\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 $object_type = filter_input(INPUT_POST, 'object_type', FILTER_SANITIZE_STRING);
 $object_id = filter_input(INPUT_POST, 'object_id', FILTER_SANITIZE_NUMBER_INT);

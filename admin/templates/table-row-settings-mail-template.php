@@ -1,7 +1,7 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCMailTemplate;
+use TinCan\db\TCData;
+use TinCan\objects\TCMailTemplate;
 
 /**
  * Template used to display a settings table row for mail templates.

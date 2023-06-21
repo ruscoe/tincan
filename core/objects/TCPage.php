@@ -1,11 +1,9 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\objects;
 
 /**
- * Represents a group of forum boards.
- *
- * Referenced in TCBoard::$board_group_id
+ * Represents a forum page.
  *
  * @package TinCan
  * @author  Dan Ruscoe <danruscoe@protonmail.com>
@@ -13,22 +11,27 @@ namespace TinCan;
  * @link    https://github.com/ruscoe/tincan
  * @since   0.01
  */
-class TCBoardGroup extends TCObject
+class TCPage extends TCObject
 {
     /**
      * @since 0.01
      */
-    public $board_group_id;
+    public $page_id;
 
     /**
      * @since 0.01
      */
-    protected $board_group_name;
+    protected $page_title;
 
     /**
      * @since 0.08
      */
     protected $slug;
+
+    /**
+     * @since 0.01
+     */
+    protected $template;
 
     /**
      * @since 0.01
@@ -41,25 +44,25 @@ class TCBoardGroup extends TCObject
     protected $updated_time;
 
     /**
-     * @see   TCObject::validate_field_value()
-     * @since 0.01
+     * @since 0.09
      */
-    public function validate_field_value($field_name, $value)
-    {
-        if (!parent::validate_field_value($field_name, $value)) {
-            return false;
-        }
+    protected $required;
 
-        return true;
+    /**
+     * @since 0.09
+     */
+    public function is_required()
+    {
+        return 1 == $this->required;
     }
 
     /**
      * @see   TCObject::get_name()
-     * @since 0.04
+     * @since 0.06
      */
     public function get_name()
     {
-        return $this->board_group_name;
+        return $this->page_title;
     }
 
     /**
@@ -77,7 +80,7 @@ class TCBoardGroup extends TCObject
      */
     public function get_primary_key()
     {
-        return 'board_group_id';
+        return 'page_id';
     }
 
     /**
@@ -86,7 +89,7 @@ class TCBoardGroup extends TCObject
      */
     public function get_primary_key_value()
     {
-        return $this->board_group_id;
+        return $this->page_id;
     }
 
     /**
@@ -95,7 +98,7 @@ class TCBoardGroup extends TCObject
      */
     public function get_db_table()
     {
-        return 'tc_board_groups';
+        return 'tc_pages';
     }
 
     /**
@@ -105,10 +108,12 @@ class TCBoardGroup extends TCObject
     public function get_db_fields()
     {
         return [
-              'board_group_name',
+              'page_title',
               'slug',
+              'template',
               'created_time',
               'updated_time',
+              'required',
             ];
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-use TinCan\TCData;
+use TinCan\db\TCData;
 use TinCan\TCException;
-use TinCan\TCPost;
-use TinCan\TCThread;
-use TinCan\TCUser;
-use TinCan\TCUserSession;
+use TinCan\objects\TCPost;
+use TinCan\objects\TCThread;
+use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * Tin Can thread deletion handler.
@@ -16,11 +16,7 @@ use TinCan\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/core/class-tc-exception.php';
-require TC_BASE_PATH.'/includes/include-db.php';
-require TC_BASE_PATH.'/includes/include-objects.php';
-require TC_BASE_PATH.'/includes/include-template.php';
-require TC_BASE_PATH.'/includes/include-user.php';
+require TC_BASE_PATH.'/vendor/autoload.php';
 
 $thread_id = filter_input(INPUT_POST, 'thread_id', FILTER_SANITIZE_NUMBER_INT);
 

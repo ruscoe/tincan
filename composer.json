@@ -15,5 +15,11 @@
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.11",
     "phpunit/phpunit": "^9"
+  },
+  "autoload": {
+    "psr-4": {
+      "TinCan\\": "core/",
+      "TinCan\\Admin\\": "admin/"
+    }
   }
 }

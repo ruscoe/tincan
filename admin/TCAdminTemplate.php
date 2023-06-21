@@ -17,7 +17,7 @@ class TCAdminTemplate
     {
         try {
             include TC_BASE_PATH.'/admin/templates/'.$template_name.'.php';
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
         }
     }
 }

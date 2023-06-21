@@ -1,8 +1,8 @@
 <?php
 
-use TinCan\TCData;
-use TinCan\TCPost;
-use TinCan\TCThread;
+use TinCan\db\TCData;
+use TinCan\objects\TCPost;
+use TinCan\objects\TCThread;
 
 /**
  * Page template for thread deletion.

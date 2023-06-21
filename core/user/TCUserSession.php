@@ -1,6 +1,8 @@
 <?php
 
-namespace TinCan;
+namespace TinCan\user;
+
+use TinCan\objects\TCUser;
 
 /**
  * User session management.
