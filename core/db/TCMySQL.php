@@ -111,6 +111,8 @@ class TCMySQL extends TCDB
         if (false !== $prepared->execute()) {
             $result = $prepared->get_result();
 
+            $insert_id = $this->get_last_insert_id();
+
             $this->close_connection();
 
             if (!empty($result)) {
@@ -124,7 +126,7 @@ class TCMySQL extends TCDB
             throw new TCException('Unable to execute query: '.$prepared->error);
         }
 
-        return null;
+        return $insert_id ?? null;
     }
 
     /**
@@ -133,6 +135,10 @@ class TCMySQL extends TCDB
      */
     public function get_last_insert_id()
     {
+        if (empty($this->connection)) {
+            return null;
+        }
+
         return $this->connection->insert_id;
     }
 

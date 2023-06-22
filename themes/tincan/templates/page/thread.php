@@ -6,6 +6,7 @@ use TinCan\objects\TCPost;
 use TinCan\template\TCTemplate;
 use TinCan\objects\TCThread;
 use TinCan\objects\TCUser;
+use TinCan\template\TCURL;
 
 /**
  * Thread page template.
