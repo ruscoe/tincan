@@ -214,10 +214,7 @@ class TCData
 
             $query = "INSERT INTO `{$db_table}` ({$sql_field_names}) VALUES ({$sql_field_values})";
 
-            $result = $this->database->query($query, $sql_params);
-
-            // Populate the new object's primary key.
-            $insert_id = $this->database->get_last_insert_id();
+            $insert_id = $this->database->query($query, $sql_params);
 
             $object->$primary_key = $insert_id;
 
