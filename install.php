@@ -15,8 +15,6 @@ use TinCan\user\TCUserSession;
 /**
  * Installs Tin Can Forum with optional test data.
  *
- * Configure database credentials in tc-config.php first.
- *
  * == DO NOT LEAVE THIS FILE ON A PUBLICLY ACCESSIBLE SERVER ==
  *
  * You should run this installer on a local dev environment then export
@@ -25,7 +23,6 @@ use TinCan\user\TCUserSession;
  *
  * If you need to run the installer in production, delete this file afterwards.
  */
-require 'tc-config.php';
 
 require_once 'vendor/autoload.php';
 
@@ -235,7 +232,7 @@ function tc_is_installed()
 {
     global $db;
 
-    $result = $db->run_query("SELECT count(*) AS `count` FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA` = '".TC_DB_NAME."' AND `TABLE_NAME` = 'tc_settings'");
+    $result = $db->run_query("SELECT count(*) AS `count` FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA` = '".getenv('TC_DB_NAME')."' AND `TABLE_NAME` = 'tc_settings'");
     $row = $result->fetch_object();
 
     return 0 !== (int) $row->count;

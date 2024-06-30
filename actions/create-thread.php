@@ -20,7 +20,6 @@ use TinCan\user\TCUserSession;
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-require '../tc-config.php';
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 

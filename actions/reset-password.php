@@ -16,7 +16,6 @@ use TinCan\objects\TCUser;
  *
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
-require '../tc-config.php';
 // Composer autoload.
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 

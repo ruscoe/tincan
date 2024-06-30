@@ -2,7 +2,6 @@ node_modules
 .sass-cache
 vendor
 uploads
-tc-config.php
 phpunit.xml
 .php-cs*
 .phpunit*
