@@ -16,7 +16,7 @@ services:
   web:
     build: .
     volumes:
-      - web_data:/var/www/html
+      - .:/var/www/html
     ports:
       - 80:80
     restart: always
@@ -27,4 +27,3 @@ services:
       - WORDPRESS_DB_NAME=wordpress
 volumes:
   db_data:
-  web_data:
