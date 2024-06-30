@@ -68,11 +68,16 @@ if (empty($error) && !$image->is_valid_size()) {
 // the user's ID. This just allows us to split up files and avoid massive
 // directories.
 
+if (!is_dir(getenv('TC_UPLOADS_PATH').'/avatars')) {
+    // If the avatars upload path doesn't exist, create it with write permissions.
+    mkdir(getenv('TC_UPLOADS_PATH').'/avatars', 0755);
+}
+
 $target_path = 'avatars/'.substr($avatar_user->user_id, -1);
 
 if (!is_dir(getenv('TC_UPLOADS_PATH').'/'.$target_path)) {
     // If the avatar upload path doesn't exist, create it with write permissions.
-    mkdir(getenv('TC_UPLOADS_PATH').'/'.$target_path, 0644, true);
+    mkdir(getenv('TC_UPLOADS_PATH').'/'.$target_path, 0755);
 }
 
 $target_file = $avatar_user->user_id.'.jpg';

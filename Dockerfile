@@ -27,4 +27,4 @@ RUN service nginx restart
 WORKDIR /var/www/html
 
 # Start PHP-FPM
-CMD /etc/init.d/php7.4-fpm start -F && nginx -g "daemon off;"
+CMD mkdir -p uploads; chown -R www-data:www-data uploads; chmod -R 755 uploads; /etc/init.d/php7.4-fpm start -F && nginx -g "daemon off;"
