@@ -14,6 +14,9 @@ RUN apt-get install \
 # Enable environment variables for PHP-FPM
 RUN sed -i 's/;clear_env = no/clear_env = no/' /etc/php/7.4/fpm/pool.d/www.conf
 
+# Enable verbose error messages
+RUN sed -i 's/display_errors = Off/display_errors = On/' /etc/php/7.4/fpm/php.ini
+
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
