@@ -12,7 +12,6 @@ Tin Can is not production-ready, but you can play around with it if you like.
 
 ## TODO
 
-* Fix avatar uploads
 * More secure installer; stop relying on install.php being deleted post-install
 
 ## Requirements

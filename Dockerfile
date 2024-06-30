@@ -7,6 +7,7 @@ RUN apt-get install \
   php7.4-common \
   php7.4-curl \
   php7.4-fpm \
+  php7.4-gd \
   php7.4-mysql \
   php7.4-xml \
   php7.4-zip -y
