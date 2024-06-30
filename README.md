@@ -45,6 +45,10 @@ Run the installer via your web browser at:
 
 `http://localhost/install.php`
 
+If you ever want to connect to the Docker container running the web server, run:
+
+`docker exec -it tincan-web-1 /bin/bash`
+
 ## Installation
 
 ![Tin Can installer screenshot](https://user-images.githubusercontent.com/87952/231024993-e80b7bbc-879d-4d40-8c55-bb27731fba49.png)
