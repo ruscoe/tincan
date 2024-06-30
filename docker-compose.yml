@@ -21,9 +21,13 @@ services:
       - 80:80
     restart: always
     environment:
-      - WORDPRESS_DB_HOST=db
-      - WORDPRESS_DB_USER=wordpress
-      - WORDPRESS_DB_PASSWORD=wordpress
-      - WORDPRESS_DB_NAME=wordpress
+      - TC_BASE_PATH=/var/www/html
+      - TC_UPLOADS_PATH=/var/www/html/uploads
+      - TC_DB_CLASS=TinCan\db\TCMySQL
+      - TC_DB_HOST=127.0.0.1
+      - TC_DB_USER=tincan
+      - TC_DB_PASS=tincan
+      - TC_DB_NAME=tincan
+      - TC_DB_PORT=3306
 volumes:
   db_data:
