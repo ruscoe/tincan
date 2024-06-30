@@ -30,7 +30,7 @@ if ($settings['enable_urls']) {
     <title><?php echo $settings['forum_name']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php if (!empty($settings['theme'])) {
-        include TC_BASE_PATH."/themes/{$settings['theme']}/header-include.php";
+        include getenv('TC_BASE_PATH')."/themes/{$settings['theme']}/header-include.php";
     } ?>
   </head>
   <body class="tincan <?php echo $data['page_template']; ?>">

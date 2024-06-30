@@ -18,7 +18,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 $object_type = filter_input(INPUT_POST, 'object_type', FILTER_SANITIZE_STRING);
 $object_id = filter_input(INPUT_POST, 'object_id', FILTER_SANITIZE_NUMBER_INT);

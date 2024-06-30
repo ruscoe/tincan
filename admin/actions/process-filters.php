@@ -14,7 +14,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 $db = new TCData();
 $settings = $db->load_settings();

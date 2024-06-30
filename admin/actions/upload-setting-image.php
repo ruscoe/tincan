@@ -16,7 +16,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 $setting = filter_input(INPUT_POST, 'setting', FILTER_SANITIZE_STRING);
 
@@ -72,7 +72,7 @@ if (empty($error) && !$image->is_valid_size()) {
 // The image filename is identical to the setting name.
 // TODO: Eventually integrate this into a media management system.
 $target_file = $setting.'.jpg';
-$target_full_path = TC_UPLOADS_PATH.'/'.$target_file;
+$target_full_path = getenv('TC_UPLOADS_PATH').'/'.$target_file;
 
 if (empty($error) && !move_uploaded_file($file['tmp_name'], $target_full_path)) {
     $error = TCImage::ERR_FILE_GENERAL;

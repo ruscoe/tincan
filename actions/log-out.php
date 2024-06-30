@@ -11,7 +11,7 @@ use TinCan\user\TCUserSession;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 require '../tc-config.php';
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 
 // Destroy the user's session. Goodbye.

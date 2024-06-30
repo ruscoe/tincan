@@ -30,12 +30,12 @@ class TCData
      */
     public function __construct()
     {
-        $db_class = TC_DB_CLASS;
-        $db_host = TC_DB_HOST;
-        $db_user = TC_DB_USER;
-        $db_pass = TC_DB_PASS;
-        $db_name = TC_DB_NAME;
-        $db_port = TC_DB_PORT;
+        $db_class = getenv('TC_DB_CLASS');
+        $db_host = getenv('TC_DB_HOST');
+        $db_user = getenv('TC_DB_USER');
+        $db_pass = getenv('TC_DB_PASS');
+        $db_name = getenv('TC_DB_NAME');
+        $db_port = getenv('TC_DB_PORT');
 
         $this->database = new $db_class($db_host, $db_user, $db_pass, $db_name, $db_port);
     }

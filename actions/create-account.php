@@ -21,7 +21,7 @@ use TinCan\user\TCUserSession;
  */
 require '../tc-config.php';
 // Composer autoload.
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 
 $ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);

@@ -15,7 +15,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 $page_id = filter_input(INPUT_POST, 'page_id', FILTER_SANITIZE_NUMBER_INT);
 $page_title = trim(filter_input(INPUT_POST, 'page_title', FILTER_SANITIZE_STRING));

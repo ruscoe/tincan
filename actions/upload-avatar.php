@@ -18,7 +18,7 @@ use TinCan\user\TCUserSession;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 require '../tc-config.php';
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 
 $avatar_user_id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
@@ -71,13 +71,13 @@ if (empty($error) && !$image->is_valid_size()) {
 
 $target_path = 'avatars/'.substr($avatar_user->user_id, -1);
 
-if (!is_dir(TC_UPLOADS_PATH.'/'.$target_path)) {
+if (!is_dir(getenv('TC_UPLOADS_PATH').'/'.$target_path)) {
     // If the avatar upload path doesn't exist, create it with write permissions.
-    mkdir(TC_UPLOADS_PATH.'/'.$target_path, 0644, true);
+    mkdir(getenv('TC_UPLOADS_PATH').'/'.$target_path, 0644, true);
 }
 
 $target_file = $avatar_user->user_id.'.jpg';
-$target_full_path = TC_UPLOADS_PATH.'/'.$target_path.'/'.$target_file;
+$target_full_path = getenv('TC_UPLOADS_PATH').'/'.$target_path.'/'.$target_file;
 
 if (empty($error) && !move_uploaded_file($file['tmp_name'], $target_full_path)) {
     $error = TCImage::ERR_FILE_GENERAL;

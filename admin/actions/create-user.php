@@ -14,7 +14,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
 $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING));

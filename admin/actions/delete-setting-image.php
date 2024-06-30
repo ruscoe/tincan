@@ -15,7 +15,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 $setting = filter_input(INPUT_POST, 'setting', FILTER_SANITIZE_STRING);
 

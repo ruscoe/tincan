@@ -28,11 +28,11 @@ class TCTemplate
     {
         $parent_theme = self::get_parent_theme($theme);
 
-        $template_path = TC_BASE_PATH.'/themes/'.$theme.'/templates/'.$template_name.'.php';
+        $template_path = getenv('TC_BASE_PATH').'/themes/'.$theme.'/templates/'.$template_name.'.php';
 
         if (!file_exists($template_path) && (null !== $parent_theme)) {
             // Template not found; try the parent theme.
-            $template_path = TC_BASE_PATH.'/themes/'.$parent_theme.'/templates/'.$template_name.'.php';
+            $template_path = getenv('TC_BASE_PATH').'/themes/'.$parent_theme.'/templates/'.$template_name.'.php';
         }
 
         if (file_exists($template_path)) {

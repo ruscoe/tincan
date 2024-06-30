@@ -18,7 +18,7 @@ use TinCan\objects\TCUser;
  */
 require '../tc-config.php';
 // Composer autoload.
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);

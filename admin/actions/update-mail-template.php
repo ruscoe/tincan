@@ -15,7 +15,7 @@ use TinCan\user\TCUserSession;
  */
 require '../../tc-config.php';
 
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 $mail_template_id = filter_input(INPUT_POST, 'mail_template_id', FILTER_SANITIZE_NUMBER_INT);
 $mail_template_name = filter_input(INPUT_POST, 'mail_template_name', FILTER_SANITIZE_STRING);

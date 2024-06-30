@@ -18,7 +18,7 @@ use TinCan\user\TCUserSession;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 require '../tc-config.php';
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 
 $post_id = filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT);

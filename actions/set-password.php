@@ -16,7 +16,7 @@ use TinCan\objects\TCUser;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 require '../tc-config.php';
-require TC_BASE_PATH.'/vendor/autoload.php';
+require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 
 $code = filter_input(INPUT_POST, 'code', FILTER_SANITIZE_STRING);
