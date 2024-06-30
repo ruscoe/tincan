@@ -1,6 +1,6 @@
 FROM ubuntu/nginx:1.18-20.04_beta
 
-RUN apt-get update && apt-get upgrade
+RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install \
   php7.4 \
