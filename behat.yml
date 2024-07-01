@@ -1,0 +1,11 @@
+default:
+  suites:
+    tincan:
+      contexts:
+        - FeatureContext
+        - Behat\MinkExtension\Context\MinkContext
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://localhost
+      browserkit_http: ~
+      selenium2: ~
