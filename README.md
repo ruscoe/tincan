@@ -66,9 +66,21 @@ See themes/README.md
 
 ## Running Tests
 
+### Unit Tests
+
 Run in the root directory:
 
-`phpunit`
+`./vendor/bin/phpunit`
+
+### Feature Tests (behat)
+
+Connect to the Docker container:
+
+`docker exec -it tincan-web-1 /bin/bash`
+
+Run:
+
+`./vendor/bin/behat`
 
 ## License
 
