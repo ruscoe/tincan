@@ -34,16 +34,14 @@ class FeatureContext implements Context
         $scenario_title = $scenario->getTitle();
 
         // Delete user created during the test.
-        if ($scenario_title === 'A new forum user creates an account') {
-            $steps = $scenario->getSteps();
+        $steps = $scenario->getSteps();
 
-            foreach ($steps as $step) {
-                if ($step->getText() == 'I fill in the following:') {
-                    $table = $step->getArguments()[0]->getTable();
-                    foreach ($table as $row) {
-                        if ($row[0] == 'email') {
-                            $this->delete_user($row[1]);
-                        }
+        foreach ($steps as $step) {
+            if ($step->getText() == 'I fill in the following:') {
+                $table = $step->getArguments()[0]->getTable();
+                foreach ($table as $row) {
+                    if ($row[0] == 'email') {
+                        $this->delete_user($row[1]);
                     }
                 }
             }
