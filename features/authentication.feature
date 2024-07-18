@@ -17,14 +17,14 @@ Feature: Authentication
 
   Scenario: An existing forum user logs into their account.
     Given users exist:
-    | username | email | password | role_id |
-    | TestUser01 | testuser01@example.org | T3stP@ss01 | 1 |
+    | username   | email                  | password   | role_id |
+    | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
     And I am on "/"
     When I follow "Log In"
     Then the ".section-header" element should contain "Log In"
     When I fill in the following:
-      | username | TestUser01             |
-      | password | T3stP@ss01             |
+      | username | TestUser01 |
+      | password | T3stP@ss01 |
     And press "Log in"
     Then I should see "Logged in as TestUser01"
     And I should see "Log Out"
