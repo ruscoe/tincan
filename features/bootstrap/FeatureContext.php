@@ -15,6 +15,8 @@ class FeatureContext implements Context
 {
     private $db;
 
+    private $created_users = [];
+
     /**
      * Initializes context.
      *
@@ -33,7 +35,7 @@ class FeatureContext implements Context
         $scenario = $event->getScenario();
         $scenario_title = $scenario->getTitle();
 
-        // Delete user created during the test.
+        // Track users created during the test.
         $steps = $scenario->getSteps();
 
         foreach ($steps as $step) {
@@ -41,10 +43,15 @@ class FeatureContext implements Context
                 $table = $step->getArguments()[0]->getTable();
                 foreach ($table as $row) {
                     if ($row[0] == 'email') {
-                        $this->delete_user($row[1]);
+                        $this->created_users[] = $row[1];
                     }
                 }
             }
+        }
+
+        // Delete users created during the test.
+        foreach ($this->created_users as $email) {
+            $this->delete_user($email);
         }
     }
 
