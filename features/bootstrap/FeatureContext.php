@@ -29,6 +29,27 @@ class FeatureContext implements Context
         $this->db = new TCData();
     }
 
+    /**
+     * @Given users exist:
+     */
+    public function given_users_exist(TableNode $table)
+    {
+        foreach ($table as $row) {
+            $user = new TCUser();
+            $user->username = $row['username'];
+            $user->email = $row['email'];
+            $user->password = $user->get_password_hash($row['password']);
+            $user->role_id = $row['role_id'];
+            $user->suspended = 0;
+            $user->created_time = time();
+            $user->updated_time = time();
+
+            $this->db->save_object($user);
+
+            $this->created_users[] = $row['email'];
+        }
+    }
+
     /** @AfterScenario */
     public function after($event)
     {

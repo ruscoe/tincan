@@ -16,15 +16,11 @@ Feature: Authentication
     And I should see "Log Out"
 
   Scenario: An existing forum user logs into their account.
-    Given I am on "/"
-    When I follow "Create Account"
-    And I fill in the following:
-      | username | TestUser01             |
-      | email    | testuser01@example.org |
-      | password | T3stP@ss01             |
-    And press "Create account"
-    And I follow "Log Out"
-    And I follow "Log In"
+    Given users exist:
+    | username | email | password | role_id |
+    | TestUser01 | testuser01@example.org | T3stP@ss01 | 1 |
+    And I am on "/"
+    When I follow "Log In"
     Then the ".section-header" element should contain "Log In"
     When I fill in the following:
       | username | TestUser01             |
