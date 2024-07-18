@@ -4,6 +4,7 @@ use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use TinCan\db\TCData;
+use TinCan\objects\TCBoard;
 use TinCan\objects\TCBoardGroup;
 use TinCan\objects\TCUser;
 
@@ -31,6 +32,12 @@ class FeatureContext implements Context
      * An associative array of board group IDs to names created during the test.
      */
     private $created_board_groups = [];
+
+    /**
+     * @var array
+     * An associative array of board IDs to names created during the test.
+     */
+    private $created_boards = [];
 
     /**
      * Initializes context.
@@ -82,6 +89,30 @@ class FeatureContext implements Context
         }
     }
 
+    /**
+     * @Given boards exist:
+     */
+    public function given_boards_exist(TableNode $table)
+    {
+        foreach ($table as $row) {
+            $board = new TCBoard();
+            $board->board_name = $row['board_name'];
+            $board->created_time = time();
+            $board->updated_time = time();
+
+            // Set the board group ID from the created board groups.
+            foreach ($this->created_board_groups as $board_group_id => $name) {
+                if ($name == $row['board_group_name']) {
+                    $board->board_group_id = $board_group_id;
+                }
+            }
+
+            $this->db->save_object($board);
+
+            $this->created_board_groups[$board->get_primary_key_value()] = $row['board_name'];
+        }
+    }
+
     /** @AfterScenario */
     public function after($event)
     {
@@ -111,6 +142,11 @@ class FeatureContext implements Context
         foreach ($this->created_board_groups as $board_group_id => $name) {
             $this->delete_board_group($board_group_id);
         }
+
+        // Delete boards created during the test.
+        foreach ($this->created_boards as $board_id => $name) {
+            $this->delete_board($board_id);
+        }
     }
 
     /**
@@ -135,5 +171,13 @@ class FeatureContext implements Context
     private function delete_board_group($board_group_id)
     {
         $this->db->delete_object(new TCBoardGroup(), $board_group_id);
+    }
+
+    /**
+     * Deletes a board from the database.
+     */
+    private function delete_board($board_id)
+    {
+        $this->db->delete_object(new TCBoard(), $board_id);
     }
 }
