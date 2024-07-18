@@ -4,6 +4,7 @@ use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use TinCan\db\TCData;
+use TinCan\objects\TCBoardGroup;
 use TinCan\objects\TCUser;
 
 require 'vendor/autoload.php';
@@ -16,6 +17,7 @@ class FeatureContext implements Context
     private $db;
 
     private $created_users = [];
+    private $created_board_groups = [];
 
     /**
      * Initializes context.
@@ -50,6 +52,23 @@ class FeatureContext implements Context
         }
     }
 
+    /**
+     * @Given board groups exist:
+     */
+    public function given_board_groups_exist(TableNode $table)
+    {
+        foreach ($table as $row) {
+            $board_group = new TCBoardGroup();
+            $board_group->board_group_name = $row['board_group_name'];
+            $board_group->created_time = time();
+            $board_group->updated_time = time();
+
+            $this->db->save_object($board_group);
+
+            $this->created_board_groups[] = $board_group->get_primary_key_value();
+        }
+    }
+
     /** @AfterScenario */
     public function after($event)
     {
@@ -74,6 +93,11 @@ class FeatureContext implements Context
         foreach ($this->created_users as $email) {
             $this->delete_user($email);
         }
+
+        // Delete board groups created during the test.
+        foreach ($this->created_board_groups as $board_group_id) {
+            $this->delete_board_group($board_group_id);
+        }
     }
 
     /**
@@ -90,5 +114,13 @@ class FeatureContext implements Context
         if (!empty($user)) {
             $this->db->delete_object(new TCUser(), $user->user_id);
         }
+    }
+
+    /**
+     * Deletes a board group from the database.
+     */
+    private function delete_board_group($board_group_id)
+    {
+        $this->db->delete_object(new TCBoardGroup(), $board_group_id);
     }
 }
