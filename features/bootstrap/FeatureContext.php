@@ -14,9 +14,22 @@ require 'vendor/autoload.php';
  */
 class FeatureContext implements Context
 {
+    /**
+     * @var TCData
+     * The database object.
+     */
     private $db;
 
+    /**
+     * @var array
+     * An array of user emails created during the test.
+     */
     private $created_users = [];
+
+    /**
+     * @var array
+     * An associative array of board group IDs to names created during the test.
+     */
     private $created_board_groups = [];
 
     /**
@@ -65,7 +78,7 @@ class FeatureContext implements Context
 
             $this->db->save_object($board_group);
 
-            $this->created_board_groups[] = $board_group->get_primary_key_value();
+            $this->created_board_groups[$board_group->get_primary_key_value()] = $row['board_group_name'];
         }
     }
 
@@ -95,7 +108,7 @@ class FeatureContext implements Context
         }
 
         // Delete board groups created during the test.
-        foreach ($this->created_board_groups as $board_group_id) {
+        foreach ($this->created_board_groups as $board_group_id => $name) {
             $this->delete_board_group($board_group_id);
         }
     }
