@@ -13,9 +13,9 @@ namespace TinCan\objects;
  */
 class TCRole extends TCObject
 {
-    public const ROLE_USER = 0;
-    public const ROLE_MODERATOR = 1;
-    public const ROLE_ADMINISTRATOR = 2;
+    public const ROLE_USER = 1;
+    public const ROLE_MODERATOR = 2;
+    public const ROLE_ADMINISTRATOR = 3;
 
     /**
      * @since 0.02
