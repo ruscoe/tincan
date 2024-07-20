@@ -8,9 +8,13 @@ RUN apt-get install \
   php8.1-curl \
   php8.1-fpm \
   php8.1-gd \
+  php8.1-mbstring \
   php8.1-mysql \
   php8.1-xml \
   php8.1-zip -y
+
+# Install mbstring extension for PHPUnit
+# RUN docker-php-ext-install mbstring
 
 # Enable environment variables for PHP-FPM
 RUN sed -i 's/;clear_env = no/clear_env = no/' /etc/php/8.1/fpm/pool.d/www.conf
