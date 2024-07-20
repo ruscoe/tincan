@@ -6,6 +6,8 @@ use Behat\Gherkin\Node\TableNode;
 use TinCan\db\TCData;
 use TinCan\objects\TCBoard;
 use TinCan\objects\TCBoardGroup;
+use TinCan\objects\TCPost;
+use TinCan\objects\TCThread;
 use TinCan\objects\TCUser;
 
 require 'vendor/autoload.php';
@@ -38,6 +40,18 @@ class FeatureContext implements Context
      * An associative array of board IDs to names created during the test.
      */
     private $created_boards = [];
+
+    /**
+     * @var array
+     * An associative array of thead IDs to names created during the test.
+     */
+    private $created_threads = [];
+
+    /**
+     * @var array
+     * An array of post IDs created during the test.
+     */
+    private $created_posts = [];
 
     /**
      * Initializes context.
@@ -109,7 +123,71 @@ class FeatureContext implements Context
 
             $this->db->save_object($board);
 
-            $this->created_board_groups[$board->get_primary_key_value()] = $row['board_name'];
+            $this->created_boards[$board->get_primary_key_value()] = $row['board_name'];
+        }
+    }
+
+    /**
+     * @Given threads exist:
+     */
+    public function given_threads_exist(TableNode $table)
+    {
+        foreach ($table as $row) {
+            $thread = new TCThread();
+            $thread->thread_title = $row['thread_title'];
+            $thread->created_time = time();
+            $thread->updated_time = time();
+            // No posts yet.
+            $thread->first_post_id = 0;
+
+            // Set the thread's user ID.
+            $user = $this->get_user($row['created_by_user']);
+            if (!empty($user)) {
+                $thread->created_by_user = $user->user_id;
+                $thread->updated_by_user = $user->user_id;
+            }
+
+            // Set the board ID from the created boards.
+            foreach ($this->created_boards as $board_id => $name) {
+                if ($name == $row['board_name']) {
+                    $thread->board_id = $board_id;
+                }
+            }
+
+            $this->db->save_object($thread);
+
+            $this->created_threads[$thread->get_primary_key_value()] = $row['thread_title'];
+        }
+    }
+
+    /**
+     * @Given posts exist:
+     */
+    public function given_posts_exist(TableNode $table)
+    {
+        foreach ($table as $row) {
+            $post = new TCPost();
+            $post->content = $row['content'];
+            $post->created_time = time();
+            $post->updated_time = time();
+
+            // Set the post's user ID.
+            $user = $this->get_user($row['created_by_user']);
+            if (!empty($user)) {
+                $post->user_id = $user->user_id;
+                $post->updated_by_user = $user->user_id;
+            }
+
+            // Set the thread ID from the created threads.
+            foreach ($this->created_threads as $thread_id => $name) {
+                if ($name == $row['thread_title']) {
+                    $post->thread_id = $thread_id;
+                }
+            }
+
+            $this->db->save_object($post);
+
+            $this->created_posts[] = $post->get_primary_key_value();
         }
     }
 
@@ -147,6 +225,34 @@ class FeatureContext implements Context
         foreach ($this->created_boards as $board_id => $name) {
             $this->delete_board($board_id);
         }
+
+        // Delete threads created during the test.
+        foreach ($this->created_threads as $thread_id => $name) {
+            $this->delete_thread($thread_id);
+        }
+
+        // Delete posts created during the test.
+        foreach ($this->created_posts as $post_id) {
+            $this->delete_post($post_id);
+        }
+    }
+
+    /**
+     * Gets a user from the database.
+     *
+     * @param string $email
+     *   The email address of the user.
+     *
+     * @return TCUser
+     */
+    private function get_user($email)
+    {
+        $conditions = [
+            ['field' => 'email', 'value' => $email],
+        ];
+        $results = $this->db->load_objects(new TCUser(), [], $conditions);
+
+        return reset($results);
     }
 
     /**
@@ -179,5 +285,21 @@ class FeatureContext implements Context
     private function delete_board($board_id)
     {
         $this->db->delete_object(new TCBoard(), $board_id);
+    }
+
+    /**
+     * Deletes a thread from the database.
+     */
+    private function delete_thread($thread_id)
+    {
+        $this->db->delete_object(new TCThread(), $thread_id);
+    }
+
+    /**
+     * Deletes a post from the database.
+     */
+    private function delete_post($post_id)
+    {
+        $this->db->delete_object(new TCPost(), $post_id);
     }
 }
