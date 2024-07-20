@@ -66,19 +66,15 @@ See themes/README.md
 
 ## Running Tests
 
-### Unit Tests
-
-Run in the root directory:
-
-`./vendor/bin/phpunit`
-
-### Feature Tests (behat)
-
-Connect to the Docker container:
+First, connect to the Docker container by running:
 
 `docker exec -it tincan-web-1 /bin/bash`
 
-Run:
+For unit tests, run:
+
+`./vendor/bin/phpunit`
+
+For feature tests (behat), run:
 
 `./vendor/bin/behat`
 
