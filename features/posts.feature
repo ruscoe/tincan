@@ -26,3 +26,25 @@ Feature: Posts
   Then the ".section-header" element should contain "Test Thread 01"
   And the ".post-user" element should contain "TestUser01"
   And the ".post-content" element should contain "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+
+  Scenario: A forum user creates a new thread
+  Given users exist:
+  | username   | email                  | password   | role_id |
+  | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
+  Given board groups exist:
+  | board_group_name    |
+  | Test Board Group 01 |
+  Given boards exist:
+  | board_name    | board_group_name    |
+  | Test Board 01 | Test Board Group 01 |
+  Given I am logged in as "testuser01@example.org"
+  When I am on "/"
+  And I follow "Test Board 01"
+  And I follow "New thread"
+  And I fill in the following:
+  | thread_title | Test Thread 02                                           |
+  | post_content | Lorem ipsum dolor sit amet, consectetur adipiscing elit. |
+  And I press "Submit thread"
+  Then the ".section-header" element should contain "Test Thread 02"
+  And the ".post-user" element should contain "TestUser01"
+  And the ".post-content" element should contain "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
