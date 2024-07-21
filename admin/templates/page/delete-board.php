@@ -62,7 +62,7 @@ if (!empty($board)) {
                 }
                 echo "<option value=\"{$available_board->board_id}\">{$available_board->board_name}</option>\n";
             }
-            ?>
+        ?>
       </select>
     </div>
   </div>

@@ -20,11 +20,11 @@ $page = $data['page'];
     <?php
     $error_message = new TCErrorMessage();
 
-    foreach ($errors as $error_code) {
-        $error_text = $error_message->get_error_message($page->template, $error_code);
+foreach ($errors as $error_code) {
+    $error_text = $error_message->get_error_message($page->template, $error_code);
 
-        echo "<li>{$error_text}</li>";
-    }
-    ?>
+    echo "<li>{$error_text}</li>";
+}
+?>
   </ul>
 </div>

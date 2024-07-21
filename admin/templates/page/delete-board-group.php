@@ -62,7 +62,7 @@ if (!empty($board_group)) {
                 }
                 echo "<option value=\"{$available_board_group->board_group_id}\">{$available_board_group->board_group_name}</option>\n";
             }
-            ?>
+        ?>
       </select>
     </div>
   </div>

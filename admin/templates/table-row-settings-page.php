@@ -19,7 +19,7 @@ $pages = $data['pages'];
             $selected = ($page->page_id == $setting->value) ? ' selected' : '';
             echo "<option value=\"{$page->page_id}\"{$selected}>{$page->page_title}</option>\n";
         }
-        ?>
+?>
     </select>
   </td>
 </tr>

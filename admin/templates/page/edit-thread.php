@@ -53,7 +53,7 @@ $form_action = (!empty($thread_id)) ? '/admin/actions/update-thread.php' : '/adm
             $selected = ($board->board_id == $thread->board_id) ? ' selected' : '';
             echo "<option value=\"{$board->board_id}\"{$selected}>{$board->board_name}</option>\n";
         }
-        ?>
+    ?>
       </select>
     </div>
   </div>

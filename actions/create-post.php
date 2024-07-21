@@ -97,7 +97,8 @@ $destination = '';
 if (empty($error)) {
     // Send user to their new post.
     $destination = TCURL::create_url(
-        $settings['page_thread'], [
+        $settings['page_thread'],
+        [
         'thread' => $thread_id,
         'start_at' => $total_pages,
         ]
@@ -125,7 +126,8 @@ if (!empty($ajax)) {
         // Send user back to the new post page with an error.
         // TODO: Add an anchor link to the form.
         $destination = TCURL::create_url(
-            $settings['page_thread'], [
+            $settings['page_thread'],
+            [
             'thread' => $thread_id,
             'start_at' => $total_pages,
             'error' => $error,

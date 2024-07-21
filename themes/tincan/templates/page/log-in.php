@@ -53,7 +53,7 @@ if (!empty($error)) {
     } else {
         $reset_password_url = TCURL::create_url($settings['page_reset_password']);
     }
-    ?>
+?>
 
   <a href="<?php echo $reset_password_url; ?>">Reset password</a>
 </form>

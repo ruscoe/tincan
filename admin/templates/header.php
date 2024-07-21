@@ -46,17 +46,16 @@ $user = $data['user'];
             '/admin?page='.$settings['admin_page_pages'] => 'Pages',
             '/admin?page='.$settings['admin_page_mail_templates'] => 'Mail Templates',
           ];
-            ?>
+?>
 
         <ul>
           <?php
-            foreach ($nav_items as $url => $title)
-            {
-                ?>
+foreach ($nav_items as $url => $title) {
+    ?>
               <li><a href="<?php echo $url; ?>"><?php echo $title; ?></a></li>
                 <?php
-            }
-            ?>
+}
+?>
         </ul>
 
       </div>

@@ -135,7 +135,8 @@ if (!empty($ajax)) {
 
     if ($response->success) {
         $response->target_url = TCURL::create_url(
-            $settings['page_thread'], [
+            $settings['page_thread'],
+            [
             'thread' => $new_thread->thread_id,
             ]
         );
@@ -151,14 +152,16 @@ if (!empty($ajax)) {
     if (empty($error)) {
         // Send user to their new thread.
         $destination = TCURL::create_url(
-            $settings['page_thread'], [
+            $settings['page_thread'],
+            [
             'thread' => $new_thread->thread_id,
             ]
         );
     } else {
         // Send user back to the new thread page with an error.
         $destination = TCURL::create_url(
-            $settings['page_new_thread'], [
+            $settings['page_new_thread'],
+            [
             'board' => $board_id,
             'error' => $error,
             'title' => $thread_title,

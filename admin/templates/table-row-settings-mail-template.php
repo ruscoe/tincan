@@ -26,7 +26,7 @@ $templates = $db->load_objects(new TCMailTemplate());
           <option value="<?php echo $template->mail_template_id; ?>"<?php echo $selected; ?>><?php echo $template->mail_template_name; ?></option>
             <?php
         }
-        ?>
+?>
     </select>
   </div>
 </div>

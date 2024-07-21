@@ -74,15 +74,15 @@ $parser = new TCPostParser();
 
             echo ')';
         }
-        ?>
+?>
     </div>
     <?php
     $url_id = ($settings['enable_urls']) ? $settings['base_url_edit_post'] : $settings['page_edit_post'];
-    $edit_post_url = TCURL::create_url($url_id, ['post' => $post->post_id, 'page_number' => $page_number], $settings['enable_urls'], $post->get_slug());
+$edit_post_url = TCURL::create_url($url_id, ['post' => $post->post_id, 'page_number' => $page_number], $settings['enable_urls'], $post->get_slug());
 
-    $url_id = ($settings['enable_urls']) ? $settings['base_url_delete_post'] : $settings['page_delete_post'];
-    $delete_post_url = TCURL::create_url($url_id, ['post' => $post->post_id, 'page_number' => $page_number], $settings['enable_urls'], $post->get_slug());
-    ?>
+$url_id = ($settings['enable_urls']) ? $settings['base_url_delete_post'] : $settings['page_delete_post'];
+$delete_post_url = TCURL::create_url($url_id, ['post' => $post->post_id, 'page_number' => $page_number], $settings['enable_urls'], $post->get_slug());
+?>
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
     <ul class="post-controls" data-post="<?php echo $post->post_id; ?>">
       <?php if (!empty($user) && $user->can_edit_post($post)) { ?>

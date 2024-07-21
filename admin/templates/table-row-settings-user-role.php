@@ -26,7 +26,7 @@ $roles = $db->load_objects(new TCRole());
           <option value="<?php echo $role->role_id; ?>"<?php echo $selected; ?>><?php echo $role->role_name; ?></option>
             <?php
         }
-        ?>
+?>
     </select>
   </div>
 </div>

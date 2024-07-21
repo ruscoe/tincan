@@ -30,24 +30,24 @@ $pages = $db->load_objects(new TCPage());
 
   <?php
     $settings_by_cat = [];
-    foreach ($settings as $setting) {
-        if (!isset($settings_by_cat[$setting->category])) {
-            $settings_by_cat[$setting->category] = [];
-        }
-
-        $settings_by_cat[$setting->category][] = $setting;
+foreach ($settings as $setting) {
+    if (!isset($settings_by_cat[$setting->category])) {
+        $settings_by_cat[$setting->category] = [];
     }
 
-    $last_category = null;
+    $settings_by_cat[$setting->category][] = $setting;
+}
 
-    foreach ($settings_by_cat as $category => $settings) {
-        ?>
+$last_category = null;
+
+foreach ($settings_by_cat as $category => $settings) {
+    ?>
     <div class="setting-category">
       <h2><?php echo $settings[0]->category; ?></h2>
       <table>
         <?php
-        foreach ($settings as $setting) {
-            switch ($setting->type) {
+    foreach ($settings as $setting) {
+        switch ($setting->type) {
             case 'page':
                 // Don't display page settings. Too easy to break the entire forum by
                 // reassigning default pages.
@@ -67,13 +67,13 @@ $pages = $db->load_objects(new TCPage());
                 break;
             default:
                 TCAdminTemplate::render('table-row-settings-text', ['setting' => $setting]);
-            }
-        } ?>
+        }
+    } ?>
     </table>
   </div>
         <?php
-    }
-    ?>
+}
+?>
   </table>
 
   <div class="fieldset button">

@@ -61,7 +61,7 @@ $form_action = (!empty($update_user_id)) ? '/admin/actions/update-user.php' : '/
             $selected = ($role->role_id == $user->role_id) ? ' selected' : '';
             echo "<option value=\"{$role->role_id}\"{$selected}>{$role->role_name}</option>\n";
         }
-        ?>
+?>
       </select>
     </div>
   </div>
@@ -69,7 +69,7 @@ $form_action = (!empty($update_user_id)) ? '/admin/actions/update-user.php' : '/
   <?php
     // Users cannot suspend themselves.
     $can_suspend = ($user->user_id !== $update_user->user_id);
-    ?>
+?>
 
   <div class="fieldset">
     <label for="suspended">Suspended</label>

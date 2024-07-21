@@ -12,15 +12,15 @@
   <?php
     foreach ($data as $item) {
         switch ($item['type']) {
-        case 'text':
-            echo '<td>'.$item['value'].'</td>';
-            break;
-        case 'link':
-            echo '<td><a href="'.$item['url'].'">'.$item['value'].'</a></td>';
-            break;
-        default:
-            echo '<td>&nbsp;</td>';
+            case 'text':
+                echo '<td>'.$item['value'].'</td>';
+                break;
+            case 'link':
+                echo '<td><a href="'.$item['url'].'">'.$item['value'].'</a></td>';
+                break;
+            default:
+                echo '<td>&nbsp;</td>';
         }
     }
-    ?>
+?>
 </tr>

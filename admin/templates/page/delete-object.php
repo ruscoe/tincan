@@ -25,21 +25,21 @@ $class = null;
 $object = null;
 
 switch ($object_type) {
-case 'board_group':
-    $class = new TCBoardGroup();
-    break;
-case 'page':
-    $class = new TCPage();
-    break;
-case 'thread':
-    $class = new TCThread();
-    break;
-case 'user':
-    $class = new TCUser();
-    break;
-case 'mail_template':
-    $class = new TCMailTemplate();
-    break;
+    case 'board_group':
+        $class = new TCBoardGroup();
+        break;
+    case 'page':
+        $class = new TCPage();
+        break;
+    case 'thread':
+        $class = new TCThread();
+        break;
+    case 'user':
+        $class = new TCUser();
+        break;
+    case 'mail_template':
+        $class = new TCMailTemplate();
+        break;
 }
 
 if (!empty($class)) {

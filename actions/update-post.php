@@ -75,7 +75,8 @@ $destination = '';
 if (empty($error)) {
     // Send user to their updated post.
     $destination = TCURL::create_url(
-        $settings['page_thread'], [
+        $settings['page_thread'],
+        [
         'thread' => $post->thread_id,
         'start_at' => $page_number,
         ]
@@ -103,7 +104,8 @@ if (!empty($ajax)) {
     if (!empty($error)) {
         // Send user back to the new post page with an error.
         $destination = TCURL::create_url(
-            $settings['page_edit_post'], [
+            $settings['page_edit_post'],
+            [
             'post' => $post->post_id,
             'error' => $error,
             ]
