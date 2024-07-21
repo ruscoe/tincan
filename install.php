@@ -313,6 +313,18 @@ function tc_create_tables()
       PRIMARY KEY (`role_id`,`action_id`)
     )',
 
+      'DROP TABLE IF EXISTS `tc_sessions`',
+
+      "CREATE TABLE `tc_sessions` (
+      `session_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `user_id` bigint(20) unsigned NOT NULL,
+      `hash` varchar(255) NOT NULL DEFAULT '',
+      `created_time` int(10) unsigned NOT NULL,
+      `expiration_time` int(10) unsigned NOT NULL,
+      PRIMARY KEY (`session_id`),
+      KEY `HASH_INDEX` (`hash`)
+    )",
+
       'DROP TABLE IF EXISTS `tc_settings`',
 
       "CREATE TABLE `tc_settings` (
