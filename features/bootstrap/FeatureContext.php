@@ -3,10 +3,12 @@
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Behat\MinkExtension\Context\RawMinkContext;
 use TinCan\db\TCData;
 use TinCan\objects\TCBoard;
 use TinCan\objects\TCBoardGroup;
 use TinCan\objects\TCPost;
+use TinCan\objects\TCSession;
 use TinCan\objects\TCThread;
 use TinCan\objects\TCUser;
 
@@ -15,7 +17,7 @@ require 'vendor/autoload.php';
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext implements Context
+class FeatureContext extends RawMinkContext implements Context
 {
     /**
      * @var TCData
@@ -188,6 +190,29 @@ class FeatureContext implements Context
             $this->db->save_object($post);
 
             $this->created_posts[] = $post->get_primary_key_value();
+        }
+    }
+
+    /**
+     * @Given I am logged in as :email
+     */
+    public function given_i_am_logged_in_as($email)
+    {
+        $user = $this->get_user($email);
+
+        if (!empty($user)) {
+            // Create a new session.
+            $session = new TCSession();
+            $session->user_id = $user->user_id;
+            $session->hash = $session->generate_random_hash();
+            $session->created_time = time();
+            // Set the session expiration time to 30 days.
+            $session->expiration_time = time() + (60 * 60 * 24 * 30);
+
+            $this->db->save_object($session);
+
+            // Set the session cookie.
+            $this->getSession()->setcookie('session', $session->get_hash(), time() + (60 * 60 * 24 * 30), '/');
         }
     }
 
