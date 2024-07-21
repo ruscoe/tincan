@@ -32,6 +32,9 @@ class TCUserSession
         if (!empty($_SESSION['user_id'])) {
             $this->user_id = $_SESSION['user_id'];
         }
+        else if (!empty($_COOKIE['user_id'])) {
+            $this->user_id = $_COOKIE['user_id'];
+        }
     }
 
     public function create_session(TCUser $user)
@@ -39,6 +42,8 @@ class TCUserSession
         session_start();
 
         $_SESSION['user_id'] = $user->user_id;
+
+        setcookie('user_id', $user->user_id, time() + 60 * 60 * 24 * 365, '/');
     }
 
     public function destroy_session()
