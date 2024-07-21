@@ -74,3 +74,26 @@ Feature: Posts
   | post_content | Nullam euismod faucibus ipsum, a porttitor odio eleifend eget. |
   And I press "Save changes"
   Then the ".post-content" element should contain "Nullam euismod faucibus ipsum, a porttitor odio eleifend eget."
+
+  Scenario: A forum user cannot edit another user's post
+  Given users exist:
+  | username   | email                  | password   | role_id |
+  | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
+  | TestUser02 | testuser02@example.org | T3stP@ss01 | 1       |
+  Given board groups exist:
+  | board_group_name    |
+  | Test Board Group 01 |
+  Given boards exist:
+  | board_name    | board_group_name    |
+  | Test Board 01 | Test Board Group 01 |
+  Given threads exist:
+  | thread_title   | created_by_user        | board_name    |
+  | Test Thread 01 | testuser01@example.org | Test Board 01 |
+  Given posts exist:
+  | content                                                  | created_by_user        | thread_title   |
+  | Lorem ipsum dolor sit amet, consectetur adipiscing elit. | testuser01@example.org | Test Thread 01 |
+  Given I am logged in as "testuser02@example.org"
+  When I am on "/"
+  And I follow "Test Board 01"
+  And I follow "Test Thread 01"
+  Then I should not see "Edit"
