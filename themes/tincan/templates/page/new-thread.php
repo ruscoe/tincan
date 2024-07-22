@@ -32,6 +32,12 @@ if (!empty($board_id)) {
     $board = reset($matched_boards);
 }
 
+// 404 if board does not exist.
+if (empty($board)) {
+  header('Location: '.TCURL::create_url($settings['page_404']));
+  exit;
+}
+
 TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 
 // Check user has permission to create a new thread.
