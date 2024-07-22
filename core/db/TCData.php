@@ -389,6 +389,10 @@ class TCData
      */
     public function delete_object($class, $id)
     {
+        if (empty($class) || empty($id)) {
+            return null;
+        }
+
         $db_table = $class->get_db_table();
         $primary_key = $class->get_primary_key();
 
