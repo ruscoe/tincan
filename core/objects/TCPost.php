@@ -55,6 +55,11 @@ class TCPost extends TCObject
     protected $updated_by_user;
 
     /**
+     * @since 0.16
+     */
+    protected $deleted = 0;
+
+    /**
      * Gets this post's content trimmed to a given length and adds ellipses.
      *
      * @since 0.10
@@ -146,6 +151,7 @@ class TCPost extends TCObject
               'created_time',
               'updated_time',
               'updated_by_user',
+              'deleted',
             ];
     }
 }

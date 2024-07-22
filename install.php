@@ -293,6 +293,7 @@ function tc_create_tables()
       `updated_time` int(10) unsigned NOT NULL,
       `created_time` int(10) unsigned NOT NULL,
       `updated_by_user` bigint(20) unsigned NOT NULL,
+      `deleted` tinyint(1) unsigned NOT NULL DEFAULT 0,
       PRIMARY KEY (`post_id`)
     ) AUTO_INCREMENT=1000',
 
@@ -350,6 +351,7 @@ function tc_create_tables()
       `updated_by_user` bigint(20) unsigned NOT NULL,
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
+      `deleted` tinyint(1) unsigned NOT NULL DEFAULT 0,
       PRIMARY KEY (`thread_id`)
     ) AUTO_INCREMENT=1000",
 

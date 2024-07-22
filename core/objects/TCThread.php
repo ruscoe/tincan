@@ -70,6 +70,11 @@ class TCThread extends TCObject
     protected $updated_time;
 
     /**
+     * @since 0.16
+     */
+    protected $deleted = 0;
+
+    /**
      * Determines whether a given post can be deleted.
      *
      * @since 0.06
@@ -161,6 +166,7 @@ class TCThread extends TCObject
               'updated_by_user',
               'created_time',
               'updated_time',
+              'deleted',
             ];
     }
 }
