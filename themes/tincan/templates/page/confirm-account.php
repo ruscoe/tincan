@@ -13,7 +13,8 @@ use TinCan\template\TCURL;
 $settings = $data['settings'];
 $page = $data['page'];
 $user = $data['user'];
-$error = $data['error'];
+
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => 'Account Confirmation', 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 ?>
