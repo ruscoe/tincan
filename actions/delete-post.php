@@ -74,7 +74,7 @@ if (empty($error)) {
 } else {
     // Send user back to the delete post page with an error.
     $destination = TCURL::create_url(
-        $settings['page_post_deleted'],
+        $settings['page_delete_post'],
         [
         'post' => $post->post_id,
         'error' => $error,
