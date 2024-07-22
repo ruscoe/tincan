@@ -22,11 +22,9 @@ use TinCan\user\TCUserSession;
  */
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-
 $board_id = filter_input(INPUT_POST, 'board_id', FILTER_SANITIZE_NUMBER_INT);
 $thread_title = filter_input(INPUT_POST, 'thread_title', FILTER_SANITIZE_STRING);
 $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_STRING);
-$ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
@@ -126,50 +124,28 @@ if (empty($error)) {
     }
 }
 
-if (!empty($ajax)) {
-    header('Content-type: application/json; charset=utf-8');
+$destination = '';
 
-    $response = new TCJSONResponse();
-
-    $response->success = (empty($error));
-
-    if ($response->success) {
-        $response->target_url = TCURL::create_url(
-            $settings['page_thread'],
-            [
-            'thread' => $new_thread->thread_id,
-            ]
-        );
-    } else {
-        $error_message = new TCErrorMessage();
-        $response->errors = $error_message->get_error_message('new-thread', $error);
-    }
-
-    exit($response->get_output());
+if (empty($error)) {
+    // Send user to their new thread.
+    $destination = TCURL::create_url(
+        $settings['page_thread'],
+        [
+        'thread' => $new_thread->thread_id,
+        ]
+    );
 } else {
-    $destination = '';
-
-    if (empty($error)) {
-        // Send user to their new thread.
-        $destination = TCURL::create_url(
-            $settings['page_thread'],
-            [
-            'thread' => $new_thread->thread_id,
-            ]
-        );
-    } else {
-        // Send user back to the new thread page with an error.
-        $destination = TCURL::create_url(
-            $settings['page_new_thread'],
-            [
-            'board' => $board_id,
-            'error' => $error,
-            'title' => $thread_title,
-            'content' => $post_content,
-            ]
-        );
-    }
-
-    header('Location: '.$destination);
-    exit;
+    // Send user back to the new thread page with an error.
+    $destination = TCURL::create_url(
+        $settings['page_new_thread'],
+        [
+        'board' => $board_id,
+        'error' => $error,
+        'title' => $thread_title,
+        'content' => $post_content,
+        ]
+    );
 }
+
+header('Location: '.$destination);
+exit;

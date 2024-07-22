@@ -22,10 +22,8 @@ use TinCan\user\TCUserSession;
  */
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-
 $thread_id = filter_input(INPUT_POST, 'thread_id', FILTER_SANITIZE_NUMBER_INT);
 $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_STRING);
-$ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
@@ -107,34 +105,18 @@ if (empty($error)) {
     $destination .= '#post-'.$new_post->post_id;
 }
 
-if (!empty($ajax)) {
-    header('Content-type: application/json; charset=utf-8');
-
-    $response = new TCJSONResponse();
-
-    $response->success = (empty($error));
-    $response->target_url = $destination;
-
-    if (!empty($error)) {
-        $error_message = new TCErrorMessage();
-        $response->errors = $error_message->get_error_message('create-post', $error);
-    }
-
-    exit($response->get_output());
-} else {
-    if (!empty($error)) {
-        // Send user back to the new post page with an error.
-        // TODO: Add an anchor link to the form.
-        $destination = TCURL::create_url(
-            $settings['page_thread'],
-            [
-            'thread' => $thread_id,
-            'start_at' => $total_pages,
-            'error' => $error,
-            ]
-        );
-    }
-
-    header('Location: '.$destination);
-    exit;
+if (!empty($error)) {
+    // Send user back to the new post page with an error.
+    // TODO: Add an anchor link to the form.
+    $destination = TCURL::create_url(
+        $settings['page_thread'],
+        [
+        'thread' => $thread_id,
+        'start_at' => $total_pages,
+        'error' => $error,
+        ]
+    );
 }
+
+header('Location: '.$destination);
+exit;

@@ -19,9 +19,7 @@ use TinCan\user\TCUserSession;
  */
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-
 $avatar_user_id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
-$ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
@@ -103,39 +101,24 @@ if (empty($error)) {
     }
 }
 
-if (!empty($ajax)) {
-    header('Content-type: application/json; charset=utf-8');
-
-    $response = new TCJSONResponse();
-
-    $response->success = (empty($error));
-
-    if (!empty($error)) {
-        $error_message = new TCErrorMessage();
-        $response->errors = $error_message->get_error_message('upload-avatar', $error);
-    }
-
-    exit($response->get_output());
-} else {
-    try {
-        $settings = $db->load_settings();
-    } catch (TCException $e) {
-        echo $e->getMessage();
-        exit;
-    }
-
-    $destination = null;
-
-    if (empty($error)) {
-        // Send user to the updated page.
-        $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-        $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id], $settings['enable_urls'], $avatar_user->get_slug());
-    } else {
-        // Send user back to the page with an error.
-        $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-        $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id, 'error' => $error], $settings['enable_urls'], $avatar_user->get_slug());
-    }
-
-    header('Location: '.$destination);
+try {
+    $settings = $db->load_settings();
+} catch (TCException $e) {
+    echo $e->getMessage();
     exit;
 }
+
+$destination = null;
+
+if (empty($error)) {
+    // Send user to the updated page.
+    $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
+    $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id], $settings['enable_urls'], $avatar_user->get_slug());
+} else {
+    // Send user back to the page with an error.
+    $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
+    $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id, 'error' => $error], $settings['enable_urls'], $avatar_user->get_slug());
+}
+
+header('Location: '.$destination);
+exit;

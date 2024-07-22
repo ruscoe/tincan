@@ -19,9 +19,7 @@ use TinCan\user\TCUserSession;
  */
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-
 $post_id = filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT);
-$ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
@@ -63,41 +61,26 @@ try {
     $error = TCObject::ERR_NOT_SAVED;
 }
 
-if (!empty($ajax)) {
-    header('Content-type: application/json; charset=utf-8');
+$destination = '';
 
-    $response = new TCJSONResponse();
-    $response->success = (empty($error));
-    $response->post_id = (!empty($post)) ? $post->post_id : null;
-
-    if (!empty($error)) {
-        $error_message = new TCErrorMessage();
-        $response->errors = $error_message->get_error_message('delete-post', $error);
-    }
-
-    exit($response->get_output());
+if (empty($error)) {
+    // Send user to the confirmation page.
+    $destination = TCURL::create_url(
+        $settings['page_post_deleted'],
+        [
+        'thread' => $post->thread_id,
+        ]
+    );
 } else {
-    $destination = '';
-
-    if (empty($error)) {
-        // Send user to the confirmation page.
-        $destination = TCURL::create_url(
-            $settings['page_post_deleted'],
-            [
-            'thread' => $post->thread_id,
-            ]
-        );
-    } else {
-        // Send user back to the delete post page with an error.
-        $destination = TCURL::create_url(
-            $settings['page_post_deleted'],
-            [
-            'post' => $post->post_id,
-            'error' => $error,
-            ]
-        );
-    }
-
-    header('Location: '.$destination);
-    exit;
+    // Send user back to the delete post page with an error.
+    $destination = TCURL::create_url(
+        $settings['page_post_deleted'],
+        [
+        'post' => $post->post_id,
+        'error' => $error,
+        ]
+    );
 }
+
+header('Location: '.$destination);
+exit;

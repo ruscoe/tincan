@@ -18,10 +18,8 @@ use TinCan\user\TCUserSession;
  */
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-
 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-$ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
@@ -64,30 +62,15 @@ if (empty($error)) {
     $session->create_session($user);
 }
 
-if (!empty($ajax)) {
-    header('Content-type: application/json; charset=utf-8');
+$destination = '';
 
-    $response = new TCJSONResponse();
-
-    $response->success = (empty($error));
-
-    if (!empty($error)) {
-        $error_message = new TCErrorMessage();
-        $response->errors = $error_message->get_error_message('log-in', $error);
-    }
-
-    exit($response->get_output());
+if (empty($error)) {
+    // Send user to the forum homepage.
+    $destination = TCURL::create_url(null);
 } else {
-    $destination = '';
-
-    if (empty($error)) {
-        // Send user to the forum homepage.
-        $destination = TCURL::create_url(null);
-    } else {
-        // Send user back to the log in page with an error.
-        $destination = TCURL::create_url($settings['page_log_in'], ['error' => $error]);
-    }
-
-    header('Location: '.$destination);
-    exit;
+    // Send user back to the log in page with an error.
+    $destination = TCURL::create_url($settings['page_log_in'], ['error' => $error]);
 }
+
+header('Location: '.$destination);
+exit;

@@ -20,11 +20,9 @@ use TinCan\user\TCUserSession;
  */
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-
 $page_number = filter_input(INPUT_POST, 'page_number', FILTER_SANITIZE_NUMBER_INT);
 $post_id = filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT);
 $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_STRING);
-$ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
@@ -85,33 +83,16 @@ if (empty($error)) {
     $destination .= '#post-'.$post->post_id;
 }
 
-if (!empty($ajax)) {
-    header('Content-type: application/json; charset=utf-8');
-
-    $response = new TCJSONResponse();
-
-    $response->success = (empty($error));
-    $response->post_id = (!empty($post)) ? $post->post_id : null;
-    $response->target_url = $destination;
-
-    if (!empty($error)) {
-        $error_message = new TCErrorMessage();
-        $response->errors = $error_message->get_error_message('update-post', $error);
-    }
-
-    exit($response->get_output());
-} else {
-    if (!empty($error)) {
-        // Send user back to the new post page with an error.
-        $destination = TCURL::create_url(
-            $settings['page_edit_post'],
-            [
-            'post' => $post->post_id,
-            'error' => $error,
-            ]
-        );
-    }
-
-    header('Location: '.$destination);
-    exit;
+if (!empty($error)) {
+    // Send user back to the new post page with an error.
+    $destination = TCURL::create_url(
+        $settings['page_edit_post'],
+        [
+        'post' => $post->post_id,
+        'error' => $error,
+        ]
+    );
 }
+
+header('Location: '.$destination);
+exit;

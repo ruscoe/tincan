@@ -22,9 +22,6 @@ use TinCan\user\TCUserSession;
 // Composer autoload.
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-
-$ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
-
 $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
 $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING));
 // Don't trim password. Spaces are permitted anywhere in the password.
@@ -138,44 +135,29 @@ if (empty($error) && (!$settings['require_confirm_email'])) {
     $session->create_session($user);
 }
 
-if (!empty($ajax)) {
-    header('Content-type: application/json; charset=utf-8');
 
-    $response = new TCJSONResponse();
+$destination = '';
 
-    $response->success = (empty($error));
-    $response->target_url = ($settings['require_confirm_email']) ? TCURL::create_url($settings['page_create_account'], ['status' => 'sent']) : '/';
-
-    if (!empty($error)) {
-        $error_message = new TCErrorMessage();
-        $response->errors = $error_message->get_error_message('create-account', $error);
-    }
-
-    exit($response->get_output());
-} else {
-    $destination = '';
-
-    if (empty($error)) {
-        if ($settings['require_confirm_email']) {
-            // Send user to the create account page with success message.
-            $url_id = ($settings['enable_urls']) ? 'create-account' : $settings['page_create_account'];
-            $destination = TCURL::create_url($url_id, ['status' => 'sent'], $settings['enable_urls']);
-        } else {
-            // Send the user to the forum homepage.
-            header('Location: '.TCURL::create_url(null));
-            exit;
-        }
-    } else {
-        // Send user back to the create account page with an error.
+if (empty($error)) {
+    if ($settings['require_confirm_email']) {
+        // Send user to the create account page with success message.
         $url_id = ($settings['enable_urls']) ? 'create-account' : $settings['page_create_account'];
-        $url_params = [
-          'username' => $username,
-          'email' => $email,
-          'error' => $error,
-        ];
-        $destination = TCURL::create_url($url_id, $url_params, $settings['enable_urls']);
+        $destination = TCURL::create_url($url_id, ['status' => 'sent'], $settings['enable_urls']);
+    } else {
+        // Send the user to the forum homepage.
+        header('Location: '.TCURL::create_url(null));
+        exit;
     }
-
-    header('Location: '.$destination);
-    exit;
+} else {
+    // Send user back to the create account page with an error.
+    $url_id = ($settings['enable_urls']) ? 'create-account' : $settings['page_create_account'];
+    $url_params = [
+        'username' => $username,
+        'email' => $email,
+        'error' => $error,
+    ];
+    $destination = TCURL::create_url($url_id, $url_params, $settings['enable_urls']);
 }
+
+header('Location: '.$destination);
+exit;

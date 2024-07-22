@@ -19,9 +19,7 @@ use TinCan\objects\TCUser;
 // Composer autoload.
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
-$ajax = filter_input(INPUT_POST, 'ajax', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
@@ -99,30 +97,15 @@ if (empty($error)) {
     }
 }
 
-if (!empty($ajax)) {
-    header('Content-type: application/json; charset=utf-8');
+$destination = '';
 
-    $response = new TCJSONResponse();
-
-    $response->success = (empty($error));
-
-    if (!empty($error)) {
-        $error_message = new TCErrorMessage();
-        $response->errors = $error_message->get_error_message('reset-password', $error);
-    }
-
-    exit($response->get_output());
+if (empty($error)) {
+    // Send user to the reset password page with a success message.
+    $destination = TCURL::create_url($settings['page_reset_password'], ['status' => 'sent']);
 } else {
-    $destination = '';
-
-    if (empty($error)) {
-        // Send user to the reset password page with a success message.
-        $destination = TCURL::create_url($settings['page_reset_password'], ['status' => 'sent']);
-    } else {
-        // Send user back to the reset password page with an error.
-        $destination = TCURL::create_url($settings['page_reset_password'], ['error' => $error]);
-    }
-
-    header('Location: '.$destination);
-    exit;
+    // Send user back to the reset password page with an error.
+    $destination = TCURL::create_url($settings['page_reset_password'], ['error' => $error]);
 }
+
+header('Location: '.$destination);
+exit;
