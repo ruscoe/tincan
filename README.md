@@ -6,9 +6,7 @@ The name comes from the [tin can telephone](https://en.wikipedia.org/wiki/Tin_ca
 
 Tin Can is not production-ready, but you can play around with it if you like.
 
-![Tin Can screenshot](https://user-images.githubusercontent.com/87952/231024890-7c25b40e-147e-43ab-aded-d139e5f09518.png)
-
-![Tin Can screenshot](https://user-images.githubusercontent.com/87952/231024931-3e36e90c-a3b2-4d40-a3de-d733b568c477.png)
+![Tin Can screenshot](https://github.com/user-attachments/assets/3ba89a57-f60b-4f15-bd27-94cf39af62b1)
 
 ## TODO
 
