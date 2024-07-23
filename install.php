@@ -718,21 +718,21 @@ function tc_create_users()
         'email' => 'manny@example.org',
         'password' => $user->get_password_hash('manny'),
         'role_id' => 2, // Moderator user role.
-        'avatar' => '/assets/images/sample-avatars/manny.png',
+        'avatar' => '/assets/images/sample-avatars/0_0.png',
       ],
       [
         'username' => 'Meche',
         'email' => 'meche@example.org',
         'password' => $user->get_password_hash('meche'),
         'role_id' => 1, // User role.
-        'avatar' => '/assets/images/sample-avatars/meche.png',
+        'avatar' => '/assets/images/sample-avatars/0_1.png',
       ],
       [
         'username' => 'Domino',
         'email' => 'domino@example.org',
         'password' => $user->get_password_hash('domino'),
         'role_id' => 1, // User role.
-        'avatar' => '/assets/images/sample-avatars/domino.png',
+        'avatar' => '/assets/images/sample-avatars/0_2.png',
       ],
     ];
 
