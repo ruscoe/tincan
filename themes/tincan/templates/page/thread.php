@@ -64,9 +64,13 @@ $offset = TCPagination::calculate_page_offset($start_at, $settings['posts_per_pa
 $posts = $db->load_objects(new TCPost(), [], $conditions, $order, $offset, $settings['posts_per_page']);
 
 foreach ($posts as $post) {
+  if ($post->deleted) {
+    TCTemplate::render('deleted-post', $settings['theme'], ['post' => $post]);
+  }
+  else {
     $author = $db->load_user($post->user_id);
-
     TCTemplate::render('post', $settings['theme'], ['thread' => $thread, 'page_number' => $start_at, 'post' => $post, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
+  }
 }
 
 $page_params = [
@@ -82,5 +86,3 @@ if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_POST)) {
 }
 
 ?>
-
-<div id="delete-post-dialog">Really delete this post?</div>

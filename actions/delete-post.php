@@ -55,8 +55,10 @@ if (empty($error) && (empty($user) || !$user->can_delete_post($post))) {
     $error = TCUser::ERR_NOT_AUTHORIZED;
 }
 
+$post->deleted = true;
+
 try {
-    $db->delete_object($post, $post->post_id);
+    $db->save_object($post);
 } catch (TCException $e) {
     $error = TCObject::ERR_NOT_SAVED;
 }
