@@ -16,7 +16,6 @@ use TinCan\objects\TCUser;
 $settings = $data['settings'];
 $page = $data['page'];
 $user = $data['user'];
-$slug = $data['slug'];
 
 $board_id = filter_input(INPUT_GET, 'board', FILTER_SANITIZE_NUMBER_INT);
 $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
@@ -27,9 +26,6 @@ $db = new TCData();
 
 if (!empty($board_id)) {
     $board = $db->load_object(new TCBoard(), $board_id);
-} elseif (!empty($slug)) {
-    $matched_boards = $db->load_objects(new TCBoard(), null, [['field' => 'slug', 'value' => $slug]]);
-    $board = reset($matched_boards);
 }
 
 // 404 if board does not exist.

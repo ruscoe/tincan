@@ -24,11 +24,6 @@ class TCPage extends TCObject
     protected $page_title;
 
     /**
-     * @since 0.08
-     */
-    protected $slug;
-
-    /**
      * @since 0.01
      */
     protected $template;
@@ -66,15 +61,6 @@ class TCPage extends TCObject
     }
 
     /**
-     * @see   TCObject::get_slug()
-     * @since 0.08
-     */
-    public function get_slug()
-    {
-        return $this->slug;
-    }
-
-    /**
      * @see   TCObject::get_primary_key()
      * @since 0.01
      */
@@ -109,7 +95,6 @@ class TCPage extends TCObject
     {
         return [
               'page_title',
-              'slug',
               'template',
               'created_time',
               'updated_time',

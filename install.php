@@ -248,11 +248,9 @@ function tc_create_tables()
       "CREATE TABLE `tc_board_groups` (
       `board_group_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `board_group_name` varchar(255) NOT NULL DEFAULT '',
-      `slug` varchar(255) NOT NULL DEFAULT '',
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
-      PRIMARY KEY (`board_group_id`),
-      UNIQUE KEY `SLUG_INDEX` (`slug`)
+      PRIMARY KEY (`board_group_id`)
     ) AUTO_INCREMENT=1000",
 
       'DROP TABLE IF EXISTS `tc_boards`',
@@ -260,13 +258,11 @@ function tc_create_tables()
       "CREATE TABLE `tc_boards` (
       `board_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `board_name` varchar(255) NOT NULL DEFAULT '',
-      `slug` varchar(255) NOT NULL DEFAULT '',
       `board_group_id` bigint(20) unsigned NOT NULL,
       `description` mediumtext NOT NULL,
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
-      PRIMARY KEY (`board_id`),
-      KEY `SLUG_INDEX` (`slug`)
+      PRIMARY KEY (`board_id`)
     ) AUTO_INCREMENT=1000",
 
       'DROP TABLE IF EXISTS `tc_pages`',
@@ -274,13 +270,11 @@ function tc_create_tables()
       "CREATE TABLE `tc_pages` (
       `page_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `page_title` varchar(255) NOT NULL DEFAULT '',
-      `slug` varchar(255) NOT NULL DEFAULT '',
       `template` varchar(255) NOT NULL DEFAULT '',
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
       `required` tinyint(1) unsigned NOT NULL,
-      PRIMARY KEY (`page_id`),
-      KEY `SLUG_INDEX` (`slug`)
+      PRIMARY KEY (`page_id`)
     ) AUTO_INCREMENT=1000",
 
       'DROP TABLE IF EXISTS `tc_posts`',
@@ -345,7 +339,6 @@ function tc_create_tables()
       `thread_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `board_id` bigint(20) unsigned NOT NULL,
       `thread_title` varchar(255) NOT NULL DEFAULT '',
-      `slug` varchar(255) NOT NULL DEFAULT '',
       `first_post_id` bigint(20) unsigned NOT NULL,
       `created_by_user` bigint(20) unsigned NOT NULL,
       `updated_by_user` bigint(20) unsigned NOT NULL,
@@ -492,76 +485,6 @@ function tc_create_settings($install_settings = [])
           'type' => 'bool',
           'title' => 'Enable CSS',
           'value' => 'true',
-        ],
-        [
-          'setting_name' => 'enable_urls',
-          'category' => 'urls',
-          'type' => 'bool',
-          'title' => 'Enable friendly URLs',
-          'value' => 'false',
-        ],
-        [
-          'setting_name' => 'base_url_board_groups',
-          'category' => 'urls',
-          'type' => 'text',
-          'title' => 'Board groups base URL',
-          'value' => 'board-groups/%slug%',
-        ],
-        [
-          'setting_name' => 'base_url_boards',
-          'category' => 'urls',
-          'type' => 'text',
-          'title' => 'Boards base URL',
-          'value' => 'boards/%slug%',
-        ],
-        [
-          'setting_name' => 'base_url_threads',
-          'category' => 'urls',
-          'type' => 'text',
-          'title' => 'Threads base URL',
-          'value' => 'threads/%slug%',
-        ],
-        [
-          'setting_name' => 'base_url_users',
-          'category' => 'urls',
-          'type' => 'text',
-          'title' => 'Users base URL',
-          'value' => 'users/%slug%',
-        ],
-        [
-          'setting_name' => 'base_url_pages',
-          'category' => 'urls',
-          'type' => 'text',
-          'title' => 'Pages base URL',
-          'value' => 'pages/%slug%',
-        ],
-        [
-          'setting_name' => 'base_url_new_thread',
-          'category' => 'urls',
-          'type' => 'text',
-          'title' => 'New thread base URL',
-          'value' => 'boards/%slug%/new',
-        ],
-        [
-          'setting_name' => 'base_url_edit_post',
-          'category' => 'urls',
-          'type' => 'text',
-          'title' => 'Edit post base URL',
-          'value' => 'posts/%slug%/edit',
-        ],
-        [
-          'setting_name' => 'base_url_delete_post',
-          'category' => 'urls',
-          'type' => 'text',
-          'title' => 'Delete post base URL',
-          'value' => 'posts/%slug%/delete',
-        ],
-        [
-          'setting_name' => 'base_url_avatar',
-          'category' => 'urls',
-          'type' => 'text',
-          'title' => 'Upload avatar URL',
-          'value' => 'users/%slug%/avatar',
         ],
         [
           'setting_name' => 'site_email_name',
@@ -749,7 +672,6 @@ function tc_create_pages()
       ];
 
     foreach ($pages as $page) {
-        $page['slug'] = '';
         $page['created_time'] = time();
         $page['updated_time'] = time();
         // All default pages are required and cannot be deleted.
@@ -757,8 +679,6 @@ function tc_create_pages()
 
         try {
             $saved_page = $db->save_object(new TCPage((object) $page));
-
-            $saved_page->slug = $saved_page->generate_slug();
             $db->save_object($saved_page);
         } catch (TCException $e) {
             echo $e->getMessage()."\n";
@@ -863,14 +783,11 @@ function tc_create_board_groups()
     $new_board_group_ids = [];
 
     foreach ($board_groups as $board_group) {
-        $board_group['slug'] = '';
         $board_group['created_time'] = time();
         $board_group['updated_time'] = time();
 
         try {
             $new_board_group = $db->save_object(new TCBoardGroup((object) $board_group));
-
-            $new_board_group->slug = $new_board_group->generate_slug();
             $db->save_object($new_board_group);
         } catch (TCException $e) {
             echo $e->getMessage()."\n";
@@ -899,14 +816,11 @@ function tc_create_boards($new_board_group_ids)
     $new_board_ids = [];
 
     foreach ($boards as $board) {
-        $board['slug'] = '';
         $board['created_time'] = time();
         $board['updated_time'] = time();
 
         try {
             $new_board = $db->save_object(new TCBoard((object) $board));
-
-            $new_board->slug = $new_board->generate_slug();
             $db->save_object($new_board);
         } catch (TCException $e) {
             echo $e->getMessage()."\n";
@@ -933,7 +847,6 @@ function tc_create_threads($new_board_ids)
     $new_thread_ids = [];
 
     foreach ($threads as $thread) {
-        $thread['slug'] = '';
         $thread['created_by_user'] = 1000;
         $thread['updated_by_user'] = 1000;
         $thread['first_post_id'] = 1000;
@@ -942,8 +855,6 @@ function tc_create_threads($new_board_ids)
 
         try {
             $new_thread = $db->save_object(new TCThread((object) $thread));
-
-            $new_thread->slug = $new_thread->generate_slug();
             $db->save_object($new_thread);
         } catch (TCException $e) {
             echo $e->getMessage()."\n";

@@ -43,7 +43,6 @@ try {
 }
 
 $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
-$page_slug = null;
 $page = null;
 
 $request_uri = filter_input(INPUT_SERVER, 'REQUEST_URI');
@@ -51,54 +50,11 @@ $path = explode('?', $request_uri)[0];
 
 $page_template = null;
 
+// Get page template if available, otherwise default to 404.
 if (('/' == $path) && empty($page_id)) {
     $page_template = 'front';
-} elseif ($settings['enable_urls'] && empty($page_id) && !empty($path)) {
-    // Work out page ID from friendly URL.
-    $base_urls_to_page_ids = [
-      $settings['base_url_board_groups'] => $settings['page_board_group'],
-      $settings['base_url_boards'] => $settings['page_board'],
-      $settings['base_url_threads'] => $settings['page_thread'],
-      $settings['base_url_users'] => $settings['page_user'],
-      $settings['base_url_new_thread'] => $settings['page_new_thread'],
-      $settings['base_url_edit_post'] => $settings['page_edit_post'],
-      $settings['base_url_delete_post'] => $settings['page_delete_post'],
-      $settings['base_url_avatar'] => $settings['page_user_avatar'],
-      'log-in' => $settings['page_log_in'],
-      'log-out' => $settings['page_log_out'],
-      'create-account' => $settings['page_create_account'],
-      'reset-password' => $settings['page_reset_password'],
-    ];
-
-    // Attempt to match a base URL with the current path.
-    foreach ($base_urls_to_page_ids as $base_url => $base_page_id) {
-        // Start regex with initial slash.
-        $regex_prefix = '#^/';
-        // End regex with optional trailing slash or slash with question mark to
-        // support URL parameters. Do not accept any other appendages.
-        // Case insensitive.
-        $regex_suffix = '(/?|(/\?)?)#i';
-        // Replace the %slug% token with the regex string.
-        $path_regex = $regex_prefix.str_replace('%slug%', '([a-z_\-0-9]*)', $base_url).$regex_suffix;
-
-        $page_matches = null;
-        preg_match($path_regex, $path, $page_matches);
-
-        // We have a match! Set the page ID and slug to be used by the template.
-        if (!empty($page_matches)) {
-            $page_id = $base_page_id;
-            $page_slug = (isset($page_matches[1])) ? $page_matches[1] : null;
-        }
-    }
-
-    if (empty($page_id)) {
-        // Page not found, redirect to 404 error page.
-        header('Location: '.TCURL::create_url($settings['page_404']));
-        exit;
-    }
 }
 
-// Get page template if available, otherwise default to 404.
 if (!empty($page_id)) {
     $page = $db->load_object(new TCPage(), $page_id);
 
@@ -122,5 +78,5 @@ $user_id = $session->get_user_id();
 $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Render page.
-TCTemplate::render('page/'.$page_template, $settings['theme'], ['page' => $page, 'settings' => $settings, 'user' => $user, 'slug' => $page_slug]);
+TCTemplate::render('page/'.$page_template, $settings['theme'], ['page' => $page, 'settings' => $settings, 'user' => $user]);
 TCTemplate::render('footer', $settings['theme'], null);

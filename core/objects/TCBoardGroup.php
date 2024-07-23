@@ -26,11 +26,6 @@ class TCBoardGroup extends TCObject
     protected $board_group_name;
 
     /**
-     * @since 0.08
-     */
-    protected $slug;
-
-    /**
      * @since 0.01
      */
     protected $created_time;
@@ -60,15 +55,6 @@ class TCBoardGroup extends TCObject
     public function get_name()
     {
         return $this->board_group_name;
-    }
-
-    /**
-     * @see   TCObject::get_slug()
-     * @since 0.08
-     */
-    public function get_slug()
-    {
-        return $this->slug;
     }
 
     /**
@@ -106,7 +92,6 @@ class TCBoardGroup extends TCObject
     {
         return [
               'board_group_name',
-              'slug',
               'created_time',
               'updated_time',
             ];

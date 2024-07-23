@@ -22,8 +22,7 @@ $db = new TCData();
 
 $thread = $db->load_object(new TCThread(), $thread_id);
 
-$url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
-$thread_url = (!empty($thread)) ? TCURL::create_url($url_id, ['thread' => $thread->thread_id], $settings['enable_urls'], $thread->get_slug()) : '/';
+$thread_url = (!empty($thread)) ? TCURL::create_url($settings['page_thread'], ['thread' => $thread->thread_id]) : '/';
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
 ?>

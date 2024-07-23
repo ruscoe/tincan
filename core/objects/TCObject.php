@@ -19,8 +19,6 @@ abstract class TCObject
     public const ERR_NOT_SAVED = 'nosave';
     public const ERR_EMPTY_FIELD = 'empty';
 
-    public const MAX_SLUG_LENGTH = 32;
-
     /**
      * @since 0.01
      */
@@ -109,33 +107,6 @@ abstract class TCObject
     public function get_parent()
     {
         return null;
-    }
-
-    /**
-     * Creates a unique URL slug from this object's name and primary key.
-     *
-     * @since 0.08
-     *
-     * @return string the URL slug
-     */
-    public function generate_slug()
-    {
-        $slug = strtolower(str_replace(' ', '-', $this->get_name()));
-        $trimmed_slug = substr($slug, 0, self::MAX_SLUG_LENGTH);
-
-        return $trimmed_slug.'-'.$this->get_primary_key_value();
-    }
-
-    /**
-     * Gets the URL slug specific to this object.
-     *
-     * @since 0.08
-     *
-     * @return string the URL slug
-     */
-    public function get_slug()
-    {
-        throw new TCException('Attempting to get URL slug for unsupported object.');
     }
 
     /**

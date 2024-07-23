@@ -48,11 +48,7 @@ if (!empty($error)) {
   </div>
 
   <?php
-    if ($settings['enable_urls']) {
-        $reset_password_url = '/reset-password';
-    } else {
-        $reset_password_url = TCURL::create_url($settings['page_reset_password']);
-    }
+    $reset_password_url = TCURL::create_url($settings['page_reset_password']);
 ?>
 
   <a href="<?php echo $reset_password_url; ?>">Reset password</a>

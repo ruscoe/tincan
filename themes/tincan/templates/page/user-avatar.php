@@ -13,7 +13,6 @@ use TinCan\objects\TCUser;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $settings = $data['settings'];
-$slug = $data['slug'];
 $page = $data['page'];
 $user = $data['user'];
 
@@ -21,10 +20,6 @@ $avatar_user_id = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_NUMBER_INT);
 $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
-
-if (empty($avatar_user_id)) {
-    $avatar_user_id = $slug;
-}
 
 $avatar_user = $db->load_object(new TCUser(), $avatar_user_id);
 

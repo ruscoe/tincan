@@ -15,10 +15,6 @@ use TinCan\template\TCURL;
 $post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
 $page_number = filter_input(INPUT_GET, 'page_number', FILTER_SANITIZE_NUMBER_INT);
 
-if (empty($post_id) && !empty($data['slug'])) {
-    $post_id = $data['slug'];
-}
-
 $page = $data['page'];
 $settings = $data['settings'];
 $user = $data['user'];

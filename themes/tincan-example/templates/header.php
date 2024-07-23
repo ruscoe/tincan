@@ -13,15 +13,9 @@ use TinCan\objects\TCUser;
 $settings = $data['settings'];
 $user = $data['user'];
 
-if ($settings['enable_urls']) {
-    $create_account_url = '/create-account';
-    $log_in_url = '/log-in';
-    $log_out_url = '/log-out';
-} else {
-    $create_account_url = TCURL::create_url($settings['page_create_account']);
-    $log_in_url = TCURL::create_url($settings['page_log_in']);
-    $log_out_url = TCURL::create_url($settings['page_log_out']);
-}
+$create_account_url = TCURL::create_url($settings['page_create_account']);
+$log_in_url = TCURL::create_url($settings['page_log_in']);
+$log_out_url = TCURL::create_url($settings['page_log_out']);
 ?>
 
 <!DOCTYPE html>
@@ -41,8 +35,7 @@ if ($settings['enable_urls']) {
         <li><a href="<?php echo $log_in_url; ?>">Log In</a></li>
       <?php
       } else {
-          $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-          $user_url = TCURL::create_url($url_id, ['user' => $user->user_id], $settings['enable_urls'], $user->get_slug()); ?>
+          $user_url = TCURL::create_url($settings['page_user'], ['user' => $user->user_id]); ?>
         <li>Logged in as <a href="<?php echo $user_url; ?>"><?php echo $user->username; ?></a></li>
         <?php if (!empty($user) && $user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
           <li><a href="/admin">Administration</a></li>

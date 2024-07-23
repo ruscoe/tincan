@@ -13,15 +13,10 @@ use TinCan\template\TCURL;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $settings = $data['settings'];
-$slug = $data['slug'];
 $page = $data['page'];
 $user = $data['user'];
 
 $profile_user_id = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_NUMBER_INT);
-
-if (empty($profile_user_id)) {
-    $profile_user_id = $slug;
-}
 
 $db = new TCData();
 
@@ -39,8 +34,7 @@ $avatar_image = (!empty($avatar)) ? $profile_user->avatar : '/assets/images/defa
 $avatar_url = null;
 
 if (!empty($user) && $user->can_edit_user($profile_user)) {
-    $url_id = ($settings['enable_urls']) ? $settings['base_url_avatar'] : $settings['page_user_avatar'];
-    $avatar_url = TCURL::create_url($url_id, ['user' => $profile_user->user_id], $settings['enable_urls'], $profile_user->get_slug());
+    $avatar_url = TCURL::create_url($settings['page_user_avatar'], ['user' => $profile_user->user_id]);
 }
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $profile_user->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
@@ -70,8 +64,7 @@ if (!empty($posts)) {
         foreach ($posts as $post) {
             $thread = $db->load_object(new TCThread(), $post->thread_id);
 
-            $url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
-            $thread_url = TCURL::create_url($url_id, ['thread' => $thread->thread_id], $settings['enable_urls'], $thread->get_slug());
+            $thread_url = TCURL::create_url($settings['page_thread'], ['thread' => $thread->thread_id]);
 
             // TODO: Figure out the page of the thread this post appears on.
             $thread_url .= '#post-'.$post->post_id; ?>

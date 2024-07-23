@@ -19,15 +19,10 @@ $thread_id = filter_input(INPUT_GET, 'thread', FILTER_SANITIZE_NUMBER_INT);
 $start_at = filter_input(INPUT_GET, 'start_at', FILTER_SANITIZE_NUMBER_INT);
 
 $settings = $data['settings'];
-$slug = $data['slug'];
 $page = $data['page'];
 $user = $data['user'];
 
 $db = new TCData();
-
-if (empty($thread_id)) {
-    $thread_id = $slug;
-}
 
 $thread = $db->load_object(new TCThread(), $thread_id);
 

@@ -34,11 +34,6 @@ class TCThread extends TCObject
     protected $thread_title;
 
     /**
-     * @since 0.08
-     */
-    protected $slug;
-
-    /**
      * Reference to TCPost::$post_id.
      *
      * @since 0.06
@@ -116,15 +111,6 @@ class TCThread extends TCObject
     }
 
     /**
-     * @see   TCObject::get_slug()
-     * @since 0.08
-     */
-    public function get_slug()
-    {
-        return $this->thread_id;
-    }
-
-    /**
      * @see   TCObject::get_primary_key()
      * @since 0.01
      */
@@ -160,7 +146,6 @@ class TCThread extends TCObject
         return [
               'board_id',
               'thread_title',
-              'slug',
               'first_post_id',
               'created_by_user',
               'updated_by_user',

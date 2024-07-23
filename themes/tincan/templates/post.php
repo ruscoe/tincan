@@ -26,16 +26,14 @@ if (!empty($author)) {
     $username = $author->username;
     $avatar = $author->avatar;
 
-    $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-    $user_page_url = TCURL::create_url($url_id, ['user' => $author->user_id], $settings['enable_urls'], $author->get_slug());
+    $user_page_url = TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);
 } else {
     $username = 'Deleted User';
 }
 
 $avatar_image = (!empty($avatar)) ? $avatar : '/assets/images/default-profile.png';
 
-$url_id = ($settings['enable_urls']) ? $settings['base_url_threads'] : $settings['page_thread'];
-$post_url = TCURL::create_url($url_id, ['thread' => $post->thread_id, 'start_at' => $page_number], $settings['enable_urls'], $thread->get_slug());
+$post_url = TCURL::create_url($settings['page_thread'], ['thread' => $post->thread_id, 'start_at' => $page_number]);
 $post_url .= '#post-'.$post->post_id;
 
 $parser = new TCPostParser();
@@ -77,11 +75,8 @@ $parser = new TCPostParser();
 ?>
     </div>
     <?php
-    $url_id = ($settings['enable_urls']) ? $settings['base_url_edit_post'] : $settings['page_edit_post'];
-$edit_post_url = TCURL::create_url($url_id, ['post' => $post->post_id, 'page_number' => $page_number], $settings['enable_urls'], $post->get_slug());
-
-$url_id = ($settings['enable_urls']) ? $settings['base_url_delete_post'] : $settings['page_delete_post'];
-$delete_post_url = TCURL::create_url($url_id, ['post' => $post->post_id, 'page_number' => $page_number], $settings['enable_urls'], $post->get_slug());
+$edit_post_url = TCURL::create_url($settings['page_edit_post'], ['post' => $post->post_id, 'page_number' => $page_number]);
+$delete_post_url = TCURL::create_url($settings['page_delete_post'], ['post' => $post->post_id, 'page_number' => $page_number]);
 ?>
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
     <ul class="post-controls" data-post="<?php echo $post->post_id; ?>">

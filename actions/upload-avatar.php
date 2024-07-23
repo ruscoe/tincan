@@ -112,12 +112,10 @@ $destination = null;
 
 if (empty($error)) {
     // Send user to the updated page.
-    $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-    $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id], $settings['enable_urls'], $avatar_user->get_slug());
+    $destination = TCURL::create_url($settings['page_user'], ['user' => $avatar_user->user_id]);
 } else {
     // Send user back to the page with an error.
-    $url_id = ($settings['enable_urls']) ? $settings['base_url_users'] : $settings['page_user'];
-    $destination = TCURL::create_url($url_id, ['user' => $avatar_user->user_id, 'error' => $error], $settings['enable_urls'], $avatar_user->get_slug());
+    $destination = TCURL::create_url($settings['page_user'], ['user' => $avatar_user->user_id, 'error' => $error]);
 }
 
 header('Location: '.$destination);

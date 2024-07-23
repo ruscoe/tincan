@@ -31,8 +31,8 @@ if (!empty($object)) {
 // Map object primary keys to the pages the objects appear on.
 // This is used to create the breadcrumb links.
 $template_page_map = [
-  'board_id' => [$settings['base_url_boards'], $settings['page_board'], 'board'],
-  'board_group_id' => [$settings['base_url_board_groups'], $settings['page_board_group'], 'board_group'],
+  'board_id' => [$settings['page_board'], 'board'],
+  'board_group_id' => [$settings['page_board_group'], 'board_group'],
 ];
 ?>
 
@@ -53,9 +53,8 @@ if (!empty($chain)) {
         $page_url = null;
 
         if (isset($template_page_map[$primary_key])) {
-            $url_id = ($settings['enable_urls']) ? $template_page_map[$primary_key][0] : $template_page_map[$primary_key][1];
-            $object_name = $template_page_map[$primary_key][2];
-            $page_url = TCURL::create_url($url_id, [$object_name => $object_id], $settings['enable_urls'], $object->get_slug());
+            $object_name = $template_page_map[$primary_key][1];
+            $page_url = TCURL::create_url($template_page_map[$primary_key][0], [$object_name => $object_id]);
         }
 
         if (!empty($page_url)) {

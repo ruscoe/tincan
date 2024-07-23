@@ -9,7 +9,6 @@ use TinCan\objects\TCUser;
 
 $settings = $data['settings'];
 $page = $data['page'];
-$slug = $data['slug'];
 $user = $data['user'];
 
 /**
@@ -27,9 +26,6 @@ $db = new TCData();
 
 if (!empty($board_group_id)) {
     $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
-} elseif (!empty($slug)) {
-    $matched_board_groups = $db->load_objects(new TCBoardGroup(), null, [['field' => 'slug', 'value' => $slug]]);
-    $board_group = reset($matched_board_groups);
 }
 
 if (empty($board_group)) {
@@ -66,8 +62,7 @@ $boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
 $board_url = null;
 if (!empty($boards)) {
     foreach ($boards as $board) {
-        $url_id = ($settings['enable_urls']) ? $settings['base_url_boards'] : $settings['page_board'];
-        $board_url = TCURL::create_url($url_id, ['board' => $board->board_id], $settings['enable_urls'], $board->get_slug());
+        $board_url = TCURL::create_url($settings['page_board'], ['board' => $board->board_id]);
 
         $data = [
           'board' => $board,

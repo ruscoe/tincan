@@ -24,11 +24,6 @@ class TCBoard extends TCObject
     protected $board_name;
 
     /**
-     * @since 0.08
-     */
-    protected $slug;
-
-    /**
      * Reference to TCBoardGroup::$board_group_id.
      *
      * @since 0.01
@@ -76,15 +71,6 @@ class TCBoard extends TCObject
     }
 
     /**
-     * @see   TCObject::get_slug()
-     * @since 0.08
-     */
-    public function get_slug()
-    {
-        return $this->slug;
-    }
-
-    /**
      * @see   TCObject::get_primary_key()
      * @since 0.01
      */
@@ -119,7 +105,6 @@ class TCBoard extends TCObject
     {
         return [
               'board_name',
-              'slug',
               'board_group_id',
               'description',
               'created_time',
