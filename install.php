@@ -124,8 +124,8 @@ if (1 == $run_install) {
     }
 
     form#install-options label {
-      background-color: #295C7A;
-      color: #FFFFFF;
+      background-color: #c9cebd;
+      color: #000;
       display: block;
       flex: 1;
       padding: 0.25rem 0.5rem 0.25rem 0.5rem;
