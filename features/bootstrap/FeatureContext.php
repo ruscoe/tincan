@@ -232,6 +232,12 @@ class FeatureContext extends RawMinkContext implements Context
                     if ($row[0] == 'email') {
                         $this->created_users[] = $row[1];
                     }
+                    elseif ($row[0] == 'thread_title') {
+                        $thread = $this->get_thread($row[1]);
+                        if (!empty($thread)) {
+                            $this->created_threads[$thread->get_primary_key_value()] = $row[1];
+                        }
+                    }
                 }
             }
         }
@@ -260,6 +266,13 @@ class FeatureContext extends RawMinkContext implements Context
         foreach ($this->created_posts as $post_id) {
             $this->delete_post($post_id);
         }
+
+        // Reset the created arrays.
+        $this->created_users = [];
+        $this->created_board_groups = [];
+        $this->created_boards = [];
+        $this->created_threads = [];
+        $this->created_posts = [];
     }
 
     /**
@@ -276,6 +289,24 @@ class FeatureContext extends RawMinkContext implements Context
             ['field' => 'email', 'value' => $email],
         ];
         $results = $this->db->load_objects(new TCUser(), [], $conditions);
+
+        return reset($results);
+    }
+
+    /**
+     * Gets a thread from the database.
+     *
+     * @param string $thread_title
+     *   The title of the thread.
+     *
+     * @return TCThread
+     */
+    private function get_thread($thread_title)
+    {
+        $conditions = [
+            ['field' => 'thread_title', 'value' => $thread_title],
+        ];
+        $results = $this->db->load_objects(new TCThread(), [], $conditions);
 
         return reset($results);
     }
