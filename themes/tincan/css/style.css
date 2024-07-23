@@ -8,7 +8,7 @@
 /* Breakpoints */
 /* Text */
 h1, h2, h3, p, li, th, td {
-  color: #6B6666;
+  color: #000;
   text-align: left;
 }
 
@@ -17,10 +17,10 @@ p {
 }
 
 h1.section-header {
-  background-color: #295C7A;
-  border: solid #224D67;
+  background-color: #c9cebd;
+  border: solid #838e83;
   border-width: 0 2px 2px 0;
-  color: #FFF;
+  color: #000;
   font-size: 1rem;
   margin: 0;
   padding: 0.5rem 1rem;
@@ -43,16 +43,16 @@ h2.section-subheader, h3.section-subheader {
 
 /* Links */
 a:link {
-  color: #123266;
+  color: #166281;
   text-decoration: underline;
 }
 
 a:visited {
-  color: #123266;
+  color: #166281;
 }
 
 a:hover {
-  color: #D76A3A;
+  color: #E85D04;
 }
 
 a.button {
@@ -111,7 +111,7 @@ ul.post-controls li {
 }
 
 .message-box {
-  background-color: #F1F1F1;
+  background-color: #FFF;
   border: 2px solid #DDD;
   margin: 0 auto;
   max-width: 400px;
@@ -131,11 +131,11 @@ ul.post-controls li {
 }
 
 .tc-code table th {
-  background-color: #295C7A;
-  color: #FFF;
+  background-color: #c9cebd;
+  color: #000;
 }
 .tc-code table tr:nth-child(even) {
-  background-color: #EEE;
+  background-color: #fbfbfb;
 }
 .tc-code table th, .tc-code table td {
   padding: 1rem;
@@ -223,11 +223,11 @@ body {
 
 /* Includes */
 body.tincan.front .board-group h2 {
-  background-color: #295C7A;
+  background-color: #c9cebd;
   margin: 0;
 }
 body.tincan.front .board-group h2 a {
-  color: #FFF;
+  color: #000;
   display: block;
   font-size: 1rem;
   margin: 0 0.5rem;
@@ -240,7 +240,7 @@ body.tincan.front .board-group ul {
   padding: 0;
 }
 body.tincan.front .board-group ul li {
-  background-color: #F1F1F1;
+  background-color: #FFF;
   border-bottom: 2px solid #DDD;
   padding: 1rem;
 }
@@ -249,7 +249,7 @@ body.tincan.front .board-group ul li h3, body.tincan.front .board-group ul li p 
 }
 
 body.tincan.board-group #content .board-preview {
-  background-color: #F1F1F1;
+  background-color: #FFF;
   border-bottom: 2px solid #DDD;
   padding: 0.5rem 0;
 }
@@ -261,7 +261,7 @@ body.tincan.board-group #content .board-preview h2 {
 }
 
 body.tincan.board #content .thread-preview {
-  background-color: #F1F1F1;
+  background-color: #FFF;
   border-bottom: 2px solid #DDD;
   padding: 1rem;
 }
@@ -309,8 +309,8 @@ body.tincan form#create-account .field, body.tincan form#log-in .field, body.tin
   padding: 0.25rem;
 }
 body.tincan form#create-account label, body.tincan form#log-in label, body.tincan form#create-thread label, body.tincan form#post-reply label, body.tincan form#update-post label, body.tincan form#set-password label, body.tincan form#forum-settings label {
-  background-color: #295C7A;
-  color: #FFF;
+  background-color: #c9cebd;
+  color: #000;
   display: block;
   flex: 1;
   max-width: 240px;
@@ -332,9 +332,9 @@ body.tincan form#create-account input.text-input, body.tincan form#log-in input.
   width: 100%;
 }
 body.tincan form#create-account input.submit-button, body.tincan form#log-in input.submit-button, body.tincan form#create-thread input.submit-button, body.tincan form#post-reply input.submit-button, body.tincan form#update-post input.submit-button, body.tincan form#set-password input.submit-button, body.tincan form#forum-settings input.submit-button {
-  background-color: #D76A3A;
-  box-shadow: 2px 2px #000;
-  color: #FFF;
+  background-color: #c9cebd;
+  box-shadow: 2px 2px #838e83;
+  color: #000;
   display: inline-block;
   font-weight: bold;
   padding: 0.25rem 0.5rem;
@@ -343,7 +343,7 @@ body.tincan form#create-account input.submit-button, body.tincan form#log-in inp
 
 /* Colors */
 body.tincan.thread .post {
-  background-color: #F1F1F1;
+  background-color: #FFF;
   border-bottom: 2px solid #DDD;
   display: block;
 }
@@ -358,8 +358,8 @@ body.tincan.thread .post {
   }
 }
 body.tincan.thread .post .post-user {
-  background-color: #748499;
-  color: #FFF;
+  background-color: #e6e8e6;
+  color: #000;
   display: flex;
   flex-direction: row-reverse;
   padding: 0.5rem 0;
@@ -368,7 +368,7 @@ body.tincan.thread .post .post-user {
 }
 body.tincan.thread .post .post-user h3.username {
   font-size: 1.25rem;
-  color: #FFF;
+  color: #000;
   margin: 0;
   text-align: center;
 }
@@ -418,7 +418,7 @@ body.tincan.thread .post .content {
   padding: 1rem;
 }
 body.tincan.thread .post:nth-child(even) {
-  background-color: #EEE;
+  background-color: #fbfbfb;
 }
 
 body.tincan.thread {
@@ -432,14 +432,14 @@ body.tincan.thread {
   }
 }
 body.tincan.user #user-info {
-  background-color: #748499;
+  background-color: #e6e8e6;
   text-align: center;
 }
 body.tincan.user #user-info .profile-image {
   padding: 1rem 0 0;
 }
 body.tincan.user #user-info .joined {
-  color: #FFF;
+  color: #000;
   padding: 0 0 1rem;
 }
 @media (width >= 600px) {
