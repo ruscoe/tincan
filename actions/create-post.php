@@ -28,6 +28,8 @@ if ($controller->can_create_post($thread_id)) {
 // directly to their new post.
 $total_pages = $controller->get_total_thread_pages($thread_id);
 
+$destination = '';
+
 if (empty($controller->get_error())) {
     // Send the user back to the thread.
     $destination = TCURL::create_url(
@@ -39,9 +41,6 @@ if (empty($controller->get_error())) {
     );
 
     $destination .= '#post-'.$new_post->post_id;
-
-    header('Location: '.$destination);
-    exit;
 } else {
     // Send the user back to the thread with an error.
     $destination = TCURL::create_url(
@@ -49,10 +48,10 @@ if (empty($controller->get_error())) {
         [
         'thread' => $thread_id,
         'start_at' => $total_pages,
-        'error' => $error,
+        'error' => $controller->get_error(),
         ]
     );
-
-    header('Location: '.$destination);
-    exit;
 }
+
+header('Location: '.$destination);
+exit;
