@@ -1,4 +1,4 @@
-Feature: Authentication
+Feature: User
   In order to use the forum
   As a forum user
   I need to be able to create and log into an account
