@@ -268,11 +268,14 @@ class TCData
             $query .= " WHERE `{$primary_key}` IN ({$ids_in})";
         } elseif (!empty($conditions)) {
             $query .= ' WHERE';
-            foreach ($conditions as $condition) {
+            foreach ($conditions as $index => $condition) {
                 if (!$this->validate_object_field($class, $condition['field'])) {
                     throw new TCException('Invalid field '.$db_table.'.'.$condition['field']);
                 }
                 // TODO: Allow conditions other than equals.
+                if ($index > 0) {
+                    $query .= ' AND';
+                }
                 $query .= " `{$condition['field']}` = '{$condition['value']}'";
             }
         }
@@ -358,8 +361,11 @@ class TCData
 
         if (!empty($conditions)) {
             $query .= ' WHERE';
-            foreach ($conditions as $condition) {
+            foreach ($conditions as $index => $condition) {
                 // TODO: Allow conditions other than equals.
+                if ($index > 0) {
+                    $query .= ' AND';
+                }
                 $query .= " `{$condition['field']}` = '{$condition['value']}'";
             }
         }
