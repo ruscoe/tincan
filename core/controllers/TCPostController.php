@@ -142,6 +142,15 @@ class TCPostController extends TCController
         return true;
     }
 
+    /**
+     * Determines if a post can be updated.
+     *
+     * @param int $post_id The ID of the post to be updated.
+     *
+     * @return bool TRUE if the post can be updated, otherwise FALSE.
+     *
+     * @since 0.16
+     */
     public function can_update_post($post_id)
     {
         $post = $this->db->load_object(new TCPost(), $post_id);
@@ -160,6 +169,16 @@ class TCPostController extends TCController
         return true;
     }
 
+    /**
+     * Updates a post.
+     *
+     * @param int    $post_id      The ID of the post to be updated.
+     * @param string $post_content The new content of the post.
+     *
+     * @return TCPost|bool The updated post object if successful, otherwise FALSE.
+     *
+     * @since 0.16
+     */
     public function update_post($post_id, $post_content)
     {
         $post = $this->db->load_object(new TCPost(), $post_id);
