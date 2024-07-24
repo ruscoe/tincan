@@ -38,14 +38,12 @@ class TCPostController extends TCController
         }
 
         // Check this post can be created in the given thread.
-        if (empty($error)) {
-            $thread = $this->db->load_object(new TCThread(), $thread_id);
+        $thread = $this->db->load_object(new TCThread(), $thread_id);
 
-            // Validate thread.
-            if (empty($thread)) {
-                $this->error = TCObject::ERR_NOT_SAVED;
-                return false;
-            }
+        // Validate thread.
+        if (empty($thread)) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
         }
 
         return true;
