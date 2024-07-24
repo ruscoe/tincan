@@ -1,14 +1,7 @@
 <?php
 
-use TinCan\db\TCData;
-use TinCan\TCErrorMessage;
-use TinCan\TCException;
-use TinCan\TCJSONResponse;
-use TinCan\objects\TCObject;
-use TinCan\objects\TCPost;
+use TinCan\controllers\TCPostController;
 use TinCan\template\TCURL;
-use TinCan\objects\TCUser;
-use TinCan\user\TCUserSession;
 
 /**
  * Tin Can delete post handler.
@@ -19,67 +12,43 @@ use TinCan\user\TCUserSession;
  */
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-$post_id = filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT);
+$thread_id = filter_input(INPUT_POST, 'thread', FILTER_SANITIZE_NUMBER_INT);
+$post_id = filter_input(INPUT_POST, 'post', FILTER_SANITIZE_NUMBER_INT);
 
-$db = new TCData();
+$controller = new TCPostController();
 
-try {
-    $settings = $db->load_settings();
-} catch (TCException $e) {
-    echo $e->getMessage();
-    exit;
-}
-
-$post = $db->load_object(new TCPost(), $post_id);
-
-if (empty($post)) {
-    $error = TCObject::ERR_NOT_FOUND;
-}
-
-if (empty($error) && isset($_POST['cancel'])) {
+if (isset($_POST['cancel'])) {
     // Cancel post deletion and return user to the thread.
-    $destination = TCURL::create_url($settings['page_thread'], ['thread' => $post->thread_id]);
+    $destination = TCURL::create_url($controller->get_setting('page_thread'), ['thread' => $thread_id]);
 
     header('Location: '.$destination);
     exit;
 }
 
-// Get logged in user.
-$session = new TCUserSession();
-$session->start_session();
-$user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+$controller->authenticate_user();
 
-// Check user has permission to delete this post.
-if (empty($error) && (empty($user) || !$user->can_delete_post($post))) {
-    $error = TCUser::ERR_NOT_AUTHORIZED;
-}
-
-$post->deleted = true;
-
-try {
-    $db->save_object($post);
-} catch (TCException $e) {
-    $error = TCObject::ERR_NOT_SAVED;
+if ($controller->can_delete_post($post_id)) {
+    $controller->delete_post($post_id);
 }
 
 $destination = '';
 
-if (empty($error)) {
+if (empty($controller->get_error())) {
     // Send user to the confirmation page.
     $destination = TCURL::create_url(
-        $settings['page_post_deleted'],
+        $controller->get_setting('page_post_deleted'),
         [
-        'thread' => $post->thread_id,
+        'thread' => $thread_id,
         ]
     );
 } else {
     // Send user back to the delete post page with an error.
     $destination = TCURL::create_url(
-        $settings['page_delete_post'],
+        $controller->get_setting('page_delete_post'),
         [
-        'post' => $post->post_id,
-        'error' => $error,
+        'thread' => $thread_id,
+        'post' => $post_id,
+        'error' => $controller->get_error(),
         ]
     );
 }

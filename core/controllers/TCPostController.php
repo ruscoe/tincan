@@ -91,6 +91,58 @@ class TCPostController extends TCController
     }
 
     /**
+     * Determines if a post can be deleted.
+     *
+     * @param int $post_id The ID of the post to be deleted.
+     *
+     * @return bool TRUE if the post can be deleted, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function can_delete_post($post_id)
+    {
+        $post = $this->db->load_object(new TCPost(), $post_id);
+
+        if (empty($post)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Check user has permission to delete this post.
+        if ((empty($this->user) || !$this->user->can_delete_post($post))) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Deletes a post.
+     *
+     * @param int $post_id The ID of the post to be deleted.
+     *
+     * @return bool TRUE if the post was deleted, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function delete_post($post_id)
+    {
+        $post = $this->db->load_object(new TCPost(), $post_id);
+
+        $post->deleted = true;
+
+        try {
+            $this->db->save_object($post);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Gets the total number of pages in a thread.
      *
      * @param int $thread_id The ID of the thread.
@@ -104,8 +156,6 @@ class TCPostController extends TCController
         $conditions = [
             ['field' => 'thread_id', 'value' => $thread_id],
           ];
-
-        var_dump($this->settings);
 
         $total_posts = $this->db->count_objects(new TCPost(), $conditions);
         $total_pages = TCPagination::calculate_total_pages($total_posts, $this->settings['posts_per_page']);
