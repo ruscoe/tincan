@@ -142,6 +142,53 @@ class TCPostController extends TCController
         return true;
     }
 
+    public function can_update_post($post_id)
+    {
+        $post = $this->db->load_object(new TCPost(), $post_id);
+
+        if (empty($post)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Check user has permission to delete this post.
+        if ((empty($this->user) || !$this->user->can_edit_post($post))) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
+            return false;
+        }
+
+        return true;
+    }
+
+    public function update_post($post_id, $post_content)
+    {
+        $post = $this->db->load_object(new TCPost(), $post_id);
+
+        // Sanitize the post content.
+        $post_sanitizer = new TCPostSanitizer();
+        $sanitized_post = $post_sanitizer->sanitize_post($post_content);
+
+        if (empty($sanitized_post)) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        $updated_post = null;
+
+        $post->content = $sanitized_post;
+        $post->updated_time = time();
+        $post->updated_by_user = $this->user->user_id;
+
+        try {
+            $updated_post = $this->db->save_object($post);
+        } catch (TCException $e) {
+            $this->error = $e->getMessage();
+            return false;
+        }
+
+        return $updated_post;
+    }
+
     /**
      * Gets the total number of pages in a thread.
      *
