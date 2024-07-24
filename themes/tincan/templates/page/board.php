@@ -60,6 +60,10 @@ $conditions = [
     'field' => 'board_id',
     'value' => $board->board_id,
   ],
+  [
+    'field' => 'deleted',
+    'value' => 0,
+  ],
 ];
 
 $order = [
