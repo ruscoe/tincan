@@ -231,8 +231,7 @@ class FeatureContext extends RawMinkContext implements Context
                 foreach ($table as $row) {
                     if ($row[0] == 'email') {
                         $this->created_users[] = $row[1];
-                    }
-                    elseif ($row[0] == 'thread_title') {
+                    } elseif ($row[0] == 'thread_title') {
                         $thread = $this->get_thread($row[1]);
                         if (!empty($thread)) {
                             $this->created_threads[$thread->get_primary_key_value()] = $row[1];
