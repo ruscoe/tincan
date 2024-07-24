@@ -46,7 +46,8 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $thread, 'set
 
   <form id="delete-thread" action="/actions/delete-thread.php" method="POST">
     <div class="fieldset button">
-      <input type="hidden" name="thread_id" value="<?php echo $thread->thread_id; ?>" />
+      <input type="hidden" name="board" value="<?php echo $thread->board_id; ?>" />
+      <input type="hidden" name="thread" value="<?php echo $thread->thread_id; ?>" />
       <input class="submit-button" type="submit" name="delete_thread" value="Delete thread" />
       <input class="submit-button" type="submit" name="cancel" value="Cancel" />
     </div>

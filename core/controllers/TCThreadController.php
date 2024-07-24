@@ -128,4 +128,56 @@ class TCThreadController extends TCController
 
         return false;
     }
+
+    /**
+     * Determines if a thread can be deleted.
+     *
+     * @param int $thread_id The ID of the thread to be deleted.
+     *
+     * @return bool TRUE if the thread can be deleted, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function can_delete_thread($thread_id)
+    {
+        $thread = $this->db->load_object(new TCThread(), $thread_id);
+
+        if (empty($thread)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Check user has permission to delete this thread.
+        if ((empty($this->user) || !$this->user->can_delete_thread($thread))) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Deletes a thread.
+     *
+     * @param int $thread_id The ID of the thread to be deleted.
+     *
+     * @return bool TRUE if the thread is deleted, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function delete_thread($thread_id)
+    {
+        $thread = $this->db->load_object(new TCThread(), $thread_id);
+
+        $thread->deleted = true;
+
+        try {
+            $this->db->save_object($thread);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return true;
+    }
 }
