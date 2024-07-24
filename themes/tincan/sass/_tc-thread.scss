@@ -4,4 +4,18 @@
 
 body.tincan.thread {
     display: block;
+
+    #thread-navigation {
+        padding: 1rem 0;
+
+        ul.navigation {
+          align-items: flex-end;
+          display: flex;
+          flex-direction: column;
+
+          li {
+            flex: 1;
+          }
+        }
+    }
 }

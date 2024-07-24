@@ -424,6 +424,17 @@ body.tincan.thread .post:nth-child(even) {
 body.tincan.thread {
   display: block;
 }
+body.tincan.thread #thread-navigation {
+  padding: 1rem 0;
+}
+body.tincan.thread #thread-navigation ul.navigation {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+body.tincan.thread #thread-navigation ul.navigation li {
+  flex: 1;
+}
 
 /* Colors */
 @media (width >= 600px) {

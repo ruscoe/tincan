@@ -35,6 +35,20 @@ TCTemplate::render('header', $settings['theme'], ['page_title' => $thread->get_n
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $thread, 'settings' => $settings]);
 ?>
 
+<?php
+  // Show delete thread link if user has permission to delete the thread.
+if (!empty($user) && $user->can_delete_thread($thread)) {
+    $delete_thread_url = TCURL::create_url($settings['page_delete_thread'], ['thread' => $thread->thread_id]); ?>
+
+  <div id="thread-navigation">
+    <ul class="navigation">
+      <li><a class="button" href="<?php echo $delete_thread_url; ?>">Delete thread</a></li>
+    </ul>
+  </div>
+    <?php
+}
+?>
+
 <h1 class="section-header"><?php echo $thread->thread_title; ?></h1>
 
 <?php
