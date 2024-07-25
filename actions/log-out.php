@@ -1,7 +1,7 @@
 <?php
 
+use TinCan\controllers\TCUserController;
 use TinCan\template\TCURL;
-use TinCan\user\TCUserSession;
 
 /**
  * Tin Can log out handler.
@@ -12,11 +12,9 @@ use TinCan\user\TCUserSession;
  */
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
+$controller = new TCUserController();
 
-// Destroy the user's session. Goodbye.
-$session = new TCUserSession();
-$session->start_session();
-$session->destroy_session();
+$controller->log_out();
 
 $destination = TCURL::create_url(null);
 

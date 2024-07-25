@@ -7,6 +7,7 @@ use TinCan\controllers\TCController;
 use TinCan\objects\TCMailTemplate;
 use TinCan\objects\TCPendingUser;
 use TinCan\objects\TCUser;
+use TinCan\user\TCUserSession;
 
 /**
  * User controller.
@@ -19,6 +20,63 @@ use TinCan\objects\TCUser;
  */
 class TCUserController extends TCController
 {
+    /**
+     * Logs a user in.
+     *
+     * @param string $username The username.
+     * @param string $password The password.
+     *
+     * @return bool True if the user is logged in, false if not.
+     *
+     * @since 0.16
+     */
+    public function log_in($username, $password)
+    {
+        $user = null;
+
+        // Find user with matching username.
+        $user_results = $this->db->load_objects(new TCUser(), [], [['field' => 'username', 'value' => $username]]);
+        if (!empty($user_results)) {
+            $user = reset($user_results);
+        }
+
+        if (empty($user) || !$user->can_perform_action(TCUser::ACT_LOG_IN)) {
+            $this->error = TCUser::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Check for pending user.
+        $pending_user_results = $this->db->load_objects(new TCPendingUser(), [], [['field' => 'user_id', 'value' => $user->user_id]]);
+        if (!empty($pending_user_results)) {
+            // Pending users cannot log in until the account is confirmed.
+            $this->error = TCUser::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Check password.
+        if (!$user->verify_password_hash($password, $user->password)) {
+            $this->error = TCUser::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Successfully logged in. Create the user's session.
+        $session = new TCUserSession();
+        $session->create_session($user);
+
+        return true;
+    }
+
+    /**
+     * Logs a user out.
+     */
+    public function log_out()
+    {
+        // Destroy the user's session. Goodbye.
+        $session = new TCUserSession();
+        $session->start_session();
+        $session->destroy_session();
+    }
+
     /**
      * Determines if a user can be created.
      *
