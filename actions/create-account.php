@@ -1,15 +1,7 @@
 <?php
 
-use TinCan\db\TCData;
-use TinCan\TCErrorMessage;
-use TinCan\TCException;
-use TinCan\TCJSONResponse;
-use TinCan\TCMailer;
-use TinCan\objects\TCMailTemplate;
-use TinCan\objects\TCObject;
-use TinCan\objects\TCPendingUser;
+use TinCan\controllers\TCUserController;
 use TinCan\template\TCURL;
-use TinCan\objects\TCUser;
 use TinCan\user\TCUserSession;
 
 /**
@@ -27,134 +19,45 @@ $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING));
 // Don't trim password. Spaces are permitted anywhere in the password.
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
-$db = new TCData();
+$controller = new TCUserController();
 
-try {
-    $settings = $db->load_settings();
-} catch (TCException $e) {
-    echo $e->getMessage();
-    exit;
+$new_user = null;
+if ($controller->can_create_user($username, $email, $password)) {
+    $new_user = $controller->create_user($username, $email, $password);
 }
 
-$user = new TCUser();
+$new_pending_user = null;
+if (empty($controller->get_error()) && $controller->get_setting('require_confirm_email')) {
+    $new_pending_user = $controller->create_pending_user($new_user);
 
-if (!$settings['allow_registration']) {
-    $error = TCObject::ERR_NOT_SAVED;
-}
-
-// Validate username.
-if (!$user->validate_username($username)) {
-    $error = TCUser::ERR_USER;
-}
-// Validate email.
-if (empty($error) && !$user->validate_email($email)) {
-    $error = TCUser::ERR_EMAIL;
-}
-// Validate password.
-if (empty($error) && !$user->validate_password($password)) {
-    $error = TCUser::ERR_PASSWORD;
-}
-
-// Check for existing username / email.
-if (empty($error)) {
-    $existing_user = $db->load_objects($user, [], [['field' => 'username', 'value' => $username]]);
-
-    if (!empty($existing_user)) {
-        $error = TCUser::ERR_USERNAME_EXISTS;
+    if (!empty($new_pending_user)) {
+        $controller->send_confirmation_email($new_user, $new_pending_user);
     }
 }
 
-if (empty($error)) {
-    $existing_user = $db->load_objects($user, [], [['field' => 'email', 'value' => $email]]);
-
-    if (!empty($existing_user)) {
-        $error = TCUser::ERR_EMAIL_EXISTS;
-    }
-}
-
-$saved_user = null;
-
-if (empty($error)) {
-    $user->username = $username;
-    $user->email = $email;
-    $user->password = $user->get_password_hash($password);
-    $user->role_id = $settings['default_user_role'];
-    $user->suspended = 0;
-    $user->created_time = time();
-    $user->updated_time = time();
-
-    $saved_user = $db->save_object($user);
-
-    // Verify user has been created.
-    if (empty($saved_user)) {
-        $error = TCObject::ERR_NOT_SAVED;
-    }
-}
-
-if (empty($error) && $settings['require_confirm_email']) {
-    // Successfully created account. Set up account confirmation.
-    $pending_user = new TCPendingUser();
-    $pending_user->user_id = $user->user_id;
-    $pending_user->confirmation_code = $pending_user->generate_confirmation_code();
-
-    $saved_pending_user = $db->save_object($pending_user);
-
-    if (empty($saved_pending_user)) {
-        $error = TCObject::ERR_NOT_SAVED;
-    }
-}
-
-if (empty($error) && $settings['require_confirm_email']) {
-    $confirmation_url = $settings['base_url'].'/actions/confirm-account.php?code='.$pending_user->confirmation_code;
-
-    // Send confirmation code to the user.
-    $mailer = new TCMailer($settings);
-
-    // Load email template.
-    // TODO: Error handling.
-    $mail_template = $db->load_object(new TCMailTemplate(), $settings['mail_confirm_account']);
-    $mail_subject = $mail_template->mail_template_name;
-    $mail_content = $mailer->tokenize_template($mail_template, ['url' => $confirmation_url]);
-
-    $recipients = [
-      ['name' => $user->username, 'email' => $user->email],
-    ];
-
-    $mailer->send_mail(
-        $settings['site_email_name'],
-        $settings['site_email_address'],
-        $mail_subject,
-        $mail_content,
-        $recipients
-    );
-}
-
-if (empty($error) && (!$settings['require_confirm_email'])) {
+if (empty($controller->get_error()) && (!$controller->get_setting('require_confirm_email'))) {
     // Account confirmation not required; create the user's session.
     $session = new TCUserSession();
-    $session->create_session($user);
+    $session->create_session($new_user);
 }
-
 
 $destination = '';
 
-if (empty($error)) {
+if (empty($controller->get_error())) {
     if ($settings['require_confirm_email']) {
         // Send user to the create account page with success message.
-        $destination = TCURL::create_url($settings['page_create_account'], ['status' => 'sent']);
+        $destination = TCURL::create_url($controller->get_setting('page_create_account'), ['status' => 'sent']);
     } else {
         // Send the user to the forum homepage.
-        header('Location: '.TCURL::create_url(null));
-        exit;
+        $destination = TCURL::create_url(null);
     }
 } else {
     // Send user back to the create account page with an error.
-    $url_params = [
+    $destination = TCURL::create_url($controller->get_setting('page_create_account'), [
         'username' => $username,
         'email' => $email,
-        'error' => $error,
-    ];
-    $destination = TCURL::create_url($settings['page_create_account'], $url_params);
+        'error' => $controller->get_error(),
+    ]);
 }
 
 header('Location: '.$destination);
