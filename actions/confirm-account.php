@@ -18,8 +18,6 @@ $controller = new TCUserController();
 
 $user = $controller->confirm_account($code);
 
-$destination = '';
-
 // Send user to the confirm account page.
 $destination = TCURL::create_url($controller->get_setting('page_confirm_account'), ['error' => $controller->get_error()]);
 
