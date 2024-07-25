@@ -4,6 +4,7 @@ namespace TinCan\controllers;
 
 use TinCan\content\TCPostSanitizer;
 use TinCan\controllers\TCController;
+use TinCan\objects\TCObject;
 use TinCan\objects\TCPost;
 use TinCan\objects\TCThread;
 use TinCan\objects\TCUser;

@@ -5,6 +5,7 @@ namespace TinCan\controllers;
 use TinCan\TCMailer;
 use TinCan\controllers\TCController;
 use TinCan\objects\TCMailTemplate;
+use TinCan\objects\TCObject;
 use TinCan\objects\TCPendingUser;
 use TinCan\objects\TCUser;
 use TinCan\user\TCUserSession;
@@ -193,6 +194,45 @@ class TCUserController extends TCController
         }
 
         return $new_pending_user;
+    }
+
+    /**
+     * Confirms a user's account.
+     *
+     * @param string $code The confirmation code.
+     *
+     * @return TCUser|bool The user object if successful, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function confirm_account($code)
+    {
+        $pending_user = new TCPendingUser();
+
+        $pending_results = $this->db->load_objects($pending_user, [], [['field' => 'confirmation_code', 'value' => $code]]);
+
+        if (!empty($pending_results)) {
+            $pending_user = reset($pending_results);
+        } else {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        $user = $this->db->load_user($pending_user->user_id);
+
+        if (empty($user)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Successfully confirmed account. Create the user's session.
+        $session = new TCUserSession();
+        $session->create_session($user);
+
+        // Delete the pending user record.
+        $this->db->delete_object($pending_user, $pending_user->pending_user_id);
+
+        return $user;
     }
 
     /**

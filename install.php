@@ -634,6 +634,7 @@ function tc_create_pages()
         ['page_title' => 'User',                       'template' => 'user'],
         ['page_title' => 'User Avatar',                'template' => 'user-avatar'],
         ['page_title' => 'Create Account',             'template' => 'create-account'],
+        ['page_title' => 'Confirm Account',            'template' => 'confirm-account'],
         ['page_title' => 'Log In',                     'template' => 'log-in'],
         ['page_title' => 'Log Out',                    'template' => 'log-out'],
         ['page_title' => 'Reset Password',             'template' => 'reset-password'],
