@@ -9,6 +9,7 @@ use TinCan\objects\TCObject;
 use TinCan\objects\TCPendingUser;
 use TinCan\objects\TCUser;
 use TinCan\user\TCUserSession;
+use TinCan\template\TCURL;
 
 /**
  * User controller.
@@ -233,6 +234,138 @@ class TCUserController extends TCController
         $this->db->delete_object($pending_user, $pending_user->pending_user_id);
 
         return $user;
+    }
+
+    public function reset_password($email)
+    {
+        if (empty($email)) {
+            $this->error = TCUser::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Find user with matching email.
+        $conditions = [
+            [
+            'field' => 'email',
+            'value' => $email,
+            ],
+        ];
+
+        $matched_user = null;
+
+        try {
+            $user_results = $this->db->load_objects(new TCUser(), [], $conditions);
+            if (!empty($user_results)) {
+                $matched_user = reset($user_results);
+            } else {
+                $this->error = TCUser::ERR_NOT_FOUND;
+                return false;
+            }
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        $matched_user->password_reset_code = $matched_user->generate_password_reset_code();
+
+        try {
+            $this->db->save_object($matched_user);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        $reset_url = $this->settings['base_url'].TCURL::create_url($this->settings['page_set_password'], ['code' => $matched_user->password_reset_code]);
+
+        // Send password reset code to the user.
+        $mailer = new TCMailer($this->settings);
+
+        // Load email template.
+        $mail_template = $this->db->load_object(new TCMailTemplate(), $this->settings['mail_reset_password']);
+        $mail_subject = $mail_template->mail_template_name;
+        $mail_content = $mailer->tokenize_template($mail_template, ['url' => $reset_url]);
+
+        $recipients = [
+          ['name' => $matched_user->username, 'email' => $matched_user->email],
+        ];
+
+        try {
+            $mailer->send_mail(
+                $this->settings['site_email_name'],
+                $this->settings['site_email_address'],
+                $mail_subject,
+                $mail_content,
+                $recipients
+            );
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Sets a new password for a user.
+     *
+     * @param string $code     The password reset code.
+     * @param string $password The new password.
+     *
+     * @return bool True if the password was set, false if not.
+     *
+     * @since 0.16
+     */
+    public function set_password($code, $password)
+    {
+        $user = new TCUser();
+
+        // Validate reset code.
+        if (empty($code)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Validate password.
+        if (!$user->validate_password($password)) {
+            $this->error = TCUser::ERR_PASSWORD;
+            return false;
+        }
+
+        // Find user with matching password reset code.
+        $conditions = [
+            [
+            'field' => 'password_reset_code',
+            'value' => $code,
+            ],
+        ];
+
+        $matched_user = null;
+
+        try {
+            $user_results = $this->db->load_objects(new TCUser(), [], $conditions);
+            if (!empty($user_results)) {
+                $matched_user = reset($user_results);
+            } else {
+                $this->error = TCUser::ERR_NOT_FOUND;
+                return false;
+            }
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        $matched_user->password = $matched_user->get_password_hash($password);
+        // Password has been reset, so expire the reset code.
+        $matched_user->password_reset_code = '';
+
+        try {
+            $this->db->save_object($matched_user);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return true;
     }
 
     /**

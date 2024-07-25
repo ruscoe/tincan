@@ -1,12 +1,7 @@
 <?php
 
-use TinCan\db\TCData;
-use TinCan\TCErrorMessage;
-use TinCan\TCException;
-use TinCan\TCJSONResponse;
-use TinCan\objects\TCObject;
+use TinCan\controllers\TCUserController;
 use TinCan\template\TCURL;
-use TinCan\objects\TCUser;
 
 /**
  * Tin Can set password handler.
@@ -20,65 +15,18 @@ require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 $code = filter_input(INPUT_POST, 'code', FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
-$db = new TCData();
+$controller = new TCUserController();
 
-try {
-    $settings = $db->load_settings();
-} catch (TCException $e) {
-    echo $e->getMessage();
-    exit;
-}
-
-$error = null;
-
-$user = null;
-
-$error = (empty($code)) ? TCObject::ERR_NOT_FOUND : null;
-
-if (empty($error)) {
-    // Find user with matching password reset code.
-    $conditions = [
-      [
-        'field' => 'password_reset_code',
-        'value' => $code,
-      ],
-    ];
-
-    try {
-        $user_results = $db->load_objects(new TCUser(), [], $conditions);
-        if (!empty($user_results)) {
-            $user = reset($user_results);
-        }
-    } catch (TCException $e) {
-        echo $e->getMessage();
-        exit;
-    }
-}
-
-if (empty($user)) {
-    $error = TCUser::ERR_NOT_FOUND;
-}
-
-if (empty($error)) {
-    $user->password = $user->get_password_hash($password);
-    // Password has been reset, so expire the reset code.
-    $user->password_reset_code = '';
-
-    $saved_user = $db->save_object($user);
-
-    if (empty($saved_user)) {
-        $error = TCObject::ERR_NOT_SAVED;
-    }
-}
+$controller->set_password($code, $password);
 
 $destination = '';
 
-if (empty($error)) {
+if (empty($controller->get_error())) {
     // Send user to the set password page with a success message.
-    $destination = TCURL::create_url($settings['page_set_password'], ['status' => 'set']);
+    $destination = TCURL::create_url($controller->get_setting('page_set_password'), ['status' => 'set']);
 } else {
     // Send user back to the set password page with an error.
-    $destination = TCURL::create_url($settings['page_set_password'], ['code' => $code, 'error' => $error]);
+    $destination = TCURL::create_url($controller->get_setting('page_set_password'), ['code' => $code, 'error' => $controller->get_error()]);
 }
 
 header('Location: '.$destination);
