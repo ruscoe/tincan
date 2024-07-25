@@ -17,6 +17,8 @@ use PHPMailer\PHPMailer\SMTP;
  */
 class TCMailer
 {
+    public const ERR_SMTP = 'smtp';
+
     /**
      * @since 0.07
      */

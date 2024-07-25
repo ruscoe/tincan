@@ -669,6 +669,7 @@ function tc_create_pages()
         ['page_title' => 'Admin Delete Object',        'template' => 'delete-object'],
         ['page_title' => 'Admin Upload Setting Image', 'template' => 'upload-setting-image'],
         ['page_title' => 'Admin Delete Setting Image', 'template' => 'delete-setting-image'],
+        ['page_title' => 'Admin Test Email',           'template' => 'test-mail'],
       ];
 
     foreach ($pages as $page) {
