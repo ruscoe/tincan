@@ -31,7 +31,7 @@ if (empty($controller->get_error()) && $controller->get_setting('require_confirm
     $new_pending_user = $controller->create_pending_user($new_user);
 
     if (!empty($new_pending_user)) {
-        $controller->send_confirmation_email($new_user, $new_pending_user);
+        $controller->send_pending_user_mail($new_user, $new_pending_user);
     }
 }
 
@@ -44,7 +44,7 @@ if (empty($controller->get_error()) && (!$controller->get_setting('require_confi
 $destination = '';
 
 if (empty($controller->get_error())) {
-    if ($settings['require_confirm_email']) {
+    if ($controller->get_setting('require_confirm_email')) {
         // Send user to the create account page with success message.
         $destination = TCURL::create_url($controller->get_setting('page_create_account'), ['status' => 'sent']);
     } else {

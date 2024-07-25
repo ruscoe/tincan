@@ -169,9 +169,11 @@ class TCUserController extends TCController
     }
 
     /**
-     * Creates a pending user.
+     * Creates a new pending user.
      *
      * @param TCUser $user The user to create a pending user for.
+     *
+     * @return TCPendingUser|bool The new pending user object or false on failure.
      *
      * @since 0.16
      */
@@ -189,6 +191,8 @@ class TCUserController extends TCController
             $this->error = TCObject::ERR_NOT_SAVED;
             return false;
         }
+
+        return $new_pending_user;
     }
 
     /**
