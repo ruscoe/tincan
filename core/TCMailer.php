@@ -5,6 +5,7 @@ namespace TinCan;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
+use TinCan\objects\TCMailTemplate;
 
 /**
  * Tin Can mail handler.
