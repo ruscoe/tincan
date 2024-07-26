@@ -61,7 +61,7 @@ $avatar_image .= '?v='.time();
     </div>
   </div>
 
-  <input type="hidden" name="user_id" value="<?php echo $avatar_user->user_id; ?>" />
+  <input type="hidden" name="user" value="<?php echo $avatar_user->user_id; ?>" />
 
   <div class="fieldset button">
     <input class="submit-button" type="submit" name="avatar" value="Upload new avatar" />

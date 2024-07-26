@@ -3,6 +3,7 @@
 namespace TinCan\controllers;
 
 use TinCan\TCMailer;
+use TinCan\content\TCImage;
 use TinCan\controllers\TCController;
 use TinCan\objects\TCMailTemplate;
 use TinCan\objects\TCObject;
@@ -95,7 +96,7 @@ class TCUserController extends TCController
         $user = new TCUser();
 
         if (!$this->settings['allow_registration']) {
-            $error = TCObject::ERR_NOT_SAVED;
+            $this->error = TCObject::ERR_NOT_SAVED;
             return false;
         }
 
@@ -168,6 +169,120 @@ class TCUserController extends TCController
         }
 
         return $new_user;
+    }
+
+    /**
+     * Determines if the current user can edit another user.
+     *
+     * @param int $user_id The ID of the user to edit.
+     *
+     * @return bool True if the user can be edited, false otherwise.
+     *
+     * @since 0.16
+     */
+    public function can_edit_user($user_id)
+    {
+        $edit_user = $this->db->load_user($user_id);
+
+        if (empty($edit_user)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        if (empty($this->user) || !$this->user->can_edit_user($edit_user)) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Edits a user.
+     *
+     * @param int $user_id The ID of the user to edit.
+     *
+     * @return bool True if the user has been edited, false otherwise.
+     *
+     * @since 0.16
+     */
+    public function edit_user($user_id, $file = null)
+    {
+        $edit_user = $this->db->load_user($user_id);
+
+        // Upload an avatar image.
+        if (!empty($file)) {
+            if (UPLOAD_ERR_OK !== $file['error']) {
+                $this->error = TCImage::ERR_FILE_GENERAL;
+                return false;
+            }
+
+            $image_data = getimagesize($file['tmp_name']);
+
+            $image = new TCImage();
+            $image->width = $image_data[0];
+            $image->height = $image_data[1];
+            $image->file_type = $image_data[2];
+            $image->mime_type = $image_data['mime'];
+            $image->file_size = $file['size'];
+
+            // Check for valid file type.
+            if (!$image->is_valid_type()) {
+                $this->error = TCImage::ERR_FILE_TYPE;
+                return false;
+            }
+
+            // Check file size.
+            if (!$image->is_valid_size()) {
+                $this->error = TCImage::ERR_FILE_SIZE;
+                return false;
+            }
+
+            // Avatar filename is the user's ID followed by the file extension.
+            // The directory containing the avatar file is named for the last digit of
+            // the user's ID. This just allows us to split up files and avoid massive
+            // directories.
+
+            if (!is_dir(getenv('TC_UPLOADS_PATH').'/avatars')) {
+                // If the avatars upload path doesn't exist, create it with write permissions.
+                mkdir(getenv('TC_UPLOADS_PATH').'/avatars', 0755);
+            }
+
+            $target_path = 'avatars/'.substr($edit_user->user_id, -1);
+
+            if (!is_dir(getenv('TC_UPLOADS_PATH').'/'.$target_path)) {
+                // If the avatar upload path doesn't exist, create it with write permissions.
+                mkdir(getenv('TC_UPLOADS_PATH').'/'.$target_path, 0755);
+            }
+
+            $target_file = $edit_user->user_id.'.jpg';
+            $target_full_path = getenv('TC_UPLOADS_PATH').'/'.$target_path.'/'.$target_file;
+
+            if (!move_uploaded_file($file['tmp_name'], $target_full_path)) {
+                $this->error = TCImage::ERR_FILE_GENERAL;
+                return false;
+            }
+
+            // Resize and crop file to a square.
+            $scaled_image = $image->scale_to_square($target_full_path, 256);
+
+            if (!imagejpeg($scaled_image, $target_full_path)) {
+                $this->error = TCImage::ERR_FILE_GENERAL;
+                return false;
+            }
+
+            $edit_user->avatar = '/uploads/'.$target_path.'/'.$target_file;
+            $edit_user->updated_time = time();
+
+            try {
+                $this->db->save_object($edit_user);
+            } catch (TCException $e) {
+                $this->error = TCObject::ERR_NOT_SAVED;
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -400,5 +515,10 @@ class TCUserController extends TCController
             $mail_content,
             $recipients
         );
+    }
+
+    public function upload_avatar()
+    {
+
     }
 }
