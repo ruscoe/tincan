@@ -48,7 +48,7 @@ $form_action = (!empty($update_user_id)) ? '/admin/actions/update-user.php' : '/
   <div class="fieldset">
     <label for="password">Password</label>
     <div class="field">
-      <input type="text" name="password" value="<?php echo (empty($update_user_id)) ? $update_user->generate_password() : '***'; ?>" />
+      <input type="password" name="password" value="<?php echo (empty($update_user_id)) ? $update_user->generate_password() : '***'; ?>" />
     </div>
   </div>
 
