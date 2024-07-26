@@ -1,0 +1,17 @@
+{
+    "name": "tincan-theme",
+    "version": "1.0.0",
+    "description": "The default Tin Can forum theme.",
+    "author": "Dan Ruscoe",
+    "license": "MIT",
+    "scripts": {
+        "sass:build": "sass sass/style.scss css/style.css",
+        "sass:watch": "sass sass/style.scss css/style.css --watch",
+        "sass:lint": "stylelint sass/*.scss"
+    },
+    "dependencies": {
+        "sass": "1.62.0",
+        "stylelint": "15.6.1",
+        "stylelint-config-standard-scss": "9.0.0"
+    }
+}

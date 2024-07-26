@@ -1,12 +1,11 @@
 /* Colors */
 /* Fonts */
 @font-face {
-  font-family: 'OpenSans-Regular';
+  font-family: "OpenSans-Regular";
   src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
 }
 /* Breakpoints */
 /* Containers */
-/* line 60, ../sass/style.scss */
 body.tincan-admin {
   background-color: #FFFFFF;
   margin: 0;
@@ -16,15 +15,12 @@ body.tincan-admin {
   /* Links */
   /* Tables */
 }
-/* line 75, ../sass/style.scss */
 body.tincan-admin #header, body.tincan-admin #navigation, body.tincan-admin #content, body.tincan-admin #footer {
   font-family: "OpenSans-Regular", serif;
 }
-/* line 79, ../sass/style.scss */
 body.tincan-admin #header {
   position: relative;
 }
-/* line 82, ../sass/style.scss */
 body.tincan-admin #header ul.navigation {
   position: absolute;
   right: 2rem;
@@ -32,12 +28,10 @@ body.tincan-admin #header ul.navigation {
   list-style: none;
   padding: 0;
 }
-/* line 89, ../sass/style.scss */
 body.tincan-admin #header ul.navigation li {
   padding: 0 0.5rem 0 0.5rem;
 }
 @media (min-width: 600px) {
-  /* line 82, ../sass/style.scss */
   body.tincan-admin #header ul.navigation {
     display: flex;
     flex-direction: row;
@@ -45,50 +39,41 @@ body.tincan-admin #header ul.navigation li {
     justify-content: flex-start;
   }
 }
-/* line 103, ../sass/style.scss */
 body.tincan-admin #content {
   flex: 1;
   margin: 0 2rem 0 2rem;
   padding-top: 1rem;
 }
-/* line 108, ../sass/style.scss */
 body.tincan-admin #content h1 {
   padding-top: 2rem;
 }
 @media (min-width: 600px) {
-  /* line 103, ../sass/style.scss */
   body.tincan-admin #content {
     margin-left: 240px;
   }
 }
-/* line 117, ../sass/style.scss */
 body.tincan-admin #footer {
   padding: 3rem 0 3rem 0;
   text-align: center;
 }
-/* line 123, ../sass/style.scss */
 body.tincan-admin #navigation {
   background-color: #404040;
   padding-top: 2rem;
 }
-/* line 127, ../sass/style.scss */
 body.tincan-admin #navigation a.admin-logo {
   display: block;
   text-align: center;
   width: 100%;
 }
-/* line 132, ../sass/style.scss */
 body.tincan-admin #navigation a.admin-logo img {
   margin: 0 auto 0 auto;
   width: 180px;
 }
-/* line 138, ../sass/style.scss */
 body.tincan-admin #navigation ul {
   flex-direction: column;
   list-style: none;
   padding: 0;
 }
-/* line 145, ../sass/style.scss */
 body.tincan-admin #navigation ul li a {
   color: #FFFFFF;
   display: block;
@@ -98,7 +83,6 @@ body.tincan-admin #navigation ul li a {
   text-decoration: none;
 }
 @media (min-width: 600px) {
-  /* line 123, ../sass/style.scss */
   body.tincan-admin #navigation {
     height: 100%;
     left: 0;
@@ -107,12 +91,10 @@ body.tincan-admin #navigation ul li a {
     width: 220px;
   }
 }
-/* line 167, ../sass/style.scss */
 body.tincan-admin h1, body.tincan-admin h2, body.tincan-admin h3, body.tincan-admin p, body.tincan-admin li, body.tincan-admin th, body.tincan-admin td {
   color: #6B6666;
   text-align: left;
 }
-/* line 172, ../sass/style.scss */
 body.tincan-admin h1.section-header {
   background-color: #295C7A;
   color: #FFFFFF;
@@ -120,29 +102,23 @@ body.tincan-admin h1.section-header {
   margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
-/* line 180, ../sass/style.scss */
 body.tincan-admin h2.section-subheader, body.tincan-admin h3.section-subheader {
   font-size: 1.5rem;
   margin: 0 0.5rem 0 0.5rem;
 }
-/* line 187, ../sass/style.scss */
 body.tincan-admin a:link {
   color: #123266;
   text-decoration: underline;
 }
-/* line 192, ../sass/style.scss */
 body.tincan-admin a:visited {
   color: #123266;
 }
-/* line 196, ../sass/style.scss */
 body.tincan-admin a:hover {
   color: #D76A3A;
 }
-/* line 200, ../sass/style.scss */
 body.tincan-admin .objects-nav {
   margin: 0 0 2rem 0;
 }
-/* line 204, ../sass/style.scss */
 body.tincan-admin a.admin-button {
   background-color: #D76A3A;
   box-shadow: 2px 2px #000000;
@@ -152,30 +128,24 @@ body.tincan-admin a.admin-button {
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   text-decoration: none;
 }
-/* line 216, ../sass/style.scss */
 body.tincan-admin table.objects {
   width: 100%;
 }
-/* line 219, ../sass/style.scss */
 body.tincan-admin table.objects th {
   background-color: #295C7A;
   color: #FFFFFF;
 }
-/* line 224, ../sass/style.scss */
 body.tincan-admin table.objects tr:nth-child(even) {
   background-color: #EEEEEE;
 }
-/* line 228, ../sass/style.scss */
 body.tincan-admin table.objects th, body.tincan-admin table.objects td {
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
-/* line 232, ../sass/style.scss */
 body.tincan-admin table.objects a {
   text-decoration: none;
 }
 
 /* Includes */
-/* line 3, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object,
 body.tincan-admin form#delete-board,
 body.tincan-admin form#delete-thread,
@@ -191,7 +161,6 @@ body.tincan-admin form#forum-settings {
   margin: 0 auto 0 auto;
   padding-top: 3rem;
 }
-/* line 18, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object .fieldset,
 body.tincan-admin form#delete-board .fieldset,
 body.tincan-admin form#delete-thread .fieldset,
@@ -206,7 +175,6 @@ body.tincan-admin form#forum-settings .fieldset {
   flex: 1;
   margin: 0.5rem 0 0.5rem 0;
 }
-/* line 24, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object .fieldset.textarea,
 body.tincan-admin form#delete-board .fieldset.textarea,
 body.tincan-admin form#delete-thread .fieldset.textarea,
@@ -219,7 +187,6 @@ body.tincan-admin form#edit-mail-template .fieldset.textarea,
 body.tincan-admin form#forum-settings .fieldset.textarea {
   display: block;
 }
-/* line 27, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object .fieldset.textarea label,
 body.tincan-admin form#delete-board .fieldset.textarea label,
 body.tincan-admin form#delete-thread .fieldset.textarea label,
@@ -232,7 +199,6 @@ body.tincan-admin form#edit-mail-template .fieldset.textarea label,
 body.tincan-admin form#forum-settings .fieldset.textarea label {
   max-width: none !important;
 }
-/* line 31, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object .fieldset.textarea .field,
 body.tincan-admin form#delete-board .fieldset.textarea .field,
 body.tincan-admin form#delete-thread .fieldset.textarea .field,
@@ -245,7 +211,6 @@ body.tincan-admin form#edit-mail-template .fieldset.textarea .field,
 body.tincan-admin form#forum-settings .fieldset.textarea .field {
   flex: none;
 }
-/* line 34, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object .fieldset.textarea .field textarea,
 body.tincan-admin form#delete-board .fieldset.textarea .field textarea,
 body.tincan-admin form#delete-thread .fieldset.textarea .field textarea,
@@ -258,7 +223,6 @@ body.tincan-admin form#edit-mail-template .fieldset.textarea .field textarea,
 body.tincan-admin form#forum-settings .fieldset.textarea .field textarea {
   width: 100%;
 }
-/* line 40, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object .fieldset.button,
 body.tincan-admin form#delete-board .fieldset.button,
 body.tincan-admin form#delete-thread .fieldset.button,
@@ -272,7 +236,6 @@ body.tincan-admin form#forum-settings .fieldset.button {
   padding-top: 1rem;
   justify-content: flex-end;
 }
-/* line 45, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object .field,
 body.tincan-admin form#delete-board .field,
 body.tincan-admin form#delete-thread .field,
@@ -287,7 +250,6 @@ body.tincan-admin form#forum-settings .field {
   flex: 1.5;
   padding: 0.25rem;
 }
-/* line 51, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object label,
 body.tincan-admin form#delete-board label,
 body.tincan-admin form#delete-thread label,
@@ -305,7 +267,6 @@ body.tincan-admin form#forum-settings label {
   max-width: 240px;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
-/* line 60, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object input.text-input,
 body.tincan-admin form#delete-board input.text-input,
 body.tincan-admin form#delete-thread input.text-input,
@@ -318,7 +279,6 @@ body.tincan-admin form#edit-mail-template input.text-input,
 body.tincan-admin form#forum-settings input.text-input {
   width: 100%;
 }
-/* line 64, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-object input.submit-button,
 body.tincan-admin form#delete-board input.submit-button,
 body.tincan-admin form#delete-thread input.submit-button,
@@ -337,38 +297,26 @@ body.tincan-admin form#forum-settings input.submit-button {
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   text-decoration: none;
 }
-/* line 77, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-board .fieldset.thread-options {
   align-items: center;
 }
-/* line 81, ../sass/_tc-admin-forms.scss */
-body.tincan-admin form#delete-board .fieldset.move-to-board {
-  display: none;
-}
-/* line 85, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-board label {
   background: none;
   color: #6B6666;
 }
-/* line 93, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-board-group .fieldset.board-options {
   align-items: center;
 }
-/* line 97, ../sass/_tc-admin-forms.scss */
-body.tincan-admin form#delete-board-group .fieldset.move-to-board-group {
-  display: none;
-}
-/* line 101, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#delete-board-group label {
   background: none;
   color: #6B6666;
 }
-/* line 107, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#filters {
   padding: 1rem 0 2rem 0;
 }
-/* line 110, ../sass/_tc-admin-forms.scss */
 body.tincan-admin form#filters .fieldset {
   float: left;
   margin: 0 0.5rem 0 0.5rem;
 }
+
+/*# sourceMappingURL=style.css.map */
