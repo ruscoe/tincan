@@ -70,7 +70,8 @@ foreach ($threads as $thread) {
     $total_posts = $db->count_objects(new TCPost(), [['field' => 'thread_id', 'value' => $thread->thread_id]]);
     $data = [
     [
-      'type' => 'text',
+      'type' => 'link',
+      'url' => '/index.php?page='.$settings['page_thread'].'&thread='.$thread->thread_id,
       'value' => $thread->thread_title,
     ],
     [
@@ -80,11 +81,6 @@ foreach ($threads as $thread) {
     [
       'type' => 'text',
       'value' => $total_posts,
-    ],
-    [
-      'type' => 'link',
-      'url' => '/index.php?page='.$settings['page_thread'].'&thread='.$thread->thread_id,
-      'value' => 'View',
     ],
     [
       'type' => 'link',

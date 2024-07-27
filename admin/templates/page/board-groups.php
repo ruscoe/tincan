@@ -42,17 +42,13 @@ foreach ($board_groups as $board_group) {
     $total_boards = $db->count_objects(new TCBoard(), [['field' => 'board_group_id', 'value' => $board_group->board_group_id]]);
     $data = [
       [
-        'type' => 'text',
+        'type' => 'link',
+        'url' => '/index.php?page='.$settings['page_board_group'].'&board_group='.$board_group->board_group_id,
         'value' => $board_group->board_group_name,
       ],
       [
         'type' => 'text',
         'value' => $total_boards,
-      ],
-      [
-        'type' => 'link',
-        'url' => '/index.php?page='.$settings['page_board_group'].'&board_group='.$board_group->board_group_id,
-        'value' => 'View',
       ],
       [
         'type' => 'link',

@@ -74,7 +74,8 @@ foreach ($boards as $board) {
     $total_threads = $db->count_objects(new TCThread(), [['field' => 'board_id', 'value' => $board->board_id]]);
     $data = [
     [
-      'type' => 'text',
+      'type' => 'link',
+      'url' => '/index.php?page='.$settings['page_board'].'&board='.$board->board_id,
       'value' => $board->board_name,
     ],
     [
@@ -84,11 +85,6 @@ foreach ($boards as $board) {
     [
       'type' => 'text',
       'value' => $total_threads,
-    ],
-    [
-      'type' => 'link',
-      'url' => '/index.php?page='.$settings['page_board'].'&board='.$board->board_id,
-      'value' => 'View',
     ],
     [
       'type' => 'link',
