@@ -26,11 +26,9 @@ $update_user = (!empty($update_user_id)) ? $db->load_user($update_user_id) : new
 
 // Get available user roles.
 $roles = $db->load_objects(new TCRole());
-
-$form_action = (!empty($update_user_id)) ? '/admin/actions/update-user.php' : '/admin/actions/create-user.php';
 ?>
 
-<form id="edit-user" action="<?php echo $form_action; ?>" method="POST">
+<form id="edit-user" action="/admin/actions/update-user.php" method="POST">
   <div class="fieldset">
     <label for="username">Username</label>
     <div class="field">
