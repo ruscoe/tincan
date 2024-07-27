@@ -1,9 +1,7 @@
 <?php
 
-use TinCan\db\TCData;
+use TinCan\controllers\TCUserController;
 use TinCan\template\TCURL;
-use TinCan\objects\TCUser;
-use TinCan\user\TCUserSession;
 
 /**
  * Admin page object filter handler.
@@ -15,19 +13,13 @@ use TinCan\user\TCUserSession;
 
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-$db = new TCData();
-$settings = $db->load_settings();
+$controller = new TCUserController();
 
-// Get logged in user.
-$session = new TCUserSession();
-$session->start_session();
-$user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+$controller->authenticate_user();
 
-// Check for admin user.
-if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+if (!$controller->is_admin_user()) {
     // Not an admin user; redirect to log in page.
-    header('Location: /index.php?page='.$settings['page_log_in']);
+    header('Location: /index.php?page='.$controller->get_setting('page_log_in'));
     exit;
 }
 
@@ -46,7 +38,7 @@ foreach ($page_params as $param) {
     $sanitized_params[$param] = filter_input(INPUT_POST, $param, FILTER_SANITIZE_STRING);
 }
 
-$destination = '/admin'.TCURL::create_url($page_id, $sanitized_params);
+$destination = TCURL::create_admin_url($page_id, $sanitized_params);
 
 header('Location: '.$destination);
 exit;
