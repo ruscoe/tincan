@@ -117,7 +117,7 @@ Feature: Admin
     And I follow "Boards"
     And I follow "New Board"
     And I fill in the following:
-    | board_name     | Test Board 01       |
+    | board_name | Test Board 01 |
     And I select "Test Board Group 01" from "board_group_id"
     And I press "Add Board"
     Then the "h1" element should contain "Admin Boards"
