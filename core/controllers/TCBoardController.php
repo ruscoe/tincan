@@ -6,6 +6,7 @@ use TinCan\controllers\TCController;
 use TinCan\objects\TCBoard;
 use TinCan\objects\TCBoardGroup;
 use TinCan\objects\TCObject;
+use TinCan\objects\TCThread;
 
 /**
  * Board controller.
@@ -81,5 +82,59 @@ class TCBoardController extends TCController
         }
 
         return $saved_board;
+    }
+
+    /**
+     * Deletes a board.
+     *
+     * @param int    $board_id       The ID of the board to delete.
+     * @param string $thread_fate    The fate of the threads in the board.
+     * @param int    $move_to_board_id The ID of the board to move threads to.
+     *
+     * @return bool True if the board was deleted, false otherwise.
+     *
+     * @since 0.16
+     */
+    public function delete_board($board_id, $thread_fate, $move_to_board_id)
+    {
+        $board = $this->db->load_object(new TCBoard(), $board_id);
+
+        if (empty($board)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        try {
+            $this->db->delete_object(new TCBoard(), $board->board_id);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        $threads = $this->db->load_objects(new TCThread(), null, [['field' => 'board_id', 'value' => $board->board_id]]);
+
+        if ('move' == $thread_fate) {
+            foreach ($threads as $thread) {
+                $thread->board_id = $move_to_board_id;
+
+                try {
+                    $this->db->save_object($thread);
+                } catch (TCException $e) {
+                    $this->error = TCObject::ERR_NOT_SAVED;
+                    return false;
+                }
+            }
+        } else {
+            foreach ($threads as $thread) {
+                try {
+                    $this->db->delete_object(new TCThread(), $thread->thread_id);
+                } catch (TCException $e) {
+                    $this->error = TCObject::ERR_NOT_SAVED;
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }

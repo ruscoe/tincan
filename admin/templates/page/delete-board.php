@@ -4,6 +4,7 @@ use TinCan\objects\TCBoard;
 use TinCan\db\TCData;
 use TinCan\objects\TCThread;
 use TinCan\objects\TCObject;
+use TinCan\template\TCTemplate;
 
 /**
  * Page template for board deletion.
@@ -19,10 +20,30 @@ $db = new TCData();
 
 $board = $db->load_object(new TCBoard(), $board_id);
 
-// Get available boards.
-$available_boards = $db->load_objects(new TCBoard());
+if (empty($board)) {
+    $error = TCObject::ERR_NOT_FOUND;
+}
+
+// Error handling.
+if (!empty($error)) {
+    switch ($error) {
+        case TCObject::ERR_NOT_FOUND:
+            $error_msg = 'Board not found.';
+            break;
+        case TCObject::ERR_NOT_SAVED:
+            $error_msg = 'Board could not be updated.';
+            break;
+        default:
+            $error_msg = $error;
+    }
+
+    TCTemplate::render('form-errors', $data['settings']['theme'], ['errors' => [$error_msg], 'page' => $data['page']]);
+}
 
 if (!empty($board)) {
+    // Get available boards.
+    $available_boards = $db->load_objects(new TCBoard());
+
     $total_threads = $db->count_objects(new TCThread(), [['field' => 'board_id', 'value' => $board->board_id]]); ?>
 
 <h1>Really delete <?php echo $board->get_name(); ?>?</h1>
@@ -78,10 +99,4 @@ if (!empty($board)) {
   </div>
 </form>
     <?php
-} else {
-    ?>
-  <h1>Board not found</h1>
-  <p>This board either never existed or has already been deleted.</p>
-    <?php
 }
-?>

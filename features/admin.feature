@@ -124,9 +124,89 @@ Feature: Admin
     And I should see "Test Board 01"
 
   Scenario: An admin user edits a board.
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    Given board groups exist:
+    | board_group_name    |
+    | Test Board Group 01 |
+    Given boards exist:
+    | board_name    | board_group_name    |
+    | Test Board 01 | Test Board Group 01 |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Boards"
+    And I follow "Edit" in the row containing "Test Board Group 01"
+    And I fill in the following:
+    | board_name | Edited Test Board 01 |
+    And I press "Update Board"
+    Then the "h1" element should contain "Admin Boards"
+    And I should see "Edited Test Board 01"
 
   Scenario: An admin user deletes a board and its threads
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given board groups exist:
+    | board_group_name    |
+    | Test Board Group 01 |
+    Given boards exist:
+    | board_name    | board_group_name    |
+    | Test Board 01 | Test Board Group 01 |
+    Given threads exist:
+    | thread_title   | created_by_user        | board_name    |
+    | Test Thread 01 | testuser01@example.org | Test Board 01 |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Boards"
+    And I follow "Delete" in the row containing "Test Board 01"
+    And I press "Delete Board"
+    Then the "h1" element should contain "Admin Boards"
+    And I should not see "Test Board 01"
+    When I follow "Threads"
+    Then I should not see "Test Thread 01"
 
   Scenario: An admin user deletes a board and moves its threads
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given board groups exist:
+    | board_group_name    |
+    | Test Board Group 01 |
+    Given boards exist:
+    | board_name        | board_group_name    |
+    | Test Source Board | Test Board Group 01 |
+    | Test Target Board | Test Board Group 01 |
+    Given threads exist:
+    | thread_title      | created_by_user        | board_name        |
+    | Test Moved Thread | testuser01@example.org | Test Source Board |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Boards"
+    And I follow "Delete" in the row containing "Test Source Board"
+    Then I should see "This board contains 1 thread(s)."
+    When I select "move" from "thread_fate"
+    And I select "Test Target Board" from "move_to_board_id"
+    And I press "Delete Board"
+    And I follow "Test Target Board"
+    Then I should see "Test Moved Thread"
 
   Scenario: An admin user deletes a board that doesn't exist
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    Given board groups exist:
+    | board_group_name    |
+    | Test Board Group 01 |
+    Given boards exist:
+    | board_name    | board_group_name    |
+    | Test Board 01 | Test Board Group 01 |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Boards"
+    And I follow "Delete" in the row containing "Test Board 01"
+    And I fill hidden field "board_id" with "999999"
+    And I press "Delete Board"
+    Then the ".errors" element should contain "Board not found."

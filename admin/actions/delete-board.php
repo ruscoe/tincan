@@ -1,11 +1,7 @@
 <?php
 
-use TinCan\objects\TCBoard;
-use TinCan\db\TCData;
-use TinCan\TCException;
-use TinCan\objects\TCThread;
-use TinCan\objects\TCUser;
-use TinCan\user\TCUserSession;
+use TinCan\controllers\TCBoardController;
+use TinCan\template\TCURL;
 
 /**
  * Tin Can board deletion handler.
@@ -21,44 +17,32 @@ $board_id = filter_input(INPUT_POST, 'board_id', FILTER_SANITIZE_NUMBER_INT);
 $thread_fate = filter_input(INPUT_POST, 'thread_fate', FILTER_SANITIZE_STRING);
 $move_to_board_id = filter_input(INPUT_POST, 'move_to_board_id', FILTER_SANITIZE_NUMBER_INT);
 
-$db = new TCData();
-$settings = $db->load_settings();
+$controller = new TCBoardController();
 
-// Get logged in user.
-$session = new TCUserSession();
-$session->start_session();
-$user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+$controller->authenticate_user();
 
-// Check for admin user.
-if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+if (!$controller->is_admin_user()) {
     // Not an admin user; redirect to log in page.
-    header('Location: /index.php?page='.$settings['page_log_in']);
+    header('Location: /index.php?page='.$controller->get_setting('page_log_in'));
     exit;
 }
 
-$board = $db->load_object(new TCBoard(), $board_id);
+$controller->delete_board($board_id, $thread_fate, $move_to_board_id);
 
-if (empty($board)) {
-    throw new TCException('Unable to find board ID '.$board_id);
-}
+$destination = '';
 
-$db->delete_object(new TCBoard(), $board->board_id);
-
-$threads = $db->load_objects(new TCThread(), null, [['field' => 'board_id', 'value' => $board->board_id]]);
-
-if ('move' == $thread_fate) {
-    foreach ($threads as $thread) {
-        $thread->board_id = $move_to_board_id;
-        $db->save_object($thread);
-    }
+if (empty($controller->get_error())) {
+    // Send user to the boards page.
+    $destination = TCURL::create_admin_url($controller->get_setting('admin_page_boards'));
 } else {
-    foreach ($threads as $thread) {
-        $db->delete_object(new TCThread(), $thread->thread_id);
-    }
+    // Send user back to the delete board page with an error.
+    $destination = TCURL::create_admin_url(
+        $controller->get_setting('admin_page_delete_board'),
+        [
+        'error' => $controller->get_error(),
+        ]
+    );
 }
-
-$destination = '/admin/index.php?page='.$settings['admin_page_boards'];
 
 header('Location: '.$destination);
 exit;
