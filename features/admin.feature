@@ -278,3 +278,55 @@ Feature: Admin
     And I fill hidden field "thread_id" with "999999"
     And I press "Delete Thread"
     Then the ".errors" element should contain "Thread not found."
+
+  Scenario: An admin user edits a user
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Edit" in the row containing "TestUser01"
+    And I fill in the following:
+    | username | UpdatedTestUser01 |
+    And I press "Update User"
+    Then the "h1" element should contain "Admin Users"
+    And I should see "UpdatedTestUser01"
+
+  Scenario: An admin user deletes a user
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Delete" in the row containing "TestUser01"
+    And I press "Delete User"
+    Then the "h1" element should contain "Admin Users"
+    And I should not see "TestUser01"
+
+  Scenario: An admin user cannot delete their own account
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Delete" in the row containing "TestAdmin01"
+    And I press "Delete User"
+    Then the ".errors" element should contain "You are not authorized to delete this user."
+
+  Scenario: An admin user cannot delete a user that doesn't exist
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Delete" in the row containing "TestUser01"
+    And I fill hidden field "user_id" with "999999"
+    And I press "Delete User"
+    Then the ".errors" element should contain "User not found."

@@ -517,6 +517,40 @@ class TCUserController extends TCController
         );
     }
 
+    /**
+     * Deletes a user.
+     *
+     * @param int $user_id The ID of the user to delete.
+     *
+     * @return bool True if the user has been deleted, false otherwise.
+     *
+     * @since 0.16
+     */
+    public function delete_user($user_id)
+    {
+        $delete_user = $this->db->load_object(new TCUser(), $user_id);
+
+        if (empty($delete_user)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // User cannot delete their own account.
+        if ($delete_user->user_id == $this->user->user_id) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
+            return false;
+        }
+
+        try {
+            $this->db->delete_object(new TCUser(), $delete_user->user_id);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return true;
+    }
+
     public function upload_avatar()
     {
 

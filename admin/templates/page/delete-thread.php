@@ -21,23 +21,23 @@ $db = new TCData();
 $thread = $db->load_object(new TCThread(), $thread_id);
 
 if (empty($thread)) {
-  $error = TCObject::ERR_NOT_FOUND;
+    $error = TCObject::ERR_NOT_FOUND;
 }
 
 // Error handling.
 if (!empty($error)) {
-  switch ($error) {
-      case TCObject::ERR_NOT_FOUND:
-          $error_msg = 'Thread not found.';
-          break;
-      case TCObject::ERR_NOT_SAVED:
-          $error_msg = 'Thread could not be updated.';
-          break;
-      default:
-          $error_msg = $error;
-  }
+    switch ($error) {
+        case TCObject::ERR_NOT_FOUND:
+            $error_msg = 'Thread not found.';
+            break;
+        case TCObject::ERR_NOT_SAVED:
+            $error_msg = 'Thread could not be updated.';
+            break;
+        default:
+            $error_msg = $error;
+    }
 
-  TCTemplate::render('form-errors', $data['settings']['theme'], ['errors' => [$error_msg], 'page' => $data['page']]);
+    TCTemplate::render('form-errors', $data['settings']['theme'], ['errors' => [$error_msg], 'page' => $data['page']]);
 }
 
 if (!empty($thread)) {

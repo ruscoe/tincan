@@ -1,9 +1,7 @@
 <?php
 
-use TinCan\db\TCData;
-use TinCan\TCException;
-use TinCan\objects\TCUser;
-use TinCan\user\TCUserSession;
+use TinCan\controllers\TCUserController;
+use TinCan\template\TCURL;
 
 /**
  * Tin Can user deletion handler.
@@ -15,37 +13,34 @@ use TinCan\user\TCUserSession;
 
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-$delete_user_id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
+$user_id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
 
-$db = new TCData();
-$settings = $db->load_settings();
+$controller = new TCUserController();
 
-// Get logged in user.
-$session = new TCUserSession();
-$session->start_session();
-$user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+$controller->authenticate_user();
 
-// Check for admin user.
-if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+if (!$controller->is_admin_user()) {
     // Not an admin user; redirect to log in page.
-    header('Location: /index.php?page='.$settings['page_log_in']);
+    header('Location: /index.php?page='.$controller->get_setting('page_log_in'));
     exit;
 }
 
-$delete_user = $db->load_object(new TCUser(), $delete_user_id);
+$controller->delete_user($user_id);
 
-if (empty($delete_user)) {
-    throw new TCException('Unable to find user ID '.$delete_user_id);
+$destination = '';
+
+if (empty($controller->get_error())) {
+    // Send user to the users page.
+    $destination = TCURL::create_admin_url($controller->get_setting('admin_page_users'));
+} else {
+    // Send user back to the delete user page with an error.
+    $destination = TCURL::create_admin_url(
+        $controller->get_setting('admin_page_delete_user'),
+        [
+        'error' => $controller->get_error(),
+        ]
+    );
 }
-
-if ($delete_user->user_id == $user->user_id) {
-    throw new TCException('User cannot delete their own account.');
-}
-
-$db->delete_object(new TCUser(), $delete_user->user_id);
-
-$destination = '/admin/index.php?page='.$settings['admin_page_users'];
 
 header('Location: '.$destination);
 exit;

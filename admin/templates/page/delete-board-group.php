@@ -20,7 +20,7 @@ $db = new TCData();
 
 $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
 
-if (empty($board_group)) {
+if (empty($error) && empty($board_group)) {
     $error = TCObject::ERR_NOT_FOUND;
 }
 
