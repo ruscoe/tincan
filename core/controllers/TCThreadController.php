@@ -131,7 +131,7 @@ class TCThreadController extends TCController
     }
 
     /**
-     * Determines if a thread can be edited.
+     * Edits a thread.
      *
      * @param int $thread_id The ID of the thread to be edited.
      *
