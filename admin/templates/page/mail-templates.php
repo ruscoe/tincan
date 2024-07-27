@@ -17,10 +17,6 @@ $settings = $data['settings'];
 
 <h1><?php echo $page->page_title; ?></h1>
 
-<div class="objects-nav">
-  <a class="admin-button" href="/admin/index.php?page=<?php echo $settings['admin_page_edit_mail_template']; ?>">New Mail Template</a>
-</div>
-
 <?php
 
 $db = new TCData();
@@ -46,11 +42,6 @@ foreach ($mail_templates as $template) {
         'type' => 'link',
         'url' => '/admin/index.php?page='.$settings['admin_page_edit_mail_template'].'&mail_template_id='.$template->mail_template_id,
         'value' => 'Edit',
-      ],
-      [
-        'type' => 'link',
-        'url' => '/admin/index.php?page='.$settings['admin_page_delete_object'].'&object_type=mail_template&object_id='.$template->mail_template_id,
-        'value' => 'Delete',
       ],
     ];
 

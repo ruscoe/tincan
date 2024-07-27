@@ -51,7 +51,6 @@ foreach ($settings_by_cat as $category => $settings) {
             case 'page':
                 // Don't display page settings. Too easy to break the entire forum by
                 // reassigning default pages.
-                // TCAdminTemplate::render('table-row-settings-page', ['setting' => $setting, 'pages' => $pages]);
                 break;
             case 'bool':
                 TCAdminTemplate::render('table-row-settings-bool', ['setting' => $setting]);

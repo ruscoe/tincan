@@ -28,15 +28,13 @@ $thread = (!empty($thread_id)) ? $db->load_object(new TCThread(), $thread_id) : 
 
 // Get available boards.
 $boards = $db->load_objects(new TCBoard());
-
-$form_action = (!empty($thread_id)) ? '/admin/actions/update-thread.php' : '/admin/actions/create-thread.php';
 ?>
 
 <?php if (empty($boards)) { ?>
   <p>You'll need to <a href="/admin/index.php?page=<?php echo $settings['admin_page_boards']; ?>" title="Boards">create a board</a> first.</p>
 <?php } else { ?>
 
-<form id="edit-thread" action="<?php echo $form_action; ?>" method="POST">
+<form id="edit-thread" action="/admin/actions/update-thread.php" method="POST">
   <div class="fieldset">
     <label for="thread_title">Thread Title</label>
     <div class="field">
