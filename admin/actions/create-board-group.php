@@ -1,9 +1,7 @@
 <?php
 
-use TinCan\objects\TCBoardGroup;
-use TinCan\db\TCData;
-use TinCan\objects\TCUser;
-use TinCan\user\TCUserSession;
+use TinCan\controllers\TCBoardGroupController;
+use TinCan\template\TCURL;
 
 /**
  * Tin Can board group creation handler.
@@ -15,39 +13,34 @@ use TinCan\user\TCUserSession;
 
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
-$db = new TCData();
-$settings = $db->load_settings();
+$board_group_name = filter_input(INPUT_POST, 'board_group_name', FILTER_SANITIZE_STRING);
 
-// Get logged in user.
-$session = new TCUserSession();
-$session->start_session();
-$user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+$controller = new TCBoardGroupController();
 
-// Check for admin user.
-if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+$controller->authenticate_user();
+
+if (!$controller->is_admin_user()) {
     // Not an admin user; redirect to log in page.
-    header('Location: /index.php?page='.$settings['page_log_in']);
+    header('Location: /index.php?page='.$controller->get_setting('page_log_in'));
     exit;
 }
 
-$board_group = new TCBoardGroup();
+$controller->create_board_group($board_group_name);
 
-// Populate fields.
-$db_fields = $board_group->get_db_fields();
+$destination = '';
 
-foreach ($db_fields as $field) {
-    if (isset($_POST[$field])) {
-        $board_group->$field = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
-    }
+if (empty($controller->get_error())) {
+    // Send user to the board groups page.
+    $destination = TCURL::create_admin_url($controller->get_setting('admin_page_board_groups'));
+} else {
+    // Send user back to the edit board group page with an error.
+    $destination = TCURL::create_admin_url(
+        $controller->get_setting('admin_page_edit_board_group'),
+        [
+        'error' => $controller->get_error(),
+        ]
+    );
 }
 
-$board_group->created_time = time();
-$board_group->updated_time = time();
-
-$saved_board_group = $db->save_object($board_group);
-
-// Return to the threads page.
-$destination = '/admin/index.php?page='.$settings['admin_page_board_groups'];
 header('Location: '.$destination);
 exit;

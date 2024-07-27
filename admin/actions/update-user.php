@@ -22,6 +22,7 @@ $role_id = filter_input(INPUT_POST, 'role_id', FILTER_SANITIZE_NUMBER_INT);
 // Don't trim password. Spaces are permitted anywhere in the password.
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
+// Ignore placeholder password used on form.
 if ('***' == $password) {
     $password = null;
 }

@@ -82,6 +82,18 @@ abstract class TCController
     }
 
     /**
+     * Determines if the user is an admin user.
+     *
+     * @return bool
+     *
+     * @since 0.16
+     */
+    public function is_admin_user()
+    {
+        return (!empty($this->user) && $this->user->can_perform_action(TCUser::ACT_ACCESS_ADMIN));
+    }
+
+    /**
      * Gets the error generated during the last operation.
      *
      * @return string

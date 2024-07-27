@@ -1,11 +1,7 @@
 <?php
 
-use TinCan\objects\TCBoard;
-use TinCan\objects\TCBoardGroup;
-use TinCan\db\TCData;
-use TinCan\TCException;
-use TinCan\objects\TCUser;
-use TinCan\user\TCUserSession;
+use TinCan\controllers\TCBoardGroupController;
+use TinCan\template\TCURL;
 
 /**
  * Tin Can board group deletion handler.
@@ -21,44 +17,32 @@ $board_group_id = filter_input(INPUT_POST, 'board_group_id', FILTER_SANITIZE_NUM
 $board_fate = filter_input(INPUT_POST, 'board_fate', FILTER_SANITIZE_STRING);
 $move_to_board_group_id = filter_input(INPUT_POST, 'move_to_board_group_id', FILTER_SANITIZE_NUMBER_INT);
 
-$db = new TCData();
-$settings = $db->load_settings();
+$controller = new TCBoardGroupController();
 
-// Get logged in user.
-$session = new TCUserSession();
-$session->start_session();
-$user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+$controller->authenticate_user();
 
-// Check for admin user.
-if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+if (!$controller->is_admin_user()) {
     // Not an admin user; redirect to log in page.
-    header('Location: /index.php?page='.$settings['page_log_in']);
+    header('Location: /index.php?page='.$controller->get_setting('page_log_in'));
     exit;
 }
 
-$board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
+$controller->delete_board_group($board_group_id, $board_fate, $move_to_board_group_id);
 
-if (empty($board_group)) {
-    throw new TCException('Unable to find board group ID '.$board_group_id);
-}
+$destination = '';
 
-$db->delete_object(new TCBoardGroup(), $board_group->board_group_id);
-
-$boards = $db->load_objects(new TCBoard(), null, [['field' => 'board_group_id', 'value' => $board_group->board_group_id]]);
-
-if ('move' == $board_fate) {
-    foreach ($boards as $board) {
-        $board->board_group_id = $move_to_board_group_id;
-        $db->save_object($board);
-    }
+if (empty($controller->get_error())) {
+    // Send user to the board groups page.
+    $destination = TCURL::create_admin_url($controller->get_setting('admin_page_board_groups'));
 } else {
-    foreach ($boards as $board) {
-        $db->delete_object(new TCBoard(), $board->board_id);
-    }
+    // Send user back to the delete board group page with an error.
+    $destination = TCURL::create_admin_url(
+        $controller->get_setting('admin_page_delete_board_group'),
+        [
+        'error' => $controller->get_error(),
+        ]
+    );
 }
-
-$destination = '/admin/index.php?page='.$settings['admin_page_board_groups'];
 
 header('Location: '.$destination);
 exit;
