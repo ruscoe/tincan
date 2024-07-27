@@ -158,7 +158,7 @@ class TCThreadController extends TCController
     }
 
     /**
-     * Deletes a thread.
+     * Marks a thread as deleted.
      *
      * @param int $thread_id The ID of the thread to be deleted.
      *
@@ -174,6 +174,34 @@ class TCThreadController extends TCController
 
         try {
             $this->db->save_object($thread);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Permanently deletes a thread.
+     *
+     * @param int $thread_id The ID of the thread to be deleted.
+     *
+     * @return bool TRUE if the thread is deleted, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function permanently_delete_thread($thread_id)
+    {
+        $thread = $this->db->load_object(new TCThread(), $thread_id);
+
+        if (empty($thread)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        try {
+            $this->db->delete_object(new TCThread(), $thread->thread_id);
         } catch (TCException $e) {
             $this->error = TCObject::ERR_NOT_SAVED;
             return false;

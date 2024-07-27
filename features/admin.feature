@@ -90,7 +90,7 @@ Feature: Admin
     Then I should see "Test Moved Board 01"
     And I should see "Test Moved Board 02"
 
-  Scenario: An admin user deletes a board group that doesn't exist
+  Scenario: An admin user cannot delete a board group that doesn't exist
     Given users exist:
     | username    | email                   | password   | role_id |
     | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
@@ -193,7 +193,7 @@ Feature: Admin
     And I follow "Test Target Board"
     Then I should see "Test Moved Thread"
 
-  Scenario: An admin user deletes a board that doesn't exist
+  Scenario: An admin user cannot delete a board that doesn't exist
     Given users exist:
     | username    | email                   | password   | role_id |
     | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
@@ -210,3 +210,71 @@ Feature: Admin
     And I fill hidden field "board_id" with "999999"
     And I press "Delete Board"
     Then the ".errors" element should contain "Board not found."
+
+  Scenario: An admin user edits a thread
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given board groups exist:
+    | board_group_name    |
+    | Test Board Group 01 |
+    Given boards exist:
+    | board_name    | board_group_name    |
+    | Test Board 01 | Test Board Group 01 |
+    Given threads exist:
+    | thread_title   | created_by_user        | board_name    |
+    | Test Thread 01 | testuser01@example.org | Test Board 01 |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Threads"
+    And I follow "Edit" in the row containing "Test Thread 01"
+    And I fill in the following:
+    | thread_title | Edited Test Thread 01 |
+    And I press "Update Thread"
+    Then the "h1" element should contain "Admin Threads"
+    And I should see "Edited Test Thread 01"
+
+  Scenario: An admin user deletes a thread
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given board groups exist:
+    | board_group_name    |
+    | Test Board Group 01 |
+    Given boards exist:
+    | board_name    | board_group_name    |
+    | Test Board 01 | Test Board Group 01 |
+    Given threads exist:
+    | thread_title   | created_by_user        | board_name    |
+    | Test Thread 01 | testuser01@example.org | Test Board 01 |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Threads"
+    And I follow "Delete" in the row containing "Test Thread 01"
+    And I press "Delete Thread"
+    Then the "h1" element should contain "Admin Threads"
+    And I should not see "Test Thread 01"
+
+  Scenario: An admin user cannot delete a thread that doesn't exist
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given board groups exist:
+    | board_group_name    |
+    | Test Board Group 01 |
+    Given boards exist:
+    | board_name    | board_group_name    |
+    | Test Board 01 | Test Board Group 01 |
+    Given threads exist:
+    | thread_title   | created_by_user        | board_name    |
+    | Test Thread 01 | testuser01@example.org | Test Board 01 |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Threads"
+    And I follow "Delete" in the row containing "Test Thread 01"
+    And I fill hidden field "thread_id" with "999999"
+    And I press "Delete Thread"
+    Then the ".errors" element should contain "Thread not found."

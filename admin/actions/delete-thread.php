@@ -1,11 +1,7 @@
 <?php
 
-use TinCan\db\TCData;
-use TinCan\TCException;
-use TinCan\objects\TCPost;
-use TinCan\objects\TCThread;
-use TinCan\objects\TCUser;
-use TinCan\user\TCUserSession;
+use TinCan\controllers\TCThreadController;
+use TinCan\template\TCURL;
 
 /**
  * Tin Can thread deletion handler.
@@ -19,37 +15,32 @@ require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 $thread_id = filter_input(INPUT_POST, 'thread_id', FILTER_SANITIZE_NUMBER_INT);
 
-$db = new TCData();
-$settings = $db->load_settings();
+$controller = new TCThreadController();
 
-// Get logged in user.
-$session = new TCUserSession();
-$session->start_session();
-$user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+$controller->authenticate_user();
 
-// Check for admin user.
-if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+if (!$controller->is_admin_user()) {
     // Not an admin user; redirect to log in page.
-    header('Location: /index.php?page='.$settings['page_log_in']);
+    header('Location: /index.php?page='.$controller->get_setting('page_log_in'));
     exit;
 }
 
-$thread = $db->load_object(new TCThread(), $thread_id);
+$controller->permanently_delete_thread($thread_id);
 
-if (empty($thread)) {
-    throw new TCException('Unable to find thread ID '.$thread_id);
+$destination = '';
+
+if (empty($controller->get_error())) {
+    // Send user to the threads page.
+    $destination = TCURL::create_admin_url($controller->get_setting('admin_page_threads'));
+} else {
+    // Send user back to the delete thread page with an error.
+    $destination = TCURL::create_admin_url(
+        $controller->get_setting('admin_page_delete_thread'),
+        [
+        'error' => $controller->get_error(),
+        ]
+    );
 }
-
-$db->delete_object(new TCThread(), $thread->thread_id);
-
-$posts = $db->load_objects(new TCPost(), null, [['field' => 'thread_id', 'value' => $thread->thread_id]]);
-
-foreach ($posts as $post) {
-    $db->delete_object(new TCPost(), $post->post_id);
-}
-
-$destination = '/admin/index.php?page='.$settings['admin_page_threads'];
 
 header('Location: '.$destination);
 exit;
