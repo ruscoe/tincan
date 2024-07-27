@@ -29,6 +29,9 @@ if (!empty($error)) {
         case TCObject::ERR_NOT_FOUND:
             $error_msg = 'Board group not found.';
             break;
+        case TCObject::ERR_NOT_SAVED:
+            $error_msg = 'Board group could not be updated.';
+            break;
         default:
             $error_msg = $error;
     }
