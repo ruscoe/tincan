@@ -16,7 +16,7 @@ $user = $data['user'];
 $update_user_id = filter_input(INPUT_GET, 'user_id', FILTER_SANITIZE_NUMBER_INT);
 ?>
 
-<h1><?php echo (!empty($update_user_id)) ? 'Edit User' : 'Add New User'; ?></h1>
+<h1>Edit User</h1>
 
 <?php
 

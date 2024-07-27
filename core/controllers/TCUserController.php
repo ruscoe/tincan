@@ -100,6 +100,24 @@ class TCUserController extends TCController
             return false;
         }
 
+        return true;
+    }
+
+    /**
+     * Create a new user.
+     *
+     * @param string $username The username.
+     * @param string $email    The email address.
+     * @param string $password The password.
+     *
+     * @return TCUser|bool The new user object or false on failure.
+     *
+     * @since 0.16
+     */
+    public function create_user($username, $email, $password)
+    {
+        $user = new TCUser();
+
         // Validate username.
         if (!$user->validate_username($username)) {
             $this->error = TCUser::ERR_USER;
@@ -132,24 +150,6 @@ class TCUserController extends TCController
             $this->error = TCUser::ERR_EMAIL_EXISTS;
             return false;
         }
-
-        return true;
-    }
-
-    /**
-     * Create a new user.
-     *
-     * @param string $username The username.
-     * @param string $email    The email address.
-     * @param string $password The password.
-     *
-     * @return TCUser|bool The new user object or false on failure.
-     *
-     * @since 0.16
-     */
-    public function create_user($username, $email, $password)
-    {
-        $user = new TCUser();
 
         $user->username = $username;
         $user->email = $email;
@@ -200,15 +200,58 @@ class TCUserController extends TCController
     /**
      * Edits a user.
      *
-     * @param int $user_id The ID of the user to edit.
+     * @param int    $user_id   The ID of the user to edit.
+     * @param array  $file      The uploaded file.
+     * @param string $email     The email address.
+     * @param string $username  The username.
+     * @param int    $role_id   The role ID.
+     * @param string $password  The password.
+     * @param int    $suspended The suspended status.
      *
      * @return bool True if the user has been edited, false otherwise.
      *
      * @since 0.16
      */
-    public function edit_user($user_id, $file = null)
+    public function edit_user($user_id, $file = null, $email, $username = null, $role_id = null, $password = null, $suspended = null)
     {
         $edit_user = $this->db->load_user($user_id);
+
+        // Validate username.
+        if (!$edit_user->validate_username($username)) {
+            $this->error = TCUser::ERR_USER;
+            return false;
+        }
+
+        // Validate email.
+        if (!$edit_user->validate_email($email)) {
+            $this->error = TCUser::ERR_EMAIL;
+            return false;
+        }
+
+        // Validate password.
+        if (($password !== null) && !$edit_user->validate_password($password)) {
+            $this->error = TCUser::ERR_PASSWORD;
+            return false;
+        }
+
+        // Check for existing username / email.
+        $results = $this->db->load_objects($edit_user, [], [['field' => 'username', 'value' => $username]]);
+        $existing_user = reset($results);
+
+        if (!empty($existing_user) && ($existing_user->user_id != $edit_user->user_id)) {
+            var_dump('hello');
+            exit;
+            $this->error = TCUser::ERR_USERNAME_EXISTS;
+            return false;
+        }
+
+        $results = $this->db->load_objects($edit_user, [], [['field' => 'email', 'value' => $email]]);
+        $existing_user = reset($results);
+
+        if (!empty($existing_user) && ($existing_user->user_id != $edit_user->user_id)) {
+            $this->error = TCUser::ERR_EMAIL_EXISTS;
+            return false;
+        }
 
         // Upload an avatar image.
         if (!empty($file)) {
@@ -273,13 +316,28 @@ class TCUserController extends TCController
 
             $edit_user->avatar = '/uploads/'.$target_path.'/'.$target_file;
             $edit_user->updated_time = time();
+        }
 
-            try {
-                $this->db->save_object($edit_user);
-            } catch (TCException $e) {
-                $this->error = TCObject::ERR_NOT_SAVED;
-                return false;
-            }
+        $edit_user->email = $email;
+        $edit_user->password = $edit_user->get_password_hash($password);
+        $edit_user->updated_time = time();
+
+        // Username, role ID, and suspected must be explicitly set.
+        if ($username !== null) {
+            $edit_user->username = $username;
+        }
+        if ($role_id !== null) {
+            $edit_user->role_id = $role_id;
+        }
+        if ($suspended !== null) {
+            $edit_user->suspended = $suspended;
+        }
+
+        try {
+            $this->db->save_object($edit_user);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
         }
 
         return true;
