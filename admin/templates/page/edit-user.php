@@ -1,8 +1,10 @@
 <?php
 
 use TinCan\db\TCData;
+use TinCan\objects\TCObject;
 use TinCan\objects\TCRole;
 use TinCan\objects\TCUser;
+use TinCan\template\TCTemplate;
 
 /**
  * Page template for user editing.
@@ -14,11 +16,43 @@ use TinCan\objects\TCUser;
 $user = $data['user'];
 
 $update_user_id = filter_input(INPUT_GET, 'user_id', FILTER_SANITIZE_NUMBER_INT);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
 <h1>Edit User</h1>
 
 <?php
+
+// Error handling.
+if (!empty($error)) {
+    switch ($error) {
+        case TCUser::ERR_USER:
+            $error_msg = 'Invalid username.';
+            break;
+        case TCUser::ERR_EMAIL:
+            $error_msg = 'Invalid email address.';
+            break;
+        case TCUser::ERR_PASSWORD:
+            $error_msg = 'Invalid password.';
+            break;
+        case TCUser::ERR_USERNAME_EXISTS:
+            $error_msg = 'Username already exists.';
+            break;
+        case TCUser::ERR_EMAIL_EXISTS:
+            $error_msg = 'Email address already exists.';
+            break;
+        case TCObject::ERR_NOT_FOUND:
+            $error_msg = 'User not found.';
+            break;
+        case TCObject::ERR_NOT_SAVED:
+            $error_msg = 'User could not be updated.';
+            break;
+        default:
+            $error_msg = $error;
+    }
+
+    TCTemplate::render('form-errors', $data['settings']['theme'], ['errors' => [$error_msg], 'page' => $data['page']]);
+}
 
 $db = new TCData();
 

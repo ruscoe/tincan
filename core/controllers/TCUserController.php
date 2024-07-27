@@ -239,8 +239,6 @@ class TCUserController extends TCController
         $existing_user = reset($results);
 
         if (!empty($existing_user) && ($existing_user->user_id != $edit_user->user_id)) {
-            var_dump('hello');
-            exit;
             $this->error = TCUser::ERR_USERNAME_EXISTS;
             return false;
         }

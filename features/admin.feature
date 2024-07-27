@@ -19,6 +19,114 @@ Feature: Admin
     And I follow "Administration"
     Then the "h1" element should contain "Admin Forum Settings"
 
+  Scenario: An admin user edits a user's username.
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Edit" in the row containing "TestUser01"
+    And I fill in the following:
+    | username | UpdatedTestUser01 |
+    And I press "Update User"
+    When I follow "Edit" in the row containing "UpdatedTestUser01"
+    Then the "username" field should contain "UpdatedTestUser01"
+
+  Scenario: An admin user edits a user's email address.
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Edit" in the row containing "TestUser01"
+    And I fill in the following:
+    | email | testuser01@example.org |
+    And I press "Update User"
+    When I follow "Edit" in the row containing "TestUser01"
+    Then the "email" field should contain "testuser01@example.org"
+
+  Scenario: An admin user edits a user's password.
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Edit" in the row containing "TestUser01"
+    And I fill in the following:
+    | password | T3stP@ss02 |
+    And I press "Update User"
+    And I follow "Log Out"
+    And I follow "Log In"
+    And I fill in the following:
+      | username | TestUser01 |
+      | password | T3stP@ss02 |
+    And press "Log in"
+    Then I should see "Logged in as TestUser01"
+
+  Scenario: An admin user edits a user's role.
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Edit" in the row containing "TestUser01"
+    When I select "Moderator" from "role_id"
+    And I press "Update User"
+    When I follow "Edit" in the row containing "TestUser01"
+    Then the "role_id" field should contain "2"
+
+  Scenario: An admin user suspends a user.
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Edit" in the row containing "TestUser01"
+    And I check "suspended"
+    And I press "Update User"
+    When I follow "Edit" in the row containing "TestUser01"
+    Then the "suspended" checkbox should be checked
+
+  Scenario: An admin user cannot reuse an exisiting username.
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    | TestUser02  | testuser02@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Edit" in the row containing "TestUser01"
+    And I fill in the following:
+    | username | TestUser02 |
+    And I press "Update User"
+    Then the ".errors" element should contain "Username already exists."
+
+  Scenario: An admin user cannot reuse an exisiting email address.
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    | TestUser02  | testuser02@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Edit" in the row containing "TestUser01"
+    And I fill in the following:
+    | email | testuser02@example.org |
+    And I press "Update User"
+    Then the ".errors" element should contain "Email address already exists."
+
   Scenario: An admin user creates a new board group.
     Given users exist:
     | username    | email                   | password   | role_id |

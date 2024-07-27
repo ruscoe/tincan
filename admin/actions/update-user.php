@@ -49,6 +49,7 @@ if (empty($controller->get_error())) {
     $destination = TCURL::create_admin_url(
         $controller->get_setting('admin_page_edit_user'),
         [
+        'user_id' => $update_user_id,
         'error' => $controller->get_error(),
         ]
     );
