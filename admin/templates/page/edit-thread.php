@@ -26,18 +26,18 @@ $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 // Error handling.
 if (!empty($error)) {
-  switch ($error) {
-      case TCObject::ERR_NOT_FOUND:
-          $error_msg = 'Thread not found.';
-          break;
-      case TCObject::ERR_NOT_SAVED:
-          $error_msg = 'Thread could not be updated.';
-          break;
-      default:
-          $error_msg = $error;
-  }
+    switch ($error) {
+        case TCObject::ERR_NOT_FOUND:
+            $error_msg = 'Thread not found.';
+            break;
+        case TCObject::ERR_NOT_SAVED:
+            $error_msg = 'Thread could not be updated.';
+            break;
+        default:
+            $error_msg = $error;
+    }
 
-  TCTemplate::render('form-errors', $data['settings']['theme'], ['errors' => [$error_msg], 'page' => $data['page']]);
+    TCTemplate::render('form-errors', $data['settings']['theme'], ['errors' => [$error_msg], 'page' => $data['page']]);
 }
 
 $db = new TCData();
