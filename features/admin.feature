@@ -3,6 +3,13 @@ Feature: Admin
   As an admin user
   I need to be able to perform administration tasks
 
+  Scenario: A non-admin user attempts to access the admin section
+  Given users exist:
+  | username   | email                  | password   | role_id |
+  | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
+  When I am on "/admin/"
+  Then the ".section-header" element should contain "Log In"
+
   Scenario: An admin user logs into their account.
     Given users exist:
     | username    | email                   | password   | role_id |
