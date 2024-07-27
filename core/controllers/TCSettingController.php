@@ -99,22 +99,17 @@ class TCSettingController extends TCController
      */
     public function upload_setting_image($setting, $file)
     {
-        var_dump($setting);
         // Check the given setting is an image type setting.
         $setting_objects = $this->db->get_indexed_objects(new TCSetting(), 'setting_name');
         $image_setting = $setting_objects[$setting];
 
         if (empty($image_setting) || ($image_setting->type !== 'image')) {
             $this->error = TCImage::ERR_FILE_GENERAL;
-            var_dump(1);
-            exit;
             return false;
         }
 
         if ((empty($file) || UPLOAD_ERR_OK !== $file['error'])) {
             $this->error = TCImage::ERR_FILE_GENERAL;
-            var_dump(1);
-            exit;
             return false;
         }
 
@@ -151,6 +146,40 @@ class TCSettingController extends TCController
 
         // Update setting value with new filename.
         $image_setting->value = '/uploads/'.$target_file;
+
+        try {
+            $this->db->save_object($image_setting);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Deletes an image for a setting.
+     *
+     * @param string $setting The setting name.
+     *
+     * @return bool TRUE if the image was deleted, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function delete_setting_image($setting)
+    {
+        // Check the given setting exists and is an image type setting.
+        $setting_objects = $this->db->get_indexed_objects(new TCSetting(), 'setting_name');
+        $image_setting = $setting_objects[$setting];
+
+        if (empty($image_setting) || ($image_setting->type !== 'image')) {
+            $this->error = TCImage::ERR_FILE_GENERAL;
+            return false;
+        }
+
+        // Image settings are given an empty filename rather than being deleted.
+        // This just avoids complications uploading a new image later.
+        $image_setting->value = '';
 
         try {
             $this->db->save_object($image_setting);
