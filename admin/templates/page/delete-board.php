@@ -3,6 +3,7 @@
 use TinCan\objects\TCBoard;
 use TinCan\db\TCData;
 use TinCan\objects\TCThread;
+use TinCan\objects\TCObject;
 
 /**
  * Page template for board deletion.
@@ -12,6 +13,7 @@ use TinCan\objects\TCThread;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $board_id = filter_input(INPUT_GET, 'board_id', FILTER_SANITIZE_NUMBER_INT);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 

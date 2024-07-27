@@ -1,8 +1,10 @@
 <?php
 
+use TinCan\db\TCData;
 use TinCan\objects\TCBoard;
 use TinCan\objects\TCBoardGroup;
-use TinCan\db\TCData;
+use TinCan\objects\TCObject;
+use TinCan\template\TCTemplate;
 
 /**
  * Page template for board deletion.
@@ -12,15 +14,33 @@ use TinCan\db\TCData;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $board_group_id = filter_input(INPUT_GET, 'board_group_id', FILTER_SANITIZE_NUMBER_INT);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 $db = new TCData();
 
 $board_group = $db->load_object(new TCBoardGroup(), $board_group_id);
 
-// Get available board groups.
-$available_board_groups = $db->load_objects(new TCBoardGroup());
+if (empty($board_group)) {
+    $error = TCObject::ERR_NOT_FOUND;
+}
+
+if (!empty($error)) {
+    switch ($error) {
+        case TCObject::ERR_NOT_FOUND:
+            $error_msg = 'Board group not found.';
+            break;
+        default:
+            $error_msg = $error;
+    }
+
+    TCTemplate::render('form-errors', $data['settings']['theme'], ['errors' => [$error_msg], 'page' => $data['page']]);
+}
 
 if (!empty($board_group)) {
+
+    // Get available board groups.
+    $available_board_groups = $db->load_objects(new TCBoardGroup());
+
     $total_boards = $db->count_objects(new TCBoard(), [['field' => 'board_group_id', 'value' => $board_group->board_group_id]]); ?>
 
 <h1>Really delete <?php echo $board_group->get_name(); ?>?</h1>
@@ -37,8 +57,8 @@ if (!empty($board_group)) {
   </div>
 
         <?php
-        // Display option to move boards only if there's at least one other board group.
-        if (count($available_board_groups) > 1) { ?>
+          // Display option to move boards only if there's at least one other board group.
+          if (count($available_board_groups) > 1) { ?>
 
   <div class="fieldset board-options">
     <input type="radio" id="move_boards" name="board_fate" value="move" />
@@ -56,12 +76,12 @@ if (!empty($board_group)) {
     <div class="field">
       <select name="move_to_board_group_id">
             <?php
-            foreach ($available_board_groups as $available_board_group) {
-                if ($available_board_group->board_group_id == $board_group->board_group_id) {
-                    continue;
-                }
-                echo "<option value=\"{$available_board_group->board_group_id}\">{$available_board_group->board_group_name}</option>\n";
-            }
+              foreach ($available_board_groups as $available_board_group) {
+                  if ($available_board_group->board_group_id == $board_group->board_group_id) {
+                      continue;
+                  }
+                  echo "<option value=\"{$available_board_group->board_group_id}\">{$available_board_group->board_group_name}</option>\n";
+              }
         ?>
       </select>
     </div>
@@ -76,10 +96,4 @@ if (!empty($board_group)) {
   </div>
 </form>
     <?php
-} else {
-    ?>
-  <h1>Board Group not found</h1>
-  <p>This board group either never existed or has already been deleted.</p>
-    <?php
 }
-?>
