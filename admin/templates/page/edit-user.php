@@ -56,7 +56,7 @@ $roles = $db->load_objects(new TCRole());
       <select name="role_id">
         <?php
         foreach ($roles as $role) {
-            $selected = ($role->role_id == $user->role_id) ? ' selected' : '';
+            $selected = ($role->role_id == $update_user->role_id) ? ' selected' : '';
             echo "<option value=\"{$role->role_id}\"{$selected}>{$role->role_name}</option>\n";
         }
 ?>
