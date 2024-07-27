@@ -2,6 +2,7 @@
 
 namespace TinCan\controllers;
 
+use TinCan\content\TCImage;
 use TinCan\controllers\TCController;
 use TinCan\objects\TCObject;
 use TinCan\objects\TCSetting;
@@ -81,6 +82,81 @@ class TCSettingController extends TCController
                         }
                 }
             }
+        }
+
+        return true;
+    }
+
+    /**
+     * Uploads an image for a setting.
+     *
+     * @param string $setting The setting name.
+     * @param array  $file    The uploaded file.
+     *
+     * @return bool TRUE if the image was uploaded, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function upload_setting_image($setting, $file)
+    {
+        var_dump($setting);
+        // Check the given setting is an image type setting.
+        $setting_objects = $this->db->get_indexed_objects(new TCSetting(), 'setting_name');
+        $image_setting = $setting_objects[$setting];
+
+        if (empty($image_setting) || ($image_setting->type !== 'image')) {
+            $this->error = TCImage::ERR_FILE_GENERAL;
+            var_dump(1);
+            exit;
+            return false;
+        }
+
+        if ((empty($file) || UPLOAD_ERR_OK !== $file['error'])) {
+            $this->error = TCImage::ERR_FILE_GENERAL;
+            var_dump(1);
+            exit;
+            return false;
+        }
+
+        $image_data = getimagesize($file['tmp_name']);
+
+        $image = new TCImage();
+        $image->width = $image_data[0];
+        $image->height = $image_data[1];
+        $image->file_type = $image_data[2];
+        $image->mime_type = $image_data['mime'];
+        $image->file_size = $file['size'];
+
+        // Check for valid file type.
+        if (!$image->is_valid_type()) {
+            $this->error = TCImage::ERR_FILE_TYPE;
+            return false;
+        }
+
+        // Check file size.
+        if (!$image->is_valid_size()) {
+            $this->error = TCImage::ERR_FILE_SIZE;
+            return false;
+        }
+
+        // The image filename is identical to the setting name.
+        // TODO: Eventually integrate this into a media management system.
+        $target_file = $setting.'.jpg';
+        $target_full_path = getenv('TC_UPLOADS_PATH').'/'.$target_file;
+
+        if (!move_uploaded_file($file['tmp_name'], $target_full_path)) {
+            $this->error = TCImage::ERR_FILE_GENERAL;
+            return false;
+        }
+
+        // Update setting value with new filename.
+        $image_setting->value = '/uploads/'.$target_file;
+
+        try {
+            $this->db->save_object($image_setting);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
         }
 
         return true;
