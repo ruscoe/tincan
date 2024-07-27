@@ -83,19 +83,3 @@ if (!empty($board_group)) {
     <?php
 }
 ?>
-
-<script type="text/javascript">
-  (function($) {
-    $(document).ready(function() {
-      $('input[name=board_fate]').change(function() {
-        console.log($(this).val());
-        if ($(this).val() == 'move') {
-          $('.fieldset.move-to-board-group').css('display', 'flex');
-        }
-        else {
-          $('.fieldset.move-to-board-group').hide();
-        }
-      });
-    });
-  })(jQuery);
-</script>

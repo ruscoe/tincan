@@ -83,19 +83,3 @@ if (!empty($board)) {
     <?php
 }
 ?>
-
-<script type="text/javascript">
-  (function($) {
-    $(document).ready(function() {
-      $('input[name=thread_fate]').change(function() {
-        console.log($(this).val());
-        if ($(this).val() == 'move') {
-          $('.fieldset.move-to-board').css('display', 'flex');
-        }
-        else {
-          $('.fieldset.move-to-board').hide();
-        }
-      });
-    });
-  })(jQuery);
-</script>
