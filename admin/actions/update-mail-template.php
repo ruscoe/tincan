@@ -1,10 +1,7 @@
 <?php
 
-use TinCan\db\TCData;
-use TinCan\objects\TCMailTemplate;
-use TinCan\objects\TCObject;
-use TinCan\objects\TCUser;
-use TinCan\user\TCUserSession;
+use TinCan\controllers\TCMailController;
+use TinCan\template\TCURL;
 
 /**
  * Tin Can mail template update handler.
@@ -20,45 +17,32 @@ $mail_template_id = filter_input(INPUT_POST, 'mail_template_id', FILTER_SANITIZE
 $mail_template_name = filter_input(INPUT_POST, 'mail_template_name', FILTER_SANITIZE_STRING);
 $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING);
 
-$db = new TCData();
-$settings = $db->load_settings();
+$controller = new TCMailController();
 
-// Get logged in user.
-$session = new TCUserSession();
-$session->start_session();
-$user_id = $session->get_user_id();
-$user = (!empty($user_id)) ? $db->load_user($user_id) : null;
+$controller->authenticate_user();
 
-// Check for admin user.
-if (empty($user) || !$user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) {
+if (!$controller->is_admin_user()) {
     // Not an admin user; redirect to log in page.
-    header('Location: /index.php?page='.$settings['page_log_in']);
+    header('Location: /index.php?page='.$controller->get_setting('page_log_in'));
     exit;
 }
 
-$mail_template = $db->load_object(new TCMailTemplate(), $mail_template_id);
+$controller->edit_mail_template($mail_template_id, $mail_template_name, $content);
 
-$error = null;
+$destination = '';
 
-if (empty($mail_template)) {
-    $error = TCObject::ERR_NOT_FOUND;
+if (empty($controller->get_error())) {
+    // Send user to the mail templates page.
+    $destination = TCURL::create_admin_url($controller->get_setting('admin_page_mail_templates'));
+} else {
+    // Send user back to the edit mail template page with an error.
+    $destination = TCURL::create_admin_url(
+        $controller->get_setting('admin_page_edit_mail_template'),
+        [
+        'error' => $controller->get_error(),
+        ]
+    );
 }
 
-$saved_mail_template = null;
-
-if (empty($error)) {
-    $mail_template->mail_template_name = $mail_template_name;
-    $mail_template->content = $content;
-
-    $saved_mail_template = $db->save_object($mail_template);
-
-    // Verify mail template has been updated.
-    if (empty($saved_mail_template)) {
-        $error = TCObject::ERR_NOT_SAVED;
-    }
-}
-
-// Return to the mail templates page.
-$destination = '/admin/index.php?page='.$settings['admin_page_mail_templates'].'&error='.$error;
 header('Location: '.$destination);
 exit;
