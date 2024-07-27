@@ -104,3 +104,29 @@ Feature: Admin
     And I fill hidden field "board_group_id" with "999999"
     And I press "Delete Board Group"
     Then the ".errors" element should contain "Board group not found."
+
+  Scenario: An admin user creates a new board.
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    Given board groups exist:
+    | board_group_name    |
+    | Test Board Group 01 |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Boards"
+    And I follow "New Board"
+    And I fill in the following:
+    | board_name     | Test Board 01       |
+    And I select "Test Board Group 01" from "board_group_id"
+    And I press "Add Board"
+    Then the "h1" element should contain "Admin Boards"
+    And I should see "Test Board 01"
+
+  Scenario: An admin user edits a board.
+
+  Scenario: An admin user deletes a board and its threads
+
+  Scenario: An admin user deletes a board and moves its threads
+
+  Scenario: An admin user deletes a board that doesn't exist

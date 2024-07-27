@@ -265,6 +265,11 @@ class FeatureContext extends RawMinkContext implements Context
                         if (!empty($board_group)) {
                             $this->created_board_groups[$board_group->get_primary_key_value()] = $row[1];
                         }
+                    } elseif ($row[0] == 'board_name') {
+                        $board = $this->get_board($row[1]);
+                        if (!empty($board)) {
+                            $this->created_boards[$board->get_primary_key_value()] = $row[1];
+                        }
                     }
                 }
             }
@@ -353,6 +358,24 @@ class FeatureContext extends RawMinkContext implements Context
             ['field' => 'board_group_name', 'value' => $board_group_name],
         ];
         $results = $this->db->load_objects(new TCBoardGroup(), [], $conditions);
+
+        return reset($results);
+    }
+
+    /**
+     * Gets a board from the database.
+     *
+     * @param string $board_name
+     *   The name of the board.
+     *
+     * @return TCBoard
+     */
+    private function get_board($board_name)
+    {
+        $conditions = [
+            ['field' => 'board_name', 'value' => $board_name],
+        ];
+        $results = $this->db->load_objects(new TCBoard(), [], $conditions);
 
         return reset($results);
     }
