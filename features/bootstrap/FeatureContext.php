@@ -216,6 +216,19 @@ class FeatureContext extends RawMinkContext implements Context
         }
     }
 
+    /**
+     * @When /^I follow "([^"]*)" in the row containing "([^"]*)"$/
+     */
+    public function iFollowInTheRowContaining($link, $text)
+    {
+        $row = $this->getSession()->getPage()->find('css', sprintf('table tr:contains("%s")', $text));
+        if (!$row) {
+            throw new \Exception(sprintf('Cannot find table row containing the text "%s"', $text));
+        }
+
+        $row->clickLink($link);
+    }
+
     /** @AfterScenario */
     public function after($event)
     {
@@ -372,7 +385,26 @@ class FeatureContext extends RawMinkContext implements Context
     {
         $this->db->delete_object(new TCThread(), $thread_id);
     }
+    /**
+     * Looks for a table, then looks for a row that contains the given text.
+     * Once it finds the right row, it clicks a link in that row.
+     *
+     * Really handy when you have a generic "Edit" link on each row of
+     * a table, and you want to click a specific one (e.g. the "Edit" link
+     * in the row that contains "Item #2")
+     *
+     * @When /^I click on "([^"]*)" on the row containing "([^"]*)"$/
+     */
+    public function iClickOnOnTheRowContaining($linkName, $rowText)
+    {
+        /** @var $row \Behat\Mink\Element\NodeElement */
+        $row = $this->getPage()->find('css', sprintf('table tr:contains("%s")', $rowText));
+        if (!$row) {
+            throw new \Exception(sprintf('Cannot find any row on the page containing the text "%s"', $rowText));
+        }
 
+        $row->clickLink($linkName);
+    }
     /**
      * Deletes a post from the database.
      */
