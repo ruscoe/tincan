@@ -24,6 +24,7 @@ if (empty($board_group)) {
     $error = TCObject::ERR_NOT_FOUND;
 }
 
+// Error handling.
 if (!empty($error)) {
     switch ($error) {
         case TCObject::ERR_NOT_FOUND:
