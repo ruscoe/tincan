@@ -229,6 +229,17 @@ class FeatureContext extends RawMinkContext implements Context
         $row->clickLink($link);
     }
 
+    /**
+     * @When /^I fill hidden field "([^"]*)" with "([^"]*)"$/
+     */
+    public function iFillHiddenFieldWith($field, $value)
+    {
+        $this->getSession()->getPage()->find(
+            'css',
+            'input[name="'.$field.'"]'
+        )->setValue($value);
+    }
+
     /** @AfterScenario */
     public function after($event)
     {

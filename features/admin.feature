@@ -89,3 +89,18 @@ Feature: Admin
     And I follow "Test Target Board Group"
     Then I should see "Test Moved Board 01"
     And I should see "Test Moved Board 02"
+
+  Scenario: An admin user deletes a board group that doesn't exist
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    Given board groups exist:
+    | board_group_name    |
+    | Test Board Group 01 |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Board Groups"
+    And I follow "Delete" in the row containing "Test Board Group 01"
+    And I fill hidden field "board_group_id" with "999999"
+    And I press "Delete Board Group"
+    Then the ".errors" element should contain "Board group not found."
