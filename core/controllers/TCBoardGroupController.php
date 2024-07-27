@@ -52,6 +52,39 @@ class TCBoardGroupController extends TCController
     }
 
     /**
+     * Edits a board group.
+     *
+     * @param int    $board_group_id   The ID of the board group to edit.
+     * @param string $board_group_name The new name of the board group.
+     *
+     * @return TCBoardGroup|false The updated board group object or false if not saved.
+     *
+     * @since 0.16
+     */
+    public function edit_board_group($board_group_id, $board_group_name)
+    {
+        $board_group = $this->db->load_object(new TCBoardGroup(), $board_group_id);
+
+        if (empty($board_group)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        $board_group->board_group_name = $board_group_name;
+        $board_group->updated_time = time();
+
+        $saved_board_group = null;
+        try {
+            $saved_board_group = $this->db->save_object($board_group);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return $saved_board_group;
+    }
+
+    /**
      * Deletes a board group.
      *
      * @param int    $board_group_id         The ID of the board group to delete.

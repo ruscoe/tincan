@@ -131,6 +131,38 @@ class TCThreadController extends TCController
     }
 
     /**
+     * Determines if a thread can be edited.
+     *
+     * @param int $thread_id The ID of the thread to be edited.
+     *
+     * @return bool TRUE if the thread can be edited, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function edit_thread($thread_id, $thread_title, $board_id)
+    {
+        $thread = $this->db->load_object(new TCThread(), $thread_id);
+
+        if (empty($thread)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        $thread->thread_title = $thread_title;
+        $thread->board_id = $board_id;
+        $thread->updated_time = time();
+
+        try {
+            $saved_thread = $this->db->save_object($thread);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return $saved_thread;
+    }
+
+    /**
      * Determines if a thread can be deleted.
      *
      * @param int $thread_id The ID of the thread to be deleted.
