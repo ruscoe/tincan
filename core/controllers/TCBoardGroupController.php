@@ -63,6 +63,11 @@ class TCBoardGroupController extends TCController
      */
     public function edit_board_group($board_group_id, $board_group_name)
     {
+        if (empty($board_group_name)) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
         $board_group = $this->db->load_object(new TCBoardGroup(), $board_group_id);
 
         if (empty($board_group)) {
