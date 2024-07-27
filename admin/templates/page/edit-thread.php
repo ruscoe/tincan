@@ -1,9 +1,11 @@
 <?php
 
-use TinCan\objects\TCBoard;
 use TinCan\db\TCData;
+use TinCan\objects\TCBoard;
+use TinCan\objects\TCObject;
 use TinCan\objects\TCThread;
 use TinCan\objects\TCPost;
+use TinCan\template\TCTemplate;
 
 /**
  * Page template for thread editing.
@@ -15,11 +17,28 @@ use TinCan\objects\TCPost;
 $user = $data['user'];
 
 $thread_id = filter_input(INPUT_GET, 'thread_id', FILTER_SANITIZE_NUMBER_INT);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
-<h1><?php echo (!empty($thread_id)) ? 'Edit Thread' : 'Add New Thread'; ?></h1>
+<h1>Edit Thread</h1>
 
 <?php
+
+// Error handling.
+if (!empty($error)) {
+  switch ($error) {
+      case TCObject::ERR_NOT_FOUND:
+          $error_msg = 'Thread not found.';
+          break;
+      case TCObject::ERR_NOT_SAVED:
+          $error_msg = 'Thread could not be updated.';
+          break;
+      default:
+          $error_msg = $error;
+  }
+
+  TCTemplate::render('form-errors', $data['settings']['theme'], ['errors' => [$error_msg], 'page' => $data['page']]);
+}
 
 $db = new TCData();
 $settings = $db->load_settings();

@@ -113,6 +113,6 @@ $roles = $db->load_objects(new TCRole());
   <input type="hidden" name="user_id" value="<?php echo $update_user->user_id; ?>" />
 
   <div class="fieldset button">
-    <input class="submit-button" type="submit" value="<?php echo (!empty($update_user_id)) ? 'Update User' : 'Add User'; ?>" />
+    <input class="submit-button" type="submit" value="Update User" />
   </div>
 </form>

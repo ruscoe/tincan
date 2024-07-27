@@ -2,6 +2,8 @@
 
 use TinCan\db\TCData;
 use TinCan\objects\TCMailTemplate;
+use TinCan\objects\TCObject;
+use TinCan\template\TCTemplate;
 
 /**
  * Page template for editing mail templates.
@@ -11,20 +13,35 @@ use TinCan\objects\TCMailTemplate;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $mail_template_id = filter_input(INPUT_GET, 'mail_template_id', FILTER_SANITIZE_NUMBER_INT);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
-<h1><?php echo (!empty($mail_template_id)) ? 'Edit Mail Template' : 'Add New Mail Template'; ?></h1>
+<h1>Edit Mail Template</h1>
 
 <?php
+
+// Error handling.
+if (!empty($error)) {
+  switch ($error) {
+      case TCObject::ERR_NOT_FOUND:
+          $error_msg = 'Mail template not found.';
+          break;
+      case TCObject::ERR_NOT_SAVED:
+          $error_msg = 'Mail template could not be updated.';
+          break;
+      default:
+          $error_msg = $error;
+  }
+
+  TCTemplate::render('form-errors', $data['settings']['theme'], ['errors' => [$error_msg], 'page' => $data['page']]);
+}
 
 $db = new TCData();
 
 $mail_template = (!empty($mail_template_id)) ? $db->load_object(new TCMailTemplate(), $mail_template_id) : new TCMailTemplate();
-
-$form_action = (!empty($mail_template_id)) ? '/admin/actions/update-mail-template.php' : '/admin/actions/create-mail-template.php';
 ?>
 
-<form id="edit-mail-template" action="<?php echo $form_action; ?>" method="POST">
+<form id="edit-mail-template" action="/admin/actions/update-mail-template.php" method="POST">
   <div class="fieldset">
     <label for="mail_template_name">Template Name</label>
     <div class="field">
@@ -42,7 +59,7 @@ $form_action = (!empty($mail_template_id)) ? '/admin/actions/update-mail-templat
   <input type="hidden" name="mail_template_id" value="<?php echo $mail_template->mail_template_id; ?>" />
 
   <div class="fieldset button">
-    <input class="submit-button" type="submit" value="<?php echo (!empty($mail_template_id)) ? 'Update Mail Template' : 'Add Mail Template'; ?>" />
+    <input class="submit-button" type="submit" value="Update Mail Template" />
   </div>
 </form>
 

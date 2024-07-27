@@ -1,7 +1,9 @@
 <?php
 
-use TinCan\objects\TCBoardGroup;
 use TinCan\db\TCData;
+use TinCan\objects\TCBoardGroup;
+use TinCan\objects\TCObject;
+use TinCan\template\TCTemplate;
 
 /**
  * Page template for admin board group editing.
@@ -11,11 +13,28 @@ use TinCan\db\TCData;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $board_group_id = filter_input(INPUT_GET, 'board_group_id', FILTER_SANITIZE_NUMBER_INT);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 ?>
 
 <h1><?php echo (!empty($board_group_id)) ? 'Edit Board Group' : 'Add New Board Group'; ?></h1>
 
 <?php
+
+// Error handling.
+if (!empty($error)) {
+  switch ($error) {
+      case TCObject::ERR_NOT_FOUND:
+          $error_msg = 'Board group not found.';
+          break;
+      case TCObject::ERR_NOT_SAVED:
+          $error_msg = 'Board group could not be updated.';
+          break;
+      default:
+          $error_msg = $error;
+  }
+
+  TCTemplate::render('form-errors', $data['settings']['theme'], ['errors' => [$error_msg], 'page' => $data['page']]);
+}
 
 $db = new TCData();
 
