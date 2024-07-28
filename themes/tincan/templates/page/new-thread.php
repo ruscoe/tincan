@@ -61,10 +61,10 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
                 $error_msg = 'Your account cannot create new threads.';
                 break;
             case TCThread::ERR_TITLE_SHORT:
-                $error_msg = 'Please choose a longer title.';
+                $error_msg = 'Please enter a longer title.';
                 break;
             case TCThread::ERR_TITLE_LONG:
-                $error_msg = 'Please choose a shorter title.';
+                $error_msg = 'Please enter a shorter title.';
                 break;
             case TCObject::ERR_EMPTY_FIELD:
                 $error_msg = 'Please enter a longer post.';

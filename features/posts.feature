@@ -49,6 +49,46 @@ Feature: Posts
   And the ".post-user" element should contain "TestUser01"
   And the ".post-content" element should contain "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 
+  Scenario: A forum user cannot create a new thread with no title
+  Given users exist:
+  | username   | email                  | password   | role_id |
+  | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
+  Given board groups exist:
+  | board_group_name    |
+  | Test Board Group 01 |
+  Given boards exist:
+  | board_name    | board_group_name    |
+  | Test Board 01 | Test Board Group 01 |
+  Given I am logged in as "testuser01@example.org"
+  When I am on "/"
+  And I follow "Test Board 01"
+  And I follow "New thread"
+  And I fill in the following:
+  | thread_title |                                                          |
+  | post_content | Lorem ipsum dolor sit amet, consectetur adipiscing elit. |
+  And I press "Submit thread"
+  Then the ".errors" element should contain "Please enter a longer title."
+
+Scenario: A forum user cannot create a new thread with no content
+  Given users exist:
+  | username   | email                  | password   | role_id |
+  | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
+  Given board groups exist:
+  | board_group_name    |
+  | Test Board Group 01 |
+  Given boards exist:
+  | board_name    | board_group_name    |
+  | Test Board 01 | Test Board Group 01 |
+  Given I am logged in as "testuser01@example.org"
+  When I am on "/"
+  And I follow "Test Board 01"
+  And I follow "New thread"
+  And I fill in the following:
+  | thread_title | Test Thread 01 |
+  | post_content |                |
+  And I press "Submit thread"
+  Then the ".errors" element should contain "Please enter a longer post."
+
   Scenario: A forum user deletes their thread
   Given users exist:
   | username   | email                  | password   | role_id |
