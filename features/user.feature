@@ -84,3 +84,35 @@ Feature: User
     And press "Log in"
     Then I should see "Logged in as TestUser01"
     And I should see "Log Out"
+
+  Scenario: A forum user cannot log in with the wrong password
+    Given users exist:
+    | username   | email                  | password   | role_id |
+    | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
+    Given I am on "/"
+    When I follow "Log In"
+    Then the ".section-header" element should contain "Log In"
+    When I fill in the following:
+      | username | TestUser01 |
+      | password | 123123123  |
+    And press "Log in"
+    Then the ".errors" element should contain "Could not find an account with that username and password."
+
+  Scenario: A suspended forum user cannot log in
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testadmin01@example.org"
+    When I am on "/admin/"
+    And I follow "Users"
+    And I follow "Edit" in the row containing "TestUser01"
+    And I check "suspended"
+    And I press "Update User"
+    And I follow "Log Out"
+    And I follow "Log In"
+    And I fill in the following:
+      | username | TestUser01 |
+      | password | 123123123  |
+    And press "Log in"
+    Then the ".errors" element should contain "Your account can no longer log in."

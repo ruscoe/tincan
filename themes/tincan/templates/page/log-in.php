@@ -2,6 +2,8 @@
 
 use TinCan\template\TCTemplate;
 use TinCan\template\TCURL;
+use TinCan\objects\TCObject;
+use TinCan\objects\TCUser;
 
 /**
  * Log in page template.
@@ -24,7 +26,19 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settin
 
 <?php
 if (!empty($error)) {
-    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+
+    switch ($error) {
+        case TCUser::ERR_NOT_AUTHORIZED:
+            $error_msg = 'Your account can no longer log in.';
+            break;
+        case TCObject::ERR_NOT_FOUND:
+            $error_msg = 'Could not find an account with that username and password.';
+            break;
+        default:
+            $error_msg = $error;
+    }
+
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error_msg], 'page' => $page]);
 }
 ?>
 

@@ -44,8 +44,13 @@ class TCUserController extends TCController
             $user = reset($user_results);
         }
 
-        if (empty($user) || !$user->can_perform_action(TCUser::ACT_LOG_IN)) {
-            $this->error = TCUser::ERR_NOT_FOUND;
+        if (empty($user)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        if (!$user->can_perform_action(TCUser::ACT_LOG_IN)) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
             return false;
         }
 
@@ -53,13 +58,13 @@ class TCUserController extends TCController
         $pending_user_results = $this->db->load_objects(new TCPendingUser(), [], [['field' => 'user_id', 'value' => $user->user_id]]);
         if (!empty($pending_user_results)) {
             // Pending users cannot log in until the account is confirmed.
-            $this->error = TCUser::ERR_NOT_FOUND;
+            $this->error = TCObject::ERR_NOT_FOUND;
             return false;
         }
 
         // Check password.
         if (!$user->verify_password_hash($password, $user->password)) {
-            $this->error = TCUser::ERR_NOT_FOUND;
+            $this->error = TCObject::ERR_NOT_FOUND;
             return false;
         }
 
