@@ -1,6 +1,8 @@
 <?php
 
 use TinCan\template\TCTemplate;
+use TinCan\objects\TCObject;
+use TinCan\objects\TCUser;
 
 /**
  * Post reply template.
@@ -19,7 +21,22 @@ $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 <?php
 if (!empty($error)) {
-    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+
+    switch ($error) {
+        case TCUser::ERR_NOT_AUTHORIZED:
+            $error_msg = 'Your account cannot reply to threads.';
+            break;
+        case TCObject::ERR_EMPTY_FIELD:
+            $error_msg = 'Please enter a longer reply.';
+            break;
+        case TCObject::ERR_NOT_SAVED:
+            $error_msg = 'Could not save your reply at this time. Please try again later.';
+            break;
+        default:
+            $error_msg = $error;
+    }
+
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error_msg], 'page' => $page]);
 }
 ?>
 

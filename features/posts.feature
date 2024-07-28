@@ -123,3 +123,53 @@ Feature: Posts
   And I follow "Test Board 01"
   And I follow "Test Thread 01"
   Then I should not see "Edit"
+
+  Scenario: A forum user cannot reply with an empty post
+  Given users exist:
+  | username   | email                  | password   | role_id |
+  | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
+  Given board groups exist:
+  | board_group_name    |
+  | Test Board Group 01 |
+  Given boards exist:
+  | board_name    | board_group_name    |
+  | Test Board 01 | Test Board Group 01 |
+  Given threads exist:
+  | thread_title   | created_by_user        | board_name    |
+  | Test Thread 01 | testuser01@example.org | Test Board 01 |
+  Given posts exist:
+  | content                                                  | created_by_user        | thread_title   |
+  | Lorem ipsum dolor sit amet, consectetur adipiscing elit. | testuser01@example.org | Test Thread 01 |
+  Given I am logged in as "testuser01@example.org"
+  When I am on "/"
+  And I follow "Test Board 01"
+  And I follow "Test Thread 01"
+  And I fill in the following:
+  | post_content | Consectetur eum veniam consequuntur dolorum. |
+  And I press "Submit reply"
+  Then I should see "Consectetur eum veniam consequuntur dolorum."
+
+  Scenario: A forum user cannot reply to a thread with an empty post
+  Given users exist:
+  | username   | email                  | password   | role_id |
+  | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
+  Given board groups exist:
+  | board_group_name    |
+  | Test Board Group 01 |
+  Given boards exist:
+  | board_name    | board_group_name    |
+  | Test Board 01 | Test Board Group 01 |
+  Given threads exist:
+  | thread_title   | created_by_user        | board_name    |
+  | Test Thread 01 | testuser01@example.org | Test Board 01 |
+  Given posts exist:
+  | content                                                  | created_by_user        | thread_title   |
+  | Lorem ipsum dolor sit amet, consectetur adipiscing elit. | testuser01@example.org | Test Thread 01 |
+  Given I am logged in as "testuser01@example.org"
+  When I am on "/"
+  And I follow "Test Board 01"
+  And I follow "Test Thread 01"
+  And I fill in the following:
+  | post_content | |
+  And I press "Submit reply"
+  Then the ".errors" element should contain "Please enter a longer reply."

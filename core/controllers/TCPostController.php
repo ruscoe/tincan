@@ -68,7 +68,7 @@ class TCPostController extends TCController
         $sanitized_post = $post_sanitizer->sanitize_post($post_content);
 
         if (empty($sanitized_post)) {
-            $this->error = TCObject::ERR_NOT_SAVED;
+            $this->error = TCObject::ERR_EMPTY_FIELD;
             return false;
         }
 
