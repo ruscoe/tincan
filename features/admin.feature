@@ -97,7 +97,7 @@ Feature: Admin
     When I follow "Edit" in the row containing "TestUser01"
     Then the "suspended" checkbox should be checked
 
-  Scenario: An admin user cannot reuse an exisiting username.
+  Scenario: An admin user cannot reuse an existing username.
     Given users exist:
     | username    | email                   | password   | role_id |
     | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
@@ -112,7 +112,7 @@ Feature: Admin
     And I press "Update User"
     Then the ".errors" element should contain "Username already exists."
 
-  Scenario: An admin user cannot reuse an exisiting email address.
+  Scenario: An admin user cannot reuse an existing email address.
     Given users exist:
     | username    | email                   | password   | role_id |
     | TestAdmin01 | testadmin01@example.org | T3stP@ss01 | 3       |
