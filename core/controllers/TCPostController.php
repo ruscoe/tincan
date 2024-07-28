@@ -85,7 +85,7 @@ class TCPostController extends TCController
         try {
             $new_post = $this->db->save_object($post);
         } catch (TCException $e) {
-            $this->error = $e->getMessage();
+            $this->error = TCOBject::ERR_NOT_SAVED;
             return false;
         }
 
@@ -203,7 +203,7 @@ class TCPostController extends TCController
         try {
             $updated_post = $this->db->save_object($post);
         } catch (TCException $e) {
-            $this->error = $e->getMessage();
+            $this->error = TCObject::ERR_NOT_SAVED;
             return false;
         }
 

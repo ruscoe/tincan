@@ -5,6 +5,8 @@ use TinCan\db\TCData;
 use TinCan\template\TCTemplate;
 use TinCan\template\TCURL;
 use TinCan\objects\TCUser;
+use TinCan\objects\TCObject;
+use TinCan\objects\TCThread;
 
 /**
  * New thread page template.
@@ -53,7 +55,28 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
 
     <?php
     if (!empty($error)) {
-        TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+
+        switch ($error) {
+            case TCUser::ERR_NOT_AUTHORIZED:
+                $error_msg = 'Your account cannot create new threads.';
+                break;
+            case TCThread::ERR_TITLE_SHORT:
+                $error_msg = 'Please choose a longer title.';
+                break;
+            case TCThread::ERR_TITLE_LONG:
+                $error_msg = 'Please choose a shorter title.';
+                break;
+            case TCObject::ERR_EMPTY_FIELD:
+                $error_msg = 'Please enter a longer post.';
+                break;
+            case TCObject::ERR_NOT_SAVED:
+                $error_msg = 'Could not save your thread at this time. Please try again later.';
+                break;
+            default:
+                $error_msg = $error;
+        }
+
+        TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error_msg], 'page' => $page]);
     } ?>
 
 <form id="create-thread" action="/actions/create-thread.php" method="POST">
