@@ -113,6 +113,6 @@ Feature: User
     And I follow "Log In"
     And I fill in the following:
       | username | TestUser01 |
-      | password | 123123123  |
+      | password | T3stP@ss01 |
     And press "Log in"
     Then the ".errors" element should contain "Your account can no longer log in."
