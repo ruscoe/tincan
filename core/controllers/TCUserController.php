@@ -97,7 +97,7 @@ class TCUserController extends TCController
         $user = new TCUser();
 
         if (!$this->settings['allow_registration']) {
-            $this->error = TCObject::ERR_NOT_SAVED;
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
             return false;
         }
 

@@ -31,7 +31,34 @@ if (!$settings['allow_registration']) {
 
 <?php
 if (!empty($error)) {
-    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+
+    switch ($error) {
+        case TCUser::ERR_USER:
+            $error_msg = 'Please choose a longer username.';
+            break;
+        case TCUser::ERR_EMAIL:
+            $error_msg = 'Please check your email address has been entered correctly.';
+            break;
+        case TCUser::ERR_PASSWORD:
+            $error_msg = 'Please choose a longer password.';
+            break;
+        case TCUser::ERR_USERNAME_EXISTS:
+            $error_msg = 'This username already exists; please choose another.';
+            break;
+        case TCUser::ERR_EMAIL_EXISTS:
+            $error_msg = 'An account with this email address already exists.';
+            break;
+        case TCUser::ERR_NOT_AUTHORIZED:
+            $error_msg = 'Account registration is currently disabled.';
+            break;
+        case TCObject::ERR_NOT_SAVED:
+            $error_msg = 'Could not create an account. Please try again later.';
+            break;
+        default:
+            $error_msg = $error;
+    }
+
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error_msg], 'page' => $page]);
 } elseif (!empty($status) && ('sent' == $status)) {
     ?>
 
