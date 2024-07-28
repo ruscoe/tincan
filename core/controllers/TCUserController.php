@@ -2,6 +2,7 @@
 
 namespace TinCan\controllers;
 
+use TinCan\TCException;
 use TinCan\TCMailer;
 use TinCan\content\TCImage;
 use TinCan\controllers\TCController;

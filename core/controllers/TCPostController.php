@@ -2,6 +2,7 @@
 
 namespace TinCan\controllers;
 
+use TinCan\TCException;
 use TinCan\content\TCPostSanitizer;
 use TinCan\controllers\TCController;
 use TinCan\objects\TCObject;

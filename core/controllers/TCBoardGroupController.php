@@ -2,6 +2,7 @@
 
 namespace TinCan\controllers;
 
+use TinCan\TCException;
 use TinCan\controllers\TCController;
 use TinCan\objects\TCBoard;
 use TinCan\objects\TCBoardGroup;
