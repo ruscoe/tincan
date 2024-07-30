@@ -8,20 +8,9 @@ Tin Can is not production-ready, but you can play around with it if you like.
 
 ![Tin Can screenshot](https://github.com/user-attachments/assets/3ba89a57-f60b-4f15-bd27-94cf39af62b1)
 
-## TODO
+## Quick Start With Docker
 
-* More secure installer; stop relying on install.php being deleted post-install
-
-## Requirements
-
-Default configuration is provided in docker-compose.yml.
-
-* [Docker](https://www.docker.com/)
-* [Docker Compose](https://docs.docker.com/compose/)
-* [Composer](https://getcomposer.org/)
-* [Node.js](https://nodejs.org/) (if you want to create or edit themes)
-
-## Quick Start
+Get started quickly with [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/), and [Composer](https://getcomposer.org/).
 
 Clone this git repository:
 

@@ -40,6 +40,7 @@ enter *mytheme*
 ## Sass and CSS
 
 Tin Can themes use [Sass](https://sass-lang.com/guide) rather than CSS directly.
+You'll need [Node.js](https://nodejs.org/) installed.
 
 To compile a theme's CSS, enter the theme directory:
 
