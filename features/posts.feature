@@ -164,7 +164,7 @@ Scenario: A forum user cannot create a new thread with no content
   And I follow "Test Thread 01"
   Then I should not see "Edit"
 
-  Scenario: A forum user cannot reply with an empty post
+  Scenario: A forum user replies to a thread
   Given users exist:
   | username   | email                  | password   | role_id |
   | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
