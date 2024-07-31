@@ -21,6 +21,16 @@ class TCReport extends TCObject
     /**
      * @since 0.16
      */
+    public $user_id;
+
+    /**
+     * @since 0.16
+     */
+    public $post_id;
+
+    /**
+     * @since 0.16
+     */
     protected $reason;
 
     /**
@@ -67,9 +77,11 @@ class TCReport extends TCObject
     public function get_db_fields()
     {
         return [
-              'reason',
-              'created_time',
-              'updated_time',
-            ];
+            'user_id',
+            'post_id',
+            'reason',
+            'created_time',
+            'updated_time',
+        ];
     }
 }

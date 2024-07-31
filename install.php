@@ -390,6 +390,8 @@ function tc_create_tables()
 
       "CREATE TABLE `tc_reports` (
       `report_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `user_id` bigint(20) unsigned NOT NULL,
+      `post_id` bigint(20) unsigned NOT NULL,
       `reason` varchar(255) NOT NULL DEFAULT '',
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
@@ -596,6 +598,7 @@ function tc_create_roles()
     $user_allowed_actions = [
       TCUser::ACT_CREATE_POST,
       TCUser::ACT_CREATE_THREAD,
+      TCUser::ACT_REPORT_ANY_POST,
     ];
 
     $mod_allowed_actions = [
@@ -605,6 +608,7 @@ function tc_create_roles()
       TCUser::ACT_EDIT_ANY_THREAD,
       TCUser::ACT_DELETE_ANY_POST,
       TCUser::ACT_DELETE_ANY_THREAD,
+      TCUser::ACT_REPORT_ANY_POST,
     ];
 
     $admin_allowed_actions = [
@@ -616,6 +620,7 @@ function tc_create_roles()
       TCUser::ACT_DELETE_ANY_THREAD,
       TCUser::ACT_EDIT_ANY_USER,
       TCUser::ACT_ACCESS_ADMIN,
+      TCUser::ACT_REPORT_ANY_POST,
     ];
 
     $roles = [
@@ -658,6 +663,8 @@ function tc_create_pages()
         ['page_title' => 'Edit Post',                  'template' => 'edit-post'],
         ['page_title' => 'Delete Post',                'template' => 'delete-post'],
         ['page_title' => 'Post Deleted',               'template' => 'post-deleted'],
+        ['page_title' => 'Report Post',                'template' => 'report-post'],
+        ['page_title' => 'Post Reported',              'template' => 'post-reported'],
         ['page_title' => 'Admin Forum Settings',       'template' => 'forum-settings'],
         ['page_title' => 'Admin Log In',               'template' => 'log-in'],
         ['page_title' => 'Admin Log Out',              'template' => 'log-out'],
@@ -678,6 +685,8 @@ function tc_create_pages()
         ['page_title' => 'Admin Upload Setting Image', 'template' => 'upload-setting-image'],
         ['page_title' => 'Admin Delete Setting Image', 'template' => 'delete-setting-image'],
         ['page_title' => 'Admin Test Email',           'template' => 'test-mail'],
+        ['page_title' => 'Admin Reported Posts',       'template' => 'reports'],
+        ['page_title' => 'Admin Delete Report',        'template' => 'delete-report'],
       ];
 
     foreach ($pages as $page) {

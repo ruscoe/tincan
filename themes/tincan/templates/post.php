@@ -72,6 +72,7 @@ $parser = new TCPostParser();
     <?php
 $edit_post_url = TCURL::create_url($settings['page_edit_post'], ['post' => $post->post_id, 'page_number' => $page_number]);
 $delete_post_url = TCURL::create_url($settings['page_delete_post'], ['post' => $post->post_id, 'page_number' => $page_number]);
+$report_post_url = TCURL::create_url($settings['page_report_post'], ['post' => $post->post_id, 'page_number' => $page_number]);
 ?>
     <div class="content"><?php echo $parser->get_html($post->content); ?></div>
     <ul class="post-controls" data-post="<?php echo $post->post_id; ?>">
@@ -79,6 +80,9 @@ $delete_post_url = TCURL::create_url($settings['page_delete_post'], ['post' => $
         <li class="edit"><a href="<?php echo $edit_post_url; ?>">Edit</a></li>
       <?php } if (!empty($user) && $thread->post_can_be_deleted($post) && $user->can_delete_post($post)) { ?>
         <li class="delete"><a href="<?php echo $delete_post_url; ?>">Delete</a></li>
+      <?php } ?>
+      <?php if (!empty($user) && $user->can_report_post($post)) { ?>
+        <li class="edit"><a href="<?php echo $report_post_url; ?>">Report</a></li>
       <?php } ?>
     </ul>
   </div>

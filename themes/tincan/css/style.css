@@ -288,27 +288,27 @@ body.tincan #footer {
 body.tincan form#create-account, body.tincan form#log-in, body.tincan form#set-password {
   width: 400px;
 }
-body.tincan form#create-account, body.tincan form#log-in, body.tincan form#create-thread, body.tincan form#post-reply, body.tincan form#update-post, body.tincan form#set-password, body.tincan form#forum-settings {
+body.tincan form#create-account, body.tincan form#log-in, body.tincan form#create-thread, body.tincan form#post-reply, body.tincan form#update-post, body.tincan form#report-post, body.tincan form#set-password, body.tincan form#forum-settings {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   padding-top: 3rem;
 }
-body.tincan form#create-account .fieldset, body.tincan form#log-in .fieldset, body.tincan form#create-thread .fieldset, body.tincan form#post-reply .fieldset, body.tincan form#update-post .fieldset, body.tincan form#set-password .fieldset, body.tincan form#forum-settings .fieldset {
+body.tincan form#create-account .fieldset, body.tincan form#log-in .fieldset, body.tincan form#create-thread .fieldset, body.tincan form#post-reply .fieldset, body.tincan form#update-post .fieldset, body.tincan form#report-post .fieldset, body.tincan form#set-password .fieldset, body.tincan form#forum-settings .fieldset {
   display: flex;
   flex: 1;
   margin: 0.5rem 0;
 }
-body.tincan form#create-account .fieldset.button, body.tincan form#log-in .fieldset.button, body.tincan form#create-thread .fieldset.button, body.tincan form#post-reply .fieldset.button, body.tincan form#update-post .fieldset.button, body.tincan form#set-password .fieldset.button, body.tincan form#forum-settings .fieldset.button {
+body.tincan form#create-account .fieldset.button, body.tincan form#log-in .fieldset.button, body.tincan form#create-thread .fieldset.button, body.tincan form#post-reply .fieldset.button, body.tincan form#update-post .fieldset.button, body.tincan form#report-post .fieldset.button, body.tincan form#set-password .fieldset.button, body.tincan form#forum-settings .fieldset.button {
   padding-top: 1rem;
   justify-content: flex-end;
 }
-body.tincan form#create-account .field, body.tincan form#log-in .field, body.tincan form#create-thread .field, body.tincan form#post-reply .field, body.tincan form#update-post .field, body.tincan form#set-password .field, body.tincan form#forum-settings .field {
+body.tincan form#create-account .field, body.tincan form#log-in .field, body.tincan form#create-thread .field, body.tincan form#post-reply .field, body.tincan form#update-post .field, body.tincan form#report-post .field, body.tincan form#set-password .field, body.tincan form#forum-settings .field {
   background-color: #F1F1F1;
   flex: 1.5;
   padding: 0.25rem;
 }
-body.tincan form#create-account label, body.tincan form#log-in label, body.tincan form#create-thread label, body.tincan form#post-reply label, body.tincan form#update-post label, body.tincan form#set-password label, body.tincan form#forum-settings label {
+body.tincan form#create-account label, body.tincan form#log-in label, body.tincan form#create-thread label, body.tincan form#post-reply label, body.tincan form#update-post label, body.tincan form#report-post label, body.tincan form#set-password label, body.tincan form#forum-settings label {
   background-color: #c9cebd;
   color: #000;
   display: block;
@@ -316,22 +316,22 @@ body.tincan form#create-account label, body.tincan form#log-in label, body.tinca
   max-width: 240px;
   padding: 0.25rem 0.5rem;
 }
-body.tincan form#create-account .fieldset.textarea, body.tincan form#log-in .fieldset.textarea, body.tincan form#create-thread .fieldset.textarea, body.tincan form#post-reply .fieldset.textarea, body.tincan form#update-post .fieldset.textarea, body.tincan form#set-password .fieldset.textarea, body.tincan form#forum-settings .fieldset.textarea {
+body.tincan form#create-account .fieldset.textarea, body.tincan form#log-in .fieldset.textarea, body.tincan form#create-thread .fieldset.textarea, body.tincan form#post-reply .fieldset.textarea, body.tincan form#update-post .fieldset.textarea, body.tincan form#report-post .fieldset.textarea, body.tincan form#set-password .fieldset.textarea, body.tincan form#forum-settings .fieldset.textarea {
   display: block;
 }
-body.tincan form#create-account .fieldset.textarea label, body.tincan form#log-in .fieldset.textarea label, body.tincan form#create-thread .fieldset.textarea label, body.tincan form#post-reply .fieldset.textarea label, body.tincan form#update-post .fieldset.textarea label, body.tincan form#set-password .fieldset.textarea label, body.tincan form#forum-settings .fieldset.textarea label {
+body.tincan form#create-account .fieldset.textarea label, body.tincan form#log-in .fieldset.textarea label, body.tincan form#create-thread .fieldset.textarea label, body.tincan form#post-reply .fieldset.textarea label, body.tincan form#update-post .fieldset.textarea label, body.tincan form#report-post .fieldset.textarea label, body.tincan form#set-password .fieldset.textarea label, body.tincan form#forum-settings .fieldset.textarea label {
   max-width: none !important;
 }
-body.tincan form#create-account .fieldset.textarea .field, body.tincan form#log-in .fieldset.textarea .field, body.tincan form#create-thread .fieldset.textarea .field, body.tincan form#post-reply .fieldset.textarea .field, body.tincan form#update-post .fieldset.textarea .field, body.tincan form#set-password .fieldset.textarea .field, body.tincan form#forum-settings .fieldset.textarea .field {
+body.tincan form#create-account .fieldset.textarea .field, body.tincan form#log-in .fieldset.textarea .field, body.tincan form#create-thread .fieldset.textarea .field, body.tincan form#post-reply .fieldset.textarea .field, body.tincan form#update-post .fieldset.textarea .field, body.tincan form#report-post .fieldset.textarea .field, body.tincan form#set-password .fieldset.textarea .field, body.tincan form#forum-settings .fieldset.textarea .field {
   flex: none;
 }
-body.tincan form#create-account .fieldset.textarea .field textarea, body.tincan form#log-in .fieldset.textarea .field textarea, body.tincan form#create-thread .fieldset.textarea .field textarea, body.tincan form#post-reply .fieldset.textarea .field textarea, body.tincan form#update-post .fieldset.textarea .field textarea, body.tincan form#set-password .fieldset.textarea .field textarea, body.tincan form#forum-settings .fieldset.textarea .field textarea {
+body.tincan form#create-account .fieldset.textarea .field textarea, body.tincan form#log-in .fieldset.textarea .field textarea, body.tincan form#create-thread .fieldset.textarea .field textarea, body.tincan form#post-reply .fieldset.textarea .field textarea, body.tincan form#update-post .fieldset.textarea .field textarea, body.tincan form#report-post .fieldset.textarea .field textarea, body.tincan form#set-password .fieldset.textarea .field textarea, body.tincan form#forum-settings .fieldset.textarea .field textarea {
   width: 100%;
 }
-body.tincan form#create-account input.text-input, body.tincan form#log-in input.text-input, body.tincan form#create-thread input.text-input, body.tincan form#post-reply input.text-input, body.tincan form#update-post input.text-input, body.tincan form#set-password input.text-input, body.tincan form#forum-settings input.text-input {
+body.tincan form#create-account input.text-input, body.tincan form#log-in input.text-input, body.tincan form#create-thread input.text-input, body.tincan form#post-reply input.text-input, body.tincan form#update-post input.text-input, body.tincan form#report-post input.text-input, body.tincan form#set-password input.text-input, body.tincan form#forum-settings input.text-input {
   width: 100%;
 }
-body.tincan form#create-account input.submit-button, body.tincan form#log-in input.submit-button, body.tincan form#create-thread input.submit-button, body.tincan form#post-reply input.submit-button, body.tincan form#update-post input.submit-button, body.tincan form#set-password input.submit-button, body.tincan form#forum-settings input.submit-button {
+body.tincan form#create-account input.submit-button, body.tincan form#log-in input.submit-button, body.tincan form#create-thread input.submit-button, body.tincan form#post-reply input.submit-button, body.tincan form#update-post input.submit-button, body.tincan form#report-post input.submit-button, body.tincan form#set-password input.submit-button, body.tincan form#forum-settings input.submit-button {
   background-color: #c9cebd;
   box-shadow: 2px 2px #838e83;
   color: #000;

@@ -7,6 +7,7 @@ use TinCan\content\TCPostSanitizer;
 use TinCan\controllers\TCController;
 use TinCan\objects\TCObject;
 use TinCan\objects\TCPost;
+use TinCan\objects\TCReport;
 use TinCan\objects\TCThread;
 use TinCan\objects\TCUser;
 use TinCan\template\TCPagination;
@@ -214,6 +215,103 @@ class TCPostController extends TCController
         }
 
         return $updated_post;
+    }
+
+    /**
+     * Determines if a post can be reported.
+     *
+     * @param int $post_id The ID of the post to be reported.
+     *
+     * @return bool TRUE if the post can be reported, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function can_report_post($post_id)
+    {
+        $post = $this->db->load_object(new TCPost(), $post_id);
+
+        if (empty($post)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Check user has permission to report this post.
+        if ((empty($this->user) || !$this->user->can_report_post($post))) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Reports a post.
+     *
+     * @param int    $post_id The ID of the post to be reported.
+     * @param string $reason  The reason for reporting the post.
+     *
+     * @return TCReport|bool The new report object if successful, otherwise FALSE.
+     *
+     * @since 0.16
+     */
+    public function report_post($post_id, $reason)
+    {
+        // Sanitize the report reason.
+        $post_sanitizer = new TCPostSanitizer();
+        $sanitized_reason = $post_sanitizer->sanitize_post($reason);
+
+        if (empty($sanitized_reason)) {
+            $this->error = TCObject::ERR_EMPTY_FIELD;
+            return false;
+        }
+
+        $new_report = null;
+
+        $report = new TCReport();
+        $report->user_id = $this->user->user_id;
+        $report->post_id = $post_id;
+        $report->reason = $sanitized_reason;
+        $report->created_time = time();
+        $report->updated_time = time();
+
+        try {
+            $new_report = $this->db->save_object($report);
+        } catch (TCException $e) {
+            var_dump($e);
+            exit;
+            $this->error = TCOBject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return $new_report;
+    }
+
+    /**
+     * Deletes a report.
+     *
+     * @param int $report_id The ID of the report to delete.
+     *
+     * @return bool True if the report has been deleted, false otherwise.
+     *
+     * @since 0.16
+     */
+    public function delete_report($report_id)
+    {
+        $report = $this->db->load_object(new TCReport(), $report_id);
+
+        if (empty($report)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        try {
+            $this->db->delete_object(new TCReport(), $report->report_id);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return true;
     }
 
     /**

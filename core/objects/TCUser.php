@@ -21,6 +21,7 @@ class TCUser extends TCObject
     public const ACT_DELETE_ANY_POST = 'delete-any-post';
     public const ACT_DELETE_ANY_THREAD = 'delete-any-thread';
     public const ACT_EDIT_ANY_USER = 'edit-any-user';
+    public const ACT_REPORT_ANY_POST = 'report-any-post';
     public const ACT_ACCESS_ADMIN = 'access-admin';
 
     public const ERR_USER = 'user';
@@ -240,6 +241,25 @@ class TCUser extends TCObject
 
         // User can delete their own posts.
         if ($post->user_id == $this->user_id) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Determines whether this user can report a post.
+     *
+     * @since 0.16
+     *
+     * @param TCPost $post the post to check
+     *
+     * @return bool true if the user may report the post
+     */
+    public function can_report_post(TCPost $post)
+    {
+        // Check for roles that can report any post.
+        if ($this->can_perform_action(self::ACT_REPORT_ANY_POST)) {
             return true;
         }
 
