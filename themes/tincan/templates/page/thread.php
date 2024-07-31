@@ -91,8 +91,12 @@ $page_params = [
 TCTemplate::render('pagination', $settings['theme'], ['page_params' => $page_params, 'start_at' => $start_at, 'total_pages' => $total_pages, 'settings' => $data['settings']]);
 
 // Display reply form if user has permission to reply to this thread.
-if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_POST)) {
+if (!$thread->locked && !empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_POST)) {
     TCTemplate::render('post-reply', $settings['theme'], ['thread' => $thread, 'user' => $user, 'page' => $page, 'settings' => $settings]);
 }
 
-?>
+if ($thread->locked) {
+    ?>
+  <div class="thread-notice">This thread is locked and cannot be replied to.</div>
+    <?php
+}
