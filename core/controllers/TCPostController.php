@@ -48,6 +48,12 @@ class TCPostController extends TCController
             return false;
         }
 
+        // Cannot reply to a locked thread.
+        if ($thread->locked) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
         return true;
     }
 

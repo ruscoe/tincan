@@ -18,4 +18,12 @@ body.tincan.thread {
           }
         }
     }
+
+    .thread-notice {
+      background-color: $section-alt;
+      border: 1px solid $section-border;
+      margin-top: 2rem;
+      padding: 1rem;
+      text-align: center;
+    }
 }
