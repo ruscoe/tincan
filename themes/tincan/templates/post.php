@@ -27,8 +27,6 @@ if (!empty($author)) {
     $avatar = $author->avatar;
 
     $user_page_url = TCURL::create_url($settings['page_user'], ['user' => $author->user_id]);
-} else {
-    $username = 'Deleted User';
 }
 
 $avatar_image = (!empty($avatar)) ? $avatar : '/assets/images/default-profile.png';
@@ -43,18 +41,15 @@ $parser = new TCPostParser();
   <div class="post-user">
     <?php if (!empty($author)) { ?>
       <h3 class="username"><a href="<?php echo $user_page_url; ?>"><?php echo $username; ?></a></h3>
-    <?php } else { ?>
-      <h3 class="username"><?php echo $username; ?></h3>
-    <?php } ?>
-    <div class="profile-image">
-      <?php if (!empty($author)) { ?>
-        <a href="<?php echo $user_page_url; ?>"><img src="<?php echo $avatar_image; ?>" /></a>
-      <?php } else { ?>
-        <img src="<?php echo $avatar_image; ?>" />
+      <?php if ($author->role->get_name() != 'User') { ?>
+      <div class="role"><?php echo $author->role->get_name(); ?></div>
       <?php } ?>
+    <div class="profile-image">
+      <a href="<?php echo $user_page_url; ?>"><img src="<?php echo $avatar_image; ?>" /></a>
     </div>
-    <?php if (!empty($author)) { ?>
       <div class="joined">Joined: <?php echo date($settings['date_format'], $author->created_time); ?></div>
+    <?php } else { ?>
+      <h3 class="username">[DELETED]</h3>
     <?php } ?>
   </div>
   <div class="post-content">

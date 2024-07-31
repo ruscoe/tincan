@@ -372,6 +372,13 @@ body.tincan.thread .post .post-user h3.username {
   margin: 0;
   text-align: center;
 }
+body.tincan.thread .post .post-user .role {
+  background-color: #fbfbfb;
+  border: 1px solid #DDD;
+  border-radius: 0.5rem;
+  margin: 1rem 0.5rem 0 0.5rem;
+  padding: 0.4rem 0.15rem;
+}
 body.tincan.thread .post .post-user .profile-image {
   margin: 0 1rem;
 }
