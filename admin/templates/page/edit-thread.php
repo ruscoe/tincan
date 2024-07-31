@@ -75,17 +75,6 @@ $boards = $db->load_objects(new TCBoard());
     </div>
   </div>
 
-    <?php
-    $first_post = $db->load_object(new TCPost(), $thread->first_post_id);
-    ?>
-
-  <div class="fieldset textarea">
-    <label for="content">Content</label>
-    <div class="field">
-      <textarea name="content" rows="20" cols="30"><?php echo (!empty($first_post)) ? $first_post->content : ''; ?></textarea>
-    </div>
-  </div>
-
   <div class="fieldset">
     <label for="pinned">Pinned</label>
     <div class="field">
