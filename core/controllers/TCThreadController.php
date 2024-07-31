@@ -135,12 +135,16 @@ class TCThreadController extends TCController
      * Edits a thread.
      *
      * @param int $thread_id The ID of the thread to be edited.
+     * @param string $thread_title The title of the thread.
+     * @param int $board_id The ID of the board the thread will exist in.
+     * @param bool $pinned Whether the thread is pinned.
+     * @param bool $locked Whether the thread is locked.
      *
      * @return bool TRUE if the thread can be edited, otherwise FALSE.
      *
      * @since 0.16
      */
-    public function edit_thread($thread_id, $thread_title, $board_id)
+    public function edit_thread($thread_id, $thread_title, $board_id, $pinned = false, $locked = false)
     {
         $thread = $this->db->load_object(new TCThread(), $thread_id);
 
@@ -151,6 +155,8 @@ class TCThreadController extends TCController
 
         $thread->thread_title = $thread_title;
         $thread->board_id = $board_id;
+        $thread->pinned = ($pinned) ? 1 : 0;
+        $thread->locked = ($locked) ? 1 : 0;
         $thread->updated_time = time();
 
         try {

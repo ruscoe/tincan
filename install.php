@@ -345,6 +345,8 @@ function tc_create_tables()
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
       `deleted` tinyint(1) unsigned NOT NULL DEFAULT 0,
+      `pinned` tinyint(1) unsigned NOT NULL DEFAULT 0,
+      `locked` tinyint(1) unsigned NOT NULL DEFAULT 0,
       PRIMARY KEY (`thread_id`)
     ) AUTO_INCREMENT=1000",
 

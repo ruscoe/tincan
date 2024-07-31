@@ -86,6 +86,20 @@ $boards = $db->load_objects(new TCBoard());
     </div>
   </div>
 
+  <div class="fieldset">
+    <label for="pinned">Pinned</label>
+    <div class="field">
+      <input type="checkbox" name="pinned"<?php echo ($thread->pinned) ? ' checked' : ''; ?>>
+    </div>
+  </div>
+
+  <div class="fieldset">
+    <label for="locked">Locked</label>
+    <div class="field">
+      <input type="checkbox" name="locked"<?php echo ($thread->locked) ? ' checked' : ''; ?>>
+    </div>
+  </div>
+
   <input type="hidden" name="thread_id" value="<?php echo $thread->thread_id; ?>" />
   <input type="hidden" name="created_by_user" value="<?php echo $user->user_id; ?>" />
   <input type="hidden" name="updated_by_user" value="<?php echo $user->user_id; ?>" />

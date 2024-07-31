@@ -70,6 +70,16 @@ class TCThread extends TCObject
     protected $deleted = 0;
 
     /**
+     * @since 0.16
+     */
+    protected $pinned = 0;
+
+    /**
+     * @since 0.16
+     */
+    protected $locked = 0;
+
+    /**
      * Determines whether a given post can be deleted.
      *
      * @since 0.06
@@ -152,6 +162,8 @@ class TCThread extends TCObject
               'created_time',
               'updated_time',
               'deleted',
+              'pinned',
+              'locked',
             ];
     }
 }

@@ -17,6 +17,9 @@ $thread_id = filter_input(INPUT_POST, 'thread_id', FILTER_SANITIZE_NUMBER_INT);
 $thread_title = trim(filter_input(INPUT_POST, 'thread_title', FILTER_SANITIZE_STRING));
 $board_id = filter_input(INPUT_POST, 'board_id', FILTER_SANITIZE_NUMBER_INT);
 
+$pinned = ('on' === filter_input(INPUT_POST, 'pinned', FILTER_SANITIZE_STRING));
+$locked = ('on' === filter_input(INPUT_POST, 'locked', FILTER_SANITIZE_STRING));
+
 $controller = new TCThreadController();
 
 $controller->authenticate_user();
@@ -27,7 +30,7 @@ if (!$controller->is_admin_user()) {
     exit;
 }
 
-$controller->edit_thread($thread_id, $thread_title, $board_id);
+$controller->edit_thread($thread_id, $thread_title, $board_id, $pinned, $locked);
 
 $destination = '';
 
