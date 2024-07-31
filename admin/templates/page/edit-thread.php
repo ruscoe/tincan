@@ -4,7 +4,6 @@ use TinCan\db\TCData;
 use TinCan\objects\TCBoard;
 use TinCan\objects\TCObject;
 use TinCan\objects\TCThread;
-use TinCan\objects\TCPost;
 use TinCan\template\TCTemplate;
 
 /**
