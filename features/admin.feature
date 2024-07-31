@@ -44,10 +44,10 @@ Feature: Admin
     And I follow "Users"
     And I follow "Edit" in the row containing "TestUser01"
     And I fill in the following:
-    | email | testuser01@example.org |
+    | email | updatedtestuser01@example.org |
     And I press "Update User"
     When I follow "Edit" in the row containing "TestUser01"
-    Then the "email" field should contain "testuser01@example.org"
+    Then the "email" field should contain "updatedtestuser01@example.org"
 
   Scenario: An admin user edits a user's password.
     Given users exist:
