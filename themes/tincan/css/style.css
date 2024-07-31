@@ -362,6 +362,7 @@ body.tincan.thread .post .post-user {
   color: #000;
   display: flex;
   flex-direction: row-reverse;
+  min-width: 200px;
   padding: 0.5rem 0;
   justify-content: flex-end;
   text-align: center;
