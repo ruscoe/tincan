@@ -249,8 +249,8 @@ class TCData
      * @param array  $conditions associative array of database fields and values to match.
      *                           Example: [ [ 'field' => 'role_id', 'value' => 1 ] ]
      * @param array  $order      associative array of order conditions
-     *                           Example: [ 'field' => 'created_time',
-     *                           'direction' => 'ASC' ]
+     *                           Example: [ [ 'field' => 'created_time',
+     *                           'direction' => 'ASC' ] ]
      * @param int    $offset     the number of records to skip before returning results
      * @param int    $limit      the maximum number of records
      *
@@ -281,7 +281,13 @@ class TCData
         }
 
         if (!empty($order)) {
-            $query .= " ORDER BY {$order['field']} {$order['direction']}";
+            $query .= ' ORDER BY ';
+
+            foreach ($order as $properties) {
+                $query .= " {$properties['field']} {$properties['direction']},";
+            }
+
+            $query = rtrim($query, ',');
         }
 
         if ($limit > 0) {
@@ -312,8 +318,8 @@ class TCData
      * @param array  $conditions  associative array of database fields and values to match.
      *                            Example: [ [ 'field' => 'role_id', 'value' => 1 ] ]
      * @param array  $order       associative array of order conditions
-     *                            Example: [ 'field' => 'created_time',
-     *                            'direction' => 'ASC' ]
+     *                            Example: [ [ 'field' => 'created_time',
+     *                            'direction' => 'ASC' ] ]
      * @param int    $offset      the number of records to skip before returning results
      * @param int    $limit       the maximum number of records
      *

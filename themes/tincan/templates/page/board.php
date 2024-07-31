@@ -67,8 +67,14 @@ $conditions = [
 ];
 
 $order = [
+  [
+    'field' => 'pinned',
+    'direction' => 'DESC',
+  ],
+  [
   'field' => 'updated_time',
   'direction' => 'DESC',
+  ],
 ];
 
 // TODO: Set bounds for offset so nothing crazy happens.

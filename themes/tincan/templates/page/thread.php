@@ -61,8 +61,10 @@ $conditions = [
 ];
 
 $order = [
+  [
   'field' => 'post_id',
   'direction' => 'ASC',
+  ],
 ];
 
 // TODO: Set bounds for offset so nothing crazy happens.

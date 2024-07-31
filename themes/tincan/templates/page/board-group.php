@@ -52,8 +52,10 @@ $conditions = [
 ];
 
 $order = [
+  [
   'field' => 'board_name',
   'direction' => 'ASC',
+  ],
 ];
 
 // TODO: Sorting and pagination.
