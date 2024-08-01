@@ -74,6 +74,13 @@ $form_action = (!empty($board_id)) ? '/admin/actions/update-board.php' : '/admin
     </div>
   </div>
 
+  <div class="fieldset">
+    <label for="weight">Weight</label>
+    <div class="field">
+      <input type="text" name="weight" value="<?php echo $board->weight; ?>" />
+    </div>
+  </div>
+
   <input type="hidden" name="board_id" value="<?php echo $board->board_id; ?>" />
 
   <div class="fieldset button">

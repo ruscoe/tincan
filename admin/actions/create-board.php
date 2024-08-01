@@ -15,6 +15,7 @@ require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 $board_group_id = filter_input(INPUT_POST, 'board_group_id', FILTER_SANITIZE_NUMBER_INT);
 $board_name = filter_input(INPUT_POST, 'board_name', FILTER_SANITIZE_STRING);
+$weight = filter_input(INPUT_POST, 'weight', FILTER_SANITIZE_NUMBER_INT);
 
 $controller = new TCBoardController();
 
@@ -26,7 +27,7 @@ if (!$controller->is_admin_user()) {
     exit;
 }
 
-$controller->create_board($board_group_id, $board_name);
+$controller->create_board($board_group_id, $board_name, $weight);
 
 $destination = '';
 

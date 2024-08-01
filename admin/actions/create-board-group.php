@@ -14,6 +14,7 @@ use TinCan\template\TCURL;
 require getenv('TC_BASE_PATH').'/vendor/autoload.php';
 
 $board_group_name = filter_input(INPUT_POST, 'board_group_name', FILTER_SANITIZE_STRING);
+$weight = filter_input(INPUT_POST, 'weight', FILTER_SANITIZE_NUMBER_INT);
 
 $controller = new TCBoardGroupController();
 
@@ -25,7 +26,7 @@ if (!$controller->is_admin_user()) {
     exit;
 }
 
-$controller->create_board_group($board_group_name);
+$controller->create_board_group($board_group_name, $weight);
 
 $destination = '';
 

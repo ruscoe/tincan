@@ -25,17 +25,19 @@ class TCBoardController extends TCController
      *
      * @param int    $board_group_id The ID of the board group.
      * @param string $board_name     The name of the board.
+     * @param int    $weight         The weight of the board.
      *
      * @return TCBoard|false The new board object or false if not saved.
      *
      * @since 0.16
      */
-    public function create_board($board_group_id, $board_name)
+    public function create_board($board_group_id, $board_name, $weight)
     {
         $board = new TCBoard();
 
         $board->board_group_id = $board_group_id;
         $board->board_name = $board_name;
+        $board->weight = $weight;
         $board->created_time = time();
         $board->updated_time = time();
 
@@ -56,12 +58,13 @@ class TCBoardController extends TCController
      * @param int    $board_id       The ID of the board.
      * @param int    $board_group_id The ID of the board group.
      * @param string $board_name     The name of the board.
+     * @param int    $weight         The weight of the board.
      *
      * @return TCBoard|false The updated board object or false if not saved.
      *
      * @since 0.16
      */
-    public function edit_board($board_id, $board_group_id, $board_name)
+    public function edit_board($board_id, $board_group_id, $board_name, $weight)
     {
         $board = $this->db->load_object(new TCBoard(), $board_id);
 
@@ -72,6 +75,7 @@ class TCBoardController extends TCController
 
         $board->board_group_id = $board_group_id;
         $board->board_name = $board_name;
+        $board->weight = $weight;
         $board->updated_time = time();
 
         $saved_board = null;

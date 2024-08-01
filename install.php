@@ -248,6 +248,7 @@ function tc_create_tables()
       "CREATE TABLE `tc_board_groups` (
       `board_group_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
       `board_group_name` varchar(255) NOT NULL DEFAULT '',
+      `weight` int(10) NOT NULL,
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
       PRIMARY KEY (`board_group_id`)
@@ -260,6 +261,7 @@ function tc_create_tables()
       `board_name` varchar(255) NOT NULL DEFAULT '',
       `board_group_id` bigint(20) unsigned NOT NULL,
       `description` mediumtext NOT NULL,
+      `weight` int(10) NOT NULL,
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
       PRIMARY KEY (`board_id`)
@@ -801,6 +803,7 @@ function tc_create_board_groups()
     $new_board_group_ids = [];
 
     foreach ($board_groups as $board_group) {
+        $board_group['weight'] = 0;
         $board_group['created_time'] = time();
         $board_group['updated_time'] = time();
 
@@ -834,6 +837,7 @@ function tc_create_boards($new_board_group_ids)
     $new_board_ids = [];
 
     foreach ($boards as $board) {
+        $board['weight'] = 0;
         $board['created_time'] = time();
         $board['updated_time'] = time();
 

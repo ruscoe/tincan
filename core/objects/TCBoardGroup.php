@@ -26,6 +26,11 @@ class TCBoardGroup extends TCObject
     protected $board_group_name;
 
     /**
+     * @since 0.16
+     */
+    protected $weight = 0;
+
+    /**
      * @since 0.01
      */
     protected $created_time;
@@ -92,6 +97,7 @@ class TCBoardGroup extends TCObject
     {
         return [
               'board_group_name',
+              'weight',
               'created_time',
               'updated_time',
             ];

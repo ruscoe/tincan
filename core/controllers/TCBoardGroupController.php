@@ -23,12 +23,13 @@ class TCBoardGroupController extends TCController
      * Creates a new board group.
      *
      * @param string $board_group_name The name of the board group.
+     * @param int    $weight           The weight of the board group.
      *
      * @return TCBoardGroup|false The new board group object or false if not saved.
      *
      * @since 0.16
      */
-    public function create_board_group($board_group_name)
+    public function create_board_group($board_group_name, $weight)
     {
         if (empty($board_group_name)) {
             $this->error = TCObject::ERR_NOT_SAVED;
@@ -38,6 +39,7 @@ class TCBoardGroupController extends TCController
         $board_group = new TCBoardGroup();
 
         $board_group->board_group_name = $board_group_name;
+        $board_group->weight = $weight;
         $board_group->created_time = time();
         $board_group->updated_time = time();
 
@@ -57,12 +59,13 @@ class TCBoardGroupController extends TCController
      *
      * @param int    $board_group_id   The ID of the board group to edit.
      * @param string $board_group_name The new name of the board group.
+     * @param int    $weight           The new weight of the board group.
      *
      * @return TCBoardGroup|false The updated board group object or false if not saved.
      *
      * @since 0.16
      */
-    public function edit_board_group($board_group_id, $board_group_name)
+    public function edit_board_group($board_group_id, $board_group_name, $weight)
     {
         if (empty($board_group_name)) {
             $this->error = TCObject::ERR_NOT_SAVED;
@@ -77,6 +80,7 @@ class TCBoardGroupController extends TCController
         }
 
         $board_group->board_group_name = $board_group_name;
+        $board_group->weight = $weight;
         $board_group->updated_time = time();
 
         $saved_board_group = null;

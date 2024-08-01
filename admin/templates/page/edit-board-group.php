@@ -51,6 +51,13 @@ $form_action = (!empty($board_group_id)) ? '/admin/actions/update-board-group.ph
     </div>
   </div>
 
+  <div class="fieldset">
+    <label for="weight">Weight</label>
+    <div class="field">
+      <input type="text" name="weight" value="<?php echo $board_group->weight; ?>" />
+    </div>
+  </div>
+
   <input type="hidden" name="board_group_id" value="<?php echo $board_group->board_group_id; ?>" />
 
   <div class="fieldset button">
