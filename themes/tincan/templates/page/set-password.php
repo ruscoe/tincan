@@ -26,6 +26,9 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settin
 <?php
 if (!empty($error)) {
     switch ($error) {
+        case TCUser::ERR_PASSWORD:
+            $error_msg = 'Please choose a longer password.';
+            break;
         case TCObject::ERR_NOT_FOUND:
         case TCObject::ERR_NOT_SAVED:
             $error_msg = 'Could not set your password at this time. Please try again later.';
