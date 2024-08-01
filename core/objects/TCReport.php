@@ -21,12 +21,12 @@ class TCReport extends TCObject
     /**
      * @since 0.16
      */
-    public $user_id;
+    protected $user_id;
 
     /**
      * @since 0.16
      */
-    public $post_id;
+    protected $post_id;
 
     /**
      * @since 0.16
