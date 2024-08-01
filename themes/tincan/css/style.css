@@ -221,6 +221,17 @@ body {
   padding: 3rem 0;
 }
 
+#install-warning {
+  background-color: #fbfbfb;
+  border: 1px solid #DDD;
+  color: #DC0139;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 2rem 4rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
 /* Includes */
 body.tincan.front .board-group h2 {
   background-color: #c9cebd;

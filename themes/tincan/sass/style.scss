@@ -286,6 +286,17 @@ body {
   padding: 3rem 0;
 }
 
+#install-warning {
+  background-color: $section-alt;
+  border: 1px solid $section-border;
+  color: $error-text;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 2rem 4rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
 /* Includes */
 
 @import '_tc-board-group';
