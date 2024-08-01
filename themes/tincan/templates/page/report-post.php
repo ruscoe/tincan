@@ -47,7 +47,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'setti
 
         switch ($error) {
             case TCUser::ERR_NOT_AUTHORIZED:
-                $error_msg = 'Your account cannot create new threads.';
+                $error_msg = 'Your account cannot report posts.';
                 break;
             case TCObject::ERR_EMPTY_FIELD:
                 $error_msg = 'Please enter a longer reason.';

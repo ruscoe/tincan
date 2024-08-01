@@ -13,6 +13,7 @@ use TinCan\template\TCURL;
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 $thread_id = filter_input(INPUT_GET, 'thread', FILTER_SANITIZE_NUMBER_INT);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 $page = $data['page'];
 $settings = $data['settings'];
@@ -39,6 +40,27 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $thread, 'set
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
+
+<?php
+
+if (!empty($error)) {
+
+    switch ($error) {
+        case TCObject::ERR_NOT_AUTHORIZED:
+            $error_msg = 'You cannot delete this thread.';
+            break;
+        case TCObject::ERR_NOT_FOUND:
+        case TCObject::ERR_NOT_SAVED:
+            $error_msg = 'Thread could not be deleted at this time. Please try again later.';
+            break;
+        default:
+            $error_msg = $error;
+    }
+
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error_msg], 'page' => $page]);
+}
+
+?>
 
 <div class="confirmation-box">
 

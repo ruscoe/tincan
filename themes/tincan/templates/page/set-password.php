@@ -25,7 +25,16 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settin
 
 <?php
 if (!empty($error)) {
-    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
+    switch ($error) {
+        case TCObject::ERR_NOT_FOUND:
+        case TCObject::ERR_NOT_SAVED:
+            $error_msg = 'Could not set your password at this time. Please try again later.';
+            break;
+        default:
+            $error_msg = $error;
+    }
+
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error_msg], 'page' => $page]);
 } elseif (!empty($status) && ('set' == $status)) {
     ?>
 

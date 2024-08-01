@@ -14,6 +14,7 @@ use TinCan\template\TCURL;
  */
 $post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
 $page_number = filter_input(INPUT_GET, 'page_number', FILTER_SANITIZE_NUMBER_INT);
+$error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 $page = $data['page'];
 $settings = $data['settings'];
@@ -41,6 +42,24 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'setti
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 
 <?php
+
+if (!empty($error)) {
+
+    switch ($error) {
+        case TCObject::ERR_NOT_AUTHORIZED:
+            $error_msg = 'You cannot edit this post.';
+            break;
+        case TCObject::ERR_NOT_FOUND:
+        case TCObject::ERR_NOT_SAVED:
+            $error_msg = 'Post could not be edited at this time. Please try again later.';
+            break;
+        default:
+            $error_msg = $error;
+    }
+
+    TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error_msg], 'page' => $page]);
+}
+
 if (!empty($user) && $user->can_edit_post($post)) {
     ?>
 
