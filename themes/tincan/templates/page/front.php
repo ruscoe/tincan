@@ -20,14 +20,34 @@ $db = new TCData();
 
 $settings = $db->load_settings();
 
-// var_dump($settings);
+$board_group_order = [
+  [
+    'field' => 'weight',
+    'direction' => 'ASC',
+  ],
+  [
+    'field' => 'board_group_name',
+    'direction' => 'ASC',
+  ],
+];
 
-$board_groups = $db->load_objects(new TCBoardGroup());
+$board_groups = $db->load_objects(new TCBoardGroup(), [], [], $board_group_order);
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => null, 'page_template' => 'front', 'settings' => $settings, 'user' => $user]);
 
 if (!empty($board_groups)) {
     foreach ($board_groups as $group) {
+        $board_order = [
+          [
+            'field' => 'weight',
+            'direction' => 'ASC',
+          ],
+          [
+            'field' => 'board_name',
+            'direction' => 'ASC',
+          ],
+        ];
+
         $board_conditions = [
           [
             'field' => 'board_group_id',
@@ -35,7 +55,7 @@ if (!empty($board_groups)) {
           ],
         ];
 
-        $boards = $db->load_objects(new TCBoard(), [], $board_conditions);
+        $boards = $db->load_objects(new TCBoard(), [], $board_conditions, $board_order);
 
         $data = [
           'settings' => $settings,

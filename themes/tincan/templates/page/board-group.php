@@ -53,6 +53,10 @@ $conditions = [
 
 $order = [
   [
+    'field' => 'weight',
+    'direction' => 'ASC',
+  ],
+  [
   'field' => 'board_name',
   'direction' => 'ASC',
   ],
