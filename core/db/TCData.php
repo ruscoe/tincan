@@ -261,6 +261,8 @@ class TCData
         $db_table = $class->get_db_table();
         $primary_key = $class->get_primary_key();
 
+        $sql_params = [];
+
         $query = "SELECT * FROM `{$db_table}`";
 
         if (!empty($ids)) {
@@ -276,7 +278,9 @@ class TCData
                 if ($index > 0) {
                     $query .= ' AND';
                 }
-                $query .= " `{$condition['field']}` = '{$condition['value']}'";
+                $query .= " `{$condition['field']}` = ?";
+
+                $sql_params[] = $condition['value'];
             }
         }
 
@@ -294,7 +298,7 @@ class TCData
             $query .= " LIMIT {$offset}, {$limit}";
         }
 
-        $result = $this->database->query($query);
+        $result = $this->database->query($query, $sql_params);
 
         $objects = [];
 
@@ -363,6 +367,8 @@ class TCData
         $db_table = $class->get_db_table();
         $primary_key = $class->get_primary_key();
 
+        $sql_params = [];
+
         $query = "SELECT COUNT(*) `count` FROM `{$db_table}`";
 
         if (!empty($conditions)) {
@@ -372,11 +378,13 @@ class TCData
                 if ($index > 0) {
                     $query .= ' AND';
                 }
-                $query .= " `{$condition['field']}` = '{$condition['value']}'";
+                $query .= " `{$condition['field']}` = ?";
+
+                $sql_params[] = $condition['value'];
             }
         }
 
-        $result = $this->database->query($query);
+        $result = $this->database->query($query, $sql_params);
 
         $row = $result->fetch_object();
 
