@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\template\TCTemplate;
+use TinCan\objects\TCObject;
 use TinCan\objects\TCUser;
 
 /**

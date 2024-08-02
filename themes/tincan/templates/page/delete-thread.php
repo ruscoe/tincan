@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\db\TCData;
+use TinCan\objects\TCObject;
 use TinCan\objects\TCThread;
 use TinCan\template\TCTemplate;
 use TinCan\template\TCURL;

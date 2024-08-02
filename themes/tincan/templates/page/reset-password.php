@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\template\TCTemplate;
+use TinCan\objects\TCObject;
 
 /**
  * Reset password page template.

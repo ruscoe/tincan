@@ -2,6 +2,8 @@
 
 use TinCan\template\TCTemplate;
 use TinCan\template\TCURL;
+use TinCan\objects\TCObject;
+use TinCan\objects\TCUser;
 
 /**
  * Set password page template.
