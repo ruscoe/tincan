@@ -116,3 +116,36 @@ Feature: User
       | password | T3stP@ss01 |
     And press "Log in"
     Then the ".errors" element should contain "Your account can no longer log in."
+
+  Scenario: A user changes their password
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testuser01@example.org"
+    Given I am on "/"
+    And I follow "Account"
+    And I fill in the following:
+    | current_pass | T3stP@ss01 |
+    | new_pass     | T3stP@ss02 |
+    And I press "Save changes"
+    And I follow "Log Out"
+    And I follow "Log In"
+    And I fill in the following:
+      | username | TestUser01 |
+      | password | T3stP@ss02 |
+    And press "Log in"
+    Then I should see "Logged in as TestUser01"
+    And I should see "Log Out"
+
+  Scenario: A user cannot change their password with an incorrect current password
+    Given users exist:
+    | username    | email                   | password   | role_id |
+    | TestUser01  | testuser01@example.org  | T3stP@ss01 | 1       |
+    Given I am logged in as "testuser01@example.org"
+    Given I am on "/"
+    And I follow "Account"
+    And I fill in the following:
+    | current_pass | 123123123  |
+    | new_pass     | T3stP@ss02 |
+    And I press "Save changes"
+    Then the ".errors" element should contain "Please check your current password."
