@@ -17,7 +17,7 @@ Feature: Admin
     Given I am logged in as "testadmin01@example.org"
     When I am on "/"
     And I follow "Administration"
-    Then the "h1" element should contain "Admin Forum Settings"
+    Then the "h1" element should contain "Admin Forum Status"
 
   Scenario: An admin user edits a user's username.
     Given users exist:
