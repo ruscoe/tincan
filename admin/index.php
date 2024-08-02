@@ -50,7 +50,7 @@ if (!empty($page_id)) {
 
     $page_template = (!empty($page)) ? $page->template : '404';
 } else {
-    header('Location: /admin/index.php?page='.$settings['admin_page_forum_settings']);
+    header('Location: /admin/index.php?page='.$settings['admin_page_forum_status']);
     exit;
 }
 

@@ -670,6 +670,7 @@ function tc_create_pages()
         ['page_title' => 'Post Deleted',               'template' => 'post-deleted'],
         ['page_title' => 'Report Post',                'template' => 'report-post'],
         ['page_title' => 'Post Reported',              'template' => 'post-reported'],
+        ['page_title' => 'Admin Forum Status',         'template' => 'forum-status'],
         ['page_title' => 'Admin Forum Settings',       'template' => 'forum-settings'],
         ['page_title' => 'Admin Log In',               'template' => 'log-in'],
         ['page_title' => 'Admin Log Out',              'template' => 'log-out'],

@@ -38,6 +38,7 @@ $user = $data['user'];
 
         <?php
           $nav_items = [
+            '/admin?page='.$settings['admin_page_forum_status'] => 'Status',
             '/admin?page='.$settings['admin_page_forum_settings'] => 'Settings',
             '/admin?page='.$settings['admin_page_users'] => 'Users',
             '/admin?page='.$settings['admin_page_board_groups'] => 'Board Groups',
