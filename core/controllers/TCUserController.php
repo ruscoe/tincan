@@ -9,6 +9,7 @@ use TinCan\controllers\TCController;
 use TinCan\objects\TCMailTemplate;
 use TinCan\objects\TCObject;
 use TinCan\objects\TCPendingUser;
+use TinCan\objects\TCPost;
 use TinCan\objects\TCUser;
 use TinCan\user\TCUserSession;
 use TinCan\template\TCURL;
@@ -67,6 +68,10 @@ class TCUserController extends TCController
             $this->error = TCObject::ERR_NOT_FOUND;
             return false;
         }
+
+        // Update the user's last IP address.
+        $user->last_ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
+        $this->db->save_object($user);
 
         // Successfully logged in. Create the user's session.
         $session = new TCUserSession();
@@ -162,6 +167,8 @@ class TCUserController extends TCController
         $user->password = $user->get_password_hash($password);
         $user->role_id = $this->settings['default_user_role'];
         $user->suspended = 0;
+        $user->signup_ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
+        $user->last_ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
         $user->created_time = time();
         $user->updated_time = time();
 
@@ -649,6 +656,25 @@ class TCUserController extends TCController
         } catch (TCException $e) {
             $this->error = TCObject::ERR_NOT_SAVED;
             return false;
+        }
+
+        // Delete the user's posts.
+        $conditions = [
+            [
+              'field' => 'user_id',
+              'value' => $delete_user->user_id,
+            ],
+          ];
+
+        $posts = $this->db->load_objects(new TCPost(), [], $conditions);
+
+        foreach ($posts as $post) {
+            try {
+                $this->db->delete_object($post, $post->post_id);
+            } catch (TCException $e) {
+                $this->error = TCObject::ERR_NOT_SAVED;
+                return false;
+            }
         }
 
         return true;

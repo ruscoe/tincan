@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\db\TCData;
+use TinCan\objects\TCPost;
 use TinCan\objects\TCUser;
 use TinCan\objects\TCObject;
 use TinCan\template\TCTemplate;
@@ -43,8 +44,11 @@ if (!empty($error)) {
 }
 
 if (!empty($user)) {
+    $total_posts = $db->count_objects(new TCPost(), [['field' => 'user_id', 'value' => $user->user_id]]);
     ?>
     <h1>Really delete <?php echo $user->get_name(); ?>?</h1>
+
+    <p><?php echo $total_posts; ?> posts by this user will also be deleted.</p>
 
     <form id="delete-object" action="/admin/actions/delete-user.php" method="POST">
       <input type="hidden" name="user_id" value="<?php echo $user->user_id; ?>" />

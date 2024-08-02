@@ -34,6 +34,8 @@ $users = $db->load_objects(new TCUser(), [], $conditions, $order);
 <table class="objects">
   <th>Username</th>
   <th>Role</th>
+  <th>Signup IP</th>
+  <th>Last IP</th>
   <th colspan="3">&nbsp;</th>
 <?php
 foreach ($users as $user) {
@@ -47,6 +49,14 @@ foreach ($users as $user) {
       [
         'type' => 'text',
         'value' => $indexed_roles[$user->role_id]->role_name,
+      ],
+      [
+        'type' => 'text',
+        'value' => $user->signup_ip,
+      ],
+      [
+        'type' => 'text',
+        'value' => $user->last_ip,
       ],
       [
         'type' => 'link',
