@@ -218,7 +218,7 @@ class TCUserController extends TCController
      *
      * @since 0.16
      */
-    public function edit_user($user_id, $file = null, $email, $username = null, $role_id = null, $password = null, $suspended = null)
+    public function edit_user($user_id, $file = null, $email = null, $username = null, $role_id = null, $password = null, $suspended = null)
     {
         $edit_user = $this->db->load_user($user_id);
 
@@ -229,7 +229,7 @@ class TCUserController extends TCController
         }
 
         // Validate email.
-        if (!$edit_user->validate_email($email)) {
+        if (($email !== null) && !$edit_user->validate_email($email)) {
             $this->error = TCUser::ERR_EMAIL;
             return false;
         }
@@ -322,11 +322,9 @@ class TCUserController extends TCController
             $edit_user->updated_time = time();
         }
 
-        $edit_user->email = $email;
-        $edit_user->password = $edit_user->get_password_hash($password);
         $edit_user->updated_time = time();
 
-        // Username, role ID, and suspended must be explicitly set.
+        // Username, email, role ID, password, and suspended must be explicitly set.
         if ($username !== null) {
             $edit_user->username = $username;
         }
@@ -334,6 +332,15 @@ class TCUserController extends TCController
         if ($role_id !== null) {
             $edit_user->role_id = $role_id;
         }
+
+        if ($email !== null) {
+            $edit_user->email = $email;
+        }
+
+        if ($password !== null) {
+            $edit_user->password = $edit_user->get_password_hash($password);
+        }
+
         if ($suspended !== null) {
             $edit_user->suspended = $suspended;
         }
