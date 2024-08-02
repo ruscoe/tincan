@@ -363,6 +363,8 @@ function tc_create_tables()
       `role_id` bigint(20) unsigned NOT NULL,
       `avatar` varchar(255) NOT NULL DEFAULT '',
       `suspended` tinyint(1) unsigned NOT NULL,
+      `signup_ip` varchar(255) NOT NULL DEFAULT '',
+      `last_ip` varchar(255) NOT NULL DEFAULT '',
       `created_time` int(10) unsigned NOT NULL,
       `updated_time` int(10) unsigned NOT NULL,
       PRIMARY KEY (`user_id`)

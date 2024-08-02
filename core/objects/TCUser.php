@@ -79,6 +79,16 @@ class TCUser extends TCObject
     protected $suspended;
 
     /**
+     * @since 1.0.0
+     */
+    protected $signup_ip;
+
+    /**
+     * @since 1.0.0
+     */
+    protected $last_ip;
+
+    /**
      * @since 0.01
      */
     protected $created_time;
@@ -454,6 +464,8 @@ class TCUser extends TCObject
               'role_id',
               'avatar',
               'suspended',
+              'signup_ip',
+              'last_ip',
               'created_time',
               'updated_time',
             ];
