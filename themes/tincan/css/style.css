@@ -475,6 +475,17 @@ body.tincan.user #user-info {
 body.tincan.user #user-info .profile-image {
   padding: 1rem 0 0;
 }
+body.tincan.user #user-info .profile-image img {
+  height: 48px;
+  width: 48px;
+}
+@media (width >= 600px) {
+  body.tincan.user #user-info .profile-image img {
+    height: 220px;
+    margin: 0 1rem;
+    width: 220px;
+  }
+}
 body.tincan.user #user-info .joined {
   color: #000;
   padding: 0 0 1rem;

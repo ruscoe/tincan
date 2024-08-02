@@ -20,6 +20,17 @@ body.tincan.user {
 
     .profile-image {
       padding: 1rem 0 0;
+
+      img {
+        height: 48px;
+        width: 48px;
+
+        @include for-tablet-portrait-up {
+          height: 220px;
+          margin: 0 1rem;
+          width: 220px;
+        }
+      }
     }
 
     .joined {
