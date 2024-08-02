@@ -678,6 +678,7 @@ function tc_create_pages()
         ['page_title' => 'Admin Boards',               'template' => 'boards'],
         ['page_title' => 'Admin Threads',              'template' => 'threads'],
         ['page_title' => 'Admin Users',                'template' => 'users'],
+        ['page_title' => 'Admin Posts',                'template' => 'posts'],
         ['page_title' => 'Admin Mail Templates',       'template' => 'mail-templates'],
         ['page_title' => 'Admin Edit Board Group',     'template' => 'edit-board-group'],
         ['page_title' => 'Admin Delete Board Group',   'template' => 'delete-board-group'],
