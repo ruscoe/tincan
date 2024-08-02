@@ -38,9 +38,7 @@ if (empty($controller->get_error())) {
     );
 
     $destination .= '#post-'.$updated_post->post_id;
-}
-
-if (!empty($error)) {
+} else {
     // Send user back to the new post page with an error.
     $destination = TCURL::create_url(
         $controller->get_setting('page_edit_post'),

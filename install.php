@@ -651,6 +651,7 @@ function tc_create_pages()
         ['page_title' => 'Board',                      'template' => 'board'],
         ['page_title' => 'Thread',                     'template' => 'thread'],
         ['page_title' => 'User',                       'template' => 'user'],
+        ['page_title' => 'Edit User',                  'template' => 'edit-user'],
         ['page_title' => 'User Avatar',                'template' => 'user-avatar'],
         ['page_title' => 'Create Account',             'template' => 'create-account'],
         ['page_title' => 'Confirm Account',            'template' => 'confirm-account'],

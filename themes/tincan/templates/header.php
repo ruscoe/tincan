@@ -38,8 +38,10 @@ $title .= $settings['forum_name'];
         <li><a href="<?php echo $log_in_url; ?>">Log In</a></li>
             <?php
       } else {
-          $user_url = TCURL::create_url($settings['page_user'], ['user' => $user->user_id]); ?>
+          $user_url = TCURL::create_url($settings['page_user'], ['user' => $user->user_id]);
+          $edit_user_url = TCURL::create_url($settings['page_edit_user'], ['user' => $user->user_id]); ?>
         <li>Logged in as <a href="<?php echo $user_url; ?>"><?php echo $user->username; ?></a></li>
+          <li><a href="<?php echo $edit_user_url; ?>">Account</a></li>
           <?php if (!empty($user) && $user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
           <li><a href="/admin">Administration</a></li>
           <?php } ?>

@@ -223,7 +223,7 @@ class TCUserController extends TCController
         $edit_user = $this->db->load_user($user_id);
 
         // Validate username.
-        if (!$edit_user->validate_username($username)) {
+        if (($username !== null) && !$edit_user->validate_username($username)) {
             $this->error = TCUser::ERR_USER;
             return false;
         }
@@ -326,10 +326,11 @@ class TCUserController extends TCController
         $edit_user->password = $edit_user->get_password_hash($password);
         $edit_user->updated_time = time();
 
-        // Username, role ID, and suspected must be explicitly set.
+        // Username, role ID, and suspended must be explicitly set.
         if ($username !== null) {
             $edit_user->username = $username;
         }
+
         if ($role_id !== null) {
             $edit_user->role_id = $role_id;
         }
@@ -341,6 +342,39 @@ class TCUserController extends TCController
             $this->db->save_object($edit_user);
         } catch (TCException $e) {
             $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Validates a user's password change.
+     *
+     * @param int    $user_id      The ID of the user.
+     * @param string $current_pass The current password.
+     * @param string $new_pass     The new password.
+     *
+     * @return bool True if the password change is valid, false if not.
+     *
+     * @since 0.16
+     */
+    public function validate_password_change($user_id, $current_pass, $new_pass)
+    {
+        $user = $this->db->load_user($user_id);
+
+        if (empty($user)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        if (!$user->verify_password_hash($current_pass, $user->password)) {
+            $this->error = TCUser::ERR_PASSWORD;
+            return false;
+        }
+
+        if (!$user->validate_password($new_pass)) {
+            $this->error = TCUser::ERR_PASSWORD;
             return false;
         }
 

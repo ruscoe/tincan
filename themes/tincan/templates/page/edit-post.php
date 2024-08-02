@@ -3,6 +3,7 @@
 use TinCan\db\TCData;
 use TinCan\objects\TCObject;
 use TinCan\objects\TCPost;
+use TinCan\objects\TCUser;
 use TinCan\template\TCTemplate;
 use TinCan\template\TCURL;
 
@@ -47,7 +48,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'setti
 if (!empty($error)) {
 
     switch ($error) {
-        case TCObject::ERR_NOT_AUTHORIZED:
+        case TCUser::ERR_NOT_AUTHORIZED:
             $error_msg = 'You cannot edit this post.';
             break;
         case TCObject::ERR_NOT_FOUND:

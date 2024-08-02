@@ -3,6 +3,7 @@
 use TinCan\db\TCData;
 use TinCan\objects\TCObject;
 use TinCan\objects\TCThread;
+use TinCan\objects\TCUser;
 use TinCan\template\TCTemplate;
 use TinCan\template\TCURL;
 
@@ -47,7 +48,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $thread, 'set
 if (!empty($error)) {
 
     switch ($error) {
-        case TCObject::ERR_NOT_AUTHORIZED:
+        case TCUser::ERR_NOT_AUTHORIZED:
             $error_msg = 'You cannot delete this thread.';
             break;
         case TCObject::ERR_NOT_FOUND:
