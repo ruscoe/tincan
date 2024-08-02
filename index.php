@@ -8,7 +8,7 @@ use TinCan\template\TCURL;
 use TinCan\objects\TCPage;
 
 // Tin Can Forum version.
-define('TC_VERSION', '0.16');
+define('TC_VERSION', '1.0.0');
 
 /**
  * Forum entry point.

@@ -8,7 +8,7 @@ use TinCan\objects\TCUser;
 use TinCan\user\TCUserSession;
 
 // Tin Can Forum version.
-define('TC_VERSION', '0.16');
+define('TC_VERSION', '1.0.0');
 
 /**
  * Admin section entry point.
