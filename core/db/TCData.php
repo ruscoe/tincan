@@ -452,8 +452,10 @@ class TCData
         ];
 
         $order = [
-          'field' => 'post_id',
-          'direction' => 'DESC',
+          [
+            'field' => 'post_id',
+            'direction' => 'DESC',
+          ],
         ];
 
         return $this->load_objects(new TCPost(), [], $conditions, $order, $offset, $limit);
