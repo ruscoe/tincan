@@ -270,6 +270,11 @@ class FeatureContext extends RawMinkContext implements Context
                         if (!empty($board)) {
                             $this->created_boards[$board->get_primary_key_value()] = $row[1];
                         }
+                    } elseif ($row[0] == 'post_content') {
+                        $post = $this->get_post($row[1]);
+                        if (!empty($post)) {
+                            $this->created_posts[] = $post->get_primary_key_value();
+                        }
                     }
                 }
             }
@@ -376,6 +381,24 @@ class FeatureContext extends RawMinkContext implements Context
             ['field' => 'board_name', 'value' => $board_name],
         ];
         $results = $this->db->load_objects(new TCBoard(), [], $conditions);
+
+        return reset($results);
+    }
+
+    /**
+     * Gets a post from the database.
+     *
+     * @param string $content
+     *   The content of the post.
+     *
+     * @return TCPost
+     */
+    private function get_post($content)
+    {
+        $conditions = [
+            ['field' => 'content', 'value' => $content],
+        ];
+        $results = $this->db->load_objects(new TCPost(), [], $conditions);
 
         return reset($results);
     }
