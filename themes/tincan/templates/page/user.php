@@ -55,7 +55,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user
   <div id="user-posts">
     <h2>Recent posts</h2>
     <?php
-    $posts = $db->get_user_posts($profile_user->user_id);
+    $posts = $db->get_user_posts($profile_user->user_id, 0, 10);
 
 if (!empty($posts)) {
     $thread = null; ?>
