@@ -312,14 +312,10 @@ class TCUserController extends TCController
             $target_file = $edit_user->user_id.'.jpg';
             $target_full_path = getenv('TC_UPLOADS_PATH').'/'.$target_path.'/'.$target_file;
 
-            if (!move_uploaded_file($file['tmp_name'], $target_full_path)) {
-                $this->error = TCImage::ERR_FILE_GENERAL;
-                return false;
-            }
-
             // Resize and crop file to a square.
-            $scaled_image = $image->scale_to_square($target_full_path, 256);
+            $scaled_image = $image->scale_to_square($file['tmp_name'], 256);
 
+            // Save image as a JPEG.
             if (!imagejpeg($scaled_image, $target_full_path)) {
                 $this->error = TCImage::ERR_FILE_GENERAL;
                 return false;
