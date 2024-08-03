@@ -44,13 +44,15 @@ if (!empty($error)) {
     TCTemplate::render('form-errors', $settings['theme'], ['errors' => [$error], 'page' => $page]);
 }
 
-$avatar_image = (!empty($avatar_user->avatar)) ? $avatar_user->avatar : '/assets/images/default-profile.png';
+$avatar = $avatar_user->avatar;
+
+$avatar_image = (!empty($avatar)) ? $avatar : '/assets/images/default-profile.png';
 
 // Avoid browser cache so latest image always appears.
 $avatar_image .= '?v='.time();
 ?>
 
-<img src="<?php echo $avatar_image; ?>" width="128" />
+<img src="<?php echo $avatar_image; ?>" width="256" />
 
 <form id="upload-avatar" action="/actions/upload-avatar.php" method="POST" enctype="multipart/form-data">
 
