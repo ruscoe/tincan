@@ -321,6 +321,9 @@ class TCUserController extends TCController
                 return false;
             }
 
+            // Destroy temporary file.
+            unlink($file['tmp_name']);
+
             $edit_user->avatar = '/uploads/'.$target_path.'/'.$target_file;
             $edit_user->updated_time = time();
         }
