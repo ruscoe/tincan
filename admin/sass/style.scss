@@ -162,6 +162,19 @@ body.tincan-admin {
     }
   }
 
+  ul.pagination, ul.post-controls, ul.breadcrumbs {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 1rem 0 0;
+
+    li {
+      padding: 0 0.5rem;
+    }
+  }
+
   /* Text */
 
   h1, h2, h3, p, li, th, td {

@@ -5,6 +5,7 @@ use TinCan\objects\TCBoard;
 use TinCan\db\TCData;
 use TinCan\objects\TCPost;
 use TinCan\objects\TCThread;
+use TinCan\template\TCPagination;
 
 /**
  * Page template for admin thread list.
@@ -15,6 +16,8 @@ use TinCan\objects\TCThread;
  */
 $page = $data['page'];
 $settings = $data['settings'];
+
+$start_at = filter_input(INPUT_GET, 'start_at', FILTER_SANITIZE_NUMBER_INT);
 ?>
 
 <h1><?php echo $page->page_title; ?></h1>
@@ -35,10 +38,18 @@ if (!empty($board_id)) {
     ];
 }
 
-// TODO Sorting and pagination.
-$order = [];
+$order = [
+  [
+    'field' => 'thread_id',
+    'direction' => 'DESC',
+  ],
+];
 
-$threads = $db->load_objects(new TCThread(), [], $conditions, $order);
+$total = $db->count_objects(new TCThread(), $conditions);
+$total_pages = TCPagination::calculate_total_pages($total, $settings['posts_per_page']);
+$offset = TCPagination::calculate_page_offset($start_at, $settings['posts_per_page']);
+
+$threads = $db->load_objects(new TCThread(), [], $conditions, $order, $offset, $settings['posts_per_page']);
 $indexed_boards = $db->get_indexed_objects(new TCBoard(), 'board_id');
 ?>
 
@@ -98,3 +109,7 @@ foreach ($threads as $thread) {
 }
 ?>
 </table>
+
+<?php
+  TCAdminTemplate::render('pagination', ['page_params' => ['page' => $page->page_id], 'start_at' => $start_at, 'total_pages' => $total_pages, 'settings' => $settings]);
+?>

@@ -3,8 +3,10 @@
 use TinCan\Admin\TCAdminTemplate;
 use TinCan\objects\TCBoard;
 use TinCan\objects\TCBoardGroup;
-use TinCan\db\TCData;
 use TinCan\objects\TCThread;
+use TinCan\template\TCPagination;
+use TinCan\db\TCData;
+
 
 /**
  * Page template for admin board list.
@@ -15,6 +17,8 @@ use TinCan\objects\TCThread;
  */
 $page = $data['page'];
 $settings = $data['settings'];
+
+$start_at = filter_input(INPUT_GET, 'start_at', FILTER_SANITIZE_NUMBER_INT);
 ?>
 
 <h1><?php echo $page->page_title; ?></h1>
@@ -37,12 +41,20 @@ if (!empty($board_group_id)) {
     ];
 }
 
-// TODO Sorting and pagination.
-$order = [];
+$order = [
+  [
+    'field' => 'board_id',
+    'direction' => 'DESC',
+  ],
+];
 
 $db = new TCData();
 
-$boards = $db->load_objects(new TCBoard(), [], $conditions, $order);
+$total = $db->count_objects(new TCBoard(), $conditions);
+$total_pages = TCPagination::calculate_total_pages($total, $settings['posts_per_page']);
+$offset = TCPagination::calculate_page_offset($start_at, $settings['posts_per_page']);
+
+$boards = $db->load_objects(new TCBoard(), [], $conditions, $order, $offset, $settings['posts_per_page']);
 $indexed_board_groups = $db->get_indexed_objects(new TCBoardGroup(), 'board_group_id');
 ?>
 
@@ -102,3 +114,7 @@ foreach ($boards as $board) {
 }
 ?>
 </table>
+
+<?php
+  TCAdminTemplate::render('pagination', ['page_params' => ['page' => $page->page_id], 'start_at' => $start_at, 'total_pages' => $total_pages, 'settings' => $settings]);
+?>
