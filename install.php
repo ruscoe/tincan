@@ -401,6 +401,16 @@ function tc_create_tables()
       `updated_time` int(10) unsigned NOT NULL,
       PRIMARY KEY (`report_id`)
     ) AUTO_INCREMENT=1000",
+
+      'DROP TABLE IF EXISTS `tc_attachments`',
+
+      "CREATE TABLE `tc_attachments` (
+      `attachment_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `post_id` bigint(20) unsigned NOT NULL,
+      `file_path` varchar(255) NOT NULL DEFAULT '',
+      PRIMARY KEY (`attachment_id`),
+      KEY `POST_INDEX` (`post_id`)
+      ) AUTO_INCREMENT=1000",
     ];
 
     foreach ($queries as $query) {
