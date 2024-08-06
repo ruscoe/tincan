@@ -421,6 +421,13 @@ function tc_create_settings($install_settings = [])
           'value' => 'Tin Can Forum',
         ],
         [
+          'setting_name' => 'forum_tagline',
+          'category' => 'forum',
+          'type' => 'text',
+          'title' => 'Forum tagline',
+          'value' => 'Join the discussion!',
+        ],
+        [
           'setting_name' => 'forum_logo',
           'category' => 'forum',
           'type' => 'image',

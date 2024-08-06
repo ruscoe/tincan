@@ -7,7 +7,6 @@ use TinCan\objects\TCThread;
 use TinCan\template\TCPagination;
 use TinCan\db\TCData;
 
-
 /**
  * Page template for admin board list.
  *

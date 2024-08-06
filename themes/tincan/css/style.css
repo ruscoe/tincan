@@ -206,6 +206,11 @@ body {
     top: 1rem;
   }
 }
+#header .tagline {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+  text-align: center;
+}
 
 #content {
   margin: 0;

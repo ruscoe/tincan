@@ -53,6 +53,11 @@ $title .= $settings['forum_name'];
         <a href="/" title="<?php echo $settings['forum_name']; ?>"><img src="<?php echo $settings['forum_logo']; ?>" alt="<?php echo $settings['forum_name']; ?>" /></a>
       </div>
       <h1><?php echo $settings['forum_name']; ?></h1>
+      <?php if (!empty($settings['forum_tagline'])) { ?>
+        <div class="tagline">
+          <?php echo $settings['forum_tagline']; ?>
+        </div>
+      <?php } ?>
     </div>
     <!-- Start content -->
     <div id="content">
