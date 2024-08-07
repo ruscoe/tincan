@@ -106,6 +106,18 @@ abstract class TCController
     }
 
     /**
+     * Sets an error message.
+     *
+     * @param string $error The error to set.
+     *
+     * @since 1.0.0
+     */
+    public function set_error($error)
+    {
+        $this->error = $error;
+    }
+
+    /**
      * Gets a forum setting.
      *
      * @param string $setting The setting to get.

@@ -3,8 +3,10 @@
 namespace TinCan\controllers;
 
 use TinCan\TCException;
+use TinCan\content\TCImage;
 use TinCan\content\TCPostSanitizer;
 use TinCan\controllers\TCController;
+use TinCan\objects\TCAttachment;
 use TinCan\objects\TCObject;
 use TinCan\objects\TCPost;
 use TinCan\objects\TCReport;
@@ -333,5 +335,109 @@ class TCPostController extends TCController
         $total_pages = TCPagination::calculate_total_pages($total_posts, $this->settings['posts_per_page']);
 
         return $total_pages;
+    }
+
+    /**
+     * Determines if an attachment can be added to a post.
+     *
+     * @param int $post_id The ID of the post to add the attachment to.
+     *
+     * @return bool TRUE if the attachment can be added, otherwise FALSE.
+     *
+     * @since 1.0.0
+     */
+    public function can_add_attachment($post_id)
+    {
+        $post = $this->db->load_object(new TCPost(), $post_id);
+
+        if (empty($post)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Check user has permission to edit this post.
+        if ((empty($this->user) || !$this->user->can_edit_post($post))) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Adds an attachment to a post.
+     *
+     * @param int   $post_id The ID of the post to add the attachment to.
+     * @param array $file    The attachment file.
+     *
+     * @return bool TRUE if the attachment was added, otherwise FALSE.
+     *
+     * @since 1.0.0
+     */
+    public function add_attachment($post_id, $file)
+    {
+        $post = $this->db->load_object(new TCPost(), $post_id);
+
+        if (empty($file) || (UPLOAD_ERR_OK !== $file['error'])) {
+            $this->error = TCImage::ERR_FILE_GENERAL;
+            return false;
+        }
+
+        $image_data = getimagesize($file['tmp_name']);
+
+        $image = new TCImage();
+        $image->width = $image_data[0];
+        $image->height = $image_data[1];
+        $image->file_type = $image_data[2];
+        $image->mime_type = $image_data['mime'];
+        $image->file_size = $file['size'];
+
+        // Check for valid file type.
+        if (!$image->is_valid_type()) {
+            $this->error = TCImage::ERR_FILE_TYPE;
+            return false;
+        }
+
+        // Check file size.
+        if (!$image->is_valid_size()) {
+            $this->error = TCImage::ERR_FILE_SIZE;
+            return false;
+        }
+
+        // If the attachments upload path doesn't exist, create it with write permissions.
+        if (!is_dir(getenv('TC_UPLOADS_PATH').'/attachments')) {
+            mkdir(getenv('TC_UPLOADS_PATH').'/attachments', 0755);
+        }
+
+        // Attachments are stored in a directory matching the post's ID.
+        $target_path = 'attachments/'.$post->post_id;
+
+        // If the upload path doesn't exist, create it with write permissions.
+        if (!is_dir(getenv('TC_UPLOADS_PATH').'/'.$target_path)) {
+            mkdir(getenv('TC_UPLOADS_PATH').'/'.$target_path, 0755);
+        }
+
+        // The attachment filename is the attachment ID, so create attachment here.
+        $attachment = new TCAttachment();
+        $attachment->post_id = $post->post_id;
+        $new_attachment = $this->db->save_object($attachment);
+
+        $target_file = $new_attachment->attachment_id.'.jpg';
+        $target_full_path = getenv('TC_UPLOADS_PATH').'/'.$target_path.'/'.$target_file;
+
+        $new_attachment->file_path = $target_full_path;
+
+        $this->db->save_object($new_attachment);
+
+        $processed_image = $image->create_image_file($file['tmp_name']);
+
+        // Save image as a JPEG.
+        if (!imagejpeg($processed_image, $target_full_path)) {
+            $this->error = TCImage::ERR_FILE_GENERAL;
+            return false;
+        }
+
+        // Destroy temporary file.
+        unlink($file['tmp_name']);
     }
 }
