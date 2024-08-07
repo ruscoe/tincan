@@ -56,11 +56,12 @@ class TCImage
      * @since 0.13
      *
      * @param string $source_image the path of the source file
+     * @param int    $max_width    the maximum width in pixels of the image
      *
      * @return GDImage image object
      * @see:   https://www.php.net/manual/en/class.gdimage.php
      */
-    public function create_image_file($source_image)
+    public function create_image_file($source_image, $max_width)
     {
         $image = null;
 
@@ -70,7 +71,9 @@ class TCImage
             $image = imagecreatefrompng($source_image);
         }
 
-        return $image;
+        $scaled_image = imagescale($image, $max_width, -1, IMG_BILINEAR_FIXED);
+
+        return $scaled_image;
     }
 
     /**

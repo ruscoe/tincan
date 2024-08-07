@@ -430,7 +430,9 @@ class TCPostController extends TCController
 
         $this->db->save_object($new_attachment);
 
-        $processed_image = $image->create_image_file($file['tmp_name']);
+        $new_width = ($image->width > $this->settings['attachment_scale']) ? $this->settings['attachment_scale'] : $image->width;
+
+        $processed_image = $image->create_image_file($file['tmp_name'], $new_width);
 
         // Save image as a JPEG.
         $target_full_path = getenv('TC_UPLOADS_PATH').'/'.$target_path.'/'.$target_file;

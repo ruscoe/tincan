@@ -495,6 +495,20 @@ function tc_create_settings($install_settings = [])
           'value' => 10,
         ],
         [
+          'setting_name' => 'attachment_limit',
+          'category' => 'content',
+          'type' => 'text',
+          'title' => 'Maximum number of attachments per post',
+          'value' => 10,
+        ],
+        [
+          'setting_name' => 'attachment_scale',
+          'category' => 'content',
+          'type' => 'text',
+          'title' => 'Scale attached images to this pixel width',
+          'value' => 1200,
+        ],
+        [
           'setting_name' => 'allow_registration',
           'category' => 'user',
           'type' => 'bool',
