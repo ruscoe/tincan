@@ -439,5 +439,7 @@ class TCPostController extends TCController
 
         // Destroy temporary file.
         unlink($file['tmp_name']);
+
+        return true;
     }
 }
