@@ -30,6 +30,11 @@ if (!empty($_FILES['attachments'])) {
     if ($total_files > 0) {
         $attachments = [];
         for ($i = 0; $i < $total_files; $i++) {
+            // Skip empty files.
+            if (empty($_FILES['attachments']['name'][$i])) {
+                continue;
+            }
+
             $file = [];
             foreach ($_FILES['attachments'] as $key => $values) {
                 $file[$key] = $values[$i];
