@@ -14,6 +14,7 @@ use TinCan\template\TCURL;
 $thread = $data['thread'];
 $page_number = $data['page_number'];
 $post = $data['post'];
+$attachments = $data['attachments'];
 $author = $data['author'];
 $user = $data['user'];
 $settings = $data['settings'];
@@ -85,5 +86,18 @@ $report_post_url = TCURL::create_url($settings['page_report_post'], ['post' => $
         <li class="edit"><a href="<?php echo $report_post_url; ?>">Report</a></li>
       <?php } ?>
     </ul>
+
+<?php if (!empty($attachments)) { ?>
+    <div class="attachments">
+      <ul>
+        <?php foreach ($attachments as $attachment) { ?>
+          <li>
+            <a href="<?php echo $attachment->file_path; ?>" target="_blank"><img src="<?php echo $attachment->thumbnail_file_path; ?>" /></a>
+          </li>
+        <?php } ?>
+      </ul>
+    </div>
+<?php } ?>
+
   </div>
 </div>

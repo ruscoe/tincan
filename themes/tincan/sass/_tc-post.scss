@@ -95,6 +95,30 @@ body.tincan.thread {
     .content {
       padding: 1rem;
     }
+
+    .attachments {
+      border: 1px solid $section-border;
+      margin: 1rem;
+
+      ul {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        list-style: none;
+        margin: 1.5rem 1rem;
+        padding: 0;
+
+        li {
+          padding: 0 0.5rem;
+
+          img {
+            border: 1px solid $section-border;
+            height: 150px;
+            width: 150px;
+          }
+        }
+      }
+    }
   }
 
   .post:nth-child(even) {

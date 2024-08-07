@@ -2,6 +2,7 @@
 
 use TinCan\db\TCData;
 use TinCan\template\TCPagination;
+use TinCan\objects\TCAttachment;
 use TinCan\objects\TCPost;
 use TinCan\template\TCTemplate;
 use TinCan\objects\TCThread;
@@ -79,7 +80,16 @@ foreach ($posts as $post) {
         TCTemplate::render('deleted-post', $settings['theme'], ['post' => $post]);
     } else {
         $author = $db->load_user($post->user_id);
-        TCTemplate::render('post', $settings['theme'], ['thread' => $thread, 'page_number' => $start_at, 'post' => $post, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
+
+        $conditions = [
+          [
+            'field' => 'post_id',
+            'value' => $post->post_id,
+          ],
+        ];
+        $attachments = $db->load_objects(new TCAttachment(), [], $conditions);
+
+        TCTemplate::render('post', $settings['theme'], ['thread' => $thread, 'page_number' => $start_at, 'post' => $post, 'attachments' => $attachments, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
     }
 }
 

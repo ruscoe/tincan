@@ -441,6 +441,26 @@ body.tincan.thread .post .date {
 body.tincan.thread .post .content {
   padding: 1rem;
 }
+body.tincan.thread .post .attachments {
+  border: 1px solid #DDD;
+  margin: 1rem;
+}
+body.tincan.thread .post .attachments ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  list-style: none;
+  margin: 1.5rem 1rem;
+  padding: 0;
+}
+body.tincan.thread .post .attachments ul li {
+  padding: 0 0.5rem;
+}
+body.tincan.thread .post .attachments ul li img {
+  border: 1px solid #DDD;
+  height: 150px;
+  width: 150px;
+}
 body.tincan.thread .post:nth-child(even) {
   background-color: #fbfbfb;
 }

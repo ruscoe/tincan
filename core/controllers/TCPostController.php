@@ -423,16 +423,28 @@ class TCPostController extends TCController
         $new_attachment = $this->db->save_object($attachment);
 
         $target_file = $new_attachment->attachment_id.'.jpg';
-        $target_full_path = getenv('TC_UPLOADS_PATH').'/'.$target_path.'/'.$target_file;
+        $target_thumb_file = $new_attachment->attachment_id.'_th.jpg';
 
-        $new_attachment->file_path = $target_full_path;
+        $new_attachment->file_path = '/uploads/'.$target_path.'/'.$target_file;
+        $new_attachment->thumbnail_file_path = '/uploads/'.$target_path.'/'.$target_thumb_file;
 
         $this->db->save_object($new_attachment);
 
         $processed_image = $image->create_image_file($file['tmp_name']);
 
         // Save image as a JPEG.
+        $target_full_path = getenv('TC_UPLOADS_PATH').'/'.$target_path.'/'.$target_file;
         if (!imagejpeg($processed_image, $target_full_path)) {
+            $this->error = TCImage::ERR_FILE_GENERAL;
+            return false;
+        }
+
+        // Resize and crop file to a square for thumbnail
+        $scaled_image = $image->scale_to_square($file['tmp_name'], 150);
+
+        // Save thumbnail image as a JPEG.
+        $target_thumb_full_path = getenv('TC_UPLOADS_PATH').'/'.$target_path.'/'.$target_thumb_file;
+        if (!imagejpeg($scaled_image, $target_thumb_full_path)) {
             $this->error = TCImage::ERR_FILE_GENERAL;
             return false;
         }

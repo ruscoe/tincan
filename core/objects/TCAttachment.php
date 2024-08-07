@@ -29,6 +29,11 @@ class TCAttachment extends TCObject
     protected $file_path;
 
     /**
+     * @since 1.0.0
+     */
+    protected $thumbnail_file_path;
+
+    /**
      * @see   TCObject::get_primary_key()
      * @since 1.0.0
      */
@@ -64,6 +69,7 @@ class TCAttachment extends TCObject
         return [
             'post_id',
             'file_path',
+            'thumbnail_file_path',
         ];
     }
 }
