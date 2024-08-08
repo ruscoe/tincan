@@ -361,6 +361,18 @@ class TCPostController extends TCController
             return false;
         }
 
+        // Check attachment limit.
+        $conditions = [
+            ['field' => 'post_id', 'value' => $post->post_id],
+          ];
+
+        $total_attachments = $this->db->count_objects(new TCAttachment(), $conditions);
+
+        if ($total_attachments >= $this->settings['attachment_limit']) {
+            $this->error = TCImage::ERR_FILE_LIMIT;
+            return false;
+        }
+
         return true;
     }
 

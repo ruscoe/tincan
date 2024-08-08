@@ -57,10 +57,6 @@ if ($controller->can_create_thread($board_id)) {
                 $post_controller->add_attachment($new_thread->first_post_id, $file);
             }
         }
-
-        if (!empty($post_controller->get_error())) {
-            $controller->set_error($post_controller->get_error());
-        }
     }
 }
 

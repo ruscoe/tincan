@@ -16,6 +16,7 @@ class TCImage
     public const ERR_FILE_TYPE = 'file-type';
     public const ERR_FILE_SIZE = 'file-size';
     public const ERR_FILE_GENERAL = 'file-gen';
+    public const ERR_FILE_LIMIT = 'file-limit';
 
     // Maximum file size is 1MB. Value below is bytes.
     public const MAX_FILE_SIZE = 1000000;
