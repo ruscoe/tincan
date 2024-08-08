@@ -447,7 +447,7 @@ body.tincan.thread .post .attachments {
 }
 body.tincan.thread .post .attachments ul {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
   list-style: none;
   margin: 1.5rem 1rem;
