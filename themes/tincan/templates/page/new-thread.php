@@ -97,7 +97,8 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
   <div class="fieldset">
     <label for="post_content">Attachments</label>
     <div class="field">
-      <input type="file" name="attachments[]" multiple="multiple" />
+      <input type="file" name="attachments[]" multiple="multiple" accept="image/png, image/jpeg" />
+      Maximum <?php echo $settings['attachment_limit']; ?> files.
     </div>
   </div>
 
