@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\db\TCData;
+use TinCan\objects\TCAttachment;
 use TinCan\objects\TCObject;
 use TinCan\objects\TCPost;
 use TinCan\objects\TCUser;
@@ -63,6 +64,13 @@ if (!empty($error)) {
 }
 
 if (!empty($user) && $user->can_edit_post($post)) {
+    $conditions = [
+      [
+        'field' => 'post_id',
+        'value' => $post->post_id,
+      ],
+    ];
+    $attachments = $db->load_objects(new TCAttachment(), [], $conditions);
     ?>
 
 <form id="update-post" action="/actions/update-post.php" method="POST">
@@ -73,6 +81,21 @@ if (!empty($user) && $user->can_edit_post($post)) {
     </div>
   </div>
 
+  <?php
+  foreach ($attachments as $attachment) {
+      ?>
+
+  <div class="fieldset">
+    <label for="post_content"><img src="<?php echo $attachment->thumbnail_file_path; ?>" /></label>
+    <div class="field">
+      <a href="/actions/delete-attachment.php?attachment=<?php echo $attachment->attachment_id; ?>" title="Delete attachment">Delete attachment</a>
+    </div>
+  </div>
+
+  <?php
+  }
+    ?>
+
   <input type="hidden" name="page_number" value="<?php echo $page_number; ?>" />
   <input type="hidden" name="post" value="<?php echo $post->post_id; ?>" />
 
@@ -82,5 +105,5 @@ if (!empty($user) && $user->can_edit_post($post)) {
 </form>
 
     <?php
-    TCTemplate::render('tc-code', $settings['theme'], []);
+      TCTemplate::render('tc-code', $settings['theme'], []);
 }
