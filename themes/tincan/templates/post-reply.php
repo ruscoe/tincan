@@ -40,11 +40,19 @@ if (!empty($error)) {
 }
 ?>
 
-<form id="post-reply" action="/actions/create-post.php" method="POST">
+<form id="post-reply" action="/actions/create-post.php" method="POST" enctype="multipart/form-data">
   <div class="fieldset textarea">
     <label for="post_content">Reply Content</label>
     <div class="field">
       <textarea name="post_content" rows="20" cols="30"></textarea>
+    </div>
+  </div>
+
+  <div class="fieldset">
+    <label for="post_content">Attachments</label>
+    <div class="field">
+      <input type="file" name="attachments[]" multiple="multiple" accept="image/png, image/jpeg" />
+      Maximum <?php echo $settings['attachment_limit']; ?> files.
     </div>
   </div>
 
