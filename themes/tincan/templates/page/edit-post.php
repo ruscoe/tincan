@@ -81,6 +81,8 @@ if (!empty($user) && $user->can_edit_post($post)) {
     </div>
   </div>
 
+  <div id="attachments">
+
   <?php
   foreach ($attachments as $attachment) {
       ?>
@@ -88,13 +90,15 @@ if (!empty($user) && $user->can_edit_post($post)) {
   <div class="fieldset">
     <label for="post_content"><img src="<?php echo $attachment->thumbnail_file_path; ?>" /></label>
     <div class="field">
-      <a href="/actions/delete-attachment.php?attachment=<?php echo $attachment->attachment_id; ?>" title="Delete attachment">Delete attachment</a>
+      <a href="/actions/delete-attachment.php?post=<?php echo $attachment->post_id; ?>&attachment=<?php echo $attachment->attachment_id; ?>" title="Delete attachment">Delete attachment</a>
     </div>
   </div>
 
   <?php
   }
     ?>
+
+  </div>
 
   <input type="hidden" name="page_number" value="<?php echo $page_number; ?>" />
   <input type="hidden" name="post" value="<?php echo $post->post_id; ?>" />

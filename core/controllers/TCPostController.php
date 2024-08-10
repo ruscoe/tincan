@@ -468,4 +468,59 @@ class TCPostController extends TCController
 
         return true;
     }
+
+    /**
+     * Determines if an attachment can be deleted.
+     *
+     * @param int $attachment_id The ID of the attachment to be deleted.
+     *
+     * @return bool TRUE if the attachment can be deleted, otherwise FALSE.
+     *
+     * @since 1.0.0
+     */
+    public function can_delete_attachment($attachment_id)
+    {
+        $attachment = $this->db->load_object(new TCAttachment(), $attachment_id);
+
+        if (empty($attachment)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        $post = $this->db->load_object(new TCPost(), $attachment->post_id);
+
+        if (empty($post)) {
+            $this->error = TCObject::ERR_NOT_FOUND;
+            return false;
+        }
+
+        // Check user has permission to delete this post.
+        if ((empty($this->user) || !$this->user->can_edit_post($post))) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Deletes an attachment.
+     *
+     * @param int $attachment_id The ID of the attachment to be deleted.
+     *
+     * @return bool TRUE if the attachment was deleted, otherwise FALSE.
+     *
+     * @since 1.0.0
+     */
+    public function delete_attachment($attachment_id)
+    {
+        try {
+            $this->db->delete_object(new TCAttachment(), $attachment_id);
+        } catch (TCException $e) {
+            $this->error = TCObject::ERR_NOT_SAVED;
+            return false;
+        }
+
+        return true;
+    }
 }
