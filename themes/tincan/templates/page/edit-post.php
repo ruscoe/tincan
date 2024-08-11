@@ -73,7 +73,7 @@ if (!empty($user) && $user->can_edit_post($post)) {
     $attachments = $db->load_objects(new TCAttachment(), [], $conditions);
     ?>
 
-<form id="update-post" action="/actions/update-post.php" method="POST">
+<form id="update-post" action="/actions/update-post.php" method="POST" enctype="multipart/form-data">
   <div class="fieldset textarea">
     <label for="post_content">Reply Content</label>
     <div class="field">
@@ -83,16 +83,24 @@ if (!empty($user) && $user->can_edit_post($post)) {
 
   <div id="attachments">
 
+    <div class="fieldset">
+      <label for="post_content">Attachments</label>
+      <div class="field">
+        <input type="file" name="attachments[]" multiple="multiple" accept="image/png, image/jpeg" />
+        Maximum <?php echo $settings['attachment_limit']; ?> files.
+      </div>
+    </div>
+
   <?php
   foreach ($attachments as $attachment) {
       ?>
 
-  <div class="fieldset">
-    <label for="post_content"><img src="<?php echo $attachment->thumbnail_file_path; ?>" /></label>
-    <div class="field">
-      <a href="/actions/delete-attachment.php?post=<?php echo $attachment->post_id; ?>&attachment=<?php echo $attachment->attachment_id; ?>" title="Delete attachment">Delete attachment</a>
+    <div class="fieldset">
+      <label for="post_content"><img src="<?php echo $attachment->thumbnail_file_path; ?>" /></label>
+      <div class="field">
+        <a href="/actions/delete-attachment.php?post=<?php echo $attachment->post_id; ?>&attachment=<?php echo $attachment->attachment_id; ?>" title="Delete attachment">Delete attachment</a>
+      </div>
     </div>
-  </div>
 
   <?php
   }
