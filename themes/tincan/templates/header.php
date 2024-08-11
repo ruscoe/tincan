@@ -32,6 +32,19 @@ $title .= $settings['forum_name'];
   </head>
   <body class="tincan <?php echo $data['page_template']; ?>">
     <div id="header">
+      <div class="branding">
+        <div class="logo">
+          <a href="/" title="<?php echo $settings['forum_name']; ?>"><img src="<?php echo $settings['forum_logo']; ?>" alt="<?php echo $settings['forum_name']; ?>" /></a>
+        </div>
+        <div class="site-name">
+          <?php echo $settings['forum_name']; ?>
+          <?php if (!empty($settings['forum_tagline'])) { ?>
+            <div class="tagline">
+              <?php echo $settings['forum_tagline']; ?>
+            </div>
+          <?php } ?>
+        </div>
+      </div>
       <ul class="navigation">
       <?php if (empty($user)) { ?>
         <li><a href="<?php echo $create_account_url; ?>">Create Account</a></li>
@@ -40,7 +53,7 @@ $title .= $settings['forum_name'];
       } else {
           $user_url = TCURL::create_url($settings['page_user'], ['user' => $user->user_id]);
           $edit_user_url = TCURL::create_url($settings['page_edit_user'], ['user' => $user->user_id]); ?>
-        <li>Logged in as <a href="<?php echo $user_url; ?>"><?php echo $user->username; ?></a></li>
+          <li><a href="<?php echo $user_url; ?>">Profile</a></li>
           <li><a href="<?php echo $edit_user_url; ?>">Account</a></li>
           <?php if (!empty($user) && $user->can_perform_action(TCUser::ACT_ACCESS_ADMIN)) { ?>
           <li><a href="/admin">Administration</a></li>
@@ -49,15 +62,6 @@ $title .= $settings['forum_name'];
           <?php
       } ?>
       </ul>
-      <div class="logo">
-        <a href="/" title="<?php echo $settings['forum_name']; ?>"><img src="<?php echo $settings['forum_logo']; ?>" alt="<?php echo $settings['forum_name']; ?>" /></a>
-      </div>
-      <h1><?php echo $settings['forum_name']; ?></h1>
-      <?php if (!empty($settings['forum_tagline'])) { ?>
-        <div class="tagline">
-          <?php echo $settings['forum_tagline']; ?>
-        </div>
-      <?php } ?>
     </div>
     <!-- Start content -->
     <div id="content">

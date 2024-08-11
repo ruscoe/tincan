@@ -142,28 +142,26 @@ body {
 }
 
 #header {
-  position: relative;
+  margin: 0 1rem;
 }
-#header h1 {
-  margin: 0;
-  padding-top: 1rem;
-  text-align: center;
+#header .branding {
+  display: flex;
 }
-@media (width >= 600px) {
-  #header h1 {
-    padding-top: 3rem;
-  }
+#header .branding .logo img {
+  height: 80px;
+  width: 80px;
+}
+#header .branding .site-name {
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+#header .branding .site-name .tagline {
+  font-size: 1.4rem;
 }
 #header ul.navigation {
-  padding-top: 1rem;
-}
-@media (width >= 600px) {
-  #header ul.navigation {
-    padding: 0;
-    position: absolute;
-    right: 2rem;
-    top: 1rem;
-  }
+  flex-grow: 1;
+  justify-content: flex-end;
+  margin-top: 2rem;
 }
 #header ul.navigation li {
   flex: 1;
@@ -175,36 +173,15 @@ body {
     text-align: left;
   }
 }
-#header .logo {
-  text-align: center;
-  padding-top: 2rem;
-}
-#header .logo img {
-  height: 80px;
-  width: 80px;
-}
 @media (width >= 600px) {
-  #header .logo {
-    left: 2rem;
-    padding: 0;
-    position: absolute;
-    top: 1rem;
+  #header {
+    display: flex;
   }
-}
-#header .tagline {
-  font-size: 1.4rem;
-  margin-top: 1rem;
-  text-align: center;
 }
 
 #content {
-  margin: 0;
+  margin: 0 1rem;
   padding-top: 1rem;
-}
-@media (width >= 600px) {
-  #content {
-    margin: 0 2rem;
-  }
 }
 
 #footer {
