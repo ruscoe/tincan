@@ -12,7 +12,7 @@ Feature: User
       | email    | testuser01@example.org |
       | password | T3stP@ss01             |
     And press "Create account"
-    Then I should see "Logged in as TestUser01"
+    Then I should see "Profile"
     And I should see "Log Out"
 
   Scenario: A new forum user creates an account with an existing username
@@ -82,7 +82,7 @@ Feature: User
       | username | TestUser01 |
       | password | T3stP@ss01 |
     And press "Log in"
-    Then I should see "Logged in as TestUser01"
+    Then I should see "Profile"
     And I should see "Log Out"
 
   Scenario: A forum user cannot log in with the wrong password
@@ -134,7 +134,7 @@ Feature: User
       | username | TestUser01 |
       | password | T3stP@ss02 |
     And press "Log in"
-    Then I should see "Logged in as TestUser01"
+    Then I should see "Profile"
     And I should see "Log Out"
 
   Scenario: A user cannot change their password with an incorrect current password

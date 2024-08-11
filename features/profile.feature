@@ -8,5 +8,5 @@ Feature: Posts
   | TestUser01 | testuser01@example.org | T3stP@ss01 | 1       |
   Given I am logged in as "testuser01@example.org"
   When I am on "/"
-  And I follow "TestUser01"
+  And I follow "Profile"
   Then the ".section-header" element should contain "TestUser01"

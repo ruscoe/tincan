@@ -67,7 +67,7 @@ Feature: Admin
       | username | TestUser01 |
       | password | T3stP@ss02 |
     And press "Log in"
-    Then I should see "Logged in as TestUser01"
+    Then I should see "Profile"
 
   Scenario: An admin user edits a user's role.
     Given users exist:
