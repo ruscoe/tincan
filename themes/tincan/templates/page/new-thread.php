@@ -49,7 +49,7 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
 
     <?php
 } else {
-    TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]); ?>
+    TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'settings' => $settings]); ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>
 

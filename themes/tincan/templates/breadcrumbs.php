@@ -13,21 +13,6 @@ use TinCan\template\TCURL;
 $object = $data['object'];
 $settings = $data['settings'];
 
-$db = new TCData();
-
-$chain = [];
-
-// Follow the chain of parent objects until no more exist.
-if (!empty($object)) {
-    while (null !== $object->get_parent()) {
-        $parent = $object->get_parent();
-        if (null !== $parent) {
-            $object = $db->load_object($parent, $parent->get_primary_key_value());
-            $chain[] = $object;
-        }
-    }
-}
-
 // Map object primary keys to the pages the objects appear on.
 // This is used to create the breadcrumb links.
 $template_page_map = [
@@ -37,17 +22,16 @@ $template_page_map = [
 ?>
 
 <ul class="breadcrumbs">
-  <li class="home"><a href="/">Home</a></li>
 
 <?php
-if (!empty($chain)) {
-    $chain_length = count($chain);
+    if (empty($object)) {
+        ?>
+  <li class="home"><a href="/">Home</a></li>
+<?php
+    } else {
+        $db = new TCData();
 
-    $object = null;
-
-    for ($i = $chain_length; $i > 0; --$i) {
-        $object = $chain[$i - 1];
-        $object_id = $parent->get_primary_key_value();
+        $object_id = $object->get_primary_key_value();
         $primary_key = $object->get_primary_key();
 
         $page_url = null;
@@ -58,12 +42,9 @@ if (!empty($chain)) {
         }
 
         if (!empty($page_url)) {
-            echo '<li class="subpage"><a href="'.$page_url.'">'.$object->get_name().'</a></li>';
+            echo '<li><a href="'.$page_url.'">'.$object->get_name().'</a></li>';
         }
     }
-}
 ?>
 
 </ul>
-
-<?php

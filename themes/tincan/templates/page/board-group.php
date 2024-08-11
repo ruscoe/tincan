@@ -34,7 +34,7 @@ if (empty($board_group)) {
 }
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $board_group->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
-TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board_group, 'settings' => $settings]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $board_group->get_name(); ?></h1>

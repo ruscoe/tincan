@@ -5,6 +5,7 @@ use TinCan\template\TCPagination;
 use TinCan\objects\TCAttachment;
 use TinCan\objects\TCPost;
 use TinCan\template\TCTemplate;
+use TinCan\objects\TCBoard;
 use TinCan\objects\TCThread;
 use TinCan\objects\TCUser;
 use TinCan\template\TCURL;
@@ -32,9 +33,13 @@ if (empty($thread)) {
     exit;
 }
 
+$board = $db->load_object(new TCBoard(), $thread->board_id);
+
 TCTemplate::render('header', $settings['theme'], ['page_title' => $thread->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
-TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $thread, 'settings' => $settings]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'settings' => $settings]);
 ?>
+
+<h1 class="section-header"><?php echo $thread->thread_title; ?></h1>
 
 <?php
   // Show delete thread link if user has permission to delete the thread.
@@ -48,11 +53,6 @@ if (!empty($user) && $user->can_delete_thread($thread)) {
   </div>
     <?php
 }
-?>
-
-<h1 class="section-header"><?php echo $thread->thread_title; ?></h1>
-
-<?php
 
 $conditions = [
   [

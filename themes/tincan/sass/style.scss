@@ -63,17 +63,8 @@ p {
 }
 
 h1.section-header {
-  background-color: $section-header;
-  border: solid $section-header-border;
-  border-width: 0 2px 2px 0;
-  color: $section-header-text;
-  font-size: 1rem;
-  margin: 0;
-  padding: 0.5rem 1rem;
-
-  @include for-tablet-portrait-up {
-    font-size: 2rem;
-  }
+  font-size: 2rem;
+  text-align: center;
 }
 
 h2.section-subheader, h3.section-subheader {
@@ -133,24 +124,14 @@ ul.pagination {
 ul.breadcrumbs {
   margin: 1rem 0;
 
-  li.home a {
-    @include for-tablet-portrait-up {
-      padding-left: 1rem;
+  li {
+    a {
+      padding-left: 0.75rem;
     }
   }
 
-  li.subpage a {
-    padding-left: 1rem;
-  }
-
-  li.home::before {
-    @include for-tablet-portrait-up {
-      content: '\2616';
-    }
-  }
-
-  li.subpage::before {
-    content: '\21D2';
+  li::before {
+    content: '\003C';
   }
 }
 
@@ -191,14 +172,18 @@ body {
   background-color: $page;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 #header, #content, #footer {
   font-family: $open-sans-regular, serif;
+  margin: 0 auto;
+  max-width: 1200px;
+  text-align: left;
 }
 
 #header {
-  margin: 0 1rem;
+  padding: 1rem 1rem 0 1rem;
 
   .branding {
     display: flex;
@@ -243,8 +228,7 @@ body {
 }
 
 #content {
-  margin: 0 1rem;
-  padding-top: 1rem;
+  padding: 1rem 1rem 0 1rem;
 }
 
 #footer {

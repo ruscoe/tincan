@@ -1,6 +1,7 @@
 <?php
 
 use TinCan\objects\TCBoard;
+use TinCan\objects\TCBoardGroup;
 use TinCan\db\TCData;
 use TinCan\template\TCPagination;
 use TinCan\template\TCTemplate;
@@ -33,8 +34,10 @@ if (empty($board)) {
     exit;
 }
 
+$board_group = $db->load_object(new TCBoardGroup(), $board->board_group_id);
+
 TCTemplate::render('header', $settings['theme'], ['page_title' => $board->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
-TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board, 'settings' => $settings]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board_group, 'settings' => $settings]);
 ?>
 
 <?php
