@@ -62,7 +62,3 @@ if (!empty($error)) {
     <input class="submit-button" type="submit" name="submit_post" value="Submit reply" />
   </div>
 </form>
-
-<?php
-  TCTemplate::render('tc-code', $settings['theme'], []);
-?>

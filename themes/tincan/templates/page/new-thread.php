@@ -110,6 +110,4 @@ if (empty($user) || !$user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
 </form>
 
     <?php
-    TCTemplate::render('tc-code', $settings['theme'], []);
 }
-?>

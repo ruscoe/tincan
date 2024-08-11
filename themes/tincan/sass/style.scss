@@ -185,30 +185,6 @@ ul.post-controls {
   }
 }
 
-.tc-code {
-  table {
-    th {
-      background-color: $section-header;
-      color: $section-header-text;
-    }
-
-    tr:nth-child(even) {
-      background-color: $section-alt;
-    }
-
-    th, td {
-      padding: 1rem;
-    }
-
-    td {
-      h1, h2, h3, h4, h5 {
-        line-height: 100%;
-        margin: 0;
-      }
-    }
-  }
-}
-
 /* Containers */
 
 body {

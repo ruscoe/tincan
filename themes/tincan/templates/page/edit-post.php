@@ -117,5 +117,4 @@ if (!empty($user) && $user->can_edit_post($post)) {
 </form>
 
     <?php
-      TCTemplate::render('tc-code', $settings['theme'], []);
 }

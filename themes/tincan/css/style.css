@@ -130,21 +130,6 @@ ul.post-controls li {
   color: #DC0139;
 }
 
-.tc-code table th {
-  background-color: #c9cebd;
-  color: #000;
-}
-.tc-code table tr:nth-child(even) {
-  background-color: #fbfbfb;
-}
-.tc-code table th, .tc-code table td {
-  padding: 1rem;
-}
-.tc-code table td h1, .tc-code table td h2, .tc-code table td h3, .tc-code table td h4, .tc-code table td h5 {
-  line-height: 100%;
-  margin: 0;
-}
-
 /* Containers */
 body {
   background-color: #FFF;
