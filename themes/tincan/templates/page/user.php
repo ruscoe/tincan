@@ -38,7 +38,7 @@ if (!empty($user) && $user->can_edit_user($profile_user)) {
 }
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $profile_user->get_name(), 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
-TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $profile_user, 'settings' => $settings]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $profile_user->username; ?></h1>

@@ -40,6 +40,8 @@ TCTemplate::render('header', $settings['theme'], ['page_title' => $board->get_na
 TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $board_group, 'settings' => $settings]);
 ?>
 
+<h1 class="section-header"><?php echo $board->board_name; ?></h1>
+
 <?php
   // Show new thread link if user has permission to create a new thread.
 if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
@@ -53,8 +55,6 @@ if (!empty($user) && $user->can_perform_action(TCUser::ACT_CREATE_THREAD)) {
     <?php
 }
 ?>
-
-<h1 class="section-header"><?php echo $board->board_name; ?></h1>
 
 <?php
 // Get threads in this board; order by thread with most recent post.

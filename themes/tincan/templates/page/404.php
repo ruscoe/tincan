@@ -15,6 +15,7 @@ $page = $data['page'];
 $user = $data['user'];
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => $page->page_title, 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header"><?php echo $page->page_title; ?></h1>

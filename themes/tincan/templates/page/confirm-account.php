@@ -17,6 +17,7 @@ $user = $data['user'];
 $error = filter_input(INPUT_GET, 'error', FILTER_SANITIZE_STRING);
 
 TCTemplate::render('header', $settings['theme'], ['page_title' => 'Account Confirmation', 'page_template' => $page->template, 'settings' => $settings, 'user' => $user]);
+TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => null, 'settings' => $settings]);
 ?>
 
 <h1 class="section-header">Account Confirmation</h1>
