@@ -77,15 +77,6 @@ $session->start_session();
 $user_id = $session->get_user_id();
 $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
-// Check to see if install.php exists on the server.
-if (file_exists(getenv('TC_BASE_PATH').'/install.php')) { ?>
-
-    <div id="install-warning">
-        install.php is still present on the server. For security reasons, please delete this file.
-    </div>
-
-<?php }
-
 // Render page.
 TCTemplate::render('page/'.$page_template, $settings['theme'], ['page' => $page, 'settings' => $settings, 'user' => $user]);
 TCTemplate::render('footer', $settings['theme'], null);

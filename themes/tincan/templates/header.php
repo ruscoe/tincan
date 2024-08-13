@@ -31,6 +31,17 @@ $title .= $settings['forum_name'];
     } ?>
   </head>
   <body class="tincan <?php echo $data['page_template']; ?>">
+
+<?php
+// Check to see if install.php exists on the server.
+if (file_exists(getenv('TC_BASE_PATH').'/install.php')) { ?>
+
+  <div id="install-warning">
+      install.php is still present on the server. For security reasons, please delete this file.
+  </div>
+
+<?php } ?>
+
     <div id="header">
       <div class="branding">
         <div class="logo">
