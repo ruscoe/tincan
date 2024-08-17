@@ -1,12 +1,18 @@
 # Tin Can Forum
 
-Tin Can is a hobby project; an attempt to create a lightweight web forum in PHP.
+Tin Can is a lightweight web forum written in PHP.
 
 The name comes from the [tin can telephone](https://en.wikipedia.org/wiki/Tin_can_telephone).
 
-Tin Can is not production-ready, but you can play around with it if you like.
-
 ![Tin Can screenshot](https://github.com/user-attachments/assets/3ba89a57-f60b-4f15-bd27-94cf39af62b1)
+
+## Features
+
+* Discussion boards groupable by topic
+* Basic markdown support
+* Image attachments
+* Custom themes
+* Extensive behat test suite
 
 ## Quick Start With Docker
 
@@ -35,6 +41,43 @@ If you ever want to connect to the Docker container running the web server, run:
 
 `docker exec -it tincan-web-1 /bin/bash`
 
+## Deploying to a web server
+
+You'll need a web server running PHP 8.1 or above with the following extensions:
+
+* curl
+* fpm
+* gd
+* mbstring
+* mysql
+* xml
+* zip
+
+Run composer without development requirements:
+
+`composer install --no-dev`
+
+Set the following environment variables. Consult your web server documentation
+on environment variables for more information.
+
+| Variable        | Description                              | Example               |
+|-----------------|------------------------------------------|-----------------------|
+| TC_BASE_PATH    | The path where Tin Can files are located | /var/www/html         |
+| TC_UPLOADS_PATH | The path for user uploaded files         | /var/www/html/uploads |
+| TC_DB_HOST      | The address of your database server      |                       |
+| TC_DB_USER      | The username of your database user       |                       |
+| TC_DB_PASS      | The password of your database user       |                       |
+| TC_DB_NAME      | The name of your database                | tincan                |
+| TC_DB_PORT      | The open port of your database server    | 3306                  |
+
+Set the permissions of the path defined in `TC_UPLOADS_PATH` so that files may be written.
+For example:
+
+```
+chown -R www-data:www-data /var/www/html/uploads;
+chmod -R 755 /var/www/html/uploads;
+```
+
 ## Installation
 
 ![Tin Can installer screenshot](https://user-images.githubusercontent.com/87952/231024993-e80b7bbc-879d-4d40-8c55-bb27731fba49.png)
@@ -44,8 +87,6 @@ users, boards, threads, and posts. This is useful for testing your new forum.
 
 Click the "Install Tin Can Forum" button to install the forum and automatically
 log in to the admin account.
-
-**DELETE install.php FROM YOUR SERVER AFTER INSTALLATION**
 
 ## Custom Themes
 
