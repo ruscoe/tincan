@@ -80,7 +80,7 @@ chmod -R 755 /var/www/html/uploads;
 
 ## Installation
 
-![Tin Can installer screenshot](https://user-images.githubusercontent.com/87952/231024993-e80b7bbc-879d-4d40-8c55-bb27731fba49.png)
+![Tin Can installer screenshot](https://github.com/user-attachments/assets/c1233d2a-ca7b-4325-a184-d7d6cc02c784)
 
 Check the "Generate test data" checkbox if you'd like to start with sample
 users, boards, threads, and posts. This is useful for testing your new forum.
