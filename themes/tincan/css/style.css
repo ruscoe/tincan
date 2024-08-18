@@ -411,6 +411,7 @@ body.tincan.thread .post .date {
   padding: 0.5rem 1rem 0;
 }
 body.tincan.thread .post .content {
+  overflow-wrap: break-word;
   padding: 1rem;
 }
 body.tincan.thread .post .post-controls {
