@@ -24,6 +24,7 @@ h1.section-header {
 h2.section-subheader, h3.section-subheader {
   font-size: 1rem;
   margin: 0 0.5rem;
+  overflow-wrap: break-word;
 }
 @media (width >= 600px) {
   h2.section-subheader, h3.section-subheader {
