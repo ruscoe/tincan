@@ -537,6 +537,13 @@ function tc_create_settings($install_settings = [])
           'value' => 'true',
         ],
         [
+          'setting_name' => 'enable_js',
+          'category' => 'theme',
+          'type' => 'bool',
+          'title' => 'Enable JavaScript',
+          'value' => 'true',
+        ],
+        [
           'setting_name' => 'site_email_name',
           'category' => 'email',
           'type' => 'text',
