@@ -4,7 +4,7 @@ Tin Can is a lightweight web forum written in PHP.
 
 The name comes from the [tin can telephone](https://en.wikipedia.org/wiki/Tin_can_telephone).
 
-![Tin Can screenshot](https://github.com/user-attachments/assets/3ba89a57-f60b-4f15-bd27-94cf39af62b1)
+![Tin Can screenshot](https://github.com/user-attachments/assets/9bf5ef88-b441-4053-865e-b389aca8f839)
 
 ## Features
 
