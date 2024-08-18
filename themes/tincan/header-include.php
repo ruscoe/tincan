@@ -21,8 +21,8 @@
 <?php
   $settings = $data['settings'];
 
-  echo '<script type="text/javascript">';
-  echo '  const min_thread_title = ' . $settings['min_thread_title'] . ';';
-  echo '  const max_thread_title = ' . $settings['max_thread_title'] . ';';
-  echo '</script>';
+    echo '<script type="text/javascript">';
+    echo '  const min_thread_title = ' . $settings['min_thread_title'] . ';';
+    echo '  const max_thread_title = ' . $settings['max_thread_title'] . ';';
+    echo '</script>';
 } ?>
