@@ -34,18 +34,30 @@ body.tincan.thread {
       text-align: center;
 
       h3.username {
-        font-size: 1.25rem;
+        display: flex;
         color: $post-user-text;
+        font-size: 1.25rem;
         margin: 0;
         text-align: center;
+
+        @include for-tablet-portrait-up {
+          display: block;
+        }
       }
 
       .role {
         background-color: $section-alt;
         border: 1px solid $section-border;
         border-radius: 0.5rem;
-        margin: 1rem 0.5rem 0;
-        padding: 0.4rem 0.15rem;
+        font-size: 0.75rem;
+        height: 1rem;
+        margin: 0 0.5rem 0;
+        padding: 0.4rem 1rem;
+
+        @include for-tablet-portrait-up {
+          display: block;
+          margin-top: 1rem;
+        }
       }
 
       .profile-image {
@@ -94,6 +106,10 @@ body.tincan.thread {
 
     .content {
       padding: 1rem;
+    }
+
+    .post-controls {
+      padding-bottom: 1rem;
     }
 
     .attachments {

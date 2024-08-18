@@ -44,7 +44,7 @@ if (!empty($error)) {
   <div class="fieldset textarea">
     <label for="post_content">Reply Content</label>
     <div class="field">
-      <textarea name="post_content" rows="20" cols="30"></textarea>
+      <textarea name="post_content" rows="20" cols="40"></textarea>
     </div>
   </div>
 

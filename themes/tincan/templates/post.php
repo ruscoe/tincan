@@ -41,10 +41,12 @@ $parser = new TCPostParser();
 <div id="post-<?php echo $post->post_id; ?>" class="post">
   <div class="post-user">
     <?php if (!empty($author)) { ?>
-      <h3 class="username"><a href="<?php echo $user_page_url; ?>"><?php echo $username; ?></a></h3>
-      <?php if ($author->role->get_name() != 'User') { ?>
-      <div class="role"><?php echo $author->role->get_name(); ?></div>
-      <?php } ?>
+      <h3 class="username">
+        <a href="<?php echo $user_page_url; ?>"><?php echo $username; ?></a>
+        <?php if ($author->role->get_name() != 'User') { ?>
+        <span class="role"><?php echo $author->role->get_name(); ?></span>
+        <?php } ?>
+      </h3>
     <div class="profile-image">
       <a href="<?php echo $user_page_url; ?>"><img src="<?php echo $avatar_image; ?>" /></a>
     </div>

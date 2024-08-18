@@ -66,7 +66,7 @@ TCTemplate::render('breadcrumbs', $settings['theme'], ['object' => $post, 'setti
   <div class="fieldset textarea">
     <label for="reason">Reason for reporting</label>
     <div class="field">
-      <textarea name="reason" rows="10" cols="50"></textarea>
+      <textarea name="reason" rows="10" cols="40"></textarea>
     </div>
   </div>
 

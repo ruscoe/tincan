@@ -20,11 +20,15 @@ body.tincan {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    width: 100%;
 
     .fieldset {
-      display: flex;
       flex: 1;
       margin: 0.5rem 0;
+
+      @include for-tablet-portrait-up {
+        display: flex;
+      }
     }
 
     .fieldset.button {
@@ -43,8 +47,11 @@ body.tincan {
       color: $form-field-label-text;
       display: block;
       flex: 1;
-      max-width: 240px;
       padding: 0.25rem 0.5rem;
+
+      @include for-tablet-portrait-up {
+        max-width: 240px;
+      }
     }
 
     .fieldset.textarea {
@@ -58,13 +65,17 @@ body.tincan {
         flex: none;
 
         textarea {
-          width: 100%;
+          @include for-tablet-portrait-up {
+            width: 100%;
+          }
         }
       }
     }
 
     input.text-input {
-      width: 100%;
+      @include for-tablet-portrait-up {
+        width: 100%;
+      }
     }
 
     input.submit-button {

@@ -77,7 +77,7 @@ if (!empty($user) && $user->can_edit_post($post)) {
   <div class="fieldset textarea">
     <label for="post_content">Reply Content</label>
     <div class="field">
-      <textarea name="post_content" rows="20" cols="30"><?php echo $post->content; ?></textarea>
+      <textarea name="post_content" rows="20" cols="40"><?php echo $post->content; ?></textarea>
     </div>
   </div>
 
