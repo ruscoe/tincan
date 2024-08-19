@@ -33,6 +33,7 @@ class TCUser extends TCObject
 
     public const MIN_PASSWORD_LENGTH = 8;
     public const MIN_USERNAME_LENGTH = 3;
+    public const MAX_USERNAME_LENGTH = 16;
 
     /**
      * @since 0.01
@@ -366,6 +367,10 @@ class TCUser extends TCObject
     {
         // Check username length.
         if (strlen($username) < self::MIN_USERNAME_LENGTH) {
+            return false;
+        }
+
+        if (strlen($username) > self::MAX_USERNAME_LENGTH) {
             return false;
         }
 

@@ -35,7 +35,7 @@ if (!empty($error)) {
 
     switch ($error) {
         case TCUser::ERR_USER:
-            $error_msg = 'Please choose a longer username.';
+            $error_msg = 'Please choose a username between 3 and 16 alphanumeric characters.';
             break;
         case TCUser::ERR_EMAIL:
             $error_msg = 'Please check your email address has been entered correctly.';
