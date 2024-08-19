@@ -64,9 +64,10 @@ if (!empty($posts)) {
         foreach ($posts as $post) {
             $thread = $db->load_object(new TCThread(), $post->thread_id);
 
-            $thread_url = TCURL::create_url($settings['page_thread'], ['thread' => $thread->thread_id]);
+            $start_at = $db->get_post_page_in_thread($thread->thread_id, $post->post_id, $settings['posts_per_page']);
 
-            // TODO: Figure out the page of the thread this post appears on.
+            $thread_url = TCURL::create_url($settings['page_thread'], ['thread' => $thread->thread_id, 'start_at' => $start_at]);
+
             $thread_url .= '#post-'.$post->post_id; ?>
         <li>
           <h3><a href="<?php echo $thread_url; ?>"><?php echo $thread->thread_title; ?></a></h3>

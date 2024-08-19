@@ -468,4 +468,34 @@ class TCData
 
         return $this->load_objects(new TCPost(), [], $conditions, $order, $offset, $limit);
     }
+
+    public function get_post_page_in_thread($thread_id, $post_id, $posts_per_page)
+    {
+        $conditions = [
+          [
+            'field' => 'thread_id',
+            'value' => $thread_id,
+          ],
+        ];
+
+        $order = [
+          [
+            'field' => 'post_id',
+            'direction' => 'ASC',
+          ],
+        ];
+
+        $posts = $this->load_objects(new TCPost(), [], $conditions, $order);
+
+        $position_in_thread = 1;
+        foreach ($posts as $post) {
+            if ($post->post_id == $post_id) {
+                return ceil($position_in_thread / $posts_per_page);
+            }
+
+            $position_in_thread++;
+        }
+
+        return 0;
+    }
 }
