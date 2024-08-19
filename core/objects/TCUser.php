@@ -335,7 +335,7 @@ class TCUser extends TCObject
      */
     public function get_password_hash($password)
     {
-        return password_hash($password, PASSWORD_DEFAULT);
+        return password_hash($password, PASSWORD_BCRYPT);
     }
 
     /**

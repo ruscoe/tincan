@@ -46,7 +46,7 @@ class TCSession extends TCObject
     public function generate_random_hash()
     {
         $random = bin2hex(random_bytes(32));
-        $hash = md5($random);
+        $hash = password_hash($random, PASSWORD_BCRYPT);
 
         return $hash;
     }
