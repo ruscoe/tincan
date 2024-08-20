@@ -10,6 +10,7 @@ use TinCan\objects\TCMailTemplate;
 use TinCan\objects\TCObject;
 use TinCan\objects\TCPendingUser;
 use TinCan\objects\TCPost;
+use TinCan\objects\TCThread;
 use TinCan\objects\TCUser;
 use TinCan\user\TCUserSession;
 use TinCan\template\TCURL;
@@ -670,6 +671,25 @@ class TCUserController extends TCController
         foreach ($posts as $post) {
             try {
                 $this->db->delete_object($post, $post->post_id);
+            } catch (TCException $e) {
+                $this->error = TCObject::ERR_NOT_SAVED;
+                return false;
+            }
+        }
+
+        // Delete the user's threads.
+        $conditions = [
+            [
+              'field' => 'created_by_user',
+              'value' => $delete_user->user_id,
+            ],
+          ];
+
+        $threads = $this->db->load_objects(new TCThread(), [], $conditions);
+
+        foreach ($threads as $thread) {
+            try {
+                $this->db->delete_object($thread, $thread->thread_id);
             } catch (TCException $e) {
                 $this->error = TCObject::ERR_NOT_SAVED;
                 return false;
