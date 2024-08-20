@@ -6,22 +6,12 @@
  * @author Dan Ruscoe danruscoe@protonmail.com
  */
 
-var tincan = tincan || {};
-
-tincan.thread = (function($) {
-
-  return {
-
-  };
-
-})(jQuery);
-
 (function($) {
 
   $(document).ready(function() {
 
     $('form#create-thread').submit(function(e) {
-      
+
       const thread_title = $('input[name=thread_title]').val();
 
       var errors = [];
