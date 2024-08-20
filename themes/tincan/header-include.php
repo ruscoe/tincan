@@ -17,6 +17,7 @@
   <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
   <script src="/assets/js/jquery-3.6.0.min.js"></script>
   <script src="/assets/js/tincan-form.js"></script>
+  <script src="/assets/js/tincan-post.js"></script>
   <script src="/assets/js/tincan-thread.js"></script>
 <?php
   $settings = $data['settings'];
