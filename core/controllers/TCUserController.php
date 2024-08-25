@@ -114,6 +114,19 @@ class TCUserController extends TCController
             return false;
         }
 
+        // Check for banned email address.
+        if (!empty($this->db->load_objects(new TCBannedEmail(), [], [['field' => 'email', 'value' => $email]]))) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
+            return false;
+        }
+
+        // Check for banned IP address.
+        $user_ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
+        if (!empty($this->db->load_objects(new TCBannedIp(), [], [['field' => 'ip', 'value' => $user_ip]]))) {
+            $this->error = TCUser::ERR_NOT_AUTHORIZED;
+            return false;
+        }
+
         return true;
     }
 
