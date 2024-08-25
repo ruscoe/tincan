@@ -7,6 +7,8 @@ use TinCan\TCMailer;
 use TinCan\content\TCImage;
 use TinCan\controllers\TCController;
 use TinCan\objects\TCMailTemplate;
+use TinCan\objects\TCBannedEmail;
+use TinCan\objects\TCBannedIp;
 use TinCan\objects\TCObject;
 use TinCan\objects\TCPendingUser;
 use TinCan\objects\TCPost;
@@ -699,8 +701,63 @@ class TCUserController extends TCController
         return true;
     }
 
-    public function upload_avatar()
+    /**
+     * Updates the banned IP addresses.
+     *
+     * @param string $banned_ips The banned IP addresses.
+     *
+     * @since 1.0.0
+     */
+    public function update_banned_ips($banned_ips)
     {
+        $banned_ips = explode(' ', $banned_ips);
 
+        $banned_ip = new TCBannedIp();
+
+        // Delete all banned IPs.
+        $this->db->clear_banned_ips();
+
+        // Create new banned IPs.
+        foreach ($banned_ips as $ip) {
+            $banned_ip = new TCBannedIp();
+            $banned_ip->ip = $ip;
+
+            try {
+                $this->db->save_object($banned_ip);
+            } catch (TCException $e) {
+                $this->error = TCObject::ERR_NOT_SAVED;
+                return false;
+            }
+        }
+    }
+
+    /**
+     * Updates the banned email addresses.
+     *
+     * @param string $banned_emails The banned email addresses.
+     *
+     * @since 1.0.0
+     */
+    public function update_banned_emails($banned_emails)
+    {
+        $banned_emails = explode(' ', $banned_emails);
+
+        $banned_email = new TCBannedEmail();
+
+        // Delete all banned emails.
+        $this->db->clear_banned_emails();
+
+        // Create new banned emails.
+        foreach ($banned_emails as $email) {
+            $banned_email = new TCBannedEmail();
+            $banned_email->email = $email;
+
+            try {
+                $this->db->save_object($banned_email);
+            } catch (TCException $e) {
+                $this->error = TCObject::ERR_NOT_SAVED;
+                return false;
+            }
+        }
     }
 }

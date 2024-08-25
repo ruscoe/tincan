@@ -48,6 +48,8 @@ $user = $data['user'];
             '/admin?page='.$settings['admin_page_reports'] => 'Reported Posts',
             '/admin?page='.$settings['admin_page_mail_templates'] => 'Mail Templates',
             '/admin?page='.$settings['admin_page_test_mail'] => 'Test Email',
+            '/admin?page='.$settings['admin_page_banned_ips'] => 'Banned IPs',
+            '/admin?page='.$settings['admin_page_banned_emails'] => 'Banned Emails',
           ];
 ?>
 

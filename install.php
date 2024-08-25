@@ -411,7 +411,23 @@ function tc_create_tables()
       `thumbnail_file_path` varchar(255) NOT NULL DEFAULT '',
       PRIMARY KEY (`attachment_id`),
       KEY `POST_INDEX` (`post_id`)
-      ) AUTO_INCREMENT=1000",
+    ) AUTO_INCREMENT=1000",
+
+      'DROP TABLE IF EXISTS `tc_banned_ips`',
+
+      "CREATE TABLE `tc_banned_ips` (
+      `banned_ip_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `ip` varchar(255) NOT NULL DEFAULT '',
+      PRIMARY KEY (`banned_ip_id`)
+    )",
+
+      'DROP TABLE IF EXISTS `tc_banned_emails`',
+
+      "CREATE TABLE `tc_banned_emails` (
+      `banned_email_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+      `email` varchar(255) NOT NULL DEFAULT '',
+      PRIMARY KEY (`banned_email_id`)
+    )",
     ];
 
     foreach ($queries as $query) {
@@ -733,6 +749,8 @@ function tc_create_pages()
         ['page_title' => 'Admin Test Email',           'template' => 'test-mail'],
         ['page_title' => 'Admin Reported Posts',       'template' => 'reports'],
         ['page_title' => 'Admin Delete Report',        'template' => 'delete-report'],
+        ['page_title' => 'Admin Banned IPs',           'template' => 'banned-ips'],
+        ['page_title' => 'Admin Banned Emails',        'template' => 'banned-emails'],
       ];
 
     foreach ($pages as $page) {

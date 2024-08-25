@@ -498,4 +498,36 @@ class TCData
 
         return 0;
     }
+
+    /**
+     * Clears the banned IP address list.
+     *
+     * @return bool true if the query was successful
+     *
+     * @since 1.0.0
+     */
+    public function clear_banned_ips()
+    {
+        $query = "TRUNCATE `tc_banned_ips`";
+
+        $result = $this->database->query($query);
+
+        return $result;
+    }
+
+    /**
+     * Clears the banned email address list.
+     *
+     * @return bool true if the query was successful
+     *
+     * @since 1.0.0
+     */
+    public function clear_banned_emails()
+    {
+        $query = "TRUNCATE `tc_banned_emails`";
+
+        $result = $this->database->query($query);
+
+        return $result;
+    }
 }
