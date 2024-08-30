@@ -49,7 +49,7 @@ Feature: User
       | email    | testuser01@example.org |
       | password | T3stP@ss01             |
     And press "Create account"
-    Then the ".errors" element should contain "Please choose a longer username."
+    Then the ".errors" element should contain "Please choose a username between 3 and 16 alphanumeric characters."
 
   Scenario: A new forum user creates an account with a short password
     Given I am on "/"
