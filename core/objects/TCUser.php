@@ -33,7 +33,7 @@ class TCUser extends TCObject
 
     public const MIN_PASSWORD_LENGTH = 8;
     public const MIN_USERNAME_LENGTH = 3;
-    public const MAX_USERNAME_LENGTH = 16;
+    public const MAX_USERNAME_LENGTH = 18;
 
     /**
      * @since 0.01
