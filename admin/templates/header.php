@@ -16,6 +16,7 @@ $user = $data['user'];
     <title>Tin Can Forum</title>
     <link href="/admin/css/style.css" rel="stylesheet">
     <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
+    <link href="/admin/images/tin-can-logo.png" rel="icon">
     <script src="/assets/js/jquery-3.6.0.min.js"></script>
   </head>
   <body class="tincan-admin">
@@ -52,15 +53,10 @@ $user = $data['user'];
 ?>
 
         <ul>
-          <?php
-foreach ($nav_items as $url => $title) {
-    ?>
-              <li><a href="<?php echo $url; ?>"><?php echo $title; ?></a></li>
-                <?php
-}
-?>
+          <?php foreach ($nav_items as $url => $title): ?>
+            <li><a href="<?php echo $url; ?>" class="<?php if ($url === '/admin?page=' . $data['page_id']) echo "active"; ?>"><?php echo $title; ?></a></li>
+          <?php endforeach; ?>
         </ul>
-
       </div>
       <!-- Start content -->
       <div id="content">
