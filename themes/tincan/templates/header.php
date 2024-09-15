@@ -26,6 +26,7 @@ $title .= $settings['forum_name'];
   <head>
     <title><?php echo $title; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="<?php echo $settings['forum_logo']; ?>">
     <?php if (!empty($settings['theme'])) {
         include getenv('TC_BASE_PATH')."/themes/{$settings['theme']}/header-include.php";
     } ?>

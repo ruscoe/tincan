@@ -78,9 +78,11 @@ body.tincan-admin #navigation ul li a {
   color: #FFFFFF;
   display: block;
   font-size: 1rem;
-  font-weight: bold;
   padding: 0.25rem 0.5rem 0.25rem 0.85rem;
   text-decoration: none;
+}
+body.tincan-admin #navigation ul li a.active {
+  font-weight: bold;
 }
 @media (min-width: 600px) {
   body.tincan-admin #navigation {

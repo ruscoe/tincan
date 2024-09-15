@@ -146,9 +146,12 @@ body.tincan-admin {
           color: $navigationText;
           display: block;
           font-size: 1rem;
-          font-weight: bold;
           padding: 0.25rem 0.5rem 0.25rem 0.85rem;
           text-decoration: none;
+
+          &.active {
+            font-weight: bold;
+          }
         }
       }
     }
