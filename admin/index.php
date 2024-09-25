@@ -54,6 +54,6 @@ if (!empty($page_id)) {
     exit;
 }
 
-TCAdminTemplate::render('header', ['settings' => $settings, 'user' => $user]);
+TCAdminTemplate::render('header', ['page_id' => $page->page_id, 'settings' => $settings, 'user' => $user]);
 
 TCAdminTemplate::render('page/'.$page_template, ['page' => $page, 'settings' => $settings, 'user' => $user]);
