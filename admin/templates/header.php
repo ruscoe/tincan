@@ -54,7 +54,9 @@ $user = $data['user'];
 
         <ul>
           <?php foreach ($nav_items as $url => $title): ?>
-            <li><a href="<?php echo $url; ?>" class="<?php if ($url === '/admin?page=' . $data['page_id']) echo "active"; ?>"><?php echo $title; ?></a></li>
+            <li><a href="<?php echo $url; ?>" class="<?php if ($url === '/admin?page=' . $data['page_id']) {
+                echo "active";
+            } ?>"><?php echo $title; ?></a></li>
           <?php endforeach; ?>
         </ul>
       </div>
