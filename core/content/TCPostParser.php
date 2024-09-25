@@ -24,10 +24,10 @@ class TCPostParser
      */
     public function get_html($content)
     {
-        $parsed_content = $this->parse_lines($content);
+        $parsed_content = $this->parse_links($content);
+        $parsed_content = $this->parse_lines($parsed_content);
         $parsed_content = $this->parse_text($parsed_content);
         $parsed_content = $this->parse_images($parsed_content);
-        $parsed_content = $this->parse_links($parsed_content);
 
         return $parsed_content;
     }
@@ -82,7 +82,11 @@ class TCPostParser
 
     private function parse_links($content)
     {
-        $parsed_content = preg_replace("/\[(.*)\]\((.*)\)/", "<a href=\"$2\">$1</a>", $content);
+        // Parse plain links.
+        $parsed_content = preg_replace("/(?<!\()https?:\/\/[^\s]+(?!\))/", "<a href=\"$0\">$0</a>", $content);
+
+        // Parse links in the markdown format [link text](link URL).
+        $parsed_content = preg_replace("/\[(.*)\]\((.*)\)/", "<a href=\"$2\">$1</a>", $parsed_content);
 
         return $parsed_content;
     }
