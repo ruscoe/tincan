@@ -560,6 +560,13 @@ function tc_create_settings($install_settings = [])
           'value' => 'true',
         ],
         [
+          'setting_name' => 'enable_theme_debug',
+          'category' => 'theme',
+          'type' => 'bool',
+          'title' => 'Enable theme debug',
+          'value' => 'false',
+        ],
+        [
           'setting_name' => 'site_email_name',
           'category' => 'email',
           'type' => 'text',
