@@ -60,4 +60,13 @@ class TCBannedEmail extends TCObject
               'email',
             ];
     }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     * @since 0.15
+     */
+    public function get_db_relationships()
+    {
+        return [];
+    }
 }

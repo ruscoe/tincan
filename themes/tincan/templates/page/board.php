@@ -8,6 +8,7 @@ use TinCan\template\TCTemplate;
 use TinCan\objects\TCThread;
 use TinCan\template\TCURL;
 use TinCan\objects\TCUser;
+use TinCan\TCUtils;
 
 /**
  * Board page template.
@@ -64,7 +65,7 @@ $conditions = [
     'value' => $board->board_id,
   ],
   [
-    'field' => 'deleted',
+    'field' => 'tc_threads.deleted',
     'value' => 0,
   ],
 ];
@@ -75,8 +76,8 @@ $order = [
     'direction' => 'DESC',
   ],
   [
-  'field' => 'updated_time',
-  'direction' => 'DESC',
+    'field' => 'tc_threads.updated_time',
+    'direction' => 'DESC',
   ],
 ];
 
@@ -85,16 +86,27 @@ $total = $db->count_objects(new TCThread(), $conditions);
 $total_pages = TCPagination::calculate_total_pages($total, $settings['threads_per_page']);
 $offset = TCPagination::calculate_page_offset($start_at, $settings['threads_per_page']);
 
-$threads = $db->load_objects(new TCThread(), [], $conditions, $order, $offset, $settings['threads_per_page']);
+$threads = $db->object_query(new TCThread)
+    ->setConditions($conditions)
+    ->setOrder($order)
+    ->offset($offset)
+    ->limit($settings['threads_per_page'])
+    ->withCount('posts')
+    ->execute();
 
 $thread_url = null;
+
 if (!empty($threads)) {
+    $unique_user_ids = TCUtils::get_unique_property_values($threads, 'updated_by_user');
+    $users = $db->get_indexed_objects(new TCUser, 'user_id', $unique_user_ids);
+
     foreach ($threads as $thread) {
         $thread_url = TCURL::create_url($settings['page_thread'], ['thread' => $thread->thread_id]);
 
         $template_data = [
-          'user' => $db->load_user($thread->updated_by_user),
+          'user' => $users[$thread->updated_by_user],
           'thread' => $thread,
+          'post_count' => $thread->counts['posts'],
           'url' => $thread_url,
           'last_post_date' => date($settings['date_time_format'], $thread->updated_time),
           'settings' => $settings,

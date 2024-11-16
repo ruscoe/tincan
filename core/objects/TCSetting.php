@@ -102,4 +102,12 @@ class TCSetting extends TCObject
               'required',
             ];
     }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     */
+    public function get_db_relationships()
+    {
+        return [];
+    }
 }

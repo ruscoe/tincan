@@ -60,4 +60,12 @@ class TCBannedIp extends TCObject
               'ip',
             ];
     }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     */
+    public function get_db_relationships()
+    {
+        return [];
+    }
 }

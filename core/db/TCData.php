@@ -240,6 +240,17 @@ class TCData
     }
 
     /**
+     * Instantiate a new TCObjectQuery object, using the existing database object.
+     *
+     * @param  TCObject $object the object to save
+     * @return TCObjectQuery the query instance
+     */
+    public function object_query($class)
+    {
+        return new TCObjectQuery($this->database, $this, $class);
+    }
+
+    /**
      * Gets multiple objects using IDs or conditions.
      *
      * @since 0.01
@@ -258,57 +269,14 @@ class TCData
      */
     public function load_objects($class, $ids = [], $conditions = [], $order = [], $offset = 0, $limit = 0)
     {
-        $db_table = $class->get_db_table();
-        $primary_key = $class->get_primary_key();
-
-        $sql_params = [];
-
-        $query = "SELECT * FROM `{$db_table}`";
-
-        if (!empty($ids)) {
-            $ids_in = implode(',', $ids);
-            $query .= " WHERE `{$primary_key}` IN ({$ids_in})";
-        } elseif (!empty($conditions)) {
-            $query .= ' WHERE';
-            foreach ($conditions as $index => $condition) {
-                if (!$this->validate_object_field($class, $condition['field'])) {
-                    throw new TCException('Invalid field '.$db_table.'.'.$condition['field']);
-                }
-                // TODO: Allow conditions other than equals.
-                if ($index > 0) {
-                    $query .= ' AND';
-                }
-                $query .= " `{$condition['field']}` = ?";
-
-                $sql_params[] = $condition['value'];
-            }
-        }
-
-        if (!empty($order)) {
-            $query .= ' ORDER BY ';
-
-            foreach ($order as $properties) {
-                $query .= " {$properties['field']} {$properties['direction']},";
-            }
-
-            $query = rtrim($query, ',');
-        }
-
-        if ($limit > 0) {
-            $query .= " LIMIT {$offset}, {$limit}";
-        }
-
-        $result = $this->database->query($query, $sql_params);
-
-        $objects = [];
-
-        if ($result) {
-            while ($object = $result->fetch_object()) {
-                $objects[] = new $class($object);
-            }
-        }
-
-        return $objects;
+        $query = (new TCObjectQuery($this->database, $this, $class))
+            ->setIds($ids)
+            ->setConditions($conditions)
+            ->setOrder($order)
+            ->offset($offset)
+            ->limit($limit);
+        
+        return $query->execute();
     }
 
     /**
@@ -369,7 +337,7 @@ class TCData
 
         $sql_params = [];
 
-        $query = "SELECT COUNT(*) `count` FROM `{$db_table}`";
+        $query = "SELECT COUNT(*) AS `count` FROM `{$db_table}`";
 
         if (!empty($conditions)) {
             $query .= ' WHERE';
@@ -378,6 +346,7 @@ class TCData
                 if ($index > 0) {
                     $query .= ' AND';
                 }
+                $condition['field'] = str_replace('.', '`.`', $condition['field']);
                 $query .= " `{$condition['field']}` = ?";
 
                 $sql_params[] = $condition['value'];
@@ -431,7 +400,7 @@ class TCData
         $valid_db_fields = $object->get_db_fields();
 
         foreach ($valid_db_fields as $valid_field) {
-            if ($field == $valid_field) {
+            if ($field == $valid_field || $field == $object->get_db_table().'.'.$valid_field) {
                 return true;
             }
         }

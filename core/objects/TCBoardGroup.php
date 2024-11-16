@@ -2,6 +2,8 @@
 
 namespace TinCan\objects;
 
+use TinCan\db\TCDB;
+
 /**
  * Represents a group of forum boards.
  *
@@ -101,5 +103,19 @@ class TCBoardGroup extends TCObject
               'created_time',
               'updated_time',
             ];
+    }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     */
+    public function get_db_relationships()
+    {
+        return [
+            'boards' => [
+                'type' => TCDB::DB_RELATION_ONE_TO_MANY,
+                'class' => new TCThread,
+                'field' => 'board_group_id',
+            ],
+        ];
     }
 }

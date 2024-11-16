@@ -79,4 +79,12 @@ class TCRole extends TCObject
               'allowed_actions',
             ];
     }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     */
+    public function get_db_relationships()
+    {
+        return [];
+    }
 }

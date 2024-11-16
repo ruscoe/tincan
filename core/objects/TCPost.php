@@ -2,6 +2,8 @@
 
 namespace TinCan\objects;
 
+use TinCan\db\TCDB;
+
 /**
  * Represents a forum post.
  *
@@ -144,5 +146,26 @@ class TCPost extends TCObject
               'updated_by_user',
               'deleted',
             ];
+    }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     */
+    public function get_db_relationships()
+    {
+        return [
+            'thread' => [
+                'type' => TCDB::DB_RELATION_MANY_TO_ONE,
+                'nullable' => false,
+                'class' => new TCThread,
+                'field' => 'thread_id',
+            ],
+            'user' => [
+                'type' => TCDB::DB_RELATION_MANY_TO_ONE,
+                'nullable' => false,
+                'class' => new TCUser,
+                'field' => 'user_id',
+            ],
+        ];
     }
 }

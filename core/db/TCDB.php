@@ -38,6 +38,15 @@ abstract class TCDB
      */
     protected $db_port;
 
+    // 1-to-1 relation, foreign_key will be in the current model.
+    public const DB_RELATION_ONE_TO_ONE = 0;
+    // 1-to-many relation defined on the parent model.
+    public const DB_RELATION_ONE_TO_MANY = 1;
+    // 1-to-many relation defined on the child model.
+    public const DB_RELATION_MANY_TO_ONE = 2;
+    // many-to-many relation - don't think any exist in TinCan right now.
+    public const DB_RELATION_MANY_TO_MANY = 3;
+
     public function __construct($db_host, $db_user, $db_pass, $db_name, $db_port)
     {
         $this->db_host = $db_host;

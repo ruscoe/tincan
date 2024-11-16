@@ -2,6 +2,8 @@
 
 namespace TinCan\objects;
 
+use TinCan\db\TCDB;
+
 /**
  * Represents a forum thread.
  *
@@ -154,16 +156,54 @@ class TCThread extends TCObject
     public function get_db_fields()
     {
         return [
-              'board_id',
-              'thread_title',
-              'first_post_id',
-              'created_by_user',
-              'updated_by_user',
-              'created_time',
-              'updated_time',
-              'deleted',
-              'pinned',
-              'locked',
-            ];
+            'board_id',
+            'thread_title',
+            'first_post_id',
+            'created_by_user',
+            'updated_by_user',
+            'created_time',
+            'updated_time',
+            'deleted',
+            'pinned',
+            'locked',
+        ];
+    }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     */
+    public function get_db_relationships()
+    {
+        return [
+            'board' => [
+                'type' => TCDB::DB_RELATION_MANY_TO_ONE,
+                'nullable' => false,
+                'field' => 'board_id',
+                'class' => new TCBoard,
+            ],
+            'posts' => [
+                'type' => TCDB::DB_RELATION_ONE_TO_MANY,
+                'field' => 'thread_id',
+                'class' => new TCPost,
+            ],
+            'first_post' => [
+                'type' => TCDB::DB_RELATION_ONE_TO_ONE,
+                'nullable' => false,
+                'field' => 'first_post_id',
+                'class' => new TCPost,
+            ],
+            'created_by_user' => [
+                'type' => TCDB::DB_RELATION_ONE_TO_ONE,
+                'nullable' => false,
+                'field' => 'created_by_user',
+                'class' => new TCUser,
+            ],
+            'updated_by_user' => [
+                'type' => TCDB::DB_RELATION_ONE_TO_ONE,
+                'nullable' => false,
+                'field' => 'updated_by_user',
+                'class' => new TCUser,
+            ],
+        ];
     }
 }
