@@ -290,6 +290,9 @@ Feature: Admin
     Given threads exist:
     | thread_title      | created_by_user        | board_name        |
     | Test Moved Thread | testuser01@example.org | Test Source Board |
+    Given posts exist:
+    | content                   | created_by_user        | thread_title      | deleted |
+    | Test moved thread content | testuser01@example.org | Test Moved Thread | 0       |
     Given I am logged in as "testadmin01@example.org"
     When I am on "/admin/"
     And I follow "Boards"
