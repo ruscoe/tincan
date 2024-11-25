@@ -46,7 +46,10 @@ $page_id = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
 $page = null;
 
 $request_uri = filter_input(INPUT_SERVER, 'REQUEST_URI');
-$path = explode('?', $request_uri)[0];
+$path = '/';
+if (!is_null($request_uri)) {
+    $path = explode('?', $request_uri)[0];
+}
 
 $page_template = null;
 
@@ -79,4 +82,4 @@ $user = (!empty($user_id)) ? $db->load_user($user_id) : null;
 
 // Render page.
 TCTemplate::render('page/'.$page_template, $settings['theme'], ['page' => $page, 'settings' => $settings, 'user' => $user]);
-TCTemplate::render('footer', $settings['theme'], null);
+TCTemplate::render('footer', $settings['theme'], ['page' => $page, 'settings' => $settings, 'user' => $user]);
