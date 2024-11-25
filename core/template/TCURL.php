@@ -36,6 +36,9 @@ class TCURL
             $url .= 'index.php?page='.$page;
 
             foreach ($params as $name => $value) {
+                if (empty($value)) {
+                    continue;
+                }
                 $url .= '&'.$name.'='.urlencode($value);
             }
         }
@@ -63,6 +66,9 @@ class TCURL
             $url .= 'index.php?page='.$page;
 
             foreach ($params as $name => $value) {
+                if (empty($value)) {
+                    continue;
+                }
                 $url .= '&'.$name.'='.urlencode($value);
             }
         }

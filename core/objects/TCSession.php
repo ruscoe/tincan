@@ -101,4 +101,12 @@ class TCSession extends TCObject
               'expiration_time',
             ];
     }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     */
+    public function get_db_relationships()
+    {
+        return [];
+    }
 }

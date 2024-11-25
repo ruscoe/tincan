@@ -2,6 +2,8 @@
 
 namespace TinCan\objects;
 
+use TinCan\db\TCDB;
+
 /**
  * Represents a forum user.
  *
@@ -393,8 +395,7 @@ class TCUser extends TCObject
      */
     public function validate_email($email)
     {
-        // TODO: Validate email format.
-        if (empty($email)) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             return false;
         }
 
@@ -474,5 +475,24 @@ class TCUser extends TCObject
               'created_time',
               'updated_time',
             ];
+    }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     */
+    public function get_db_relationships()
+    {
+        return [
+            'posts' => [
+                'type' => TCDB::DB_RELATION_ONE_TO_MANY,
+                'class' => new TCPost,
+                'field' => 'user_id',
+            ],
+            'created_threads' => [
+                'type' => TCDB::DB_RELATION_ONE_TO_MANY,
+                'class' => new TCThread,
+                'field' => 'created_by_user',
+            ],
+        ];
     }
 }
