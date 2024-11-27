@@ -36,7 +36,7 @@ class TCTemplate
         }
 
         if (file_exists($template_path)) {
-            if ($data['settings']['enable_theme_debug'] ?? FALSE) {
+            if ($data['settings']['enable_theme_debug'] ?? false) {
                 echo self::generateTemplateDebug($template_path, $template_name);
             }
 
@@ -66,13 +66,14 @@ class TCTemplate
 
     /**
      * Output a block of HTML comments with details on the template file.
-     * 
+     *
      * @param string $template_path the server file path to the template
      * @param string $template_name the name of the template to render
-     * 
+     *
      * @return string HTML commment containing the name and path of the template.
      */
-    protected static function generateTemplateDebug($template_path, $template_name) {
+    protected static function generateTemplateDebug($template_path, $template_name)
+    {
         // Get length of the longest line will be the template path.
         // 12 is the length of prefix and suffix of which the path is added: "-- Path:  --"
         $dashcount = strlen($template_path) + 12;
