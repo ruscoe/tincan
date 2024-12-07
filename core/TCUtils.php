@@ -6,7 +6,7 @@ namespace TinCan;
  * Miscellaneous helper/ utility functions.
  *
  * @package TinCan
- * @author  Dan Ruscoe <danruscoe@protonmail.com>
+ * @author  Ricky Bertram <ricky@rbwebdesigns.co.uk>
  * @license MIT https://mit-license.org/
  * @link    https://github.com/ruscoe/tincan
  */
