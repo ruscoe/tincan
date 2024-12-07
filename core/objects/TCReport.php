@@ -84,4 +84,12 @@ class TCReport extends TCObject
             'updated_time',
         ];
     }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     */
+    public function get_db_relationships()
+    {
+        return [];
+    }
 }

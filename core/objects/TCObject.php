@@ -19,6 +19,8 @@ abstract class TCObject
     public const ERR_NOT_SAVED = 'nosave';
     public const ERR_EMPTY_FIELD = 'empty';
 
+    protected array $counts = [];
+
     /**
      * @since 0.01
      */
@@ -64,6 +66,15 @@ abstract class TCObject
         foreach ($db_fields as $field) {
             if (isset($object->$field) && $this->validate_field_value($field, $object->$field)) {
                 $this->$field = $object->$field;
+            }
+        }
+
+        // Check for count relationship data
+        $relations = $this->get_db_relationships();
+
+        foreach (array_keys($relations) as $relation) {
+            if (isset($object->{$relation . '_count'})) {
+                $this->counts[$relation] = $object->{$relation . '_count'};
             }
         }
     }
@@ -144,4 +155,11 @@ abstract class TCObject
      * @return array the database table fields
      */
     abstract public function get_db_fields();
+
+    /**
+     * Gets the mappings between foreign keys in this object to other objects.
+     *
+     * @return array the database table relationships
+     */
+    abstract public function get_db_relationships();
 }
