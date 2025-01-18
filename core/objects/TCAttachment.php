@@ -72,4 +72,12 @@ class TCAttachment extends TCObject
             'thumbnail_file_path',
         ];
     }
+
+    /**
+     * @see   TCObject::get_db_relationships()
+     */
+    public function get_db_relationships()
+    {
+        return [];
+    }
 }
