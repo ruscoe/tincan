@@ -279,8 +279,6 @@ class TCPostController extends TCController
         try {
             $new_report = $this->db->save_object($report);
         } catch (TCException $e) {
-            var_dump($e);
-            exit;
             $this->error = TCOBject::ERR_NOT_SAVED;
             return false;
         }

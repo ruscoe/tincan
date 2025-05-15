@@ -21,8 +21,6 @@ $controller = new TCUserController();
 
 $controller->authenticate_user();
 
-var_dump($user_id, $email, $current_pass, $new_pass);
-
 if ($controller->can_edit_user($user_id)) {
     if (!empty($current_pass) && !empty($new_pass)) {
         if ($controller->validate_password_change($user_id, $current_pass, $new_pass)) {
