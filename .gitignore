@@ -4,4 +4,3 @@ vendor
 uploads
 .php-cs*
 .phpunit*
-composer.lock
