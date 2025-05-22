@@ -75,6 +75,10 @@ $offset = TCPagination::calculate_page_offset($start_at, $settings['posts_per_pa
 
 $posts = $db->load_objects(new TCPost(), [], $conditions, $order, $offset, $settings['posts_per_page']);
 
+?>
+  <div id="posts">
+<?php
+
 foreach ($posts as $post) {
     if ($post->deleted) {
         TCTemplate::render('deleted-post', $settings['theme'], ['post' => $post]);
@@ -92,6 +96,10 @@ foreach ($posts as $post) {
         TCTemplate::render('post', $settings['theme'], ['thread' => $thread, 'page_number' => $start_at, 'post' => $post, 'attachments' => $attachments, 'author' => $author, 'user' => $user, 'settings' => $data['settings']]);
     }
 }
+
+?>
+  </div>
+<?php
 
 $page_params = [
   'page' => $page->page_id,
