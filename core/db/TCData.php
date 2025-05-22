@@ -275,7 +275,7 @@ class TCData
             ->setOrder($order)
             ->offset($offset)
             ->limit($limit);
-        
+
         return $query->execute();
     }
 

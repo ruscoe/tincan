@@ -86,7 +86,7 @@ $total = $db->count_objects(new TCThread(), $conditions);
 $total_pages = TCPagination::calculate_total_pages($total, $settings['threads_per_page']);
 $offset = TCPagination::calculate_page_offset($start_at, $settings['threads_per_page']);
 
-$threads = $db->object_query(new TCThread)
+$threads = $db->object_query(new TCThread())
     ->setConditions($conditions)
     ->setOrder($order)
     ->offset($offset)
@@ -98,7 +98,7 @@ $thread_url = null;
 
 if (!empty($threads)) {
     $unique_user_ids = TCUtils::get_unique_property_values($threads, 'updated_by_user');
-    $users = $db->get_indexed_objects(new TCUser, 'user_id', $unique_user_ids);
+    $users = $db->get_indexed_objects(new TCUser(), 'user_id', $unique_user_ids);
 
     foreach ($threads as $thread) {
         $thread_url = TCURL::create_url($settings['page_thread'], ['thread' => $thread->thread_id]);

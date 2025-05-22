@@ -128,12 +128,12 @@ class TCBoard extends TCObject
         return [
             'threads' => [
                 'type' => TCDB::DB_RELATION_ONE_TO_MANY,
-                'class' => new TCThread,
+                'class' => new TCThread(),
                 'field' => 'board_id',
             ],
             'group' => [
                 'type' => TCDB::DB_RELATION_MANY_TO_ONE,
-                'class' => new TCBoardGroup,
+                'class' => new TCBoardGroup(),
                 'nullable' => false,
                 'field' => 'board_group_id',
             ],

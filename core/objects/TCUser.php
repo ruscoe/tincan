@@ -485,12 +485,12 @@ class TCUser extends TCObject
         return [
             'posts' => [
                 'type' => TCDB::DB_RELATION_ONE_TO_MANY,
-                'class' => new TCPost,
+                'class' => new TCPost(),
                 'field' => 'user_id',
             ],
             'created_threads' => [
                 'type' => TCDB::DB_RELATION_ONE_TO_MANY,
-                'class' => new TCThread,
+                'class' => new TCThread(),
                 'field' => 'created_by_user',
             ],
         ];

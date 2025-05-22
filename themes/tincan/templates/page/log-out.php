@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Log out handler.
  *

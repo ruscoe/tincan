@@ -179,30 +179,30 @@ class TCThread extends TCObject
                 'type' => TCDB::DB_RELATION_MANY_TO_ONE,
                 'nullable' => false,
                 'field' => 'board_id',
-                'class' => new TCBoard,
+                'class' => new TCBoard(),
             ],
             'posts' => [
                 'type' => TCDB::DB_RELATION_ONE_TO_MANY,
                 'field' => 'thread_id',
-                'class' => new TCPost,
+                'class' => new TCPost(),
             ],
             'first_post' => [
                 'type' => TCDB::DB_RELATION_ONE_TO_ONE,
                 'nullable' => false,
                 'field' => 'first_post_id',
-                'class' => new TCPost,
+                'class' => new TCPost(),
             ],
             'created_by_user' => [
                 'type' => TCDB::DB_RELATION_ONE_TO_ONE,
                 'nullable' => false,
                 'field' => 'created_by_user',
-                'class' => new TCUser,
+                'class' => new TCUser(),
             ],
             'updated_by_user' => [
                 'type' => TCDB::DB_RELATION_ONE_TO_ONE,
                 'nullable' => false,
                 'field' => 'updated_by_user',
-                'class' => new TCUser,
+                'class' => new TCUser(),
             ],
         ];
     }

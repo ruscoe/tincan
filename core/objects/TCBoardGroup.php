@@ -113,7 +113,7 @@ class TCBoardGroup extends TCObject
         return [
             'boards' => [
                 'type' => TCDB::DB_RELATION_ONE_TO_MANY,
-                'class' => new TCThread,
+                'class' => new TCThread(),
                 'field' => 'board_group_id',
             ],
         ];

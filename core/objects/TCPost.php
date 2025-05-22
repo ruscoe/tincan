@@ -157,13 +157,13 @@ class TCPost extends TCObject
             'thread' => [
                 'type' => TCDB::DB_RELATION_MANY_TO_ONE,
                 'nullable' => false,
-                'class' => new TCThread,
+                'class' => new TCThread(),
                 'field' => 'thread_id',
             ],
             'user' => [
                 'type' => TCDB::DB_RELATION_MANY_TO_ONE,
                 'nullable' => false,
-                'class' => new TCUser,
+                'class' => new TCUser(),
                 'field' => 'user_id',
             ],
         ];

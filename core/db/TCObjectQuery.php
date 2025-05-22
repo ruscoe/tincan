@@ -90,7 +90,7 @@ class TCObjectQuery
     public function execute()
     {
         $query = "SELECT {$this->getSelectExpression()} FROM `{$this->db_table}`{$this->getJoins()}";
-        
+
         if (!empty($this->ids)) {
             $ids_in = implode(',', $this->ids);
             $query .= " WHERE `{$this->primary_key}` IN ({$ids_in})";
@@ -114,8 +114,7 @@ class TCObjectQuery
                     $order[] = "{$os['field']} {$os['direction']}";
                 }
                 $query .= " ORDER BY " . implode(', ', $order);
-            }
-            else {
+            } else {
                 $query .= " ORDER BY {$this->order['field']} {$this->order['direction']}";
             }
         }
