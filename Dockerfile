@@ -28,5 +28,7 @@ RUN service nginx restart
 # Switch to /var/www/html
 WORKDIR /var/www/html
 
-# Start PHP-FPM
-CMD mkdir -p uploads; chown -R www-data:www-data uploads; chmod -R 755 uploads; /etc/init.d/php8.1-fpm start -F && nginx -g "daemon off;"
+# Copy and run startup script
+COPY docker/startup.sh /startup.sh
+RUN chmod +x /startup.sh
+CMD ["/startup.sh"]
