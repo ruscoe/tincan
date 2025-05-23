@@ -10,8 +10,8 @@
         "sass:lint": "stylelint sass/*.scss"
     },
     "dependencies": {
-        "sass": "1.62.0",
-        "stylelint": "15.6.1",
-        "stylelint-config-standard-scss": "9.0.0"
+        "sass": "1.89.0",
+        "stylelint": "16.19.1",
+        "stylelint-config-standard-scss": "15.0.1"
     }
 }
